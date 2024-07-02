@@ -1,0 +1,9 @@
+export "package:dot_coaching/core/constants/constants.dart";
+export "package:dot_coaching/core/errors/errors.dart";
+export "package:dot_coaching/core/l10n/l10n.dart";
+export "package:dot_coaching/core/parser/parser.dart";
+export "package:dot_coaching/core/resources/resources.dart";
+export "package:dot_coaching/core/routes/routes.dart";
+export "package:dot_coaching/core/services/services.dart";
+export "package:dot_coaching/core/usecases/usecases.dart";
+export "package:dot_coaching/core/widgets/widgets.dart";

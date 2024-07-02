@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "362661479175",
+    "project_id": "dot-coaching",
+    "storage_bucket": "dot-coaching.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362661479175:android:44b175974939f5f8763ba2",
+        "android_client_info": {
+          "package_name": "dev.zenta.dot_coaching"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAVpWcmP7eXHOi4dtssWgvJohZOU4AO9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
