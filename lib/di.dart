@@ -1,4 +1,5 @@
 import 'package:dot_coaching/core/services/services.dart';
+import 'package:dot_coaching/feats/feats.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt di = GetIt.instance;
@@ -18,8 +19,30 @@ Future<void> _initStore() async {
   di.registerSingleton<IsarClient>(IsarClient());
 }
 
-void _intiRepos() {}
+void _intiRepos() {
+  di.registerLazySingleton<AuthRepo>(
+    () => AuthRepoImpl(
+      di<DioClient>(),
+      di<IsarClient>(),
+    ),
+  );
+
+  di.registerLazySingleton<UserRepo>(
+    () => UserRepoImpl(
+      di<DioClient>(),
+      di<IsarClient>(),
+    ),
+  );
+}
 
 void _initUsecase() {}
 
-void _initCubits() {}
+void _initCubits() {
+  di.registerFactory(
+    () => AuthCubit(),
+  );
+
+  di.registerFactory(
+    () => UserCubit(),
+  );
+}

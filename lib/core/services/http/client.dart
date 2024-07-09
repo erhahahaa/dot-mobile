@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/feats/feats.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 

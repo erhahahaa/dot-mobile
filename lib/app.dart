@@ -1,4 +1,6 @@
 import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/di.dart';
+import 'package:dot_coaching/feats/feats.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,10 +21,14 @@ class DotApp extends StatelessWidget {
     ));
 
     return MultiBlocProvider(
-      providers: [],
+      providers: [
+        BlocProvider(
+          create: (context) => di<AuthCubit>(),
+        )
+      ],
       child: OKToast(
         child: ScreenUtilInit(
-          designSize: const Size(0, 0),
+          designSize: const Size(344, 760),
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (context, child) {
@@ -41,6 +47,9 @@ class DotApp extends StatelessWidget {
                   child: child!,
                 );
               },
+              theme: lightTheme(context),
+              darkTheme: darkTheme(context),
+              themeMode: ThemeMode.system,
             );
           },
         ),

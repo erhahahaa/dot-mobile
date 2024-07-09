@@ -1,4 +1,4 @@
-import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/feats/feats.dart';
 import 'package:flutter/foundation.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
