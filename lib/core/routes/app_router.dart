@@ -21,7 +21,14 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.root.path,
         name: AppRoutes.root.name,
-        redirect: (_, __) => AppRoutes.splash.path,
+        redirect: (_, __) => AppRoutes.home.path,
+      ),
+      GoRoute(
+        path: AppRoutes.home.path,
+        name: AppRoutes.home.name,
+        builder: (context, state) {
+          return HomeScreen();
+        },
       ),
       ShellRoute(
         navigatorKey: _authKey,
@@ -58,7 +65,7 @@ class AppRouter {
         ],
       )
     ],
-    initialLocation: AppRoutes.splash.path,
+    initialLocation: AppRoutes.home.path,
     routerNeglect: true,
     debugLogDiagnostics: kDebugMode,
     refreshListenable: GoRouterRefreshStream(ctx.read<AuthCubit>().stream),
