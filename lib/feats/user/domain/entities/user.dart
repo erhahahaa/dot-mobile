@@ -10,13 +10,23 @@ class UserEntity {
   @Index(type: IndexType.value)
   String? name;
   String? email;
+  String? image;
+  String? phone;
   @enumerated
   UserRole role;
+  String? expertise;
+  DateTime? createdAt;
+  String? token;
 
   UserEntity({
     this.id = Isar.autoIncrement,
-    this.email,
     this.name,
+    this.email,
+    this.image,
+    this.phone,
     this.role = UserRole.user,
+    this.expertise,
+    this.createdAt,
+    this.token,
   });
 }

@@ -1,1 +1,2 @@
-export 'package:dot_coaching/core/parser/isolate_parser.dart';
+export 'package:dot_coaching/core/parser/json.dart';
+export 'package:dot_coaching/core/parser/model.dart';

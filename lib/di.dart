@@ -7,7 +7,7 @@ GetIt di = GetIt.instance;
 Future<void> initDependencies() async {
   await _initStore();
 
-  di.registerLazySingleton<DioClient>(() => DioClient(di()));
+  di.registerSingleton<DioClient>(DioClient(di()));
 
   _intiRepos();
   _initUsecase();
@@ -29,7 +29,6 @@ void _intiRepos() {
 
   di.registerLazySingleton<UserRepo>(
     () => UserRepoImpl(
-      di<DioClient>(),
       di<IsarClient>(),
     ),
   );
@@ -39,7 +38,10 @@ void _initUsecase() {}
 
 void _initCubits() {
   di.registerFactory(
-    () => AuthCubit(),
+    () => AuthCubit(
+      di<AuthRepo>(),
+      di<UserRepo>(),
+    ),
   );
 
   di.registerFactory(

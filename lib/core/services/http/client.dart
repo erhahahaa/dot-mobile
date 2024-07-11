@@ -4,10 +4,9 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/utils/helpers/helpers.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-
-typedef JSONIConv<T> = T Function(dynamic response);
 
 class DioClient with FirebaseCrashLogger {
   String? _auth;
@@ -21,7 +20,7 @@ class DioClient with FirebaseCrashLogger {
         _auth = token.first.token;
       }
       _dio = _createDio();
-      // _dio.interceptors.add(DioInterceptor());
+      _dio.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
@@ -34,7 +33,7 @@ class DioClient with FirebaseCrashLogger {
         _auth = token.first.token;
       }
       _dio = _createDio();
-      // _dio.interceptors.add(DioInterceptor());
+      _dio.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
@@ -62,7 +61,7 @@ class DioClient with FirebaseCrashLogger {
   Future<Either<Failure, T>> getRequest<T>(
     String url, {
     Map<String, dynamic>? queryParameters,
-    required JSONIConv<T> converter,
+    required JSONIsolateConverter<T> converter,
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
@@ -86,21 +85,13 @@ class DioClient with FirebaseCrashLogger {
 
       return Right(result);
     } on DioException catch (e, stackTrace) {
+      final res = e.response?.data as Map<String, dynamic>;
       nonFatalError(error: e, stackTrace: stackTrace);
-
-      if (e.response?.statusCode == 404) {
-        return const Left(
-          ServerFailure(
-            message: "Internal Server Error",
-          ),
-        );
-      }
       return Left(
         ServerFailure(
           message: e.response == null
-              ? e.message
-              : e.response?.data['message'] as String? ??
-                  "Internal Server Error",
+              ? e.message ?? "Internal Server Error"
+              : res['error'] as String? ?? "Internal Server Error",
           exception: e,
         ),
       );
@@ -111,7 +102,7 @@ class DioClient with FirebaseCrashLogger {
     String url, {
     Map<String, dynamic>? data,
     FormData? formData,
-    JSONIConv<T>? converter,
+    JSONIsolateConverter<T>? converter,
     Function(int, int)? onSendProgress,
     Function(int, int)? onReceiveProgress,
   }) async {
@@ -129,6 +120,7 @@ class DioClient with FirebaseCrashLogger {
           response: response,
         );
       }
+      log.f("Response: ${response.data}");
       if (converter == null) {
         return Right(response.data as T);
       } else {
@@ -140,13 +132,13 @@ class DioClient with FirebaseCrashLogger {
         return Right(result);
       }
     } on DioException catch (e, stackTrace) {
+      final res = e.response?.data as Map<String, dynamic>;
       nonFatalError(error: e, stackTrace: stackTrace);
       return Left(
         ServerFailure(
           message: e.response == null
-              ? e.message
-              : e.response?.data['message'] as String? ??
-                  "Internal Server Error",
+              ? e.message ?? "Internal Server Error"
+              : res['error'] as String? ?? "Internal Server Error",
           exception: e,
         ),
       );
@@ -157,7 +149,7 @@ class DioClient with FirebaseCrashLogger {
     String url, {
     Map<String, dynamic>? data,
     FormData? formData,
-    JSONIConv<T>? converter,
+    JSONIsolateConverter<T>? converter,
     Function(int, int)? onSendProgress,
     Function(int, int)? onReceiveProgress,
   }) async {
@@ -187,13 +179,13 @@ class DioClient with FirebaseCrashLogger {
         return Right(result);
       }
     } on DioException catch (e, stackTrace) {
+      final res = e.response?.data as Map<String, dynamic>;
       nonFatalError(error: e, stackTrace: stackTrace);
       return Left(
         ServerFailure(
           message: e.response == null
-              ? e.message
-              : e.response?.data['message'] as String? ??
-                  "Internal Server Error",
+              ? e.message ?? "Internal Server Error"
+              : res['error'] as String? ?? "Internal Server Error",
           exception: e,
         ),
       );
@@ -203,7 +195,7 @@ class DioClient with FirebaseCrashLogger {
   Future<Either<Failure, T>> deleteRequest<T>(
     String url, {
     Map<String, dynamic>? data,
-    JSONIConv<T>? converter,
+    JSONIsolateConverter<T>? converter,
   }) async {
     try {
       final response = await dio.delete(
@@ -232,7 +224,7 @@ class DioClient with FirebaseCrashLogger {
       return Left(
         ServerFailure(
           message: e.response == null
-              ? e.message
+              ? e.message ?? "Internal Server Error"
               : e.response?.data['message'] as String? ??
                   "Internal Server Error",
           exception: e,
@@ -268,7 +260,7 @@ class DioClient with FirebaseCrashLogger {
       return Left(
         ServerFailure(
           message: e.response == null
-              ? e.message
+              ? e.message ?? "Internal Server Error"
               : e.response?.data['message'] as String? ??
                   "Internal Server Error",
           exception: e,

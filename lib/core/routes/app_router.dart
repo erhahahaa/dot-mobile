@@ -38,7 +38,23 @@ class AppRouter {
             builder: (_, state) => SplashScreen(
               key: state.pageKey,
             ),
-          )
+          ),
+          GoRoute(
+            parentNavigatorKey: _authKey,
+            path: AppRoutes.authSignIn.path,
+            name: AppRoutes.authSignIn.name,
+            builder: (context, state) => SignInScreen(
+              key: state.pageKey,
+            ),
+          ),
+          GoRoute(
+            parentNavigatorKey: _authKey,
+            path: AppRoutes.authSignUp.path,
+            name: AppRoutes.authSignUp.name,
+            builder: (context, state) => SignUpScreen(
+              key: state.pageKey,
+            ),
+          ),
         ],
       )
     ],

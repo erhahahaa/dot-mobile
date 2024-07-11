@@ -1,4 +1,5 @@
 import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/core/resources/resources.dart';
 import 'package:flutter/material.dart';
 
 ThemeData lightTheme(BuildContext ctx) {
@@ -77,6 +78,17 @@ ThemeData lightTheme(BuildContext ctx) {
         ),
       ),
     ),
+    brightness: Brightness.light,
+    iconTheme: const IconThemeData(color: Palette.primaryColorLight),
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    extensions: const <ThemeExtension<dynamic>>[
+      AppColors(
+        error: Palette.errorColorLight,
+        success: Palette.successColorLight,
+        warning: Palette.warningColorLight,
+        info: Palette.infoColorLight,
+      ),
+    ],
   );
 }
 
@@ -156,5 +168,67 @@ ThemeData darkTheme(BuildContext ctx) {
         ),
       ),
     ),
+    brightness: Brightness.dark,
+    iconTheme: const IconThemeData(color: Palette.primaryColorDark),
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    extensions: const <ThemeExtension<dynamic>>[
+      AppColors(
+        error: Palette.errorColorDark,
+        success: Palette.successColorDark,
+        warning: Palette.warningColorDark,
+        info: Palette.infoColorDark,
+        accent: Palette.accentColorDark,
+      ),
+    ],
   );
+}
+
+class AppColors extends ThemeExtension<AppColors> {
+  final Color? error;
+  final Color? success;
+  final Color? warning;
+  final Color? info;
+  final Color? accent;
+
+  const AppColors({
+    this.error,
+    this.success,
+    this.warning,
+    this.info,
+    this.accent,
+  });
+
+  @override
+  ThemeExtension<AppColors> copyWith({
+    Color? error,
+    Color? success,
+    Color? warning,
+    Color? info,
+    Color? accent,
+  }) {
+    return AppColors(
+      error: error ?? this.error,
+      success: success ?? this.success,
+      warning: warning ?? this.warning,
+      info: info ?? this.info,
+      accent: accent ?? this.accent,
+    );
+  }
+
+  @override
+  ThemeExtension<AppColors> lerp(
+    covariant ThemeExtension<AppColors>? other,
+    double t,
+  ) {
+    if (other is! AppColors) {
+      return this;
+    }
+    return AppColors(
+      error: Color.lerp(error, other.error, t),
+      success: Color.lerp(success, other.success, t),
+      warning: Color.lerp(warning, other.warning, t),
+      info: Color.lerp(info, other.info, t),
+      accent: Color.lerp(accent, other.accent, t),
+    );
+  }
 }

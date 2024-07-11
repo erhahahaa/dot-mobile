@@ -11,6 +11,7 @@ class AuthState with _$AuthState {
       AuthStatus.unknown,
     )
     AuthStatus status,
+    Failure? failure,
     @Default(
       PasswordVisibility.hidden,
     )

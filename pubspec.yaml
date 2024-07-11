@@ -1,5 +1,5 @@
 name: dot_coaching
-description: "A new Flutter project."
+description: "Dot Coaching Mobile Application."
 publish_to: "none"
 version: 1.0.0+1
 
@@ -30,6 +30,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   freezed_annotation: ^2.4.2
   json_annotation: ^4.9.0
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -44,3 +45,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/dot_logo.png
+    - assets/images/hero/sign-in.png
+    - assets/images/hero/sign-up.png

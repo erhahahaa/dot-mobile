@@ -1,1 +1,1 @@
-export 'package:dot_coaching/feats/auth/domain/entities/auth.dart';
+export 'package:dot_coaching/feats/auth/domain/entities/token.dart';

@@ -4,14 +4,15 @@ class ListAPI {
   ListAPI._();
 
   // static const String BASE_URL = 'http:192.168.97.169:3000/api';
-  static const String BASE_URL = 'http:192.168.97.169:3000/api';
+  static const String BASE_URL = 'http://192.168.193.169:3000/api';
 
-  static const String AUTH_SIGN_IN = '$BASE_URL/auth/signin';
-  static const String AUTH_SIGN_UP = '$BASE_URL/auth/signup';
-  static const String AUTH_ME = '$BASE_URL/auth/me';
+  static const String AUTH_SIGN_UP = '/auth/sign-up';
+  static const String AUTH_SIGN_IN = '/auth/sign-in';
+  static const String AUTH_ME = '/auth/me';
+  static const String AUTH_LOGOUT = '/auth/logout';
 
-  static const String TACTICAL = '$BASE_URL/tactical';
-  static const String EXAM = '$BASE_URL/tactical/exam';
-  static const String QUESTION = '$BASE_URL/tactical/exam/question';
-  static const String PROGRAM = '$BASE_URL/tactical/program';
+  static const String TACTICAL = '/tactical';
+  static const String EXAM = '/tactical/exam';
+  static const String QUESTION = '/tactical/exam/question';
+  static const String PROGRAM = '/tactical/program';
 }

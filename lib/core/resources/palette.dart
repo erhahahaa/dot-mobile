@@ -4,7 +4,7 @@ class Palette {
   Palette._();
 
   // Light Theme
-  static const Color primaryColorLight = Color(0xFFC5CAE9);
+  static const Color primaryColorLight = Color.fromARGB(255, 30, 55, 218);
   static const Color accentColorLight = Color(0xFF448AFF);
   static const Color primaryTextColorLight = Color(0xFF212121);
   static const Color captionTextColorLight = Color(0xFF9E9E9E);
@@ -21,7 +21,7 @@ class Palette {
   static const Color focusColorLight = Color(0xFF448AFF);
 
   // Dark Theme
-  static const Color primaryColorDark = Color(0xFFC5CAE9);
+  static const Color primaryColorDark = Color.fromARGB(255, 38, 63, 223);
   static const Color accentColorDark = Color(0xFF448AFF);
   static const Color primaryTextColorDark = Color(0xFF212121);
   static const Color captionTextColorDark = Color(0xFF9E9E9E);

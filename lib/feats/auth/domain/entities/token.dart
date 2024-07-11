@@ -1,11 +1,11 @@
 import 'package:isar/isar.dart';
 
-part 'auth.g.dart';
+part 'token.g.dart';
 
 @collection
 class TokenEntity {
   Id id = Isar.autoIncrement;
-  String? token;
+  String? token; 
 
   TokenEntity({
     this.id = Isar.autoIncrement,

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthState {
   BaseState get state => throw _privateConstructorUsedError;
   AuthStatus get status => throw _privateConstructorUsedError;
+  Failure? get failure => throw _privateConstructorUsedError;
   PasswordVisibility get passwordVisibility =>
       throw _privateConstructorUsedError;
   PasswordVisibility get confirmPasswordVisibility =>
@@ -36,6 +37,7 @@ abstract class $AuthStateCopyWith<$Res> {
   $Res call(
       {BaseState state,
       AuthStatus status,
+      Failure? failure,
       PasswordVisibility passwordVisibility,
       PasswordVisibility confirmPasswordVisibility});
 }
@@ -55,6 +57,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $Res call({
     Object? state = null,
     Object? status = null,
+    Object? failure = freezed,
     Object? passwordVisibility = null,
     Object? confirmPasswordVisibility = null,
   }) {
@@ -67,6 +70,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AuthStatus,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
       passwordVisibility: null == passwordVisibility
           ? _value.passwordVisibility
           : passwordVisibility // ignore: cast_nullable_to_non_nullable
@@ -90,6 +97,7 @@ abstract class _$$AuthStateImplCopyWith<$Res>
   $Res call(
       {BaseState state,
       AuthStatus status,
+      Failure? failure,
       PasswordVisibility passwordVisibility,
       PasswordVisibility confirmPasswordVisibility});
 }
@@ -107,6 +115,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
     Object? status = null,
+    Object? failure = freezed,
     Object? passwordVisibility = null,
     Object? confirmPasswordVisibility = null,
   }) {
@@ -119,6 +128,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AuthStatus,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
       passwordVisibility: null == passwordVisibility
           ? _value.passwordVisibility
           : passwordVisibility // ignore: cast_nullable_to_non_nullable
@@ -137,6 +150,7 @@ class _$AuthStateImpl implements _AuthState {
   const _$AuthStateImpl(
       {this.state = BaseState.initial,
       this.status = AuthStatus.unknown,
+      this.failure,
       this.passwordVisibility = PasswordVisibility.hidden,
       this.confirmPasswordVisibility = PasswordVisibility.hidden});
 
@@ -147,6 +161,8 @@ class _$AuthStateImpl implements _AuthState {
   @JsonKey()
   final AuthStatus status;
   @override
+  final Failure? failure;
+  @override
   @JsonKey()
   final PasswordVisibility passwordVisibility;
   @override
@@ -155,7 +171,7 @@ class _$AuthStateImpl implements _AuthState {
 
   @override
   String toString() {
-    return 'AuthState(state: $state, status: $status, passwordVisibility: $passwordVisibility, confirmPasswordVisibility: $confirmPasswordVisibility)';
+    return 'AuthState(state: $state, status: $status, failure: $failure, passwordVisibility: $passwordVisibility, confirmPasswordVisibility: $confirmPasswordVisibility)';
   }
 
   @override
@@ -165,6 +181,7 @@ class _$AuthStateImpl implements _AuthState {
             other is _$AuthStateImpl &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
             (identical(other.passwordVisibility, passwordVisibility) ||
                 other.passwordVisibility == passwordVisibility) &&
             (identical(other.confirmPasswordVisibility,
@@ -173,7 +190,7 @@ class _$AuthStateImpl implements _AuthState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state, status,
+  int get hashCode => Object.hash(runtimeType, state, status, failure,
       passwordVisibility, confirmPasswordVisibility);
 
   @JsonKey(ignore: true)
@@ -187,6 +204,7 @@ abstract class _AuthState implements AuthState {
   const factory _AuthState(
       {final BaseState state,
       final AuthStatus status,
+      final Failure? failure,
       final PasswordVisibility passwordVisibility,
       final PasswordVisibility confirmPasswordVisibility}) = _$AuthStateImpl;
 
@@ -194,6 +212,8 @@ abstract class _AuthState implements AuthState {
   BaseState get state;
   @override
   AuthStatus get status;
+  @override
+  Failure? get failure;
   @override
   PasswordVisibility get passwordVisibility;
   @override
