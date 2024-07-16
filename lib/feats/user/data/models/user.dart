@@ -7,7 +7,7 @@ part 'user.g.dart';
 @freezed
 class UserModel with _$UserModel {
   const factory UserModel({
-    @Default(0) int? id,
+    @Default(0) int  id,
     @Default('Folks') String name,
     @Default('folks@dot.com') String? email,
     @Default("https://api.dicebear.com/9.x/adventurer/png") String image,

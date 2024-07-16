@@ -20,7 +20,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  int? get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {int? id,
+      {int id,
       String name,
       String? email,
       String image,
@@ -67,7 +67,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? name = null,
     Object? email = freezed,
     Object? image = null,
@@ -78,10 +78,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? token = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -127,7 +127,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
+      {int id,
       String name,
       String? email,
       String image,
@@ -149,7 +149,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? name = null,
     Object? email = freezed,
     Object? image = null,
@@ -160,10 +160,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? token = freezed,
   }) {
     return _then(_$UserModelImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -219,7 +219,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   @JsonKey()
-  final int? id;
+  final int id;
   @override
   @JsonKey()
   final String name;
@@ -289,7 +289,7 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {final int? id,
+      {final int id,
       final String name,
       final String? email,
       final String image,
@@ -303,7 +303,7 @@ abstract class _UserModel implements UserModel {
       _$UserModelImpl.fromJson;
 
   @override
-  int? get id;
+  int get id;
   @override
   String get name;
   @override
