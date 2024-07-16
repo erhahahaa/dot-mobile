@@ -12,4 +12,8 @@ class ListAPI {
   static const String AUTH_LOGOUT = '/auth/logout';
 
   static const String CLUB = '/club';
+  static const String CLUB_PROGRAM = '/club/program';
+  static const String CLUB_EXAM = '/club/exam';
+  static const String CLUB_EXAM_QUESTION = '/club/exam/question';
+  static const String CLUB_TACTICAL = '/club/tactical';
 }
