@@ -20,7 +20,6 @@ CreateExamParams _$CreateExamParamsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreateExamParams {
-  int get id => throw _privateConstructorUsedError;
   int get clubId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -38,8 +37,7 @@ abstract class $CreateExamParamsCopyWith<$Res> {
           CreateExamParams value, $Res Function(CreateExamParams) then) =
       _$CreateExamParamsCopyWithImpl<$Res, CreateExamParams>;
   @useResult
-  $Res call(
-      {int id, int clubId, String name, String description, DateTime? dueAt});
+  $Res call({int clubId, String name, String description, DateTime? dueAt});
 }
 
 /// @nodoc
@@ -55,17 +53,12 @@ class _$CreateExamParamsCopyWithImpl<$Res, $Val extends CreateExamParams>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? clubId = null,
     Object? name = null,
     Object? description = null,
     Object? dueAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
@@ -94,8 +87,7 @@ abstract class _$$CreateExamParamsImplCopyWith<$Res>
       __$$CreateExamParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id, int clubId, String name, String description, DateTime? dueAt});
+  $Res call({int clubId, String name, String description, DateTime? dueAt});
 }
 
 /// @nodoc
@@ -109,17 +101,12 @@ class __$$CreateExamParamsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? clubId = null,
     Object? name = null,
     Object? description = null,
     Object? dueAt = freezed,
   }) {
     return _then(_$CreateExamParamsImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
@@ -144,18 +131,11 @@ class __$$CreateExamParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CreateExamParamsImpl implements _CreateExamParams {
   const _$CreateExamParamsImpl(
-      {this.id = 0,
-      this.clubId = 0,
-      this.name = '',
-      this.description = '',
-      this.dueAt});
+      {this.clubId = 0, this.name = '', this.description = '', this.dueAt});
 
   factory _$CreateExamParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateExamParamsImplFromJson(json);
 
-  @override
-  @JsonKey()
-  final int id;
   @override
   @JsonKey()
   final int clubId;
@@ -170,7 +150,7 @@ class _$CreateExamParamsImpl implements _CreateExamParams {
 
   @override
   String toString() {
-    return 'CreateExamParams(id: $id, clubId: $clubId, name: $name, description: $description, dueAt: $dueAt)';
+    return 'CreateExamParams(clubId: $clubId, name: $name, description: $description, dueAt: $dueAt)';
   }
 
   @override
@@ -178,7 +158,6 @@ class _$CreateExamParamsImpl implements _CreateExamParams {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateExamParamsImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.clubId, clubId) || other.clubId == clubId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
@@ -189,7 +168,7 @@ class _$CreateExamParamsImpl implements _CreateExamParams {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, clubId, name, description, dueAt);
+      Object.hash(runtimeType, clubId, name, description, dueAt);
 
   @JsonKey(ignore: true)
   @override
@@ -208,8 +187,7 @@ class _$CreateExamParamsImpl implements _CreateExamParams {
 
 abstract class _CreateExamParams implements CreateExamParams {
   const factory _CreateExamParams(
-      {final int id,
-      final int clubId,
+      {final int clubId,
       final String name,
       final String description,
       final DateTime? dueAt}) = _$CreateExamParamsImpl;
@@ -217,8 +195,6 @@ abstract class _CreateExamParams implements CreateExamParams {
   factory _CreateExamParams.fromJson(Map<String, dynamic> json) =
       _$CreateExamParamsImpl.fromJson;
 
-  @override
-  int get id;
   @override
   int get clubId;
   @override

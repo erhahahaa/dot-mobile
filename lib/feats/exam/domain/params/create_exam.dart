@@ -6,7 +6,6 @@ part 'create_exam.g.dart';
 @freezed
 class CreateExamParams with _$CreateExamParams {
   const factory CreateExamParams({
-    @Default(0) int id,
     @Default(0) int clubId,
     @Default('') String name,
     @Default('') String description,
