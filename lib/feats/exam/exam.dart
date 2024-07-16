@@ -1,3 +1,3 @@
-export 'package:dot_coaching/feats/exam/presentation/screens/screens.dart';
-export 'package:dot_coaching/feats/exam/presentation/state/state.dart';
-export 'package:dot_coaching/feats/exam/presentation/widgets/widgets.dart';
+export 'package:dot_coaching/feats/exam/data/data.dart';
+export 'package:dot_coaching/feats/exam/domain/domain.dart';
+export 'package:dot_coaching/feats/exam/presentation/presentation.dart';
