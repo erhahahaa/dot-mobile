@@ -6,20 +6,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final msg = Strings.of(context);
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state.state == BaseState.failure || state.failure != null) {
-          state.failure?.message.toToastError(context);
+          msg?.failedSignUp.toToastError(context);
         }
         if (state.status == AuthStatus.authenticated) {
-          'Berhasil masuk'.toToastSuccess(context);
+          msg?.successSignUp.toToastSuccess(context);
           context.read<AuthCubit>().clear();
-          context.pushReplacementNamed(AppRoutes.home.name);
+          context.pushReplacementNamed(AppRoutes.authSignIn.name);
         }
       },
       child: Parent(
@@ -27,12 +28,12 @@ class SignInScreen extends StatelessWidget {
           child: Column(
             children: [
               Image.asset(
-                'assets/images/hero/sign-in.png',
+                'assets/images/hero/sign-up.png',
                 width: 344.w,
                 height: 260.w,
               ),
               SizedBox(height: 20.h),
-              const SignInFormWidget(),
+              const SignUpFormWidget(),
               SizedBox(height: 20.h),
               Row(
                 children: [
@@ -59,14 +60,14 @@ class SignInScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Don\'t have an account?',
+                  Text(
+                    msg?.alreadyHaveAnAccount ?? 'Already have an account?',
                   ),
                   SizedBox(width: 4.w),
                   InkWell(
-                    onTap: () => context.pushNamed(AppRoutes.authSignUp.name),
+                    onTap: () => context.pushNamed(AppRoutes.authSignIn.name),
                     child: Text(
-                      'Sign Up',
+                      msg?.signIn ?? 'Sign In',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.w600,

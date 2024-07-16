@@ -2,5 +2,12 @@
   "@@locale": "en",
   "signIn": "Sign In",
   "signOut": "Sign Out",
-  "signUp": "Sign Up"
+  "signUp": "Sign Up",
+  "failedSignIn": "Failed to sign in",
+  "failedSignUp": "Failed to sign up",
+  "failedSignOut": "Failed to sign out",
+  "successSignIn": "Signed in successfully",
+  "successSignUp": "Signed up successfully",
+  "successSignOut": "Signed out successfully",
+  "alreadyHaveAnAccount": "Already have an account?"
 }

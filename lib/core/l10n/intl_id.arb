@@ -2,5 +2,12 @@
   "@@locale": "id",
   "signIn": "Masuk",
   "signOut": "Keluar",
-  "signUp": "Daftar"
+  "signUp": "Daftar",
+  "failedSignIn": "Gagal masuk",
+  "failedSignUp": "Gagal daftar",
+  "failedSignOut": "Gagal keluar",
+  "successSignIn": "Berhasil masuk",
+  "successSignUp": "Berhasil daftar",
+  "successSignOut": "Berhasil keluar",
+  "alreadyHaveAnAccount": "Sudah punya akun?"
 }

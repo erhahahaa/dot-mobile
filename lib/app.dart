@@ -4,6 +4,7 @@ import 'package:dot_coaching/feats/feats.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -37,6 +38,13 @@ class DotApp extends StatelessWidget {
             return MaterialApp.router(
               title: AppConstants.APP_NAME,
               routerConfig: AppRouter.router,
+              restorationScopeId: 'hatofitApp',
+              localizationsDelegates: const [
+                Strings.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
               debugShowCheckedModeBanner: false,
               builder: (c, child) {
                 return MediaQuery(
@@ -50,6 +58,7 @@ class DotApp extends StatelessWidget {
               theme: lightTheme(ctx),
               darkTheme: darkTheme(ctx),
               themeMode: ThemeMode.system,
+              supportedLocales: L10n.all,
             );
           },
         ),

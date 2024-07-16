@@ -110,6 +110,48 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Sign Up'**
   String get signUp;
+
+  /// No description provided for @failedSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to sign in'**
+  String get failedSignIn;
+
+  /// No description provided for @failedSignUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to sign up'**
+  String get failedSignUp;
+
+  /// No description provided for @failedSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to sign out'**
+  String get failedSignOut;
+
+  /// No description provided for @successSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in successfully'**
+  String get successSignIn;
+
+  /// No description provided for @successSignUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed up successfully'**
+  String get successSignUp;
+
+  /// No description provided for @successSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed out successfully'**
+  String get successSignOut;
+
+  /// No description provided for @alreadyHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get alreadyHaveAnAccount;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {
