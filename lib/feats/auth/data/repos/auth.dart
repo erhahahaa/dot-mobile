@@ -15,7 +15,7 @@ class AuthRepoImpl implements AuthRepo {
     final res = await _remote.postRequest(
       ListAPI.AUTH_SIGN_IN,
       data: params.toJson(),
-      converter: (response) => UserModel.fromJson(response['data']),
+      converter: (res) => UserModel.fromJson(res['data']),
     );
 
     res.fold((l) => null, (r) async {
@@ -39,7 +39,7 @@ class AuthRepoImpl implements AuthRepo {
     final res = await _remote.postRequest(
       ListAPI.AUTH_SIGN_UP,
       data: params.toJson(),
-      converter: (response) => UserModel.fromJson(response['data']),
+      converter: (res) => UserModel.fromJson(res['data']),
     );
 
     return res;
@@ -49,7 +49,7 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, UserModel>> me() async {
     final res = await _remote.getRequest(
       ListAPI.AUTH_ME,
-      converter: (response) => UserModel.fromJson(response['data']),
+      converter: (res) => UserModel.fromJson(res['data']),
     );
 
     res.fold(
@@ -74,7 +74,7 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, bool>> logout() async {
     final res = await _remote.getRequest(
       ListAPI.AUTH_LOGOUT,
-      converter: (response) => true,
+      converter: (res) => true,
     );
 
     res.fold(
