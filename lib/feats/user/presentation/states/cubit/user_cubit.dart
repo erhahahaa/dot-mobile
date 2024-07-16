@@ -5,5 +5,5 @@ part 'user_state.dart';
 part 'user_cubit.freezed.dart';
 
 class UserCubit extends Cubit<UserState> {
-  UserCubit() : super(UserState.initial());
+  UserCubit() : super(const UserState.initial());
 }

@@ -5,5 +5,5 @@ part 'general_state.dart';
 part 'general_cubit.freezed.dart';
 
 class GeneralCubit extends Cubit<GeneralState> {
-  GeneralCubit() : super(GeneralState.initial());
+  GeneralCubit() : super(const GeneralState.initial());
 }

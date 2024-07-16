@@ -32,7 +32,7 @@ class SignUpScreen extends StatelessWidget {
                 height: 260.w,
               ),
               SizedBox(height: 20.h),
-              SignUpFormWidget(),
+              const SignUpFormWidget(),
               SizedBox(height: 20.h),
               Row(
                 children: [
@@ -43,7 +43,7 @@ class SignUpScreen extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'or',
                   ),
                   Expanded(
@@ -59,7 +59,7 @@ class SignUpScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Already have an account?',
                   ),
                   SizedBox(width: 4.w),

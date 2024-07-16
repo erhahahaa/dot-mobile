@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
@@ -85,16 +86,7 @@ class DioClient with FirebaseCrashLogger {
 
       return Right(result);
     } on DioException catch (e, stackTrace) {
-      final res = e.response?.data as Map<String, dynamic>;
-      nonFatalError(error: e, stackTrace: stackTrace);
-      return Left(
-        ServerFailure(
-          message: e.response == null
-              ? e.message ?? "Internal Server Error"
-              : res['error'] as String? ?? "Internal Server Error",
-          exception: e,
-        ),
-      );
+      return handleException(e, stackTrace);
     }
   }
 
@@ -132,16 +124,7 @@ class DioClient with FirebaseCrashLogger {
         return Right(result);
       }
     } on DioException catch (e, stackTrace) {
-      final res = e.response?.data as Map<String, dynamic>;
-      nonFatalError(error: e, stackTrace: stackTrace);
-      return Left(
-        ServerFailure(
-          message: e.response == null
-              ? e.message ?? "Internal Server Error"
-              : res['error'] as String? ?? "Internal Server Error",
-          exception: e,
-        ),
-      );
+      return handleException(e, stackTrace);
     }
   }
 
@@ -179,16 +162,7 @@ class DioClient with FirebaseCrashLogger {
         return Right(result);
       }
     } on DioException catch (e, stackTrace) {
-      final res = e.response?.data as Map<String, dynamic>;
-      nonFatalError(error: e, stackTrace: stackTrace);
-      return Left(
-        ServerFailure(
-          message: e.response == null
-              ? e.message ?? "Internal Server Error"
-              : res['error'] as String? ?? "Internal Server Error",
-          exception: e,
-        ),
-      );
+      return handleException(e, stackTrace);
     }
   }
 
@@ -220,16 +194,7 @@ class DioClient with FirebaseCrashLogger {
         return Right(result);
       }
     } on DioException catch (e, stackTrace) {
-      nonFatalError(error: e, stackTrace: stackTrace);
-      return Left(
-        ServerFailure(
-          message: e.response == null
-              ? e.message ?? "Internal Server Error"
-              : e.response?.data['message'] as String? ??
-                  "Internal Server Error",
-          exception: e,
-        ),
-      );
+      return handleException(e, stackTrace);
     }
   }
 
@@ -256,16 +221,20 @@ class DioClient with FirebaseCrashLogger {
       }
       return Right(File(savePath));
     } on DioException catch (e, stackTrace) {
-      nonFatalError(error: e, stackTrace: stackTrace);
-      return Left(
-        ServerFailure(
-          message: e.response == null
-              ? e.message ?? "Internal Server Error"
-              : e.response?.data['message'] as String? ??
-                  "Internal Server Error",
-          exception: e,
-        ),
-      );
+      return handleException(e, stackTrace);
     }
+  }
+
+  FutureOr<Either<Failure, T>> handleException<T>(e, stackTrace) {
+    final res = e.response?.data as Map<String, dynamic>;
+    nonFatalError(error: e, stackTrace: stackTrace);
+    return Left(
+      ServerFailure(
+        message: e.response == null
+            ? e.message ?? "Internal Server Error"
+            : res['error'] as String? ?? "Internal Server Error",
+        exception: e,
+      ),
+    );
   }
 }

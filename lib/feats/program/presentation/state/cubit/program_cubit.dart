@@ -6,5 +6,5 @@ part 'program_cubit.freezed.dart';
 part 'program_state.dart';
 
 class ProgramCubit extends Cubit<ProgramState> {
-  ProgramCubit() : super(ProgramState());
+  ProgramCubit() : super(const ProgramState());
 }

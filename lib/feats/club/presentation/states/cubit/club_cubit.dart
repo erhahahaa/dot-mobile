@@ -6,5 +6,5 @@ part 'club_cubit.freezed.dart';
 part 'club_state.dart';
 
 class ClubCubit extends Cubit<ClubState> {
-  ClubCubit() : super(ClubState());
+  ClubCubit() : super(const ClubState());
 }

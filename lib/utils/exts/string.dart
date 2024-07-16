@@ -28,13 +28,11 @@ extension StringExt on String {
     TextAlign? textAlign,
   }) {
     try {
-      final message = isEmpty ? "error" : this;
-
-      dismissAllToast(showAnim: true);
+      final title = isEmpty ? "error" : this;
 
       showToastWidget(
         Chirp(
-          text: message,
+          text: title,
           color: Theme.of(context).extension<AppColors>()?.error,
           icon: Icon(
             Icons.error,
@@ -56,15 +54,14 @@ extension StringExt on String {
     TextAlign? textAlign,
   }) {
     try {
-      final message = isEmpty ? "success" : this;
+      final title = isEmpty ? "success" : this;
 
       //dismiss before show toast
-      dismissAllToast(showAnim: true);
 
       // showToast(msg)
       showToastWidget(
         Chirp(
-          text: message,
+          text: title,
           color: Theme.of(context).extension<AppColors>()?.success,
           icon: Icon(
             Icons.check_circle,
@@ -86,14 +83,13 @@ extension StringExt on String {
     TextAlign? textAlign,
   }) {
     try {
-      final message = isEmpty ? "info" : this;
+      final title = isEmpty ? "info" : this;
 
       //dismiss before show toast
-      dismissAllToast(showAnim: true);
 
       showToastWidget(
         Chirp(
-          text: message,
+          text: title,
           color: Theme.of(context).extension<AppColors>()?.info,
           icon: Icon(
             Icons.info,
@@ -115,13 +111,12 @@ extension StringExt on String {
     TextAlign? textAlign,
   }) {
     try {
-      final message = isEmpty ? "loading" : this;
+      final title = isEmpty ? "loading" : this;
       //dismiss before show toast
-      dismissAllToast(showAnim: true);
 
       showToastWidget(
         Chirp(
-          text: message,
+          text: title,
           color: Theme.of(context).extension<AppColors>()?.info,
           icon: Icon(
             Icons.info,

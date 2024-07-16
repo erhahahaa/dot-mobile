@@ -6,5 +6,5 @@ part 'tactical_cubit.freezed.dart';
 part 'tactical_state.dart';
 
 class TacticalCubit extends Cubit<TacticalState> {
-  TacticalCubit() : super(TacticalState());
+  TacticalCubit() : super(const TacticalState());
 }

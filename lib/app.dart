@@ -31,24 +31,24 @@ class DotApp extends StatelessWidget {
           designSize: const Size(344, 760),
           minTextAdapt: true,
           splitScreenMode: true,
-          builder: (context, child) {
-            AppRouter.setStream(context);
+          builder: (ctx, child) {
+            AppRouter.setStream(ctx);
 
             return MaterialApp.router(
               title: AppConstants.APP_NAME,
               routerConfig: AppRouter.router,
               debugShowCheckedModeBanner: false,
-              builder: (context, child) {
+              builder: (c, child) {
                 return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(
+                  data: MediaQuery.of(c).copyWith(
                     textScaler: const TextScaler.linear(1),
                     alwaysUse24HourFormat: true,
                   ),
                   child: child!,
                 );
               },
-              theme: lightTheme(context),
-              darkTheme: darkTheme(context),
+              theme: lightTheme(ctx),
+              darkTheme: darkTheme(ctx),
               themeMode: ThemeMode.system,
             );
           },

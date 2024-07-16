@@ -6,5 +6,5 @@ part 'exam_cubit.freezed.dart';
 part 'exam_state.dart';
 
 class ExamCubit extends Cubit<ExamState> {
-  ExamCubit() : super(ExamState());
+  ExamCubit() : super(const ExamState());
 }
