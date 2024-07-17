@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Indonesian (`id`).
 class StringsId extends Strings {
-  StringsId([String locale = 'id']) : super(locale);
+  StringsId([super.locale = 'id']);
 
   @override
   String get signIn => 'Masuk';
@@ -32,5 +32,35 @@ class StringsId extends Strings {
   String get successSignOut => 'Berhasil keluar';
 
   @override
+  String get successCreateClub => 'Berhasil membuat klub';
+
+  @override
+  String get failedCreateClub => 'Gagal membuat klub';
+
+  @override
   String get alreadyHaveAnAccount => 'Sudah punya akun?';
+
+  @override
+  String get clubName => 'Nama Klub';
+
+  @override
+  String get clubDescription => 'Deskripsi Klub';
+
+  @override
+  String get clubNameRequired => 'Nama klub wajib diisi';
+
+  @override
+  String get clubDescriptionRequired => 'Deskripsi klub wajib diisi';
+
+  @override
+  String get enterClubName => 'Masukkan nama klub';
+
+  @override
+  String get enterClubDescription => 'Masukkan deskripsi klub';
+
+  @override
+  String get createClub => 'Buat Klub';
+
+  @override
+  String get club => 'Klub';
 }

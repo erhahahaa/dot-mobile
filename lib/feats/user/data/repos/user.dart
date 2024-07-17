@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
-import 'package:dot_coaching/utils/utils.dart';
 import 'package:isar/isar.dart';
 
 class UserRepoImpl implements UserRepo {
@@ -12,13 +11,12 @@ class UserRepoImpl implements UserRepo {
   @override
   Future<Either<Failure, UserEntity>> getMe() async {
     final res =
-        await _local.isar.userEntitys.filter().idGreaterThan(0).findAll();
+        await _local.isar.userEntitys.filter().tokenIsNotEmpty().findAll();
 
-    log.i('Get local user:\n$res');
     if (res.isEmpty) {
       return const Left(StorageFailure(message: 'No user data found'));
     }
 
-    return Right(res.first);
+    return Right(res.last);
   }
 }

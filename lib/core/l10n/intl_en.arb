@@ -9,5 +9,15 @@
   "successSignIn": "Signed in successfully",
   "successSignUp": "Signed up successfully",
   "successSignOut": "Signed out successfully",
-  "alreadyHaveAnAccount": "Already have an account?"
+  "successCreateClub": "Success Create Club",
+  "failedCreateClub": "Failed to create club",
+  "alreadyHaveAnAccount": "Already have an account?",
+  "clubName": "Club Name",
+  "clubDescription": "Club Description",
+  "clubNameRequired": "Club name is required",
+  "clubDescriptionRequired": "Club description is required",
+  "enterClubName": "Enter club name",
+  "enterClubDescription": "Enter club description",
+  "createClub": "Create Club",
+  "club": "Club"
 }

@@ -8,6 +8,7 @@ class CreateClubParams with _$CreateClubParams {
   const factory CreateClubParams({
     required String name,
     required String description,
+    @Default('https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg')
     String? image,
   }) = _CreateClubParams;
 

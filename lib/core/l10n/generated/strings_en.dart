@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for English (`en`).
 class StringsEn extends Strings {
-  StringsEn([String locale = 'en']) : super(locale);
+  StringsEn([super.locale = 'en']);
 
   @override
   String get signIn => 'Sign In';
@@ -32,5 +32,35 @@ class StringsEn extends Strings {
   String get successSignOut => 'Signed out successfully';
 
   @override
+  String get successCreateClub => 'Success Create Club';
+
+  @override
+  String get failedCreateClub => 'Failed to create club';
+
+  @override
   String get alreadyHaveAnAccount => 'Already have an account?';
+
+  @override
+  String get clubName => 'Club Name';
+
+  @override
+  String get clubDescription => 'Club Description';
+
+  @override
+  String get clubNameRequired => 'Club name is required';
+
+  @override
+  String get clubDescriptionRequired => 'Club description is required';
+
+  @override
+  String get enterClubName => 'Enter club name';
+
+  @override
+  String get enterClubDescription => 'Enter club description';
+
+  @override
+  String get createClub => 'Create Club';
+
+  @override
+  String get club => 'Club';
 }

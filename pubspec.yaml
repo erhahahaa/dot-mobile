@@ -31,6 +31,8 @@ dependencies:
   freezed_annotation: ^2.4.2
   json_annotation: ^4.9.0
   flutter_svg: ^2.0.10+1
+  dot_navigation_bar: ^1.0.2
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -42,13 +44,23 @@ dev_dependencies:
   isar_generator: ^3.1.0+1
   freezed: ^2.5.2
   json_serializable: ^6.8.0
+  flutter_gen_runner: ^5.6.0
+
+flutter_gen:
+  output: lib/core/gen/
+  line_length: 80
+
+  integrations:
+    flutter_svg: true
+    flare_flutter: false
+    rive: false
+    lottie: false
 
 flutter:
   generate: true
   uses-material-design: true
 
   assets:
-    - assets/images/dot_logo.png
-    - assets/images/hero/sign-in.png
-    - assets/images/hero/sign-up.png
-    - assets/images/bg/home-athlete.svg
+    - assets/images/
+    - assets/images/bg/
+    - assets/images/hero/

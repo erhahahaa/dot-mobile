@@ -1,27 +1,30 @@
-import 'package:dot_coaching/core/services/services.dart';
+import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt di = GetIt.instance;
 
 Future<void> initDependencies() async {
-  await _initStore();
+  final isarClient = IsarClient();
+  await isarClient.initIsar();
 
-  di.registerSingleton<DioClient>(DioClient(di()));
+  di.registerSingleton<IsarClient>(isarClient);
+  di.registerSingleton<DioClient>(DioClient(di<IsarClient>()));
 
   _intiRepos();
-  _initUsecase();
   _initCubits();
-}
-
-Future<void> _initStore() async {
-  await IsarClient().initIsar();
-  di.registerSingleton<IsarClient>(IsarClient());
 }
 
 void _intiRepos() {
   di.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
+      di<DioClient>(),
+      di<IsarClient>(),
+    ),
+  );
+
+  di.registerLazySingleton<ClubRepo>(
+    () => ClubRepoImpl(
       di<DioClient>(),
       di<IsarClient>(),
     ),
@@ -34,8 +37,6 @@ void _intiRepos() {
   );
 }
 
-void _initUsecase() {}
-
 void _initCubits() {
   di.registerFactory(
     () => AuthCubit(
@@ -45,6 +46,14 @@ void _initCubits() {
   );
 
   di.registerFactory(
-    () => UserCubit(),
+    () => ClubCubit(
+      di<ClubRepo>(),
+    ),
+  );
+
+  di.registerFactory(
+    () => UserCubit(
+      di<UserRepo>(),
+    ),
   );
 }

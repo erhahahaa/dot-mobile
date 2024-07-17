@@ -10,6 +10,7 @@ class Parent extends StatelessWidget {
   final Key? scaffoldKey;
   final bool resizeToAvoidBottomInset;
   final bool extendBodyBehindAppBar;
+  final bool extendBody;
   const Parent({
     super.key,
     this.body,
@@ -21,6 +22,7 @@ class Parent extends StatelessWidget {
     this.scaffoldKey,
     this.resizeToAvoidBottomInset = true,
     this.extendBodyBehindAppBar = false,
+    this.extendBody = true,
   });
 
   @override
@@ -36,6 +38,7 @@ class Parent extends StatelessWidget {
         backgroundColor: backgroundColor,
         resizeToAvoidBottomInset: resizeToAvoidBottomInset,
         extendBodyBehindAppBar: extendBodyBehindAppBar,
+        extendBody: extendBody,
       ),
     );
   }

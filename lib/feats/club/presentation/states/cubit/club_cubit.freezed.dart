@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ClubState {
   BaseState get state => throw _privateConstructorUsedError;
+  Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClubStateCopyWith<ClubState> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $ClubStateCopyWith<$Res> {
   factory $ClubStateCopyWith(ClubState value, $Res Function(ClubState) then) =
       _$ClubStateCopyWithImpl<$Res, ClubState>;
   @useResult
-  $Res call({BaseState state});
+  $Res call({BaseState state, Failure? failure});
 }
 
 /// @nodoc
@@ -45,12 +46,17 @@ class _$ClubStateCopyWithImpl<$Res, $Val extends ClubState>
   @override
   $Res call({
     Object? state = null,
+    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as BaseState,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
     ) as $Val);
   }
 }
@@ -63,7 +69,7 @@ abstract class _$$ClubStateImplCopyWith<$Res>
       __$$ClubStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BaseState state});
+  $Res call({BaseState state, Failure? failure});
 }
 
 /// @nodoc
@@ -78,12 +84,17 @@ class __$$ClubStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? state = null,
+    Object? failure = freezed,
   }) {
     return _then(_$ClubStateImpl(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as BaseState,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
     ));
   }
 }
@@ -91,15 +102,17 @@ class __$$ClubStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ClubStateImpl implements _ClubState {
-  const _$ClubStateImpl({this.state = BaseState.initial});
+  const _$ClubStateImpl({this.state = BaseState.initial, this.failure});
 
   @override
   @JsonKey()
   final BaseState state;
+  @override
+  final Failure? failure;
 
   @override
   String toString() {
-    return 'ClubState(state: $state)';
+    return 'ClubState(state: $state, failure: $failure)';
   }
 
   @override
@@ -107,11 +120,12 @@ class _$ClubStateImpl implements _ClubState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClubStateImpl &&
-            (identical(other.state, state) || other.state == state));
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state);
+  int get hashCode => Object.hash(runtimeType, state, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -121,10 +135,13 @@ class _$ClubStateImpl implements _ClubState {
 }
 
 abstract class _ClubState implements ClubState {
-  const factory _ClubState({final BaseState state}) = _$ClubStateImpl;
+  const factory _ClubState({final BaseState state, final Failure? failure}) =
+      _$ClubStateImpl;
 
   @override
   BaseState get state;
+  @override
+  Failure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$ClubStateImplCopyWith<_$ClubStateImpl> get copyWith =>

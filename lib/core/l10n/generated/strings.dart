@@ -147,11 +147,71 @@ abstract class Strings {
   /// **'Signed out successfully'**
   String get successSignOut;
 
+  /// No description provided for @successCreateClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Success Create Club'**
+  String get successCreateClub;
+
+  /// No description provided for @failedCreateClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create club'**
+  String get failedCreateClub;
+
   /// No description provided for @alreadyHaveAnAccount.
   ///
   /// In en, this message translates to:
   /// **'Already have an account?'**
   String get alreadyHaveAnAccount;
+
+  /// No description provided for @clubName.
+  ///
+  /// In en, this message translates to:
+  /// **'Club Name'**
+  String get clubName;
+
+  /// No description provided for @clubDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Club Description'**
+  String get clubDescription;
+
+  /// No description provided for @clubNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Club name is required'**
+  String get clubNameRequired;
+
+  /// No description provided for @clubDescriptionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Club description is required'**
+  String get clubDescriptionRequired;
+
+  /// No description provided for @enterClubName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter club name'**
+  String get enterClubName;
+
+  /// No description provided for @enterClubDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter club description'**
+  String get enterClubDescription;
+
+  /// No description provided for @createClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Club'**
+  String get createClub;
+
+  /// No description provided for @club.
+  ///
+  /// In en, this message translates to:
+  /// **'Club'**
+  String get club;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

@@ -20,7 +20,7 @@ class SignInScreen extends StatelessWidget {
         if (state.status == AuthStatus.authenticated) {
           msg?.successSignIn.toToastSuccess(context);
           context.read<AuthCubit>().clear();
-          context.pushReplacementNamed(AppRoutes.home.name);
+          context.pushReplacementNamed(AppRoutes.athleteHome.name);
         }
       },
       child: Parent(

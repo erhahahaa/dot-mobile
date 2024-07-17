@@ -6,25 +6,22 @@ import 'package:path_provider/path_provider.dart';
 class IsarClient {
   late Isar _isar;
   IsarCollection<UserEntity> get users => _isar.userEntitys;
-  IsarCollection<TokenEntity> get tokens => _isar.tokenEntitys;
   Isar get isar => _isar;
 
-  IsarClient() {
-    initIsar().then((value) => _isar = value);
-  }
+  IsarClient();
 
-  Future<Isar> initIsar() async {
+  Future<void> initIsar() async {
     if (Isar.getInstance() == null) {
       final dir = await getApplicationDocumentsDirectory();
-      return await Isar.open(
+      _isar = await Isar.open(
         [
           UserEntitySchema,
-          TokenEntitySchema,
         ],
         inspector: kDebugMode,
         directory: dir.path,
       );
+    } else {
+      _isar = Isar.getInstance()!;
     }
-    return Future.value(Isar.getInstance()!);
   }
 }

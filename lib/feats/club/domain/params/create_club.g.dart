@@ -11,7 +11,8 @@ _$CreateClubParamsImpl _$$CreateClubParamsImplFromJson(
     _$CreateClubParamsImpl(
       name: json['name'] as String,
       description: json['description'] as String,
-      image: json['image'] as String?,
+      image: json['image'] as String? ??
+          'https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg',
     );
 
 Map<String, dynamic> _$$CreateClubParamsImplToJson(

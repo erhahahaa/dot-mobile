@@ -23,8 +23,13 @@ class AuthRepoImpl implements AuthRepo {
         await _local.isar.userEntitys.clear();
         await _local.isar.userEntitys.put(UserEntity(
           id: r.id ?? 0,
-          email: r.email,
           name: r.name,
+          email: r.email,
+          image: r.image,
+          phone: r.phone,
+          role: r.role,
+          expertise: r.expertise,
+          createdAt: r.createdAt,
           token: r.token,
         ));
       });
@@ -59,8 +64,13 @@ class AuthRepoImpl implements AuthRepo {
           await _local.isar.userEntitys.clear();
           await _local.isar.userEntitys.put(UserEntity(
             id: r.id ?? 0,
-            email: r.email,
             name: r.name,
+            email: r.email,
+            image: r.image,
+            phone: r.phone,
+            role: r.role,
+            expertise: r.expertise,
+            createdAt: r.createdAt,
             token: r.token,
           ));
         });

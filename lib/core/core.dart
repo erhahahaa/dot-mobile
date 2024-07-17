@@ -1,5 +1,6 @@
 export "package:dot_coaching/core/constants/constants.dart";
 export "package:dot_coaching/core/errors/errors.dart";
+export "package:dot_coaching/core/gen/assets.gen.dart";
 export "package:dot_coaching/core/l10n/l10n.dart";
 export "package:dot_coaching/core/parser/parser.dart";
 export "package:dot_coaching/core/resources/resources.dart";

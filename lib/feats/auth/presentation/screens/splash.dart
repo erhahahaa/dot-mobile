@@ -21,6 +21,10 @@ class SplashScreen extends StatelessWidget {
           Future.delayed(Durations.extralong4,
               () => context.goNamed(AppRoutes.authSignIn.name));
         }
+        if (state.status == AuthStatus.authenticated) {
+          Future.delayed(Durations.extralong4,
+              () => context.goNamed(AppRoutes.athleteHome.name));
+        }
       },
       child: Parent(
         body: Center(

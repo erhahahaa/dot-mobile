@@ -16,7 +16,7 @@ class DioClient with FirebaseCrashLogger {
 
   DioClient(this._local) {
     try {
-      final token = _local.tokens.filter().tokenIsNotEmpty().findAllSync();
+      final token = _local.users.filter().tokenIsNotEmpty().findAllSync();
       if (token.isNotEmpty) {
         _auth = token.first.token;
       }
@@ -29,7 +29,7 @@ class DioClient with FirebaseCrashLogger {
 
   Dio get dio {
     try {
-      final token = _local.tokens.filter().tokenIsNotEmpty().findAllSync();
+      final token = _local.users.filter().tokenIsNotEmpty().findAllSync();
       if (token.isNotEmpty) {
         _auth = token.first.token;
       }

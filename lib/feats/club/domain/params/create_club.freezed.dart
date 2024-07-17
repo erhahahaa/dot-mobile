@@ -120,7 +120,10 @@ class __$$CreateClubParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CreateClubParamsImpl implements _CreateClubParams {
   const _$CreateClubParamsImpl(
-      {required this.name, required this.description, this.image});
+      {required this.name,
+      required this.description,
+      this.image =
+          'https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg'});
 
   factory _$CreateClubParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateClubParamsImplFromJson(json);
@@ -130,6 +133,7 @@ class _$CreateClubParamsImpl implements _CreateClubParams {
   @override
   final String description;
   @override
+  @JsonKey()
   final String? image;
 
   @override
