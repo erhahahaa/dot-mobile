@@ -1,7 +1,5 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/di.dart';
-import 'package:dot_coaching/feats/club/presentation/screens/home_screen.dart';
-import 'package:dot_coaching/feats/club_detail/presentation/screens/club_detail_screen.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/foundation.dart';
@@ -37,22 +35,22 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.root.path,
         name: AppRoutes.root.name,
-        redirect: (_, __) => AppRoutes.clubProgram.path,
+        redirect: (_, __) => AppRoutes.splash.path,
       ),
-      GoRoute(
-        path: AppRoutes.home.path,
-        name: AppRoutes.home.name,
-        builder: (context, state) {
-          return HomeScreen();
-        },
-      ),
-      GoRoute(
-        path: AppRoutes.clubProgram.path,
-        name: AppRoutes.clubProgram.name,
-        builder: (context, state) {
-          return ClubDetailScreen();
-        },
-      ),
+      // GoRoute(
+      //   path: AppRoutes.home.path,
+      //   name: AppRoutes.home.name,
+      //   builder: (context, state) {
+      //     return HomeScreen();
+      //   },
+      // ),
+      // GoRoute(
+      //   path: AppRoutes.clubProgram.path,
+      //   name: AppRoutes.clubProgram.name,
+      //   builder: (context, state) {
+      //     return ClubDetailScreen();
+      //   },
+      // ),
       ShellRoute(
         navigatorKey: _authKey,
         parentNavigatorKey: _rootKey,
@@ -242,7 +240,7 @@ class AppRouter {
         ],
       )
     ],
-    initialLocation: AppRoutes.clubProgram.path,
+    initialLocation: AppRoutes.splash.path,
     routerNeglect: true,
     debugLogDiagnostics: kDebugMode,
     refreshListenable: GoRouterRefreshStream(ctx.read<AuthCubit>().stream),
