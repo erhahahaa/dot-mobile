@@ -9,7 +9,9 @@ enum AppRoutes {
 
   // Home
   home('/home'),
-  ;
+
+  //Club Program Detail
+  clubProgram('/club/program');
 
   const AppRoutes(this.path);
   final String path;
