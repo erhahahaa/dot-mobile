@@ -18,12 +18,10 @@ class SplashScreen extends StatelessWidget {
           failure.message.toToastError(context);
         }
         if (state.status == AuthStatus.unauthenticated) {
-          Future.delayed(Durations.extralong4,
-              () => context.goNamed(AppRoutes.authSignIn.name));
+          context.goNamed(AppRoutes.authSignIn.name);
         }
         if (state.status == AuthStatus.authenticated) {
-          Future.delayed(Durations.extralong4,
-              () => context.goNamed(AppRoutes.athleteHome.name));
+          context.goNamed(AppRoutes.athleteHome.name);
         }
       },
       child: Parent(

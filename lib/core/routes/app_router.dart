@@ -55,7 +55,7 @@ class AppRouter {
         navigatorKey: _authKey,
         parentNavigatorKey: _rootKey,
         builder: (c, __, child) => BlocProvider.value(
-          value: c.read<AuthCubit>(),
+          value: c.read<AuthCubit>()..init(),
           child: child,
         ),
         routes: [

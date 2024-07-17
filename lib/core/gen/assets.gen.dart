@@ -3,12 +3,12 @@
 ///  FlutterGen
 /// *****************************************************
 
-import 'package:flutter/services.dart';
 // coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vector_graphics/vector_graphics.dart';
 
@@ -36,8 +36,12 @@ class $AssetsImagesBgGen {
   SvgGenImage get gradientSkewedRight =>
       const SvgGenImage('assets/images/bg/gradient-skewed-right.svg');
 
+  /// File path: assets/images/bg/home-athlete.svg
+  SvgGenImage get homeAthlete =>
+      const SvgGenImage('assets/images/bg/home-athlete.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [gradientSkewedRight];
+  List<SvgGenImage> get values => [gradientSkewedRight, homeAthlete];
 }
 
 class $AssetsImagesHeroGen {
