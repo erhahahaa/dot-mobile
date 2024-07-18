@@ -33,6 +33,18 @@ class ClubContainer extends StatelessWidget {
               imageUrl: club.image,
               width: 48.w,
               height: 48.w,
+              // make image rounded
+              imageBuilder: (context, imageProvider) => Container(
+                width: 48.w,
+                height: 48.w,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
             ),
             SizedBox(width: 8.w),
             Column(
