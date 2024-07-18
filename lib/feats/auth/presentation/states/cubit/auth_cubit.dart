@@ -60,7 +60,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> checkAuth() async {
     final res = await _authRepo.me();
-    log.i('Check auth response: $res');
     res.fold(
       (l) {
         safeEmit(

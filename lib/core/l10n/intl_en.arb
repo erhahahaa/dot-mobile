@@ -19,5 +19,7 @@
   "enterClubName": "Enter club name",
   "enterClubDescription": "Enter club description",
   "createClub": "Create Club",
-  "club": "Club"
+  "club": "Club",
+  "sportType": "Sport Type",
+  "detail": "Detail"
 }

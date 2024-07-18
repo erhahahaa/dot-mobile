@@ -24,7 +24,6 @@ Map<String, dynamic> _$$RegisterParamsImplToJson(
     };
 
 const _$UserRoleEnumMap = {
-  UserRole.superadmin: 'superadmin',
-  UserRole.admin: 'admin',
-  UserRole.user: 'user',
+  UserRole.coach: 'coach',
+  UserRole.athlete: 'athlete',
 };

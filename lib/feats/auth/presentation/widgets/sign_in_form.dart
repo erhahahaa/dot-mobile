@@ -62,7 +62,10 @@ class _SigInpFormWidgetState extends State<SignInFormWidget> {
               padding: EdgeInsets.all(12.w),
               margin: EdgeInsets.symmetric(horizontal: 12.w),
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor.withOpacity(0.25),
+                color: Theme.of(context)
+                    .colorScheme
+                    .primaryContainer
+                    .withOpacity(0.1),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(

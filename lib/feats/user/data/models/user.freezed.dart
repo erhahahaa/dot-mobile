@@ -27,7 +27,6 @@ mixin _$UserModel {
   String? get phone => throw _privateConstructorUsedError;
   UserRole get role => throw _privateConstructorUsedError;
   String get expertise => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
 
@@ -50,7 +49,7 @@ abstract class $UserModelCopyWith<$Res> {
       String? phone,
       UserRole role,
       String expertise,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
+      DateTime? createdAt,
       String? token});
 }
 
@@ -134,7 +133,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String? phone,
       UserRole role,
       String expertise,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
+      DateTime? createdAt,
       String? token});
 }
 
@@ -209,9 +208,9 @@ class _$UserModelImpl implements _UserModel {
       this.email = 'folks@dot.com',
       this.image = "https://api.dicebear.com/9.x/adventurer/png",
       this.phone = null,
-      this.role = UserRole.user,
+      this.role = UserRole.athlete,
       this.expertise = "Sports",
-      @JsonKey(name: 'created_at') this.createdAt,
+      this.createdAt,
       this.token = null});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -239,7 +238,6 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   final String expertise;
   @override
-  @JsonKey(name: 'created_at')
   final DateTime? createdAt;
   @override
   @JsonKey()
@@ -296,7 +294,7 @@ abstract class _UserModel implements UserModel {
       final String? phone,
       final UserRole role,
       final String expertise,
-      @JsonKey(name: 'created_at') final DateTime? createdAt,
+      final DateTime? createdAt,
       final String? token}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -317,7 +315,6 @@ abstract class _UserModel implements UserModel {
   @override
   String get expertise;
   @override
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt;
   @override
   String? get token;

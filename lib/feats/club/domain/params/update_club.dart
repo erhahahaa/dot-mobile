@@ -1,3 +1,4 @@
+import 'package:dot_coaching/feats/club/domain/entities/club.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'update_club.freezed.dart';
@@ -10,6 +11,7 @@ class UpdateClubParams with _$UpdateClubParams {
     required String name,
     required String description,
     String? image,
+    required SportType type,
   }) = _UpdateClubParams;
 
   factory UpdateClubParams.fromJson(Map<String, dynamic> json) =>

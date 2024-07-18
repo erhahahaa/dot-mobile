@@ -13,7 +13,7 @@ class Chirp extends StatelessWidget {
   const Chirp({
     super.key,
     required this.text,
-    this.color = Palette.primaryColorLight,
+    this.color = Palette.primaryLight,
     this.style,
     this.icon,
     this.padding,

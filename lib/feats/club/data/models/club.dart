@@ -8,11 +8,14 @@ part 'club.g.dart';
 class ClubModel with _$ClubModel {
   const factory ClubModel({
     @Default(0) int id,
-    @JsonKey(name: 'creator_id') @Default(0) int creatorId,
+    @Default(0) int creatorId,
     @Default('Indo Sports') String name,
     @Default('Sport Club') String description,
-    @Default("https://api.dicebear.com/9.x/adventurer/png") String image,
-    @JsonKey(name: 'created_at') DateTime? createdAt,
+    @Default(SportType.basketBall) SportType type,
+    @Default("https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg")
+    String image,
+    @Default(0) int memberCount,
+    DateTime? createdAt,
   }) = _ClubModel;
 
   factory ClubModel.fromJson(Map<String, dynamic> json) =>
@@ -24,7 +27,9 @@ class ClubModel with _$ClubModel {
       creatorId: entity.creatorId ?? 0,
       name: entity.name ?? '',
       description: entity.description ?? '',
+      type: entity.type,
       image: entity.image ?? '',
+      memberCount: entity.memberCount,
       createdAt: entity.createdAt,
     );
   }
@@ -38,7 +43,9 @@ extension ClubModelX on ClubModel {
       creatorId: creatorId,
       name: name,
       description: description,
+      type: type,
       image: image,
+      memberCount: memberCount,
       createdAt: createdAt,
     );
   }

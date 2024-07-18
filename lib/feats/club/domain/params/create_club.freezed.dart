@@ -23,6 +23,7 @@ mixin _$CreateClubParams {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
+  SportType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,7 @@ abstract class $CreateClubParamsCopyWith<$Res> {
           CreateClubParams value, $Res Function(CreateClubParams) then) =
       _$CreateClubParamsCopyWithImpl<$Res, CreateClubParams>;
   @useResult
-  $Res call({String name, String description, String? image});
+  $Res call({String name, String description, String? image, SportType type});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$CreateClubParamsCopyWithImpl<$Res, $Val extends CreateClubParams>
     Object? name = null,
     Object? description = null,
     Object? image = freezed,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -69,6 +71,10 @@ class _$CreateClubParamsCopyWithImpl<$Res, $Val extends CreateClubParams>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as SportType,
     ) as $Val);
   }
 }
@@ -81,7 +87,7 @@ abstract class _$$CreateClubParamsImplCopyWith<$Res>
       __$$CreateClubParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String description, String? image});
+  $Res call({String name, String description, String? image, SportType type});
 }
 
 /// @nodoc
@@ -98,6 +104,7 @@ class __$$CreateClubParamsImplCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? image = freezed,
+    Object? type = null,
   }) {
     return _then(_$CreateClubParamsImpl(
       name: null == name
@@ -112,6 +119,10 @@ class __$$CreateClubParamsImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as SportType,
     ));
   }
 }
@@ -122,8 +133,8 @@ class _$CreateClubParamsImpl implements _CreateClubParams {
   const _$CreateClubParamsImpl(
       {required this.name,
       required this.description,
-      this.image =
-          'https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg'});
+      this.image,
+      required this.type});
 
   factory _$CreateClubParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateClubParamsImplFromJson(json);
@@ -133,12 +144,13 @@ class _$CreateClubParamsImpl implements _CreateClubParams {
   @override
   final String description;
   @override
-  @JsonKey()
   final String? image;
+  @override
+  final SportType type;
 
   @override
   String toString() {
-    return 'CreateClubParams(name: $name, description: $description, image: $image)';
+    return 'CreateClubParams(name: $name, description: $description, image: $image, type: $type)';
   }
 
   @override
@@ -149,12 +161,13 @@ class _$CreateClubParamsImpl implements _CreateClubParams {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, description, image);
+  int get hashCode => Object.hash(runtimeType, name, description, image, type);
 
   @JsonKey(ignore: true)
   @override
@@ -175,7 +188,8 @@ abstract class _CreateClubParams implements CreateClubParams {
   const factory _CreateClubParams(
       {required final String name,
       required final String description,
-      final String? image}) = _$CreateClubParamsImpl;
+      final String? image,
+      required final SportType type}) = _$CreateClubParamsImpl;
 
   factory _CreateClubParams.fromJson(Map<String, dynamic> json) =
       _$CreateClubParamsImpl.fromJson;
@@ -186,6 +200,8 @@ abstract class _CreateClubParams implements CreateClubParams {
   String get description;
   @override
   String? get image;
+  @override
+  SportType get type;
   @override
   @JsonKey(ignore: true)
   _$$CreateClubParamsImplCopyWith<_$CreateClubParamsImpl> get copyWith =>

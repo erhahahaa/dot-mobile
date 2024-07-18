@@ -76,7 +76,10 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
               padding: EdgeInsets.all(12.w),
               margin: EdgeInsets.symmetric(horizontal: 12.w),
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor.withOpacity(0.25),
+                color: Theme.of(context)
+                    .colorScheme
+                    .primaryContainer
+                    .withOpacity(0.1),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
@@ -220,13 +223,13 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                 name: _nameController.text,
                                 email: _emailController.text,
                                 password: _passwordController.text,
-                                role: UserRole.user,
+                                role: UserRole.athlete,
                               ),
                             );
                       }
                     },
-                    isLoading: state.state == BaseState.loading,
-                    isDisabled: state.state == BaseState.loading,
+                    // isLoading: state.state == BaseState.loading,
+                    // isDisabled: state.state == BaseState.loading,
                   ),
                 );
               },

@@ -12,9 +12,9 @@ class UserModel with _$UserModel {
     @Default('folks@dot.com') String? email,
     @Default("https://api.dicebear.com/9.x/adventurer/png") String image,
     @Default(null) String? phone,
-    @Default(UserRole.user) UserRole role,
+    @Default(UserRole.athlete) UserRole role,
     @Default("Sports") String expertise,
-    @JsonKey(name: 'created_at') DateTime? createdAt,
+    DateTime? createdAt,
     @Default(null) String? token,
   }) = _UserModel;
 

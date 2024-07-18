@@ -14,12 +14,12 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       image: json['image'] as String? ??
           "https://api.dicebear.com/9.x/adventurer/png",
       phone: json['phone'] as String? ?? null,
-      role:
-          $enumDecodeNullable(_$UserRoleEnumMap, json['role']) ?? UserRole.user,
+      role: $enumDecodeNullable(_$UserRoleEnumMap, json['role']) ??
+          UserRole.athlete,
       expertise: json['expertise'] as String? ?? "Sports",
-      createdAt: json['created_at'] == null
+      createdAt: json['createdAt'] == null
           ? null
-          : DateTime.parse(json['created_at'] as String),
+          : DateTime.parse(json['createdAt'] as String),
       token: json['token'] as String? ?? null,
     );
 
@@ -32,12 +32,11 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'phone': instance.phone,
       'role': _$UserRoleEnumMap[instance.role]!,
       'expertise': instance.expertise,
-      'created_at': instance.createdAt?.toIso8601String(),
+      'createdAt': instance.createdAt?.toIso8601String(),
       'token': instance.token,
     };
 
 const _$UserRoleEnumMap = {
-  UserRole.superadmin: 'superadmin',
-  UserRole.admin: 'admin',
-  UserRole.user: 'user',
+  UserRole.coach: 'coach',
+  UserRole.athlete: 'athlete',
 };

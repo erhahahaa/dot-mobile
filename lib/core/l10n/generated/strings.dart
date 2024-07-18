@@ -212,6 +212,18 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Club'**
   String get club;
+
+  /// No description provided for @sportType.
+  ///
+  /// In en, this message translates to:
+  /// **'Sport Type'**
+  String get sportType;
+
+  /// No description provided for @detail.
+  ///
+  /// In en, this message translates to:
+  /// **'Detail'**
+  String get detail;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

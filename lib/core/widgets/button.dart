@@ -35,7 +35,7 @@ class Button extends StatelessWidget {
                 // backgroundColor ?? Theme.of(context).primaryColor,
                 isLoading! || isDisabled!
                     ? Colors.grey
-                    : backgroundColor ?? Theme.of(context).primaryColor,
+                    : backgroundColor ?? Theme.of(context).colorScheme.primary,
               ),
             ),
         onPressed: isDisabled! || isLoading! ? null : onPressed,

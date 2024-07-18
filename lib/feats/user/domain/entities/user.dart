@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 
 part 'user.g.dart';
 
-enum UserRole { superadmin, admin, user }
+enum UserRole { coach, athlete }
 
 @collection
 class UserEntity {
@@ -24,7 +24,7 @@ class UserEntity {
     this.email,
     this.image,
     this.phone,
-    this.role = UserRole.user,
+    this.role = UserRole.athlete,
     this.expertise,
     this.createdAt,
     this.token,

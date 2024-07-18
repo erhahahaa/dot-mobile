@@ -8,12 +8,12 @@ part 'exam.g.dart';
 class ExamModel with _$ExamModel {
   const factory ExamModel({
     @Default(0) int id,
-    @JsonKey(name: 'club_id') @Default(0) int clubId,
+    @Default(0) int clubId,
     @Default('') String title,
     @Default('') String description,
-    @JsonKey(name: 'due_at') DateTime? dueAt,
-    @JsonKey(name: 'created_at') DateTime? createdAt,
-    @JsonKey(name: 'updated_at') DateTime? updatedAt,
+    DateTime? dueAt,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) = _ExamModel;
 
   factory ExamModel.fromJson(Map<String, dynamic> json) =>

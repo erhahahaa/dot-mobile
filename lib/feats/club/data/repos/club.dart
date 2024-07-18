@@ -36,9 +36,11 @@ class ClubRepoImpl implements ClubRepo {
   @override
   Future<Either<Failure, List<ClubModel>>> getAll(
     PaginationParams params,
+    int? creatorId,
   ) async {
     final res = await _remote.getRequest(
       ListAPI.CLUB,
+      queryParameters: creatorId != null ? {'creator_id': creatorId} : null,
       converter: (res) {
         final List<ClubModel> clubs = [];
         for (final item in res['data']) {

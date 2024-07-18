@@ -11,8 +11,8 @@ _$CreateClubParamsImpl _$$CreateClubParamsImplFromJson(
     _$CreateClubParamsImpl(
       name: json['name'] as String,
       description: json['description'] as String,
-      image: json['image'] as String? ??
-          'https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg',
+      image: json['image'] as String?,
+      type: $enumDecode(_$SportTypeEnumMap, json['type']),
     );
 
 Map<String, dynamic> _$$CreateClubParamsImplToJson(
@@ -21,4 +21,11 @@ Map<String, dynamic> _$$CreateClubParamsImplToJson(
       'name': instance.name,
       'description': instance.description,
       'image': instance.image,
+      'type': _$SportTypeEnumMap[instance.type]!,
     };
+
+const _$SportTypeEnumMap = {
+  SportType.volleyBall: 'volleyBall',
+  SportType.basketBall: 'basketBall',
+  SportType.soccer: 'soccer',
+};

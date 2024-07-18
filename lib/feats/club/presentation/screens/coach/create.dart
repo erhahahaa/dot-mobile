@@ -21,6 +21,9 @@ class _CreateClubScreenState extends State<CreateClubScreen> {
   late FocusNode _descriptionFocusNode;
   late GlobalKey<FormState> _formKey;
 
+  SportType selectedSportType = SportType.basketBall;
+  late List<DropdownMenuItem<SportType>> sportType;
+
   @override
   void initState() {
     _nameController = TextEditingController();
@@ -30,7 +33,24 @@ class _CreateClubScreenState extends State<CreateClubScreen> {
     _descriptionFocusNode = FocusNode();
 
     _formKey = GlobalKey<FormState>();
+
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    sportType = SportType.values
+        .map(
+          (item) => DropdownMenuItem<SportType>(
+            value: item,
+            child: Text(
+              item.name,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ),
+        )
+        .toList();
+    super.didChangeDependencies();
   }
 
   @override
@@ -111,6 +131,22 @@ class _CreateClubScreenState extends State<CreateClubScreen> {
                           return null;
                         },
                       ),
+                      SizedBox(height: 8.h),
+                      DropDown<SportType>(
+                        hint: msg?.sportType,
+                        value: SportType.basketBall,
+                        items: sportType.toList(),
+                        prefixIcon: Icon(
+                          Icons.sports_basketball,
+                          color: theme.textTheme.bodyLarge?.color,
+                        ),
+                        onChanged: (value) => setState(() {
+                          if (value == null) {
+                            return;
+                          }
+                          selectedSportType = value;
+                        }),
+                      )
                     ],
                   ),
                 ),
@@ -124,6 +160,7 @@ class _CreateClubScreenState extends State<CreateClubScreen> {
                               CreateClubParams(
                                 name: _nameController.text,
                                 description: _descriptionController.text,
+                                type: selectedSportType,
                               ),
                             );
                       }

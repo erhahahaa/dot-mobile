@@ -19,4 +19,17 @@ class UserRepoImpl implements UserRepo {
 
     return Right(res.last);
   }
+
+  @override
+  Future<bool> clear() async {
+    await _local.isar.writeTxn(() async {
+      await _local.isar.userEntitys.clear();
+    });
+
+    final check = await _local.isar.txn(() async {
+      return await _local.isar.userEntitys.where().findAll();
+    });
+
+    return check.isEmpty;
+  }
 }

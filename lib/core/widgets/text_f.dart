@@ -1,4 +1,3 @@
-import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -76,7 +75,7 @@ class _TextFState extends State<TextF> {
               ),
               child: Text(
                 widget.hint ?? '',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
           ),
@@ -145,7 +144,9 @@ class _TextFState extends State<TextF> {
                     4.r,
                   ),
                   borderSide: BorderSide(
-                    color: Theme.of(context).primaryColor,
+                    color: context.isDarkMode
+                        ? Colors.grey[700]!
+                        : Colors.grey[300]!,
                   ),
                 ),
                 disabledBorder: OutlineInputBorder(
@@ -154,33 +155,33 @@ class _TextFState extends State<TextF> {
                     4.r,
                   ),
                   borderSide: BorderSide(
-                    color: Theme.of(context).primaryColor,
+                    color: context.isDarkMode
+                        ? Colors.grey[700]!
+                        : Colors.grey[300]!,
                   ),
                 ),
                 errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).extension<AppColors>()!.error!,
+                      color: Theme.of(context).colorScheme.error,
                     ),
                 focusedErrorBorder: OutlineInputBorder(
                   gapPadding: 0,
                   borderRadius: BorderRadius.circular(4.r),
                   borderSide: BorderSide(
-                    color: Theme.of(context).extension<AppColors>()!.error!,
+                    color: Theme.of(context).colorScheme.error,
                   ),
                 ),
                 errorBorder: OutlineInputBorder(
                   gapPadding: 0,
                   borderRadius: BorderRadius.circular(4.r),
                   borderSide: BorderSide(
-                    color: Theme.of(context).extension<AppColors>()!.error!,
+                    color: Theme.of(context).colorScheme.error,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   gapPadding: 0,
                   borderRadius: BorderRadius.circular(4.r),
                   borderSide: BorderSide(
-                    color: context.isDarkMode
-                        ? Colors.grey[700]!
-                        : Colors.grey[300]!,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),

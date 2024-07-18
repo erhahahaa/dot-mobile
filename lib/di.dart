@@ -30,6 +30,34 @@ void _intiRepos() {
     ),
   );
 
+  di.registerLazySingleton<ExamRepo>(
+    () => ExamRepoImpl(
+      di<DioClient>(),
+      di<IsarClient>(),
+    ),
+  );
+
+  di.registerLazySingleton<QuestionRepo>(
+    () => QuestionRepoImpl(
+      di<DioClient>(),
+      di<IsarClient>(),
+    ),
+  );
+
+  di.registerLazySingleton<ProgramRepo>(
+    () => ProgramRepoImpl(
+      di<DioClient>(),
+      di<IsarClient>(),
+    ),
+  );
+
+  di.registerSingleton<TacticalRepo>(
+    TacticalRepoImpl(
+      di<DioClient>(),
+      di<IsarClient>(),
+    ),
+  );
+
   di.registerLazySingleton<UserRepo>(
     () => UserRepoImpl(
       di<IsarClient>(),
@@ -48,6 +76,25 @@ void _initCubits() {
   di.registerFactory(
     () => ClubCubit(
       di<ClubRepo>(),
+      di<UserRepo>(),
+    ),
+  );
+
+  di.registerFactory(
+    () => ExamCubit(
+      di<ExamRepo>(),
+    ),
+  );
+
+  di.registerFactory(
+    () => ProgramCubit(
+      di<ProgramRepo>(),
+    ),
+  );
+
+  di.registerFactory(
+    () => TacticalCubit(
+      di<TacticalRepo>(),
     ),
   );
 

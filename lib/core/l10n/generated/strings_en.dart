@@ -63,4 +63,10 @@ class StringsEn extends Strings {
 
   @override
   String get club => 'Club';
+
+  @override
+  String get sportType => 'Sport Type';
+
+  @override
+  String get detail => 'Detail';
 }

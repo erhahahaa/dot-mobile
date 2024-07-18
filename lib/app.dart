@@ -1,6 +1,7 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/di.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +21,11 @@ class DotApp extends StatelessWidget {
       systemNavigationBarColor: Colors.white,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
+
+    // final brightness = View.of(context).platformDispatcher.platformBrightness;
+    TextTheme textTheme = createTextTheme(context, "Montserrat", "Montserrat");
+
+    MaterialTheme theme = MaterialTheme(textTheme);
 
     return MultiBlocProvider(
       providers: [
@@ -55,8 +61,8 @@ class DotApp extends StatelessWidget {
                   child: child!,
                 );
               },
-              theme: lightTheme(ctx),
-              darkTheme: darkTheme(ctx),
+              theme: theme.light(),
+              darkTheme: theme.dark(),
               themeMode: ThemeMode.system,
               supportedLocales: L10n.all,
             );

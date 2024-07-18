@@ -74,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      state.user.role == UserRole.admin
+                      state.user.role == UserRole.coach
                           ? TextButton(
                               onPressed: () => context
                                   .pushNamed(AppRoutes.coachDashboard.name),

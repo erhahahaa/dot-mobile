@@ -21,15 +21,11 @@ ExamModel _$ExamModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ExamModel {
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'club_id')
   int get clubId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  @JsonKey(name: 'due_at')
   DateTime? get dueAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,12 +41,12 @@ abstract class $ExamModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'club_id') int clubId,
+      int clubId,
       String title,
       String description,
-      @JsonKey(name: 'due_at') DateTime? dueAt,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      DateTime? dueAt,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -117,12 +113,12 @@ abstract class _$$ExamModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'club_id') int clubId,
+      int clubId,
       String title,
       String description,
-      @JsonKey(name: 'due_at') DateTime? dueAt,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      DateTime? dueAt,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -182,12 +178,12 @@ class __$$ExamModelImplCopyWithImpl<$Res>
 class _$ExamModelImpl implements _ExamModel {
   const _$ExamModelImpl(
       {this.id = 0,
-      @JsonKey(name: 'club_id') this.clubId = 0,
+      this.clubId = 0,
       this.title = '',
       this.description = '',
-      @JsonKey(name: 'due_at') this.dueAt,
-      @JsonKey(name: 'created_at') this.createdAt,
-      @JsonKey(name: 'updated_at') this.updatedAt});
+      this.dueAt,
+      this.createdAt,
+      this.updatedAt});
 
   factory _$ExamModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ExamModelImplFromJson(json);
@@ -196,7 +192,7 @@ class _$ExamModelImpl implements _ExamModel {
   @JsonKey()
   final int id;
   @override
-  @JsonKey(name: 'club_id')
+  @JsonKey()
   final int clubId;
   @override
   @JsonKey()
@@ -205,13 +201,10 @@ class _$ExamModelImpl implements _ExamModel {
   @JsonKey()
   final String description;
   @override
-  @JsonKey(name: 'due_at')
   final DateTime? dueAt;
   @override
-  @JsonKey(name: 'created_at')
   final DateTime? createdAt;
   @override
-  @JsonKey(name: 'updated_at')
   final DateTime? updatedAt;
 
   @override
@@ -257,14 +250,13 @@ class _$ExamModelImpl implements _ExamModel {
 
 abstract class _ExamModel implements ExamModel {
   const factory _ExamModel(
-          {final int id,
-          @JsonKey(name: 'club_id') final int clubId,
-          final String title,
-          final String description,
-          @JsonKey(name: 'due_at') final DateTime? dueAt,
-          @JsonKey(name: 'created_at') final DateTime? createdAt,
-          @JsonKey(name: 'updated_at') final DateTime? updatedAt}) =
-      _$ExamModelImpl;
+      {final int id,
+      final int clubId,
+      final String title,
+      final String description,
+      final DateTime? dueAt,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$ExamModelImpl;
 
   factory _ExamModel.fromJson(Map<String, dynamic> json) =
       _$ExamModelImpl.fromJson;
@@ -272,20 +264,16 @@ abstract class _ExamModel implements ExamModel {
   @override
   int get id;
   @override
-  @JsonKey(name: 'club_id')
   int get clubId;
   @override
   String get title;
   @override
   String get description;
   @override
-  @JsonKey(name: 'due_at')
   DateTime? get dueAt;
   @override
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt;
   @override
-  @JsonKey(name: 'updated_at')
   DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)

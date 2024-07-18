@@ -21,14 +21,10 @@ ProgramModel _$ProgramModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ProgramModel {
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'club_id')
   int get clubId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'sport_type')
   String get sportType => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,11 +41,11 @@ abstract class $ProgramModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'club_id') int clubId,
-      @JsonKey(name: 'sport_type') String sportType,
+      int clubId,
+      String sportType,
       String name,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -111,11 +107,11 @@ abstract class _$$ProgramModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'club_id') int clubId,
-      @JsonKey(name: 'sport_type') String sportType,
+      int clubId,
+      String sportType,
       String name,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -170,11 +166,11 @@ class __$$ProgramModelImplCopyWithImpl<$Res>
 class _$ProgramModelImpl implements _ProgramModel {
   const _$ProgramModelImpl(
       {this.id = 0,
-      @JsonKey(name: 'club_id') this.clubId = 0,
-      @JsonKey(name: 'sport_type') this.sportType = '',
+      this.clubId = 0,
+      this.sportType = '',
       this.name = '',
-      @JsonKey(name: 'created_at') this.createdAt,
-      @JsonKey(name: 'updated_at') this.updatedAt});
+      this.createdAt,
+      this.updatedAt});
 
   factory _$ProgramModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProgramModelImplFromJson(json);
@@ -183,19 +179,17 @@ class _$ProgramModelImpl implements _ProgramModel {
   @JsonKey()
   final int id;
   @override
-  @JsonKey(name: 'club_id')
+  @JsonKey()
   final int clubId;
   @override
-  @JsonKey(name: 'sport_type')
+  @JsonKey()
   final String sportType;
   @override
   @JsonKey()
   final String name;
   @override
-  @JsonKey(name: 'created_at')
   final DateTime? createdAt;
   @override
-  @JsonKey(name: 'updated_at')
   final DateTime? updatedAt;
 
   @override
@@ -240,13 +234,12 @@ class _$ProgramModelImpl implements _ProgramModel {
 
 abstract class _ProgramModel implements ProgramModel {
   const factory _ProgramModel(
-          {final int id,
-          @JsonKey(name: 'club_id') final int clubId,
-          @JsonKey(name: 'sport_type') final String sportType,
-          final String name,
-          @JsonKey(name: 'created_at') final DateTime? createdAt,
-          @JsonKey(name: 'updated_at') final DateTime? updatedAt}) =
-      _$ProgramModelImpl;
+      {final int id,
+      final int clubId,
+      final String sportType,
+      final String name,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$ProgramModelImpl;
 
   factory _ProgramModel.fromJson(Map<String, dynamic> json) =
       _$ProgramModelImpl.fromJson;
@@ -254,18 +247,14 @@ abstract class _ProgramModel implements ProgramModel {
   @override
   int get id;
   @override
-  @JsonKey(name: 'club_id')
   int get clubId;
   @override
-  @JsonKey(name: 'sport_type')
   String get sportType;
   @override
   String get name;
   @override
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt;
   @override
-  @JsonKey(name: 'updated_at')
   DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)

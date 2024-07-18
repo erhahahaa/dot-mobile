@@ -18,6 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ClubState {
   BaseState get state => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
+  UserModel get user => throw _privateConstructorUsedError;
+  List<ClubModel> get coachClubs => throw _privateConstructorUsedError;
+  List<ClubModel> get athleteClubs => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClubStateCopyWith<ClubState> get copyWith =>
@@ -29,7 +32,14 @@ abstract class $ClubStateCopyWith<$Res> {
   factory $ClubStateCopyWith(ClubState value, $Res Function(ClubState) then) =
       _$ClubStateCopyWithImpl<$Res, ClubState>;
   @useResult
-  $Res call({BaseState state, Failure? failure});
+  $Res call(
+      {BaseState state,
+      Failure? failure,
+      UserModel user,
+      List<ClubModel> coachClubs,
+      List<ClubModel> athleteClubs});
+
+  $UserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -47,6 +57,9 @@ class _$ClubStateCopyWithImpl<$Res, $Val extends ClubState>
   $Res call({
     Object? state = null,
     Object? failure = freezed,
+    Object? user = null,
+    Object? coachClubs = null,
+    Object? athleteClubs = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -57,7 +70,27 @@ class _$ClubStateCopyWithImpl<$Res, $Val extends ClubState>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+      coachClubs: null == coachClubs
+          ? _value.coachClubs
+          : coachClubs // ignore: cast_nullable_to_non_nullable
+              as List<ClubModel>,
+      athleteClubs: null == athleteClubs
+          ? _value.athleteClubs
+          : athleteClubs // ignore: cast_nullable_to_non_nullable
+              as List<ClubModel>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -69,7 +102,15 @@ abstract class _$$ClubStateImplCopyWith<$Res>
       __$$ClubStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BaseState state, Failure? failure});
+  $Res call(
+      {BaseState state,
+      Failure? failure,
+      UserModel user,
+      List<ClubModel> coachClubs,
+      List<ClubModel> athleteClubs});
+
+  @override
+  $UserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -85,6 +126,9 @@ class __$$ClubStateImplCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
     Object? failure = freezed,
+    Object? user = null,
+    Object? coachClubs = null,
+    Object? athleteClubs = null,
   }) {
     return _then(_$ClubStateImpl(
       state: null == state
@@ -95,6 +139,18 @@ class __$$ClubStateImplCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+      coachClubs: null == coachClubs
+          ? _value._coachClubs
+          : coachClubs // ignore: cast_nullable_to_non_nullable
+              as List<ClubModel>,
+      athleteClubs: null == athleteClubs
+          ? _value._athleteClubs
+          : athleteClubs // ignore: cast_nullable_to_non_nullable
+              as List<ClubModel>,
     ));
   }
 }
@@ -102,17 +158,44 @@ class __$$ClubStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ClubStateImpl implements _ClubState {
-  const _$ClubStateImpl({this.state = BaseState.initial, this.failure});
+  const _$ClubStateImpl(
+      {this.state = BaseState.initial,
+      this.failure,
+      this.user = const UserModel(),
+      final List<ClubModel> coachClubs = const [],
+      final List<ClubModel> athleteClubs = const []})
+      : _coachClubs = coachClubs,
+        _athleteClubs = athleteClubs;
 
   @override
   @JsonKey()
   final BaseState state;
   @override
   final Failure? failure;
+  @override
+  @JsonKey()
+  final UserModel user;
+  final List<ClubModel> _coachClubs;
+  @override
+  @JsonKey()
+  List<ClubModel> get coachClubs {
+    if (_coachClubs is EqualUnmodifiableListView) return _coachClubs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_coachClubs);
+  }
+
+  final List<ClubModel> _athleteClubs;
+  @override
+  @JsonKey()
+  List<ClubModel> get athleteClubs {
+    if (_athleteClubs is EqualUnmodifiableListView) return _athleteClubs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_athleteClubs);
+  }
 
   @override
   String toString() {
-    return 'ClubState(state: $state, failure: $failure)';
+    return 'ClubState(state: $state, failure: $failure, user: $user, coachClubs: $coachClubs, athleteClubs: $athleteClubs)';
   }
 
   @override
@@ -121,11 +204,22 @@ class _$ClubStateImpl implements _ClubState {
         (other.runtimeType == runtimeType &&
             other is _$ClubStateImpl &&
             (identical(other.state, state) || other.state == state) &&
-            (identical(other.failure, failure) || other.failure == failure));
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality()
+                .equals(other._coachClubs, _coachClubs) &&
+            const DeepCollectionEquality()
+                .equals(other._athleteClubs, _athleteClubs));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state, failure);
+  int get hashCode => Object.hash(
+      runtimeType,
+      state,
+      failure,
+      user,
+      const DeepCollectionEquality().hash(_coachClubs),
+      const DeepCollectionEquality().hash(_athleteClubs));
 
   @JsonKey(ignore: true)
   @override
@@ -135,13 +229,23 @@ class _$ClubStateImpl implements _ClubState {
 }
 
 abstract class _ClubState implements ClubState {
-  const factory _ClubState({final BaseState state, final Failure? failure}) =
-      _$ClubStateImpl;
+  const factory _ClubState(
+      {final BaseState state,
+      final Failure? failure,
+      final UserModel user,
+      final List<ClubModel> coachClubs,
+      final List<ClubModel> athleteClubs}) = _$ClubStateImpl;
 
   @override
   BaseState get state;
   @override
   Failure? get failure;
+  @override
+  UserModel get user;
+  @override
+  List<ClubModel> get coachClubs;
+  @override
+  List<ClubModel> get athleteClubs;
   @override
   @JsonKey(ignore: true)
   _$$ClubStateImplCopyWith<_$ClubStateImpl> get copyWith =>

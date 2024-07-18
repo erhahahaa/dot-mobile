@@ -8,11 +8,11 @@ part 'program.g.dart';
 class ProgramModel with _$ProgramModel {
   const factory ProgramModel({
     @Default(0) int id,
-    @JsonKey(name: 'club_id') @Default(0) int clubId,
-    @JsonKey(name: 'sport_type') @Default('') String sportType,
+    @Default(0) int clubId,
+    @Default('') String sportType,
     @Default('') String name,
-    @JsonKey(name: 'created_at') DateTime? createdAt,
-    @JsonKey(name: 'updated_at') DateTime? updatedAt,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) = _ProgramModel;
 
   factory ProgramModel.fromJson(Map<String, dynamic> json) =>

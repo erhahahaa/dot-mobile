@@ -163,7 +163,7 @@ UserEntity _userEntityDeserialize(
     name: reader.readStringOrNull(offsets[4]),
     phone: reader.readStringOrNull(offsets[5]),
     role: _UserEntityroleValueEnumMap[reader.readByteOrNull(offsets[6])] ??
-        UserRole.user,
+        UserRole.athlete,
     token: reader.readStringOrNull(offsets[7]),
   );
   return object;
@@ -190,7 +190,7 @@ P _userEntityDeserializeProp<P>(
       return (reader.readStringOrNull(offset)) as P;
     case 6:
       return (_UserEntityroleValueEnumMap[reader.readByteOrNull(offset)] ??
-          UserRole.user) as P;
+          UserRole.athlete) as P;
     case 7:
       return (reader.readStringOrNull(offset)) as P;
     default:
@@ -199,14 +199,12 @@ P _userEntityDeserializeProp<P>(
 }
 
 const _UserEntityroleEnumValueMap = {
-  'superadmin': 0,
-  'admin': 1,
-  'user': 2,
+  'coach': 0,
+  'athlete': 1,
 };
 const _UserEntityroleValueEnumMap = {
-  0: UserRole.superadmin,
-  1: UserRole.admin,
-  2: UserRole.user,
+  0: UserRole.coach,
+  1: UserRole.athlete,
 };
 
 Id _userEntityGetId(UserEntity object) {

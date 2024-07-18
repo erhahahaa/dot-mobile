@@ -13,8 +13,8 @@ class QuestionModel with _$QuestionModel {
     @Default(QuestionType.essay) QuestionType type,
     @Default('') String content,
     @Default('') String answer,
-    @JsonKey(name: 'created_at') DateTime? createdAt,
-    @JsonKey(name: 'updated_at') DateTime? updatedAt,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) = _QuestionModel;
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) =>

@@ -21,7 +21,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Color(0xFF5767ED), Color(0xFF32ADBE)],
                   ),
@@ -32,8 +32,8 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                 left: 16,
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    shape: StadiumBorder(),
-                    side: BorderSide(width: 2, color: Colors.white),
+                    shape: const StadiumBorder(),
+                    side: const BorderSide(width: 2, color: Colors.white),
                   ),
                   onPressed: () {},
                   child: Row(
@@ -61,7 +61,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                 child: Container(
                   width: 344.w,
                   height: 637.h,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color(0xFFF5F6FF),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(25.0),
@@ -78,7 +78,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                 child: Container(
                   width: 308.w,
                   height: 46.h,
-                  padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16.r),
@@ -87,7 +87,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                         color: Colors.black.withOpacity(0.25),
                         blurRadius: 8,
                         spreadRadius: 0,
-                        offset: Offset(4, 4),
+                        offset: const Offset(4, 4),
                       ),
                     ],
                   ),
@@ -110,9 +110,9 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            padding: EdgeInsets.fromLTRB(16, 2, 16, 2),
+                            padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
                             decoration: BoxDecoration(
-                              color: Color(0xFF763AD8),
+                              color: const Color(0xFF763AD8),
                               borderRadius: BorderRadius.circular(20.r),
                             ),
                             child: Row(
@@ -150,7 +150,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                       .infinity, // Ensures the container fills the available width
                   height: double
                       .infinity, // Ensures the container fills the available height
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
@@ -159,7 +159,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                         color: Colors.black.withOpacity(0.25),
                         blurRadius: 8,
                         spreadRadius: 0,
-                        offset: Offset(4, 4),
+                        offset: const Offset(4, 4),
                       ),
                     ],
                   ),
@@ -191,12 +191,12 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                             children: [
                               Container(
                                 width: double.infinity,
-                                padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(16),
                                   border: Border.all(
-                                    color: Color(0xFFD7DEE9),
+                                    color: const Color(0xFFD7DEE9),
                                   ),
                                 ),
                                 child: Column(
@@ -242,13 +242,13 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                       width: 271.w,
                                       height: 400.h,
                                       padding:
-                                          EdgeInsets.fromLTRB(16, 8, 16, 8),
+                                          const EdgeInsets.fromLTRB(16, 8, 16, 8),
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius:
                                             BorderRadius.circular(16.r),
                                         border: Border.all(
-                                          color: Color(0xFFD7DEE9),
+                                          color: const Color(0xFFD7DEE9),
                                         ),
                                       ),
                                       child: Column(
@@ -295,14 +295,14 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                           Container(
                                             width: 271.w,
                                             height: 350.h,
-                                            padding: EdgeInsets.fromLTRB(
+                                            padding: const EdgeInsets.fromLTRB(
                                                 16, 8, 16, 8),
                                             decoration: BoxDecoration(
                                               color: Colors.white,
                                               borderRadius:
                                                   BorderRadius.circular(16.r),
                                               border: Border.all(
-                                                color: Color(0xFFD7DEE9),
+                                                color: const Color(0xFFD7DEE9),
                                               ),
                                             ),
                                             child: Column(
@@ -336,10 +336,10 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                     SizedBox(width: 8.w),
                                                     Container(
                                                       padding:
-                                                          EdgeInsets.all(8),
+                                                          const EdgeInsets.all(8),
                                                       decoration: BoxDecoration(
                                                         color:
-                                                            Color(0xFF5868F1),
+                                                            const Color(0xFF5868F1),
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(8.r),
@@ -376,7 +376,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                 Container(
                                                   width: 271.w,
                                                   height: 143.h,
-                                                  padding: EdgeInsets.fromLTRB(
+                                                  padding: const EdgeInsets.fromLTRB(
                                                       16, 8, 16, 8),
                                                   decoration: BoxDecoration(
                                                     color: Colors.white,
@@ -384,7 +384,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                         BorderRadius.circular(
                                                             16.r),
                                                     border: Border.all(
-                                                      color: Color(0xFFD7DEE9),
+                                                      color: const Color(0xFFD7DEE9),
                                                     ),
                                                   ),
                                                   child: Padding(
@@ -397,11 +397,11 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                             Expanded(
                                                               child: Container(
                                                                 padding:
-                                                                    EdgeInsets
+                                                                    const EdgeInsets
                                                                         .all(8),
                                                                 decoration:
                                                                     BoxDecoration(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                       0xFFFFD2D2),
                                                                   borderRadius:
                                                                       BorderRadius
@@ -433,11 +433,11 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                                 width: 8.w),
                                                             Container(
                                                               padding:
-                                                                  EdgeInsets
+                                                                  const EdgeInsets
                                                                       .all(8),
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: Color(
+                                                                color: const Color(
                                                                     0xFFFFF0BD),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -467,7 +467,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                             ),
                                                           ],
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 8,
                                                         ),
                                                         Row(
@@ -475,11 +475,11 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                             Expanded(
                                                               child: Container(
                                                                 padding:
-                                                                    EdgeInsets
+                                                                    const EdgeInsets
                                                                         .all(8),
                                                                 decoration:
                                                                     BoxDecoration(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                       0xFFACFFCD),
                                                                   borderRadius:
                                                                       BorderRadius
@@ -511,11 +511,11 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                                 width: 8.w),
                                                             Container(
                                                               padding:
-                                                                  EdgeInsets
+                                                                  const EdgeInsets
                                                                       .all(8),
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: Color(
+                                                                color: const Color(
                                                                     0xFF95DFFF),
                                                                 borderRadius:
                                                                     BorderRadius
@@ -545,7 +545,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                             ),
                                                           ],
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 8,
                                                         ),
                                                         Row(
@@ -553,11 +553,11 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                             Expanded(
                                                               child: Container(
                                                                 padding:
-                                                                    EdgeInsets
+                                                                    const EdgeInsets
                                                                         .all(8),
                                                                 decoration:
                                                                     BoxDecoration(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                       0xFFEBB2FF),
                                                                   borderRadius:
                                                                       BorderRadius
@@ -598,7 +598,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                 Container(
                                                   width: 271.w,
                                                   height: 141.h,
-                                                  padding: EdgeInsets.fromLTRB(
+                                                  padding: const EdgeInsets.fromLTRB(
                                                       16, 8, 16, 8),
                                                   decoration: BoxDecoration(
                                                     color: Colors.white,
@@ -606,7 +606,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                                         BorderRadius.circular(
                                                             16.r),
                                                     border: Border.all(
-                                                      color: Color(0xFFD7DEE9),
+                                                      color: const Color(0xFFD7DEE9),
                                                     ),
                                                   ),
                                                   child: Row(

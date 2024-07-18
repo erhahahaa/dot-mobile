@@ -33,7 +33,7 @@ extension StringExt on String {
       showToastWidget(
         Chirp(
           text: title,
-          color: Theme.of(context).extension<AppColors>()?.error,
+          color: Theme.of(context).colorScheme.error,
           icon: Icon(
             Icons.error,
             color: Colors.white,
@@ -62,7 +62,7 @@ extension StringExt on String {
       showToastWidget(
         Chirp(
           text: title,
-          color: Theme.of(context).extension<AppColors>()?.success,
+          color: Theme.of(context).extension<AppColors>()!.green?.color,
           icon: Icon(
             Icons.check_circle,
             color: Colors.white,
@@ -90,7 +90,7 @@ extension StringExt on String {
       showToastWidget(
         Chirp(
           text: title,
-          color: Theme.of(context).extension<AppColors>()?.info,
+          color: Theme.of(context).colorScheme.primaryFixedDim,
           icon: Icon(
             Icons.info,
             color: Colors.white,
@@ -117,7 +117,7 @@ extension StringExt on String {
       showToastWidget(
         Chirp(
           text: title,
-          color: Theme.of(context).extension<AppColors>()?.info,
+          color: Theme.of(context).colorScheme.primaryFixedDim,
           icon: Icon(
             Icons.info,
             color: Colors.white,

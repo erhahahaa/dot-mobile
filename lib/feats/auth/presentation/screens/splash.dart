@@ -13,6 +13,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (BuildContext context, AuthState state) {
+        log.e("SplashScreen listener $state");
         final failure = state.failure;
         if (failure != null) {
           failure.message.toToastError(context);

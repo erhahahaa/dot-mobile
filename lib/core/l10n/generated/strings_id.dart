@@ -63,4 +63,10 @@ class StringsId extends Strings {
 
   @override
   String get club => 'Klub';
+
+  @override
+  String get sportType => 'Jenis Olahraga';
+
+  @override
+  String get detail => 'Rincian';
 }

@@ -21,12 +21,12 @@ ClubModel _$ClubModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ClubModel {
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'creator_id')
   int get creatorId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  SportType get type => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
+  int get memberCount => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,11 +42,13 @@ abstract class $ClubModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'creator_id') int creatorId,
+      int creatorId,
       String name,
       String description,
+      SportType type,
       String image,
-      @JsonKey(name: 'created_at') DateTime? createdAt});
+      int memberCount,
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -66,7 +68,9 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
     Object? creatorId = null,
     Object? name = null,
     Object? description = null,
+    Object? type = null,
     Object? image = null,
+    Object? memberCount = null,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -86,10 +90,18 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as SportType,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      memberCount: null == memberCount
+          ? _value.memberCount
+          : memberCount // ignore: cast_nullable_to_non_nullable
+              as int,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -108,11 +120,13 @@ abstract class _$$ClubModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'creator_id') int creatorId,
+      int creatorId,
       String name,
       String description,
+      SportType type,
       String image,
-      @JsonKey(name: 'created_at') DateTime? createdAt});
+      int memberCount,
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -130,7 +144,9 @@ class __$$ClubModelImplCopyWithImpl<$Res>
     Object? creatorId = null,
     Object? name = null,
     Object? description = null,
+    Object? type = null,
     Object? image = null,
+    Object? memberCount = null,
     Object? createdAt = freezed,
   }) {
     return _then(_$ClubModelImpl(
@@ -150,10 +166,18 @@ class __$$ClubModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as SportType,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      memberCount: null == memberCount
+          ? _value.memberCount
+          : memberCount // ignore: cast_nullable_to_non_nullable
+              as int,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -167,11 +191,14 @@ class __$$ClubModelImplCopyWithImpl<$Res>
 class _$ClubModelImpl implements _ClubModel {
   const _$ClubModelImpl(
       {this.id = 0,
-      @JsonKey(name: 'creator_id') this.creatorId = 0,
+      this.creatorId = 0,
       this.name = 'Indo Sports',
       this.description = 'Sport Club',
-      this.image = "https://api.dicebear.com/9.x/adventurer/png",
-      @JsonKey(name: 'created_at') this.createdAt});
+      this.type = SportType.basketBall,
+      this.image =
+          "https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg",
+      this.memberCount = 0,
+      this.createdAt});
 
   factory _$ClubModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClubModelImplFromJson(json);
@@ -180,7 +207,7 @@ class _$ClubModelImpl implements _ClubModel {
   @JsonKey()
   final int id;
   @override
-  @JsonKey(name: 'creator_id')
+  @JsonKey()
   final int creatorId;
   @override
   @JsonKey()
@@ -190,14 +217,19 @@ class _$ClubModelImpl implements _ClubModel {
   final String description;
   @override
   @JsonKey()
+  final SportType type;
+  @override
+  @JsonKey()
   final String image;
   @override
-  @JsonKey(name: 'created_at')
+  @JsonKey()
+  final int memberCount;
+  @override
   final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'ClubModel(id: $id, creatorId: $creatorId, name: $name, description: $description, image: $image, createdAt: $createdAt)';
+    return 'ClubModel(id: $id, creatorId: $creatorId, name: $name, description: $description, type: $type, image: $image, memberCount: $memberCount, createdAt: $createdAt)';
   }
 
   @override
@@ -211,15 +243,18 @@ class _$ClubModelImpl implements _ClubModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.image, image) || other.image == image) &&
+            (identical(other.memberCount, memberCount) ||
+                other.memberCount == memberCount) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, creatorId, name, description, image, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, creatorId, name, description,
+      type, image, memberCount, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -237,13 +272,14 @@ class _$ClubModelImpl implements _ClubModel {
 
 abstract class _ClubModel implements ClubModel {
   const factory _ClubModel(
-          {final int id,
-          @JsonKey(name: 'creator_id') final int creatorId,
-          final String name,
-          final String description,
-          final String image,
-          @JsonKey(name: 'created_at') final DateTime? createdAt}) =
-      _$ClubModelImpl;
+      {final int id,
+      final int creatorId,
+      final String name,
+      final String description,
+      final SportType type,
+      final String image,
+      final int memberCount,
+      final DateTime? createdAt}) = _$ClubModelImpl;
 
   factory _ClubModel.fromJson(Map<String, dynamic> json) =
       _$ClubModelImpl.fromJson;
@@ -251,16 +287,18 @@ abstract class _ClubModel implements ClubModel {
   @override
   int get id;
   @override
-  @JsonKey(name: 'creator_id')
   int get creatorId;
   @override
   String get name;
   @override
   String get description;
   @override
+  SportType get type;
+  @override
   String get image;
   @override
-  @JsonKey(name: 'created_at')
+  int get memberCount;
+  @override
   DateTime? get createdAt;
   @override
   @JsonKey(ignore: true)

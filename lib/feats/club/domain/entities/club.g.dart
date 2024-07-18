@@ -37,10 +37,21 @@ const ClubEntitySchema = CollectionSchema(
       name: r'image',
       type: IsarType.string,
     ),
-    r'name': PropertySchema(
+    r'memberCount': PropertySchema(
       id: 4,
+      name: r'memberCount',
+      type: IsarType.long,
+    ),
+    r'name': PropertySchema(
+      id: 5,
       name: r'name',
       type: IsarType.string,
+    ),
+    r'type': PropertySchema(
+      id: 6,
+      name: r'type',
+      type: IsarType.byte,
+      enumMap: _ClubEntitytypeEnumValueMap,
     )
   },
   estimateSize: _clubEntityEstimateSize,
@@ -94,7 +105,9 @@ void _clubEntitySerialize(
   writer.writeLong(offsets[1], object.creatorId);
   writer.writeString(offsets[2], object.description);
   writer.writeString(offsets[3], object.image);
-  writer.writeString(offsets[4], object.name);
+  writer.writeLong(offsets[4], object.memberCount);
+  writer.writeString(offsets[5], object.name);
+  writer.writeByte(offsets[6], object.type.index);
 }
 
 ClubEntity _clubEntityDeserialize(
@@ -109,7 +122,10 @@ ClubEntity _clubEntityDeserialize(
     description: reader.readStringOrNull(offsets[2]),
     id: id,
     image: reader.readStringOrNull(offsets[3]),
-    name: reader.readStringOrNull(offsets[4]),
+    memberCount: reader.readLongOrNull(offsets[4]) ?? 0,
+    name: reader.readStringOrNull(offsets[5]),
+    type: _ClubEntitytypeValueEnumMap[reader.readByteOrNull(offsets[6])] ??
+        SportType.basketBall,
   );
   return object;
 }
@@ -130,11 +146,27 @@ P _clubEntityDeserializeProp<P>(
     case 3:
       return (reader.readStringOrNull(offset)) as P;
     case 4:
+      return (reader.readLongOrNull(offset) ?? 0) as P;
+    case 5:
       return (reader.readStringOrNull(offset)) as P;
+    case 6:
+      return (_ClubEntitytypeValueEnumMap[reader.readByteOrNull(offset)] ??
+          SportType.basketBall) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
+
+const _ClubEntitytypeEnumValueMap = {
+  'volleyBall': 0,
+  'basketBall': 1,
+  'soccer': 2,
+};
+const _ClubEntitytypeValueEnumMap = {
+  0: SportType.volleyBall,
+  1: SportType.basketBall,
+  2: SportType.soccer,
+};
 
 Id _clubEntityGetId(ClubEntity object) {
   return object.id;
@@ -725,6 +757,62 @@ extension ClubEntityQueryFilter
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      memberCountEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'memberCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      memberCountGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'memberCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      memberCountLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'memberCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      memberCountBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'memberCount',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> nameIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -870,6 +958,59 @@ extension ClubEntityQueryFilter
       ));
     });
   }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeEqualTo(
+      SportType value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'type',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeGreaterThan(
+    SportType value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'type',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeLessThan(
+    SportType value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'type',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeBetween(
+    SportType lower,
+    SportType upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'type',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
 }
 
 extension ClubEntityQueryObject
@@ -928,6 +1069,18 @@ extension ClubEntityQuerySortBy
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByMemberCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'memberCount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByMemberCountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'memberCount', Sort.desc);
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -937,6 +1090,18 @@ extension ClubEntityQuerySortBy
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByType() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'type', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByTypeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'type', Sort.desc);
     });
   }
 }
@@ -1003,6 +1168,18 @@ extension ClubEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByMemberCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'memberCount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByMemberCountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'memberCount', Sort.desc);
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -1012,6 +1189,18 @@ extension ClubEntityQuerySortThenBy
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByType() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'type', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByTypeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'type', Sort.desc);
     });
   }
 }
@@ -1044,10 +1233,22 @@ extension ClubEntityQueryWhereDistinct
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByMemberCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'memberCount');
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByType() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'type');
     });
   }
 }
@@ -1084,9 +1285,21 @@ extension ClubEntityQueryProperty
     });
   }
 
+  QueryBuilder<ClubEntity, int, QQueryOperations> memberCountProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'memberCount');
+    });
+  }
+
   QueryBuilder<ClubEntity, String?, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
+    });
+  }
+
+  QueryBuilder<ClubEntity, SportType, QQueryOperations> typeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'type');
     });
   }
 }

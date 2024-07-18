@@ -13,6 +13,7 @@ _$UpdateClubParamsImpl _$$UpdateClubParamsImplFromJson(
       name: json['name'] as String,
       description: json['description'] as String,
       image: json['image'] as String?,
+      type: $enumDecode(_$SportTypeEnumMap, json['type']),
     );
 
 Map<String, dynamic> _$$UpdateClubParamsImplToJson(
@@ -22,4 +23,11 @@ Map<String, dynamic> _$$UpdateClubParamsImplToJson(
       'name': instance.name,
       'description': instance.description,
       'image': instance.image,
+      'type': _$SportTypeEnumMap[instance.type]!,
     };
+
+const _$SportTypeEnumMap = {
+  SportType.volleyBall: 'volleyBall',
+  SportType.basketBall: 'basketBall',
+  SportType.soccer: 'soccer',
+};

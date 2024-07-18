@@ -1,22 +1,16 @@
 import 'dart:async';
 
-import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Stream<dynamic> stream) {
     notifyListeners();
-    _subscription = stream.asBroadcastStream().listen((event) {
-      try {
-        notifyListeners();
-      } catch (e) {
-        log.e("GoRouterRefreshStream: $e");
-      }
-      // log.f("GoRouterRefreshStream: $event");
-    });
+    _subscription = stream.asBroadcastStream().listen(
+          (dynamic _) => notifyListeners(),
+        );
   }
 
-  late final StreamSubscription _subscription;
+  late final StreamSubscription<dynamic> _subscription;
 
   @override
   void dispose() {

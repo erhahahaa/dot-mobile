@@ -94,6 +94,7 @@ class DioClient with FirebaseCrashLogger {
   Future<Either<Failure, T>> postRequest<T>(
     String url, {
     Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
     FormData? formData,
     JSONIsolateConverter<T>? converter,
     Function(int, int)? onSendProgress,
@@ -105,6 +106,7 @@ class DioClient with FirebaseCrashLogger {
         data: data ?? formData,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
+        queryParameters: queryParameters,
       );
       if ((response.statusCode ?? 0) < 200 ||
           (response.statusCode ?? 0) > 201) {
@@ -226,7 +228,17 @@ class DioClient with FirebaseCrashLogger {
     }
   }
 
-  FutureOr<Either<Failure, T>> handleException<T>(e, stackTrace) {
+  FutureOr<Either<Failure, T>> handleException<T>(
+      DioException e, StackTrace stackTrace) {
+    if (e.type == DioExceptionType.connectionTimeout) {
+      return Left(
+        ServerFailure(
+          message: 'Connection Timeout',
+          exception: e,
+        ),
+      );
+    }
+
     final res = e.response?.data as Map<String, dynamic>;
     nonFatalError(error: e, stackTrace: stackTrace);
     return Left(

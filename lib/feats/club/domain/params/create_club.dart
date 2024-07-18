@@ -1,3 +1,4 @@
+import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_club.freezed.dart';
@@ -8,8 +9,8 @@ class CreateClubParams with _$CreateClubParams {
   const factory CreateClubParams({
     required String name,
     required String description,
-    @Default('https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg')
     String? image,
+    required SportType type,
   }) = _CreateClubParams;
 
   factory CreateClubParams.fromJson(Map<String, dynamic> json) =>

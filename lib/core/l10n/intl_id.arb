@@ -19,5 +19,7 @@
   "enterClubName": "Masukkan nama klub",
   "enterClubDescription": "Masukkan deskripsi klub",
   "createClub": "Buat Klub",
-  "club": "Klub"
+  "club": "Klub",
+  "sportType": "Jenis Olahraga",
+  "detail": "Rincian"
 }
