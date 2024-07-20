@@ -1,3 +1,5 @@
+import 'package:dot_coaching/core/resources/dimens.dart';
+import 'package:dot_coaching/core/resources/palette.dart';
 import 'package:dot_coaching/core/widgets/parent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 344.w,
               height: 581.h,
               decoration: BoxDecoration(
-                color: Color(0xFFF5F6FF),
+                color: Palette.backgroundLight,
               ),
             ),
           ),
@@ -63,19 +65,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         "Hello,",
                         style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
+                            fontSize: Dimens.titleSmall,
+                            fontWeight: FontWeight.w500,
+                            color: Palette.textLight),
                       ),
                       Text(
                         "Folks!",
                         style: TextStyle(
-                          fontSize: 20.sp,
+                          fontSize: Dimens.titleMedium,
                           fontWeight: FontWeight.w600,
+                          color: Palette.textLight,
                         ),
                       ),
                     ],
@@ -83,12 +87,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(width: 20.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         "Sport :",
                         style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
+                          fontSize: Dimens.titleSmall,
+                          fontWeight: FontWeight.w600,
+                          color: Palette.textLight,
                         ),
                       ),
                       SizedBox(height: 6.h),
@@ -103,14 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             Icon(
                               Icons.sports_volleyball,
                               color: Colors.white,
-                              size: 16.sp,
+                              size: Dimens.iconSmall,
                             ),
                             SizedBox(width: 8.w),
                             Text(
                               "Volleyball",
                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.sp,
+                                color: Palette.textDark,
+                                fontSize: Dimens.titleSmall,
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
@@ -132,44 +138,47 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           "My Club Training",
                           style: TextStyle(
-                            fontSize: 20.sp,
+                            fontSize: Dimens.titleMedium,
                             fontWeight: FontWeight.w600,
+                            color: Palette.textLight,
                           ),
                         ),
                       ],
                     ),
-                    Column(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           width: 120.w,
                           height: 32.h,
-                          padding: EdgeInsets.fromLTRB(8, 10, 8, 10),
+                          padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             color: Color(0xFF868FE3),
                             borderRadius: BorderRadius.circular(8.r),
                           ),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Icon(
                                 Icons.search_rounded,
                                 color: Colors.white,
-                                size: 16.sp,
+                                size: Dimens.iconSmall,
                               ),
                               SizedBox(width: 8.w),
                               Text(
                                 "Search ...",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 12.sp,
+                                  fontSize: Dimens.bodySmall,
                                   fontWeight: FontWeight.normal,
                                 ),
                               ),
@@ -180,14 +189,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 16.h,
+                ),
                 Container(
+                  width: 303.w,
+                  height: 280.h,
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: Color(0xFFE6E8F9),
                     borderRadius: BorderRadius.circular(16.r),
                   ),
                   child: ListView.builder(
-                    itemCount: 4, // Specify the number of items
+                    itemCount: 5,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Container(

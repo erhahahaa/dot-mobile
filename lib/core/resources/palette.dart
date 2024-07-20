@@ -44,10 +44,10 @@ class Palette {
   static const Color accentLight = Color(0xff448aff);
   static const Color accentDark = Color(0xff2979ff);
 
-  static const Color backgroundLight = Color(0xffeff1f5);
+  static const Color backgroundLight = Color(0xfff5f6ff);
   static const Color backgroundDark = Color(0xff1e1e2e);
 
-  static const Color cardLight = Color.fromARGB(255, 225, 228, 236);
+  static const Color cardLight = Color(0xFFE1E4EC);
   static const Color cardDark = Color(0xff313244);
 
   static const Color textLight = Color(0xff1e1e2e);
