@@ -1,5 +1,3 @@
-import 'package:dot_coaching/core/resources/dimens.dart';
-import 'package:dot_coaching/core/resources/palette.dart';
 import 'package:dot_coaching/core/widgets/parent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,8 +25,9 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
             ),
           ),
           Positioned(
-            top: 40,
-            left: 16,
+            top: 40.h,
+            left: 16.w,
+            right: 220.w,
             child: OutlinedButton(
               style: OutlinedButton.styleFrom(
                 shape: const StadiumBorder(),
@@ -36,6 +35,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
               ),
               onPressed: () {},
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     Icons.arrow_circle_left_outlined,
@@ -61,7 +61,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
               width: 344.w,
               height: 640.h,
               decoration: BoxDecoration(
-                  color: Palette.backgroundLight,
+                  color: Color(0xFFF5F6FF),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(25.0),
                     topRight: Radius.circular(25.0),
@@ -76,7 +76,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
             right: 18.w,
             child: Container(
               width: 308.w,
-              height: 43.h,
+              height: 46.h,
               padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -98,9 +98,9 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                       Text(
                         "Novo Club",
                         style: TextStyle(
-                          fontSize: Dimens.titleMedium,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w600,
-                          color: Palette.textLight,
+                          color: Colors.black,
                         ),
                       ),
                     ],
@@ -121,14 +121,14 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                             Icon(
                               Icons.sports_volleyball,
                               color: Colors.white,
-                              size: Dimens.iconSmall,
+                              size: 16,
                             ),
                             SizedBox(width: 8.w),
                             Text(
                               "Volleyball",
                               style: TextStyle(
-                                color: Palette.textDark,
-                                fontSize: Dimens.titleSmall,
+                                color: Colors.white,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
@@ -227,7 +227,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                               ],
                             ),
                             SizedBox(
-                              height: 8,
+                              height: 8.h,
                             ),
                             Row(
                               children: [
@@ -266,7 +266,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 8,
+                                        height: 8.h,
                                       ),
                                       Row(
                                         mainAxisAlignment:
@@ -358,12 +358,12 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                               Image.asset(
                                                                 'assets/images/dot_logo.png',
                                                                 width: 208.w,
-                                                                height: 80.w,
+                                                                height: 80.h,
                                                               ),
                                                             ],
                                                           ),
                                                           SizedBox(
-                                                            height: 8,
+                                                            height: 8.h,
                                                           ),
                                                           Row(
                                                             mainAxisAlignment:
@@ -432,7 +432,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                         ),
                                                                         SizedBox(
                                                                           width:
-                                                                              8,
+                                                                              8.w,
                                                                         ),
                                                                         Container(
                                                                           width:
@@ -468,7 +468,8 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                       ],
                                                                     ),
                                                                     SizedBox(
-                                                                      height: 8,
+                                                                      height:
+                                                                          8.h,
                                                                     ),
                                                                     Row(
                                                                       mainAxisAlignment:
@@ -511,7 +512,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                         ),
                                                                         SizedBox(
                                                                           width:
-                                                                              8,
+                                                                              8.w,
                                                                         ),
                                                                         Container(
                                                                           width:
@@ -547,7 +548,8 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                       ],
                                                                     ),
                                                                     SizedBox(
-                                                                      height: 8,
+                                                                      height:
+                                                                          8.h,
                                                                     ),
                                                                     Row(
                                                                       mainAxisAlignment:
@@ -595,7 +597,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                               ),
                                                             ],
                                                           ),
-                                                          SizedBox(height: 8),
+                                                          SizedBox(height: 8.h),
                                                           Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment

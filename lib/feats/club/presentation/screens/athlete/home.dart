@@ -1,5 +1,3 @@
-import 'package:dot_coaching/core/resources/dimens.dart';
-import 'package:dot_coaching/core/resources/palette.dart';
 import 'package:dot_coaching/core/widgets/parent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 344.w,
               height: 581.h,
               decoration: BoxDecoration(
-                color: Palette.backgroundLight,
+                color: Color(0xFFF5F6FF),
               ),
             ),
           ),
@@ -70,16 +68,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         "Hello,",
                         style: TextStyle(
-                            fontSize: Dimens.titleSmall,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
-                            color: Palette.textLight),
+                            color: Colors.black),
                       ),
                       Text(
                         "Folks!",
                         style: TextStyle(
-                          fontSize: Dimens.titleMedium,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w600,
-                          color: Palette.textLight,
+                          color: Colors.black,
                         ),
                       ),
                     ],
@@ -92,9 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         "Sport :",
                         style: TextStyle(
-                          fontSize: Dimens.titleSmall,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w600,
-                          color: Palette.textLight,
+                          color: Colors.black,
                         ),
                       ),
                       SizedBox(height: 6.h),
@@ -109,14 +107,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             Icon(
                               Icons.sports_volleyball,
                               color: Colors.white,
-                              size: Dimens.iconSmall,
+                              size: 16,
                             ),
                             SizedBox(width: 8.w),
                             Text(
                               "Volleyball",
                               style: TextStyle(
-                                color: Palette.textDark,
-                                fontSize: Dimens.titleSmall,
+                                color: Colors.white,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
@@ -145,9 +143,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         Text(
                           "My Club Training",
                           style: TextStyle(
-                            fontSize: Dimens.titleMedium,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w600,
-                            color: Palette.textLight,
+                            color: Colors.black,
                           ),
                         ),
                       ],
@@ -158,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Container(
                           width: 120.w,
-                          height: 32.h,
+                          height: 36.h,
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             color: Color(0xFF868FE3),
@@ -171,14 +169,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               Icon(
                                 Icons.search_rounded,
                                 color: Colors.white,
-                                size: Dimens.iconSmall,
+                                size: 14,
                               ),
                               SizedBox(width: 8.w),
                               Text(
                                 "Search ...",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: Dimens.bodySmall,
+                                  fontSize: 14.sp,
                                   fontWeight: FontWeight.normal,
                                 ),
                               ),
@@ -261,7 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     "See details",
                                     style: TextStyle(
                                       color: Color(0xFF575FFF),
-                                      fontSize: 12.sp,
+                                      fontSize: 14.sp,
                                       fontWeight: FontWeight.normal,
                                     ),
                                   ),
@@ -269,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Icon(
                                     Icons.arrow_forward_rounded,
                                     color: Color(0xFF575FFF),
-                                    size: 16.sp,
+                                    size: 14.sp,
                                   ),
                                 ],
                               ),
