@@ -172,11 +172,11 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
             ),
           ),
           Positioned(
-            top: 220.h,
+            top: 230.h,
             left: 22.w,
             right: 22.w,
             child: Container(
-              height: 450.h,
+              height: 380.h,
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -286,6 +286,8 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
                                                   children: [
                                                     Text(
                                                       "Workout 1",
@@ -296,38 +298,63 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                             FontWeight.w500,
                                                       ),
                                                     ),
-                                                    Container(
+                                                    // SizedBox(
+                                                    //   width: 8.w,
+                                                    // ),
+                                                    Padding(
                                                       padding:
-                                                          const EdgeInsets.all(
-                                                              8),
-                                                      decoration: BoxDecoration(
-                                                        color: const Color(
-                                                            0xFF5868F1),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.r),
-                                                      ),
-                                                      child: Row(
-                                                        children: [
-                                                          Icon(
-                                                            Icons
-                                                                .video_collection_rounded,
-                                                            color: Colors.white,
-                                                            size: 12.sp,
-                                                          ),
-                                                          SizedBox(width: 8.w),
-                                                          Text(
-                                                            "Watch Video",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 12.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
+                                                          EdgeInsets.all(8),
+                                                      child: SizedBox(
+                                                        width: 147.w,
+                                                        height: 32.h,
+                                                        child: ElevatedButton(
+                                                          style: ButtonStyle(
+                                                            backgroundColor:
+                                                                MaterialStateProperty
+                                                                    .all(Color(
+                                                                        0xFF5868F1)),
+                                                            shape:
+                                                                MaterialStateProperty
+                                                                    .all(
+                                                              RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              ),
                                                             ),
                                                           ),
-                                                        ],
+                                                          onPressed: () {},
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .play_arrow,
+                                                                color: Colors
+                                                                    .white,
+                                                                size: 16.sp,
+                                                              ),
+                                                              SizedBox(
+                                                                  width: 8.w),
+                                                              Text(
+                                                                "Watch Video",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize:
+                                                                      12.sp,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  color: Colors
+                                                                      .white,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
@@ -662,6 +689,38 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                     ],
                   );
                 },
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 80.h,
+            left: 44.w,
+            right: 44.w,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+              child: SizedBox(
+                width: 220.w,
+                height: 44.h,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Color(0xFF5868F1)),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    "Download as PDF",
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
