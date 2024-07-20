@@ -142,11 +142,41 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
             ),
           ),
           Positioned(
-            top: 180.h,
+            top: 170.h,
             left: 22.w,
             right: 22.w,
             child: Container(
-              // height: 500.h,
+              height: 42.h,
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(25),
+                border: Border.all(
+                  color: const Color(0xFF5868F1),
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "July 2024",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            top: 220.h,
+            left: 22.w,
+            right: 22.w,
+            child: Container(
+              height: 450.h,
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -160,75 +190,95 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                   ),
                 ],
               ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      "July 2024",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  ListView.builder(
-                    itemCount: 2, // Specify the number of items
-                    shrinkWrap: true,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Column(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(bottom: 16),
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(
-                                color: const Color(0xFFE6EAF1),
-                              ),
-                            ),
-                            child: Column(
+              child: ListView.builder(
+                itemCount: 2,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(bottom: 16),
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: const Color(0xFFE6EAF1),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
                               children: [
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.fitness_center_rounded,
-                                      color: Colors.black,
-                                      size: 16.sp,
+                                Icon(
+                                  Icons.fitness_center_rounded,
+                                  color: Colors.black,
+                                  size: 16.sp,
+                                ),
+                                SizedBox(width: 8.h),
+                                Text(
+                                  "1st Week",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  width: 255.w,
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      color: const Color(0xFF5868F1),
                                     ),
-                                    SizedBox(width: 8.h),
-                                    Text(
-                                      "1st Week",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.w600,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Monday",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Text(
+                                            "1 July 2024",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                ListView.builder(
-                                    itemCount: 2, // Specify the number of items
-                                    shrinkWrap: true,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Row(
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Container(
-                                            width: 255.w,
+                                            width: 238.w,
                                             padding: const EdgeInsets.all(8),
                                             decoration: BoxDecoration(
-                                              color: Colors.white,
+                                              color: Color(0xffE6E8F9),
                                               borderRadius:
                                                   BorderRadius.circular(16),
-                                              border: Border.all(
-                                                color: const Color(0xFF5868F1),
-                                              ),
                                             ),
                                             child: Column(
                                               children: [
@@ -238,111 +288,90 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                           .spaceBetween,
                                                   children: [
                                                     Text(
-                                                      "Monday",
+                                                      "Workout 1",
                                                       style: TextStyle(
                                                         color: Colors.black,
-                                                        fontSize: 14.sp,
+                                                        fontSize: 12.sp,
                                                         fontWeight:
                                                             FontWeight.w500,
                                                       ),
                                                     ),
-                                                    Text(
-                                                      "1 July 2024",
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 14.sp,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 8,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
                                                     Container(
-                                                      width: 238.w,
                                                       padding:
                                                           const EdgeInsets.all(
                                                               8),
                                                       decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0xffE6E8F9),
+                                                        color: const Color(
+                                                            0xFF5868F1),
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(16),
+                                                                .circular(8.r),
+                                                      ),
+                                                      child: Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons
+                                                                .video_collection_rounded,
+                                                            color: Colors.white,
+                                                            size: 12.sp,
+                                                          ),
+                                                          SizedBox(width: 8.w),
+                                                          Text(
+                                                            "Watch Video",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 12.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 8.h),
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8),
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(16.r),
                                                       ),
                                                       child: Column(
                                                         children: [
                                                           Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
-                                                                    .spaceBetween,
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
                                                             children: [
-                                                              Text(
-                                                                "Workout 1",
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize:
-                                                                      12.sp,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                              ),
-                                                              Container(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .all(8),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: const Color(
-                                                                      0xFF5868F1),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8.r),
-                                                                ),
-                                                                child: Row(
-                                                                  children: [
-                                                                    Icon(
-                                                                      Icons
-                                                                          .video_collection_rounded,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      size:
-                                                                          12.sp,
-                                                                    ),
-                                                                    SizedBox(
-                                                                        width: 8
-                                                                            .w),
-                                                                    Text(
-                                                                      "Watch Video",
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize:
-                                                                            12.sp,
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
+                                                              Image.asset(
+                                                                'assets/images/dot_logo.png',
+                                                                width: 208.w,
+                                                                height: 80.w,
                                                               ),
                                                             ],
                                                           ),
-                                                          SizedBox(height: 8.h),
-                                                          Column(
+                                                          SizedBox(
+                                                            height: 8,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
                                                             children: [
                                                               Container(
+                                                                width: 208.w,
                                                                 padding:
                                                                     const EdgeInsets
                                                                         .all(8),
@@ -354,24 +383,166 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                       BorderRadius
                                                                           .circular(
                                                                               16.r),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: const Color(
+                                                                        0xFFD2DAE5),
+                                                                  ),
                                                                 ),
                                                                 child: Column(
                                                                   children: [
                                                                     Row(
                                                                       mainAxisAlignment:
                                                                           MainAxisAlignment
-                                                                              .center,
+                                                                              .spaceBetween,
                                                                       crossAxisAlignment:
                                                                           CrossAxisAlignment
                                                                               .center,
                                                                       children: [
-                                                                        Image
-                                                                            .asset(
-                                                                          'assets/images/dot_logo.png',
+                                                                        Container(
                                                                           width:
-                                                                              208.w,
+                                                                              89.w,
                                                                           height:
-                                                                              80.w,
+                                                                              20.h,
+                                                                          padding: const EdgeInsets
+                                                                              .fromLTRB(
+                                                                              8,
+                                                                              0,
+                                                                              8,
+                                                                              0),
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                Color(0xFFFFD2D2),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.r),
+                                                                          ),
+                                                                          child:
+                                                                              Text(
+                                                                            "5 min rest",
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontSize: 11.sp,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          width:
+                                                                              8,
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              89.w,
+                                                                          height:
+                                                                              20.h,
+                                                                          padding: const EdgeInsets
+                                                                              .fromLTRB(
+                                                                              8,
+                                                                              0,
+                                                                              8,
+                                                                              0),
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                Color(0xFFFFF0BD),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.r),
+                                                                          ),
+                                                                          child:
+                                                                              Text(
+                                                                            "Slow Tempo",
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontSize: 11.sp,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 8,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Container(
+                                                                          width:
+                                                                              89.w,
+                                                                          height:
+                                                                              20.h,
+                                                                          padding: const EdgeInsets
+                                                                              .fromLTRB(
+                                                                              8,
+                                                                              0,
+                                                                              8,
+                                                                              0),
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                Color(0xFFACFFCD),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.r),
+                                                                          ),
+                                                                          child:
+                                                                              Text(
+                                                                            "3 Sets",
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontSize: 11.sp,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          width:
+                                                                              8,
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              89.w,
+                                                                          height:
+                                                                              20.h,
+                                                                          padding: const EdgeInsets
+                                                                              .fromLTRB(
+                                                                              8,
+                                                                              0,
+                                                                              8,
+                                                                              0),
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                Color(0xFF95DFFF),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.r),
+                                                                          ),
+                                                                          child:
+                                                                              Text(
+                                                                            "3 Reps",
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontSize: 11.sp,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                          ),
                                                                         ),
                                                                       ],
                                                                     ),
@@ -382,187 +553,37 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                       mainAxisAlignment:
                                                                           MainAxisAlignment
                                                                               .center,
-                                                                      children: [
-                                                                        Container(
-                                                                          width:
-                                                                              208.w,
-                                                                          padding: const EdgeInsets
-                                                                              .all(
-                                                                              8),
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                Colors.white,
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(16.r),
-                                                                            border:
-                                                                                Border.all(
-                                                                              color: const Color(0xFFD2DAE5),
-                                                                            ),
-                                                                          ),
-                                                                          child:
-                                                                              Column(
-                                                                            children: [
-                                                                              Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                children: [
-                                                                                  Container(
-                                                                                    width: 89.w,
-                                                                                    height: 20.h,
-                                                                                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                                                                                    decoration: BoxDecoration(
-                                                                                      color: Color(0xFFFFD2D2),
-                                                                                      borderRadius: BorderRadius.circular(8.r),
-                                                                                    ),
-                                                                                    child: Text(
-                                                                                      "5 min rest",
-                                                                                      textAlign: TextAlign.center,
-                                                                                      style: TextStyle(
-                                                                                        color: Colors.black,
-                                                                                        fontSize: 11.sp,
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  SizedBox(
-                                                                                    width: 8,
-                                                                                  ),
-                                                                                  Container(
-                                                                                    width: 89.w,
-                                                                                    height: 20.h,
-                                                                                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                                                                                    decoration: BoxDecoration(
-                                                                                      color: Color(0xFFFFF0BD),
-                                                                                      borderRadius: BorderRadius.circular(8.r),
-                                                                                    ),
-                                                                                    child: Text(
-                                                                                      "Slow Tempo",
-                                                                                      textAlign: TextAlign.center,
-                                                                                      style: TextStyle(
-                                                                                        color: Colors.black,
-                                                                                        fontSize: 11.sp,
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                              SizedBox(
-                                                                                height: 8,
-                                                                              ),
-                                                                              Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                children: [
-                                                                                  Container(
-                                                                                    width: 89.w,
-                                                                                    height: 20.h,
-                                                                                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                                                                                    decoration: BoxDecoration(
-                                                                                      color: Color(0xFFACFFCD),
-                                                                                      borderRadius: BorderRadius.circular(8.r),
-                                                                                    ),
-                                                                                    child: Text(
-                                                                                      "3 Sets",
-                                                                                      textAlign: TextAlign.center,
-                                                                                      style: TextStyle(
-                                                                                        color: Colors.black,
-                                                                                        fontSize: 11.sp,
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  SizedBox(
-                                                                                    width: 8,
-                                                                                  ),
-                                                                                  Container(
-                                                                                    width: 89.w,
-                                                                                    height: 20.h,
-                                                                                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                                                                                    decoration: BoxDecoration(
-                                                                                      color: Color(0xFF95DFFF),
-                                                                                      borderRadius: BorderRadius.circular(8.r),
-                                                                                    ),
-                                                                                    child: Text(
-                                                                                      "3 Reps",
-                                                                                      textAlign: TextAlign.center,
-                                                                                      style: TextStyle(
-                                                                                        color: Colors.black,
-                                                                                        fontSize: 11.sp,
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                              SizedBox(
-                                                                                height: 8,
-                                                                              ),
-                                                                              Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                children: [
-                                                                                  Container(
-                                                                                    width: 191.w,
-                                                                                    height: 20.h,
-                                                                                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                                                                                    decoration: BoxDecoration(
-                                                                                      color: Color(0xFFEBB2FF),
-                                                                                      borderRadius: BorderRadius.circular(8.r),
-                                                                                    ),
-                                                                                    child: Text(
-                                                                                      "RM Intensity 1",
-                                                                                      textAlign: TextAlign.center,
-                                                                                      style: TextStyle(
-                                                                                        color: Colors.black,
-                                                                                        fontSize: 11.sp,
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    SizedBox(
-                                                                        height:
-                                                                            8),
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
                                                                       crossAxisAlignment:
                                                                           CrossAxisAlignment
                                                                               .center,
                                                                       children: [
                                                                         Container(
                                                                           width:
-                                                                              208.w,
+                                                                              191.w,
+                                                                          height:
+                                                                              20.h,
                                                                           padding: const EdgeInsets
-                                                                              .all(
-                                                                              8),
+                                                                              .fromLTRB(
+                                                                              8,
+                                                                              0,
+                                                                              8,
+                                                                              0),
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
-                                                                                Colors.white,
+                                                                                Color(0xFFEBB2FF),
                                                                             borderRadius:
-                                                                                BorderRadius.circular(16.r),
-                                                                            border:
-                                                                                Border.all(
-                                                                              color: const Color(0xFFD2DAE5),
-                                                                            ),
+                                                                                BorderRadius.circular(8.r),
                                                                           ),
                                                                           child:
                                                                               Text(
-                                                                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                                                                            "RM Intensity 1",
+                                                                            textAlign:
+                                                                                TextAlign.center,
                                                                             style:
                                                                                 TextStyle(
                                                                               color: Colors.black,
-                                                                              fontSize: 12.sp,
+                                                                              fontSize: 11.sp,
                                                                               fontWeight: FontWeight.normal,
                                                                             ),
                                                                           ),
@@ -573,7 +594,51 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                 ),
                                                               ),
                                                             ],
-                                                          )
+                                                          ),
+                                                          SizedBox(height: 8),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Container(
+                                                                width: 208.w,
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .all(8),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              16.r),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: const Color(
+                                                                        0xFFD2DAE5),
+                                                                  ),
+                                                                ),
+                                                                child: Text(
+                                                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        12.sp,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ],
                                                       ),
                                                     ),
@@ -583,16 +648,18 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                             ),
                                           ),
                                         ],
-                                      );
-                                    }),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ],
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
           ),
