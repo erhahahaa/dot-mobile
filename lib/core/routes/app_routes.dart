@@ -56,10 +56,10 @@ class NavRoutes {
       icon: const Icon(Icons.home),
     ),
     DotNavigationBarItem(
-      icon: const Icon(Icons.games),
+      icon: const Icon(Icons.videogame_asset_rounded),
     ),
     DotNavigationBarItem(
-      icon: const Icon(Icons.local_attraction),
+      icon: const Icon(Icons.directions_run_rounded),
     ),
     DotNavigationBarItem(
       icon: const Icon(Icons.person),
@@ -71,13 +71,13 @@ class NavRoutes {
       icon: const Icon(Icons.home),
     ),
     DotNavigationBarItem(
-      icon: const Icon(Icons.pages),
+      icon: const Icon(Icons.post_add_rounded),
     ),
     DotNavigationBarItem(
-      icon: const Icon(Icons.games),
+      icon: const Icon(Icons.videogame_asset_rounded),
     ),
     DotNavigationBarItem(
-      icon: const Icon(Icons.local_attraction),
+      icon: const Icon(Icons.directions_run_rounded),
     ),
     DotNavigationBarItem(
       icon: const Icon(Icons.person),
