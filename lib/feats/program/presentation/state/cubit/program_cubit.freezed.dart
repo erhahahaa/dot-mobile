@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ProgramState {
   BaseState get state => throw _privateConstructorUsedError;
+  List<ProgramModel> get programs => throw _privateConstructorUsedError;
+  Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProgramStateCopyWith<ProgramState> get copyWith =>
@@ -29,7 +31,7 @@ abstract class $ProgramStateCopyWith<$Res> {
           ProgramState value, $Res Function(ProgramState) then) =
       _$ProgramStateCopyWithImpl<$Res, ProgramState>;
   @useResult
-  $Res call({BaseState state});
+  $Res call({BaseState state, List<ProgramModel> programs, Failure? failure});
 }
 
 /// @nodoc
@@ -46,12 +48,22 @@ class _$ProgramStateCopyWithImpl<$Res, $Val extends ProgramState>
   @override
   $Res call({
     Object? state = null,
+    Object? programs = null,
+    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as BaseState,
+      programs: null == programs
+          ? _value.programs
+          : programs // ignore: cast_nullable_to_non_nullable
+              as List<ProgramModel>,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
     ) as $Val);
   }
 }
@@ -64,7 +76,7 @@ abstract class _$$ProgramStateImplCopyWith<$Res>
       __$$ProgramStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BaseState state});
+  $Res call({BaseState state, List<ProgramModel> programs, Failure? failure});
 }
 
 /// @nodoc
@@ -79,12 +91,22 @@ class __$$ProgramStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? state = null,
+    Object? programs = null,
+    Object? failure = freezed,
   }) {
     return _then(_$ProgramStateImpl(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as BaseState,
+      programs: null == programs
+          ? _value._programs
+          : programs // ignore: cast_nullable_to_non_nullable
+              as List<ProgramModel>,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
     ));
   }
 }
@@ -92,15 +114,30 @@ class __$$ProgramStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProgramStateImpl implements _ProgramState {
-  const _$ProgramStateImpl({this.state = BaseState.initial});
+  const _$ProgramStateImpl(
+      {this.state = BaseState.initial,
+      final List<ProgramModel> programs = const [],
+      this.failure})
+      : _programs = programs;
 
   @override
   @JsonKey()
   final BaseState state;
+  final List<ProgramModel> _programs;
+  @override
+  @JsonKey()
+  List<ProgramModel> get programs {
+    if (_programs is EqualUnmodifiableListView) return _programs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_programs);
+  }
+
+  @override
+  final Failure? failure;
 
   @override
   String toString() {
-    return 'ProgramState(state: $state)';
+    return 'ProgramState(state: $state, programs: $programs, failure: $failure)';
   }
 
   @override
@@ -108,11 +145,14 @@ class _$ProgramStateImpl implements _ProgramState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProgramStateImpl &&
-            (identical(other.state, state) || other.state == state));
+            (identical(other.state, state) || other.state == state) &&
+            const DeepCollectionEquality().equals(other._programs, _programs) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state);
+  int get hashCode => Object.hash(runtimeType, state,
+      const DeepCollectionEquality().hash(_programs), failure);
 
   @JsonKey(ignore: true)
   @override
@@ -122,10 +162,17 @@ class _$ProgramStateImpl implements _ProgramState {
 }
 
 abstract class _ProgramState implements ProgramState {
-  const factory _ProgramState({final BaseState state}) = _$ProgramStateImpl;
+  const factory _ProgramState(
+      {final BaseState state,
+      final List<ProgramModel> programs,
+      final Failure? failure}) = _$ProgramStateImpl;
 
   @override
   BaseState get state;
+  @override
+  List<ProgramModel> get programs;
+  @override
+  Failure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$ProgramStateImplCopyWith<_$ProgramStateImpl> get copyWith =>

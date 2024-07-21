@@ -5,6 +5,7 @@ import 'package:dot_coaching/feats/feats.dart';
 abstract class ProgramRepo {
   Future<Either<Failure, List<ProgramModel>>> getAll(
     PaginationParams params,
+    int clubId,
   );
   Future<Either<Failure, ProgramModel>> getById(
     ByIdParams params,

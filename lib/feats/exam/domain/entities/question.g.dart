@@ -22,24 +22,24 @@ const QuestionEntitySchema = CollectionSchema(
       name: r'answer',
       type: IsarType.string,
     ),
-    r'clubId': PropertySchema(
-      id: 1,
-      name: r'clubId',
-      type: IsarType.long,
-    ),
     r'content': PropertySchema(
-      id: 2,
+      id: 1,
       name: r'content',
       type: IsarType.string,
     ),
     r'createdAt': PropertySchema(
-      id: 3,
+      id: 2,
       name: r'createdAt',
       type: IsarType.dateTime,
     ),
     r'examId': PropertySchema(
-      id: 4,
+      id: 3,
       name: r'examId',
+      type: IsarType.long,
+    ),
+    r'mediaId': PropertySchema(
+      id: 4,
+      name: r'mediaId',
       type: IsarType.long,
     ),
     r'type': PropertySchema(
@@ -60,7 +60,14 @@ const QuestionEntitySchema = CollectionSchema(
   deserializeProp: _questionEntityDeserializeProp,
   idName: r'id',
   indexes: {},
-  links: {},
+  links: {
+    r'exam': LinkSchema(
+      id: -5256538679194515925,
+      name: r'exam',
+      target: r'ExamEntity',
+      single: true,
+    )
+  },
   embeddedSchemas: {},
   getId: _questionEntityGetId,
   getLinks: _questionEntityGetLinks,
@@ -74,18 +81,8 @@ int _questionEntityEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  {
-    final value = object.answer;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
-    final value = object.content;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.answer.length * 3;
+  bytesCount += 3 + object.content.length * 3;
   return bytesCount;
 }
 
@@ -96,10 +93,10 @@ void _questionEntitySerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.answer);
-  writer.writeLong(offsets[1], object.clubId);
-  writer.writeString(offsets[2], object.content);
-  writer.writeDateTime(offsets[3], object.createdAt);
-  writer.writeLong(offsets[4], object.examId);
+  writer.writeString(offsets[1], object.content);
+  writer.writeDateTime(offsets[2], object.createdAt);
+  writer.writeLong(offsets[3], object.examId);
+  writer.writeLong(offsets[4], object.mediaId);
   writer.writeByte(offsets[5], object.type.index);
   writer.writeDateTime(offsets[6], object.updatedAt);
 }
@@ -111,12 +108,12 @@ QuestionEntity _questionEntityDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = QuestionEntity(
-    answer: reader.readStringOrNull(offsets[0]),
-    clubId: reader.readLongOrNull(offsets[1]),
-    content: reader.readStringOrNull(offsets[2]),
-    createdAt: reader.readDateTimeOrNull(offsets[3]),
-    examId: reader.readLongOrNull(offsets[4]),
+    answer: reader.readStringOrNull(offsets[0]) ?? '',
+    content: reader.readStringOrNull(offsets[1]) ?? 'Mention 5 basic Movement',
+    createdAt: reader.readDateTimeOrNull(offsets[2]),
+    examId: reader.readLongOrNull(offsets[3]) ?? 0,
     id: id,
+    mediaId: reader.readLongOrNull(offsets[4]),
     type: _QuestionEntitytypeValueEnumMap[reader.readByteOrNull(offsets[5])] ??
         QuestionType.essay,
     updatedAt: reader.readDateTimeOrNull(offsets[6]),
@@ -132,13 +129,14 @@ P _questionEntityDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset) ?? '') as P;
     case 1:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset) ?? 'Mention 5 basic Movement')
+          as P;
     case 2:
-      return (reader.readStringOrNull(offset)) as P;
-    case 3:
       return (reader.readDateTimeOrNull(offset)) as P;
+    case 3:
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 4:
       return (reader.readLongOrNull(offset)) as P;
     case 5:
@@ -169,12 +167,13 @@ Id _questionEntityGetId(QuestionEntity object) {
 }
 
 List<IsarLinkBase<dynamic>> _questionEntityGetLinks(QuestionEntity object) {
-  return [];
+  return [object.exam];
 }
 
 void _questionEntityAttach(
     IsarCollection<dynamic> col, Id id, QuestionEntity object) {
   object.id = id;
+  object.exam.attach(col, col.isar.collection<ExamEntity>(), r'exam', id);
 }
 
 extension QuestionEntityQueryWhereSort
@@ -261,26 +260,8 @@ extension QuestionEntityQueryWhere
 extension QuestionEntityQueryFilter
     on QueryBuilder<QuestionEntity, QuestionEntity, QFilterCondition> {
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'answer',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'answer',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       answerEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -294,7 +275,7 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       answerGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -310,7 +291,7 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       answerLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -326,8 +307,8 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       answerBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -415,100 +396,8 @@ extension QuestionEntityQueryFilter
   }
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      clubIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'clubId',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      clubIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'clubId',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      clubIdEqualTo(int? value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'clubId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      clubIdGreaterThan(
-    int? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'clubId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      clubIdLessThan(
-    int? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'clubId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      clubIdBetween(
-    int? lower,
-    int? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'clubId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'content',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'content',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       contentEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -522,7 +411,7 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       contentGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -538,7 +427,7 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       contentLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -554,8 +443,8 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       contentBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -717,25 +606,7 @@ extension QuestionEntityQueryFilter
   }
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      examIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'examId',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      examIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'examId',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      examIdEqualTo(int? value) {
+      examIdEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'examId',
@@ -746,7 +617,7 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       examIdGreaterThan(
-    int? value, {
+    int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -760,7 +631,7 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       examIdLessThan(
-    int? value, {
+    int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -774,8 +645,8 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       examIdBetween(
-    int? lower,
-    int? upper, {
+    int lower,
+    int upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -837,6 +708,80 @@ extension QuestionEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
         property: r'id',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      mediaIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'mediaId',
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      mediaIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'mediaId',
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      mediaIdEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'mediaId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      mediaIdGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'mediaId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      mediaIdLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'mediaId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      mediaIdBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'mediaId',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -980,7 +925,21 @@ extension QuestionEntityQueryObject
     on QueryBuilder<QuestionEntity, QuestionEntity, QFilterCondition> {}
 
 extension QuestionEntityQueryLinks
-    on QueryBuilder<QuestionEntity, QuestionEntity, QFilterCondition> {}
+    on QueryBuilder<QuestionEntity, QuestionEntity, QFilterCondition> {
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition> exam(
+      FilterQuery<ExamEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'exam');
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      examIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'exam', 0, true, 0, true);
+    });
+  }
+}
 
 extension QuestionEntityQuerySortBy
     on QueryBuilder<QuestionEntity, QuestionEntity, QSortBy> {
@@ -994,19 +953,6 @@ extension QuestionEntityQuerySortBy
       sortByAnswerDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'answer', Sort.desc);
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> sortByClubId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'clubId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy>
-      sortByClubIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'clubId', Sort.desc);
     });
   }
 
@@ -1049,6 +995,19 @@ extension QuestionEntityQuerySortBy
     });
   }
 
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> sortByMediaId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'mediaId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy>
+      sortByMediaIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'mediaId', Sort.desc);
+    });
+  }
+
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> sortByType() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'type', Sort.asc);
@@ -1087,19 +1046,6 @@ extension QuestionEntityQuerySortThenBy
       thenByAnswerDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'answer', Sort.desc);
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> thenByClubId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'clubId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy>
-      thenByClubIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'clubId', Sort.desc);
     });
   }
 
@@ -1154,6 +1100,19 @@ extension QuestionEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> thenByMediaId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'mediaId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy>
+      thenByMediaIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'mediaId', Sort.desc);
+    });
+  }
+
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> thenByType() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'type', Sort.asc);
@@ -1189,12 +1148,6 @@ extension QuestionEntityQueryWhereDistinct
     });
   }
 
-  QueryBuilder<QuestionEntity, QuestionEntity, QDistinct> distinctByClubId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'clubId');
-    });
-  }
-
   QueryBuilder<QuestionEntity, QuestionEntity, QDistinct> distinctByContent(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1212,6 +1165,12 @@ extension QuestionEntityQueryWhereDistinct
   QueryBuilder<QuestionEntity, QuestionEntity, QDistinct> distinctByExamId() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'examId');
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QDistinct> distinctByMediaId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'mediaId');
     });
   }
 
@@ -1237,19 +1196,13 @@ extension QuestionEntityQueryProperty
     });
   }
 
-  QueryBuilder<QuestionEntity, String?, QQueryOperations> answerProperty() {
+  QueryBuilder<QuestionEntity, String, QQueryOperations> answerProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'answer');
     });
   }
 
-  QueryBuilder<QuestionEntity, int?, QQueryOperations> clubIdProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'clubId');
-    });
-  }
-
-  QueryBuilder<QuestionEntity, String?, QQueryOperations> contentProperty() {
+  QueryBuilder<QuestionEntity, String, QQueryOperations> contentProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'content');
     });
@@ -1262,9 +1215,15 @@ extension QuestionEntityQueryProperty
     });
   }
 
-  QueryBuilder<QuestionEntity, int?, QQueryOperations> examIdProperty() {
+  QueryBuilder<QuestionEntity, int, QQueryOperations> examIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'examId');
+    });
+  }
+
+  QueryBuilder<QuestionEntity, int?, QQueryOperations> mediaIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'mediaId');
     });
   }
 

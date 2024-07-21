@@ -9,11 +9,11 @@ part of 'question.dart';
 _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
     _$QuestionModelImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
-      clubId: (json['clubId'] as num?)?.toInt() ?? 0,
       examId: (json['examId'] as num?)?.toInt() ?? 0,
+      mediaId: (json['mediaId'] as num?)?.toInt(),
       type: $enumDecodeNullable(_$QuestionTypeEnumMap, json['type']) ??
           QuestionType.essay,
-      content: json['content'] as String? ?? '',
+      content: json['content'] as String? ?? 'Mention 5 basic Movement',
       answer: json['answer'] as String? ?? '',
       createdAt: json['createdAt'] == null
           ? null
@@ -26,8 +26,8 @@ _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'clubId': instance.clubId,
       'examId': instance.examId,
+      'mediaId': instance.mediaId,
       'type': _$QuestionTypeEnumMap[instance.type]!,
       'content': instance.content,
       'answer': instance.answer,

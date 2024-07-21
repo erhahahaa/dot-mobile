@@ -12,6 +12,68 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vector_graphics/vector_graphics.dart';
 
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
+
+  /// File path: assets/icons/assets.svg
+  SvgGenImage get assets => const SvgGenImage('assets/icons/assets.svg');
+
+  /// File path: assets/icons/exam.svg
+  SvgGenImage get exam => const SvgGenImage('assets/icons/exam.svg');
+
+  /// File path: assets/icons/ic_background.png
+  AssetGenImage get icBackground =>
+      const AssetGenImage('assets/icons/ic_background.png');
+
+  /// File path: assets/icons/ic_black_white.png
+  AssetGenImage get icBlackWhite =>
+      const AssetGenImage('assets/icons/ic_black_white.png');
+
+  /// File path: assets/icons/ic_foreground.png
+  AssetGenImage get icForeground =>
+      const AssetGenImage('assets/icons/ic_foreground.png');
+
+  /// File path: assets/icons/ic_logo_radius.png
+  AssetGenImage get icLogoRadius =>
+      const AssetGenImage('assets/icons/ic_logo_radius.png');
+
+  /// File path: assets/icons/ic_logo_rectangle.png
+  AssetGenImage get icLogoRectangle =>
+      const AssetGenImage('assets/icons/ic_logo_rectangle.png');
+
+  /// File path: assets/icons/ic_logo_round.png
+  AssetGenImage get icLogoRound =>
+      const AssetGenImage('assets/icons/ic_logo_round.png');
+
+  /// File path: assets/icons/invite.svg
+  SvgGenImage get invite => const SvgGenImage('assets/icons/invite.svg');
+
+  /// File path: assets/icons/members.svg
+  SvgGenImage get members => const SvgGenImage('assets/icons/members.svg');
+
+  /// File path: assets/icons/program.svg
+  SvgGenImage get program => const SvgGenImage('assets/icons/program.svg');
+
+  /// File path: assets/icons/tactical.svg
+  SvgGenImage get tactical => const SvgGenImage('assets/icons/tactical.svg');
+
+  /// List of all assets
+  List<dynamic> get values => [
+        assets,
+        exam,
+        icBackground,
+        icBlackWhite,
+        icForeground,
+        icLogoRadius,
+        icLogoRectangle,
+        icLogoRound,
+        invite,
+        members,
+        program,
+        tactical
+      ];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -62,6 +124,7 @@ class $AssetsImagesHeroGen {
 class Assets {
   Assets._();
 
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 

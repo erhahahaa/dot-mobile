@@ -17,9 +17,7 @@ class DashboardScreen extends StatelessWidget {
           children: [
             const Icon(Icons.add),
             SizedBox(width: 8.w),
-            const Text(
-              'Create Club',
-            ),
+            const Text('Create Club'),
           ],
         ),
       ),
@@ -27,7 +25,7 @@ class DashboardScreen extends StatelessWidget {
         child: RefreshIndicator(
           onRefresh: () => context.read<ClubCubit>().init(),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
+            padding: EdgeInsets.all(8.h),
             child: BlocBuilder<ClubCubit, ClubState>(
               builder: (context, state) {
                 return Column(
@@ -35,7 +33,7 @@ class DashboardScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Overview',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
                     ),
@@ -125,19 +123,17 @@ class DashboardScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Clubs',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall
-                              ?.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
                         ),
                       ],
                     ),
                     SizedBox(height: 8.h),
                     Container(
                       padding: EdgeInsets.all(8.w),
-                      height: 400.h,
+                      height: 540.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.r),
                         color: Theme.of(context)

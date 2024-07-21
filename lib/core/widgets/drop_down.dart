@@ -64,7 +64,7 @@ class _DropDownState<T> extends State<DropDown<T>> {
                 isDense: true,
                 isCollapsed: true,
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: context.theme.colorScheme.surface,
                 prefixIcon: SizedBox(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

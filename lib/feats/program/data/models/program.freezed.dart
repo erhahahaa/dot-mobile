@@ -22,8 +22,9 @@ ProgramModel _$ProgramModelFromJson(Map<String, dynamic> json) {
 mixin _$ProgramModel {
   int get id => throw _privateConstructorUsedError;
   int get clubId => throw _privateConstructorUsedError;
-  String get sportType => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get endDate => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -42,8 +43,9 @@ abstract class $ProgramModelCopyWith<$Res> {
   $Res call(
       {int id,
       int clubId,
-      String sportType,
       String name,
+      DateTime? startDate,
+      DateTime? endDate,
       DateTime? createdAt,
       DateTime? updatedAt});
 }
@@ -63,8 +65,9 @@ class _$ProgramModelCopyWithImpl<$Res, $Val extends ProgramModel>
   $Res call({
     Object? id = null,
     Object? clubId = null,
-    Object? sportType = null,
     Object? name = null,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -77,14 +80,18 @@ class _$ProgramModelCopyWithImpl<$Res, $Val extends ProgramModel>
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      sportType: null == sportType
-          ? _value.sportType
-          : sportType // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -108,8 +115,9 @@ abstract class _$$ProgramModelImplCopyWith<$Res>
   $Res call(
       {int id,
       int clubId,
-      String sportType,
       String name,
+      DateTime? startDate,
+      DateTime? endDate,
       DateTime? createdAt,
       DateTime? updatedAt});
 }
@@ -127,8 +135,9 @@ class __$$ProgramModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? clubId = null,
-    Object? sportType = null,
     Object? name = null,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -141,14 +150,18 @@ class __$$ProgramModelImplCopyWithImpl<$Res>
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      sportType: null == sportType
-          ? _value.sportType
-          : sportType // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -167,8 +180,9 @@ class _$ProgramModelImpl implements _ProgramModel {
   const _$ProgramModelImpl(
       {this.id = 0,
       this.clubId = 0,
-      this.sportType = '',
-      this.name = '',
+      this.name = 'DOT Sport',
+      this.startDate,
+      this.endDate,
       this.createdAt,
       this.updatedAt});
 
@@ -183,10 +197,11 @@ class _$ProgramModelImpl implements _ProgramModel {
   final int clubId;
   @override
   @JsonKey()
-  final String sportType;
-  @override
-  @JsonKey()
   final String name;
+  @override
+  final DateTime? startDate;
+  @override
+  final DateTime? endDate;
   @override
   final DateTime? createdAt;
   @override
@@ -194,7 +209,7 @@ class _$ProgramModelImpl implements _ProgramModel {
 
   @override
   String toString() {
-    return 'ProgramModel(id: $id, clubId: $clubId, sportType: $sportType, name: $name, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ProgramModel(id: $id, clubId: $clubId, name: $name, startDate: $startDate, endDate: $endDate, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -204,9 +219,10 @@ class _$ProgramModelImpl implements _ProgramModel {
             other is _$ProgramModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.clubId, clubId) || other.clubId == clubId) &&
-            (identical(other.sportType, sportType) ||
-                other.sportType == sportType) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -216,7 +232,7 @@ class _$ProgramModelImpl implements _ProgramModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, clubId, sportType, name, createdAt, updatedAt);
+      runtimeType, id, clubId, name, startDate, endDate, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -236,8 +252,9 @@ abstract class _ProgramModel implements ProgramModel {
   const factory _ProgramModel(
       {final int id,
       final int clubId,
-      final String sportType,
       final String name,
+      final DateTime? startDate,
+      final DateTime? endDate,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$ProgramModelImpl;
 
@@ -249,9 +266,11 @@ abstract class _ProgramModel implements ProgramModel {
   @override
   int get clubId;
   @override
-  String get sportType;
-  @override
   String get name;
+  @override
+  DateTime? get startDate;
+  @override
+  DateTime? get endDate;
   @override
   DateTime? get createdAt;
   @override

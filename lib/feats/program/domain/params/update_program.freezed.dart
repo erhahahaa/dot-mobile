@@ -21,9 +21,11 @@ UpdateProgramParams _$UpdateProgramParamsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UpdateProgramParams {
   int get id => throw _privateConstructorUsedError;
-  int get clubId => throw _privateConstructorUsedError;
-  String get sportType => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get endDate => throw _privateConstructorUsedError;
+  List<UpdateProgramExerciseParams> get exercises =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +39,12 @@ abstract class $UpdateProgramParamsCopyWith<$Res> {
           UpdateProgramParams value, $Res Function(UpdateProgramParams) then) =
       _$UpdateProgramParamsCopyWithImpl<$Res, UpdateProgramParams>;
   @useResult
-  $Res call({int id, int clubId, String sportType, String name});
+  $Res call(
+      {int id,
+      String name,
+      DateTime? startDate,
+      DateTime? endDate,
+      List<UpdateProgramExerciseParams> exercises});
 }
 
 /// @nodoc
@@ -54,27 +61,32 @@ class _$UpdateProgramParamsCopyWithImpl<$Res, $Val extends UpdateProgramParams>
   @override
   $Res call({
     Object? id = null,
-    Object? clubId = null,
-    Object? sportType = null,
     Object? name = null,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? exercises = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      clubId: null == clubId
-          ? _value.clubId
-          : clubId // ignore: cast_nullable_to_non_nullable
-              as int,
-      sportType: null == sportType
-          ? _value.sportType
-          : sportType // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      exercises: null == exercises
+          ? _value.exercises
+          : exercises // ignore: cast_nullable_to_non_nullable
+              as List<UpdateProgramExerciseParams>,
     ) as $Val);
   }
 }
@@ -87,7 +99,12 @@ abstract class _$$UpdateProgramParamsImplCopyWith<$Res>
       __$$UpdateProgramParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, int clubId, String sportType, String name});
+  $Res call(
+      {int id,
+      String name,
+      DateTime? startDate,
+      DateTime? endDate,
+      List<UpdateProgramExerciseParams> exercises});
 }
 
 /// @nodoc
@@ -102,27 +119,32 @@ class __$$UpdateProgramParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? clubId = null,
-    Object? sportType = null,
     Object? name = null,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? exercises = null,
   }) {
     return _then(_$UpdateProgramParamsImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      clubId: null == clubId
-          ? _value.clubId
-          : clubId // ignore: cast_nullable_to_non_nullable
-              as int,
-      sportType: null == sportType
-          ? _value.sportType
-          : sportType // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      exercises: null == exercises
+          ? _value._exercises
+          : exercises // ignore: cast_nullable_to_non_nullable
+              as List<UpdateProgramExerciseParams>,
     ));
   }
 }
@@ -131,7 +153,12 @@ class __$$UpdateProgramParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UpdateProgramParamsImpl implements _UpdateProgramParams {
   const _$UpdateProgramParamsImpl(
-      {this.id = 0, this.clubId = 0, this.sportType = '', this.name = ''});
+      {this.id = 0,
+      this.name = '',
+      this.startDate,
+      this.endDate,
+      final List<UpdateProgramExerciseParams> exercises = const []})
+      : _exercises = exercises;
 
   factory _$UpdateProgramParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpdateProgramParamsImplFromJson(json);
@@ -141,17 +168,23 @@ class _$UpdateProgramParamsImpl implements _UpdateProgramParams {
   final int id;
   @override
   @JsonKey()
-  final int clubId;
-  @override
-  @JsonKey()
-  final String sportType;
-  @override
-  @JsonKey()
   final String name;
+  @override
+  final DateTime? startDate;
+  @override
+  final DateTime? endDate;
+  final List<UpdateProgramExerciseParams> _exercises;
+  @override
+  @JsonKey()
+  List<UpdateProgramExerciseParams> get exercises {
+    if (_exercises is EqualUnmodifiableListView) return _exercises;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_exercises);
+  }
 
   @override
   String toString() {
-    return 'UpdateProgramParams(id: $id, clubId: $clubId, sportType: $sportType, name: $name)';
+    return 'UpdateProgramParams(id: $id, name: $name, startDate: $startDate, endDate: $endDate, exercises: $exercises)';
   }
 
   @override
@@ -160,15 +193,18 @@ class _$UpdateProgramParamsImpl implements _UpdateProgramParams {
         (other.runtimeType == runtimeType &&
             other is _$UpdateProgramParamsImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.clubId, clubId) || other.clubId == clubId) &&
-            (identical(other.sportType, sportType) ||
-                other.sportType == sportType) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            const DeepCollectionEquality()
+                .equals(other._exercises, _exercises));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, clubId, sportType, name);
+  int get hashCode => Object.hash(runtimeType, id, name, startDate, endDate,
+      const DeepCollectionEquality().hash(_exercises));
 
   @JsonKey(ignore: true)
   @override
@@ -187,10 +223,12 @@ class _$UpdateProgramParamsImpl implements _UpdateProgramParams {
 
 abstract class _UpdateProgramParams implements UpdateProgramParams {
   const factory _UpdateProgramParams(
-      {final int id,
-      final int clubId,
-      final String sportType,
-      final String name}) = _$UpdateProgramParamsImpl;
+          {final int id,
+          final String name,
+          final DateTime? startDate,
+          final DateTime? endDate,
+          final List<UpdateProgramExerciseParams> exercises}) =
+      _$UpdateProgramParamsImpl;
 
   factory _UpdateProgramParams.fromJson(Map<String, dynamic> json) =
       _$UpdateProgramParamsImpl.fromJson;
@@ -198,11 +236,13 @@ abstract class _UpdateProgramParams implements UpdateProgramParams {
   @override
   int get id;
   @override
-  int get clubId;
-  @override
-  String get sportType;
-  @override
   String get name;
+  @override
+  DateTime? get startDate;
+  @override
+  DateTime? get endDate;
+  @override
+  List<UpdateProgramExerciseParams> get exercises;
   @override
   @JsonKey(ignore: true)
   _$$UpdateProgramParamsImplCopyWith<_$UpdateProgramParamsImpl> get copyWith =>

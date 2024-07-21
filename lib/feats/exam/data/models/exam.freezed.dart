@@ -22,6 +22,7 @@ ExamModel _$ExamModelFromJson(Map<String, dynamic> json) {
 mixin _$ExamModel {
   int get id => throw _privateConstructorUsedError;
   int get clubId => throw _privateConstructorUsedError;
+  int? get imageId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   DateTime? get dueAt => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $ExamModelCopyWith<$Res> {
   $Res call(
       {int id,
       int clubId,
+      int? imageId,
       String title,
       String description,
       DateTime? dueAt,
@@ -64,6 +66,7 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
   $Res call({
     Object? id = null,
     Object? clubId = null,
+    Object? imageId = freezed,
     Object? title = null,
     Object? description = null,
     Object? dueAt = freezed,
@@ -79,6 +82,10 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
+      imageId: freezed == imageId
+          ? _value.imageId
+          : imageId // ignore: cast_nullable_to_non_nullable
+              as int?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -114,6 +121,7 @@ abstract class _$$ExamModelImplCopyWith<$Res>
   $Res call(
       {int id,
       int clubId,
+      int? imageId,
       String title,
       String description,
       DateTime? dueAt,
@@ -134,6 +142,7 @@ class __$$ExamModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? clubId = null,
+    Object? imageId = freezed,
     Object? title = null,
     Object? description = null,
     Object? dueAt = freezed,
@@ -149,6 +158,10 @@ class __$$ExamModelImplCopyWithImpl<$Res>
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
+      imageId: freezed == imageId
+          ? _value.imageId
+          : imageId // ignore: cast_nullable_to_non_nullable
+              as int?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -179,8 +192,9 @@ class _$ExamModelImpl implements _ExamModel {
   const _$ExamModelImpl(
       {this.id = 0,
       this.clubId = 0,
-      this.title = '',
-      this.description = '',
+      this.imageId,
+      this.title = 'DOT Summer Exams',
+      this.description = 'Description about exam',
       this.dueAt,
       this.createdAt,
       this.updatedAt});
@@ -194,6 +208,8 @@ class _$ExamModelImpl implements _ExamModel {
   @override
   @JsonKey()
   final int clubId;
+  @override
+  final int? imageId;
   @override
   @JsonKey()
   final String title;
@@ -209,7 +225,7 @@ class _$ExamModelImpl implements _ExamModel {
 
   @override
   String toString() {
-    return 'ExamModel(id: $id, clubId: $clubId, title: $title, description: $description, dueAt: $dueAt, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ExamModel(id: $id, clubId: $clubId, imageId: $imageId, title: $title, description: $description, dueAt: $dueAt, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -219,6 +235,7 @@ class _$ExamModelImpl implements _ExamModel {
             other is _$ExamModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.clubId, clubId) || other.clubId == clubId) &&
+            (identical(other.imageId, imageId) || other.imageId == imageId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -231,8 +248,8 @@ class _$ExamModelImpl implements _ExamModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, clubId, title, description, dueAt, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, clubId, imageId, title,
+      description, dueAt, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -252,6 +269,7 @@ abstract class _ExamModel implements ExamModel {
   const factory _ExamModel(
       {final int id,
       final int clubId,
+      final int? imageId,
       final String title,
       final String description,
       final DateTime? dueAt,
@@ -265,6 +283,8 @@ abstract class _ExamModel implements ExamModel {
   int get id;
   @override
   int get clubId;
+  @override
+  int? get imageId;
   @override
   String get title;
   @override

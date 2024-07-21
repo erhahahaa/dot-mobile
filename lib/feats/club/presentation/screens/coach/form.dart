@@ -6,14 +6,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class CreateClubScreen extends StatefulWidget {
-  const CreateClubScreen({super.key});
+class ClubFormScreen extends StatefulWidget {
+  final ClubModel? club;
+  const ClubFormScreen({
+    super.key,
+    this.club,
+  });
 
   @override
-  State<CreateClubScreen> createState() => _CreateClubScreenState();
+  State<ClubFormScreen> createState() => _ClubFormScreenState();
 }
 
-class _CreateClubScreenState extends State<CreateClubScreen> {
+class _ClubFormScreenState extends State<ClubFormScreen> {
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
 
@@ -90,7 +94,16 @@ class _CreateClubScreenState extends State<CreateClubScreen> {
             key: _formKey,
             child: Column(
               children: [
-                EightContainer(
+                Container(
+                  padding: EdgeInsets.all(8.w),
+                  margin: EdgeInsets.all(8.w),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.r),
+                    color: Theme.of(context)
+                        .colorScheme
+                        .primaryContainer
+                        .withOpacity(0.1),
+                  ),
                   child: Column(
                     children: [
                       TextF(

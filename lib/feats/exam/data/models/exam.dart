@@ -9,8 +9,9 @@ class ExamModel with _$ExamModel {
   const factory ExamModel({
     @Default(0) int id,
     @Default(0) int clubId,
-    @Default('') String title,
-    @Default('') String description,
+    int? imageId,
+    @Default('DOT Summer Exams') String title,
+    @Default('Description about exam') String description,
     DateTime? dueAt,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -22,9 +23,9 @@ class ExamModel with _$ExamModel {
   static ExamModel fromEntity(ExamEntity entity) {
     return ExamModel(
       id: entity.id,
-      clubId: entity.clubId ?? 0,
-      title: entity.title ?? '',
-      description: entity.description ?? '',
+      clubId: entity.clubId,
+      title: entity.title,
+      description: entity.description,
       dueAt: entity.dueAt,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
@@ -33,7 +34,6 @@ class ExamModel with _$ExamModel {
 }
 
 extension ExamModelX on ExamModel {
-  //toEntity
   ExamEntity toEntity() {
     return ExamEntity(
       id: id,

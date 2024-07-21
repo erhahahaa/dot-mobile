@@ -21,8 +21,8 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$QuestionModel {
   int get id => throw _privateConstructorUsedError;
-  int get clubId => throw _privateConstructorUsedError;
   int get examId => throw _privateConstructorUsedError;
+  int? get mediaId => throw _privateConstructorUsedError;
   QuestionType get type => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get answer => throw _privateConstructorUsedError;
@@ -43,8 +43,8 @@ abstract class $QuestionModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      int clubId,
       int examId,
+      int? mediaId,
       QuestionType type,
       String content,
       String answer,
@@ -66,8 +66,8 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
   @override
   $Res call({
     Object? id = null,
-    Object? clubId = null,
     Object? examId = null,
+    Object? mediaId = freezed,
     Object? type = null,
     Object? content = null,
     Object? answer = null,
@@ -79,14 +79,14 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      clubId: null == clubId
-          ? _value.clubId
-          : clubId // ignore: cast_nullable_to_non_nullable
-              as int,
       examId: null == examId
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
+      mediaId: freezed == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
+              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -121,8 +121,8 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      int clubId,
       int examId,
+      int? mediaId,
       QuestionType type,
       String content,
       String answer,
@@ -142,8 +142,8 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? clubId = null,
     Object? examId = null,
+    Object? mediaId = freezed,
     Object? type = null,
     Object? content = null,
     Object? answer = null,
@@ -155,14 +155,14 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      clubId: null == clubId
-          ? _value.clubId
-          : clubId // ignore: cast_nullable_to_non_nullable
-              as int,
       examId: null == examId
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
+      mediaId: freezed == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
+              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -192,10 +192,10 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
 class _$QuestionModelImpl implements _QuestionModel {
   const _$QuestionModelImpl(
       {this.id = 0,
-      this.clubId = 0,
       this.examId = 0,
+      this.mediaId,
       this.type = QuestionType.essay,
-      this.content = '',
+      this.content = 'Mention 5 basic Movement',
       this.answer = '',
       this.createdAt,
       this.updatedAt});
@@ -208,10 +208,9 @@ class _$QuestionModelImpl implements _QuestionModel {
   final int id;
   @override
   @JsonKey()
-  final int clubId;
-  @override
-  @JsonKey()
   final int examId;
+  @override
+  final int? mediaId;
   @override
   @JsonKey()
   final QuestionType type;
@@ -228,7 +227,7 @@ class _$QuestionModelImpl implements _QuestionModel {
 
   @override
   String toString() {
-    return 'QuestionModel(id: $id, clubId: $clubId, examId: $examId, type: $type, content: $content, answer: $answer, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'QuestionModel(id: $id, examId: $examId, mediaId: $mediaId, type: $type, content: $content, answer: $answer, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -237,8 +236,8 @@ class _$QuestionModelImpl implements _QuestionModel {
         (other.runtimeType == runtimeType &&
             other is _$QuestionModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.clubId, clubId) || other.clubId == clubId) &&
             (identical(other.examId, examId) || other.examId == examId) &&
+            (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.answer, answer) || other.answer == answer) &&
@@ -250,7 +249,7 @@ class _$QuestionModelImpl implements _QuestionModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, clubId, examId, type,
+  int get hashCode => Object.hash(runtimeType, id, examId, mediaId, type,
       content, answer, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
@@ -270,8 +269,8 @@ class _$QuestionModelImpl implements _QuestionModel {
 abstract class _QuestionModel implements QuestionModel {
   const factory _QuestionModel(
       {final int id,
-      final int clubId,
       final int examId,
+      final int? mediaId,
       final QuestionType type,
       final String content,
       final String answer,
@@ -284,9 +283,9 @@ abstract class _QuestionModel implements QuestionModel {
   @override
   int get id;
   @override
-  int get clubId;
-  @override
   int get examId;
+  @override
+  int? get mediaId;
   @override
   QuestionType get type;
   @override

@@ -19,43 +19,28 @@ class ClubCubit extends Cubit<ClubState> {
   Future<void> init() async {
     final u = await fetchLocalUser();
     if (u != null) {
-      await fetchClubs();
+      u.role == UserRole.coach ? await coachInit(u) : await athleteInit();
     }
   }
 
-  Future<UserModel?> fetchLocalUser() async {
+  Future<UserEntity?> fetchLocalUser() async {
     final res = await _userRepo.getMe();
     return res.fold(
-      (l) {
-        safeEmit(
-          isClosed: isClosed,
-          emit: emit,
-          state: state.copyWith(
-            state: BaseState.failure,
-            failure: l,
-          ),
-        );
-        return null;
-      },
-      (r) {
-        final u = UserModel.fromEntity(r);
-        safeEmit(
-          isClosed: isClosed,
-          emit: emit,
-          state: state.copyWith(
-            state: BaseState.success,
-            user: u,
-          ),
-        );
-        return u;
-      },
+      (l) => null,
+      (r) => r,
     );
   }
 
-  Future<void> fetchClubs() async {
+  Future<void> coachInit(UserEntity user) async {
+    await fetchCoachClubs(user);
+  }
+
+  Future<void> athleteInit() async {}
+
+  Future<void> fetchCoachClubs(UserEntity user) async {
     final res = await _clubRepo.getAll(
       const PaginationParams(),
-      state.user.role == UserRole.coach ? state.user.id : null,
+      user.id,
     );
 
     res.fold(
@@ -68,25 +53,14 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
-        if (state.user.role == UserRole.coach) {
-          safeEmit(
-            isClosed: isClosed,
-            emit: emit,
-            state: state.copyWith(
-              state: BaseState.success,
-              coachClubs: r,
-            ),
-          );
-        } else {
-          safeEmit(
-            isClosed: isClosed,
-            emit: emit,
-            state: state.copyWith(
-              state: BaseState.success,
-              athleteClubs: r,
-            ),
-          );
-        }
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+            coachClubs: r,
+          ),
+        );
       },
     );
   }

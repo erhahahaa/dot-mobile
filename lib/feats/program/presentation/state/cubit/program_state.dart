@@ -4,5 +4,7 @@ part of 'program_cubit.dart';
 class ProgramState with _$ProgramState {
   const factory ProgramState({
     @Default(BaseState.initial) BaseState state,
+    @Default([]) List<ProgramModel> programs,
+    Failure? failure,
   }) = _ProgramState;
 }

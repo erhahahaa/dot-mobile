@@ -21,8 +21,11 @@ CreateProgramParams _$CreateProgramParamsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CreateProgramParams {
   int get clubId => throw _privateConstructorUsedError;
-  String get sportType => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get endDate => throw _privateConstructorUsedError;
+  List<CreateProgramExerciseParams> get exercises =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +39,12 @@ abstract class $CreateProgramParamsCopyWith<$Res> {
           CreateProgramParams value, $Res Function(CreateProgramParams) then) =
       _$CreateProgramParamsCopyWithImpl<$Res, CreateProgramParams>;
   @useResult
-  $Res call({int clubId, String sportType, String name});
+  $Res call(
+      {int clubId,
+      String name,
+      DateTime? startDate,
+      DateTime? endDate,
+      List<CreateProgramExerciseParams> exercises});
 }
 
 /// @nodoc
@@ -53,22 +61,32 @@ class _$CreateProgramParamsCopyWithImpl<$Res, $Val extends CreateProgramParams>
   @override
   $Res call({
     Object? clubId = null,
-    Object? sportType = null,
     Object? name = null,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? exercises = null,
   }) {
     return _then(_value.copyWith(
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      sportType: null == sportType
-          ? _value.sportType
-          : sportType // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      exercises: null == exercises
+          ? _value.exercises
+          : exercises // ignore: cast_nullable_to_non_nullable
+              as List<CreateProgramExerciseParams>,
     ) as $Val);
   }
 }
@@ -81,7 +99,12 @@ abstract class _$$CreateProgramParamsImplCopyWith<$Res>
       __$$CreateProgramParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int clubId, String sportType, String name});
+  $Res call(
+      {int clubId,
+      String name,
+      DateTime? startDate,
+      DateTime? endDate,
+      List<CreateProgramExerciseParams> exercises});
 }
 
 /// @nodoc
@@ -96,22 +119,32 @@ class __$$CreateProgramParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? clubId = null,
-    Object? sportType = null,
     Object? name = null,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? exercises = null,
   }) {
     return _then(_$CreateProgramParamsImpl(
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      sportType: null == sportType
-          ? _value.sportType
-          : sportType // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      exercises: null == exercises
+          ? _value._exercises
+          : exercises // ignore: cast_nullable_to_non_nullable
+              as List<CreateProgramExerciseParams>,
     ));
   }
 }
@@ -120,7 +153,12 @@ class __$$CreateProgramParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CreateProgramParamsImpl implements _CreateProgramParams {
   const _$CreateProgramParamsImpl(
-      {this.clubId = 0, this.sportType = '', this.name = ''});
+      {this.clubId = 0,
+      this.name = '',
+      this.startDate,
+      this.endDate,
+      final List<CreateProgramExerciseParams> exercises = const []})
+      : _exercises = exercises;
 
   factory _$CreateProgramParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateProgramParamsImplFromJson(json);
@@ -130,14 +168,23 @@ class _$CreateProgramParamsImpl implements _CreateProgramParams {
   final int clubId;
   @override
   @JsonKey()
-  final String sportType;
+  final String name;
+  @override
+  final DateTime? startDate;
+  @override
+  final DateTime? endDate;
+  final List<CreateProgramExerciseParams> _exercises;
   @override
   @JsonKey()
-  final String name;
+  List<CreateProgramExerciseParams> get exercises {
+    if (_exercises is EqualUnmodifiableListView) return _exercises;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_exercises);
+  }
 
   @override
   String toString() {
-    return 'CreateProgramParams(clubId: $clubId, sportType: $sportType, name: $name)';
+    return 'CreateProgramParams(clubId: $clubId, name: $name, startDate: $startDate, endDate: $endDate, exercises: $exercises)';
   }
 
   @override
@@ -146,14 +193,18 @@ class _$CreateProgramParamsImpl implements _CreateProgramParams {
         (other.runtimeType == runtimeType &&
             other is _$CreateProgramParamsImpl &&
             (identical(other.clubId, clubId) || other.clubId == clubId) &&
-            (identical(other.sportType, sportType) ||
-                other.sportType == sportType) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            const DeepCollectionEquality()
+                .equals(other._exercises, _exercises));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, clubId, sportType, name);
+  int get hashCode => Object.hash(runtimeType, clubId, name, startDate, endDate,
+      const DeepCollectionEquality().hash(_exercises));
 
   @JsonKey(ignore: true)
   @override
@@ -172,9 +223,12 @@ class _$CreateProgramParamsImpl implements _CreateProgramParams {
 
 abstract class _CreateProgramParams implements CreateProgramParams {
   const factory _CreateProgramParams(
-      {final int clubId,
-      final String sportType,
-      final String name}) = _$CreateProgramParamsImpl;
+          {final int clubId,
+          final String name,
+          final DateTime? startDate,
+          final DateTime? endDate,
+          final List<CreateProgramExerciseParams> exercises}) =
+      _$CreateProgramParamsImpl;
 
   factory _CreateProgramParams.fromJson(Map<String, dynamic> json) =
       _$CreateProgramParamsImpl.fromJson;
@@ -182,9 +236,13 @@ abstract class _CreateProgramParams implements CreateProgramParams {
   @override
   int get clubId;
   @override
-  String get sportType;
-  @override
   String get name;
+  @override
+  DateTime? get startDate;
+  @override
+  DateTime? get endDate;
+  @override
+  List<CreateProgramExerciseParams> get exercises;
   @override
   @JsonKey(ignore: true)
   _$$CreateProgramParamsImplCopyWith<_$CreateProgramParamsImpl> get copyWith =>

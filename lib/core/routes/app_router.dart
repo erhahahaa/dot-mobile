@@ -173,8 +173,20 @@ class AppRouter {
                 name: AppRoutes.coachCreateClub.name,
                 builder: (c, __) => BlocProvider.value(
                   value: c.read<ClubCubit>(),
-                  child: const CreateClubScreen(),
+                  child: const ClubFormScreen(),
                 ),
+              ),
+              GoRoute(
+                path: AppRoutes.coachClubDetail.path,
+                name: AppRoutes.coachClubDetail.name,
+                builder: (c, state) {
+                  final extra = state.extra as Map<String, dynamic>;
+                  final club = extra['club'] as ClubModel;
+                  return BlocProvider.value(
+                    value: c.read<ClubCubit>(),
+                    child: ClubDetailScreen(club: club),
+                  );
+                },
               ),
             ],
           ),
@@ -185,10 +197,36 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.coachProgram.path,
                 name: AppRoutes.coachProgram.name,
-                builder: (c, __) => BlocProvider.value(
-                  value: c.read<ProgramCubit>(),
-                  child: const ProgramScreen(),
-                ),
+                builder: (c, state) {
+                  final extra = state.extra as Map<String, dynamic>;
+                  final club = extra['club'] as ClubModel;
+                  return BlocProvider.value(
+                    value: c.read<ProgramCubit>()..init(clubId: club.id),
+                    child: ProgramScreen(club: club),
+                  );
+                },
+              ),
+              GoRoute(
+                path: AppRoutes.coachCreateProgram.path,
+                name: AppRoutes.coachCreateProgram.name,
+                builder: (c, state) {
+                  return BlocProvider.value(
+                    value: c.read<ProgramCubit>(),
+                    child: ProgramFormScreen(),
+                  );
+                },
+              ),
+              GoRoute(
+                path: AppRoutes.coachProgramDetail.path,
+                name: AppRoutes.coachProgramDetail.name,
+                builder: (c, state) {
+                  final extra = state.extra as Map<String, dynamic>;
+                  final program = extra['program'] as ProgramModel;
+                  return BlocProvider.value(
+                    value: c.read<ProgramCubit>(),
+                    child: PorgramDetailScreen(program: program),
+                  );
+                },
               ),
             ],
           ),
@@ -239,7 +277,7 @@ class AppRouter {
         ],
       )
     ],
-    initialLocation: AppRoutes.splash.path,
+    initialLocation: AppRoutes.root.path,
     routerNeglect: true,
     debugLogDiagnostics: kDebugMode,
     refreshListenable: GoRouterRefreshStream(ctx.read<AuthCubit>().stream),

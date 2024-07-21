@@ -36,7 +36,6 @@ class ClubModel with _$ClubModel {
 }
 
 extension ClubModelX on ClubModel {
-  //toEntity
   ClubEntity toEntity() {
     return ClubEntity(
       id: id,

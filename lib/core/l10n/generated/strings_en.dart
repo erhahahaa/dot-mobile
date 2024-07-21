@@ -69,4 +69,28 @@ class StringsEn extends Strings {
 
   @override
   String get detail => 'Detail';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get join => 'Join';
+
+  @override
+  String get management => 'Management';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get leave => 'Leave';
+
+  @override
+  String get about => 'About';
 }

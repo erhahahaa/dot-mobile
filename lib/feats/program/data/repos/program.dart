@@ -36,9 +36,14 @@ class ProgramRepoImpl implements ProgramRepo {
   @override
   Future<Either<Failure, List<ProgramModel>>> getAll(
     PaginationParams params,
+    int clubId,
   ) async {
     final res = await _remote.getRequest(
       ListAPI.CLUB_PROGRAM,
+      queryParameters: params.toJson()
+        ..addAll(
+          {'clubId': clubId},
+        ),
       converter: (res) {
         final List<ProgramModel> programs = [];
         for (final item in res['data']) {

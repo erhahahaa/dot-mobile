@@ -37,13 +37,18 @@ const ExamEntitySchema = CollectionSchema(
       name: r'dueAt',
       type: IsarType.dateTime,
     ),
-    r'title': PropertySchema(
+    r'imageId': PropertySchema(
       id: 4,
+      name: r'imageId',
+      type: IsarType.long,
+    ),
+    r'title': PropertySchema(
+      id: 5,
       name: r'title',
       type: IsarType.string,
     ),
     r'updatedAt': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -54,7 +59,20 @@ const ExamEntitySchema = CollectionSchema(
   deserializeProp: _examEntityDeserializeProp,
   idName: r'id',
   indexes: {},
-  links: {},
+  links: {
+    r'club': LinkSchema(
+      id: 4415051460357536963,
+      name: r'club',
+      target: r'ClubEntity',
+      single: true,
+    ),
+    r'questions': LinkSchema(
+      id: 6666601636652755894,
+      name: r'questions',
+      target: r'QuestionEntity',
+      single: false,
+    )
+  },
   embeddedSchemas: {},
   getId: _examEntityGetId,
   getLinks: _examEntityGetLinks,
@@ -68,18 +86,8 @@ int _examEntityEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  {
-    final value = object.description;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
-    final value = object.title;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.description.length * 3;
+  bytesCount += 3 + object.title.length * 3;
   return bytesCount;
 }
 
@@ -93,8 +101,9 @@ void _examEntitySerialize(
   writer.writeDateTime(offsets[1], object.createdAt);
   writer.writeString(offsets[2], object.description);
   writer.writeDateTime(offsets[3], object.dueAt);
-  writer.writeString(offsets[4], object.title);
-  writer.writeDateTime(offsets[5], object.updatedAt);
+  writer.writeLong(offsets[4], object.imageId);
+  writer.writeString(offsets[5], object.title);
+  writer.writeDateTime(offsets[6], object.updatedAt);
 }
 
 ExamEntity _examEntityDeserialize(
@@ -104,13 +113,14 @@ ExamEntity _examEntityDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = ExamEntity(
-    clubId: reader.readLongOrNull(offsets[0]),
+    clubId: reader.readLongOrNull(offsets[0]) ?? 0,
     createdAt: reader.readDateTimeOrNull(offsets[1]),
-    description: reader.readStringOrNull(offsets[2]),
+    description: reader.readString(offsets[2]),
     dueAt: reader.readDateTimeOrNull(offsets[3]),
     id: id,
-    title: reader.readStringOrNull(offsets[4]),
-    updatedAt: reader.readDateTimeOrNull(offsets[5]),
+    imageId: reader.readLongOrNull(offsets[4]),
+    title: reader.readString(offsets[5]),
+    updatedAt: reader.readDateTimeOrNull(offsets[6]),
   );
   return object;
 }
@@ -123,16 +133,18 @@ P _examEntityDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 1:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 2:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 3:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 4:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 5:
+      return (reader.readString(offset)) as P;
+    case 6:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -144,11 +156,14 @@ Id _examEntityGetId(ExamEntity object) {
 }
 
 List<IsarLinkBase<dynamic>> _examEntityGetLinks(ExamEntity object) {
-  return [];
+  return [object.club, object.questions];
 }
 
 void _examEntityAttach(IsarCollection<dynamic> col, Id id, ExamEntity object) {
   object.id = id;
+  object.club.attach(col, col.isar.collection<ClubEntity>(), r'club', id);
+  object.questions
+      .attach(col, col.isar.collection<QuestionEntity>(), r'questions', id);
 }
 
 extension ExamEntityQueryWhereSort
@@ -230,25 +245,8 @@ extension ExamEntityQueryWhere
 
 extension ExamEntityQueryFilter
     on QueryBuilder<ExamEntity, ExamEntity, QFilterCondition> {
-  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> clubIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'clubId',
-      ));
-    });
-  }
-
-  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
-      clubIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'clubId',
-      ));
-    });
-  }
-
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> clubIdEqualTo(
-      int? value) {
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'clubId',
@@ -258,7 +256,7 @@ extension ExamEntityQueryFilter
   }
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> clubIdGreaterThan(
-    int? value, {
+    int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -271,7 +269,7 @@ extension ExamEntityQueryFilter
   }
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> clubIdLessThan(
-    int? value, {
+    int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -284,8 +282,8 @@ extension ExamEntityQueryFilter
   }
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> clubIdBetween(
-    int? lower,
-    int? upper, {
+    int lower,
+    int upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -373,26 +371,8 @@ extension ExamEntityQueryFilter
   }
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
-      descriptionIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'description',
-      ));
-    });
-  }
-
-  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
-      descriptionIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'description',
-      ));
-    });
-  }
-
-  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
       descriptionEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -406,7 +386,7 @@ extension ExamEntityQueryFilter
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
       descriptionGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -422,7 +402,7 @@ extension ExamEntityQueryFilter
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
       descriptionLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -438,8 +418,8 @@ extension ExamEntityQueryFilter
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
       descriptionBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -648,24 +628,79 @@ extension ExamEntityQueryFilter
     });
   }
 
-  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> titleIsNull() {
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> imageIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'title',
+        property: r'imageId',
       ));
     });
   }
 
-  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> titleIsNotNull() {
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
+      imageIdIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'title',
+        property: r'imageId',
+      ));
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> imageIdEqualTo(
+      int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
+      imageIdGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> imageIdLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> imageIdBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'imageId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
       ));
     });
   }
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> titleEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -678,7 +713,7 @@ extension ExamEntityQueryFilter
   }
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> titleGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -693,7 +728,7 @@ extension ExamEntityQueryFilter
   }
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> titleLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -708,8 +743,8 @@ extension ExamEntityQueryFilter
   }
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> titleBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -872,7 +907,81 @@ extension ExamEntityQueryObject
     on QueryBuilder<ExamEntity, ExamEntity, QFilterCondition> {}
 
 extension ExamEntityQueryLinks
-    on QueryBuilder<ExamEntity, ExamEntity, QFilterCondition> {}
+    on QueryBuilder<ExamEntity, ExamEntity, QFilterCondition> {
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> club(
+      FilterQuery<ClubEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'club');
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> clubIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'club', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> questions(
+      FilterQuery<QuestionEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'questions');
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
+      questionsLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'questions', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
+      questionsIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'questions', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
+      questionsIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'questions', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
+      questionsLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'questions', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
+      questionsLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'questions', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
+      questionsLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'questions', lower, includeLower, upper, includeUpper);
+    });
+  }
+}
 
 extension ExamEntityQuerySortBy
     on QueryBuilder<ExamEntity, ExamEntity, QSortBy> {
@@ -921,6 +1030,18 @@ extension ExamEntityQuerySortBy
   QueryBuilder<ExamEntity, ExamEntity, QAfterSortBy> sortByDueAtDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dueAt', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterSortBy> sortByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterSortBy> sortByImageIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.desc);
     });
   }
 
@@ -1011,6 +1132,18 @@ extension ExamEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<ExamEntity, ExamEntity, QAfterSortBy> thenByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterSortBy> thenByImageIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.desc);
+    });
+  }
+
   QueryBuilder<ExamEntity, ExamEntity, QAfterSortBy> thenByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -1063,6 +1196,12 @@ extension ExamEntityQueryWhereDistinct
     });
   }
 
+  QueryBuilder<ExamEntity, ExamEntity, QDistinct> distinctByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'imageId');
+    });
+  }
+
   QueryBuilder<ExamEntity, ExamEntity, QDistinct> distinctByTitle(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1085,7 +1224,7 @@ extension ExamEntityQueryProperty
     });
   }
 
-  QueryBuilder<ExamEntity, int?, QQueryOperations> clubIdProperty() {
+  QueryBuilder<ExamEntity, int, QQueryOperations> clubIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'clubId');
     });
@@ -1097,7 +1236,7 @@ extension ExamEntityQueryProperty
     });
   }
 
-  QueryBuilder<ExamEntity, String?, QQueryOperations> descriptionProperty() {
+  QueryBuilder<ExamEntity, String, QQueryOperations> descriptionProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'description');
     });
@@ -1109,7 +1248,13 @@ extension ExamEntityQueryProperty
     });
   }
 
-  QueryBuilder<ExamEntity, String?, QQueryOperations> titleProperty() {
+  QueryBuilder<ExamEntity, int?, QQueryOperations> imageIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'imageId');
+    });
+  }
+
+  QueryBuilder<ExamEntity, String, QQueryOperations> titleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'title');
     });

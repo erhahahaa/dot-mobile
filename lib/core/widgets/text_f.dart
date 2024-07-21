@@ -103,8 +103,8 @@ class _TextFState extends State<TextF> {
               decoration: InputDecoration(
                 prefixText: widget.prefixText,
                 alignLabelWithHint: true,
-                filled: widget.fillColor != null,
-                fillColor: widget.fillColor,
+                filled: true,
+                fillColor: context.theme.colorScheme.surface,
                 isDense: true,
                 hintText: widget.hintText,
                 hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
