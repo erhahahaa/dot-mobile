@@ -57,6 +57,11 @@ const UserEntitySchema = CollectionSchema(
       id: 7,
       name: r'token',
       type: IsarType.string,
+    ),
+    r'updatedAt': PropertySchema(
+      id: 8,
+      name: r'updatedAt',
+      type: IsarType.dateTime,
     )
   },
   estimateSize: _userEntityEstimateSize,
@@ -93,30 +98,15 @@ int _userEntityEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  {
-    final value = object.email;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.email.length * 3;
   {
     final value = object.expertise;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
     }
   }
-  {
-    final value = object.image;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
-    final value = object.name;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.image.length * 3;
+  bytesCount += 3 + object.name.length * 3;
   {
     final value = object.phone;
     if (value != null) {
@@ -146,6 +136,7 @@ void _userEntitySerialize(
   writer.writeString(offsets[5], object.phone);
   writer.writeByte(offsets[6], object.role.index);
   writer.writeString(offsets[7], object.token);
+  writer.writeDateTime(offsets[8], object.updatedAt);
 }
 
 UserEntity _userEntityDeserialize(
@@ -156,15 +147,17 @@ UserEntity _userEntityDeserialize(
 ) {
   final object = UserEntity(
     createdAt: reader.readDateTimeOrNull(offsets[0]),
-    email: reader.readStringOrNull(offsets[1]),
+    email: reader.readStringOrNull(offsets[1]) ?? 'folks@dot.com',
     expertise: reader.readStringOrNull(offsets[2]),
     id: id,
-    image: reader.readStringOrNull(offsets[3]),
-    name: reader.readStringOrNull(offsets[4]),
+    image: reader.readStringOrNull(offsets[3]) ??
+        'https://api.dicebear.com/9.x/adventurer/png',
+    name: reader.readStringOrNull(offsets[4]) ?? 'Folks',
     phone: reader.readStringOrNull(offsets[5]),
     role: _UserEntityroleValueEnumMap[reader.readByteOrNull(offsets[6])] ??
         UserRole.athlete,
     token: reader.readStringOrNull(offsets[7]),
+    updatedAt: reader.readDateTimeOrNull(offsets[8]),
   );
   return object;
 }
@@ -179,13 +172,14 @@ P _userEntityDeserializeProp<P>(
     case 0:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 1:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset) ?? 'folks@dot.com') as P;
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset) ??
+          'https://api.dicebear.com/9.x/adventurer/png') as P;
     case 4:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset) ?? 'Folks') as P;
     case 5:
       return (reader.readStringOrNull(offset)) as P;
     case 6:
@@ -193,6 +187,8 @@ P _userEntityDeserializeProp<P>(
           UserRole.athlete) as P;
     case 7:
       return (reader.readStringOrNull(offset)) as P;
+    case 8:
+      return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -303,28 +299,8 @@ extension UserEntityQueryWhere
     });
   }
 
-  QueryBuilder<UserEntity, UserEntity, QAfterWhereClause> nameIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(IndexWhereClause.equalTo(
-        indexName: r'name',
-        value: [null],
-      ));
-    });
-  }
-
-  QueryBuilder<UserEntity, UserEntity, QAfterWhereClause> nameIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(IndexWhereClause.between(
-        indexName: r'name',
-        lower: [null],
-        includeLower: false,
-        upper: [],
-      ));
-    });
-  }
-
   QueryBuilder<UserEntity, UserEntity, QAfterWhereClause> nameEqualTo(
-      String? name) {
+      String name) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IndexWhereClause.equalTo(
         indexName: r'name',
@@ -334,7 +310,7 @@ extension UserEntityQueryWhere
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterWhereClause> nameNotEqualTo(
-      String? name) {
+      String name) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -369,7 +345,7 @@ extension UserEntityQueryWhere
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterWhereClause> nameGreaterThan(
-    String? name, {
+    String name, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -383,7 +359,7 @@ extension UserEntityQueryWhere
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterWhereClause> nameLessThan(
-    String? name, {
+    String name, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -397,8 +373,8 @@ extension UserEntityQueryWhere
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterWhereClause> nameBetween(
-    String? lowerName,
-    String? upperName, {
+    String lowerName,
+    String upperName, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -534,24 +510,8 @@ extension UserEntityQueryFilter
     });
   }
 
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> emailIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'email',
-      ));
-    });
-  }
-
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> emailIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'email',
-      ));
-    });
-  }
-
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> emailEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -564,7 +524,7 @@ extension UserEntityQueryFilter
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> emailGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -579,7 +539,7 @@ extension UserEntityQueryFilter
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> emailLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -594,8 +554,8 @@ extension UserEntityQueryFilter
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> emailBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -886,24 +846,8 @@ extension UserEntityQueryFilter
     });
   }
 
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> imageIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'image',
-      ));
-    });
-  }
-
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> imageIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'image',
-      ));
-    });
-  }
-
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> imageEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -916,7 +860,7 @@ extension UserEntityQueryFilter
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> imageGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -931,7 +875,7 @@ extension UserEntityQueryFilter
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> imageLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -946,8 +890,8 @@ extension UserEntityQueryFilter
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> imageBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1033,24 +977,8 @@ extension UserEntityQueryFilter
     });
   }
 
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> nameIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'name',
-      ));
-    });
-  }
-
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> nameIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'name',
-      ));
-    });
-  }
-
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> nameEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1063,7 +991,7 @@ extension UserEntityQueryFilter
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> nameGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1078,7 +1006,7 @@ extension UserEntityQueryFilter
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> nameLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1093,8 +1021,8 @@ extension UserEntityQueryFilter
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> nameBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1525,6 +1453,78 @@ extension UserEntityQueryFilter
       ));
     });
   }
+
+  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition>
+      updatedAtIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'updatedAt',
+      ));
+    });
+  }
+
+  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition>
+      updatedAtIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'updatedAt',
+      ));
+    });
+  }
+
+  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> updatedAtEqualTo(
+      DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition>
+      updatedAtGreaterThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> updatedAtLessThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> updatedAtBetween(
+    DateTime? lower,
+    DateTime? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'updatedAt',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
 }
 
 extension UserEntityQueryObject
@@ -1628,6 +1628,18 @@ extension UserEntityQuerySortBy
   QueryBuilder<UserEntity, UserEntity, QAfterSortBy> sortByTokenDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'token', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserEntity, UserEntity, QAfterSortBy> sortByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserEntity, UserEntity, QAfterSortBy> sortByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.desc);
     });
   }
 }
@@ -1741,6 +1753,18 @@ extension UserEntityQuerySortThenBy
       return query.addSortBy(r'token', Sort.desc);
     });
   }
+
+  QueryBuilder<UserEntity, UserEntity, QAfterSortBy> thenByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserEntity, UserEntity, QAfterSortBy> thenByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.desc);
+    });
+  }
 }
 
 extension UserEntityQueryWhereDistinct
@@ -1798,6 +1822,12 @@ extension UserEntityQueryWhereDistinct
       return query.addDistinctBy(r'token', caseSensitive: caseSensitive);
     });
   }
+
+  QueryBuilder<UserEntity, UserEntity, QDistinct> distinctByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'updatedAt');
+    });
+  }
 }
 
 extension UserEntityQueryProperty
@@ -1814,7 +1844,7 @@ extension UserEntityQueryProperty
     });
   }
 
-  QueryBuilder<UserEntity, String?, QQueryOperations> emailProperty() {
+  QueryBuilder<UserEntity, String, QQueryOperations> emailProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'email');
     });
@@ -1826,13 +1856,13 @@ extension UserEntityQueryProperty
     });
   }
 
-  QueryBuilder<UserEntity, String?, QQueryOperations> imageProperty() {
+  QueryBuilder<UserEntity, String, QQueryOperations> imageProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'image');
     });
   }
 
-  QueryBuilder<UserEntity, String?, QQueryOperations> nameProperty() {
+  QueryBuilder<UserEntity, String, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
     });
@@ -1853,6 +1883,12 @@ extension UserEntityQueryProperty
   QueryBuilder<UserEntity, String?, QQueryOperations> tokenProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'token');
+    });
+  }
+
+  QueryBuilder<UserEntity, DateTime?, QQueryOperations> updatedAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'updatedAt');
     });
   }
 }

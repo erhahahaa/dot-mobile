@@ -23,6 +23,9 @@ _$TacticalModelImpl _$$TacticalModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : TacticalStrategicModel.fromJson(
               json['strategic'] as Map<String, dynamic>),
+      media: json['media'] == null
+          ? null
+          : MediaModel.fromJson(json['media'] as Map<String, dynamic>),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -41,6 +44,7 @@ Map<String, dynamic> _$$TacticalModelImplToJson(_$TacticalModelImpl instance) =>
       'board': instance.board,
       'team': instance.team,
       'strategic': instance.strategic,
+      'media': instance.media,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };

@@ -14,8 +14,9 @@ _$ClubModelImpl _$$ClubModelImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String? ?? 'Sport Club',
       type: $enumDecodeNullable(_$SportTypeEnumMap, json['type']) ??
           SportType.basketBall,
-      image: json['image'] as String? ??
-          "https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg",
+      media: json['media'] == null
+          ? null
+          : MediaModel.fromJson(json['media'] as Map<String, dynamic>),
       memberCount: (json['memberCount'] as num?)?.toInt() ?? 0,
       createdAt: json['createdAt'] == null
           ? null
@@ -29,7 +30,7 @@ Map<String, dynamic> _$$ClubModelImplToJson(_$ClubModelImpl instance) =>
       'name': instance.name,
       'description': instance.description,
       'type': _$SportTypeEnumMap[instance.type]!,
-      'image': instance.image,
+      'media': instance.media,
       'memberCount': instance.memberCount,
       'createdAt': instance.createdAt?.toIso8601String(),
     };

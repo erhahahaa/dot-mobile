@@ -11,6 +11,7 @@ class ExamEntity {
   String title;
   String description;
   DateTime? dueAt;
+  MediaEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -26,6 +27,7 @@ class ExamEntity {
     this.title = 'DOT Exam 0',
     this.description = 'DOT Exam 0 description',
     this.dueAt,
+    this.media,
     this.createdAt,
     this.updatedAt,
   });

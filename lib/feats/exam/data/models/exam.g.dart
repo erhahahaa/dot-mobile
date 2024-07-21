@@ -16,6 +16,9 @@ _$ExamModelImpl _$$ExamModelImplFromJson(Map<String, dynamic> json) =>
       dueAt: json['dueAt'] == null
           ? null
           : DateTime.parse(json['dueAt'] as String),
+      media: json['media'] == null
+          ? null
+          : MediaModel.fromJson(json['media'] as Map<String, dynamic>),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -32,6 +35,7 @@ Map<String, dynamic> _$$ExamModelImplToJson(_$ExamModelImpl instance) =>
       'title': instance.title,
       'description': instance.description,
       'dueAt': instance.dueAt?.toIso8601String(),
+      'media': instance.media,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };

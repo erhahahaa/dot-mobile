@@ -14,19 +14,14 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-UpdateClubParams _$UpdateClubParamsFromJson(Map<String, dynamic> json) {
-  return _UpdateClubParams.fromJson(json);
-}
-
 /// @nodoc
 mixin _$UpdateClubParams {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
   SportType get type => throw _privateConstructorUsedError;
+  File? get image => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UpdateClubParamsCopyWith<UpdateClubParams> get copyWith =>
       throw _privateConstructorUsedError;
@@ -42,8 +37,8 @@ abstract class $UpdateClubParamsCopyWith<$Res> {
       {String id,
       String name,
       String description,
-      String? image,
-      SportType type});
+      SportType type,
+      File? image});
 }
 
 /// @nodoc
@@ -62,8 +57,8 @@ class _$UpdateClubParamsCopyWithImpl<$Res, $Val extends UpdateClubParams>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? image = freezed,
     Object? type = null,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -78,14 +73,14 @@ class _$UpdateClubParamsCopyWithImpl<$Res, $Val extends UpdateClubParams>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as SportType,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ) as $Val);
   }
 }
@@ -102,8 +97,8 @@ abstract class _$$UpdateClubParamsImplCopyWith<$Res>
       {String id,
       String name,
       String description,
-      String? image,
-      SportType type});
+      SportType type,
+      File? image});
 }
 
 /// @nodoc
@@ -120,8 +115,8 @@ class __$$UpdateClubParamsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? image = freezed,
     Object? type = null,
+    Object? image = freezed,
   }) {
     return _then(_$UpdateClubParamsImpl(
       id: null == id
@@ -136,30 +131,28 @@ class __$$UpdateClubParamsImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as SportType,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$UpdateClubParamsImpl implements _UpdateClubParams {
+
+class _$UpdateClubParamsImpl extends _UpdateClubParams {
   const _$UpdateClubParamsImpl(
       {required this.id,
       required this.name,
       required this.description,
-      this.image,
-      required this.type});
-
-  factory _$UpdateClubParamsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UpdateClubParamsImplFromJson(json);
+      required this.type,
+      this.image})
+      : super._();
 
   @override
   final String id;
@@ -168,13 +161,13 @@ class _$UpdateClubParamsImpl implements _UpdateClubParams {
   @override
   final String description;
   @override
-  final String? image;
-  @override
   final SportType type;
+  @override
+  final File? image;
 
   @override
   String toString() {
-    return 'UpdateClubParams(id: $id, name: $name, description: $description, image: $image, type: $type)';
+    return 'UpdateClubParams(id: $id, name: $name, description: $description, type: $type, image: $image)';
   }
 
   @override
@@ -186,14 +179,13 @@ class _$UpdateClubParamsImpl implements _UpdateClubParams {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.image, image) || other.image == image));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, description, image, type);
+      Object.hash(runtimeType, id, name, description, type, image);
 
   @JsonKey(ignore: true)
   @override
@@ -201,25 +193,16 @@ class _$UpdateClubParamsImpl implements _UpdateClubParams {
   _$$UpdateClubParamsImplCopyWith<_$UpdateClubParamsImpl> get copyWith =>
       __$$UpdateClubParamsImplCopyWithImpl<_$UpdateClubParamsImpl>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UpdateClubParamsImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _UpdateClubParams implements UpdateClubParams {
+abstract class _UpdateClubParams extends UpdateClubParams {
   const factory _UpdateClubParams(
       {required final String id,
       required final String name,
       required final String description,
-      final String? image,
-      required final SportType type}) = _$UpdateClubParamsImpl;
-
-  factory _UpdateClubParams.fromJson(Map<String, dynamic> json) =
-      _$UpdateClubParamsImpl.fromJson;
+      required final SportType type,
+      final File? image}) = _$UpdateClubParamsImpl;
+  const _UpdateClubParams._() : super._();
 
   @override
   String get id;
@@ -228,9 +211,9 @@ abstract class _UpdateClubParams implements UpdateClubParams {
   @override
   String get description;
   @override
-  String? get image;
-  @override
   SportType get type;
+  @override
+  File? get image;
   @override
   @JsonKey(ignore: true)
   _$$UpdateClubParamsImplCopyWith<_$UpdateClubParamsImpl> get copyWith =>

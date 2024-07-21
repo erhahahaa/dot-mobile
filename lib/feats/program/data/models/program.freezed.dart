@@ -25,6 +25,7 @@ mixin _$ProgramModel {
   String get name => throw _privateConstructorUsedError;
   DateTime? get startDate => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
+  MediaModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -46,8 +47,11 @@ abstract class $ProgramModelCopyWith<$Res> {
       String name,
       DateTime? startDate,
       DateTime? endDate,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
+
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -68,6 +72,7 @@ class _$ProgramModelCopyWithImpl<$Res, $Val extends ProgramModel>
     Object? name = null,
     Object? startDate = freezed,
     Object? endDate = freezed,
+    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -92,6 +97,10 @@ class _$ProgramModelCopyWithImpl<$Res, $Val extends ProgramModel>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -101,6 +110,18 @@ class _$ProgramModelCopyWithImpl<$Res, $Val extends ProgramModel>
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MediaModelCopyWith<$Res>? get media {
+    if (_value.media == null) {
+      return null;
+    }
+
+    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
+      return _then(_value.copyWith(media: value) as $Val);
+    });
   }
 }
 
@@ -118,8 +139,12 @@ abstract class _$$ProgramModelImplCopyWith<$Res>
       String name,
       DateTime? startDate,
       DateTime? endDate,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
+
+  @override
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -138,6 +163,7 @@ class __$$ProgramModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? startDate = freezed,
     Object? endDate = freezed,
+    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -162,6 +188,10 @@ class __$$ProgramModelImplCopyWithImpl<$Res>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -183,6 +213,7 @@ class _$ProgramModelImpl implements _ProgramModel {
       this.name = 'DOT Sport',
       this.startDate,
       this.endDate,
+      this.media,
       this.createdAt,
       this.updatedAt});
 
@@ -203,13 +234,15 @@ class _$ProgramModelImpl implements _ProgramModel {
   @override
   final DateTime? endDate;
   @override
+  final MediaModel? media;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'ProgramModel(id: $id, clubId: $clubId, name: $name, startDate: $startDate, endDate: $endDate, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ProgramModel(id: $id, clubId: $clubId, name: $name, startDate: $startDate, endDate: $endDate, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -223,6 +256,7 @@ class _$ProgramModelImpl implements _ProgramModel {
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.media, media) || other.media == media) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -231,8 +265,8 @@ class _$ProgramModelImpl implements _ProgramModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, clubId, name, startDate, endDate, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, clubId, name, startDate,
+      endDate, media, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -255,6 +289,7 @@ abstract class _ProgramModel implements ProgramModel {
       final String name,
       final DateTime? startDate,
       final DateTime? endDate,
+      final MediaModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$ProgramModelImpl;
 
@@ -271,6 +306,8 @@ abstract class _ProgramModel implements ProgramModel {
   DateTime? get startDate;
   @override
   DateTime? get endDate;
+  @override
+  MediaModel? get media;
   @override
   DateTime? get createdAt;
   @override

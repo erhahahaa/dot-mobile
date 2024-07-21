@@ -13,6 +13,7 @@ class ProgramExerciseEntity {
   int repetition;
   int sets;
   int rest;
+  MediaEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -28,6 +29,7 @@ class ProgramExerciseEntity {
     this.repetition = 1,
     this.sets = 1,
     this.rest = 0,
+    this.media,
     this.createdAt,
     this.updatedAt,
   });

@@ -37,18 +37,24 @@ const ProgramEntitySchema = CollectionSchema(
       name: r'imageId',
       type: IsarType.long,
     ),
-    r'name': PropertySchema(
+    r'media': PropertySchema(
       id: 4,
+      name: r'media',
+      type: IsarType.object,
+      target: r'MediaEntity',
+    ),
+    r'name': PropertySchema(
+      id: 5,
       name: r'name',
       type: IsarType.string,
     ),
     r'startDate': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'startDate',
       type: IsarType.dateTime,
     ),
     r'updatedAt': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -67,7 +73,7 @@ const ProgramEntitySchema = CollectionSchema(
       single: false,
     )
   },
-  embeddedSchemas: {},
+  embeddedSchemas: {r'MediaEntity': MediaEntitySchema},
   getId: _programEntityGetId,
   getLinks: _programEntityGetLinks,
   attach: _programEntityAttach,
@@ -80,6 +86,14 @@ int _programEntityEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  {
+    final value = object.media;
+    if (value != null) {
+      bytesCount += 3 +
+          MediaEntitySchema.estimateSize(
+              value, allOffsets[MediaEntity]!, allOffsets);
+    }
+  }
   bytesCount += 3 + object.name.length * 3;
   return bytesCount;
 }
@@ -94,9 +108,15 @@ void _programEntitySerialize(
   writer.writeDateTime(offsets[1], object.createdAt);
   writer.writeDateTime(offsets[2], object.endDate);
   writer.writeLong(offsets[3], object.imageId);
-  writer.writeString(offsets[4], object.name);
-  writer.writeDateTime(offsets[5], object.startDate);
-  writer.writeDateTime(offsets[6], object.updatedAt);
+  writer.writeObject<MediaEntity>(
+    offsets[4],
+    allOffsets,
+    MediaEntitySchema.serialize,
+    object.media,
+  );
+  writer.writeString(offsets[5], object.name);
+  writer.writeDateTime(offsets[6], object.startDate);
+  writer.writeDateTime(offsets[7], object.updatedAt);
 }
 
 ProgramEntity _programEntityDeserialize(
@@ -111,9 +131,14 @@ ProgramEntity _programEntityDeserialize(
     endDate: reader.readDateTimeOrNull(offsets[2]),
     id: id,
     imageId: reader.readLongOrNull(offsets[3]),
-    name: reader.readStringOrNull(offsets[4]) ?? 'DOT Sport',
-    startDate: reader.readDateTimeOrNull(offsets[5]),
-    updatedAt: reader.readDateTimeOrNull(offsets[6]),
+    media: reader.readObjectOrNull<MediaEntity>(
+      offsets[4],
+      MediaEntitySchema.deserialize,
+      allOffsets,
+    ),
+    name: reader.readStringOrNull(offsets[5]) ?? 'DOT Sport',
+    startDate: reader.readDateTimeOrNull(offsets[6]),
+    updatedAt: reader.readDateTimeOrNull(offsets[7]),
   );
   return object;
 }
@@ -134,10 +159,16 @@ P _programEntityDeserializeProp<P>(
     case 3:
       return (reader.readLongOrNull(offset)) as P;
     case 4:
-      return (reader.readStringOrNull(offset) ?? 'DOT Sport') as P;
+      return (reader.readObjectOrNull<MediaEntity>(
+        offset,
+        MediaEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
     case 5:
-      return (reader.readDateTimeOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset) ?? 'DOT Sport') as P;
     case 6:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 7:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -574,6 +605,24 @@ extension ProgramEntityQueryFilter
     });
   }
 
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      mediaIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'media',
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      mediaIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'media',
+      ));
+    });
+  }
+
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition> nameEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -859,7 +908,14 @@ extension ProgramEntityQueryFilter
 }
 
 extension ProgramEntityQueryObject
-    on QueryBuilder<ProgramEntity, ProgramEntity, QFilterCondition> {}
+    on QueryBuilder<ProgramEntity, ProgramEntity, QFilterCondition> {
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition> media(
+      FilterQuery<MediaEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'media');
+    });
+  }
+}
 
 extension ProgramEntityQueryLinks
     on QueryBuilder<ProgramEntity, ProgramEntity, QFilterCondition> {
@@ -1192,6 +1248,12 @@ extension ProgramEntityQueryProperty
   QueryBuilder<ProgramEntity, int?, QQueryOperations> imageIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'imageId');
+    });
+  }
+
+  QueryBuilder<ProgramEntity, MediaEntity?, QQueryOperations> mediaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'media');
     });
   }
 

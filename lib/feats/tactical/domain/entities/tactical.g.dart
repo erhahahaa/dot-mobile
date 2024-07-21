@@ -43,25 +43,31 @@ const TacticalEntitySchema = CollectionSchema(
       name: r'imageId',
       type: IsarType.long,
     ),
-    r'name': PropertySchema(
+    r'media': PropertySchema(
       id: 5,
+      name: r'media',
+      type: IsarType.object,
+      target: r'MediaEntity',
+    ),
+    r'name': PropertySchema(
+      id: 6,
       name: r'name',
       type: IsarType.string,
     ),
     r'strategic': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'strategic',
       type: IsarType.object,
       target: r'TacticalStrategicEntity',
     ),
     r'team': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'team',
       type: IsarType.object,
       target: r'TacticalTeamEntity',
     ),
     r'updatedAt': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -84,7 +90,8 @@ const TacticalEntitySchema = CollectionSchema(
     r'TacticalBoardEntity': TacticalBoardEntitySchema,
     r'TacticalTeamEntity': TacticalTeamEntitySchema,
     r'TacticalTeamMemberEntity': TacticalTeamMemberEntitySchema,
-    r'TacticalStrategicEntity': TacticalStrategicEntitySchema
+    r'TacticalStrategicEntity': TacticalStrategicEntitySchema,
+    r'MediaEntity': MediaEntitySchema
   },
   getId: _tacticalEntityGetId,
   getLinks: _tacticalEntityGetLinks,
@@ -110,6 +117,14 @@ int _tacticalEntityEstimateSize(
     final value = object.description;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.media;
+    if (value != null) {
+      bytesCount += 3 +
+          MediaEntitySchema.estimateSize(
+              value, allOffsets[MediaEntity]!, allOffsets);
     }
   }
   bytesCount += 3 + object.name.length * 3;
@@ -148,20 +163,26 @@ void _tacticalEntitySerialize(
   writer.writeDateTime(offsets[2], object.createdAt);
   writer.writeString(offsets[3], object.description);
   writer.writeLong(offsets[4], object.imageId);
-  writer.writeString(offsets[5], object.name);
+  writer.writeObject<MediaEntity>(
+    offsets[5],
+    allOffsets,
+    MediaEntitySchema.serialize,
+    object.media,
+  );
+  writer.writeString(offsets[6], object.name);
   writer.writeObject<TacticalStrategicEntity>(
-    offsets[6],
+    offsets[7],
     allOffsets,
     TacticalStrategicEntitySchema.serialize,
     object.strategic,
   );
   writer.writeObject<TacticalTeamEntity>(
-    offsets[7],
+    offsets[8],
     allOffsets,
     TacticalTeamEntitySchema.serialize,
     object.team,
   );
-  writer.writeDateTime(offsets[8], object.updatedAt);
+  writer.writeDateTime(offsets[9], object.updatedAt);
 }
 
 TacticalEntity _tacticalEntityDeserialize(
@@ -181,18 +202,23 @@ TacticalEntity _tacticalEntityDeserialize(
     description: reader.readStringOrNull(offsets[3]),
     id: id,
     imageId: reader.readLongOrNull(offsets[4]),
-    name: reader.readStringOrNull(offsets[5]) ?? 'SBY Tactical exhibition',
+    media: reader.readObjectOrNull<MediaEntity>(
+      offsets[5],
+      MediaEntitySchema.deserialize,
+      allOffsets,
+    ),
+    name: reader.readStringOrNull(offsets[6]) ?? 'SBY Tactical exhibition',
     strategic: reader.readObjectOrNull<TacticalStrategicEntity>(
-      offsets[6],
+      offsets[7],
       TacticalStrategicEntitySchema.deserialize,
       allOffsets,
     ),
     team: reader.readObjectOrNull<TacticalTeamEntity>(
-      offsets[7],
+      offsets[8],
       TacticalTeamEntitySchema.deserialize,
       allOffsets,
     ),
-    updatedAt: reader.readDateTimeOrNull(offsets[8]),
+    updatedAt: reader.readDateTimeOrNull(offsets[9]),
   );
   return object;
 }
@@ -219,21 +245,27 @@ P _tacticalEntityDeserializeProp<P>(
     case 4:
       return (reader.readLongOrNull(offset)) as P;
     case 5:
+      return (reader.readObjectOrNull<MediaEntity>(
+        offset,
+        MediaEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
+    case 6:
       return (reader.readStringOrNull(offset) ?? 'SBY Tactical exhibition')
           as P;
-    case 6:
+    case 7:
       return (reader.readObjectOrNull<TacticalStrategicEntity>(
         offset,
         TacticalStrategicEntitySchema.deserialize,
         allOffsets,
       )) as P;
-    case 7:
+    case 8:
       return (reader.readObjectOrNull<TacticalTeamEntity>(
         offset,
         TacticalTeamEntitySchema.deserialize,
         allOffsets,
       )) as P;
-    case 8:
+    case 9:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -769,6 +801,24 @@ extension TacticalEntityQueryFilter
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
+      mediaIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'media',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
+      mediaIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'media',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
       nameEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1021,6 +1071,13 @@ extension TacticalEntityQueryObject
       FilterQuery<TacticalBoardEntity> q) {
     return QueryBuilder.apply(this, (query) {
       return query.object(q, r'board');
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition> media(
+      FilterQuery<MediaEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'media');
     });
   }
 
@@ -1311,6 +1368,12 @@ extension TacticalEntityQueryProperty
   QueryBuilder<TacticalEntity, int?, QQueryOperations> imageIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'imageId');
+    });
+  }
+
+  QueryBuilder<TacticalEntity, MediaEntity?, QQueryOperations> mediaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'media');
     });
   }
 

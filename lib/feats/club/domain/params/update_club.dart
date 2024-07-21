@@ -1,8 +1,10 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:dot_coaching/feats/club/domain/entities/club.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'update_club.freezed.dart';
-part 'update_club.g.dart';
 
 @freezed
 class UpdateClubParams with _$UpdateClubParams {
@@ -10,10 +12,17 @@ class UpdateClubParams with _$UpdateClubParams {
     required String id,
     required String name,
     required String description,
-    String? image,
     required SportType type,
+    File? image,
   }) = _UpdateClubParams;
 
-  factory UpdateClubParams.fromJson(Map<String, dynamic> json) =>
-      _$UpdateClubParamsFromJson(json);
+  const UpdateClubParams._();
+
+  FormData toFormData() => FormData.fromMap({
+        'id': id,
+        'name': name,
+        'description': description,
+        'type': type.toString(),
+        'image': image != null ? MultipartFile.fromFileSync(image!.path) : null,
+      });
 }

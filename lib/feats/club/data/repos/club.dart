@@ -14,7 +14,7 @@ class ClubRepoImpl implements ClubRepo {
   ) async {
     final res = await _remote.postRequest(
       ListAPI.CLUB,
-      data: params.toJson(),
+      formData: params.toFormData(),
       converter: (res) => ClubModel.fromJson(res['data']),
     );
 
@@ -71,7 +71,7 @@ class ClubRepoImpl implements ClubRepo {
   ) async {
     final res = await _remote.putRequest(
       '${ListAPI.CLUB}/${params.id}',
-      data: params.toJson(),
+      formData: params.toFormData(),
       converter: (res) => ClubModel.fromJson(res['data']),
     );
 

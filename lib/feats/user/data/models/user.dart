@@ -9,12 +9,13 @@ class UserModel with _$UserModel {
   const factory UserModel({
     @Default(0) int id,
     @Default('Folks') String name,
-    @Default('folks@dot.com') String? email,
+    @Default('folks@dot.com') String email,
     @Default("https://api.dicebear.com/9.x/adventurer/png") String image,
     String? phone,
     @Default(UserRole.athlete) UserRole role,
-    @Default("Sports") String expertise,
+    String? expertise,
     DateTime? createdAt,
+    DateTime? updatedAt,
     String? token,
   }) = _UserModel;
 
@@ -24,13 +25,14 @@ class UserModel with _$UserModel {
   static UserModel fromEntity(UserEntity entity) {
     return UserModel(
       id: entity.id,
-      name: entity.name ?? '',
-      email: entity.email ?? '',
-      image: entity.image ?? 'https://api.dicebear.com/9.x/adventurer/png',
+      name: entity.name,
+      email: entity.email,
+      image: entity.image,
       phone: entity.phone ?? '',
       role: entity.role,
-      expertise: entity.expertise ?? '',
+      expertise: entity.expertise,
       createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
       token: entity.token,
     );
   }
@@ -47,6 +49,7 @@ extension UserModelX on UserModel {
       role: role,
       expertise: expertise,
       createdAt: createdAt,
+      updatedAt: updatedAt,
       token: token,
     );
   }

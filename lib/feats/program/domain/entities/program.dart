@@ -11,6 +11,7 @@ class ProgramEntity {
   String name;
   DateTime? startDate;
   DateTime? endDate;
+  MediaEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -24,6 +25,7 @@ class ProgramEntity {
     this.name = 'DOT Sport',
     this.startDate,
     this.endDate,
+    this.media,
     this.createdAt,
     this.updatedAt,
   });

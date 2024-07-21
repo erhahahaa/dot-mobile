@@ -42,13 +42,19 @@ const ExamEntitySchema = CollectionSchema(
       name: r'imageId',
       type: IsarType.long,
     ),
-    r'title': PropertySchema(
+    r'media': PropertySchema(
       id: 5,
+      name: r'media',
+      type: IsarType.object,
+      target: r'MediaEntity',
+    ),
+    r'title': PropertySchema(
+      id: 6,
       name: r'title',
       type: IsarType.string,
     ),
     r'updatedAt': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -73,7 +79,7 @@ const ExamEntitySchema = CollectionSchema(
       single: false,
     )
   },
-  embeddedSchemas: {},
+  embeddedSchemas: {r'MediaEntity': MediaEntitySchema},
   getId: _examEntityGetId,
   getLinks: _examEntityGetLinks,
   attach: _examEntityAttach,
@@ -87,6 +93,14 @@ int _examEntityEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.description.length * 3;
+  {
+    final value = object.media;
+    if (value != null) {
+      bytesCount += 3 +
+          MediaEntitySchema.estimateSize(
+              value, allOffsets[MediaEntity]!, allOffsets);
+    }
+  }
   bytesCount += 3 + object.title.length * 3;
   return bytesCount;
 }
@@ -102,8 +116,14 @@ void _examEntitySerialize(
   writer.writeString(offsets[2], object.description);
   writer.writeDateTime(offsets[3], object.dueAt);
   writer.writeLong(offsets[4], object.imageId);
-  writer.writeString(offsets[5], object.title);
-  writer.writeDateTime(offsets[6], object.updatedAt);
+  writer.writeObject<MediaEntity>(
+    offsets[5],
+    allOffsets,
+    MediaEntitySchema.serialize,
+    object.media,
+  );
+  writer.writeString(offsets[6], object.title);
+  writer.writeDateTime(offsets[7], object.updatedAt);
 }
 
 ExamEntity _examEntityDeserialize(
@@ -115,12 +135,18 @@ ExamEntity _examEntityDeserialize(
   final object = ExamEntity(
     clubId: reader.readLongOrNull(offsets[0]) ?? 0,
     createdAt: reader.readDateTimeOrNull(offsets[1]),
-    description: reader.readString(offsets[2]),
+    description:
+        reader.readStringOrNull(offsets[2]) ?? 'DOT Exam 0 description',
     dueAt: reader.readDateTimeOrNull(offsets[3]),
     id: id,
     imageId: reader.readLongOrNull(offsets[4]),
-    title: reader.readString(offsets[5]),
-    updatedAt: reader.readDateTimeOrNull(offsets[6]),
+    media: reader.readObjectOrNull<MediaEntity>(
+      offsets[5],
+      MediaEntitySchema.deserialize,
+      allOffsets,
+    ),
+    title: reader.readStringOrNull(offsets[6]) ?? 'DOT Exam 0',
+    updatedAt: reader.readDateTimeOrNull(offsets[7]),
   );
   return object;
 }
@@ -137,14 +163,20 @@ P _examEntityDeserializeProp<P>(
     case 1:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 2:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset) ?? 'DOT Exam 0 description') as P;
     case 3:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 4:
       return (reader.readLongOrNull(offset)) as P;
     case 5:
-      return (reader.readString(offset)) as P;
+      return (reader.readObjectOrNull<MediaEntity>(
+        offset,
+        MediaEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
     case 6:
+      return (reader.readStringOrNull(offset) ?? 'DOT Exam 0') as P;
+    case 7:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -699,6 +731,22 @@ extension ExamEntityQueryFilter
     });
   }
 
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> mediaIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'media',
+      ));
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> mediaIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'media',
+      ));
+    });
+  }
+
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> titleEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -904,7 +952,14 @@ extension ExamEntityQueryFilter
 }
 
 extension ExamEntityQueryObject
-    on QueryBuilder<ExamEntity, ExamEntity, QFilterCondition> {}
+    on QueryBuilder<ExamEntity, ExamEntity, QFilterCondition> {
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition> media(
+      FilterQuery<MediaEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'media');
+    });
+  }
+}
 
 extension ExamEntityQueryLinks
     on QueryBuilder<ExamEntity, ExamEntity, QFilterCondition> {
@@ -1251,6 +1306,12 @@ extension ExamEntityQueryProperty
   QueryBuilder<ExamEntity, int?, QQueryOperations> imageIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'imageId');
+    });
+  }
+
+  QueryBuilder<ExamEntity, MediaEntity?, QQueryOperations> mediaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'media');
     });
   }
 

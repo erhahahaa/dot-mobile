@@ -20,7 +20,7 @@ class ClubEntity {
   String? description;
   @enumerated
   SportType type;
-  String? image;
+  MediaEntity? media;
   int memberCount;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -38,7 +38,7 @@ class ClubEntity {
     this.name,
     this.description,
     this.type = SportType.basketBall,
-    this.image,
+    this.media,
     this.memberCount = 0,
     this.createdAt,
     this.updatedAt,

@@ -37,19 +37,25 @@ const QuestionEntitySchema = CollectionSchema(
       name: r'examId',
       type: IsarType.long,
     ),
-    r'mediaId': PropertySchema(
+    r'media': PropertySchema(
       id: 4,
+      name: r'media',
+      type: IsarType.object,
+      target: r'MediaEntity',
+    ),
+    r'mediaId': PropertySchema(
+      id: 5,
       name: r'mediaId',
       type: IsarType.long,
     ),
     r'type': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'type',
       type: IsarType.byte,
       enumMap: _QuestionEntitytypeEnumValueMap,
     ),
     r'updatedAt': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -68,7 +74,7 @@ const QuestionEntitySchema = CollectionSchema(
       single: true,
     )
   },
-  embeddedSchemas: {},
+  embeddedSchemas: {r'MediaEntity': MediaEntitySchema},
   getId: _questionEntityGetId,
   getLinks: _questionEntityGetLinks,
   attach: _questionEntityAttach,
@@ -83,6 +89,14 @@ int _questionEntityEstimateSize(
   var bytesCount = offsets.last;
   bytesCount += 3 + object.answer.length * 3;
   bytesCount += 3 + object.content.length * 3;
+  {
+    final value = object.media;
+    if (value != null) {
+      bytesCount += 3 +
+          MediaEntitySchema.estimateSize(
+              value, allOffsets[MediaEntity]!, allOffsets);
+    }
+  }
   return bytesCount;
 }
 
@@ -96,9 +110,15 @@ void _questionEntitySerialize(
   writer.writeString(offsets[1], object.content);
   writer.writeDateTime(offsets[2], object.createdAt);
   writer.writeLong(offsets[3], object.examId);
-  writer.writeLong(offsets[4], object.mediaId);
-  writer.writeByte(offsets[5], object.type.index);
-  writer.writeDateTime(offsets[6], object.updatedAt);
+  writer.writeObject<MediaEntity>(
+    offsets[4],
+    allOffsets,
+    MediaEntitySchema.serialize,
+    object.media,
+  );
+  writer.writeLong(offsets[5], object.mediaId);
+  writer.writeByte(offsets[6], object.type.index);
+  writer.writeDateTime(offsets[7], object.updatedAt);
 }
 
 QuestionEntity _questionEntityDeserialize(
@@ -113,10 +133,15 @@ QuestionEntity _questionEntityDeserialize(
     createdAt: reader.readDateTimeOrNull(offsets[2]),
     examId: reader.readLongOrNull(offsets[3]) ?? 0,
     id: id,
-    mediaId: reader.readLongOrNull(offsets[4]),
-    type: _QuestionEntitytypeValueEnumMap[reader.readByteOrNull(offsets[5])] ??
+    media: reader.readObjectOrNull<MediaEntity>(
+      offsets[4],
+      MediaEntitySchema.deserialize,
+      allOffsets,
+    ),
+    mediaId: reader.readLongOrNull(offsets[5]),
+    type: _QuestionEntitytypeValueEnumMap[reader.readByteOrNull(offsets[6])] ??
         QuestionType.essay,
-    updatedAt: reader.readDateTimeOrNull(offsets[6]),
+    updatedAt: reader.readDateTimeOrNull(offsets[7]),
   );
   return object;
 }
@@ -138,11 +163,17 @@ P _questionEntityDeserializeProp<P>(
     case 3:
       return (reader.readLongOrNull(offset) ?? 0) as P;
     case 4:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readObjectOrNull<MediaEntity>(
+        offset,
+        MediaEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
     case 5:
+      return (reader.readLongOrNull(offset)) as P;
+    case 6:
       return (_QuestionEntitytypeValueEnumMap[reader.readByteOrNull(offset)] ??
           QuestionType.essay) as P;
-    case 6:
+    case 7:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -717,6 +748,24 @@ extension QuestionEntityQueryFilter
   }
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      mediaIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'media',
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      mediaIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'media',
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       mediaIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -922,7 +971,14 @@ extension QuestionEntityQueryFilter
 }
 
 extension QuestionEntityQueryObject
-    on QueryBuilder<QuestionEntity, QuestionEntity, QFilterCondition> {}
+    on QueryBuilder<QuestionEntity, QuestionEntity, QFilterCondition> {
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition> media(
+      FilterQuery<MediaEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'media');
+    });
+  }
+}
 
 extension QuestionEntityQueryLinks
     on QueryBuilder<QuestionEntity, QuestionEntity, QFilterCondition> {
@@ -1218,6 +1274,12 @@ extension QuestionEntityQueryProperty
   QueryBuilder<QuestionEntity, int, QQueryOperations> examIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'examId');
+    });
+  }
+
+  QueryBuilder<QuestionEntity, MediaEntity?, QQueryOperations> mediaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'media');
     });
   }
 

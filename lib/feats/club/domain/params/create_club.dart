@@ -1,18 +1,26 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_club.freezed.dart';
-part 'create_club.g.dart';
 
 @freezed
 class CreateClubParams with _$CreateClubParams {
   const factory CreateClubParams({
     required String name,
     required String description,
-    String? image,
+    File? image,
     required SportType type,
   }) = _CreateClubParams;
 
-  factory CreateClubParams.fromJson(Map<String, dynamic> json) =>
-      _$CreateClubParamsFromJson(json);
+  const CreateClubParams._();
+
+  FormData toFormData() => FormData.fromMap({
+        'name': name,
+        'description': description,
+        'type': type.toString(),
+        'image': image != null ? MultipartFile.fromFileSync(image!.path) : null,
+      });
 }

@@ -28,6 +28,7 @@ mixin _$TacticalModel {
   TacticalBoardModel? get board => throw _privateConstructorUsedError;
   TacticalTeamModel? get team => throw _privateConstructorUsedError;
   TacticalStrategicModel? get strategic => throw _privateConstructorUsedError;
+  MediaModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -52,12 +53,14 @@ abstract class $TacticalModelCopyWith<$Res> {
       TacticalBoardModel? board,
       TacticalTeamModel? team,
       TacticalStrategicModel? strategic,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
   $TacticalBoardModelCopyWith<$Res>? get board;
   $TacticalTeamModelCopyWith<$Res>? get team;
   $TacticalStrategicModelCopyWith<$Res>? get strategic;
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -81,6 +84,7 @@ class _$TacticalModelCopyWithImpl<$Res, $Val extends TacticalModel>
     Object? board = freezed,
     Object? team = freezed,
     Object? strategic = freezed,
+    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -117,6 +121,10 @@ class _$TacticalModelCopyWithImpl<$Res, $Val extends TacticalModel>
           ? _value.strategic
           : strategic // ignore: cast_nullable_to_non_nullable
               as TacticalStrategicModel?,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -163,6 +171,18 @@ class _$TacticalModelCopyWithImpl<$Res, $Val extends TacticalModel>
       return _then(_value.copyWith(strategic: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MediaModelCopyWith<$Res>? get media {
+    if (_value.media == null) {
+      return null;
+    }
+
+    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
+      return _then(_value.copyWith(media: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -182,6 +202,7 @@ abstract class _$$TacticalModelImplCopyWith<$Res>
       TacticalBoardModel? board,
       TacticalTeamModel? team,
       TacticalStrategicModel? strategic,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
@@ -191,6 +212,8 @@ abstract class _$$TacticalModelImplCopyWith<$Res>
   $TacticalTeamModelCopyWith<$Res>? get team;
   @override
   $TacticalStrategicModelCopyWith<$Res>? get strategic;
+  @override
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -212,6 +235,7 @@ class __$$TacticalModelImplCopyWithImpl<$Res>
     Object? board = freezed,
     Object? team = freezed,
     Object? strategic = freezed,
+    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -248,6 +272,10 @@ class __$$TacticalModelImplCopyWithImpl<$Res>
           ? _value.strategic
           : strategic // ignore: cast_nullable_to_non_nullable
               as TacticalStrategicModel?,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -272,6 +300,7 @@ class _$TacticalModelImpl implements _TacticalModel {
       this.board,
       this.team,
       this.strategic,
+      this.media,
       this.createdAt,
       this.updatedAt});
 
@@ -298,13 +327,15 @@ class _$TacticalModelImpl implements _TacticalModel {
   @override
   final TacticalStrategicModel? strategic;
   @override
+  final MediaModel? media;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'TacticalModel(id: $id, clubId: $clubId, imageId: $imageId, name: $name, description: $description, board: $board, team: $team, strategic: $strategic, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'TacticalModel(id: $id, clubId: $clubId, imageId: $imageId, name: $name, description: $description, board: $board, team: $team, strategic: $strategic, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -322,6 +353,7 @@ class _$TacticalModelImpl implements _TacticalModel {
             (identical(other.team, team) || other.team == team) &&
             (identical(other.strategic, strategic) ||
                 other.strategic == strategic) &&
+            (identical(other.media, media) || other.media == media) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -331,7 +363,7 @@ class _$TacticalModelImpl implements _TacticalModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, clubId, imageId, name,
-      description, board, team, strategic, createdAt, updatedAt);
+      description, board, team, strategic, media, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -357,6 +389,7 @@ abstract class _TacticalModel implements TacticalModel {
       final TacticalBoardModel? board,
       final TacticalTeamModel? team,
       final TacticalStrategicModel? strategic,
+      final MediaModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$TacticalModelImpl;
 
@@ -379,6 +412,8 @@ abstract class _TacticalModel implements TacticalModel {
   TacticalTeamModel? get team;
   @override
   TacticalStrategicModel? get strategic;
+  @override
+  MediaModel? get media;
   @override
   DateTime? get createdAt;
   @override

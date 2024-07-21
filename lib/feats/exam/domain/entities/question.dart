@@ -14,6 +14,7 @@ class QuestionEntity {
   QuestionType type;
   String content;
   String answer;
+  MediaEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -27,6 +28,7 @@ class QuestionEntity {
     this.type = QuestionType.essay,
     this.content = 'Mention 5 basic Movement',
     this.answer = '',
+    this.media,
     this.createdAt,
     this.updatedAt,
   });
