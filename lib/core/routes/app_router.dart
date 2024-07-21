@@ -35,7 +35,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.root.path,
         name: AppRoutes.root.name,
-        redirect: (_, __) => AppRoutes.athleteTactical.path,
+        redirect: (_, __) => AppRoutes.athleteHome.path,
       ),
       ShellRoute(
         navigatorKey: _authKey,
@@ -239,7 +239,7 @@ class AppRouter {
         ],
       )
     ],
-    initialLocation: AppRoutes.athleteTactical.path,
+    initialLocation: AppRoutes.athleteHome.path,
     routerNeglect: true,
     debugLogDiagnostics: kDebugMode,
     refreshListenable: GoRouterRefreshStream(ctx.read<AuthCubit>().stream),
