@@ -18,7 +18,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color(0xFF5767ED), Color(0xFF32ADBE)],
               ),
@@ -60,7 +60,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
             child: Container(
               width: 344.w,
               height: 640.h,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Color(0xFFF5F6FF),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(25.0),
@@ -77,7 +77,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
             child: Container(
               width: 308.w,
               height: 46.h,
-              padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16.r),
@@ -86,7 +86,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                     color: Colors.black.withOpacity(0.25),
                     blurRadius: 8,
                     spreadRadius: 0,
-                    offset: Offset(4, 4),
+                    offset: const Offset(4, 4),
                   ),
                 ],
               ),
@@ -111,14 +111,14 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        padding: EdgeInsets.fromLTRB(16, 2, 16, 2),
+                        padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
                         decoration: BoxDecoration(
-                          color: Color(0xFF763AD8),
+                          color: const Color(0xFF763AD8),
                           borderRadius: BorderRadius.circular(20.r),
                         ),
                         child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.sports_volleyball,
                               color: Colors.white,
                               size: 16,
@@ -197,7 +197,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                   return Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(bottom: 16),
+                        margin: const EdgeInsets.only(bottom: 16),
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -276,7 +276,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                             width: 238.w,
                                             padding: const EdgeInsets.all(8),
                                             decoration: BoxDecoration(
-                                              color: Color(0xffE6E8F9),
+                                              color: const Color(0xffE6E8F9),
                                               borderRadius:
                                                   BorderRadius.circular(16),
                                             ),
@@ -301,59 +301,35 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                     // SizedBox(
                                                     //   width: 8.w,
                                                     // ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.all(8),
-                                                      child: SizedBox(
-                                                        width: 147.w,
-                                                        height: 32.h,
-                                                        child: ElevatedButton(
-                                                          style: ButtonStyle(
-                                                            backgroundColor:
-                                                                MaterialStateProperty
-                                                                    .all(Color(
-                                                                        0xFF5868F1)),
-                                                            shape:
-                                                                MaterialStateProperty
-                                                                    .all(
-                                                              RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0),
-                                                              ),
-                                                            ),
+                                                    FilledButton.icon(
+                                                      onPressed: () {},
+                                                      style: ButtonStyle(
+                                                        backgroundColor:
+                                                            WidgetStateProperty
+                                                                .all(const Color(
+                                                                    0xFF5868F1)),
+                                                        shape:
+                                                            WidgetStateProperty
+                                                                .all(
+                                                          RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
                                                           ),
-                                                          onPressed: () {},
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .play_arrow,
-                                                                color: Colors
-                                                                    .white,
-                                                                size: 16.sp,
-                                                              ),
-                                                              SizedBox(
-                                                                  width: 8.w),
-                                                              Text(
-                                                                "Watch Video",
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize:
-                                                                      12.sp,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  color: Colors
-                                                                      .white,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
+                                                        ),
+                                                      ),
+                                                      icon: const Icon(
+                                                        Icons.play_arrow,
+                                                        color: Colors.white,
+                                                      ),
+                                                      label: Text(
+                                                        'Watch Video',
+                                                        style: TextStyle(
+                                                          fontSize: 12.sp,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: Colors.white,
                                                         ),
                                                       ),
                                                     ),
@@ -440,7 +416,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
-                                                                                Color(0xFFFFD2D2),
+                                                                                const Color(0xFFFFD2D2),
                                                                             borderRadius:
                                                                                 BorderRadius.circular(8.r),
                                                                           ),
@@ -475,7 +451,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
-                                                                                Color(0xFFFFF0BD),
+                                                                                const Color(0xFFFFF0BD),
                                                                             borderRadius:
                                                                                 BorderRadius.circular(8.r),
                                                                           ),
@@ -520,7 +496,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
-                                                                                Color(0xFFACFFCD),
+                                                                                const Color(0xFFACFFCD),
                                                                             borderRadius:
                                                                                 BorderRadius.circular(8.r),
                                                                           ),
@@ -555,7 +531,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
-                                                                                Color(0xFF95DFFF),
+                                                                                const Color(0xFF95DFFF),
                                                                             borderRadius:
                                                                                 BorderRadius.circular(8.r),
                                                                           ),
@@ -600,7 +576,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
-                                                                                Color(0xFFEBB2FF),
+                                                                                const Color(0xFFEBB2FF),
                                                                             borderRadius:
                                                                                 BorderRadius.circular(8.r),
                                                                           ),
@@ -683,9 +659,86 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                 ),
                               ],
                             ),
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  width: 255.w,
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      color: const Color(0xFF5868F1),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 238.w,
+                                            height: 26.h,
+                                            padding: const EdgeInsets.all(4),
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFFE40000),
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                            ),
+                                            child: Text(
+                                              "Day Off",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Tuesday",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Text(
+                                            "2 July 2024",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         ),
-                      ),
+                      )
                     ],
                   );
                 },
@@ -697,14 +750,14 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
             left: 44.w,
             right: 44.w,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
               child: SizedBox(
                 width: 220.w,
                 height: 44.h,
                 child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(Color(0xFF5868F1)),
+                        MaterialStateProperty.all(const Color(0xFF5868F1)),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
