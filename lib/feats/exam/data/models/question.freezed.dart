@@ -26,6 +26,7 @@ mixin _$QuestionModel {
   QuestionType get type => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get answer => throw _privateConstructorUsedError;
+  MediaModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -48,8 +49,11 @@ abstract class $QuestionModelCopyWith<$Res> {
       QuestionType type,
       String content,
       String answer,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
+
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -71,6 +75,7 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
     Object? type = null,
     Object? content = null,
     Object? answer = null,
+    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -99,6 +104,10 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
               as String,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -108,6 +117,18 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MediaModelCopyWith<$Res>? get media {
+    if (_value.media == null) {
+      return null;
+    }
+
+    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
+      return _then(_value.copyWith(media: value) as $Val);
+    });
   }
 }
 
@@ -126,8 +147,12 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
       QuestionType type,
       String content,
       String answer,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
+
+  @override
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -147,6 +172,7 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
     Object? type = null,
     Object? content = null,
     Object? answer = null,
+    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -175,6 +201,10 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
               as String,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -197,6 +227,7 @@ class _$QuestionModelImpl implements _QuestionModel {
       this.type = QuestionType.essay,
       this.content = 'Mention 5 basic Movement',
       this.answer = '',
+      this.media,
       this.createdAt,
       this.updatedAt});
 
@@ -221,13 +252,15 @@ class _$QuestionModelImpl implements _QuestionModel {
   @JsonKey()
   final String answer;
   @override
+  final MediaModel? media;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'QuestionModel(id: $id, examId: $examId, mediaId: $mediaId, type: $type, content: $content, answer: $answer, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'QuestionModel(id: $id, examId: $examId, mediaId: $mediaId, type: $type, content: $content, answer: $answer, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -241,6 +274,7 @@ class _$QuestionModelImpl implements _QuestionModel {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.answer, answer) || other.answer == answer) &&
+            (identical(other.media, media) || other.media == media) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -250,7 +284,7 @@ class _$QuestionModelImpl implements _QuestionModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, examId, mediaId, type,
-      content, answer, createdAt, updatedAt);
+      content, answer, media, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -274,6 +308,7 @@ abstract class _QuestionModel implements QuestionModel {
       final QuestionType type,
       final String content,
       final String answer,
+      final MediaModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$QuestionModelImpl;
 
@@ -292,6 +327,8 @@ abstract class _QuestionModel implements QuestionModel {
   String get content;
   @override
   String get answer;
+  @override
+  MediaModel? get media;
   @override
   DateTime? get createdAt;
   @override

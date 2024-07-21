@@ -32,15 +32,16 @@ const ClubEntitySchema = CollectionSchema(
       name: r'description',
       type: IsarType.string,
     ),
-    r'image': PropertySchema(
-      id: 3,
-      name: r'image',
-      type: IsarType.string,
-    ),
     r'imageId': PropertySchema(
-      id: 4,
+      id: 3,
       name: r'imageId',
       type: IsarType.long,
+    ),
+    r'media': PropertySchema(
+      id: 4,
+      name: r'media',
+      type: IsarType.object,
+      target: r'MediaEntity',
     ),
     r'memberCount': PropertySchema(
       id: 5,
@@ -96,7 +97,7 @@ const ClubEntitySchema = CollectionSchema(
       single: false,
     )
   },
-  embeddedSchemas: {},
+  embeddedSchemas: {r'MediaEntity': MediaEntitySchema},
   getId: _clubEntityGetId,
   getLinks: _clubEntityGetLinks,
   attach: _clubEntityAttach,
@@ -116,9 +117,11 @@ int _clubEntityEstimateSize(
     }
   }
   {
-    final value = object.image;
+    final value = object.media;
     if (value != null) {
-      bytesCount += 3 + value.length * 3;
+      bytesCount += 3 +
+          MediaEntitySchema.estimateSize(
+              value, allOffsets[MediaEntity]!, allOffsets);
     }
   }
   {
@@ -139,8 +142,13 @@ void _clubEntitySerialize(
   writer.writeDateTime(offsets[0], object.createdAt);
   writer.writeLong(offsets[1], object.creatorId);
   writer.writeString(offsets[2], object.description);
-  writer.writeString(offsets[3], object.image);
-  writer.writeLong(offsets[4], object.imageId);
+  writer.writeLong(offsets[3], object.imageId);
+  writer.writeObject<MediaEntity>(
+    offsets[4],
+    allOffsets,
+    MediaEntitySchema.serialize,
+    object.media,
+  );
   writer.writeLong(offsets[5], object.memberCount);
   writer.writeString(offsets[6], object.name);
   writer.writeByte(offsets[7], object.type.index);
@@ -158,8 +166,12 @@ ClubEntity _clubEntityDeserialize(
     creatorId: reader.readLongOrNull(offsets[1]),
     description: reader.readStringOrNull(offsets[2]),
     id: id,
-    image: reader.readStringOrNull(offsets[3]),
-    imageId: reader.readLongOrNull(offsets[4]),
+    imageId: reader.readLongOrNull(offsets[3]),
+    media: reader.readObjectOrNull<MediaEntity>(
+      offsets[4],
+      MediaEntitySchema.deserialize,
+      allOffsets,
+    ),
     memberCount: reader.readLongOrNull(offsets[5]) ?? 0,
     name: reader.readStringOrNull(offsets[6]),
     type: _ClubEntitytypeValueEnumMap[reader.readByteOrNull(offsets[7])] ??
@@ -183,9 +195,13 @@ P _clubEntityDeserializeProp<P>(
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readStringOrNull(offset)) as P;
-    case 4:
       return (reader.readLongOrNull(offset)) as P;
+    case 4:
+      return (reader.readObjectOrNull<MediaEntity>(
+        offset,
+        MediaEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
     case 5:
       return (reader.readLongOrNull(offset) ?? 0) as P;
     case 6:
@@ -659,153 +675,6 @@ extension ClubEntityQueryFilter
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'image',
-      ));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'image',
-      ));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'image',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageGreaterThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'image',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageLessThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'image',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageBetween(
-    String? lower,
-    String? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'image',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'image',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'image',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageContains(
-      String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'image',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'image',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'image',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
-      imageIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'image',
-        value: '',
-      ));
-    });
-  }
-
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -873,6 +742,22 @@ extension ClubEntityQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> mediaIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'media',
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> mediaIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'media',
       ));
     });
   }
@@ -1206,7 +1091,14 @@ extension ClubEntityQueryFilter
 }
 
 extension ClubEntityQueryObject
-    on QueryBuilder<ClubEntity, ClubEntity, QFilterCondition> {}
+    on QueryBuilder<ClubEntity, ClubEntity, QFilterCondition> {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> media(
+      FilterQuery<MediaEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'media');
+    });
+  }
+}
 
 extension ClubEntityQueryLinks
     on QueryBuilder<ClubEntity, ClubEntity, QFilterCondition> {
@@ -1491,18 +1383,6 @@ extension ClubEntityQuerySortBy
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByImage() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'image', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByImageDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'image', Sort.desc);
-    });
-  }
-
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByImageId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageId', Sort.asc);
@@ -1614,18 +1494,6 @@ extension ClubEntityQuerySortThenBy
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByImage() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'image', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByImageDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'image', Sort.desc);
-    });
-  }
-
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByImageId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageId', Sort.asc);
@@ -1708,13 +1576,6 @@ extension ClubEntityQueryWhereDistinct
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByImage(
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'image', caseSensitive: caseSensitive);
-    });
-  }
-
   QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByImageId() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'imageId');
@@ -1773,15 +1634,15 @@ extension ClubEntityQueryProperty
     });
   }
 
-  QueryBuilder<ClubEntity, String?, QQueryOperations> imageProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'image');
-    });
-  }
-
   QueryBuilder<ClubEntity, int?, QQueryOperations> imageIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'imageId');
+    });
+  }
+
+  QueryBuilder<ClubEntity, MediaEntity?, QQueryOperations> mediaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'media');
     });
   }
 

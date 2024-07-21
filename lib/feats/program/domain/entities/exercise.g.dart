@@ -28,38 +28,44 @@ const ProgramExerciseEntitySchema = CollectionSchema(
       name: r'description',
       type: IsarType.string,
     ),
-    r'mediaId': PropertySchema(
+    r'media': PropertySchema(
       id: 2,
+      name: r'media',
+      type: IsarType.object,
+      target: r'MediaEntity',
+    ),
+    r'mediaId': PropertySchema(
+      id: 3,
       name: r'mediaId',
       type: IsarType.long,
     ),
     r'name': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'name',
       type: IsarType.string,
     ),
     r'programId': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'programId',
       type: IsarType.long,
     ),
     r'repetition': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'repetition',
       type: IsarType.long,
     ),
     r'rest': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'rest',
       type: IsarType.long,
     ),
     r'sets': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'sets',
       type: IsarType.long,
     ),
     r'updatedAt': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -78,7 +84,7 @@ const ProgramExerciseEntitySchema = CollectionSchema(
       single: true,
     )
   },
-  embeddedSchemas: {},
+  embeddedSchemas: {r'MediaEntity': MediaEntitySchema},
   getId: _programExerciseEntityGetId,
   getLinks: _programExerciseEntityGetLinks,
   attach: _programExerciseEntityAttach,
@@ -97,6 +103,14 @@ int _programExerciseEntityEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
+  {
+    final value = object.media;
+    if (value != null) {
+      bytesCount += 3 +
+          MediaEntitySchema.estimateSize(
+              value, allOffsets[MediaEntity]!, allOffsets);
+    }
+  }
   bytesCount += 3 + object.name.length * 3;
   return bytesCount;
 }
@@ -109,13 +123,19 @@ void _programExerciseEntitySerialize(
 ) {
   writer.writeDateTime(offsets[0], object.createdAt);
   writer.writeString(offsets[1], object.description);
-  writer.writeLong(offsets[2], object.mediaId);
-  writer.writeString(offsets[3], object.name);
-  writer.writeLong(offsets[4], object.programId);
-  writer.writeLong(offsets[5], object.repetition);
-  writer.writeLong(offsets[6], object.rest);
-  writer.writeLong(offsets[7], object.sets);
-  writer.writeDateTime(offsets[8], object.updatedAt);
+  writer.writeObject<MediaEntity>(
+    offsets[2],
+    allOffsets,
+    MediaEntitySchema.serialize,
+    object.media,
+  );
+  writer.writeLong(offsets[3], object.mediaId);
+  writer.writeString(offsets[4], object.name);
+  writer.writeLong(offsets[5], object.programId);
+  writer.writeLong(offsets[6], object.repetition);
+  writer.writeLong(offsets[7], object.rest);
+  writer.writeLong(offsets[8], object.sets);
+  writer.writeDateTime(offsets[9], object.updatedAt);
 }
 
 ProgramExerciseEntity _programExerciseEntityDeserialize(
@@ -128,13 +148,18 @@ ProgramExerciseEntity _programExerciseEntityDeserialize(
     createdAt: reader.readDateTimeOrNull(offsets[0]),
     description: reader.readStringOrNull(offsets[1]),
     id: id,
-    mediaId: reader.readLongOrNull(offsets[2]),
-    name: reader.readStringOrNull(offsets[3]) ?? 'DOT Exercise 0',
-    programId: reader.readLongOrNull(offsets[4]) ?? 0,
-    repetition: reader.readLong(offsets[5]),
-    rest: reader.readLong(offsets[6]),
-    sets: reader.readLong(offsets[7]),
-    updatedAt: reader.readDateTimeOrNull(offsets[8]),
+    media: reader.readObjectOrNull<MediaEntity>(
+      offsets[2],
+      MediaEntitySchema.deserialize,
+      allOffsets,
+    ),
+    mediaId: reader.readLongOrNull(offsets[3]),
+    name: reader.readStringOrNull(offsets[4]) ?? 'DOT Exercise 0',
+    programId: reader.readLongOrNull(offsets[5]) ?? 0,
+    repetition: reader.readLongOrNull(offsets[6]) ?? 1,
+    rest: reader.readLongOrNull(offsets[7]) ?? 0,
+    sets: reader.readLongOrNull(offsets[8]) ?? 1,
+    updatedAt: reader.readDateTimeOrNull(offsets[9]),
   );
   return object;
 }
@@ -151,18 +176,24 @@ P _programExerciseEntityDeserializeProp<P>(
     case 1:
       return (reader.readStringOrNull(offset)) as P;
     case 2:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readObjectOrNull<MediaEntity>(
+        offset,
+        MediaEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
     case 3:
-      return (reader.readStringOrNull(offset) ?? 'DOT Exercise 0') as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 4:
-      return (reader.readLongOrNull(offset) ?? 0) as P;
+      return (reader.readStringOrNull(offset) ?? 'DOT Exercise 0') as P;
     case 5:
-      return (reader.readLong(offset)) as P;
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 6:
-      return (reader.readLong(offset)) as P;
+      return (reader.readLongOrNull(offset) ?? 1) as P;
     case 7:
-      return (reader.readLong(offset)) as P;
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 8:
+      return (reader.readLongOrNull(offset) ?? 1) as P;
+    case 9:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -550,6 +581,24 @@ extension ProgramExerciseEntityQueryFilter on QueryBuilder<
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> mediaIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'media',
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> mediaIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'media',
       ));
     });
   }
@@ -1066,7 +1115,14 @@ extension ProgramExerciseEntityQueryFilter on QueryBuilder<
 }
 
 extension ProgramExerciseEntityQueryObject on QueryBuilder<
-    ProgramExerciseEntity, ProgramExerciseEntity, QFilterCondition> {}
+    ProgramExerciseEntity, ProgramExerciseEntity, QFilterCondition> {
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> media(FilterQuery<MediaEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'media');
+    });
+  }
+}
 
 extension ProgramExerciseEntityQueryLinks on QueryBuilder<ProgramExerciseEntity,
     ProgramExerciseEntity, QFilterCondition> {
@@ -1442,6 +1498,13 @@ extension ProgramExerciseEntityQueryProperty on QueryBuilder<
       descriptionProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'description');
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, MediaEntity?, QQueryOperations>
+      mediaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'media');
     });
   }
 

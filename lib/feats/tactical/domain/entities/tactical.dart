@@ -16,6 +16,7 @@ class TacticalEntity {
   TacticalBoardEntity? board;
   TacticalTeamEntity? team;
   TacticalStrategicEntity? strategic;
+  MediaEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -31,6 +32,7 @@ class TacticalEntity {
     this.board,
     this.team,
     this.strategic,
+    this.media,
     this.createdAt,
     this.updatedAt,
   });

@@ -1,1 +1,1 @@
-// TODO Implement this library.
+export 'package:dot_coaching/feats/general/data/models/media.dart';

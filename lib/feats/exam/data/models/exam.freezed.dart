@@ -26,6 +26,7 @@ mixin _$ExamModel {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   DateTime? get dueAt => throw _privateConstructorUsedError;
+  MediaModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -47,8 +48,11 @@ abstract class $ExamModelCopyWith<$Res> {
       String title,
       String description,
       DateTime? dueAt,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
+
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -70,6 +74,7 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
     Object? title = null,
     Object? description = null,
     Object? dueAt = freezed,
+    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -98,6 +103,10 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -107,6 +116,18 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MediaModelCopyWith<$Res>? get media {
+    if (_value.media == null) {
+      return null;
+    }
+
+    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
+      return _then(_value.copyWith(media: value) as $Val);
+    });
   }
 }
 
@@ -125,8 +146,12 @@ abstract class _$$ExamModelImplCopyWith<$Res>
       String title,
       String description,
       DateTime? dueAt,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
+
+  @override
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -146,6 +171,7 @@ class __$$ExamModelImplCopyWithImpl<$Res>
     Object? title = null,
     Object? description = null,
     Object? dueAt = freezed,
+    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -174,6 +200,10 @@ class __$$ExamModelImplCopyWithImpl<$Res>
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -196,6 +226,7 @@ class _$ExamModelImpl implements _ExamModel {
       this.title = 'DOT Summer Exams',
       this.description = 'Description about exam',
       this.dueAt,
+      this.media,
       this.createdAt,
       this.updatedAt});
 
@@ -219,13 +250,15 @@ class _$ExamModelImpl implements _ExamModel {
   @override
   final DateTime? dueAt;
   @override
+  final MediaModel? media;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'ExamModel(id: $id, clubId: $clubId, imageId: $imageId, title: $title, description: $description, dueAt: $dueAt, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ExamModel(id: $id, clubId: $clubId, imageId: $imageId, title: $title, description: $description, dueAt: $dueAt, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -240,6 +273,7 @@ class _$ExamModelImpl implements _ExamModel {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.dueAt, dueAt) || other.dueAt == dueAt) &&
+            (identical(other.media, media) || other.media == media) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -249,7 +283,7 @@ class _$ExamModelImpl implements _ExamModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, clubId, imageId, title,
-      description, dueAt, createdAt, updatedAt);
+      description, dueAt, media, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -273,6 +307,7 @@ abstract class _ExamModel implements ExamModel {
       final String title,
       final String description,
       final DateTime? dueAt,
+      final MediaModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$ExamModelImpl;
 
@@ -291,6 +326,8 @@ abstract class _ExamModel implements ExamModel {
   String get description;
   @override
   DateTime? get dueAt;
+  @override
+  MediaModel? get media;
   @override
   DateTime? get createdAt;
   @override

@@ -33,7 +33,7 @@ class ClubContainer extends StatelessWidget {
         child: Row(
           children: [
             CachedNetworkImage(
-              imageUrl: club.image,
+              imageUrl: sportImage(club.media?.url),
               width: 48.w,
               height: 48.w,
               // make image rounded

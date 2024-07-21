@@ -25,7 +25,7 @@ mixin _$ClubModel {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   SportType get type => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
+  MediaModel? get media => throw _privateConstructorUsedError;
   int get memberCount => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -46,9 +46,11 @@ abstract class $ClubModelCopyWith<$Res> {
       String name,
       String description,
       SportType type,
-      String image,
+      MediaModel? media,
       int memberCount,
       DateTime? createdAt});
+
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -69,7 +71,7 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
     Object? name = null,
     Object? description = null,
     Object? type = null,
-    Object? image = null,
+    Object? media = freezed,
     Object? memberCount = null,
     Object? createdAt = freezed,
   }) {
@@ -94,10 +96,10 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as SportType,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       memberCount: null == memberCount
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
@@ -107,6 +109,18 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MediaModelCopyWith<$Res>? get media {
+    if (_value.media == null) {
+      return null;
+    }
+
+    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
+      return _then(_value.copyWith(media: value) as $Val);
+    });
   }
 }
 
@@ -124,9 +138,12 @@ abstract class _$$ClubModelImplCopyWith<$Res>
       String name,
       String description,
       SportType type,
-      String image,
+      MediaModel? media,
       int memberCount,
       DateTime? createdAt});
+
+  @override
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -145,7 +162,7 @@ class __$$ClubModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? type = null,
-    Object? image = null,
+    Object? media = freezed,
     Object? memberCount = null,
     Object? createdAt = freezed,
   }) {
@@ -170,10 +187,10 @@ class __$$ClubModelImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as SportType,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       memberCount: null == memberCount
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
@@ -195,8 +212,7 @@ class _$ClubModelImpl implements _ClubModel {
       this.name = 'Indo Sports',
       this.description = 'Sport Club',
       this.type = SportType.basketBall,
-      this.image =
-          "https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg",
+      this.media,
       this.memberCount = 0,
       this.createdAt});
 
@@ -219,8 +235,7 @@ class _$ClubModelImpl implements _ClubModel {
   @JsonKey()
   final SportType type;
   @override
-  @JsonKey()
-  final String image;
+  final MediaModel? media;
   @override
   @JsonKey()
   final int memberCount;
@@ -229,7 +244,7 @@ class _$ClubModelImpl implements _ClubModel {
 
   @override
   String toString() {
-    return 'ClubModel(id: $id, creatorId: $creatorId, name: $name, description: $description, type: $type, image: $image, memberCount: $memberCount, createdAt: $createdAt)';
+    return 'ClubModel(id: $id, creatorId: $creatorId, name: $name, description: $description, type: $type, media: $media, memberCount: $memberCount, createdAt: $createdAt)';
   }
 
   @override
@@ -244,7 +259,7 @@ class _$ClubModelImpl implements _ClubModel {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.image, image) || other.image == image) &&
+            (identical(other.media, media) || other.media == media) &&
             (identical(other.memberCount, memberCount) ||
                 other.memberCount == memberCount) &&
             (identical(other.createdAt, createdAt) ||
@@ -254,7 +269,7 @@ class _$ClubModelImpl implements _ClubModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, creatorId, name, description,
-      type, image, memberCount, createdAt);
+      type, media, memberCount, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -277,7 +292,7 @@ abstract class _ClubModel implements ClubModel {
       final String name,
       final String description,
       final SportType type,
-      final String image,
+      final MediaModel? media,
       final int memberCount,
       final DateTime? createdAt}) = _$ClubModelImpl;
 
@@ -295,7 +310,7 @@ abstract class _ClubModel implements ClubModel {
   @override
   SportType get type;
   @override
-  String get image;
+  MediaModel? get media;
   @override
   int get memberCount;
   @override

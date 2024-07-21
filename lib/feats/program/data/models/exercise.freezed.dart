@@ -28,6 +28,7 @@ mixin _$ProgramExerciseModel {
   int get repetition => throw _privateConstructorUsedError;
   int get sets => throw _privateConstructorUsedError;
   int get rest => throw _privateConstructorUsedError;
+  MediaModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -52,8 +53,11 @@ abstract class $ProgramExerciseModelCopyWith<$Res> {
       int repetition,
       int sets,
       int rest,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
+
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -78,6 +82,7 @@ class _$ProgramExerciseModelCopyWithImpl<$Res,
     Object? repetition = null,
     Object? sets = null,
     Object? rest = null,
+    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -114,6 +119,10 @@ class _$ProgramExerciseModelCopyWithImpl<$Res,
           ? _value.rest
           : rest // ignore: cast_nullable_to_non_nullable
               as int,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -123,6 +132,18 @@ class _$ProgramExerciseModelCopyWithImpl<$Res,
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MediaModelCopyWith<$Res>? get media {
+    if (_value.media == null) {
+      return null;
+    }
+
+    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
+      return _then(_value.copyWith(media: value) as $Val);
+    });
   }
 }
 
@@ -143,8 +164,12 @@ abstract class _$$ProgramExerciseModelImplCopyWith<$Res>
       int repetition,
       int sets,
       int rest,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
+
+  @override
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -166,6 +191,7 @@ class __$$ProgramExerciseModelImplCopyWithImpl<$Res>
     Object? repetition = null,
     Object? sets = null,
     Object? rest = null,
+    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -202,6 +228,10 @@ class __$$ProgramExerciseModelImplCopyWithImpl<$Res>
           ? _value.rest
           : rest // ignore: cast_nullable_to_non_nullable
               as int,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -226,6 +256,7 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
       this.repetition = 1,
       this.sets = 1,
       this.rest = 0,
+      this.media,
       this.createdAt,
       this.updatedAt});
 
@@ -255,13 +286,15 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
   @JsonKey()
   final int rest;
   @override
+  final MediaModel? media;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'ProgramExerciseModel(id: $id, programId: $programId, mediaId: $mediaId, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ProgramExerciseModel(id: $id, programId: $programId, mediaId: $mediaId, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -280,6 +313,7 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
                 other.repetition == repetition) &&
             (identical(other.sets, sets) || other.sets == sets) &&
             (identical(other.rest, rest) || other.rest == rest) &&
+            (identical(other.media, media) || other.media == media) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -289,7 +323,7 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, programId, mediaId, name,
-      description, repetition, sets, rest, createdAt, updatedAt);
+      description, repetition, sets, rest, media, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -317,6 +351,7 @@ abstract class _ProgramExerciseModel implements ProgramExerciseModel {
       final int repetition,
       final int sets,
       final int rest,
+      final MediaModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$ProgramExerciseModelImpl;
 
@@ -339,6 +374,8 @@ abstract class _ProgramExerciseModel implements ProgramExerciseModel {
   int get sets;
   @override
   int get rest;
+  @override
+  MediaModel? get media;
   @override
   DateTime? get createdAt;
   @override

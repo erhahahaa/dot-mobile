@@ -14,18 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-CreateClubParams _$CreateClubParamsFromJson(Map<String, dynamic> json) {
-  return _CreateClubParams.fromJson(json);
-}
-
 /// @nodoc
 mixin _$CreateClubParams {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
+  File? get image => throw _privateConstructorUsedError;
   SportType get type => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CreateClubParamsCopyWith<CreateClubParams> get copyWith =>
       throw _privateConstructorUsedError;
@@ -37,7 +32,7 @@ abstract class $CreateClubParamsCopyWith<$Res> {
           CreateClubParams value, $Res Function(CreateClubParams) then) =
       _$CreateClubParamsCopyWithImpl<$Res, CreateClubParams>;
   @useResult
-  $Res call({String name, String description, String? image, SportType type});
+  $Res call({String name, String description, File? image, SportType type});
 }
 
 /// @nodoc
@@ -70,7 +65,7 @@ class _$CreateClubParamsCopyWithImpl<$Res, $Val extends CreateClubParams>
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as File?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -87,7 +82,7 @@ abstract class _$$CreateClubParamsImplCopyWith<$Res>
       __$$CreateClubParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String description, String? image, SportType type});
+  $Res call({String name, String description, File? image, SportType type});
 }
 
 /// @nodoc
@@ -118,7 +113,7 @@ class __$$CreateClubParamsImplCopyWithImpl<$Res>
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as File?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -128,23 +123,21 @@ class __$$CreateClubParamsImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$CreateClubParamsImpl implements _CreateClubParams {
+
+class _$CreateClubParamsImpl extends _CreateClubParams {
   const _$CreateClubParamsImpl(
       {required this.name,
       required this.description,
       this.image,
-      required this.type});
-
-  factory _$CreateClubParamsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CreateClubParamsImplFromJson(json);
+      required this.type})
+      : super._();
 
   @override
   final String name;
   @override
   final String description;
   @override
-  final String? image;
+  final File? image;
   @override
   final SportType type;
 
@@ -165,7 +158,6 @@ class _$CreateClubParamsImpl implements _CreateClubParams {
             (identical(other.type, type) || other.type == type));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, description, image, type);
 
@@ -175,31 +167,22 @@ class _$CreateClubParamsImpl implements _CreateClubParams {
   _$$CreateClubParamsImplCopyWith<_$CreateClubParamsImpl> get copyWith =>
       __$$CreateClubParamsImplCopyWithImpl<_$CreateClubParamsImpl>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CreateClubParamsImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _CreateClubParams implements CreateClubParams {
+abstract class _CreateClubParams extends CreateClubParams {
   const factory _CreateClubParams(
       {required final String name,
       required final String description,
-      final String? image,
+      final File? image,
       required final SportType type}) = _$CreateClubParamsImpl;
-
-  factory _CreateClubParams.fromJson(Map<String, dynamic> json) =
-      _$CreateClubParamsImpl.fromJson;
+  const _CreateClubParams._() : super._();
 
   @override
   String get name;
   @override
   String get description;
   @override
-  String? get image;
+  File? get image;
   @override
   SportType get type;
   @override

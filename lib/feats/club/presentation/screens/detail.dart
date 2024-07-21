@@ -265,7 +265,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                     Row(
                       children: [
                         CachedNetworkImage(
-                          imageUrl: widget.club.image,
+                          imageUrl: sportImage(widget.club.media?.url),
                           width: 48.w,
                           height: 48.w,
                           imageBuilder: (context, imageProvider) => Container(

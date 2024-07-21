@@ -15,6 +15,9 @@ _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
           QuestionType.essay,
       content: json['content'] as String? ?? 'Mention 5 basic Movement',
       answer: json['answer'] as String? ?? '',
+      media: json['media'] == null
+          ? null
+          : MediaModel.fromJson(json['media'] as Map<String, dynamic>),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -31,6 +34,7 @@ Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
       'type': _$QuestionTypeEnumMap[instance.type]!,
       'content': instance.content,
       'answer': instance.answer,
+      'media': instance.media,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };

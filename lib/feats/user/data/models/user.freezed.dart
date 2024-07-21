@@ -22,12 +22,13 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 mixin _$UserModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   UserRole get role => throw _privateConstructorUsedError;
-  String get expertise => throw _privateConstructorUsedError;
+  String? get expertise => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,12 +45,13 @@ abstract class $UserModelCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      String? email,
+      String email,
       String image,
       String? phone,
       UserRole role,
-      String expertise,
+      String? expertise,
       DateTime? createdAt,
+      DateTime? updatedAt,
       String? token});
 }
 
@@ -68,12 +70,13 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? email = freezed,
+    Object? email = null,
     Object? image = null,
     Object? phone = freezed,
     Object? role = null,
-    Object? expertise = null,
+    Object? expertise = freezed,
     Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? token = freezed,
   }) {
     return _then(_value.copyWith(
@@ -85,10 +88,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: freezed == email
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -101,13 +104,17 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as UserRole,
-      expertise: null == expertise
+      expertise: freezed == expertise
           ? _value.expertise
           : expertise // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       token: freezed == token
           ? _value.token
@@ -128,12 +135,13 @@ abstract class _$$UserModelImplCopyWith<$Res>
   $Res call(
       {int id,
       String name,
-      String? email,
+      String email,
       String image,
       String? phone,
       UserRole role,
-      String expertise,
+      String? expertise,
       DateTime? createdAt,
+      DateTime? updatedAt,
       String? token});
 }
 
@@ -150,12 +158,13 @@ class __$$UserModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? email = freezed,
+    Object? email = null,
     Object? image = null,
     Object? phone = freezed,
     Object? role = null,
-    Object? expertise = null,
+    Object? expertise = freezed,
     Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? token = freezed,
   }) {
     return _then(_$UserModelImpl(
@@ -167,10 +176,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: freezed == email
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -183,13 +192,17 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as UserRole,
-      expertise: null == expertise
+      expertise: freezed == expertise
           ? _value.expertise
           : expertise // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       token: freezed == token
           ? _value.token
@@ -209,8 +222,9 @@ class _$UserModelImpl implements _UserModel {
       this.image = "https://api.dicebear.com/9.x/adventurer/png",
       this.phone,
       this.role = UserRole.athlete,
-      this.expertise = "Sports",
+      this.expertise,
       this.createdAt,
+      this.updatedAt,
       this.token});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -224,7 +238,7 @@ class _$UserModelImpl implements _UserModel {
   final String name;
   @override
   @JsonKey()
-  final String? email;
+  final String email;
   @override
   @JsonKey()
   final String image;
@@ -234,16 +248,17 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   final UserRole role;
   @override
-  @JsonKey()
-  final String expertise;
+  final String? expertise;
   @override
   final DateTime? createdAt;
+  @override
+  final DateTime? updatedAt;
   @override
   final String? token;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, image: $image, phone: $phone, role: $role, expertise: $expertise, createdAt: $createdAt, token: $token)';
+    return 'UserModel(id: $id, name: $name, email: $email, image: $image, phone: $phone, role: $role, expertise: $expertise, createdAt: $createdAt, updatedAt: $updatedAt, token: $token)';
   }
 
   @override
@@ -261,13 +276,15 @@ class _$UserModelImpl implements _UserModel {
                 other.expertise == expertise) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
             (identical(other.token, token) || other.token == token));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, email, image, phone,
-      role, expertise, createdAt, token);
+      role, expertise, createdAt, updatedAt, token);
 
   @JsonKey(ignore: true)
   @override
@@ -287,12 +304,13 @@ abstract class _UserModel implements UserModel {
   const factory _UserModel(
       {final int id,
       final String name,
-      final String? email,
+      final String email,
       final String image,
       final String? phone,
       final UserRole role,
-      final String expertise,
+      final String? expertise,
       final DateTime? createdAt,
+      final DateTime? updatedAt,
       final String? token}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -303,7 +321,7 @@ abstract class _UserModel implements UserModel {
   @override
   String get name;
   @override
-  String? get email;
+  String get email;
   @override
   String get image;
   @override
@@ -311,9 +329,11 @@ abstract class _UserModel implements UserModel {
   @override
   UserRole get role;
   @override
-  String get expertise;
+  String? get expertise;
   @override
   DateTime? get createdAt;
+  @override
+  DateTime? get updatedAt;
   @override
   String? get token;
   @override

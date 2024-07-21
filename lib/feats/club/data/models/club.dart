@@ -12,8 +12,7 @@ class ClubModel with _$ClubModel {
     @Default('Indo Sports') String name,
     @Default('Sport Club') String description,
     @Default(SportType.basketBall) SportType type,
-    @Default("https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg")
-    String image,
+    MediaModel? media,
     @Default(0) int memberCount,
     DateTime? createdAt,
   }) = _ClubModel;
@@ -28,7 +27,7 @@ class ClubModel with _$ClubModel {
       name: entity.name ?? '',
       description: entity.description ?? '',
       type: entity.type,
-      image: entity.image ?? '',
+      media: entity.media != null ? MediaModel.fromEntity(entity.media!) : null,
       memberCount: entity.memberCount,
       createdAt: entity.createdAt,
     );
@@ -43,7 +42,7 @@ extension ClubModelX on ClubModel {
       name: name,
       description: description,
       type: type,
-      image: image,
+      media: media?.toEntity(),
       memberCount: memberCount,
       createdAt: createdAt,
     );

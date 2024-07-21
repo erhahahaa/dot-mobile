@@ -13,6 +13,7 @@ class QuestionModel with _$QuestionModel {
     @Default(QuestionType.essay) QuestionType type,
     @Default('Mention 5 basic Movement') String content,
     @Default('') String answer,
+    MediaModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _QuestionModel;
@@ -27,6 +28,7 @@ class QuestionModel with _$QuestionModel {
       type: entity.type,
       content: entity.content,
       answer: entity.answer,
+      media: entity.media != null ? MediaModel.fromEntity(entity.media!) : null,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );
@@ -41,6 +43,7 @@ extension QuestionModelX on QuestionModel {
       type: type,
       content: content,
       answer: answer,
+      media: media?.toEntity(),
       createdAt: createdAt,
       updatedAt: updatedAt,
     );

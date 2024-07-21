@@ -17,6 +17,7 @@ class TacticalModel with _$TacticalModel {
     TacticalBoardModel? board,
     TacticalTeamModel? team,
     TacticalStrategicModel? strategic,
+    MediaModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _TacticalModel;
@@ -40,6 +41,7 @@ class TacticalModel with _$TacticalModel {
       strategic: entity.strategic != null
           ? TacticalStrategicModel.fromEntity(entity.strategic!)
           : null,
+      media: entity.media != null ? MediaModel.fromEntity(entity.media!) : null,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );
@@ -57,6 +59,7 @@ extension TacticalModelX on TacticalModel {
       board: board?.toEntity(),
       team: team?.toEntity(),
       strategic: strategic?.toEntity(),
+      media: media?.toEntity(),
       createdAt: createdAt,
       updatedAt: updatedAt,
     );

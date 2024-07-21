@@ -17,6 +17,9 @@ _$ProgramExerciseModelImpl _$$ProgramExerciseModelImplFromJson(
       repetition: (json['repetition'] as num?)?.toInt() ?? 1,
       sets: (json['sets'] as num?)?.toInt() ?? 1,
       rest: (json['rest'] as num?)?.toInt() ?? 0,
+      media: json['media'] == null
+          ? null
+          : MediaModel.fromJson(json['media'] as Map<String, dynamic>),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -36,6 +39,7 @@ Map<String, dynamic> _$$ProgramExerciseModelImplToJson(
       'repetition': instance.repetition,
       'sets': instance.sets,
       'rest': instance.rest,
+      'media': instance.media,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };

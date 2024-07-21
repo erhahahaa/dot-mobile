@@ -16,10 +16,13 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] as String?,
       role: $enumDecodeNullable(_$UserRoleEnumMap, json['role']) ??
           UserRole.athlete,
-      expertise: json['expertise'] as String? ?? "Sports",
+      expertise: json['expertise'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
       token: json['token'] as String?,
     );
 
@@ -33,6 +36,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'role': _$UserRoleEnumMap[instance.role]!,
       'expertise': instance.expertise,
       'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
       'token': instance.token,
     };
 
