@@ -134,8 +134,11 @@ class HistoryScreen extends StatelessWidget {
                               ),
                               filled: true,
                               fillColor: Color(0xFF868FE3),
-                              prefixIcon:
-                                  Icon(Icons.search, color: Colors.white),
+                              prefixIcon: Icon(
+                                Icons.search,
+                                color: Colors.white,
+                                size: 16.sp,
+                              ),
                             ),
                           ),
                         ),
@@ -169,6 +172,7 @@ class HistoryScreen extends StatelessWidget {
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
                               width: 24.w,
@@ -213,16 +217,12 @@ class HistoryScreen extends StatelessWidget {
                                   shape: const StadiumBorder(),
                                   side: const BorderSide(
                                       width: 1, color: Color(0xFF575FFF)),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal:
-                                          12), // Adjust padding as needed
+                                  padding: EdgeInsets.symmetric(horizontal: 12),
                                 ),
                                 onPressed: () {},
                                 child: Row(
-                                  mainAxisSize: MainAxisSize
-                                      .min, // Ensure the Row only takes as much width as needed
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .center, // Center align the content inside the button
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       "Download PDF",

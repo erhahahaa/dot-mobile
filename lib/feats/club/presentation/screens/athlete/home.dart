@@ -132,13 +132,12 @@ class _HomeScreenState extends State<HomeScreen> {
             left: 22.w,
             right: 22.w,
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "My Club Training",
@@ -150,37 +149,28 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    SizedBox(
+                      width: 8.w,
+                    ),
+                    Column(
                       children: [
                         Container(
-                          width: 120.w,
-                          height: 36.h,
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF868FE3),
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.search_rounded,
-                                color: Colors.white,
-                                size: 14,
+                          width: 119.w,
+                          height: 30.h,
+                          child: TextField(
+                            textAlignVertical: TextAlignVertical.center,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(8),
+                              hintText: 'Search...',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.r),
+                                borderSide: BorderSide.none,
                               ),
-                              SizedBox(width: 8.w),
-                              Text(
-                                "Search ...",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
+                              filled: true,
+                              fillColor: Color(0xFF868FE3),
+                              prefixIcon: Icon(Icons.search,
+                                  color: Colors.white, size: 16.sp),
+                            ),
                           ),
                         ),
                       ],
@@ -213,6 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
                               width: 24.w,
@@ -250,26 +241,36 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(width: 8.w),
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "See details",
-                                    style: TextStyle(
-                                      color: Color(0xFF575FFF),
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.normal,
+                            SizedBox(width: 16.w),
+                            SizedBox(
+                              child: OutlinedButton(
+                                style: OutlinedButton.styleFrom(
+                                  shape: const StadiumBorder(),
+                                  side: const BorderSide(
+                                      width: 1, color: Color(0xFF575FFF)),
+                                  padding: EdgeInsets.symmetric(horizontal: 12),
+                                ),
+                                onPressed: () {},
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "See Details",
+                                      style: TextStyle(
+                                        color: Color(0xFF575FFF),
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.normal,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(width: 8.w),
-                                  Icon(
-                                    Icons.arrow_forward_rounded,
-                                    color: Color(0xFF575FFF),
-                                    size: 14.sp,
-                                  ),
-                                ],
+                                    SizedBox(width: 8.w),
+                                    Icon(
+                                      Icons.arrow_forward_rounded,
+                                      color: Color(0xFF575FFF),
+                                      size: 12.sp,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
