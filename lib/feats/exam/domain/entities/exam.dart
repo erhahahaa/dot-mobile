@@ -11,7 +11,7 @@ class ExamEntity {
   String title;
   String description;
   DateTime? dueAt;
-  MediaEntity? media;
+  MediaEmbedEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
 

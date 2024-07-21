@@ -20,7 +20,7 @@ class ClubEntity {
   String? description;
   @enumerated
   SportType type;
-  MediaEntity? media;
+  MediaEmbedEntity? media;
   int memberCount;
   DateTime? createdAt;
   DateTime? updatedAt;

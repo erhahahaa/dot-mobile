@@ -14,7 +14,7 @@ class QuestionEntity {
   QuestionType type;
   String content;
   String answer;
-  MediaEntity? media;
+  MediaEmbedEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
 

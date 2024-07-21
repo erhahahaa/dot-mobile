@@ -26,7 +26,7 @@ mixin _$QuestionModel {
   QuestionType get type => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get answer => throw _privateConstructorUsedError;
-  MediaModel? get media => throw _privateConstructorUsedError;
+  MediaEmbedModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -49,11 +49,11 @@ abstract class $QuestionModelCopyWith<$Res> {
       QuestionType type,
       String content,
       String answer,
-      MediaModel? media,
+      MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
-  $MediaModelCopyWith<$Res>? get media;
+  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -107,7 +107,7 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaModel?,
+              as MediaEmbedModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -121,12 +121,12 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $MediaModelCopyWith<$Res>? get media {
+  $MediaEmbedModelCopyWith<$Res>? get media {
     if (_value.media == null) {
       return null;
     }
 
-    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
+    return $MediaEmbedModelCopyWith<$Res>(_value.media!, (value) {
       return _then(_value.copyWith(media: value) as $Val);
     });
   }
@@ -147,12 +147,12 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
       QuestionType type,
       String content,
       String answer,
-      MediaModel? media,
+      MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
   @override
-  $MediaModelCopyWith<$Res>? get media;
+  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -204,7 +204,7 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaModel?,
+              as MediaEmbedModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -252,7 +252,7 @@ class _$QuestionModelImpl implements _QuestionModel {
   @JsonKey()
   final String answer;
   @override
-  final MediaModel? media;
+  final MediaEmbedModel? media;
   @override
   final DateTime? createdAt;
   @override
@@ -308,7 +308,7 @@ abstract class _QuestionModel implements QuestionModel {
       final QuestionType type,
       final String content,
       final String answer,
-      final MediaModel? media,
+      final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$QuestionModelImpl;
 
@@ -328,7 +328,7 @@ abstract class _QuestionModel implements QuestionModel {
   @override
   String get answer;
   @override
-  MediaModel? get media;
+  MediaEmbedModel? get media;
   @override
   DateTime? get createdAt;
   @override

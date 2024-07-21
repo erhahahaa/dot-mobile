@@ -5,19 +5,19 @@ part 'media.freezed.dart';
 part 'media.g.dart';
 
 @freezed
-class MediaModel with _$MediaModel {
-  const factory MediaModel({
+class MediaEmbedModel with _$MediaEmbedModel {
+  const factory MediaEmbedModel({
     @Default('') String name,
     @Default(0) int fileSize,
     @Default('') String url,
     @Default('') String type,
-  }) = _MediaModel;
+  }) = _MediaEmbedModel;
 
-  factory MediaModel.fromJson(Map<String, dynamic> json) =>
-      _$MediaModelFromJson(json);
+  factory MediaEmbedModel.fromJson(Map<String, dynamic> json) =>
+      _$MediaEmbedModelFromJson(json);
 
-  static MediaModel fromEntity(MediaEntity entity) {
-    return MediaModel(
+  static MediaEmbedModel fromEntity(MediaEmbedEntity entity) {
+    return MediaEmbedModel(
       name: entity.name ?? '',
       fileSize: entity.fileSize ?? 0,
       url: entity.url ?? '',
@@ -26,9 +26,9 @@ class MediaModel with _$MediaModel {
   }
 }
 
-extension MediaModelX on MediaModel {
-  MediaEntity toEntity() {
-    return MediaEntity(
+extension MediaEmbedModelX on MediaEmbedModel {
+  MediaEmbedEntity toEntity() {
+    return MediaEmbedEntity(
       name: name,
       fileSize: fileSize,
       url: url,

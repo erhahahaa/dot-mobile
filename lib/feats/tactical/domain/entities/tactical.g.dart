@@ -47,7 +47,7 @@ const TacticalEntitySchema = CollectionSchema(
       id: 5,
       name: r'media',
       type: IsarType.object,
-      target: r'MediaEntity',
+      target: r'MediaEmbedEntity',
     ),
     r'name': PropertySchema(
       id: 6,
@@ -91,7 +91,7 @@ const TacticalEntitySchema = CollectionSchema(
     r'TacticalTeamEntity': TacticalTeamEntitySchema,
     r'TacticalTeamMemberEntity': TacticalTeamMemberEntitySchema,
     r'TacticalStrategicEntity': TacticalStrategicEntitySchema,
-    r'MediaEntity': MediaEntitySchema
+    r'MediaEmbedEntity': MediaEmbedEntitySchema
   },
   getId: _tacticalEntityGetId,
   getLinks: _tacticalEntityGetLinks,
@@ -123,8 +123,8 @@ int _tacticalEntityEstimateSize(
     final value = object.media;
     if (value != null) {
       bytesCount += 3 +
-          MediaEntitySchema.estimateSize(
-              value, allOffsets[MediaEntity]!, allOffsets);
+          MediaEmbedEntitySchema.estimateSize(
+              value, allOffsets[MediaEmbedEntity]!, allOffsets);
     }
   }
   bytesCount += 3 + object.name.length * 3;
@@ -163,10 +163,10 @@ void _tacticalEntitySerialize(
   writer.writeDateTime(offsets[2], object.createdAt);
   writer.writeString(offsets[3], object.description);
   writer.writeLong(offsets[4], object.imageId);
-  writer.writeObject<MediaEntity>(
+  writer.writeObject<MediaEmbedEntity>(
     offsets[5],
     allOffsets,
-    MediaEntitySchema.serialize,
+    MediaEmbedEntitySchema.serialize,
     object.media,
   );
   writer.writeString(offsets[6], object.name);
@@ -202,9 +202,9 @@ TacticalEntity _tacticalEntityDeserialize(
     description: reader.readStringOrNull(offsets[3]),
     id: id,
     imageId: reader.readLongOrNull(offsets[4]),
-    media: reader.readObjectOrNull<MediaEntity>(
+    media: reader.readObjectOrNull<MediaEmbedEntity>(
       offsets[5],
-      MediaEntitySchema.deserialize,
+      MediaEmbedEntitySchema.deserialize,
       allOffsets,
     ),
     name: reader.readStringOrNull(offsets[6]) ?? 'SBY Tactical exhibition',
@@ -245,9 +245,9 @@ P _tacticalEntityDeserializeProp<P>(
     case 4:
       return (reader.readLongOrNull(offset)) as P;
     case 5:
-      return (reader.readObjectOrNull<MediaEntity>(
+      return (reader.readObjectOrNull<MediaEmbedEntity>(
         offset,
-        MediaEntitySchema.deserialize,
+        MediaEmbedEntitySchema.deserialize,
         allOffsets,
       )) as P;
     case 6:
@@ -1075,7 +1075,7 @@ extension TacticalEntityQueryObject
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition> media(
-      FilterQuery<MediaEntity> q) {
+      FilterQuery<MediaEmbedEntity> q) {
     return QueryBuilder.apply(this, (query) {
       return query.object(q, r'media');
     });
@@ -1371,7 +1371,8 @@ extension TacticalEntityQueryProperty
     });
   }
 
-  QueryBuilder<TacticalEntity, MediaEntity?, QQueryOperations> mediaProperty() {
+  QueryBuilder<TacticalEntity, MediaEmbedEntity?, QQueryOperations>
+      mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'media');
     });

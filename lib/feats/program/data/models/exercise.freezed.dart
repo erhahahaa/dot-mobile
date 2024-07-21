@@ -28,7 +28,7 @@ mixin _$ProgramExerciseModel {
   int get repetition => throw _privateConstructorUsedError;
   int get sets => throw _privateConstructorUsedError;
   int get rest => throw _privateConstructorUsedError;
-  MediaModel? get media => throw _privateConstructorUsedError;
+  MediaEmbedModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -53,11 +53,11 @@ abstract class $ProgramExerciseModelCopyWith<$Res> {
       int repetition,
       int sets,
       int rest,
-      MediaModel? media,
+      MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
-  $MediaModelCopyWith<$Res>? get media;
+  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -122,7 +122,7 @@ class _$ProgramExerciseModelCopyWithImpl<$Res,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaModel?,
+              as MediaEmbedModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -136,12 +136,12 @@ class _$ProgramExerciseModelCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $MediaModelCopyWith<$Res>? get media {
+  $MediaEmbedModelCopyWith<$Res>? get media {
     if (_value.media == null) {
       return null;
     }
 
-    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
+    return $MediaEmbedModelCopyWith<$Res>(_value.media!, (value) {
       return _then(_value.copyWith(media: value) as $Val);
     });
   }
@@ -164,12 +164,12 @@ abstract class _$$ProgramExerciseModelImplCopyWith<$Res>
       int repetition,
       int sets,
       int rest,
-      MediaModel? media,
+      MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
   @override
-  $MediaModelCopyWith<$Res>? get media;
+  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -231,7 +231,7 @@ class __$$ProgramExerciseModelImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaModel?,
+              as MediaEmbedModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -286,7 +286,7 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
   @JsonKey()
   final int rest;
   @override
-  final MediaModel? media;
+  final MediaEmbedModel? media;
   @override
   final DateTime? createdAt;
   @override
@@ -351,7 +351,7 @@ abstract class _ProgramExerciseModel implements ProgramExerciseModel {
       final int repetition,
       final int sets,
       final int rest,
-      final MediaModel? media,
+      final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$ProgramExerciseModelImpl;
 
@@ -375,7 +375,7 @@ abstract class _ProgramExerciseModel implements ProgramExerciseModel {
   @override
   int get rest;
   @override
-  MediaModel? get media;
+  MediaEmbedModel? get media;
   @override
   DateTime? get createdAt;
   @override

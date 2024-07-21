@@ -11,7 +11,7 @@ class ProgramEntity {
   String name;
   DateTime? startDate;
   DateTime? endDate;
-  MediaEntity? media;
+  MediaEmbedEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
 

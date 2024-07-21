@@ -3,13 +3,13 @@ import 'package:isar/isar.dart';
 part 'media.g.dart';
 
 @embedded
-class MediaEntity {
+class MediaEmbedEntity {
   String? name;
   int? fileSize;
   String? url;
   String? type;
 
-  MediaEntity({
+  MediaEmbedEntity({
     this.name,
     this.fileSize,
     this.url,

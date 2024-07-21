@@ -12,7 +12,7 @@ class ProgramModel with _$ProgramModel {
     @Default('DOT Sport') String name,
     DateTime? startDate,
     DateTime? endDate,
-    MediaModel? media,
+    MediaEmbedModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _ProgramModel;
@@ -27,7 +27,9 @@ class ProgramModel with _$ProgramModel {
       name: entity.name,
       startDate: entity.startDate,
       endDate: entity.endDate,
-      media: entity.media != null ? MediaModel.fromEntity(entity.media!) : null,
+      media: entity.media != null
+          ? MediaEmbedModel.fromEntity(entity.media!)
+          : null,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );

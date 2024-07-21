@@ -15,7 +15,7 @@ class ProgramExerciseModel with _$ProgramExerciseModel {
     @Default(1) int repetition,
     @Default(1) int sets,
     @Default(0) int rest,
-    MediaModel? media,
+    MediaEmbedModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _ProgramExerciseModel;
@@ -33,7 +33,9 @@ class ProgramExerciseModel with _$ProgramExerciseModel {
       repetition: entity.repetition,
       sets: entity.sets,
       rest: entity.rest,
-      media: entity.media != null ? MediaModel.fromEntity(entity.media!) : null,
+      media: entity.media != null
+          ? MediaEmbedModel.fromEntity(entity.media!)
+          : null,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );

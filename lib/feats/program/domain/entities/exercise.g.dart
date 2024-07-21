@@ -32,7 +32,7 @@ const ProgramExerciseEntitySchema = CollectionSchema(
       id: 2,
       name: r'media',
       type: IsarType.object,
-      target: r'MediaEntity',
+      target: r'MediaEmbedEntity',
     ),
     r'mediaId': PropertySchema(
       id: 3,
@@ -84,7 +84,7 @@ const ProgramExerciseEntitySchema = CollectionSchema(
       single: true,
     )
   },
-  embeddedSchemas: {r'MediaEntity': MediaEntitySchema},
+  embeddedSchemas: {r'MediaEmbedEntity': MediaEmbedEntitySchema},
   getId: _programExerciseEntityGetId,
   getLinks: _programExerciseEntityGetLinks,
   attach: _programExerciseEntityAttach,
@@ -107,8 +107,8 @@ int _programExerciseEntityEstimateSize(
     final value = object.media;
     if (value != null) {
       bytesCount += 3 +
-          MediaEntitySchema.estimateSize(
-              value, allOffsets[MediaEntity]!, allOffsets);
+          MediaEmbedEntitySchema.estimateSize(
+              value, allOffsets[MediaEmbedEntity]!, allOffsets);
     }
   }
   bytesCount += 3 + object.name.length * 3;
@@ -123,10 +123,10 @@ void _programExerciseEntitySerialize(
 ) {
   writer.writeDateTime(offsets[0], object.createdAt);
   writer.writeString(offsets[1], object.description);
-  writer.writeObject<MediaEntity>(
+  writer.writeObject<MediaEmbedEntity>(
     offsets[2],
     allOffsets,
-    MediaEntitySchema.serialize,
+    MediaEmbedEntitySchema.serialize,
     object.media,
   );
   writer.writeLong(offsets[3], object.mediaId);
@@ -148,9 +148,9 @@ ProgramExerciseEntity _programExerciseEntityDeserialize(
     createdAt: reader.readDateTimeOrNull(offsets[0]),
     description: reader.readStringOrNull(offsets[1]),
     id: id,
-    media: reader.readObjectOrNull<MediaEntity>(
+    media: reader.readObjectOrNull<MediaEmbedEntity>(
       offsets[2],
-      MediaEntitySchema.deserialize,
+      MediaEmbedEntitySchema.deserialize,
       allOffsets,
     ),
     mediaId: reader.readLongOrNull(offsets[3]),
@@ -176,9 +176,9 @@ P _programExerciseEntityDeserializeProp<P>(
     case 1:
       return (reader.readStringOrNull(offset)) as P;
     case 2:
-      return (reader.readObjectOrNull<MediaEntity>(
+      return (reader.readObjectOrNull<MediaEmbedEntity>(
         offset,
-        MediaEntitySchema.deserialize,
+        MediaEmbedEntitySchema.deserialize,
         allOffsets,
       )) as P;
     case 3:
@@ -1117,7 +1117,7 @@ extension ProgramExerciseEntityQueryFilter on QueryBuilder<
 extension ProgramExerciseEntityQueryObject on QueryBuilder<
     ProgramExerciseEntity, ProgramExerciseEntity, QFilterCondition> {
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> media(FilterQuery<MediaEntity> q) {
+      QAfterFilterCondition> media(FilterQuery<MediaEmbedEntity> q) {
     return QueryBuilder.apply(this, (query) {
       return query.object(q, r'media');
     });
@@ -1501,7 +1501,7 @@ extension ProgramExerciseEntityQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<ProgramExerciseEntity, MediaEntity?, QQueryOperations>
+  QueryBuilder<ProgramExerciseEntity, MediaEmbedEntity?, QQueryOperations>
       mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'media');

@@ -13,7 +13,7 @@ class ExamModel with _$ExamModel {
     @Default('DOT Summer Exams') String title,
     @Default('Description about exam') String description,
     DateTime? dueAt,
-    MediaModel? media,
+    MediaEmbedModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _ExamModel;
@@ -28,7 +28,9 @@ class ExamModel with _$ExamModel {
       title: entity.title,
       description: entity.description,
       dueAt: entity.dueAt,
-      media: entity.media != null ? MediaModel.fromEntity(entity.media!) : null,
+      media: entity.media != null
+          ? MediaEmbedModel.fromEntity(entity.media!)
+          : null,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );

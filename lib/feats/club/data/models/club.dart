@@ -12,7 +12,7 @@ class ClubModel with _$ClubModel {
     @Default('Indo Sports') String name,
     @Default('Sport Club') String description,
     @Default(SportType.basketBall) SportType type,
-    MediaModel? media,
+    MediaEmbedModel? media,
     @Default(0) int memberCount,
     DateTime? createdAt,
   }) = _ClubModel;
@@ -27,7 +27,9 @@ class ClubModel with _$ClubModel {
       name: entity.name ?? '',
       description: entity.description ?? '',
       type: entity.type,
-      media: entity.media != null ? MediaModel.fromEntity(entity.media!) : null,
+      media: entity.media != null
+          ? MediaEmbedModel.fromEntity(entity.media!)
+          : null,
       memberCount: entity.memberCount,
       createdAt: entity.createdAt,
     );
