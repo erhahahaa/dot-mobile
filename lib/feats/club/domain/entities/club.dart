@@ -6,6 +6,8 @@ enum SportType {
   volleyBall,
   basketBall,
   soccer,
+  miniSoccer,
+  handBall,
 }
 
 @collection

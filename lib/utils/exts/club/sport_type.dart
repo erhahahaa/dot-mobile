@@ -9,6 +9,10 @@ extension SportTypeX on SportType {
         return 'Basket Ball';
       case SportType.soccer:
         return 'Soccer';
+      case SportType.miniSoccer:
+        return 'Mini Soccer';
+      case SportType.handBall:
+        return 'Handball';
     }
   }
 }
