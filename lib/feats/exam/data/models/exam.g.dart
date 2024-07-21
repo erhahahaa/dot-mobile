@@ -18,7 +18,7 @@ _$ExamModelImpl _$$ExamModelImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['dueAt'] as String),
       media: json['media'] == null
           ? null
-          : MediaModel.fromJson(json['media'] as Map<String, dynamic>),
+          : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),

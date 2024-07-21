@@ -9,9 +9,9 @@ part of 'media.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-const MediaEntitySchema = Schema(
-  name: r'MediaEntity',
-  id: -6918515590517454333,
+const MediaEmbedEntitySchema = Schema(
+  name: r'MediaEmbedEntity',
+  id: 3071013507687895270,
   properties: {
     r'fileSize': PropertySchema(
       id: 0,
@@ -34,14 +34,14 @@ const MediaEntitySchema = Schema(
       type: IsarType.string,
     )
   },
-  estimateSize: _mediaEntityEstimateSize,
-  serialize: _mediaEntitySerialize,
-  deserialize: _mediaEntityDeserialize,
-  deserializeProp: _mediaEntityDeserializeProp,
+  estimateSize: _mediaEmbedEntityEstimateSize,
+  serialize: _mediaEmbedEntitySerialize,
+  deserialize: _mediaEmbedEntityDeserialize,
+  deserializeProp: _mediaEmbedEntityDeserializeProp,
 );
 
-int _mediaEntityEstimateSize(
-  MediaEntity object,
+int _mediaEmbedEntityEstimateSize(
+  MediaEmbedEntity object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -67,8 +67,8 @@ int _mediaEntityEstimateSize(
   return bytesCount;
 }
 
-void _mediaEntitySerialize(
-  MediaEntity object,
+void _mediaEmbedEntitySerialize(
+  MediaEmbedEntity object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -79,13 +79,13 @@ void _mediaEntitySerialize(
   writer.writeString(offsets[3], object.url);
 }
 
-MediaEntity _mediaEntityDeserialize(
+MediaEmbedEntity _mediaEmbedEntityDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = MediaEntity(
+  final object = MediaEmbedEntity(
     fileSize: reader.readLongOrNull(offsets[0]),
     name: reader.readStringOrNull(offsets[1]),
     type: reader.readStringOrNull(offsets[2]),
@@ -94,7 +94,7 @@ MediaEntity _mediaEntityDeserialize(
   return object;
 }
 
-P _mediaEntityDeserializeProp<P>(
+P _mediaEmbedEntityDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -114,9 +114,9 @@ P _mediaEntityDeserializeProp<P>(
   }
 }
 
-extension MediaEntityQueryFilter
-    on QueryBuilder<MediaEntity, MediaEntity, QFilterCondition> {
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+extension MediaEmbedEntityQueryFilter
+    on QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QFilterCondition> {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       fileSizeIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -125,7 +125,7 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       fileSizeIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -134,8 +134,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> fileSizeEqualTo(
-      int? value) {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      fileSizeEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'fileSize',
@@ -144,7 +144,7 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       fileSizeGreaterThan(
     int? value, {
     bool include = false,
@@ -158,7 +158,7 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       fileSizeLessThan(
     int? value, {
     bool include = false,
@@ -172,7 +172,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> fileSizeBetween(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      fileSizeBetween(
     int? lower,
     int? upper, {
     bool includeLower = true,
@@ -189,7 +190,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> nameIsNull() {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      nameIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
         property: r'name',
@@ -197,7 +199,7 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       nameIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -206,7 +208,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> nameEqualTo(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      nameEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
@@ -219,7 +222,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> nameGreaterThan(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      nameGreaterThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -234,7 +238,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> nameLessThan(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      nameLessThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -249,7 +254,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> nameBetween(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      nameBetween(
     String? lower,
     String? upper, {
     bool includeLower = true,
@@ -268,7 +274,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> nameStartsWith(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      nameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -281,7 +288,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> nameEndsWith(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      nameEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -294,9 +302,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> nameContains(
-      String value,
-      {bool caseSensitive = true}) {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      nameContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'name',
@@ -306,9 +313,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> nameMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      nameMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'name',
@@ -318,7 +324,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> nameIsEmpty() {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      nameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'name',
@@ -327,7 +334,7 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       nameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -337,7 +344,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> typeIsNull() {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      typeIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
         property: r'type',
@@ -345,7 +353,7 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       typeIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -354,7 +362,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> typeEqualTo(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      typeEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
@@ -367,7 +376,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> typeGreaterThan(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      typeGreaterThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -382,7 +392,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> typeLessThan(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      typeLessThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -397,7 +408,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> typeBetween(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      typeBetween(
     String? lower,
     String? upper, {
     bool includeLower = true,
@@ -416,7 +428,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> typeStartsWith(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      typeStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -429,7 +442,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> typeEndsWith(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      typeEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -442,9 +456,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> typeContains(
-      String value,
-      {bool caseSensitive = true}) {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      typeContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'type',
@@ -454,9 +467,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> typeMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      typeMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'type',
@@ -466,7 +478,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> typeIsEmpty() {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      typeIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'type',
@@ -475,7 +488,7 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       typeIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -485,7 +498,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> urlIsNull() {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      urlIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
         property: r'url',
@@ -493,7 +507,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> urlIsNotNull() {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      urlIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'url',
@@ -501,7 +516,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> urlEqualTo(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      urlEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
@@ -514,7 +530,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> urlGreaterThan(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      urlGreaterThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -529,7 +546,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> urlLessThan(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      urlLessThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -544,7 +562,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> urlBetween(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      urlBetween(
     String? lower,
     String? upper, {
     bool includeLower = true,
@@ -563,7 +582,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> urlStartsWith(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      urlStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -576,7 +596,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> urlEndsWith(
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      urlEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -589,9 +610,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> urlContains(
-      String value,
-      {bool caseSensitive = true}) {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      urlContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'url',
@@ -601,9 +621,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> urlMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      urlMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'url',
@@ -613,7 +632,8 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> urlIsEmpty() {
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      urlIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'url',
@@ -622,7 +642,7 @@ extension MediaEntityQueryFilter
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       urlIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -633,5 +653,5 @@ extension MediaEntityQueryFilter
   }
 }
 
-extension MediaEntityQueryObject
-    on QueryBuilder<MediaEntity, MediaEntity, QFilterCondition> {}
+extension MediaEmbedEntityQueryObject
+    on QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QFilterCondition> {}

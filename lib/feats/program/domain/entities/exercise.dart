@@ -13,7 +13,7 @@ class ProgramExerciseEntity {
   int repetition;
   int sets;
   int rest;
-  MediaEntity? media;
+  MediaEmbedEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
 

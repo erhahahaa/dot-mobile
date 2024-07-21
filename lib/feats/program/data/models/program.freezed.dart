@@ -25,7 +25,7 @@ mixin _$ProgramModel {
   String get name => throw _privateConstructorUsedError;
   DateTime? get startDate => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
-  MediaModel? get media => throw _privateConstructorUsedError;
+  MediaEmbedModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -47,11 +47,11 @@ abstract class $ProgramModelCopyWith<$Res> {
       String name,
       DateTime? startDate,
       DateTime? endDate,
-      MediaModel? media,
+      MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
-  $MediaModelCopyWith<$Res>? get media;
+  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -100,7 +100,7 @@ class _$ProgramModelCopyWithImpl<$Res, $Val extends ProgramModel>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaModel?,
+              as MediaEmbedModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -114,12 +114,12 @@ class _$ProgramModelCopyWithImpl<$Res, $Val extends ProgramModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $MediaModelCopyWith<$Res>? get media {
+  $MediaEmbedModelCopyWith<$Res>? get media {
     if (_value.media == null) {
       return null;
     }
 
-    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
+    return $MediaEmbedModelCopyWith<$Res>(_value.media!, (value) {
       return _then(_value.copyWith(media: value) as $Val);
     });
   }
@@ -139,12 +139,12 @@ abstract class _$$ProgramModelImplCopyWith<$Res>
       String name,
       DateTime? startDate,
       DateTime? endDate,
-      MediaModel? media,
+      MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
   @override
-  $MediaModelCopyWith<$Res>? get media;
+  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -191,7 +191,7 @@ class __$$ProgramModelImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaModel?,
+              as MediaEmbedModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -234,7 +234,7 @@ class _$ProgramModelImpl implements _ProgramModel {
   @override
   final DateTime? endDate;
   @override
-  final MediaModel? media;
+  final MediaEmbedModel? media;
   @override
   final DateTime? createdAt;
   @override
@@ -289,7 +289,7 @@ abstract class _ProgramModel implements ProgramModel {
       final String name,
       final DateTime? startDate,
       final DateTime? endDate,
-      final MediaModel? media,
+      final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$ProgramModelImpl;
 
@@ -307,7 +307,7 @@ abstract class _ProgramModel implements ProgramModel {
   @override
   DateTime? get endDate;
   @override
-  MediaModel? get media;
+  MediaEmbedModel? get media;
   @override
   DateTime? get createdAt;
   @override

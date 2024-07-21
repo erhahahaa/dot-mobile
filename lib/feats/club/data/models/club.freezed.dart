@@ -25,7 +25,7 @@ mixin _$ClubModel {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   SportType get type => throw _privateConstructorUsedError;
-  MediaModel? get media => throw _privateConstructorUsedError;
+  MediaEmbedModel? get media => throw _privateConstructorUsedError;
   int get memberCount => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -46,11 +46,11 @@ abstract class $ClubModelCopyWith<$Res> {
       String name,
       String description,
       SportType type,
-      MediaModel? media,
+      MediaEmbedModel? media,
       int memberCount,
       DateTime? createdAt});
 
-  $MediaModelCopyWith<$Res>? get media;
+  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -99,7 +99,7 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaModel?,
+              as MediaEmbedModel?,
       memberCount: null == memberCount
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
@@ -113,12 +113,12 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $MediaModelCopyWith<$Res>? get media {
+  $MediaEmbedModelCopyWith<$Res>? get media {
     if (_value.media == null) {
       return null;
     }
 
-    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
+    return $MediaEmbedModelCopyWith<$Res>(_value.media!, (value) {
       return _then(_value.copyWith(media: value) as $Val);
     });
   }
@@ -138,12 +138,12 @@ abstract class _$$ClubModelImplCopyWith<$Res>
       String name,
       String description,
       SportType type,
-      MediaModel? media,
+      MediaEmbedModel? media,
       int memberCount,
       DateTime? createdAt});
 
   @override
-  $MediaModelCopyWith<$Res>? get media;
+  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -190,7 +190,7 @@ class __$$ClubModelImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaModel?,
+              as MediaEmbedModel?,
       memberCount: null == memberCount
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
@@ -235,7 +235,7 @@ class _$ClubModelImpl implements _ClubModel {
   @JsonKey()
   final SportType type;
   @override
-  final MediaModel? media;
+  final MediaEmbedModel? media;
   @override
   @JsonKey()
   final int memberCount;
@@ -292,7 +292,7 @@ abstract class _ClubModel implements ClubModel {
       final String name,
       final String description,
       final SportType type,
-      final MediaModel? media,
+      final MediaEmbedModel? media,
       final int memberCount,
       final DateTime? createdAt}) = _$ClubModelImpl;
 
@@ -310,7 +310,7 @@ abstract class _ClubModel implements ClubModel {
   @override
   SportType get type;
   @override
-  MediaModel? get media;
+  MediaEmbedModel? get media;
   @override
   int get memberCount;
   @override

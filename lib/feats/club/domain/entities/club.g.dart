@@ -41,7 +41,7 @@ const ClubEntitySchema = CollectionSchema(
       id: 4,
       name: r'media',
       type: IsarType.object,
-      target: r'MediaEntity',
+      target: r'MediaEmbedEntity',
     ),
     r'memberCount': PropertySchema(
       id: 5,
@@ -97,7 +97,7 @@ const ClubEntitySchema = CollectionSchema(
       single: false,
     )
   },
-  embeddedSchemas: {r'MediaEntity': MediaEntitySchema},
+  embeddedSchemas: {r'MediaEmbedEntity': MediaEmbedEntitySchema},
   getId: _clubEntityGetId,
   getLinks: _clubEntityGetLinks,
   attach: _clubEntityAttach,
@@ -120,8 +120,8 @@ int _clubEntityEstimateSize(
     final value = object.media;
     if (value != null) {
       bytesCount += 3 +
-          MediaEntitySchema.estimateSize(
-              value, allOffsets[MediaEntity]!, allOffsets);
+          MediaEmbedEntitySchema.estimateSize(
+              value, allOffsets[MediaEmbedEntity]!, allOffsets);
     }
   }
   {
@@ -143,10 +143,10 @@ void _clubEntitySerialize(
   writer.writeLong(offsets[1], object.creatorId);
   writer.writeString(offsets[2], object.description);
   writer.writeLong(offsets[3], object.imageId);
-  writer.writeObject<MediaEntity>(
+  writer.writeObject<MediaEmbedEntity>(
     offsets[4],
     allOffsets,
-    MediaEntitySchema.serialize,
+    MediaEmbedEntitySchema.serialize,
     object.media,
   );
   writer.writeLong(offsets[5], object.memberCount);
@@ -167,9 +167,9 @@ ClubEntity _clubEntityDeserialize(
     description: reader.readStringOrNull(offsets[2]),
     id: id,
     imageId: reader.readLongOrNull(offsets[3]),
-    media: reader.readObjectOrNull<MediaEntity>(
+    media: reader.readObjectOrNull<MediaEmbedEntity>(
       offsets[4],
-      MediaEntitySchema.deserialize,
+      MediaEmbedEntitySchema.deserialize,
       allOffsets,
     ),
     memberCount: reader.readLongOrNull(offsets[5]) ?? 0,
@@ -197,9 +197,9 @@ P _clubEntityDeserializeProp<P>(
     case 3:
       return (reader.readLongOrNull(offset)) as P;
     case 4:
-      return (reader.readObjectOrNull<MediaEntity>(
+      return (reader.readObjectOrNull<MediaEmbedEntity>(
         offset,
-        MediaEntitySchema.deserialize,
+        MediaEmbedEntitySchema.deserialize,
         allOffsets,
       )) as P;
     case 5:
@@ -1093,7 +1093,7 @@ extension ClubEntityQueryFilter
 extension ClubEntityQueryObject
     on QueryBuilder<ClubEntity, ClubEntity, QFilterCondition> {
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> media(
-      FilterQuery<MediaEntity> q) {
+      FilterQuery<MediaEmbedEntity> q) {
     return QueryBuilder.apply(this, (query) {
       return query.object(q, r'media');
     });
@@ -1640,7 +1640,8 @@ extension ClubEntityQueryProperty
     });
   }
 
-  QueryBuilder<ClubEntity, MediaEntity?, QQueryOperations> mediaProperty() {
+  QueryBuilder<ClubEntity, MediaEmbedEntity?, QQueryOperations>
+      mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'media');
     });

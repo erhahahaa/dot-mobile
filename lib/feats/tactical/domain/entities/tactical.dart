@@ -16,7 +16,7 @@ class TacticalEntity {
   TacticalBoardEntity? board;
   TacticalTeamEntity? team;
   TacticalStrategicEntity? strategic;
-  MediaEntity? media;
+  MediaEmbedEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
 

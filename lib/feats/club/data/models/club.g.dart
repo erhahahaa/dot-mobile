@@ -16,7 +16,7 @@ _$ClubModelImpl _$$ClubModelImplFromJson(Map<String, dynamic> json) =>
           SportType.basketBall,
       media: json['media'] == null
           ? null
-          : MediaModel.fromJson(json['media'] as Map<String, dynamic>),
+          : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),
       memberCount: (json['memberCount'] as num?)?.toInt() ?? 0,
       createdAt: json['createdAt'] == null
           ? null

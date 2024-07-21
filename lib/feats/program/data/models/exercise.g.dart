@@ -19,7 +19,7 @@ _$ProgramExerciseModelImpl _$$ProgramExerciseModelImplFromJson(
       rest: (json['rest'] as num?)?.toInt() ?? 0,
       media: json['media'] == null
           ? null
-          : MediaModel.fromJson(json['media'] as Map<String, dynamic>),
+          : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),

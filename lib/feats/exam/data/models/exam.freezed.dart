@@ -26,7 +26,7 @@ mixin _$ExamModel {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   DateTime? get dueAt => throw _privateConstructorUsedError;
-  MediaModel? get media => throw _privateConstructorUsedError;
+  MediaEmbedModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -48,11 +48,11 @@ abstract class $ExamModelCopyWith<$Res> {
       String title,
       String description,
       DateTime? dueAt,
-      MediaModel? media,
+      MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
-  $MediaModelCopyWith<$Res>? get media;
+  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaModel?,
+              as MediaEmbedModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -120,12 +120,12 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $MediaModelCopyWith<$Res>? get media {
+  $MediaEmbedModelCopyWith<$Res>? get media {
     if (_value.media == null) {
       return null;
     }
 
-    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
+    return $MediaEmbedModelCopyWith<$Res>(_value.media!, (value) {
       return _then(_value.copyWith(media: value) as $Val);
     });
   }
@@ -146,12 +146,12 @@ abstract class _$$ExamModelImplCopyWith<$Res>
       String title,
       String description,
       DateTime? dueAt,
-      MediaModel? media,
+      MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
   @override
-  $MediaModelCopyWith<$Res>? get media;
+  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -203,7 +203,7 @@ class __$$ExamModelImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaModel?,
+              as MediaEmbedModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -250,7 +250,7 @@ class _$ExamModelImpl implements _ExamModel {
   @override
   final DateTime? dueAt;
   @override
-  final MediaModel? media;
+  final MediaEmbedModel? media;
   @override
   final DateTime? createdAt;
   @override
@@ -307,7 +307,7 @@ abstract class _ExamModel implements ExamModel {
       final String title,
       final String description,
       final DateTime? dueAt,
-      final MediaModel? media,
+      final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$ExamModelImpl;
 
@@ -327,7 +327,7 @@ abstract class _ExamModel implements ExamModel {
   @override
   DateTime? get dueAt;
   @override
-  MediaModel? get media;
+  MediaEmbedModel? get media;
   @override
   DateTime? get createdAt;
   @override
