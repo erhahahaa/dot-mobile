@@ -19,7 +19,7 @@ class ClubEntity {
   @enumerated
   SportType type;
   MediaEmbedEntity? media;
-  int memberCount;
+  int memberCount, programCount, examCount;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -38,6 +38,8 @@ class ClubEntity {
     this.type = SportType.basketBall,
     this.media,
     this.memberCount = 0,
+    this.programCount = 0,
+    this.examCount = 0,
     this.createdAt,
     this.updatedAt,
   });

@@ -95,6 +95,7 @@ class DioClient with FirebaseCrashLogger {
     String url, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
+    List<dynamic>? listData,
     FormData? formData,
     JSONIsolateConverter<T>? converter,
     Function(int, int)? onSendProgress,
@@ -103,7 +104,7 @@ class DioClient with FirebaseCrashLogger {
     try {
       final response = await dio.post(
         url,
-        data: data ?? formData,
+        data: listData ?? data ?? formData,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
         queryParameters: queryParameters,
@@ -134,6 +135,7 @@ class DioClient with FirebaseCrashLogger {
   Future<Either<Failure, T>> putRequest<T>(
     String url, {
     Map<String, dynamic>? data,
+    List<dynamic>? listData,
     FormData? formData,
     JSONIsolateConverter<T>? converter,
     Function(int, int)? onSendProgress,
@@ -142,7 +144,7 @@ class DioClient with FirebaseCrashLogger {
     try {
       final response = await dio.put(
         url,
-        data: data ?? formData,
+        data: listData ?? data ?? formData,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );

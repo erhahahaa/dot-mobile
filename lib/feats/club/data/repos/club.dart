@@ -17,7 +17,12 @@ class ClubRepoImpl implements ClubRepo {
       formData: params.toFormData(),
       converter: (res) => ClubModel.fromJson(res['data']),
     );
-
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.clubs.put(r.toEntity()),
+      ),
+    );
     return res;
   }
 
@@ -28,6 +33,13 @@ class ClubRepoImpl implements ClubRepo {
     final res = await _remote.deleteRequest(
       '${ListAPI.CLUB}/${params.id}',
       converter: (res) => ClubModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.clubs.delete(r.id),
+      ),
     );
 
     return res;
@@ -50,6 +62,18 @@ class ClubRepoImpl implements ClubRepo {
       },
     );
 
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async {
+          _local.clubs.clear();
+          for (final club in r) {
+            _local.clubs.put(club.toEntity());
+          }
+        },
+      ),
+    );
+
     return res;
   }
 
@@ -60,6 +84,13 @@ class ClubRepoImpl implements ClubRepo {
     final res = await _remote.getRequest(
       '${ListAPI.CLUB}/${params.id}',
       converter: (res) => ClubModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.clubs.put(r.toEntity()),
+      ),
     );
 
     return res;
@@ -73,6 +104,13 @@ class ClubRepoImpl implements ClubRepo {
       '${ListAPI.CLUB}/${params.id}',
       formData: params.toFormData(),
       converter: (res) => ClubModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.clubs.put(r.toEntity()),
+      ),
     );
 
     return res;

@@ -93,4 +93,13 @@ class StringsId extends Strings {
 
   @override
   String get about => 'Tentang';
+
+  @override
+  String get clubImageRequired => 'Gambar klub wajib diisi';
+
+  @override
+  String get successCreateProgram => 'Berhasil membuat program';
+
+  @override
+  String get failedCreateProgram => 'Gagal membuat program';
 }

@@ -19,6 +19,7 @@ mixin _$ProgramState {
   BaseState get state => throw _privateConstructorUsedError;
   List<ProgramModel> get programs => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
+  ProgramModel? get createdProgram => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProgramStateCopyWith<ProgramState> get copyWith =>
@@ -31,7 +32,13 @@ abstract class $ProgramStateCopyWith<$Res> {
           ProgramState value, $Res Function(ProgramState) then) =
       _$ProgramStateCopyWithImpl<$Res, ProgramState>;
   @useResult
-  $Res call({BaseState state, List<ProgramModel> programs, Failure? failure});
+  $Res call(
+      {BaseState state,
+      List<ProgramModel> programs,
+      Failure? failure,
+      ProgramModel? createdProgram});
+
+  $ProgramModelCopyWith<$Res>? get createdProgram;
 }
 
 /// @nodoc
@@ -50,6 +57,7 @@ class _$ProgramStateCopyWithImpl<$Res, $Val extends ProgramState>
     Object? state = null,
     Object? programs = null,
     Object? failure = freezed,
+    Object? createdProgram = freezed,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -64,7 +72,23 @@ class _$ProgramStateCopyWithImpl<$Res, $Val extends ProgramState>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      createdProgram: freezed == createdProgram
+          ? _value.createdProgram
+          : createdProgram // ignore: cast_nullable_to_non_nullable
+              as ProgramModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProgramModelCopyWith<$Res>? get createdProgram {
+    if (_value.createdProgram == null) {
+      return null;
+    }
+
+    return $ProgramModelCopyWith<$Res>(_value.createdProgram!, (value) {
+      return _then(_value.copyWith(createdProgram: value) as $Val);
+    });
   }
 }
 
@@ -76,7 +100,14 @@ abstract class _$$ProgramStateImplCopyWith<$Res>
       __$$ProgramStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BaseState state, List<ProgramModel> programs, Failure? failure});
+  $Res call(
+      {BaseState state,
+      List<ProgramModel> programs,
+      Failure? failure,
+      ProgramModel? createdProgram});
+
+  @override
+  $ProgramModelCopyWith<$Res>? get createdProgram;
 }
 
 /// @nodoc
@@ -93,6 +124,7 @@ class __$$ProgramStateImplCopyWithImpl<$Res>
     Object? state = null,
     Object? programs = null,
     Object? failure = freezed,
+    Object? createdProgram = freezed,
   }) {
     return _then(_$ProgramStateImpl(
       state: null == state
@@ -107,6 +139,10 @@ class __$$ProgramStateImplCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      createdProgram: freezed == createdProgram
+          ? _value.createdProgram
+          : createdProgram // ignore: cast_nullable_to_non_nullable
+              as ProgramModel?,
     ));
   }
 }
@@ -117,7 +153,8 @@ class _$ProgramStateImpl implements _ProgramState {
   const _$ProgramStateImpl(
       {this.state = BaseState.initial,
       final List<ProgramModel> programs = const [],
-      this.failure})
+      this.failure,
+      this.createdProgram})
       : _programs = programs;
 
   @override
@@ -134,10 +171,12 @@ class _$ProgramStateImpl implements _ProgramState {
 
   @override
   final Failure? failure;
+  @override
+  final ProgramModel? createdProgram;
 
   @override
   String toString() {
-    return 'ProgramState(state: $state, programs: $programs, failure: $failure)';
+    return 'ProgramState(state: $state, programs: $programs, failure: $failure, createdProgram: $createdProgram)';
   }
 
   @override
@@ -147,12 +186,14 @@ class _$ProgramStateImpl implements _ProgramState {
             other is _$ProgramStateImpl &&
             (identical(other.state, state) || other.state == state) &&
             const DeepCollectionEquality().equals(other._programs, _programs) &&
-            (identical(other.failure, failure) || other.failure == failure));
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.createdProgram, createdProgram) ||
+                other.createdProgram == createdProgram));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, state,
-      const DeepCollectionEquality().hash(_programs), failure);
+      const DeepCollectionEquality().hash(_programs), failure, createdProgram);
 
   @JsonKey(ignore: true)
   @override
@@ -165,7 +206,8 @@ abstract class _ProgramState implements ProgramState {
   const factory _ProgramState(
       {final BaseState state,
       final List<ProgramModel> programs,
-      final Failure? failure}) = _$ProgramStateImpl;
+      final Failure? failure,
+      final ProgramModel? createdProgram}) = _$ProgramStateImpl;
 
   @override
   BaseState get state;
@@ -173,6 +215,8 @@ abstract class _ProgramState implements ProgramState {
   List<ProgramModel> get programs;
   @override
   Failure? get failure;
+  @override
+  ProgramModel? get createdProgram;
   @override
   @JsonKey(ignore: true)
   _$$ProgramStateImplCopyWith<_$ProgramStateImpl> get copyWith =>

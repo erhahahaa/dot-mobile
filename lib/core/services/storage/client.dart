@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:flutter/foundation.dart';
 import 'package:isar/isar.dart';
@@ -5,23 +7,43 @@ import 'package:path_provider/path_provider.dart';
 
 class IsarClient {
   late Isar _isar;
-  IsarCollection<UserEntity> get users => _isar.userEntitys;
+
   Isar get isar => _isar;
+
+  IsarCollection<UserEntity> get users => _isar.userEntitys;
+  IsarCollection<ClubEntity> get clubs => _isar.clubEntitys;
+  IsarCollection<ProgramEntity> get programs => _isar.programEntitys;
+  IsarCollection<ProgramExerciseEntity> get programExercises =>
+      _isar.programExerciseEntitys;
+  IsarCollection<ExamEntity> get exams => _isar.examEntitys;
+  IsarCollection<QuestionEntity> get questions => _isar.questionEntitys;
+  IsarCollection<TacticalEntity> get tacticals => _isar.tacticalEntitys;
 
   IsarClient();
 
   Future<void> initIsar() async {
     if (Isar.getInstance() == null) {
-      final dir = await getApplicationDocumentsDirectory();
-      _isar = await Isar.open(
-        [
-          UserEntitySchema,
-        ],
-        inspector: kDebugMode,
-        directory: dir.path,
-      );
+      _isar = await _createIsar();
     } else {
       _isar = Isar.getInstance()!;
     }
   }
+
+  Future<Isar> _createIsar() async {
+    final dir = await getApplicationDocumentsDirectory();
+    return await Isar.open(
+      [
+        UserEntitySchema,
+        ClubEntitySchema,
+        ProgramEntitySchema,
+        ProgramExerciseEntitySchema,
+        ExamEntitySchema,
+        QuestionEntitySchema,
+        TacticalEntitySchema,
+      ],
+      inspector: kDebugMode,
+      directory: dir.path,
+    );
+  }
+ 
 }

@@ -17,99 +17,110 @@ class ProgramScreen extends StatefulWidget {
 
 class _ProgramScreenState extends State<ProgramScreen> {
   bool hideCalendar = false, hideListProgram = false;
+
   @override
   Widget build(BuildContext context) {
     return Parent(
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => context.pushNamed(AppRoutes.coachCreateProgram.name),
+        onPressed: () => context.pushNamed(
+          AppRoutes.coachCreateProgram.name,
+          pathParameters: {
+            'clubId': widget.club.id.toString(),
+          },
+        ),
         label: Row(
           children: [
-            Icon(Icons.add),
+            const Icon(Icons.add),
             SizedBox(width: 8.w),
-            Text('New Program'),
+            const Text('New Program'),
           ],
         ),
       ),
-      body: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xFF5767ED), Color(0xFF32ADBE)],
-              ),
-            ),
-          ),
-          Positioned(
-            top: 32,
-            left: 8,
-            right: 8,
-            child: Row(
-              children: [
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide(
-                      width: 2,
-                      color: context.theme.colorScheme.onPrimary,
-                    ),
+      body: BlocBuilder<ProgramCubit, ProgramState>(
+        builder: (context, state) {
+          return Stack(
+            children: [
+              Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0xFF5767ED), Color(0xFF32ADBE)],
                   ),
-                  onPressed: () => context.pop(),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_circle_left_outlined,
-                        color: context.theme.colorScheme.onPrimary,
-                        size: 14.sp,
-                      ),
-                      SizedBox(width: 8.w),
-                      Text(
-                        context.str?.back ?? 'Back',
-                        style: TextStyle(
+                ),
+              ),
+              Positioned(
+                top: 32,
+                left: 8,
+                right: 8,
+                child: Row(
+                  children: [
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(
+                          width: 2,
                           color: context.theme.colorScheme.onPrimary,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.normal,
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(width: 8.w),
-                Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                  width: 216.w,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(64.r),
-                  ),
-                  child: Text(
-                    widget.club.name,
-                    style: context.theme.textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18.sp,
+                      onPressed: () {
+                        context.pop();
+                        context
+                            .read<ProgramCubit>()
+                            .emitCaller(state.copyWith(programs: []));
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_circle_left_outlined,
+                            color: context.theme.colorScheme.onPrimary,
+                            size: 14.sp,
+                          ),
+                          SizedBox(width: 8.w),
+                          Text(
+                            context.str?.back ?? 'Back',
+                            style: TextStyle(
+                              color: context.theme.colorScheme.onPrimary,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Positioned(
-            top: 90,
-            child: Container(
-              width: 344.w,
-              height: 680.h,
-              padding: EdgeInsets.only(top: 16.h, left: 16.w, right: 16.w),
-              decoration: BoxDecoration(
-                color: context.theme.colorScheme.surface,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(32.r),
-                  topRight: Radius.circular(32.r),
+                    SizedBox(width: 8.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                      width: 216.w,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(64.r),
+                      ),
+                      child: Text(
+                        widget.club.name,
+                        style: context.theme.textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18.sp,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              child: BlocBuilder<ProgramCubit, ProgramState>(
-                builder: (context, state) {
-                  return SingleChildScrollView(
+              Positioned(
+                top: 90,
+                child: Container(
+                  width: 344.w,
+                  height: 680.h,
+                  padding: EdgeInsets.only(top: 16.h, left: 16.w, right: 16.w),
+                  decoration: BoxDecoration(
+                    color: context.theme.colorScheme.surface,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(32.r),
+                      topRight: Radius.circular(32.r),
+                    ),
+                  ),
+                  child: SingleChildScrollView(
                     child: Column(
                       children: [
                         Row(
@@ -135,14 +146,31 @@ class _ProgramScreenState extends State<ProgramScreen> {
                         ),
                         hideCalendar
                             ? Container()
-                            : Container(
+                            : SizedBox(
                                 height: 400.h,
                                 child: SfCalendar(
                                   view: CalendarView.month,
-                                  monthViewSettings: MonthViewSettings(
+                                  monthViewSettings: const MonthViewSettings(
                                     showAgenda: true,
                                     agendaItemHeight: 70,
                                   ),
+                                  dataSource: ProgramDataSource(state.programs),
+                                  onTap: (calendarTapDetails) {
+                                    if (calendarTapDetails
+                                            .appointments?.length ==
+                                        1) {
+                                      final program = calendarTapDetails
+                                          .appointments?.first;
+                                      context.pushNamed(
+                                          AppRoutes.coachProgramDetail.name,
+                                          pathParameters: {
+                                            'id': program.id.toString()
+                                          },
+                                          extra: {
+                                            'program': program,
+                                          });
+                                    }
+                                  },
                                 ),
                               ),
                         SizedBox(height: 16.h),
@@ -228,12 +256,12 @@ class _ProgramScreenState extends State<ProgramScreen> {
                               ),
                       ],
                     ),
-                  );
-                },
+                  ),
+                ),
               ),
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       ),
     );
   }

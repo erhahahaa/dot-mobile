@@ -1,5 +1,6 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -67,7 +68,7 @@ class DashboardScreen extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                '3',
+                                state.coachClubs.sumTotalMembers().toString(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
@@ -84,7 +85,7 @@ class DashboardScreen extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                '44',
+                                state.coachClubs.sumTotalPrograms().toString(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
@@ -101,7 +102,7 @@ class DashboardScreen extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                '124',
+                                state.coachClubs.sumTotalExams().toString(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge

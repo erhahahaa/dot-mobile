@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
@@ -27,6 +30,8 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
 
   SportType selectedSportType = SportType.basketBall;
   late List<DropdownMenuItem<SportType>> sportType;
+
+  String? imageError;
 
   @override
   void initState() {
@@ -77,7 +82,7 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
       appBar: AppBar(
         title: const Text('Create Club'),
       ),
-      body: BlocListener<ClubCubit, ClubState>(
+      body: BlocConsumer<ClubCubit, ClubState>(
         listener: (context, state) {
           if (state.state == BaseState.failure) {
             (msg?.failedCreateClub ?? 'Failed create club')
@@ -86,103 +91,220 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
           if (state.state == BaseState.success) {
             (msg?.successCreateClub ?? 'Success create club')
                 .toToastSuccess(context);
+            context.read<ClubCubit>().emitCaller(
+                  state.copyWith(
+                    state: BaseState.initial,
+                    image: null,
+                  ),
+                );
             context.pop();
           }
         },
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(8.w),
-                  margin: EdgeInsets.all(8.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.r),
-                    color: Theme.of(context)
-                        .colorScheme
-                        .primaryContainer
-                        .withOpacity(0.1),
-                  ),
-                  child: Column(
-                    children: [
-                      TextF(
-                        key: const Key('createClubForm_name'),
-                        currFocusNode: _nameFocusNode,
-                        nextFocusNode: _descriptionFocusNode,
-                        controller: _nameController,
-                        textInputAction: TextInputAction.next,
-                        prefixIcon: Icon(
-                          Icons.sports_soccer,
-                          color: theme.textTheme.bodyLarge?.color,
-                        ),
-                        hintText: msg?.enterClubName,
-                        hint: msg?.clubName,
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return msg?.clubNameRequired;
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 8.h),
-                      TextF(
-                        key: const Key('createClubForm_description'),
-                        currFocusNode: _descriptionFocusNode,
-                        controller: _descriptionController,
-                        textInputAction: TextInputAction.done,
-                        prefixIcon: Icon(
-                          Icons.description_outlined,
-                          color: theme.textTheme.bodyLarge?.color,
-                        ),
-                        hintText: msg?.enterClubDescription,
-                        hint: msg?.clubDescription,
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return msg?.clubDescriptionRequired;
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 8.h),
-                      DropDown<SportType>(
-                        hint: msg?.sportType,
-                        value: SportType.basketBall,
-                        items: sportType.toList(),
-                        prefixIcon: Icon(
-                          Icons.sports_basketball,
-                          color: theme.textTheme.bodyLarge?.color,
-                        ),
-                        onChanged: (value) => setState(() {
-                          if (value == null) {
-                            return;
-                          }
-                          selectedSportType = value;
-                        }),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w),
-                  child: Button(
-                    text: msg?.createClub ?? 'Create Club',
-                    onPressed: () {
-                      if (_formKey.currentState?.validate() ?? false) {
-                        context.read<ClubCubit>().create(
-                              CreateClubParams(
-                                name: _nameController.text,
-                                description: _descriptionController.text,
-                                type: selectedSportType,
-                              ),
-                            );
-                      }
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  ImagePickerWidget(
+                    firstChild: determineClubImage(
+                      state.image,
+                      widget.club?.media?.url,
+                    ),
+                    onTap: () {
+                      context.read<ClubCubit>().pickImageFromGallery();
+                      // showAdaptiveDialog(
+                      //   context: context,
+                      //   builder: (_) {
+                      //     return pickImageDialog(
+                      //       galleryTap: () {
+                      //         context.read<ClubCubit>().pickImageFromGallery();
+                      //       },
+                      //       cameraTap: () {
+                      //         context.read<ClubCubit>().pickImageFromCamera();
+                      //       },
+                      //     );
+                      //   },
+                      // );
                     },
                   ),
-                ),
-              ],
+                  if (imageError != null)
+                    Padding(
+                      padding: EdgeInsets.all(8.w),
+                      child: Text(
+                        imageError ?? '',
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.error,
+                        ),
+                      ),
+                    ),
+                  Container(
+                    padding: EdgeInsets.all(8.w),
+                    margin: EdgeInsets.all(8.w),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.r),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primaryContainer
+                          .withOpacity(0.1),
+                    ),
+                    child: Column(
+                      children: [
+                        TextF(
+                          key: const Key('createClubForm_name'),
+                          currFocusNode: _nameFocusNode,
+                          nextFocusNode: _descriptionFocusNode,
+                          controller: _nameController,
+                          textInputAction: TextInputAction.next,
+                          prefixIcon: Icon(
+                            Icons.sports_soccer,
+                            color: theme.textTheme.bodyLarge?.color,
+                          ),
+                          hintText: msg?.enterClubName,
+                          hint: msg?.clubName,
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return msg?.clubNameRequired;
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 8.h),
+                        TextF(
+                          key: const Key('createClubForm_description'),
+                          currFocusNode: _descriptionFocusNode,
+                          controller: _descriptionController,
+                          textInputAction: TextInputAction.done,
+                          prefixIcon: Icon(
+                            Icons.description_outlined,
+                            color: theme.textTheme.bodyLarge?.color,
+                          ),
+                          hintText: msg?.enterClubDescription,
+                          hint: msg?.clubDescription,
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return msg?.clubDescriptionRequired;
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 8.h),
+                        DropDown<SportType>(
+                          hint: msg?.sportType,
+                          value: SportType.basketBall,
+                          items: sportType.toList(),
+                          prefixIcon: Icon(
+                            Icons.sports_basketball,
+                            color: theme.textTheme.bodyLarge?.color,
+                          ),
+                          onChanged: (value) => setState(() {
+                            if (value == null) {
+                              return;
+                            }
+                            selectedSportType = value;
+                          }),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.w),
+                    child: Button(
+                      text: msg?.createClub ?? 'Create Club',
+                      onPressed: () {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          final img = state.image;
+                          if (img == null) {
+                            setState(() {
+                              imageError = msg?.clubImageRequired;
+                            });
+                            return;
+                          } else {
+                            setState(() {
+                              imageError = null;
+                            });
+                          }
+                          context.read<ClubCubit>().create(
+                                CreateClubParams(
+                                  name: _nameController.text,
+                                  description: _descriptionController.text,
+                                  type: selectedSportType,
+                                  image: img,
+                                ),
+                              );
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget determineClubImage(File? image, String? url) {
+    Widget imageWidget;
+    if (image != null) {
+      imageWidget = Image.file(image);
+    } else if (url != null) {
+      imageWidget = CachedNetworkImage(
+        imageUrl: url.sanitize(),
+        width: 150.w,
+        height: 150.w,
+        imageBuilder: (context, imageProvider) => Container(
+          width: 150.w,
+          height: 150.w,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
             ),
           ),
+        ),
+      );
+    } else {
+      imageWidget = Assets.images.dotLogo.image();
+    }
+
+// clip image to circle
+    return ClipOval(
+      child: imageWidget,
+    );
+  }
+
+  Widget pickImageDialog({
+    required Function()? galleryTap,
+    required Function()? cameraTap,
+  }) {
+    return Dialog(
+      child: Container(
+        padding: EdgeInsets.all(8.w),
+        height: 200.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.r),
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
+        child: Column(
+          children: [
+            InkWell(
+              onTap: galleryTap,
+              child: const ListTile(
+                leading: Icon(Icons.photo_library),
+                title: Text('Gallery'),
+              ),
+            ),
+            InkWell(
+              onTap: cameraTap,
+              child: const ListTile(
+                leading: Icon(Icons.camera_alt),
+                title: Text('Camera'),
+              ),
+            ),
+          ],
         ),
       ),
     );

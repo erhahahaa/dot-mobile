@@ -11,4 +11,16 @@ extension SportTypeX on SportType {
         return 'Soccer';
     }
   }
+
+
+  String get value {
+    switch (this) {
+      case SportType.volleyBall:
+        return 'volleyBall';
+      case SportType.basketBall:
+        return 'basketBall';
+      case SportType.soccer:
+        return 'soccer';
+    }
+  }
 }

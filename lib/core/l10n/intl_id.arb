@@ -29,5 +29,8 @@
   "edit": "Ubah",
   "delete": "Hapus",
   "leave": "Keluar",
-  "about": "Tentang"
+  "about": "Tentang",
+  "clubImageRequired": "Gambar klub wajib diisi",
+  "successCreateProgram": "Berhasil membuat program",
+  "failedCreateProgram": "Gagal membuat program"
 }

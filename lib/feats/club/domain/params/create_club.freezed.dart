@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CreateClubParams {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  File? get image => throw _privateConstructorUsedError;
+  File get image => throw _privateConstructorUsedError;
   SportType get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +32,7 @@ abstract class $CreateClubParamsCopyWith<$Res> {
           CreateClubParams value, $Res Function(CreateClubParams) then) =
       _$CreateClubParamsCopyWithImpl<$Res, CreateClubParams>;
   @useResult
-  $Res call({String name, String description, File? image, SportType type});
+  $Res call({String name, String description, File image, SportType type});
 }
 
 /// @nodoc
@@ -50,7 +50,7 @@ class _$CreateClubParamsCopyWithImpl<$Res, $Val extends CreateClubParams>
   $Res call({
     Object? name = null,
     Object? description = null,
-    Object? image = freezed,
+    Object? image = null,
     Object? type = null,
   }) {
     return _then(_value.copyWith(
@@ -62,10 +62,10 @@ class _$CreateClubParamsCopyWithImpl<$Res, $Val extends CreateClubParams>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      image: freezed == image
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as File?,
+              as File,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -82,7 +82,7 @@ abstract class _$$CreateClubParamsImplCopyWith<$Res>
       __$$CreateClubParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String description, File? image, SportType type});
+  $Res call({String name, String description, File image, SportType type});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class __$$CreateClubParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? description = null,
-    Object? image = freezed,
+    Object? image = null,
     Object? type = null,
   }) {
     return _then(_$CreateClubParamsImpl(
@@ -110,10 +110,10 @@ class __$$CreateClubParamsImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      image: freezed == image
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as File?,
+              as File,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -128,7 +128,7 @@ class _$CreateClubParamsImpl extends _CreateClubParams {
   const _$CreateClubParamsImpl(
       {required this.name,
       required this.description,
-      this.image,
+      required this.image,
       required this.type})
       : super._();
 
@@ -137,7 +137,7 @@ class _$CreateClubParamsImpl extends _CreateClubParams {
   @override
   final String description;
   @override
-  final File? image;
+  final File image;
   @override
   final SportType type;
 
@@ -173,7 +173,7 @@ abstract class _CreateClubParams extends CreateClubParams {
   const factory _CreateClubParams(
       {required final String name,
       required final String description,
-      final File? image,
+      required final File image,
       required final SportType type}) = _$CreateClubParamsImpl;
   const _CreateClubParams._() : super._();
 
@@ -182,7 +182,7 @@ abstract class _CreateClubParams extends CreateClubParams {
   @override
   String get description;
   @override
-  File? get image;
+  File get image;
   @override
   SportType get type;
   @override

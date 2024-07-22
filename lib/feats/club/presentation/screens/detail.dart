@@ -121,9 +121,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               ManageButton(
-                                icon: Assets.icons.program.svg(
-                                  width: 32.w,
-                                ),
+                                icon: Assets.icons.program.svg(width: 32.w),
                                 text: 'Program',
                                 onTap: () => context.pushNamed(
                                   AppRoutes.coachProgram.name,
@@ -133,44 +131,34 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                 ),
                               ),
                               ManageButton(
-                                icon: Assets.icons.exam.svg(
-                                  width: 32.w,
-                                ),
+                                icon: Assets.icons.exam.svg(width: 32.w),
                                 text: 'Exam',
                                 onTap: () {},
                               ),
                               ManageButton(
-                                icon: Assets.icons.tactical.svg(
-                                  width: 32.w,
-                                ),
+                                icon: Assets.icons.tactical.svg(width: 32.w),
                                 text: 'Tactical',
                                 onTap: () {},
                               ),
                             ],
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 8.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               ManageButton(
-                                icon: Assets.icons.invite.svg(
-                                  width: 32.w,
-                                ),
+                                icon: Assets.icons.invite.svg(width: 32.w),
                                 text: 'Invite',
                                 onTap: () {},
                               ),
                               ManageButton(
-                                icon: Assets.icons.members.svg(
-                                  width: 32.w,
-                                ),
-                                text: 'Tactical',
+                                icon: Assets.icons.members.svg(width: 32.w),
+                                text: 'Members',
                                 onTap: () {},
                               ),
                               ManageButton(
-                                icon: Assets.icons.assets.svg(
-                                  width: 32.w,
-                                ),
-                                text: 'Tactical',
+                                icon: Assets.icons.assets.svg(width: 32.w),
+                                text: 'Assets',
                                 onTap: () {},
                               ),
                             ],
@@ -213,7 +201,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                     color: context.theme.colorScheme.onPrimary,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Icon(
                                   Icons.arrow_forward_ios,
                                   size: 16.sp,
@@ -242,7 +230,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                     color: context.theme.colorScheme.onError,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Icon(
                                   Icons.arrow_forward_ios,
                                   size: 16.sp,
@@ -265,7 +253,8 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                     Row(
                       children: [
                         CachedNetworkImage(
-                          imageUrl: sportImage(widget.club.media?.url),
+                          imageUrl:
+                              sportImage(widget.club.media?.url).sanitize(),
                           width: 48.w,
                           height: 48.w,
                           imageBuilder: (context, imageProvider) => Container(

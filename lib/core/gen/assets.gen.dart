@@ -87,6 +87,10 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/hero
   $AssetsImagesHeroGen get hero => const $AssetsImagesHeroGen();
 
+  /// Directory path: assets/images/placeholder
+  $AssetsImagesPlaceholderGen get placeholder =>
+      const $AssetsImagesPlaceholderGen();
+
   /// List of all assets
   List<AssetGenImage> get values => [dotLogo];
 }
@@ -119,6 +123,17 @@ class $AssetsImagesHeroGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [signIn, signUp];
+}
+
+class $AssetsImagesPlaceholderGen {
+  const $AssetsImagesPlaceholderGen();
+
+  /// File path: assets/images/placeholder/sport.png
+  AssetGenImage get sport =>
+      const AssetGenImage('assets/images/placeholder/sport.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [sport];
 }
 
 class Assets {

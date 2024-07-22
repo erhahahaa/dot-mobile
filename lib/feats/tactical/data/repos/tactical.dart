@@ -18,6 +18,13 @@ class TacticalRepoImpl implements TacticalRepo {
       converter: (res) => TacticalModel.fromJson(res['data']),
     );
 
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.tacticals.put(r.toEntity()),
+      ),
+    );
+
     return res;
   }
 
@@ -28,6 +35,13 @@ class TacticalRepoImpl implements TacticalRepo {
     final res = await _remote.deleteRequest(
       '${ListAPI.CLUB_TACTICAL}/${params.id}',
       converter: (res) => TacticalModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.tacticals.delete(r.id),
+      ),
     );
 
     return res;
@@ -48,6 +62,17 @@ class TacticalRepoImpl implements TacticalRepo {
       },
     );
 
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async {
+          for (final item in r) {
+            await _local.tacticals.put(item.toEntity());
+          }
+        },
+      ),
+    );
+
     return res;
   }
 
@@ -58,6 +83,13 @@ class TacticalRepoImpl implements TacticalRepo {
     final res = await _remote.getRequest(
       '${ListAPI.CLUB_TACTICAL}/${params.id}',
       converter: (res) => TacticalModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.tacticals.put(r.toEntity()),
+      ),
     );
 
     return res;
@@ -71,6 +103,13 @@ class TacticalRepoImpl implements TacticalRepo {
       '${ListAPI.CLUB_TACTICAL}/${params.id}',
       data: params.toJson(),
       converter: (res) => TacticalModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.tacticals.put(r.toEntity()),
+      ),
     );
 
     return res;

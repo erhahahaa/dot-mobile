@@ -15,7 +15,7 @@ class ManageButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(16.w),
-        width: 90.w,
+        width: 95.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
           color: context.theme.colorScheme.onPrimary,

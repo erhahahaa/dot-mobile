@@ -33,7 +33,8 @@ enum AppRoutes {
 
   // Coach Program
   coachProgram('/coach/program'),
-  coachCreateProgram('/coach/program/create'),
+  coachCreateProgram('/coach/program/create/:clubId'),
+  coachCreateProgramExercise('/coach/program/exercise/create'),
   coachProgramDetail('/coach/program/:id'),
 
   // Coach Tactical

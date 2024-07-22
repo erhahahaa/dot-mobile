@@ -144,7 +144,8 @@ class AppRouter {
         builder: (_, state, navigationShell) => MultiBlocProvider(
           providers: [
             BlocProvider(create: (_) => di<ClubCubit>()..init()),
-            BlocProvider(create: (_) => di<ProgramCubit>()..init()),
+            BlocProvider(
+                create: (_) => di<ProgramCubit>()..init(routeName: state.name)),
             BlocProvider(create: (_) => di<TacticalCubit>()..init()),
             BlocProvider(create: (_) => di<UserCubit>()..init()),
           ],
@@ -201,7 +202,8 @@ class AppRouter {
                   final extra = state.extra as Map<String, dynamic>;
                   final club = extra['club'] as ClubModel;
                   return BlocProvider.value(
-                    value: c.read<ProgramCubit>()..init(clubId: club.id),
+                    value: c.read<ProgramCubit>()
+                      ..init(clubId: club.id, routeName: state.name),
                     child: ProgramScreen(club: club),
                   );
                 },
@@ -210,9 +212,30 @@ class AppRouter {
                 path: AppRoutes.coachCreateProgram.path,
                 name: AppRoutes.coachCreateProgram.name,
                 builder: (c, state) {
+                  final params = state.pathParameters;
+
                   return BlocProvider.value(
                     value: c.read<ProgramCubit>(),
-                    child: ProgramFormScreen(),
+                    child: ProgramFormScreen(
+                      clubId: int.parse(
+                        params['clubId'] ?? '0',
+                      ),
+                      routeName: AppRoutes.coachCreateProgram.name,
+                    ),
+                  );
+                },
+              ),
+              GoRoute(
+                path: AppRoutes.coachCreateProgramExercise.path,
+                name: AppRoutes.coachCreateProgramExercise.name,
+                builder: (c, state) {
+                  final extra = state.extra as Map<String, dynamic>;
+
+                  return BlocProvider.value(
+                    value: c.read<ProgramCubit>(),
+                    child: ExerciseForm(
+                      program: extra['program'] as ProgramModel,
+                    ),
                   );
                 },
               ),
