@@ -1,5 +1,6 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/di.dart';
+import 'package:dot_coaching/feats/exam/presentation/state/cubit/question_cubit.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/foundation.dart';
@@ -143,11 +144,29 @@ class AppRouter {
         parentNavigatorKey: _rootKey,
         builder: (_, state, navigationShell) => MultiBlocProvider(
           providers: [
-            BlocProvider(create: (_) => di<ClubCubit>()..init()),
             BlocProvider(
-                create: (_) => di<ProgramCubit>()..init(routeName: state.name)),
-            BlocProvider(create: (_) => di<TacticalCubit>()..init()),
-            BlocProvider(create: (_) => di<UserCubit>()..init()),
+              create: (_) => di<ClubCubit>()..init(),
+            ),
+            BlocProvider(
+              create: (_) => di<ProgramCubit>()..init(routeName: state.name),
+            ),
+            BlocProvider(
+              create: (_) => di<ExerciseCubit>()..init(),
+            ),
+            BlocProvider(
+              create: (_) => di<ExamCubit>()..init(),
+            ),
+            
+            BlocProvider(
+              create: (_) => di<QuestionCubit>()..init(),
+            ),
+            
+            BlocProvider(
+              create: (_) => di<TacticalCubit>()..init(),
+            ),
+            BlocProvider(
+              create: (_) => di<UserCubit>()..init(),
+            ),
           ],
           child: BottomNavBar(
             navigationShell: navigationShell,

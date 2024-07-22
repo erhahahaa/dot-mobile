@@ -51,40 +51,10 @@ class ProgramCubit extends Cubit<ProgramState> {
   }
 
   Future<void> coachInit(int clubId) async {
-    await fetchCoachPrograms(clubId);
+    await getAll(clubId);
   }
 
   Future<void> athleteInit(int clubId) async {}
-
-  Future<void> fetchCoachPrograms(int clubId) async {
-    final res = await _programRepo.getAll(
-      const PaginationParams(),
-      clubId,
-    );
-
-    res.fold(
-      (l) {
-        safeEmit(
-          isClosed: isClosed,
-          emit: emit,
-          state: state.copyWith(
-            state: BaseState.failure,
-            failure: l,
-          ),
-        );
-      },
-      (r) {
-        safeEmit(
-          isClosed: isClosed,
-          emit: emit,
-          state: state.copyWith(
-            state: BaseState.success,
-            programs: r,
-          ),
-        );
-      },
-    );
-  }
 
   Future<void> create(CreateProgramParams params) async {
     safeEmit(
@@ -125,7 +95,162 @@ class ProgramCubit extends Cubit<ProgramState> {
       },
     );
   }
- 
+
+  Future<void> update(UpdateProgramParams params) async {
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: state,
+    );
+
+    final res = await _programRepo.update(params);
+
+    res.fold(
+      (l) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.failure,
+            failure: l,
+          ),
+        );
+        Future.delayed(
+          const Duration(seconds: 2),
+          () => safeEmit(
+            isClosed: isClosed,
+            emit: emit,
+            state: state.copyWith(
+              failure: null,
+            ),
+          ),
+        );
+      },
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> delete(ByIdParams params) async {
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: state,
+    );
+
+    final res = await _programRepo.delete(params);
+
+    res.fold(
+      (l) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.failure,
+            failure: l,
+          ),
+        );
+        Future.delayed(
+          const Duration(seconds: 2),
+          () => safeEmit(
+            isClosed: isClosed,
+            emit: emit,
+            state: state.copyWith(
+              failure: null,
+            ),
+          ),
+        );
+      },
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> getById(ByIdParams params) async {
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: state,
+    );
+
+    final res = await _programRepo.getById(params);
+
+    res.fold(
+      (l) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.failure,
+            failure: l,
+          ),
+        );
+        Future.delayed(
+          const Duration(seconds: 2),
+          () => safeEmit(
+            isClosed: isClosed,
+            emit: emit,
+            state: state.copyWith(
+              failure: null,
+            ),
+          ),
+        );
+      },
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> getAll(int clubId) async {
+    final res = await _programRepo.getAll(
+      const PaginationParams(),
+      clubId,
+    );
+
+    res.fold(
+      (l) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.failure,
+            failure: l,
+          ),
+        );
+      },
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+            programs: r,
+          ),
+        );
+      },
+    );
+  }
 }
 
 class ProgramDataSource extends CalendarDataSource {

@@ -63,7 +63,7 @@ class ImagePickerClient with FirebaseCrashLogger {
         source: ImageSource.gallery,
         imageQuality: 100,
       );
-      if (res == null) return Left(NoDataFailure('No image selected'));
+      if (res == null) return const Left(NoDataFailure('No image selected'));
       // final res2 = await cropImage(res);
       return Right(res);
     } on Exception catch (e, stackTrace) {
@@ -78,7 +78,7 @@ class ImagePickerClient with FirebaseCrashLogger {
         source: ImageSource.camera,
         imageQuality: 100,
       );
-      if (res == null) return Left(NoDataFailure('No image selected'));
+      if (res == null) return const Left(NoDataFailure('No image selected'));
       // final res2 = await cropImage(res);
       return Right(res);
     } on Exception catch (e, stackTrace) {

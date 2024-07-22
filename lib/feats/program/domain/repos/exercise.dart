@@ -14,7 +14,7 @@ abstract class ExerciseRepo {
     List<CreateProgramExerciseParams> params,
   );
   Future<Either<Failure, ProgramExerciseModel>> update(
-    List<CreateProgramExerciseParams> params,
+    List<UpdateProgramExerciseParams> params,
   );
   Future<Either<Failure, ProgramExerciseModel>> delete(
     ByIdParams params,

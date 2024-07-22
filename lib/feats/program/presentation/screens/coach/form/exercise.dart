@@ -123,9 +123,9 @@ class _ExerciseFormState extends State<ExerciseForm> {
           },
           label: Row(
             children: [
-              Icon(Icons.save),
+              const Icon(Icons.save),
               SizedBox(width: 8.w),
-              Text('Save'),
+              const Text('Save'),
             ],
           ),
         ),
@@ -219,7 +219,7 @@ class _ExerciseFormState extends State<ExerciseForm> {
                       onTap: () {
                         setState(() {
                           _items.add(ExerciseItem(
-                            exercise: ProgramExerciseModel(),
+                            exercise: const ProgramExerciseModel(),
                             nameFN: FocusNode(),
                             setsFN: FocusNode(),
                             repsFN: FocusNode(),

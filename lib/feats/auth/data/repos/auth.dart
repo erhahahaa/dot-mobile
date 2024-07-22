@@ -22,7 +22,7 @@ class AuthRepoImpl implements AuthRepo {
       await _local.isar.writeTxn(() async {
         await _local.isar.userEntitys.clear();
         await _local.isar.userEntitys.put(UserEntity(
-          id: r.id ?? 0,
+          id: r.id  ,
           name: r.name,
           email: r.email,
           image: r.image,

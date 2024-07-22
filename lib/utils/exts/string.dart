@@ -48,7 +48,7 @@ extension StringExt on String {
         duration: const Duration(seconds: 3),
       );
     } catch (e) {
-      log.e('ERROR [TOAST] ERR :\n${e}');
+      log.e('ERROR [TOAST] ERR :\n$e');
     }
   }
 
@@ -79,7 +79,7 @@ extension StringExt on String {
         duration: const Duration(seconds: 3),
       );
     } catch (e) {
-      log.e('SUCCESS [TOAST] ERR :\n${e}');
+      log.e('SUCCESS [TOAST] ERR :\n$e');
     }
   }
 
@@ -109,7 +109,7 @@ extension StringExt on String {
         duration: const Duration(seconds: 3),
       );
     } catch (e) {
-      log.e('INFO [TOAST] ERR :\n${e}');
+      log.e('INFO [TOAST] ERR :\n$e');
     }
   }
 
@@ -138,7 +138,7 @@ extension StringExt on String {
         duration: const Duration(seconds: 3),
       );
     } catch (e) {
-      log.e('LOADING [TOAST] ERR :\n${e}');
+      log.e('LOADING [TOAST] ERR :\n$e');
     }
   }
 

@@ -1,27 +1,29 @@
+import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'tactical_cubit.freezed.dart';
-part 'tactical_state.dart';
+part 'question_cubit.freezed.dart';
+part 'question_state.dart';
 
-class TacticalCubit extends Cubit<TacticalState> {
-  final TacticalRepo _tacticalRepo;
-  TacticalCubit(
-    this._tacticalRepo,
-  ) : super(const TacticalState());
+class QuestionCubit extends Cubit<QuestionState> {
+  final QuestionRepo _questionRepo;
+  QuestionCubit(
+    this._questionRepo,
+  ) : super(const QuestionState());
 
   Future<void> init() async {}
 
-  Future<void> create(CreateTacticalParams params) async {
-    final res = await _tacticalRepo.create(params);
+  Future<void> create(CreateQuestionParams params) async {
+    final res = await _questionRepo.create(params);
     res.fold((l) {
       safeEmit(
         isClosed: isClosed,
         emit: emit,
         state: state.copyWith(
           state: BaseState.failure,
+          failure: l,
         ),
       );
     }, (r) {
@@ -35,14 +37,15 @@ class TacticalCubit extends Cubit<TacticalState> {
     });
   }
 
-  Future<void> update(UpdateTacticalParams params) async {
-    final res = await _tacticalRepo.update(params);
+  Future<void> update(UpdateQuestionParams params) async {
+    final res = await _questionRepo.update(params);
     res.fold((l) {
       safeEmit(
         isClosed: isClosed,
         emit: emit,
         state: state.copyWith(
           state: BaseState.failure,
+          failure: l,
         ),
       );
     }, (r) {
@@ -57,13 +60,14 @@ class TacticalCubit extends Cubit<TacticalState> {
   }
 
   Future<void> delete(ByIdParams params) async {
-    final res = await _tacticalRepo.delete(params);
+    final res = await _questionRepo.delete(params);
     res.fold((l) {
       safeEmit(
         isClosed: isClosed,
         emit: emit,
         state: state.copyWith(
           state: BaseState.failure,
+          failure: l,
         ),
       );
     }, (r) {
@@ -78,14 +82,14 @@ class TacticalCubit extends Cubit<TacticalState> {
   }
 
   Future<void> getById(ByIdParams params) async {
-    final res = await _tacticalRepo.getById(params);
-
+    final res = await _questionRepo.getById(params);
     res.fold((l) {
       safeEmit(
         isClosed: isClosed,
         emit: emit,
         state: state.copyWith(
           state: BaseState.failure,
+          failure: l,
         ),
       );
     }, (r) {
@@ -100,13 +104,14 @@ class TacticalCubit extends Cubit<TacticalState> {
   }
 
   Future<void> getAll(PaginationParams params) async {
-    final res = await _tacticalRepo.getAll(params);
+    final res = await _questionRepo.getAll(params);
     res.fold((l) {
       safeEmit(
         isClosed: isClosed,
         emit: emit,
         state: state.copyWith(
           state: BaseState.failure,
+          failure: l,
         ),
       );
     }, (r) {
