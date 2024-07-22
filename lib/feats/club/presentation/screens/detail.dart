@@ -159,7 +159,9 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                               ManageButton(
                                 icon: Assets.icons.assets.svg(width: 32.w),
                                 text: 'Assets',
-                                onTap: () {},
+                                onTap: () {
+                                  context.pushNamed(AppRoutes.coachMedia.name);
+                                },
                               ),
                             ],
                           )

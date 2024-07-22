@@ -25,6 +25,7 @@ class AppRouter {
   static final _coachTacticalShellKey = GlobalKey<NavigatorState>();
   static final _coachHistoryShellKey = GlobalKey<NavigatorState>();
   static final _coachProfileShellKey = GlobalKey<NavigatorState>();
+  static final coachAssetShellKey = GlobalKey<NavigatorState>();
 
   AppRouter.setStream(BuildContext c) {
     ctx = c;
@@ -156,16 +157,17 @@ class AppRouter {
             BlocProvider(
               create: (_) => di<ExamCubit>()..init(),
             ),
-            
             BlocProvider(
               create: (_) => di<QuestionCubit>()..init(),
             ),
-            
             BlocProvider(
               create: (_) => di<TacticalCubit>()..init(),
             ),
             BlocProvider(
               create: (_) => di<UserCubit>()..init(),
+            ),
+            BlocProvider(
+              create: (_) => di<MediaCubit>()..init(),
             ),
           ],
           child: BottomNavBar(
@@ -282,6 +284,21 @@ class AppRouter {
                 builder: (c, __) => BlocProvider.value(
                   value: c.read<TacticalCubit>(),
                   child: const TacticalScreen(),
+                ),
+              ),
+            ],
+          ),
+
+          // Assets
+          StatefulShellBranch(
+            navigatorKey: coachAssetShellKey,
+            routes: [
+              GoRoute(
+                path: AppRoutes.coachMedia.path,
+                name: AppRoutes.coachMedia.name,
+                builder: (c, __) => BlocProvider.value(
+                  value: c.read<MediaCubit>(),
+                  child: const AssetsScreen(),
                 ),
               ),
             ],

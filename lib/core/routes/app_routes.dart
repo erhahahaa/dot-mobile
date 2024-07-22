@@ -45,6 +45,9 @@ enum AppRoutes {
   coachHistory('/coach/history'),
   coachHistoryDetail('/coach/history/:id'),
 
+  // Coach Media
+  coachMedia('/coach/media'),
+
   // Coach Profile
   coachProfile('/coach/profile');
 

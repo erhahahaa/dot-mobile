@@ -112,7 +112,7 @@ class ExerciseRepoImpl implements ExerciseRepo {
 
   @override
   Future<Either<Failure, ProgramExerciseModel>> update(
-    List<CreateProgramExerciseParams> params,
+    List<UpdateProgramExerciseParams> params,
   ) async {
     final List<Map<String, dynamic>> body = [];
     for (final param in params) {

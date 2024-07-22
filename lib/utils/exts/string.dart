@@ -1,6 +1,7 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -148,5 +149,19 @@ extension StringExt on String {
       return replaceAll('http://127.0.0.1', baseUrl);
     }
     return this;
+  }
+
+  String maxChar({int? length}) {
+    if (length == null) {
+      return this;
+    }
+    if (this.length <= length) {
+      return this;
+    }
+    return '${this.substring(0, length)}...';
+  }
+
+  void toClipboard() async {
+    await Clipboard.setData(ClipboardData(text: this));
   }
 }
