@@ -38,7 +38,7 @@ class ImagePickerWidget extends StatelessWidget {
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                     border: Border.all(width: 3.w),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.camera_alt,
                     // color: Colors.white,
                   ),

@@ -44,15 +44,15 @@ class ClubCubit extends Cubit<ClubState> {
   }
 
   Future<void> coachInit(UserEntity user) async {
-    await fetchCoachClubs(user);
+    await getAll(user);
   }
 
   Future<void> athleteInit() async {}
 
-  Future<void> fetchCoachClubs(UserEntity user) async {
+  Future<void> getAll(UserEntity user) async {
     final res = await _clubRepo.getAll(
       const PaginationParams(),
-      user.id,
+      user.role == UserRole.coach ? user.id : null,
     );
 
     res.fold(
@@ -77,8 +77,8 @@ class ClubCubit extends Cubit<ClubState> {
     );
   }
 
-  Future<void> create(CreateClubParams createClubParams) async {
-    final res = await _clubRepo.create(createClubParams);
+  Future<void> create(CreateClubParams params) async {
+    final res = await _clubRepo.create(params);
 
     res.fold(
       (l) => safeEmit(
@@ -99,6 +99,87 @@ class ClubCubit extends Cubit<ClubState> {
           state: state.copyWith(
             state: BaseState.success,
             coachClubs: coachClub,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> update(UpdateClubParams params) async {
+    final res = await _clubRepo.update(params);
+
+    res.fold(
+      (l) => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          state: BaseState.failure,
+          failure: l,
+        ),
+      ),
+      (r) {
+        final coachClub = List<ClubModel>.from(state.coachClubs);
+        final index = coachClub.indexWhere((element) => element.id == r.id);
+        coachClub[index] = r;
+
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+            coachClubs: coachClub,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> delete(ByIdParams params) async {
+    final res = await _clubRepo.delete(params);
+
+    res.fold(
+      (l) => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          state: BaseState.failure,
+          failure: l,
+        ),
+      ),
+      (r) {
+        final coachClub = List<ClubModel>.from(state.coachClubs);
+        coachClub.removeWhere((element) => element.id == params.id);
+
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+            coachClubs: coachClub,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> getById(ByIdParams params) async {
+    final res = await _clubRepo.getById(params);
+
+    res.fold(
+      (l) => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          state: BaseState.failure,
+          failure: l,
+        ),
+      ),
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
           ),
         );
       },

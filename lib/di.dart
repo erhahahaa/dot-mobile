@@ -58,6 +58,13 @@ void _intiRepos() {
     ),
   );
 
+  di.registerLazySingleton<ExerciseRepo>(
+    () => ExerciseRepoImpl(
+      di<DioClient>(),
+      di<IsarClient>(),
+    ),
+  );
+
   di.registerSingleton<TacticalRepo>(
     TacticalRepoImpl(
       di<DioClient>(),
@@ -98,6 +105,12 @@ void _initCubits() {
     () => ProgramCubit(
       di<ProgramRepo>(),
       di<UserRepo>(),
+    ),
+  );
+
+  di.registerFactory(
+    () => ExerciseCubit(
+      di<ExerciseRepo>(),
     ),
   );
 
