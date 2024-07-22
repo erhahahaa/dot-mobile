@@ -74,13 +74,19 @@ class ProfileScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      state.user.role == UserRole.coach
-                          ? TextButton(
-                              onPressed: () => context
-                                  .pushNamed(AppRoutes.coachDashboard.name),
-                              child: const Text('Coach Dashboard'),
-                            )
-                          : const SizedBox(),
+                      // TODO: Handle user roles
+                      // state.user.role == UserRole.coach
+                      //     ? TextButton(
+                      //         onPressed: () => context
+                      //             .pushNamed(AppRoutes.coachDashboard.name),
+                      //         child: const Text('Coach Dashboard'),
+                      //       )
+                      //     : const SizedBox(),
+                      TextButton(
+                        onPressed: () =>
+                            context.pushNamed(AppRoutes.coachDashboard.name),
+                        child: const Text('Coach Dashboard'),
+                      ),
                       BlocListener<AuthCubit, AuthState>(
                         listener: (context, state) {
                           if (state.status == AuthStatus.unauthenticated) {

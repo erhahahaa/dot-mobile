@@ -2,12 +2,13 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/helpers/helpers.dart';
 import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class DioClient with FirebaseCrashLogger {
   String? _auth;
@@ -210,10 +211,18 @@ class DioClient with FirebaseCrashLogger {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final defaultPath = (await getExternalStorageDirectory())?.path;
+      final perm = await _storagePermission();
+      if (perm == false) {
+        return const Left(
+          ServerFailure(
+            message: 'Permission Denied',
+          ),
+        );
+      }
+
       final response = await Dio().download(
         url,
-        "$defaultPath/$savePath",
+        savePath,
         queryParameters: queryParameters,
         onReceiveProgress: onReceiveProgress,
       );
@@ -251,5 +260,32 @@ class DioClient with FirebaseCrashLogger {
         exception: e,
       ),
     );
+  }
+
+  Future<bool> _storagePermission() async {
+    final info = DeviceInfoPlugin();
+    final androidInfo = await info.androidInfo;
+    final androidVersion = int.parse(androidInfo.version.release);
+    bool havePermission = false;
+
+    if (androidVersion >= 13) {
+      final request = await [
+        Permission.videos,
+        Permission.photos,
+      ].request();
+
+      havePermission =
+          request.values.every((status) => status == PermissionStatus.granted);
+    } else {
+      final status = await Permission.storage.request();
+      havePermission = status.isGranted;
+    }
+
+    if (!havePermission) {
+      // if no permission then open app-setting
+      await openAppSettings();
+    }
+
+    return havePermission;
   }
 }

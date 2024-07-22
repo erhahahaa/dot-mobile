@@ -112,20 +112,7 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
                       widget.club?.media?.url,
                     ),
                     onTap: () {
-                      context.read<ClubCubit>().pickImageFromGallery();
-                      // showAdaptiveDialog(
-                      //   context: context,
-                      //   builder: (_) {
-                      //     return pickImageDialog(
-                      //       galleryTap: () {
-                      //         context.read<ClubCubit>().pickImageFromGallery();
-                      //       },
-                      //       cameraTap: () {
-                      //         context.read<ClubCubit>().pickImageFromCamera();
-                      //       },
-                      //     );
-                      //   },
-                      // );
+                      context.read<ClubCubit>().pickImageFromGallery(); 
                     },
                   ),
                   if (imageError != null)

@@ -1,5 +1,6 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt di = GetIt.instance;
@@ -16,6 +17,10 @@ Future<void> initDependencies() async {
   );
   di.registerSingleton<ImagePickerClient>(
     ImagePickerClient(),
+  );
+
+  di.registerLazySingleton<FilePickerClient>(
+    () => FilePickerClient(FilePicker.platform),
   );
 
   _intiRepos();
@@ -72,6 +77,13 @@ void _intiRepos() {
     ),
   );
 
+  di.registerSingleton<MediaRepo>(
+    MediaRepoImpl(
+      di<DioClient>(),
+      di<IsarClient>(),
+    ),
+  );
+
   di.registerLazySingleton<UserRepo>(
     () => UserRepoImpl(
       di<IsarClient>(),
@@ -117,6 +129,13 @@ void _initCubits() {
   di.registerFactory(
     () => TacticalCubit(
       di<TacticalRepo>(),
+    ),
+  );
+
+  di.registerFactory(
+    () => MediaCubit(
+      di<MediaRepo>(),
+      di<FilePickerClient>(),
     ),
   );
 

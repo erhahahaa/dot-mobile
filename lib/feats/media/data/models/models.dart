@@ -1,0 +1,1 @@
+export 'package:dot_coaching/feats/media/data/models/media.dart';

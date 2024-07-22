@@ -57,30 +57,30 @@ class ImagePickerClient with FirebaseCrashLogger {
     }
   }
 
-  Future<Either<Failure, XFile>> getImageFromGallery() async {
+  Future<Either<Failure, CroppedFile>> getImageFromGallery() async {
     try {
       final res = await imagePicker.pickImage(
         source: ImageSource.gallery,
         imageQuality: 100,
       );
       if (res == null) return const Left(NoDataFailure('No image selected'));
-      // final res2 = await cropImage(res);
-      return Right(res);
+      final res2 = await cropImage(res);
+      return res2;
     } on Exception catch (e, stackTrace) {
       nonFatalError(error: e, stackTrace: stackTrace);
       return Left(NoDataFailure(e.toString()));
     }
   }
 
-  Future<Either<Failure, XFile>> getImageFromCamera() async {
+  Future<Either<Failure, CroppedFile>> getImageFromCamera() async {
     try {
       final res = await imagePicker.pickImage(
         source: ImageSource.camera,
         imageQuality: 100,
       );
       if (res == null) return const Left(NoDataFailure('No image selected'));
-      // final res2 = await cropImage(res);
-      return Right(res);
+      final res2 = await cropImage(res);
+      return res2;
     } on Exception catch (e, stackTrace) {
       nonFatalError(error: e, stackTrace: stackTrace);
       return Left(NoDataFailure(e.toString()));

@@ -18,6 +18,7 @@ class IsarClient {
   IsarCollection<ExamEntity> get exams => _isar.examEntitys;
   IsarCollection<QuestionEntity> get questions => _isar.questionEntitys;
   IsarCollection<TacticalEntity> get tacticals => _isar.tacticalEntitys;
+  IsarCollection<MediaEntity> get medias => _isar.mediaEntitys;
 
   IsarClient();
 
@@ -40,10 +41,10 @@ class IsarClient {
         ExamEntitySchema,
         QuestionEntitySchema,
         TacticalEntitySchema,
+        MediaEntitySchema,
       ],
       inspector: kDebugMode,
       directory: dir.path,
     );
   }
- 
 }
