@@ -167,7 +167,7 @@ class AppRouter {
               create: (_) => di<UserCubit>()..init(),
             ),
             BlocProvider(
-              create: (_) => di<MediaCubit>()..init(),
+              create: (_) => di<MediaCubit>(),
             ),
           ],
           child: BottomNavBar(
@@ -296,10 +296,15 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.coachMedia.path,
                 name: AppRoutes.coachMedia.name,
-                builder: (c, __) => BlocProvider.value(
-                  value: c.read<MediaCubit>(),
-                  child: const AssetsScreen(),
-                ),
+                builder: (c, state) {
+                  final params = state.pathParameters;
+                  final clubId = int.parse(params['clubId'] ?? '0');
+
+                  return BlocProvider.value(
+                    value: c.read<MediaCubit>(),
+                    child: AssetsScreen(clubId: clubId),
+                  );
+                },
               ),
             ],
           ),

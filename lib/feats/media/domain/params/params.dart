@@ -12,6 +12,7 @@ class UpsertMediaParams with _$UpsertMediaParams {
     required int id,
     required File file,
     required MediaParent parent,
+    required int clubId,
   }) = _UpsertMediaParams;
 
   const UpsertMediaParams._();

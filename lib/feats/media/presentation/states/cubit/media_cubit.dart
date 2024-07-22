@@ -15,17 +15,26 @@ class MediaCubit extends Cubit<MediaState> {
   final MediaRepo _mediaRepo;
   final FilePickerClient _filePickerClient;
 
-  MediaCubit(this._mediaRepo, this._filePickerClient)
-      : super(const MediaState());
+  MediaCubit(
+    this._mediaRepo,
+    this._filePickerClient,
+  ) : super(const MediaState());
 
-  Future<void> init() async {
+  Future<void> init({required clubId}) async {
     for (final parent in MediaParent.values) {
-      await getAll(parent: parent);
+      await getAll(parent: parent, clubId: clubId);
     }
   }
 
-  Future<void> getAll({required MediaParent parent}) async {
-    final res = await _mediaRepo.getAll(const PaginationParams(), parent);
+  Future<void> getAll({
+    required MediaParent parent,
+    required int clubId,
+  }) async {
+    final res = await _mediaRepo.getAll(
+      const PaginationParams(),
+      parent,
+      clubId,
+    );
 
     res.fold(
       (l) => _emitFailureState(message: "Failed to fetch asset"),
@@ -50,7 +59,7 @@ class MediaCubit extends Cubit<MediaState> {
     );
   }
 
-  Future<void> upload(MediaParent parent) async {
+  Future<void> upload(MediaParent parent, int clubId) async {
     final file = await _pick();
 
     if (file == null || file.files.isEmpty || file.files.last.path == null) {
@@ -64,6 +73,7 @@ class MediaCubit extends Cubit<MediaState> {
         id: 0,
         file: File(lastFile.path!),
         parent: parent,
+        clubId: clubId,
       ),
     );
 

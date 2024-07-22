@@ -8,7 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class AssetsScreen extends StatefulWidget {
-  const AssetsScreen({super.key});
+  final int clubId;
+  const AssetsScreen({super.key, required this.clubId});
 
   @override
   State<AssetsScreen> createState() => _AssetsScreenState();
@@ -147,15 +148,19 @@ class _AssetsScreenState extends State<AssetsScreen> {
                               ),
                               ProgramAssetView(
                                 medias: state.programMedias,
+                                clubId: widget.clubId,
                               ),
                               ExerciseAssetView(
                                 medias: state.exerciseMedias,
+                                clubId: widget.clubId,
                               ),
                               ExamAssetView(
                                 medias: state.examMedias,
+                                clubId: widget.clubId,
                               ),
                               QuestionAssetView(
                                 medias: state.questionMedias,
+                                clubId: widget.clubId,
                               ),
                             ],
                           ),
@@ -175,22 +180,40 @@ class _AssetsScreenState extends State<AssetsScreen> {
   void handleTabChange(int index, BuildContext context) {
     switch (index + 1) {
       case 1:
-        context.read<MediaCubit>().getAll(parent: MediaParent.club);
+        context.read<MediaCubit>().getAll(
+              parent: MediaParent.club,
+              clubId: widget.clubId,
+            );
         break;
       case 2:
-        context.read<MediaCubit>().getAll(parent: MediaParent.program);
+        context.read<MediaCubit>().getAll(
+              parent: MediaParent.program,
+              clubId: widget.clubId,
+            );
         break;
       case 3:
-        context.read<MediaCubit>().getAll(parent: MediaParent.exercise);
+        context.read<MediaCubit>().getAll(
+              parent: MediaParent.exercise,
+              clubId: widget.clubId,
+            );
         break;
       case 4:
-        context.read<MediaCubit>().getAll(parent: MediaParent.exam);
+        context.read<MediaCubit>().getAll(
+              parent: MediaParent.exam,
+              clubId: widget.clubId,
+            );
         break;
       case 5:
-        context.read<MediaCubit>().getAll(parent: MediaParent.question);
+        context.read<MediaCubit>().getAll(
+              parent: MediaParent.question,
+              clubId: widget.clubId,
+            );
         break;
       default:
-        context.read<MediaCubit>().getAll(parent: MediaParent.club);
+        context.read<MediaCubit>().getAll(
+              parent: MediaParent.club,
+              clubId: widget.clubId,
+            );
     }
   }
 }
@@ -226,7 +249,7 @@ class ClubAssetView extends StatelessWidget {
                   child: medias[index]
                       .determineLoader(width: 128.w, height: 128.w),
                 ),
-                Divider(),
+                const Divider(),
                 Text(
                   medias[index].name.maxChar(length: 15),
                   style: context.theme.textTheme.bodyMedium?.copyWith(
@@ -256,7 +279,7 @@ class ClubAssetView extends StatelessWidget {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: Text('Asset Info'),
+                              title: const Text('Asset Info'),
                               content: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -270,7 +293,7 @@ class ClubAssetView extends StatelessWidget {
                                           child: Text(
                                               'URL: ${medias[index].url.sanitize()}')),
                                       InkWell(
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.copy,
                                         ),
                                         onTap: () {
@@ -291,7 +314,7 @@ class ClubAssetView extends StatelessWidget {
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text('Close'),
+                                  child: const Text('Close'),
                                 ),
                               ],
                             );
@@ -312,16 +335,24 @@ class ClubAssetView extends StatelessWidget {
 
 class ProgramAssetView extends StatelessWidget {
   final List<MediaModel> medias;
-  const ProgramAssetView({super.key, required this.medias});
+  final int clubId;
+  const ProgramAssetView({
+    super.key,
+    required this.medias,
+    required this.clubId,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Parent(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          context.read<MediaCubit>().upload(MediaParent.program);
+          context.read<MediaCubit>().upload(
+                MediaParent.program,
+                clubId,
+              );
         },
-        label: Row(
+        label: const Row(
           children: [
             Icon(Icons.upload),
             Text('Upload'),
@@ -352,7 +383,7 @@ class ProgramAssetView extends StatelessWidget {
                   child: medias[index]
                       .determineLoader(width: 128.w, height: 128.w),
                 ),
-                Divider(),
+                const Divider(),
                 Text(
                   medias[index].name.maxChar(length: 15),
                   style: context.theme.textTheme.bodyMedium
@@ -369,16 +400,24 @@ class ProgramAssetView extends StatelessWidget {
 
 class ExerciseAssetView extends StatelessWidget {
   final List<MediaModel> medias;
-  const ExerciseAssetView({super.key, required this.medias});
+  final int clubId;
+  const ExerciseAssetView({
+    super.key,
+    required this.medias,
+    required this.clubId,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Parent(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          context.read<MediaCubit>().upload(MediaParent.exercise);
+          context.read<MediaCubit>().upload(
+                MediaParent.exercise,
+                clubId,
+              );
         },
-        label: Row(
+        label: const Row(
           children: [
             Icon(Icons.upload),
             Text('Upload'),
@@ -409,7 +448,7 @@ class ExerciseAssetView extends StatelessWidget {
                   child: medias[index]
                       .determineLoader(width: 128.w, height: 128.w),
                 ),
-                Divider(),
+                const Divider(),
                 Text(
                   medias[index].name.maxChar(length: 15),
                   style: context.theme.textTheme.bodyMedium
@@ -426,16 +465,24 @@ class ExerciseAssetView extends StatelessWidget {
 
 class ExamAssetView extends StatelessWidget {
   final List<MediaModel> medias;
-  const ExamAssetView({super.key, required this.medias});
+  final int clubId;
+  const ExamAssetView({
+    super.key,
+    required this.medias,
+    required this.clubId,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Parent(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          context.read<MediaCubit>().upload(MediaParent.exam);
+          context.read<MediaCubit>().upload(
+                MediaParent.exam,
+                clubId,
+              );
         },
-        label: Row(
+        label: const Row(
           children: [
             Icon(Icons.upload),
             Text('Upload'),
@@ -466,7 +513,7 @@ class ExamAssetView extends StatelessWidget {
                   child: medias[index]
                       .determineLoader(width: 128.w, height: 128.w),
                 ),
-                Divider(),
+                const Divider(),
                 Text(
                   medias[index].name.maxChar(length: 15),
                   style: context.theme.textTheme.bodyMedium
@@ -483,16 +530,24 @@ class ExamAssetView extends StatelessWidget {
 
 class QuestionAssetView extends StatelessWidget {
   final List<MediaModel> medias;
-  const QuestionAssetView({super.key, required this.medias});
+  final int clubId;
+  const QuestionAssetView({
+    super.key,
+    required this.medias,
+    required this.clubId,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Parent(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          context.read<MediaCubit>().upload(MediaParent.question);
+          context.read<MediaCubit>().upload(
+                MediaParent.question,
+                clubId,
+              );
         },
-        label: Row(
+        label: const Row(
           children: [
             Icon(Icons.upload),
             Text('Upload'),
@@ -523,7 +578,7 @@ class QuestionAssetView extends StatelessWidget {
                   child: medias[index]
                       .determineLoader(width: 128.w, height: 128.w),
                 ),
-                Divider(),
+                const Divider(),
                 Text(
                   medias[index].name.maxChar(length: 15),
                   style: context.theme.textTheme.bodyMedium

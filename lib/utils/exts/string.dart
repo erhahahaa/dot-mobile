@@ -158,7 +158,7 @@ extension StringExt on String {
     if (this.length <= length) {
       return this;
     }
-    return '${this.substring(0, length)}...';
+    return '${substring(0, length)}...';
   }
 
   void toClipboard() async {
