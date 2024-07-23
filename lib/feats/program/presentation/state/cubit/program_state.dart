@@ -6,5 +6,6 @@ class ProgramState with _$ProgramState {
     @Default(BaseState.initial) BaseState state,
     @Default([]) List<ProgramModel> programs,
     Failure? failure,
+    ProgramModel? createdProgram,
   }) = _ProgramState;
 }

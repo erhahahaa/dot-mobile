@@ -37,6 +37,9 @@ dependencies:
   text_area: ^0.0.3
   easy_search_bar: ^2.5.0
   syncfusion_flutter_calendar: ^26.1.42
+  image_picker: ^1.1.2
+  image_cropper: ^7.1.0
+  dotted_border: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -71,4 +74,4 @@ flutter:
     - assets/images/hero/
     - assets/images/tactical-board/
     - assets/images/exam/
-    
+    - assets/images/placeholder/

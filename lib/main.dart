@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:isar/isar.dart';
 
 void main() {
-  runZonedGuarded(() async {
+  runZonedGuarded(() async { 
     WidgetsFlutterBinding.ensureInitialized();
     await FirebaseServices.init();
     await Isar.initializeIsarCore();

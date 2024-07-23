@@ -18,6 +18,8 @@ _$ClubModelImpl _$$ClubModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),
       memberCount: (json['memberCount'] as num?)?.toInt() ?? 0,
+      programCount: (json['programCount'] as num?)?.toInt() ?? 0,
+      examCount: (json['examCount'] as num?)?.toInt() ?? 0,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -32,6 +34,8 @@ Map<String, dynamic> _$$ClubModelImplToJson(_$ClubModelImpl instance) =>
       'type': _$SportTypeEnumMap[instance.type]!,
       'media': instance.media,
       'memberCount': instance.memberCount,
+      'programCount': instance.programCount,
+      'examCount': instance.examCount,
       'createdAt': instance.createdAt?.toIso8601String(),
     };
 

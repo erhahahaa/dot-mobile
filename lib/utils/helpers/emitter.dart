@@ -1,7 +1,7 @@
 import 'package:dot_coaching/utils/helpers/logger.dart';
 
 void safeEmit<T>({
-  bool isClosed = true,
+  required bool isClosed,
   required void Function(T) emit,
   required T state,
 }) {

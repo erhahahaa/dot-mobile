@@ -27,6 +27,8 @@ mixin _$ClubModel {
   SportType get type => throw _privateConstructorUsedError;
   MediaEmbedModel? get media => throw _privateConstructorUsedError;
   int get memberCount => throw _privateConstructorUsedError;
+  int get programCount => throw _privateConstructorUsedError;
+  int get examCount => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,6 +50,8 @@ abstract class $ClubModelCopyWith<$Res> {
       SportType type,
       MediaEmbedModel? media,
       int memberCount,
+      int programCount,
+      int examCount,
       DateTime? createdAt});
 
   $MediaEmbedModelCopyWith<$Res>? get media;
@@ -73,6 +77,8 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
     Object? type = null,
     Object? media = freezed,
     Object? memberCount = null,
+    Object? programCount = null,
+    Object? examCount = null,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -103,6 +109,14 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
       memberCount: null == memberCount
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      programCount: null == programCount
+          ? _value.programCount
+          : programCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      examCount: null == examCount
+          ? _value.examCount
+          : examCount // ignore: cast_nullable_to_non_nullable
               as int,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -140,6 +154,8 @@ abstract class _$$ClubModelImplCopyWith<$Res>
       SportType type,
       MediaEmbedModel? media,
       int memberCount,
+      int programCount,
+      int examCount,
       DateTime? createdAt});
 
   @override
@@ -164,6 +180,8 @@ class __$$ClubModelImplCopyWithImpl<$Res>
     Object? type = null,
     Object? media = freezed,
     Object? memberCount = null,
+    Object? programCount = null,
+    Object? examCount = null,
     Object? createdAt = freezed,
   }) {
     return _then(_$ClubModelImpl(
@@ -195,6 +213,14 @@ class __$$ClubModelImplCopyWithImpl<$Res>
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
               as int,
+      programCount: null == programCount
+          ? _value.programCount
+          : programCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      examCount: null == examCount
+          ? _value.examCount
+          : examCount // ignore: cast_nullable_to_non_nullable
+              as int,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -214,6 +240,8 @@ class _$ClubModelImpl implements _ClubModel {
       this.type = SportType.basketBall,
       this.media,
       this.memberCount = 0,
+      this.programCount = 0,
+      this.examCount = 0,
       this.createdAt});
 
   factory _$ClubModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -240,11 +268,17 @@ class _$ClubModelImpl implements _ClubModel {
   @JsonKey()
   final int memberCount;
   @override
+  @JsonKey()
+  final int programCount;
+  @override
+  @JsonKey()
+  final int examCount;
+  @override
   final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'ClubModel(id: $id, creatorId: $creatorId, name: $name, description: $description, type: $type, media: $media, memberCount: $memberCount, createdAt: $createdAt)';
+    return 'ClubModel(id: $id, creatorId: $creatorId, name: $name, description: $description, type: $type, media: $media, memberCount: $memberCount, programCount: $programCount, examCount: $examCount, createdAt: $createdAt)';
   }
 
   @override
@@ -262,6 +296,10 @@ class _$ClubModelImpl implements _ClubModel {
             (identical(other.media, media) || other.media == media) &&
             (identical(other.memberCount, memberCount) ||
                 other.memberCount == memberCount) &&
+            (identical(other.programCount, programCount) ||
+                other.programCount == programCount) &&
+            (identical(other.examCount, examCount) ||
+                other.examCount == examCount) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -269,7 +307,7 @@ class _$ClubModelImpl implements _ClubModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, creatorId, name, description,
-      type, media, memberCount, createdAt);
+      type, media, memberCount, programCount, examCount, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -294,6 +332,8 @@ abstract class _ClubModel implements ClubModel {
       final SportType type,
       final MediaEmbedModel? media,
       final int memberCount,
+      final int programCount,
+      final int examCount,
       final DateTime? createdAt}) = _$ClubModelImpl;
 
   factory _ClubModel.fromJson(Map<String, dynamic> json) =
@@ -313,6 +353,10 @@ abstract class _ClubModel implements ClubModel {
   MediaEmbedModel? get media;
   @override
   int get memberCount;
+  @override
+  int get programCount;
+  @override
+  int get examCount;
   @override
   DateTime? get createdAt;
   @override

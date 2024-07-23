@@ -19,8 +19,8 @@ mixin _$UpdateClubParams {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  File get image => throw _privateConstructorUsedError;
   SportType get type => throw _privateConstructorUsedError;
-  File? get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UpdateClubParamsCopyWith<UpdateClubParams> get copyWith =>
@@ -34,11 +34,7 @@ abstract class $UpdateClubParamsCopyWith<$Res> {
       _$UpdateClubParamsCopyWithImpl<$Res, UpdateClubParams>;
   @useResult
   $Res call(
-      {String id,
-      String name,
-      String description,
-      SportType type,
-      File? image});
+      {String id, String name, String description, File image, SportType type});
 }
 
 /// @nodoc
@@ -57,8 +53,8 @@ class _$UpdateClubParamsCopyWithImpl<$Res, $Val extends UpdateClubParams>
     Object? id = null,
     Object? name = null,
     Object? description = null,
+    Object? image = null,
     Object? type = null,
-    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -73,14 +69,14 @@ class _$UpdateClubParamsCopyWithImpl<$Res, $Val extends UpdateClubParams>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as SportType,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as File?,
     ) as $Val);
   }
 }
@@ -94,11 +90,7 @@ abstract class _$$UpdateClubParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String name,
-      String description,
-      SportType type,
-      File? image});
+      {String id, String name, String description, File image, SportType type});
 }
 
 /// @nodoc
@@ -115,8 +107,8 @@ class __$$UpdateClubParamsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? description = null,
+    Object? image = null,
     Object? type = null,
-    Object? image = freezed,
   }) {
     return _then(_$UpdateClubParamsImpl(
       id: null == id
@@ -131,14 +123,14 @@ class __$$UpdateClubParamsImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as SportType,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as File?,
     ));
   }
 }
@@ -150,8 +142,8 @@ class _$UpdateClubParamsImpl extends _UpdateClubParams {
       {required this.id,
       required this.name,
       required this.description,
-      required this.type,
-      this.image})
+      required this.image,
+      required this.type})
       : super._();
 
   @override
@@ -161,13 +153,13 @@ class _$UpdateClubParamsImpl extends _UpdateClubParams {
   @override
   final String description;
   @override
-  final SportType type;
+  final File image;
   @override
-  final File? image;
+  final SportType type;
 
   @override
   String toString() {
-    return 'UpdateClubParams(id: $id, name: $name, description: $description, type: $type, image: $image)';
+    return 'UpdateClubParams(id: $id, name: $name, description: $description, image: $image, type: $type)';
   }
 
   @override
@@ -179,13 +171,13 @@ class _$UpdateClubParamsImpl extends _UpdateClubParams {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, description, type, image);
+      Object.hash(runtimeType, id, name, description, image, type);
 
   @JsonKey(ignore: true)
   @override
@@ -200,8 +192,8 @@ abstract class _UpdateClubParams extends UpdateClubParams {
       {required final String id,
       required final String name,
       required final String description,
-      required final SportType type,
-      final File? image}) = _$UpdateClubParamsImpl;
+      required final File image,
+      required final SportType type}) = _$UpdateClubParamsImpl;
   const _UpdateClubParams._() : super._();
 
   @override
@@ -211,9 +203,9 @@ abstract class _UpdateClubParams extends UpdateClubParams {
   @override
   String get description;
   @override
-  SportType get type;
+  File get image;
   @override
-  File? get image;
+  SportType get type;
   @override
   @JsonKey(ignore: true)
   _$$UpdateClubParamsImplCopyWith<_$UpdateClubParamsImpl> get copyWith =>

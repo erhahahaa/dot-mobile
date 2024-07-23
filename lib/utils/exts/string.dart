@@ -1,4 +1,5 @@
 import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
@@ -46,7 +47,9 @@ extension StringExt on String {
         position: ToastPosition.top,
         duration: const Duration(seconds: 3),
       );
-    } catch (e) {}
+    } catch (e) {
+      log.e('ERROR [TOAST] ERR :\n${e}');
+    }
   }
 
   void toToastSuccess(
@@ -75,7 +78,9 @@ extension StringExt on String {
         position: ToastPosition.top,
         duration: const Duration(seconds: 3),
       );
-    } catch (e) {}
+    } catch (e) {
+      log.e('SUCCESS [TOAST] ERR :\n${e}');
+    }
   }
 
   void toToastInfo(
@@ -103,7 +108,9 @@ extension StringExt on String {
         position: ToastPosition.top,
         duration: const Duration(seconds: 3),
       );
-    } catch (e) {}
+    } catch (e) {
+      log.e('INFO [TOAST] ERR :\n${e}');
+    }
   }
 
   void toToastLoading(
@@ -130,6 +137,16 @@ extension StringExt on String {
         position: ToastPosition.top,
         duration: const Duration(seconds: 3),
       );
-    } catch (e) {}
+    } catch (e) {
+      log.e('LOADING [TOAST] ERR :\n${e}');
+    }
+  }
+
+  String sanitize() {
+    if (contains('http://127.0.0.1')) {
+      final baseUrl = ListAPI.BASE_URL.split(':3000').first;
+      return replaceAll('http://127.0.0.1', baseUrl);
+    }
+    return this;
   }
 }

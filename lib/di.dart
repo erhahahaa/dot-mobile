@@ -8,8 +8,15 @@ Future<void> initDependencies() async {
   final isarClient = IsarClient();
   await isarClient.initIsar();
 
-  di.registerSingleton<IsarClient>(isarClient);
-  di.registerSingleton<DioClient>(DioClient(di<IsarClient>()));
+  di.registerSingleton<IsarClient>(
+    isarClient,
+  );
+  di.registerSingleton<DioClient>(
+    DioClient(di<IsarClient>()),
+  );
+  di.registerSingleton<ImagePickerClient>(
+    ImagePickerClient(),
+  );
 
   _intiRepos();
   _initCubits();
@@ -77,6 +84,7 @@ void _initCubits() {
     () => ClubCubit(
       di<ClubRepo>(),
       di<UserRepo>(),
+      di<ImagePickerClient>(),
     ),
   );
 

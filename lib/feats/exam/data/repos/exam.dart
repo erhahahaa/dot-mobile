@@ -18,6 +18,13 @@ class ExamRepoImpl implements ExamRepo {
       converter: (res) => ExamModel.fromJson(res['data']),
     );
 
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(() async {
+        await _local.exams.put(r.toEntity());
+      }),
+    );
+
     return res;
   }
 
@@ -28,6 +35,13 @@ class ExamRepoImpl implements ExamRepo {
     final res = await _remote.deleteRequest(
       '${ListAPI.CLUB_EXAM}/${params.id}',
       converter: (res) => ExamModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.exams.delete(r.id),
+      ),
     );
 
     return res;
@@ -48,6 +62,15 @@ class ExamRepoImpl implements ExamRepo {
       },
     );
 
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(() async {
+        for (final item in r) {
+          await _local.exams.put(item.toEntity());
+        }
+      }),
+    );
+
     return res;
   }
 
@@ -58,6 +81,13 @@ class ExamRepoImpl implements ExamRepo {
     final res = await _remote.getRequest(
       '${ListAPI.CLUB_EXAM}/${params.id}',
       converter: (res) => ExamModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.exams.put(r.toEntity()),
+      ),
     );
 
     return res;
@@ -71,6 +101,13 @@ class ExamRepoImpl implements ExamRepo {
       '${ListAPI.CLUB_EXAM}/${params.id}',
       data: params.toJson(),
       converter: (res) => ExamModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.exams.put(r.toEntity()),
+      ),
     );
 
     return res;

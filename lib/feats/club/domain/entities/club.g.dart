@@ -32,35 +32,45 @@ const ClubEntitySchema = CollectionSchema(
       name: r'description',
       type: IsarType.string,
     ),
-    r'imageId': PropertySchema(
+    r'examCount': PropertySchema(
       id: 3,
+      name: r'examCount',
+      type: IsarType.long,
+    ),
+    r'imageId': PropertySchema(
+      id: 4,
       name: r'imageId',
       type: IsarType.long,
     ),
     r'media': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'media',
       type: IsarType.object,
       target: r'MediaEmbedEntity',
     ),
     r'memberCount': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'memberCount',
       type: IsarType.long,
     ),
     r'name': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'name',
       type: IsarType.string,
     ),
+    r'programCount': PropertySchema(
+      id: 8,
+      name: r'programCount',
+      type: IsarType.long,
+    ),
     r'type': PropertySchema(
-      id: 7,
+      id: 9,
       name: r'type',
       type: IsarType.byte,
       enumMap: _ClubEntitytypeEnumValueMap,
     ),
     r'updatedAt': PropertySchema(
-      id: 8,
+      id: 10,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -142,17 +152,19 @@ void _clubEntitySerialize(
   writer.writeDateTime(offsets[0], object.createdAt);
   writer.writeLong(offsets[1], object.creatorId);
   writer.writeString(offsets[2], object.description);
-  writer.writeLong(offsets[3], object.imageId);
+  writer.writeLong(offsets[3], object.examCount);
+  writer.writeLong(offsets[4], object.imageId);
   writer.writeObject<MediaEmbedEntity>(
-    offsets[4],
+    offsets[5],
     allOffsets,
     MediaEmbedEntitySchema.serialize,
     object.media,
   );
-  writer.writeLong(offsets[5], object.memberCount);
-  writer.writeString(offsets[6], object.name);
-  writer.writeByte(offsets[7], object.type.index);
-  writer.writeDateTime(offsets[8], object.updatedAt);
+  writer.writeLong(offsets[6], object.memberCount);
+  writer.writeString(offsets[7], object.name);
+  writer.writeLong(offsets[8], object.programCount);
+  writer.writeByte(offsets[9], object.type.index);
+  writer.writeDateTime(offsets[10], object.updatedAt);
 }
 
 ClubEntity _clubEntityDeserialize(
@@ -165,18 +177,20 @@ ClubEntity _clubEntityDeserialize(
     createdAt: reader.readDateTimeOrNull(offsets[0]),
     creatorId: reader.readLongOrNull(offsets[1]),
     description: reader.readStringOrNull(offsets[2]),
+    examCount: reader.readLongOrNull(offsets[3]) ?? 0,
     id: id,
-    imageId: reader.readLongOrNull(offsets[3]),
+    imageId: reader.readLongOrNull(offsets[4]),
     media: reader.readObjectOrNull<MediaEmbedEntity>(
-      offsets[4],
+      offsets[5],
       MediaEmbedEntitySchema.deserialize,
       allOffsets,
     ),
-    memberCount: reader.readLongOrNull(offsets[5]) ?? 0,
-    name: reader.readStringOrNull(offsets[6]),
-    type: _ClubEntitytypeValueEnumMap[reader.readByteOrNull(offsets[7])] ??
+    memberCount: reader.readLongOrNull(offsets[6]) ?? 0,
+    name: reader.readStringOrNull(offsets[7]),
+    programCount: reader.readLongOrNull(offsets[8]) ?? 0,
+    type: _ClubEntitytypeValueEnumMap[reader.readByteOrNull(offsets[9])] ??
         SportType.basketBall,
-    updatedAt: reader.readDateTimeOrNull(offsets[8]),
+    updatedAt: reader.readDateTimeOrNull(offsets[10]),
   );
   return object;
 }
@@ -195,21 +209,25 @@ P _clubEntityDeserializeProp<P>(
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 4:
+      return (reader.readLongOrNull(offset)) as P;
+    case 5:
       return (reader.readObjectOrNull<MediaEmbedEntity>(
         offset,
         MediaEmbedEntitySchema.deserialize,
         allOffsets,
       )) as P;
-    case 5:
-      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 6:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 7:
+      return (reader.readStringOrNull(offset)) as P;
+    case 8:
+      return (reader.readLongOrNull(offset) ?? 0) as P;
+    case 9:
       return (_ClubEntitytypeValueEnumMap[reader.readByteOrNull(offset)] ??
           SportType.basketBall) as P;
-    case 8:
+    case 10:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -622,6 +640,60 @@ extension ClubEntityQueryFilter
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> examCountEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'examCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      examCountGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'examCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> examCountLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'examCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> examCountBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'examCount',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> idEqualTo(
       Id value) {
     return QueryBuilder.apply(this, (query) {
@@ -960,6 +1032,62 @@ extension ClubEntityQueryFilter
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'name',
         value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      programCountEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'programCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      programCountGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'programCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      programCountLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'programCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      programCountBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'programCount',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
       ));
     });
   }
@@ -1383,6 +1511,18 @@ extension ClubEntityQuerySortBy
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByExamCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'examCount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByExamCountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'examCount', Sort.desc);
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByImageId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageId', Sort.asc);
@@ -1416,6 +1556,18 @@ extension ClubEntityQuerySortBy
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByProgramCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'programCount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByProgramCountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'programCount', Sort.desc);
     });
   }
 
@@ -1482,6 +1634,18 @@ extension ClubEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByExamCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'examCount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByExamCountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'examCount', Sort.desc);
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -1527,6 +1691,18 @@ extension ClubEntityQuerySortThenBy
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByProgramCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'programCount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByProgramCountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'programCount', Sort.desc);
     });
   }
 
@@ -1576,6 +1752,12 @@ extension ClubEntityQueryWhereDistinct
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByExamCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'examCount');
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByImageId() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'imageId');
@@ -1592,6 +1774,12 @@ extension ClubEntityQueryWhereDistinct
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByProgramCount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'programCount');
     });
   }
 
@@ -1634,6 +1822,12 @@ extension ClubEntityQueryProperty
     });
   }
 
+  QueryBuilder<ClubEntity, int, QQueryOperations> examCountProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'examCount');
+    });
+  }
+
   QueryBuilder<ClubEntity, int?, QQueryOperations> imageIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'imageId');
@@ -1656,6 +1850,12 @@ extension ClubEntityQueryProperty
   QueryBuilder<ClubEntity, String?, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
+    });
+  }
+
+  QueryBuilder<ClubEntity, int, QQueryOperations> programCountProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'programCount');
     });
   }
 

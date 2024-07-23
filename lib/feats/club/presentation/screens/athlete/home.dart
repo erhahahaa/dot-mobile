@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color(0xFF5868F1), Color(0xFF333C8B)],
               ),
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               width: 344.w,
               height: 581.h,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xFFF5F6FF),
               ),
             ),
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               width: 308.w,
               height: 72.h,
-              padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16.r),
@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.black.withOpacity(0.25),
                     blurRadius: 8,
                     spreadRadius: 0,
-                    offset: Offset(4, 4),
+                    offset: const Offset(4, 4),
                   ),
                 ],
               ),
@@ -97,9 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       SizedBox(height: 6.h),
                       Container(
-                        padding: EdgeInsets.fromLTRB(16, 2, 16, 2),
+                        padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
                         decoration: BoxDecoration(
-                          color: Color(0xFF763AD8),
+                          color: const Color(0xFF763AD8),
                           borderRadius: BorderRadius.circular(20.r),
                         ),
                         child: Row(
@@ -185,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 280.h,
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Color(0xFFE6E8F9),
+                    color: const Color(0xFFE6E8F9),
                     borderRadius: BorderRadius.circular(16.r),
                   ),
                   child: ListView.builder(
@@ -196,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 271.w,
                         height: 56.h,
                         margin: EdgeInsets.only(bottom: 8.h),
-                        padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(16.r),
@@ -209,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: 24.w,
                               height: 24.h,
                               decoration: BoxDecoration(
-                                color: Color(0xFF763AD8),
+                                color: const Color(0xFF763AD8),
                                 borderRadius: BorderRadius.circular(16.r),
                               ),
                               child: Icon(

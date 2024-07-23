@@ -30,6 +30,13 @@ class ProgramRepoImpl implements ProgramRepo {
       converter: (res) => ProgramModel.fromJson(res['data']),
     );
 
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.programs.delete(r.id),
+      ),
+    );
+
     return res;
   }
 
@@ -53,6 +60,17 @@ class ProgramRepoImpl implements ProgramRepo {
       },
     );
 
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async {
+          for (final program in r) {
+            _local.programs.put(program.toEntity());
+          }
+        },
+      ),
+    );
+
     return res;
   }
 
@@ -63,6 +81,13 @@ class ProgramRepoImpl implements ProgramRepo {
     final res = await _remote.getRequest(
       '${ListAPI.CLUB_PROGRAM}/${params.id}',
       converter: (res) => ProgramModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.programs.put(r.toEntity()),
+      ),
     );
 
     return res;
@@ -76,6 +101,13 @@ class ProgramRepoImpl implements ProgramRepo {
       '${ListAPI.CLUB_PROGRAM}/${params.id}',
       data: params.toJson(),
       converter: (res) => ProgramModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.programs.put(r.toEntity()),
+      ),
     );
 
     return res;

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
@@ -10,11 +12,21 @@ part 'club_state.dart';
 class ClubCubit extends Cubit<ClubState> {
   final ClubRepo _clubRepo;
   final UserRepo _userRepo;
+  final ImagePickerClient _imagePickerClient;
 
   ClubCubit(
     this._clubRepo,
     this._userRepo,
+    this._imagePickerClient,
   ) : super(const ClubState());
+
+  void emitCaller(ClubState s) {
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: s,
+    );
+  }
 
   Future<void> init() async {
     final u = await fetchLocalUser();
@@ -87,6 +99,40 @@ class ClubCubit extends Cubit<ClubState> {
           state: state.copyWith(
             state: BaseState.success,
             coachClubs: coachClub,
+          ),
+        );
+      },
+    );
+  }
+
+  void pickImageFromGallery() async {
+    final res = await _imagePickerClient.getImageFromGallery();
+
+    res.fold(
+      (l) {},
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            image: File(r.path),
+          ),
+        );
+      },
+    );
+  }
+
+  void pickImageFromCamera() async {
+    final res = await _imagePickerClient.getImageFromCamera();
+
+    res.fold(
+      (l) {},
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            image: File(r.path),
           ),
         );
       },

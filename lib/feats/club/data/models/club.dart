@@ -14,6 +14,8 @@ class ClubModel with _$ClubModel {
     @Default(SportType.basketBall) SportType type,
     MediaEmbedModel? media,
     @Default(0) int memberCount,
+    @Default(0) int programCount,
+    @Default(0) int examCount,
     DateTime? createdAt,
   }) = _ClubModel;
 
@@ -31,6 +33,8 @@ class ClubModel with _$ClubModel {
           ? MediaEmbedModel.fromEntity(entity.media!)
           : null,
       memberCount: entity.memberCount,
+      programCount: entity.programCount,
+      examCount: entity.examCount,
       createdAt: entity.createdAt,
     );
   }
@@ -46,6 +50,8 @@ extension ClubModelX on ClubModel {
       type: type,
       media: media?.toEntity(),
       memberCount: memberCount,
+      programCount: programCount,
+      examCount: examCount,
       createdAt: createdAt,
     );
   }

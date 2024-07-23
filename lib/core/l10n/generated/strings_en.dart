@@ -93,4 +93,13 @@ class StringsEn extends Strings {
 
   @override
   String get about => 'About';
+
+  @override
+  String get clubImageRequired => 'Club image is required';
+
+  @override
+  String get successCreateProgram => 'Success create program';
+
+  @override
+  String get failedCreateProgram => 'Failed to create program';
 }

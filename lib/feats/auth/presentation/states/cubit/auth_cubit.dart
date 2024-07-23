@@ -36,19 +36,18 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> init() async {
-    // TODO: should uncomment while push
-    // final hasLocalUser = await getLocalMe();
-    // if (hasLocalUser) {
-    //   checkAuth();
-    // } else {
-    //   safeEmit(
-    //     isClosed: isClosed,
-    //     emit: emit,
-    //     state: state.copyWith(
-    //       status: AuthStatus.unauthenticated,
-    //     ),
-    //   );
-    // }
+    final hasLocalUser = await getLocalMe();
+    if (hasLocalUser) {
+      checkAuth();
+    } else {
+      safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          status: AuthStatus.unauthenticated,
+        ),
+      );
+    }
   }
 
   Future<bool> getLocalMe() async {

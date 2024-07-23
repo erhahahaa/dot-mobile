@@ -27,6 +27,7 @@ class TextF extends StatefulWidget {
   final Iterable<String>? autofillHints;
   final String? semanticsLabel;
   final Color? fillColor;
+  final InputDecoration? decoration;
 
   const TextF({
     super.key,
@@ -53,6 +54,7 @@ class TextF extends StatefulWidget {
     this.autofillHints,
     this.semanticsLabel,
     this.fillColor,
+    this.decoration,
   });
 
   @override
@@ -79,7 +81,7 @@ class _TextFState extends State<TextF> {
               ),
             ),
           ),
-          SizedBox(height: 4.h),
+          widget.isHintVisible == true ? SizedBox(height: 4.h) : Container(),
           Semantics(
             label: widget.semanticsLabel,
             child: TextFormField(
@@ -100,91 +102,92 @@ class _TextFState extends State<TextF> {
               textAlignVertical: TextAlignVertical.center,
               style: Theme.of(context).textTheme.bodyMedium,
               cursorColor: const Color(0xff4c4f69),
-              decoration: InputDecoration(
-                prefixText: widget.prefixText,
-                alignLabelWithHint: true,
-                filled: true,
-                fillColor: context.theme.colorScheme.surface,
-                isDense: true,
-                hintText: widget.hintText,
-                hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).hintColor,
-                    ),
-                suffixIcon: widget.suffixIcon,
-                prefixIcon: SizedBox(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 16.w,
+              decoration: widget.decoration ??
+                  InputDecoration(
+                    prefixText: widget.prefixText,
+                    alignLabelWithHint: true,
+                    filled: true,
+                    fillColor: context.theme.colorScheme.surface,
+                    isDense: true,
+                    hintText: widget.hintText,
+                    hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).hintColor,
                         ),
-                        child: widget.prefixIcon,
+                    suffixIcon: widget.suffixIcon,
+                    prefixIcon: SizedBox(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 16.w,
+                            ),
+                            child: widget.prefixIcon,
+                          ),
+                          // vertical line,
+                          Container(
+                            width: 1,
+                            height: 24.h,
+                            color: Colors.grey,
+                          ),
+                          SizedBox(width: 16.w)
+                        ],
                       ),
-                      // vertical line,
-                      Container(
-                        width: 1,
-                        height: 24.h,
-                        color: Colors.grey,
-                      ),
-                      SizedBox(width: 16.w)
-                    ],
-                  ),
-                ),
-                prefixIconConstraints: BoxConstraints(
-                  minHeight: 24.h,
-                  minWidth: 24.h,
-                ),
-                contentPadding: EdgeInsets.symmetric(
-                  horizontal: 12.w,
-                  vertical: 16.h,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    4.r,
-                  ),
-                  borderSide: BorderSide(
-                    color: context.isDarkMode
-                        ? Colors.grey[700]!
-                        : Colors.grey[300]!,
-                  ),
-                ),
-                disabledBorder: OutlineInputBorder(
-                  gapPadding: 0,
-                  borderRadius: BorderRadius.circular(
-                    4.r,
-                  ),
-                  borderSide: BorderSide(
-                    color: context.isDarkMode
-                        ? Colors.grey[700]!
-                        : Colors.grey[300]!,
-                  ),
-                ),
-                errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.error,
                     ),
-                focusedErrorBorder: OutlineInputBorder(
-                  gapPadding: 0,
-                  borderRadius: BorderRadius.circular(4.r),
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.error,
+                    prefixIconConstraints: BoxConstraints(
+                      minHeight: 24.h,
+                      minWidth: 24.h,
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 12.w,
+                      vertical: 16.h,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(
+                        4.r,
+                      ),
+                      borderSide: BorderSide(
+                        color: context.isDarkMode
+                            ? Colors.grey[700]!
+                            : Colors.grey[300]!,
+                      ),
+                    ),
+                    disabledBorder: OutlineInputBorder(
+                      gapPadding: 0,
+                      borderRadius: BorderRadius.circular(
+                        4.r,
+                      ),
+                      borderSide: BorderSide(
+                        color: context.isDarkMode
+                            ? Colors.grey[700]!
+                            : Colors.grey[300]!,
+                      ),
+                    ),
+                    errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      gapPadding: 0,
+                      borderRadius: BorderRadius.circular(4.r),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      gapPadding: 0,
+                      borderRadius: BorderRadius.circular(4.r),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      gapPadding: 0,
+                      borderRadius: BorderRadius.circular(4.r),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
                   ),
-                ),
-                errorBorder: OutlineInputBorder(
-                  gapPadding: 0,
-                  borderRadius: BorderRadius.circular(4.r),
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.error,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  gapPadding: 0,
-                  borderRadius: BorderRadius.circular(4.r),
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ),
               validator: widget.validator as String? Function(String?)?,
               onChanged: widget.onChanged,
               onTap: widget.onTap as void Function()?,

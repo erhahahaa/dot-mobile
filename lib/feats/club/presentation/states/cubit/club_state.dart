@@ -8,5 +8,6 @@ class ClubState with _$ClubState {
     @Default(UserModel()) UserModel user,
     @Default([]) List<ClubModel> coachClubs,
     @Default([]) List<ClubModel> athleteClubs,
+    File? image,
   }) = _ClubState;
 }

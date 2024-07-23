@@ -272,6 +272,24 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'About'**
   String get about;
+
+  /// No description provided for @clubImageRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Club image is required'**
+  String get clubImageRequired;
+
+  /// No description provided for @successCreateProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Success create program'**
+  String get successCreateProgram;
+
+  /// No description provided for @failedCreateProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create program'**
+  String get failedCreateProgram;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

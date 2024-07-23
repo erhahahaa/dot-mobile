@@ -29,5 +29,8 @@
   "edit": "Edit",
   "delete": "Delete",
   "leave": "Leave",
-  "about": "About"
+  "about": "About",
+  "clubImageRequired": "Club image is required",
+  "successCreateProgram": "Success create program",
+  "failedCreateProgram":"Failed to create program"
 }

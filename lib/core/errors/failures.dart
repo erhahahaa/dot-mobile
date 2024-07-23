@@ -35,3 +35,17 @@ class StorageFailure extends Failure {
   @override
   int get hashCode => message.hashCode;
 }
+
+class NoDataFailure extends Failure {
+  @override
+  final String message;
+
+  const NoDataFailure(this.message);
+
+  @override
+  bool operator ==(Object other) =>
+      other is NoDataFailure && other.message == message;
+
+  @override
+  int get hashCode => message.hashCode;
+}

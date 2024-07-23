@@ -18,6 +18,13 @@ class QuestionRepoImpl implements QuestionRepo {
       converter: (res) => QuestionModel.fromJson(res['data']),
     );
 
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.questions.put(r.toEntity()),
+      ),
+    );
+
     return res;
   }
 
@@ -28,6 +35,13 @@ class QuestionRepoImpl implements QuestionRepo {
     final res = await _remote.deleteRequest(
       '${ListAPI.CLUB_EXAM_QUESTION}/${params.id}',
       converter: (res) => QuestionModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.questions.delete(r.id),
+      ),
     );
 
     return res;
@@ -48,6 +62,17 @@ class QuestionRepoImpl implements QuestionRepo {
       },
     );
 
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async {
+          for (final question in r) {
+            _local.questions.put(question.toEntity());
+          }
+        },
+      ),
+    );
+
     return res;
   }
 
@@ -58,6 +83,13 @@ class QuestionRepoImpl implements QuestionRepo {
     final res = await _remote.getRequest(
       '${ListAPI.CLUB_EXAM_QUESTION}/${params.id}',
       converter: (res) => QuestionModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.questions.put(r.toEntity()),
+      ),
     );
 
     return res;
@@ -71,6 +103,13 @@ class QuestionRepoImpl implements QuestionRepo {
       '${ListAPI.CLUB_EXAM_QUESTION}/${params.id}',
       data: params.toJson(),
       converter: (res) => QuestionModel.fromJson(res['data']),
+    );
+
+    res.fold(
+      (l) => null,
+      (r) => _local.isar.writeTxn(
+        () async => _local.questions.put(r.toEntity()),
+      ),
     );
 
     return res;
