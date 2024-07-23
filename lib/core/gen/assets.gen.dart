@@ -84,6 +84,9 @@ class $AssetsImagesGen {
   AssetGenImage get dotLogo =>
       const AssetGenImage('assets/images/dot_logo.png');
 
+  /// Directory path: assets/images/exam
+  $AssetsImagesExamGen get exam => const $AssetsImagesExamGen();
+
   /// Directory path: assets/images/hero
   $AssetsImagesHeroGen get hero => const $AssetsImagesHeroGen();
 
@@ -91,12 +94,20 @@ class $AssetsImagesGen {
   $AssetsImagesPlaceholderGen get placeholder =>
       const $AssetsImagesPlaceholderGen();
 
+  /// Directory path: assets/images/tactical-board
+  $AssetsImagesTacticalBoardGen get tacticalBoard =>
+      const $AssetsImagesTacticalBoardGen();
+
   /// List of all assets
   List<AssetGenImage> get values => [dotLogo];
 }
 
 class $AssetsImagesBgGen {
   const $AssetsImagesBgGen();
+
+  /// File path: assets/images/bg/F5F6FF-bg.svg
+  SvgGenImage get f5F6FFBg =>
+      const SvgGenImage('assets/images/bg/F5F6FF-bg.svg');
 
   /// File path: assets/images/bg/gradient-skewed-right.svg
   SvgGenImage get gradientSkewedRight =>
@@ -107,7 +118,18 @@ class $AssetsImagesBgGen {
       const SvgGenImage('assets/images/bg/home-athlete.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [gradientSkewedRight, homeAthlete];
+  List<SvgGenImage> get values => [f5F6FFBg, gradientSkewedRight, homeAthlete];
+}
+
+class $AssetsImagesExamGen {
+  const $AssetsImagesExamGen();
+
+  /// File path: assets/images/exam/exam-logo.png
+  AssetGenImage get examLogo =>
+      const AssetGenImage('assets/images/exam/exam-logo.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [examLogo];
 }
 
 class $AssetsImagesHeroGen {
@@ -134,6 +156,17 @@ class $AssetsImagesPlaceholderGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [sport];
+}
+
+class $AssetsImagesTacticalBoardGen {
+  const $AssetsImagesTacticalBoardGen();
+
+  /// File path: assets/images/tactical-board/01.png
+  AssetGenImage get a01 =>
+      const AssetGenImage('assets/images/tactical-board/01.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [a01];
 }
 
 class Assets {

@@ -28,7 +28,7 @@ extension MediaExt on MediaModel {
       );
     }
 
-    return Center(
+    return const Center(
       child: Text('Unknown media type'),
     );
   }

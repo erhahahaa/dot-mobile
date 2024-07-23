@@ -226,7 +226,7 @@ class ClubAssetView extends StatelessWidget {
                   child: medias[index]
                       .determineLoader(width: 128.w, height: 128.w),
                 ),
-                Divider(),
+                const Divider(),
                 Text(
                   medias[index].name.maxChar(length: 15),
                   style: context.theme.textTheme.bodyMedium?.copyWith(
@@ -256,7 +256,7 @@ class ClubAssetView extends StatelessWidget {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: Text('Asset Info'),
+                              title: const Text('Asset Info'),
                               content: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -270,7 +270,7 @@ class ClubAssetView extends StatelessWidget {
                                           child: Text(
                                               'URL: ${medias[index].url.sanitize()}')),
                                       InkWell(
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.copy,
                                         ),
                                         onTap: () {
@@ -291,7 +291,7 @@ class ClubAssetView extends StatelessWidget {
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text('Close'),
+                                  child: const Text('Close'),
                                 ),
                               ],
                             );
@@ -321,7 +321,7 @@ class ProgramAssetView extends StatelessWidget {
         onPressed: () {
           context.read<MediaCubit>().upload(MediaParent.program);
         },
-        label: Row(
+        label: const Row(
           children: [
             Icon(Icons.upload),
             Text('Upload'),
@@ -352,7 +352,7 @@ class ProgramAssetView extends StatelessWidget {
                   child: medias[index]
                       .determineLoader(width: 128.w, height: 128.w),
                 ),
-                Divider(),
+                const Divider(),
                 Text(
                   medias[index].name.maxChar(length: 15),
                   style: context.theme.textTheme.bodyMedium
@@ -378,7 +378,7 @@ class ExerciseAssetView extends StatelessWidget {
         onPressed: () {
           context.read<MediaCubit>().upload(MediaParent.exercise);
         },
-        label: Row(
+        label: const Row(
           children: [
             Icon(Icons.upload),
             Text('Upload'),
@@ -409,7 +409,7 @@ class ExerciseAssetView extends StatelessWidget {
                   child: medias[index]
                       .determineLoader(width: 128.w, height: 128.w),
                 ),
-                Divider(),
+                const Divider(),
                 Text(
                   medias[index].name.maxChar(length: 15),
                   style: context.theme.textTheme.bodyMedium
@@ -435,7 +435,7 @@ class ExamAssetView extends StatelessWidget {
         onPressed: () {
           context.read<MediaCubit>().upload(MediaParent.exam);
         },
-        label: Row(
+        label: const Row(
           children: [
             Icon(Icons.upload),
             Text('Upload'),
@@ -466,7 +466,7 @@ class ExamAssetView extends StatelessWidget {
                   child: medias[index]
                       .determineLoader(width: 128.w, height: 128.w),
                 ),
-                Divider(),
+                const Divider(),
                 Text(
                   medias[index].name.maxChar(length: 15),
                   style: context.theme.textTheme.bodyMedium
@@ -492,7 +492,7 @@ class QuestionAssetView extends StatelessWidget {
         onPressed: () {
           context.read<MediaCubit>().upload(MediaParent.question);
         },
-        label: Row(
+        label: const Row(
           children: [
             Icon(Icons.upload),
             Text('Upload'),
@@ -523,7 +523,7 @@ class QuestionAssetView extends StatelessWidget {
                   child: medias[index]
                       .determineLoader(width: 128.w, height: 128.w),
                 ),
-                Divider(),
+                const Divider(),
                 Text(
                   medias[index].name.maxChar(length: 15),
                   style: context.theme.textTheme.bodyMedium

@@ -19,7 +19,7 @@ class _TacticalScreenState extends State<TacticalScreen> {
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color(0xFF5868F1), Color(0xFF83348E)],
               ),
@@ -38,7 +38,7 @@ class _TacticalScreenState extends State<TacticalScreen> {
             child: Container(
               width: 344.w,
               height: 644.h,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Color(0xFFF5F6FF),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50.0),
@@ -52,9 +52,9 @@ class _TacticalScreenState extends State<TacticalScreen> {
             top: 40.h,
             child: Container(
               width: 345.w,
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   colors: [Color(0xFF5868F1), Color(0xFF83348E)],
                 ),
                 borderRadius: BorderRadius.circular(50.r),
@@ -62,7 +62,7 @@ class _TacticalScreenState extends State<TacticalScreen> {
               child: Container(
                 width: 308.w,
                 height: 46.h,
-                padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16.r),
@@ -71,7 +71,7 @@ class _TacticalScreenState extends State<TacticalScreen> {
                       color: Colors.black.withOpacity(0.25),
                       blurRadius: 8,
                       spreadRadius: 0,
-                      offset: Offset(4, 4),
+                      offset: const Offset(4, 4),
                     ),
                   ],
                 ),
@@ -96,14 +96,14 @@ class _TacticalScreenState extends State<TacticalScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          padding: EdgeInsets.fromLTRB(16, 2, 16, 2),
+                          padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
                           decoration: BoxDecoration(
-                            color: Color(0xFF763AD8),
+                            color: const Color(0xFF763AD8),
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.sports_volleyball,
                                 color: Colors.white,
                                 size: 16,
@@ -136,7 +136,7 @@ class _TacticalScreenState extends State<TacticalScreen> {
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
-                  margin: EdgeInsets.only(bottom: 24),
+                  margin: const EdgeInsets.only(bottom: 24),
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                   decoration: BoxDecoration(
                     color: Colors.white,

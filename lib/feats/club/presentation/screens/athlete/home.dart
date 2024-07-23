@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.sports_volleyball,
                               color: Colors.white,
                               size: 16,
@@ -154,20 +154,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Column(
                       children: [
-                        Container(
+                        SizedBox(
                           width: 119.w,
                           height: 30.h,
                           child: TextField(
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(8),
+                              contentPadding: const EdgeInsets.all(8),
                               hintText: 'Search...',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.r),
                                 borderSide: BorderSide.none,
                               ),
                               filled: true,
-                              fillColor: Color(0xFF868FE3),
+                              fillColor: const Color(0xFF868FE3),
                               prefixIcon: Icon(Icons.search,
                                   color: Colors.white, size: 16.sp),
                             ),
@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   width: 303.w,
                   height: 280.h,
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: const Color(0xFFE6E8F9),
                     borderRadius: BorderRadius.circular(16.r),
@@ -248,7 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   shape: const StadiumBorder(),
                                   side: const BorderSide(
                                       width: 1, color: Color(0xFF575FFF)),
-                                  padding: EdgeInsets.symmetric(horizontal: 12),
+                                  padding: const EdgeInsets.symmetric(horizontal: 12),
                                 ),
                                 onPressed: () {},
                                 child: Row(
@@ -258,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Text(
                                       "See Details",
                                       style: TextStyle(
-                                        color: Color(0xFF575FFF),
+                                        color: const Color(0xFF575FFF),
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -266,7 +266,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     SizedBox(width: 8.w),
                                     Icon(
                                       Icons.arrow_forward_rounded,
-                                      color: Color(0xFF575FFF),
+                                      color: const Color(0xFF575FFF),
                                       size: 12.sp,
                                     ),
                                   ],

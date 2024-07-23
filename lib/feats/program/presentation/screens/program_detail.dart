@@ -690,7 +690,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                             height: 26.h,
                                             padding: const EdgeInsets.all(4),
                                             decoration: BoxDecoration(
-                                              color: Color(0xFFE40000),
+                                              color: const Color(0xFFE40000),
                                               borderRadius:
                                                   BorderRadius.circular(50),
                                             ),
@@ -757,8 +757,8 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                 child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(const Color(0xFF5868F1)),
-                    shape: MaterialStateProperty.all(
+                        WidgetStateProperty.all(const Color(0xFF5868F1)),
+                    shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),

@@ -14,7 +14,7 @@ class HistoryScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color(0xFF5868F1), Color(0xFF83348E)],
               ),
@@ -32,9 +32,9 @@ class HistoryScreen extends StatelessWidget {
           Container(
             width: 345.w,
             height: 106.h,
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 colors: [Color(0xFF5868F1), Color(0xFF83348E)],
               ),
               borderRadius: BorderRadius.circular(50.r),
@@ -45,7 +45,7 @@ class HistoryScreen extends StatelessWidget {
             child: Container(
               width: 344.w,
               height: 655.h,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Color(0xFFF5F6FF),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50.0),
@@ -120,20 +120,20 @@ class HistoryScreen extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Container(
+                        SizedBox(
                           width: 146.w,
                           height: 30.h,
                           child: TextField(
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(8),
+                              contentPadding: const EdgeInsets.all(8),
                               hintText: 'Search...',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.r),
                                 borderSide: BorderSide.none,
                               ),
                               filled: true,
-                              fillColor: Color(0xFF868FE3),
+                              fillColor: const Color(0xFF868FE3),
                               prefixIcon: Icon(
                                 Icons.search,
                                 color: Colors.white,
@@ -217,7 +217,7 @@ class HistoryScreen extends StatelessWidget {
                                   shape: const StadiumBorder(),
                                   side: const BorderSide(
                                       width: 1, color: Color(0xFF575FFF)),
-                                  padding: EdgeInsets.symmetric(horizontal: 12),
+                                  padding: const EdgeInsets.symmetric(horizontal: 12),
                                 ),
                                 onPressed: () {},
                                 child: Row(
@@ -227,7 +227,7 @@ class HistoryScreen extends StatelessWidget {
                                     Text(
                                       "Download PDF",
                                       style: TextStyle(
-                                        color: Color(0xFF575FFF),
+                                        color: const Color(0xFF575FFF),
                                         fontSize: 11.sp,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -235,7 +235,7 @@ class HistoryScreen extends StatelessWidget {
                                     SizedBox(width: 8.w),
                                     Icon(
                                       Icons.picture_as_pdf_rounded,
-                                      color: Color(0xFF575FFF),
+                                      color: const Color(0xFF575FFF),
                                       size: 12.sp,
                                     ),
                                   ],
