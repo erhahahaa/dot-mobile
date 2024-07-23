@@ -207,11 +207,11 @@ class _$UserModelImpl implements _UserModel {
       this.name = 'Folks',
       this.email = 'folks@dot.com',
       this.image = "https://api.dicebear.com/9.x/adventurer/png",
-      this.phone = null,
+      this.phone,
       this.role = UserRole.athlete,
       this.expertise = "Sports",
       this.createdAt,
-      this.token = null});
+      this.token});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -229,7 +229,6 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   final String image;
   @override
-  @JsonKey()
   final String? phone;
   @override
   @JsonKey()
@@ -240,7 +239,6 @@ class _$UserModelImpl implements _UserModel {
   @override
   final DateTime? createdAt;
   @override
-  @JsonKey()
   final String? token;
 
   @override

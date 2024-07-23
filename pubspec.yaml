@@ -36,6 +36,7 @@ dependencies:
   google_fonts: ^6.2.1
   text_area: ^0.0.3
   easy_search_bar: ^2.5.0
+  syncfusion_flutter_calendar: ^26.1.42
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/icons/
     - assets/images/
     - assets/images/bg/
     - assets/images/hero/

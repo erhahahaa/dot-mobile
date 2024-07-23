@@ -9,8 +9,9 @@ class ProgramModel with _$ProgramModel {
   const factory ProgramModel({
     @Default(0) int id,
     @Default(0) int clubId,
-    @Default('') String sportType,
-    @Default('') String name,
+    @Default('DOT Sport') String name,
+    DateTime? startDate,
+    DateTime? endDate,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _ProgramModel;
@@ -21,9 +22,10 @@ class ProgramModel with _$ProgramModel {
   static ProgramModel fromEntity(ProgramEntity entity) {
     return ProgramModel(
       id: entity.id,
-      clubId: entity.clubId ?? 0,
-      sportType: entity.sportType ?? '',
-      name: entity.name ?? '',
+      clubId: entity.clubId,
+      name: entity.name,
+      startDate: entity.startDate,
+      endDate: entity.endDate,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );
@@ -31,13 +33,13 @@ class ProgramModel with _$ProgramModel {
 }
 
 extension ProgramModelX on ProgramModel {
-  //toEntity
   ProgramEntity toEntity() {
     return ProgramEntity(
       id: id,
       clubId: clubId,
-      sportType: sportType,
       name: name,
+      startDate: startDate,
+      endDate: endDate,
       createdAt: createdAt,
       updatedAt: updatedAt,
     );

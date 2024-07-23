@@ -11,11 +11,11 @@ class UserModel with _$UserModel {
     @Default('Folks') String name,
     @Default('folks@dot.com') String? email,
     @Default("https://api.dicebear.com/9.x/adventurer/png") String image,
-    @Default(null) String? phone,
+    String? phone,
     @Default(UserRole.athlete) UserRole role,
     @Default("Sports") String expertise,
     DateTime? createdAt,
-    @Default(null) String? token,
+    String? token,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -37,7 +37,6 @@ class UserModel with _$UserModel {
 }
 
 extension UserModelX on UserModel {
-  //toEntity
   UserEntity toEntity() {
     return UserEntity(
       id: id,

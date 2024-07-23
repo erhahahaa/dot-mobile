@@ -13,14 +13,14 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String? ?? 'folks@dot.com',
       image: json['image'] as String? ??
           "https://api.dicebear.com/9.x/adventurer/png",
-      phone: json['phone'] as String? ?? null,
+      phone: json['phone'] as String?,
       role: $enumDecodeNullable(_$UserRoleEnumMap, json['role']) ??
           UserRole.athlete,
       expertise: json['expertise'] as String? ?? "Sports",
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
-      token: json['token'] as String? ?? null,
+      token: json['token'] as String?,
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>

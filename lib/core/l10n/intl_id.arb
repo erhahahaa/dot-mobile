@@ -21,5 +21,13 @@
   "createClub": "Buat Klub",
   "club": "Klub",
   "sportType": "Jenis Olahraga",
-  "detail": "Rincian"
+  "detail": "Rincian",
+  "back": "Kembali",
+  "join": "Gabung",
+  "management": "Manajemen",
+  "settings": "Pengaturan",
+  "edit": "Ubah",
+  "delete": "Hapus",
+  "leave": "Keluar",
+  "about": "Tentang"
 }

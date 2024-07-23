@@ -18,7 +18,10 @@ class ClubContainer extends StatelessWidget {
     return InkWell(
       onTap: () => context.pushNamed(
         AppRoutes.coachClubDetail.name,
-        extra: {club},
+        pathParameters: {'id': club.id.toString()},
+        extra: {
+          'club': club,
+        },
       ),
       child: Container(
         decoration: BoxDecoration(

@@ -129,15 +129,13 @@ class MaterialTheme {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all<Color>(
-              colorScheme.onPrimary,
+              colorScheme.primary,
             ),
             textStyle: WidgetStateProperty.all<TextStyle>(
-              textTheme.bodyLarge!.copyWith(
+              textTheme.titleMedium!.copyWith(
                 color: colorScheme.onPrimary,
-                fontWeight: FontWeight.w600,
               ),
             ),
-            // border radius
             shape: WidgetStateProperty.all<OutlinedBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.r),

@@ -223,6 +223,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                 name: _nameController.text,
                                 email: _emailController.text,
                                 password: _passwordController.text,
+                                phone: _phoneController.text,
                                 role: UserRole.athlete,
                               ),
                             );

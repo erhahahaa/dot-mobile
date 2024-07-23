@@ -27,18 +27,28 @@ const ProgramEntitySchema = CollectionSchema(
       name: r'createdAt',
       type: IsarType.dateTime,
     ),
-    r'name': PropertySchema(
+    r'endDate': PropertySchema(
       id: 2,
+      name: r'endDate',
+      type: IsarType.dateTime,
+    ),
+    r'imageId': PropertySchema(
+      id: 3,
+      name: r'imageId',
+      type: IsarType.long,
+    ),
+    r'name': PropertySchema(
+      id: 4,
       name: r'name',
       type: IsarType.string,
     ),
-    r'sportType': PropertySchema(
-      id: 3,
-      name: r'sportType',
-      type: IsarType.string,
+    r'startDate': PropertySchema(
+      id: 5,
+      name: r'startDate',
+      type: IsarType.dateTime,
     ),
     r'updatedAt': PropertySchema(
-      id: 4,
+      id: 6,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -49,7 +59,14 @@ const ProgramEntitySchema = CollectionSchema(
   deserializeProp: _programEntityDeserializeProp,
   idName: r'id',
   indexes: {},
-  links: {},
+  links: {
+    r'exercises': LinkSchema(
+      id: -7695367569926680136,
+      name: r'exercises',
+      target: r'ProgramExerciseEntity',
+      single: false,
+    )
+  },
   embeddedSchemas: {},
   getId: _programEntityGetId,
   getLinks: _programEntityGetLinks,
@@ -63,18 +80,7 @@ int _programEntityEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  {
-    final value = object.name;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
-    final value = object.sportType;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.name.length * 3;
   return bytesCount;
 }
 
@@ -86,9 +92,11 @@ void _programEntitySerialize(
 ) {
   writer.writeLong(offsets[0], object.clubId);
   writer.writeDateTime(offsets[1], object.createdAt);
-  writer.writeString(offsets[2], object.name);
-  writer.writeString(offsets[3], object.sportType);
-  writer.writeDateTime(offsets[4], object.updatedAt);
+  writer.writeDateTime(offsets[2], object.endDate);
+  writer.writeLong(offsets[3], object.imageId);
+  writer.writeString(offsets[4], object.name);
+  writer.writeDateTime(offsets[5], object.startDate);
+  writer.writeDateTime(offsets[6], object.updatedAt);
 }
 
 ProgramEntity _programEntityDeserialize(
@@ -98,12 +106,14 @@ ProgramEntity _programEntityDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = ProgramEntity(
-    clubId: reader.readLongOrNull(offsets[0]),
+    clubId: reader.readLongOrNull(offsets[0]) ?? 0,
     createdAt: reader.readDateTimeOrNull(offsets[1]),
+    endDate: reader.readDateTimeOrNull(offsets[2]),
     id: id,
-    name: reader.readStringOrNull(offsets[2]),
-    sportType: reader.readStringOrNull(offsets[3]),
-    updatedAt: reader.readDateTimeOrNull(offsets[4]),
+    imageId: reader.readLongOrNull(offsets[3]),
+    name: reader.readStringOrNull(offsets[4]) ?? 'DOT Sport',
+    startDate: reader.readDateTimeOrNull(offsets[5]),
+    updatedAt: reader.readDateTimeOrNull(offsets[6]),
   );
   return object;
 }
@@ -116,14 +126,18 @@ P _programEntityDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 1:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 2:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 3:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 4:
+      return (reader.readStringOrNull(offset) ?? 'DOT Sport') as P;
+    case 5:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 6:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -135,12 +149,14 @@ Id _programEntityGetId(ProgramEntity object) {
 }
 
 List<IsarLinkBase<dynamic>> _programEntityGetLinks(ProgramEntity object) {
-  return [];
+  return [object.exercises];
 }
 
 void _programEntityAttach(
     IsarCollection<dynamic> col, Id id, ProgramEntity object) {
   object.id = id;
+  object.exercises.attach(
+      col, col.isar.collection<ProgramExerciseEntity>(), r'exercises', id);
 }
 
 extension ProgramEntityQueryWhereSort
@@ -227,25 +243,7 @@ extension ProgramEntityQueryWhere
 extension ProgramEntityQueryFilter
     on QueryBuilder<ProgramEntity, ProgramEntity, QFilterCondition> {
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      clubIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'clubId',
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      clubIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'clubId',
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      clubIdEqualTo(int? value) {
+      clubIdEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'clubId',
@@ -256,7 +254,7 @@ extension ProgramEntityQueryFilter
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
       clubIdGreaterThan(
-    int? value, {
+    int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -270,7 +268,7 @@ extension ProgramEntityQueryFilter
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
       clubIdLessThan(
-    int? value, {
+    int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -284,8 +282,8 @@ extension ProgramEntityQueryFilter
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
       clubIdBetween(
-    int? lower,
-    int? upper, {
+    int lower,
+    int upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -374,6 +372,80 @@ extension ProgramEntityQueryFilter
     });
   }
 
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      endDateIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'endDate',
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      endDateIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'endDate',
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      endDateEqualTo(DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'endDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      endDateGreaterThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'endDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      endDateLessThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'endDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      endDateBetween(
+    DateTime? lower,
+    DateTime? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'endDate',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition> idEqualTo(
       Id value) {
     return QueryBuilder.apply(this, (query) {
@@ -429,25 +501,81 @@ extension ProgramEntityQueryFilter
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      nameIsNull() {
+      imageIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'name',
+        property: r'imageId',
       ));
     });
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      nameIsNotNull() {
+      imageIdIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'name',
+        property: r'imageId',
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      imageIdEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      imageIdGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      imageIdLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      imageIdBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'imageId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
       ));
     });
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition> nameEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -461,7 +589,7 @@ extension ProgramEntityQueryFilter
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
       nameGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -477,7 +605,7 @@ extension ProgramEntityQueryFilter
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
       nameLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -492,8 +620,8 @@ extension ProgramEntityQueryFilter
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition> nameBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -582,155 +710,75 @@ extension ProgramEntityQueryFilter
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeIsNull() {
+      startDateIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'sportType',
+        property: r'startDate',
       ));
     });
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeIsNotNull() {
+      startDateIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'sportType',
+        property: r'startDate',
       ));
     });
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
+      startDateEqualTo(DateTime? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'sportType',
+        property: r'startDate',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeGreaterThan(
-    String? value, {
+      startDateGreaterThan(
+    DateTime? value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'sportType',
+        property: r'startDate',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeLessThan(
-    String? value, {
+      startDateLessThan(
+    DateTime? value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'sportType',
+        property: r'startDate',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeBetween(
-    String? lower,
-    String? upper, {
+      startDateBetween(
+    DateTime? lower,
+    DateTime? upper, {
     bool includeLower = true,
     bool includeUpper = true,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'sportType',
+        property: r'startDate',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'sportType',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'sportType',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'sportType',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'sportType',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'sportType',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
-      sportTypeIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'sportType',
-        value: '',
       ));
     });
   }
@@ -814,7 +862,68 @@ extension ProgramEntityQueryObject
     on QueryBuilder<ProgramEntity, ProgramEntity, QFilterCondition> {}
 
 extension ProgramEntityQueryLinks
-    on QueryBuilder<ProgramEntity, ProgramEntity, QFilterCondition> {}
+    on QueryBuilder<ProgramEntity, ProgramEntity, QFilterCondition> {
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition> exercises(
+      FilterQuery<ProgramExerciseEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'exercises');
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      exercisesLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'exercises', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      exercisesIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'exercises', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      exercisesIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'exercises', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      exercisesLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'exercises', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      exercisesLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'exercises', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterFilterCondition>
+      exercisesLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'exercises', lower, includeLower, upper, includeUpper);
+    });
+  }
+}
 
 extension ProgramEntityQuerySortBy
     on QueryBuilder<ProgramEntity, ProgramEntity, QSortBy> {
@@ -843,6 +952,30 @@ extension ProgramEntityQuerySortBy
     });
   }
 
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> sortByEndDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'endDate', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> sortByEndDateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'endDate', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> sortByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> sortByImageIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.desc);
+    });
+  }
+
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -855,16 +988,16 @@ extension ProgramEntityQuerySortBy
     });
   }
 
-  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> sortBySportType() {
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> sortByStartDate() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sportType', Sort.asc);
+      return query.addSortBy(r'startDate', Sort.asc);
     });
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy>
-      sortBySportTypeDesc() {
+      sortByStartDateDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sportType', Sort.desc);
+      return query.addSortBy(r'startDate', Sort.desc);
     });
   }
 
@@ -909,6 +1042,18 @@ extension ProgramEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> thenByEndDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'endDate', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> thenByEndDateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'endDate', Sort.desc);
+    });
+  }
+
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -918,6 +1063,18 @@ extension ProgramEntityQuerySortThenBy
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> thenByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> thenByImageIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.desc);
     });
   }
 
@@ -933,16 +1090,16 @@ extension ProgramEntityQuerySortThenBy
     });
   }
 
-  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> thenBySportType() {
+  QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy> thenByStartDate() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sportType', Sort.asc);
+      return query.addSortBy(r'startDate', Sort.asc);
     });
   }
 
   QueryBuilder<ProgramEntity, ProgramEntity, QAfterSortBy>
-      thenBySportTypeDesc() {
+      thenByStartDateDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sportType', Sort.desc);
+      return query.addSortBy(r'startDate', Sort.desc);
     });
   }
 
@@ -974,6 +1131,18 @@ extension ProgramEntityQueryWhereDistinct
     });
   }
 
+  QueryBuilder<ProgramEntity, ProgramEntity, QDistinct> distinctByEndDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'endDate');
+    });
+  }
+
+  QueryBuilder<ProgramEntity, ProgramEntity, QDistinct> distinctByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'imageId');
+    });
+  }
+
   QueryBuilder<ProgramEntity, ProgramEntity, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -981,10 +1150,9 @@ extension ProgramEntityQueryWhereDistinct
     });
   }
 
-  QueryBuilder<ProgramEntity, ProgramEntity, QDistinct> distinctBySportType(
-      {bool caseSensitive = true}) {
+  QueryBuilder<ProgramEntity, ProgramEntity, QDistinct> distinctByStartDate() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'sportType', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'startDate');
     });
   }
 
@@ -1003,7 +1171,7 @@ extension ProgramEntityQueryProperty
     });
   }
 
-  QueryBuilder<ProgramEntity, int?, QQueryOperations> clubIdProperty() {
+  QueryBuilder<ProgramEntity, int, QQueryOperations> clubIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'clubId');
     });
@@ -1015,15 +1183,27 @@ extension ProgramEntityQueryProperty
     });
   }
 
-  QueryBuilder<ProgramEntity, String?, QQueryOperations> nameProperty() {
+  QueryBuilder<ProgramEntity, DateTime?, QQueryOperations> endDateProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'endDate');
+    });
+  }
+
+  QueryBuilder<ProgramEntity, int?, QQueryOperations> imageIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'imageId');
+    });
+  }
+
+  QueryBuilder<ProgramEntity, String, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
     });
   }
 
-  QueryBuilder<ProgramEntity, String?, QQueryOperations> sportTypeProperty() {
+  QueryBuilder<ProgramEntity, DateTime?, QQueryOperations> startDateProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'sportType');
+      return query.addPropertyName(r'startDate');
     });
   }
 

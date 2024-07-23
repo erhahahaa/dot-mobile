@@ -8,10 +8,10 @@ part 'question.g.dart';
 class QuestionModel with _$QuestionModel {
   const factory QuestionModel({
     @Default(0) int id,
-    @Default(0) int clubId,
     @Default(0) int examId,
+    int? mediaId,
     @Default(QuestionType.essay) QuestionType type,
-    @Default('') String content,
+    @Default('Mention 5 basic Movement') String content,
     @Default('') String answer,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -19,14 +19,24 @@ class QuestionModel with _$QuestionModel {
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) =>
       _$QuestionModelFromJson(json);
+
+  static QuestionModel fromEntity(QuestionEntity entity) {
+    return QuestionModel(
+      id: entity.id,
+      examId: entity.examId,
+      type: entity.type,
+      content: entity.content,
+      answer: entity.answer,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
+    );
+  }
 }
 
 extension QuestionModelX on QuestionModel {
-  //toEntity
   QuestionEntity toEntity() {
     return QuestionEntity(
       id: id,
-      clubId: clubId,
       examId: examId,
       type: type,
       content: content,

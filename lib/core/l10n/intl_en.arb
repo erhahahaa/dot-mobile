@@ -21,5 +21,13 @@
   "createClub": "Create Club",
   "club": "Club",
   "sportType": "Sport Type",
-  "detail": "Detail"
+  "detail": "Detail",
+  "back": "Back",
+  "join": "Join",
+  "management": "Management",
+  "settings": "Settings",
+  "edit": "Edit",
+  "delete": "Delete",
+  "leave": "Leave",
+  "about": "About"
 }

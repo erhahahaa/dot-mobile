@@ -69,4 +69,28 @@ class StringsId extends Strings {
 
   @override
   String get detail => 'Rincian';
+
+  @override
+  String get back => 'Kembali';
+
+  @override
+  String get join => 'Gabung';
+
+  @override
+  String get management => 'Manajemen';
+
+  @override
+  String get settings => 'Pengaturan';
+
+  @override
+  String get edit => 'Ubah';
+
+  @override
+  String get delete => 'Hapus';
+
+  @override
+  String get leave => 'Keluar';
+
+  @override
+  String get about => 'Tentang';
 }

@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+PaginationParams _$PaginationParamsFromJson(Map<String, dynamic> json) {
+  return _PaginationParams.fromJson(json);
+}
+
 /// @nodoc
 mixin _$PaginationParams {
   int get cursor => throw _privateConstructorUsedError;
   int get limit => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PaginationParamsCopyWith<PaginationParams> get copyWith =>
       throw _privateConstructorUsedError;
@@ -101,9 +106,12 @@ class __$$PaginationParamsImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PaginationParamsImpl implements _PaginationParams {
   const _$PaginationParamsImpl({this.cursor = 0, this.limit = 10});
+
+  factory _$PaginationParamsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PaginationParamsImplFromJson(json);
 
   @override
   @JsonKey()
@@ -126,6 +134,7 @@ class _$PaginationParamsImpl implements _PaginationParams {
             (identical(other.limit, limit) || other.limit == limit));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, cursor, limit);
 
@@ -135,11 +144,21 @@ class _$PaginationParamsImpl implements _PaginationParams {
   _$$PaginationParamsImplCopyWith<_$PaginationParamsImpl> get copyWith =>
       __$$PaginationParamsImplCopyWithImpl<_$PaginationParamsImpl>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PaginationParamsImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _PaginationParams implements PaginationParams {
   const factory _PaginationParams({final int cursor, final int limit}) =
       _$PaginationParamsImpl;
+
+  factory _PaginationParams.fromJson(Map<String, dynamic> json) =
+      _$PaginationParamsImpl.fromJson;
 
   @override
   int get cursor;

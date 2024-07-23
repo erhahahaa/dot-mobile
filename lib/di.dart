@@ -89,6 +89,7 @@ void _initCubits() {
   di.registerFactory(
     () => ProgramCubit(
       di<ProgramRepo>(),
+      di<UserRepo>(),
     ),
   );
 

@@ -37,21 +37,31 @@ const ClubEntitySchema = CollectionSchema(
       name: r'image',
       type: IsarType.string,
     ),
-    r'memberCount': PropertySchema(
+    r'imageId': PropertySchema(
       id: 4,
+      name: r'imageId',
+      type: IsarType.long,
+    ),
+    r'memberCount': PropertySchema(
+      id: 5,
       name: r'memberCount',
       type: IsarType.long,
     ),
     r'name': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'name',
       type: IsarType.string,
     ),
     r'type': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'type',
       type: IsarType.byte,
       enumMap: _ClubEntitytypeEnumValueMap,
+    ),
+    r'updatedAt': PropertySchema(
+      id: 8,
+      name: r'updatedAt',
+      type: IsarType.dateTime,
     )
   },
   estimateSize: _clubEntityEstimateSize,
@@ -60,7 +70,32 @@ const ClubEntitySchema = CollectionSchema(
   deserializeProp: _clubEntityDeserializeProp,
   idName: r'id',
   indexes: {},
-  links: {},
+  links: {
+    r'members': LinkSchema(
+      id: -1721319639896665234,
+      name: r'members',
+      target: r'UserEntity',
+      single: false,
+    ),
+    r'programs': LinkSchema(
+      id: 2599956294475351166,
+      name: r'programs',
+      target: r'ProgramEntity',
+      single: false,
+    ),
+    r'tacticals': LinkSchema(
+      id: 6653228269823159035,
+      name: r'tacticals',
+      target: r'TacticalEntity',
+      single: false,
+    ),
+    r'exams': LinkSchema(
+      id: -5117746716064539779,
+      name: r'exams',
+      target: r'ExamEntity',
+      single: false,
+    )
+  },
   embeddedSchemas: {},
   getId: _clubEntityGetId,
   getLinks: _clubEntityGetLinks,
@@ -105,9 +140,11 @@ void _clubEntitySerialize(
   writer.writeLong(offsets[1], object.creatorId);
   writer.writeString(offsets[2], object.description);
   writer.writeString(offsets[3], object.image);
-  writer.writeLong(offsets[4], object.memberCount);
-  writer.writeString(offsets[5], object.name);
-  writer.writeByte(offsets[6], object.type.index);
+  writer.writeLong(offsets[4], object.imageId);
+  writer.writeLong(offsets[5], object.memberCount);
+  writer.writeString(offsets[6], object.name);
+  writer.writeByte(offsets[7], object.type.index);
+  writer.writeDateTime(offsets[8], object.updatedAt);
 }
 
 ClubEntity _clubEntityDeserialize(
@@ -122,10 +159,12 @@ ClubEntity _clubEntityDeserialize(
     description: reader.readStringOrNull(offsets[2]),
     id: id,
     image: reader.readStringOrNull(offsets[3]),
-    memberCount: reader.readLongOrNull(offsets[4]) ?? 0,
-    name: reader.readStringOrNull(offsets[5]),
-    type: _ClubEntitytypeValueEnumMap[reader.readByteOrNull(offsets[6])] ??
+    imageId: reader.readLongOrNull(offsets[4]),
+    memberCount: reader.readLongOrNull(offsets[5]) ?? 0,
+    name: reader.readStringOrNull(offsets[6]),
+    type: _ClubEntitytypeValueEnumMap[reader.readByteOrNull(offsets[7])] ??
         SportType.basketBall,
+    updatedAt: reader.readDateTimeOrNull(offsets[8]),
   );
   return object;
 }
@@ -146,12 +185,16 @@ P _clubEntityDeserializeProp<P>(
     case 3:
       return (reader.readStringOrNull(offset)) as P;
     case 4:
-      return (reader.readLongOrNull(offset) ?? 0) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 5:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 6:
+      return (reader.readStringOrNull(offset)) as P;
+    case 7:
       return (_ClubEntitytypeValueEnumMap[reader.readByteOrNull(offset)] ??
           SportType.basketBall) as P;
+    case 8:
+      return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -173,11 +216,17 @@ Id _clubEntityGetId(ClubEntity object) {
 }
 
 List<IsarLinkBase<dynamic>> _clubEntityGetLinks(ClubEntity object) {
-  return [];
+  return [object.members, object.programs, object.tacticals, object.exams];
 }
 
 void _clubEntityAttach(IsarCollection<dynamic> col, Id id, ClubEntity object) {
   object.id = id;
+  object.members.attach(col, col.isar.collection<UserEntity>(), r'members', id);
+  object.programs
+      .attach(col, col.isar.collection<ProgramEntity>(), r'programs', id);
+  object.tacticals
+      .attach(col, col.isar.collection<TacticalEntity>(), r'tacticals', id);
+  object.exams.attach(col, col.isar.collection<ExamEntity>(), r'exams', id);
 }
 
 extension ClubEntityQueryWhereSort
@@ -757,6 +806,77 @@ extension ClubEntityQueryFilter
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'imageId',
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      imageIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'imageId',
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageIdEqualTo(
+      int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      imageIdGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageIdLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> imageIdBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'imageId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
       memberCountEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
@@ -1011,13 +1131,327 @@ extension ClubEntityQueryFilter
       ));
     });
   }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      updatedAtIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'updatedAt',
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      updatedAtIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'updatedAt',
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> updatedAtEqualTo(
+      DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      updatedAtGreaterThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> updatedAtLessThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> updatedAtBetween(
+    DateTime? lower,
+    DateTime? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'updatedAt',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
 }
 
 extension ClubEntityQueryObject
     on QueryBuilder<ClubEntity, ClubEntity, QFilterCondition> {}
 
 extension ClubEntityQueryLinks
-    on QueryBuilder<ClubEntity, ClubEntity, QFilterCondition> {}
+    on QueryBuilder<ClubEntity, ClubEntity, QFilterCondition> {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> members(
+      FilterQuery<UserEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'members');
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      membersLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'members', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> membersIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'members', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      membersIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'members', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      membersLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'members', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      membersLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'members', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      membersLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'members', lower, includeLower, upper, includeUpper);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> programs(
+      FilterQuery<ProgramEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'programs');
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      programsLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'programs', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      programsIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'programs', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      programsIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'programs', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      programsLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'programs', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      programsLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'programs', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      programsLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'programs', lower, includeLower, upper, includeUpper);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> tacticals(
+      FilterQuery<TacticalEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'tacticals');
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      tacticalsLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'tacticals', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      tacticalsIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'tacticals', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      tacticalsIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'tacticals', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      tacticalsLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'tacticals', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      tacticalsLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'tacticals', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      tacticalsLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'tacticals', lower, includeLower, upper, includeUpper);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> exams(
+      FilterQuery<ExamEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'exams');
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      examsLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'exams', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> examsIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'exams', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      examsIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'exams', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      examsLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'exams', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      examsLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'exams', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      examsLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'exams', lower, includeLower, upper, includeUpper);
+    });
+  }
+}
 
 extension ClubEntityQuerySortBy
     on QueryBuilder<ClubEntity, ClubEntity, QSortBy> {
@@ -1069,6 +1503,18 @@ extension ClubEntityQuerySortBy
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByImageIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.desc);
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByMemberCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'memberCount', Sort.asc);
@@ -1102,6 +1548,18 @@ extension ClubEntityQuerySortBy
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByTypeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'type', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.desc);
     });
   }
 }
@@ -1168,6 +1626,18 @@ extension ClubEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByImageIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.desc);
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByMemberCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'memberCount', Sort.asc);
@@ -1203,6 +1673,18 @@ extension ClubEntityQuerySortThenBy
       return query.addSortBy(r'type', Sort.desc);
     });
   }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.desc);
+    });
+  }
 }
 
 extension ClubEntityQueryWhereDistinct
@@ -1233,6 +1715,12 @@ extension ClubEntityQueryWhereDistinct
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'imageId');
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByMemberCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'memberCount');
@@ -1249,6 +1737,12 @@ extension ClubEntityQueryWhereDistinct
   QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByType() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'type');
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QDistinct> distinctByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'updatedAt');
     });
   }
 }
@@ -1285,6 +1779,12 @@ extension ClubEntityQueryProperty
     });
   }
 
+  QueryBuilder<ClubEntity, int?, QQueryOperations> imageIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'imageId');
+    });
+  }
+
   QueryBuilder<ClubEntity, int, QQueryOperations> memberCountProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'memberCount');
@@ -1300,6 +1800,12 @@ extension ClubEntityQueryProperty
   QueryBuilder<ClubEntity, SportType, QQueryOperations> typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'type');
+    });
+  }
+
+  QueryBuilder<ClubEntity, DateTime?, QQueryOperations> updatedAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'updatedAt');
     });
   }
 }

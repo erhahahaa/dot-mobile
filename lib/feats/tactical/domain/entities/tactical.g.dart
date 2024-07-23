@@ -17,33 +17,51 @@ const TacticalEntitySchema = CollectionSchema(
   name: r'TacticalEntity',
   id: 6329902266948731207,
   properties: {
-    r'clubId': PropertySchema(
+    r'board': PropertySchema(
       id: 0,
+      name: r'board',
+      type: IsarType.object,
+      target: r'TacticalBoardEntity',
+    ),
+    r'clubId': PropertySchema(
+      id: 1,
       name: r'clubId',
       type: IsarType.long,
     ),
     r'createdAt': PropertySchema(
-      id: 1,
+      id: 2,
       name: r'createdAt',
       type: IsarType.dateTime,
     ),
     r'description': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'description',
       type: IsarType.string,
     ),
+    r'imageId': PropertySchema(
+      id: 4,
+      name: r'imageId',
+      type: IsarType.long,
+    ),
     r'name': PropertySchema(
-      id: 3,
+      id: 5,
       name: r'name',
       type: IsarType.string,
     ),
-    r'sportType': PropertySchema(
-      id: 4,
-      name: r'sportType',
-      type: IsarType.string,
+    r'strategic': PropertySchema(
+      id: 6,
+      name: r'strategic',
+      type: IsarType.object,
+      target: r'TacticalStrategicEntity',
+    ),
+    r'team': PropertySchema(
+      id: 7,
+      name: r'team',
+      type: IsarType.object,
+      target: r'TacticalTeamEntity',
     ),
     r'updatedAt': PropertySchema(
-      id: 5,
+      id: 8,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -54,8 +72,20 @@ const TacticalEntitySchema = CollectionSchema(
   deserializeProp: _tacticalEntityDeserializeProp,
   idName: r'id',
   indexes: {},
-  links: {},
-  embeddedSchemas: {},
+  links: {
+    r'club': LinkSchema(
+      id: -6085235723345493976,
+      name: r'club',
+      target: r'ClubEntity',
+      single: true,
+    )
+  },
+  embeddedSchemas: {
+    r'TacticalBoardEntity': TacticalBoardEntitySchema,
+    r'TacticalTeamEntity': TacticalTeamEntitySchema,
+    r'TacticalTeamMemberEntity': TacticalTeamMemberEntitySchema,
+    r'TacticalStrategicEntity': TacticalStrategicEntitySchema
+  },
   getId: _tacticalEntityGetId,
   getLinks: _tacticalEntityGetLinks,
   attach: _tacticalEntityAttach,
@@ -69,21 +99,34 @@ int _tacticalEntityEstimateSize(
 ) {
   var bytesCount = offsets.last;
   {
+    final value = object.board;
+    if (value != null) {
+      bytesCount += 3 +
+          TacticalBoardEntitySchema.estimateSize(
+              value, allOffsets[TacticalBoardEntity]!, allOffsets);
+    }
+  }
+  {
     final value = object.description;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
     }
   }
+  bytesCount += 3 + object.name.length * 3;
   {
-    final value = object.name;
+    final value = object.strategic;
     if (value != null) {
-      bytesCount += 3 + value.length * 3;
+      bytesCount += 3 +
+          TacticalStrategicEntitySchema.estimateSize(
+              value, allOffsets[TacticalStrategicEntity]!, allOffsets);
     }
   }
   {
-    final value = object.sportType;
+    final value = object.team;
     if (value != null) {
-      bytesCount += 3 + value.length * 3;
+      bytesCount += 3 +
+          TacticalTeamEntitySchema.estimateSize(
+              value, allOffsets[TacticalTeamEntity]!, allOffsets);
     }
   }
   return bytesCount;
@@ -95,12 +138,30 @@ void _tacticalEntitySerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeLong(offsets[0], object.clubId);
-  writer.writeDateTime(offsets[1], object.createdAt);
-  writer.writeString(offsets[2], object.description);
-  writer.writeString(offsets[3], object.name);
-  writer.writeString(offsets[4], object.sportType);
-  writer.writeDateTime(offsets[5], object.updatedAt);
+  writer.writeObject<TacticalBoardEntity>(
+    offsets[0],
+    allOffsets,
+    TacticalBoardEntitySchema.serialize,
+    object.board,
+  );
+  writer.writeLong(offsets[1], object.clubId);
+  writer.writeDateTime(offsets[2], object.createdAt);
+  writer.writeString(offsets[3], object.description);
+  writer.writeLong(offsets[4], object.imageId);
+  writer.writeString(offsets[5], object.name);
+  writer.writeObject<TacticalStrategicEntity>(
+    offsets[6],
+    allOffsets,
+    TacticalStrategicEntitySchema.serialize,
+    object.strategic,
+  );
+  writer.writeObject<TacticalTeamEntity>(
+    offsets[7],
+    allOffsets,
+    TacticalTeamEntitySchema.serialize,
+    object.team,
+  );
+  writer.writeDateTime(offsets[8], object.updatedAt);
 }
 
 TacticalEntity _tacticalEntityDeserialize(
@@ -110,13 +171,28 @@ TacticalEntity _tacticalEntityDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = TacticalEntity(
-    clubId: reader.readLongOrNull(offsets[0]),
-    createdAt: reader.readDateTimeOrNull(offsets[1]),
-    description: reader.readStringOrNull(offsets[2]),
+    board: reader.readObjectOrNull<TacticalBoardEntity>(
+      offsets[0],
+      TacticalBoardEntitySchema.deserialize,
+      allOffsets,
+    ),
+    clubId: reader.readLongOrNull(offsets[1]) ?? 0,
+    createdAt: reader.readDateTimeOrNull(offsets[2]),
+    description: reader.readStringOrNull(offsets[3]),
     id: id,
-    name: reader.readStringOrNull(offsets[3]),
-    sportType: reader.readStringOrNull(offsets[4]),
-    updatedAt: reader.readDateTimeOrNull(offsets[5]),
+    imageId: reader.readLongOrNull(offsets[4]),
+    name: reader.readStringOrNull(offsets[5]) ?? 'SBY Tactical exhibition',
+    strategic: reader.readObjectOrNull<TacticalStrategicEntity>(
+      offsets[6],
+      TacticalStrategicEntitySchema.deserialize,
+      allOffsets,
+    ),
+    team: reader.readObjectOrNull<TacticalTeamEntity>(
+      offsets[7],
+      TacticalTeamEntitySchema.deserialize,
+      allOffsets,
+    ),
+    updatedAt: reader.readDateTimeOrNull(offsets[8]),
   );
   return object;
 }
@@ -129,16 +205,35 @@ P _tacticalEntityDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readObjectOrNull<TacticalBoardEntity>(
+        offset,
+        TacticalBoardEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
     case 1:
-      return (reader.readDateTimeOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 2:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 3:
       return (reader.readStringOrNull(offset)) as P;
     case 4:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 5:
+      return (reader.readStringOrNull(offset) ?? 'SBY Tactical exhibition')
+          as P;
+    case 6:
+      return (reader.readObjectOrNull<TacticalStrategicEntity>(
+        offset,
+        TacticalStrategicEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
+    case 7:
+      return (reader.readObjectOrNull<TacticalTeamEntity>(
+        offset,
+        TacticalTeamEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
+    case 8:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -150,12 +245,13 @@ Id _tacticalEntityGetId(TacticalEntity object) {
 }
 
 List<IsarLinkBase<dynamic>> _tacticalEntityGetLinks(TacticalEntity object) {
-  return [];
+  return [object.club];
 }
 
 void _tacticalEntityAttach(
     IsarCollection<dynamic> col, Id id, TacticalEntity object) {
   object.id = id;
+  object.club.attach(col, col.isar.collection<ClubEntity>(), r'club', id);
 }
 
 extension TacticalEntityQueryWhereSort
@@ -242,25 +338,25 @@ extension TacticalEntityQueryWhere
 extension TacticalEntityQueryFilter
     on QueryBuilder<TacticalEntity, TacticalEntity, QFilterCondition> {
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      clubIdIsNull() {
+      boardIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'clubId',
+        property: r'board',
       ));
     });
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      clubIdIsNotNull() {
+      boardIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'clubId',
+        property: r'board',
       ));
     });
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      clubIdEqualTo(int? value) {
+      clubIdEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'clubId',
@@ -271,7 +367,7 @@ extension TacticalEntityQueryFilter
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
       clubIdGreaterThan(
-    int? value, {
+    int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -285,7 +381,7 @@ extension TacticalEntityQueryFilter
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
       clubIdLessThan(
-    int? value, {
+    int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -299,8 +395,8 @@ extension TacticalEntityQueryFilter
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
       clubIdBetween(
-    int? lower,
-    int? upper, {
+    int lower,
+    int upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -599,26 +695,82 @@ extension TacticalEntityQueryFilter
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      nameIsNull() {
+      imageIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'name',
+        property: r'imageId',
       ));
     });
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      nameIsNotNull() {
+      imageIdIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'name',
+        property: r'imageId',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
+      imageIdEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
+      imageIdGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
+      imageIdLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'imageId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
+      imageIdBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'imageId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
       ));
     });
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
       nameEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -632,7 +784,7 @@ extension TacticalEntityQueryFilter
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
       nameGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -648,7 +800,7 @@ extension TacticalEntityQueryFilter
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
       nameLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -664,8 +816,8 @@ extension TacticalEntityQueryFilter
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
       nameBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -753,155 +905,37 @@ extension TacticalEntityQueryFilter
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeIsNull() {
+      strategicIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'sportType',
+        property: r'strategic',
       ));
     });
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeIsNotNull() {
+      strategicIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'sportType',
+        property: r'strategic',
       ));
     });
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
+      teamIsNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'sportType',
-        value: value,
-        caseSensitive: caseSensitive,
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'team',
       ));
     });
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeGreaterThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
+      teamIsNotNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'sportType',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeLessThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'sportType',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeBetween(
-    String? lower,
-    String? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'sportType',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'sportType',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'sportType',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'sportType',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'sportType',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'sportType',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      sportTypeIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'sportType',
-        value: '',
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'team',
       ));
     });
   }
@@ -982,10 +1016,45 @@ extension TacticalEntityQueryFilter
 }
 
 extension TacticalEntityQueryObject
-    on QueryBuilder<TacticalEntity, TacticalEntity, QFilterCondition> {}
+    on QueryBuilder<TacticalEntity, TacticalEntity, QFilterCondition> {
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition> board(
+      FilterQuery<TacticalBoardEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'board');
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition> strategic(
+      FilterQuery<TacticalStrategicEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'strategic');
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition> team(
+      FilterQuery<TacticalTeamEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'team');
+    });
+  }
+}
 
 extension TacticalEntityQueryLinks
-    on QueryBuilder<TacticalEntity, TacticalEntity, QFilterCondition> {}
+    on QueryBuilder<TacticalEntity, TacticalEntity, QFilterCondition> {
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition> club(
+      FilterQuery<ClubEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'club');
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
+      clubIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'club', 0, true, 0, true);
+    });
+  }
+}
 
 extension TacticalEntityQuerySortBy
     on QueryBuilder<TacticalEntity, TacticalEntity, QSortBy> {
@@ -1029,6 +1098,19 @@ extension TacticalEntityQuerySortBy
     });
   }
 
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> sortByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy>
+      sortByImageIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.desc);
+    });
+  }
+
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -1038,19 +1120,6 @@ extension TacticalEntityQuerySortBy
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> sortByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> sortBySportType() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sportType', Sort.asc);
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy>
-      sortBySportTypeDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sportType', Sort.desc);
     });
   }
 
@@ -1122,6 +1191,19 @@ extension TacticalEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> thenByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy>
+      thenByImageIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageId', Sort.desc);
+    });
+  }
+
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> thenByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -1131,19 +1213,6 @@ extension TacticalEntityQuerySortThenBy
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> thenByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> thenBySportType() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sportType', Sort.asc);
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy>
-      thenBySportTypeDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sportType', Sort.desc);
     });
   }
 
@@ -1183,17 +1252,16 @@ extension TacticalEntityQueryWhereDistinct
     });
   }
 
+  QueryBuilder<TacticalEntity, TacticalEntity, QDistinct> distinctByImageId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'imageId');
+    });
+  }
+
   QueryBuilder<TacticalEntity, TacticalEntity, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QDistinct> distinctBySportType(
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'sportType', caseSensitive: caseSensitive);
     });
   }
 
@@ -1213,7 +1281,14 @@ extension TacticalEntityQueryProperty
     });
   }
 
-  QueryBuilder<TacticalEntity, int?, QQueryOperations> clubIdProperty() {
+  QueryBuilder<TacticalEntity, TacticalBoardEntity?, QQueryOperations>
+      boardProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'board');
+    });
+  }
+
+  QueryBuilder<TacticalEntity, int, QQueryOperations> clubIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'clubId');
     });
@@ -1233,15 +1308,29 @@ extension TacticalEntityQueryProperty
     });
   }
 
-  QueryBuilder<TacticalEntity, String?, QQueryOperations> nameProperty() {
+  QueryBuilder<TacticalEntity, int?, QQueryOperations> imageIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'imageId');
+    });
+  }
+
+  QueryBuilder<TacticalEntity, String, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
     });
   }
 
-  QueryBuilder<TacticalEntity, String?, QQueryOperations> sportTypeProperty() {
+  QueryBuilder<TacticalEntity, TacticalStrategicEntity?, QQueryOperations>
+      strategicProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'sportType');
+      return query.addPropertyName(r'strategic');
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalTeamEntity?, QQueryOperations>
+      teamProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'team');
     });
   }
 
@@ -1252,3 +1341,1729 @@ extension TacticalEntityQueryProperty
     });
   }
 }
+
+// **************************************************************************
+// IsarEmbeddedGenerator
+// **************************************************************************
+
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+
+const TacticalBoardEntitySchema = Schema(
+  name: r'TacticalBoardEntity',
+  id: 2279384341840027209,
+  properties: {
+    r'name': PropertySchema(
+      id: 0,
+      name: r'name',
+      type: IsarType.string,
+    ),
+    r'type': PropertySchema(
+      id: 1,
+      name: r'type',
+      type: IsarType.string,
+    ),
+    r'url': PropertySchema(
+      id: 2,
+      name: r'url',
+      type: IsarType.string,
+    )
+  },
+  estimateSize: _tacticalBoardEntityEstimateSize,
+  serialize: _tacticalBoardEntitySerialize,
+  deserialize: _tacticalBoardEntityDeserialize,
+  deserializeProp: _tacticalBoardEntityDeserializeProp,
+);
+
+int _tacticalBoardEntityEstimateSize(
+  TacticalBoardEntity object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  {
+    final value = object.name;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.type;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.url;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  return bytesCount;
+}
+
+void _tacticalBoardEntitySerialize(
+  TacticalBoardEntity object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeString(offsets[0], object.name);
+  writer.writeString(offsets[1], object.type);
+  writer.writeString(offsets[2], object.url);
+}
+
+TacticalBoardEntity _tacticalBoardEntityDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = TacticalBoardEntity(
+    name: reader.readStringOrNull(offsets[0]),
+    type: reader.readStringOrNull(offsets[1]),
+    url: reader.readStringOrNull(offsets[2]),
+  );
+  return object;
+}
+
+P _tacticalBoardEntityDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readStringOrNull(offset)) as P;
+    case 1:
+      return (reader.readStringOrNull(offset)) as P;
+    case 2:
+      return (reader.readStringOrNull(offset)) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
+  }
+}
+
+extension TacticalBoardEntityQueryFilter on QueryBuilder<TacticalBoardEntity,
+    TacticalBoardEntity, QFilterCondition> {
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'name',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'name',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'name',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'name',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      nameIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'type',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'type',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'type',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'type',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'type',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'type',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'type',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'type',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'type',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'type',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'type',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      typeIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'type',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'url',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'url',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'url',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'url',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'url',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'url',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'url',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'url',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'url',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'url',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'url',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalBoardEntity, TacticalBoardEntity, QAfterFilterCondition>
+      urlIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'url',
+        value: '',
+      ));
+    });
+  }
+}
+
+extension TacticalBoardEntityQueryObject on QueryBuilder<TacticalBoardEntity,
+    TacticalBoardEntity, QFilterCondition> {}
+
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+
+const TacticalTeamEntitySchema = Schema(
+  name: r'TacticalTeamEntity',
+  id: 4170293947817922190,
+  properties: {
+    r'color': PropertySchema(
+      id: 0,
+      name: r'color',
+      type: IsarType.string,
+    ),
+    r'members': PropertySchema(
+      id: 1,
+      name: r'members',
+      type: IsarType.objectList,
+      target: r'TacticalTeamMemberEntity',
+    ),
+    r'name': PropertySchema(
+      id: 2,
+      name: r'name',
+      type: IsarType.string,
+    ),
+    r'totalMembers': PropertySchema(
+      id: 3,
+      name: r'totalMembers',
+      type: IsarType.long,
+    )
+  },
+  estimateSize: _tacticalTeamEntityEstimateSize,
+  serialize: _tacticalTeamEntitySerialize,
+  deserialize: _tacticalTeamEntityDeserialize,
+  deserializeProp: _tacticalTeamEntityDeserializeProp,
+);
+
+int _tacticalTeamEntityEstimateSize(
+  TacticalTeamEntity object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  {
+    final value = object.color;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final list = object.members;
+    if (list != null) {
+      bytesCount += 3 + list.length * 3;
+      {
+        final offsets = allOffsets[TacticalTeamMemberEntity]!;
+        for (var i = 0; i < list.length; i++) {
+          final value = list[i];
+          bytesCount += TacticalTeamMemberEntitySchema.estimateSize(
+              value, offsets, allOffsets);
+        }
+      }
+    }
+  }
+  {
+    final value = object.name;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  return bytesCount;
+}
+
+void _tacticalTeamEntitySerialize(
+  TacticalTeamEntity object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeString(offsets[0], object.color);
+  writer.writeObjectList<TacticalTeamMemberEntity>(
+    offsets[1],
+    allOffsets,
+    TacticalTeamMemberEntitySchema.serialize,
+    object.members,
+  );
+  writer.writeString(offsets[2], object.name);
+  writer.writeLong(offsets[3], object.totalMembers);
+}
+
+TacticalTeamEntity _tacticalTeamEntityDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = TacticalTeamEntity(
+    color: reader.readStringOrNull(offsets[0]),
+    members: reader.readObjectList<TacticalTeamMemberEntity>(
+      offsets[1],
+      TacticalTeamMemberEntitySchema.deserialize,
+      allOffsets,
+      TacticalTeamMemberEntity(),
+    ),
+    name: reader.readStringOrNull(offsets[2]),
+    totalMembers: reader.readLongOrNull(offsets[3]),
+  );
+  return object;
+}
+
+P _tacticalTeamEntityDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readStringOrNull(offset)) as P;
+    case 1:
+      return (reader.readObjectList<TacticalTeamMemberEntity>(
+        offset,
+        TacticalTeamMemberEntitySchema.deserialize,
+        allOffsets,
+        TacticalTeamMemberEntity(),
+      )) as P;
+    case 2:
+      return (reader.readStringOrNull(offset)) as P;
+    case 3:
+      return (reader.readLongOrNull(offset)) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
+  }
+}
+
+extension TacticalTeamEntityQueryFilter
+    on QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QFilterCondition> {
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'color',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'color',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'color',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'color',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'color',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'color',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'color',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'color',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'color',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'color',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'color',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      colorIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'color',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      membersIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'members',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      membersIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'members',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      membersLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'members',
+        length,
+        true,
+        length,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      membersIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'members',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      membersIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'members',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      membersLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'members',
+        0,
+        true,
+        length,
+        include,
+      );
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      membersLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'members',
+        length,
+        include,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      membersLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'members',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'name',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'name',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'name',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'name',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      nameIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      totalMembersIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'totalMembers',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      totalMembersIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'totalMembers',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      totalMembersEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'totalMembers',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      totalMembersGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'totalMembers',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      totalMembersLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'totalMembers',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      totalMembersBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'totalMembers',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+}
+
+extension TacticalTeamEntityQueryObject
+    on QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QFilterCondition> {
+  QueryBuilder<TacticalTeamEntity, TacticalTeamEntity, QAfterFilterCondition>
+      membersElement(FilterQuery<TacticalTeamMemberEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'members');
+    });
+  }
+}
+
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+
+const TacticalTeamMemberEntitySchema = Schema(
+  name: r'TacticalTeamMemberEntity',
+  id: -3569292781505547878,
+  properties: {
+    r'name': PropertySchema(
+      id: 0,
+      name: r'name',
+      type: IsarType.string,
+    ),
+    r'number': PropertySchema(
+      id: 1,
+      name: r'number',
+      type: IsarType.long,
+    )
+  },
+  estimateSize: _tacticalTeamMemberEntityEstimateSize,
+  serialize: _tacticalTeamMemberEntitySerialize,
+  deserialize: _tacticalTeamMemberEntityDeserialize,
+  deserializeProp: _tacticalTeamMemberEntityDeserializeProp,
+);
+
+int _tacticalTeamMemberEntityEstimateSize(
+  TacticalTeamMemberEntity object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  {
+    final value = object.name;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  return bytesCount;
+}
+
+void _tacticalTeamMemberEntitySerialize(
+  TacticalTeamMemberEntity object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeString(offsets[0], object.name);
+  writer.writeLong(offsets[1], object.number);
+}
+
+TacticalTeamMemberEntity _tacticalTeamMemberEntityDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = TacticalTeamMemberEntity(
+    name: reader.readStringOrNull(offsets[0]),
+    number: reader.readLongOrNull(offsets[1]),
+  );
+  return object;
+}
+
+P _tacticalTeamMemberEntityDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readStringOrNull(offset)) as P;
+    case 1:
+      return (reader.readLongOrNull(offset)) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
+  }
+}
+
+extension TacticalTeamMemberEntityQueryFilter on QueryBuilder<
+    TacticalTeamMemberEntity, TacticalTeamMemberEntity, QFilterCondition> {
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> nameIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'name',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> nameIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'name',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> nameEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> nameGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> nameLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> nameBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'name',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> nameStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> nameEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+          QAfterFilterCondition>
+      nameContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+          QAfterFilterCondition>
+      nameMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'name',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> nameIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> nameIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> numberIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'number',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> numberIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'number',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> numberEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'number',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> numberGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'number',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> numberLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'number',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalTeamMemberEntity, TacticalTeamMemberEntity,
+      QAfterFilterCondition> numberBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'number',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+}
+
+extension TacticalTeamMemberEntityQueryObject on QueryBuilder<
+    TacticalTeamMemberEntity, TacticalTeamMemberEntity, QFilterCondition> {}
+
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+
+const TacticalStrategicEntitySchema = Schema(
+  name: r'TacticalStrategicEntity',
+  id: -2655585784478095036,
+  properties: {
+    r'json': PropertySchema(
+      id: 0,
+      name: r'json',
+      type: IsarType.string,
+    )
+  },
+  estimateSize: _tacticalStrategicEntityEstimateSize,
+  serialize: _tacticalStrategicEntitySerialize,
+  deserialize: _tacticalStrategicEntityDeserialize,
+  deserializeProp: _tacticalStrategicEntityDeserializeProp,
+);
+
+int _tacticalStrategicEntityEstimateSize(
+  TacticalStrategicEntity object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  bytesCount += 3 + object.json.length * 3;
+  return bytesCount;
+}
+
+void _tacticalStrategicEntitySerialize(
+  TacticalStrategicEntity object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeString(offsets[0], object.json);
+}
+
+TacticalStrategicEntity _tacticalStrategicEntityDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = TacticalStrategicEntity();
+  object.json = reader.readString(offsets[0]);
+  return object;
+}
+
+P _tacticalStrategicEntityDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readString(offset)) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
+  }
+}
+
+extension TacticalStrategicEntityQueryFilter on QueryBuilder<
+    TacticalStrategicEntity, TacticalStrategicEntity, QFilterCondition> {
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> jsonEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'json',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> jsonGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'json',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> jsonLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'json',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> jsonBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'json',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> jsonStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'json',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> jsonEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'json',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+          QAfterFilterCondition>
+      jsonContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'json',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+          QAfterFilterCondition>
+      jsonMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'json',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> jsonIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'json',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> jsonIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'json',
+        value: '',
+      ));
+    });
+  }
+}
+
+extension TacticalStrategicEntityQueryObject on QueryBuilder<
+    TacticalStrategicEntity, TacticalStrategicEntity, QFilterCondition> {}
