@@ -156,19 +156,24 @@ class _ProgramScreenState extends State<ProgramScreen> {
                                   ),
                                   dataSource: ProgramDataSource(state.programs),
                                   onTap: (calendarTapDetails) {
-                                    if (calendarTapDetails
-                                            .appointments?.length ==
-                                        1) {
+                                    final len = calendarTapDetails
+                                            .appointments?.length ??
+                                        0;
+
+                                    final el = calendarTapDetails.targetElement;
+                                    if (el == CalendarElement.appointment &&
+                                        len == 1) {
                                       final program = calendarTapDetails
                                           .appointments?.first;
                                       context.pushNamed(
-                                          AppRoutes.coachProgramDetail.name,
-                                          pathParameters: {
-                                            'id': program.id.toString()
-                                          },
-                                          extra: {
-                                            'program': program,
-                                          });
+                                        AppRoutes.coachProgramDetail.name,
+                                        pathParameters: {
+                                          'id': program.id.toString()
+                                        },
+                                        extra: {
+                                          'program': program,
+                                        },
+                                      );
                                     }
                                   },
                                 ),

@@ -25,7 +25,7 @@ class AppRouter {
   static final _coachTacticalShellKey = GlobalKey<NavigatorState>();
   static final _coachHistoryShellKey = GlobalKey<NavigatorState>();
   static final _coachProfileShellKey = GlobalKey<NavigatorState>();
-  static final coachAssetShellKey = GlobalKey<NavigatorState>();
+  static final _coachAssetShellKey = GlobalKey<NavigatorState>();
 
   AppRouter.setStream(BuildContext c) {
     ctx = c;
@@ -291,8 +291,16 @@ class AppRouter {
 
           // Assets
           StatefulShellBranch(
-            navigatorKey: coachAssetShellKey,
+            navigatorKey: _coachAssetShellKey,
             routes: [
+              GoRoute(
+                path: '/coach/media/dummy',
+                name: 'coachMediaDummy',
+                builder: (c, __) => BlocProvider.value(
+                  value: c.read<MediaCubit>(),
+                  child: Scaffold(),
+                ),
+              ),
               GoRoute(
                 path: AppRoutes.coachMedia.path,
                 name: AppRoutes.coachMedia.name,
