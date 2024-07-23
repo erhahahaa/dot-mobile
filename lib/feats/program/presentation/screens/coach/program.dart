@@ -155,6 +155,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                                     agendaItemHeight: 70,
                                   ),
                                   dataSource: ProgramDataSource(state.programs),
+                                  initialSelectedDate: DateTime.now(),
                                   onTap: (calendarTapDetails) {
                                     final len = calendarTapDetails
                                             .appointments?.length ??
