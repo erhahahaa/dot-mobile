@@ -198,6 +198,20 @@ class AppRouter {
                 ),
               ),
               GoRoute(
+                path: AppRoutes.coachEditClub.path,
+                name: AppRoutes.coachEditClub.name,
+                builder: (c, state) {
+                  final extra = state.extra as Map<String, dynamic>;
+                  final club = extra['club'] as ClubModel;
+                  return BlocProvider.value(
+                    value: c.read<ClubCubit>(),
+                    child: ClubFormScreen(
+                      club: club,
+                    ),
+                  );
+                },
+              ),
+              GoRoute(
                 path: AppRoutes.coachClubDetail.path,
                 name: AppRoutes.coachClubDetail.name,
                 builder: (c, state) {

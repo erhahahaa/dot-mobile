@@ -35,8 +35,12 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
 
   @override
   void initState() {
-    _nameController = TextEditingController();
-    _descriptionController = TextEditingController();
+    _nameController = TextEditingController(
+      text: widget.club?.name,
+    );
+    _descriptionController = TextEditingController(
+      text: widget.club?.description,
+    );
 
     _nameFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
@@ -80,7 +84,9 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
     final msg = Strings.of(context);
     return Parent(
       appBar: AppBar(
-        title: const Text('Create Club'),
+        title: Text(
+          widget.club == null ? 'Create Club' : 'Edit ${widget.club?.name}',
+        ),
       ),
       body: BlocConsumer<ClubCubit, ClubState>(
         listener: (context, state) {
@@ -112,7 +118,7 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
                       widget.club?.media?.url,
                     ),
                     onTap: () {
-                      context.read<ClubCubit>().pickImageFromGallery(); 
+                      context.read<ClubCubit>().pickImageFromGallery();
                     },
                   ),
                   if (imageError != null)

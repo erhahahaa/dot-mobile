@@ -193,7 +193,14 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                       child: Column(
                         children: [
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              context.pushNamed(
+                                AppRoutes.coachEditClub.name,
+                                extra: {
+                                  'club': widget.club,
+                                },
+                              );
+                            },
                             child: Row(
                               children: [
                                 Icon(

@@ -29,6 +29,7 @@ enum AppRoutes {
   // Coach Dashboard
   coachDashboard('/coach/club'),
   coachCreateClub('/coach/club/create'),
+  coachEditClub('/coach/club/edit'),
   coachClubDetail('/coach/club/:id'),
 
   // Coach Program
