@@ -19,6 +19,7 @@ mixin _$UpsertMediaParams {
   int get id => throw _privateConstructorUsedError;
   File get file => throw _privateConstructorUsedError;
   MediaParent get parent => throw _privateConstructorUsedError;
+  int get clubId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UpsertMediaParamsCopyWith<UpsertMediaParams> get copyWith =>
@@ -31,7 +32,7 @@ abstract class $UpsertMediaParamsCopyWith<$Res> {
           UpsertMediaParams value, $Res Function(UpsertMediaParams) then) =
       _$UpsertMediaParamsCopyWithImpl<$Res, UpsertMediaParams>;
   @useResult
-  $Res call({int id, File file, MediaParent parent});
+  $Res call({int id, File file, MediaParent parent, int clubId});
 }
 
 /// @nodoc
@@ -50,6 +51,7 @@ class _$UpsertMediaParamsCopyWithImpl<$Res, $Val extends UpsertMediaParams>
     Object? id = null,
     Object? file = null,
     Object? parent = null,
+    Object? clubId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -64,6 +66,10 @@ class _$UpsertMediaParamsCopyWithImpl<$Res, $Val extends UpsertMediaParams>
           ? _value.parent
           : parent // ignore: cast_nullable_to_non_nullable
               as MediaParent,
+      clubId: null == clubId
+          ? _value.clubId
+          : clubId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -76,7 +82,7 @@ abstract class _$$UpsertMediaParamsImplCopyWith<$Res>
       __$$UpsertMediaParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, File file, MediaParent parent});
+  $Res call({int id, File file, MediaParent parent, int clubId});
 }
 
 /// @nodoc
@@ -93,6 +99,7 @@ class __$$UpsertMediaParamsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? file = null,
     Object? parent = null,
+    Object? clubId = null,
   }) {
     return _then(_$UpsertMediaParamsImpl(
       id: null == id
@@ -107,6 +114,10 @@ class __$$UpsertMediaParamsImplCopyWithImpl<$Res>
           ? _value.parent
           : parent // ignore: cast_nullable_to_non_nullable
               as MediaParent,
+      clubId: null == clubId
+          ? _value.clubId
+          : clubId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -115,7 +126,10 @@ class __$$UpsertMediaParamsImplCopyWithImpl<$Res>
 
 class _$UpsertMediaParamsImpl extends _UpsertMediaParams {
   const _$UpsertMediaParamsImpl(
-      {required this.id, required this.file, required this.parent})
+      {required this.id,
+      required this.file,
+      required this.parent,
+      required this.clubId})
       : super._();
 
   @override
@@ -124,10 +138,12 @@ class _$UpsertMediaParamsImpl extends _UpsertMediaParams {
   final File file;
   @override
   final MediaParent parent;
+  @override
+  final int clubId;
 
   @override
   String toString() {
-    return 'UpsertMediaParams(id: $id, file: $file, parent: $parent)';
+    return 'UpsertMediaParams(id: $id, file: $file, parent: $parent, clubId: $clubId)';
   }
 
   @override
@@ -137,11 +153,12 @@ class _$UpsertMediaParamsImpl extends _UpsertMediaParams {
             other is _$UpsertMediaParamsImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.file, file) || other.file == file) &&
-            (identical(other.parent, parent) || other.parent == parent));
+            (identical(other.parent, parent) || other.parent == parent) &&
+            (identical(other.clubId, clubId) || other.clubId == clubId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, file, parent);
+  int get hashCode => Object.hash(runtimeType, id, file, parent, clubId);
 
   @JsonKey(ignore: true)
   @override
@@ -155,7 +172,8 @@ abstract class _UpsertMediaParams extends UpsertMediaParams {
   const factory _UpsertMediaParams(
       {required final int id,
       required final File file,
-      required final MediaParent parent}) = _$UpsertMediaParamsImpl;
+      required final MediaParent parent,
+      required final int clubId}) = _$UpsertMediaParamsImpl;
   const _UpsertMediaParams._() : super._();
 
   @override
@@ -164,6 +182,8 @@ abstract class _UpsertMediaParams extends UpsertMediaParams {
   File get file;
   @override
   MediaParent get parent;
+  @override
+  int get clubId;
   @override
   @JsonKey(ignore: true)
   _$$UpsertMediaParamsImplCopyWith<_$UpsertMediaParamsImpl> get copyWith =>

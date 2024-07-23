@@ -8,6 +8,7 @@ abstract class MediaRepo {
   Future<Either<Failure, List<MediaModel>>> getAll(
     PaginationParams params,
     MediaParent parent,
+    int clubId,
   );
   Future<Either<Failure, MediaModel>> upload(
     UpsertMediaParams params,

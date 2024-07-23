@@ -15,9 +15,13 @@ class MediaRepoImpl implements MediaRepo {
   Future<Either<Failure, List<MediaModel>>> getAll(
     PaginationParams params,
     MediaParent parent,
+    int clubId,
   ) async {
     final res = await _remote.getRequest(
       '${ListAPI.MEDIA}/${parent.value}',
+      queryParameters: {
+        'clubId': clubId,
+      },
       converter: (res) {
         final List<MediaModel> medias = [];
         for (final item in res['data']) {
@@ -46,6 +50,9 @@ class MediaRepoImpl implements MediaRepo {
     final res = await _remote.putRequest(
       '${ListAPI.MEDIA}/${params.parent.value}',
       formData: params.toFormData(),
+      queryParameters: {
+        'clubId': params.clubId,
+      },
       converter: (res) => MediaModel.fromJson(res['data']),
     );
 
@@ -66,6 +73,9 @@ class MediaRepoImpl implements MediaRepo {
     final res = await _remote.postRequest(
       '${ListAPI.MEDIA}/${params.parent.value}',
       formData: params.toFormData(),
+      queryParameters: {
+        'clubId': params.clubId,
+      },
       converter: (res) => MediaModel.fromJson(res['data']),
     );
 

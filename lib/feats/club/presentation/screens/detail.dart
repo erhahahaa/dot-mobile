@@ -160,7 +160,12 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                                 icon: Assets.icons.assets.svg(width: 32.w),
                                 text: 'Assets',
                                 onTap: () {
-                                  context.pushNamed(AppRoutes.coachMedia.name);
+                                  context.pushNamed(
+                                    AppRoutes.coachMedia.name,
+                                    pathParameters: {
+                                      'clubId': widget.club.id.toString(),
+                                    },
+                                  );
                                 },
                               ),
                             ],

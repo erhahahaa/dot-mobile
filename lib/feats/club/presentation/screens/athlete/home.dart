@@ -248,7 +248,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   shape: const StadiumBorder(),
                                   side: const BorderSide(
                                       width: 1, color: Color(0xFF575FFF)),
-                                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12),
                                 ),
                                 onPressed: () {},
                                 child: Row(

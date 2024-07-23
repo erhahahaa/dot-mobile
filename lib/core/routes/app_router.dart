@@ -1,6 +1,5 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/di.dart';
-import 'package:dot_coaching/feats/exam/presentation/state/cubit/question_cubit.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/foundation.dart';
@@ -25,7 +24,6 @@ class AppRouter {
   static final _coachTacticalShellKey = GlobalKey<NavigatorState>();
   static final _coachHistoryShellKey = GlobalKey<NavigatorState>();
   static final _coachProfileShellKey = GlobalKey<NavigatorState>();
-  static final coachAssetShellKey = GlobalKey<NavigatorState>();
 
   AppRouter.setStream(BuildContext c) {
     ctx = c;
@@ -145,30 +143,10 @@ class AppRouter {
         parentNavigatorKey: _rootKey,
         builder: (_, state, navigationShell) => MultiBlocProvider(
           providers: [
-            BlocProvider(
-              create: (_) => di<ClubCubit>()..init(),
-            ),
-            BlocProvider(
-              create: (_) => di<ProgramCubit>()..init(routeName: state.name),
-            ),
-            BlocProvider(
-              create: (_) => di<ExerciseCubit>()..init(),
-            ),
-            BlocProvider(
-              create: (_) => di<ExamCubit>()..init(),
-            ),
-            BlocProvider(
-              create: (_) => di<QuestionCubit>()..init(),
-            ),
-            BlocProvider(
-              create: (_) => di<TacticalCubit>()..init(),
-            ),
-            BlocProvider(
-              create: (_) => di<UserCubit>()..init(),
-            ),
-            BlocProvider(
-              create: (_) => di<MediaCubit>()..init(),
-            ),
+            BlocProvider(create: (_) => di<ClubCubit>()..init()),
+            BlocProvider(create: (_) => di<ProgramCubit>()..init()),
+            BlocProvider(create: (_) => di<TacticalCubit>()..init()),
+            BlocProvider(create: (_) => di<UserCubit>()..init()),
           ],
           child: BottomNavBar(
             navigationShell: navigationShell,
@@ -284,21 +262,6 @@ class AppRouter {
                 builder: (c, __) => BlocProvider.value(
                   value: c.read<TacticalCubit>(),
                   child: const TacticalScreen(),
-                ),
-              ),
-            ],
-          ),
-
-          // Assets
-          StatefulShellBranch(
-            navigatorKey: coachAssetShellKey,
-            routes: [
-              GoRoute(
-                path: AppRoutes.coachMedia.path,
-                name: AppRoutes.coachMedia.name,
-                builder: (c, __) => BlocProvider.value(
-                  value: c.read<MediaCubit>(),
-                  child: const AssetsScreen(),
                 ),
               ),
             ],
