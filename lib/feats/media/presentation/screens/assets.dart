@@ -234,99 +234,7 @@ class ClubAssetView extends StatelessWidget {
         ),
         itemCount: medias.length,
         itemBuilder: (context, index) {
-          return Container(
-            padding: EdgeInsets.all(8.w),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.r),
-              color:
-                  context.theme.colorScheme.primaryContainer.withOpacity(0.1),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: medias[index]
-                      .determineLoader(width: 128.w, height: 128.w),
-                ),
-                const Divider(),
-                Text(
-                  medias[index].name.maxChar(length: 15),
-                  style: context.theme.textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    InkWell(
-                      child: Icon(
-                        Icons.download,
-                        size: 16.sp,
-                      ),
-                      onTap: () {
-                        context.read<MediaCubit>().download(medias[index]);
-                      },
-                    ),
-                    SizedBox(width: 16.w),
-                    InkWell(
-                      child: Icon(
-                        Icons.info,
-                        size: 16.sp,
-                      ),
-                      onTap: () {
-                        showAdaptiveDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('Asset Info'),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Name: ${medias[index].name}'),
-                                  Text('Type: ${medias[index].type.value}'),
-                                  Text('Size: ${medias[index].fileSize}'),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                          child: Text(
-                                              'URL: ${medias[index].url.sanitize()}')),
-                                      InkWell(
-                                        child: const Icon(
-                                          Icons.copy,
-                                        ),
-                                        onTap: () {
-                                          medias[index]
-                                              .url
-                                              .sanitize()
-                                              .toClipboard();
-                                          'Copied to clipboard'
-                                              .toToastSuccess(context);
-                                        },
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text('Close'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                )
-              ],
-            ),
-          );
+          return AssetContainer(media: medias[index]);
         },
       ),
     );
@@ -368,30 +276,7 @@ class ProgramAssetView extends StatelessWidget {
         ),
         itemCount: medias.length,
         itemBuilder: (context, index) {
-          return Container(
-            padding: EdgeInsets.all(8.w),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.r),
-              color:
-                  context.theme.colorScheme.primaryContainer.withOpacity(0.1),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: medias[index]
-                      .determineLoader(width: 128.w, height: 128.w),
-                ),
-                const Divider(),
-                Text(
-                  medias[index].name.maxChar(length: 15),
-                  style: context.theme.textTheme.bodyMedium
-                      ?.copyWith(fontWeight: FontWeight.w500),
-                ),
-              ],
-            ),
-          );
+          return AssetContainer(media: medias[index]);
         },
       ),
     );
@@ -433,30 +318,7 @@ class ExerciseAssetView extends StatelessWidget {
         ),
         itemCount: medias.length,
         itemBuilder: (context, index) {
-          return Container(
-            padding: EdgeInsets.all(8.w),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.r),
-              color:
-                  context.theme.colorScheme.primaryContainer.withOpacity(0.1),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: medias[index]
-                      .determineLoader(width: 128.w, height: 128.w),
-                ),
-                const Divider(),
-                Text(
-                  medias[index].name.maxChar(length: 15),
-                  style: context.theme.textTheme.bodyMedium
-                      ?.copyWith(fontWeight: FontWeight.w500),
-                ),
-              ],
-            ),
-          );
+          return AssetContainer(media: medias[index]);
         },
       ),
     );
@@ -498,30 +360,7 @@ class ExamAssetView extends StatelessWidget {
         ),
         itemCount: medias.length,
         itemBuilder: (context, index) {
-          return Container(
-            padding: EdgeInsets.all(8.w),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.r),
-              color:
-                  context.theme.colorScheme.primaryContainer.withOpacity(0.1),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: medias[index]
-                      .determineLoader(width: 128.w, height: 128.w),
-                ),
-                const Divider(),
-                Text(
-                  medias[index].name.maxChar(length: 15),
-                  style: context.theme.textTheme.bodyMedium
-                      ?.copyWith(fontWeight: FontWeight.w500),
-                ),
-              ],
-            ),
-          );
+          return AssetContainer(media: medias[index]);
         },
       ),
     );
@@ -563,30 +402,7 @@ class QuestionAssetView extends StatelessWidget {
         ),
         itemCount: medias.length,
         itemBuilder: (context, index) {
-          return Container(
-            padding: EdgeInsets.all(8.w),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.r),
-              color:
-                  context.theme.colorScheme.primaryContainer.withOpacity(0.1),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: medias[index]
-                      .determineLoader(width: 128.w, height: 128.w),
-                ),
-                const Divider(),
-                Text(
-                  medias[index].name.maxChar(length: 15),
-                  style: context.theme.textTheme.bodyMedium
-                      ?.copyWith(fontWeight: FontWeight.w500),
-                ),
-              ],
-            ),
-          );
+          return AssetContainer(media: medias[index]);
         },
       ),
     );
