@@ -123,6 +123,7 @@ void _initCubits() {
   di.registerFactory(
     () => ExerciseCubit(
       di<ExerciseRepo>(),
+      di<MediaRepo>(),
     ),
   );
 

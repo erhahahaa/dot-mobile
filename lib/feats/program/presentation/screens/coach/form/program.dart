@@ -284,6 +284,9 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                                   state.copyWith(state: BaseState.initial));
                               context.pushReplacementNamed(
                                 AppRoutes.coachCreateProgramExercise.name,
+                                pathParameters: {
+                                  'clubId': widget.clubId.toString(),
+                                },
                                 extra: {'program': program},
                               );
                             }

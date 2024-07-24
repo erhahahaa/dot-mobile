@@ -133,12 +133,26 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                               ManageButton(
                                 icon: Assets.icons.exam.svg(width: 32.w),
                                 text: 'Exam',
-                                onTap: () {},
+                                onTap: () {
+                                  context.pushNamed(
+                                    AppRoutes.coachExam.name,
+                                    extra: {
+                                      'club': widget.club,
+                                    },
+                                  );
+                                },
                               ),
                               ManageButton(
                                 icon: Assets.icons.tactical.svg(width: 32.w),
                                 text: 'Tactical',
-                                onTap: () {},
+                                onTap: () {
+                                  context.pushNamed(
+                                    AppRoutes.coachTactical.name,
+                                    extra: {
+                                      'club': widget.club,
+                                    },
+                                  );
+                                },
                               ),
                             ],
                           ),
