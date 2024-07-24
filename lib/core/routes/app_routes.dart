@@ -19,9 +19,9 @@ enum AppRoutes {
   athleteTactical('/tactical'),
   athleteTacticalDetail('/tactical/:id'),
 
-  // Athlete History
-  athleteHistory('/history'),
-  athleteHistoryDetail('/history/:id'),
+  // Athlete Exam
+  athleteExam('/exam'),
+  athleteExamDetail('/eyyxam/:id'),
 
   // Athlete Profile
   athleteProfile('/profile'),
@@ -31,6 +31,7 @@ enum AppRoutes {
   coachCreateClub('/coach/club/create'),
   coachEditClub('/coach/club/edit'),
   coachClubDetail('/coach/club/:id'),
+  coachClubMember('/coach/club/:clubId'),
 
   // Coach Program
   coachProgram('/coach/program'),
@@ -38,7 +39,7 @@ enum AppRoutes {
   coachCreateProgram('/coach/program/create/:clubId'),
   coachCreateProgramExercise('/coach/program/exercise/create/:clubId'),
 
-  // Coach Exam 
+  // Coach Exam
   coachExam('/coach/exam'),
   coachExamDetail('/coach/exam/:id'),
   coachCreateExam('/coach/exam/create/:clubId'),

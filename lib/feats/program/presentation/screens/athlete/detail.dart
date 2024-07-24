@@ -1,9 +1,10 @@
 import 'package:dot_coaching/core/widgets/parent.dart';
+import 'package:dot_coaching/feats/program/data/models/program.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProgramDetailScreen extends StatefulWidget {
-  const ProgramDetailScreen({super.key});
+  const ProgramDetailScreen({super.key, required ProgramModel program});
 
   @override
   State<ProgramDetailScreen> createState() => _ProgramDetailScreenState();
