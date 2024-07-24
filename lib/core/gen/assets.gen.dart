@@ -90,6 +90,10 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/hero
   $AssetsImagesHeroGen get hero => const $AssetsImagesHeroGen();
 
+  /// Directory path: assets/images/tactical-board
+  $AssetsImagesTacticalBoardGen get tacticalBoard =>
+      const $AssetsImagesTacticalBoardGen();
+
   /// List of all assets
   List<AssetGenImage> get values => [dotLogo];
 }
@@ -137,6 +141,17 @@ class $AssetsImagesHeroGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [signIn, signUp];
+}
+
+class $AssetsImagesTacticalBoardGen {
+  const $AssetsImagesTacticalBoardGen();
+
+  /// File path: assets/images/tactical-board/01.png
+  AssetGenImage get a01 =>
+      const AssetGenImage('assets/images/tactical-board/01.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [a01];
 }
 
 class Assets {

@@ -9,11 +9,42 @@ part 'exercise_state.dart';
 
 class ExerciseCubit extends Cubit<ExerciseState> {
   final ExerciseRepo _exerciseRepo;
+  final MediaRepo _mediaRepo;
   ExerciseCubit(
     this._exerciseRepo,
+    this._mediaRepo,
   ) : super(const ExerciseState());
 
   Future<void> init() async {}
+
+  Future<void> getAllMedia({required int clubId}) async {
+    for (final parent in MediaParent.values) {
+      final res = await _mediaRepo.getAll(
+        PaginationParams(),
+        parent,
+        clubId,
+      );
+      res.fold((l) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.failure,
+            failure: l,
+          ),
+        );
+      }, (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+            medias: r,
+          ),
+        );
+      });
+    }
+  }
 
   Future<void> create(List<CreateProgramExerciseParams> params) async {
     final res = await _exerciseRepo.create(params);

@@ -10,11 +10,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+export 'package:dot_coaching/feats/program/presentation/screens/coach/form/exercise.dart';
+export 'package:dot_coaching/feats/program/presentation/screens/coach/form/program.dart';
+
 class ExerciseForm extends StatefulWidget {
   final ProgramModel program;
+  final List<ProgramExerciseModel>? exercises;
   const ExerciseForm({
     super.key,
     required this.program,
+    this.exercises,
   });
 
   @override
@@ -33,6 +38,25 @@ class _ExerciseFormState extends State<ExerciseForm> {
     _formKey = GlobalKey<FormState>();
 
     _scrollController = ScrollController();
+
+    if (widget.exercises != null) {
+      for (ProgramExerciseModel exercise in widget.exercises!) {
+        _items.add(ExerciseItem(
+          exercise: exercise,
+          nameFN: FocusNode(),
+          setsFN: FocusNode(),
+          repsFN: FocusNode(),
+          restFN: FocusNode(),
+          descriptionFN: FocusNode(),
+          nameCon: TextEditingController(text: exercise.name),
+          setsCon: TextEditingController(text: exercise.sets.toString()),
+          repsCon: TextEditingController(text: exercise.repetition.toString()),
+          restCon: TextEditingController(text: exercise.rest.toString()),
+          descriptionCon: TextEditingController(text: exercise.description),
+        ));
+      }
+    }
+
     super.initState();
   }
 
@@ -362,6 +386,29 @@ class _ExerciseFormState extends State<ExerciseForm> {
                               ],
                             ),
                             if (_items[index].isExpanded) ...[
+                              SizedBox(height: 16.h),
+                              InkWell(
+                                onTap: () {
+                                  showAdaptiveDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        child: Container(),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  width: 310.w,
+                                  height: 210.h,
+                                  padding: EdgeInsets.all(8.w),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12.r),
+                                  ),
+                                  child: Assets.images.dotLogo.image(),
+                                ),
+                              ),
                               SizedBox(height: 16.h),
                               Row(
                                 children: [

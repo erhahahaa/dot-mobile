@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ExerciseState {
   BaseState get state => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
+  List<MediaModel> get medias => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ExerciseStateCopyWith<ExerciseState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $ExerciseStateCopyWith<$Res> {
           ExerciseState value, $Res Function(ExerciseState) then) =
       _$ExerciseStateCopyWithImpl<$Res, ExerciseState>;
   @useResult
-  $Res call({BaseState state, Failure? failure});
+  $Res call({BaseState state, Failure? failure, List<MediaModel> medias});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$ExerciseStateCopyWithImpl<$Res, $Val extends ExerciseState>
   $Res call({
     Object? state = null,
     Object? failure = freezed,
+    Object? medias = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -58,6 +60,10 @@ class _$ExerciseStateCopyWithImpl<$Res, $Val extends ExerciseState>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      medias: null == medias
+          ? _value.medias
+          : medias // ignore: cast_nullable_to_non_nullable
+              as List<MediaModel>,
     ) as $Val);
   }
 }
@@ -70,7 +76,7 @@ abstract class _$$ExerciseStateImplCopyWith<$Res>
       __$$ExerciseStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BaseState state, Failure? failure});
+  $Res call({BaseState state, Failure? failure, List<MediaModel> medias});
 }
 
 /// @nodoc
@@ -86,6 +92,7 @@ class __$$ExerciseStateImplCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
     Object? failure = freezed,
+    Object? medias = null,
   }) {
     return _then(_$ExerciseStateImpl(
       state: null == state
@@ -96,6 +103,10 @@ class __$$ExerciseStateImplCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      medias: null == medias
+          ? _value._medias
+          : medias // ignore: cast_nullable_to_non_nullable
+              as List<MediaModel>,
     ));
   }
 }
@@ -103,17 +114,29 @@ class __$$ExerciseStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ExerciseStateImpl implements _ExerciseState {
-  const _$ExerciseStateImpl({this.state = BaseState.initial, this.failure});
+  const _$ExerciseStateImpl(
+      {this.state = BaseState.initial,
+      this.failure,
+      final List<MediaModel> medias = const []})
+      : _medias = medias;
 
   @override
   @JsonKey()
   final BaseState state;
   @override
   final Failure? failure;
+  final List<MediaModel> _medias;
+  @override
+  @JsonKey()
+  List<MediaModel> get medias {
+    if (_medias is EqualUnmodifiableListView) return _medias;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_medias);
+  }
 
   @override
   String toString() {
-    return 'ExerciseState(state: $state, failure: $failure)';
+    return 'ExerciseState(state: $state, failure: $failure, medias: $medias)';
   }
 
   @override
@@ -122,11 +145,13 @@ class _$ExerciseStateImpl implements _ExerciseState {
         (other.runtimeType == runtimeType &&
             other is _$ExerciseStateImpl &&
             (identical(other.state, state) || other.state == state) &&
-            (identical(other.failure, failure) || other.failure == failure));
+            (identical(other.failure, failure) || other.failure == failure) &&
+            const DeepCollectionEquality().equals(other._medias, _medias));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state, failure);
+  int get hashCode => Object.hash(runtimeType, state, failure,
+      const DeepCollectionEquality().hash(_medias));
 
   @JsonKey(ignore: true)
   @override
@@ -137,12 +162,16 @@ class _$ExerciseStateImpl implements _ExerciseState {
 
 abstract class _ExerciseState implements ExerciseState {
   const factory _ExerciseState(
-      {final BaseState state, final Failure? failure}) = _$ExerciseStateImpl;
+      {final BaseState state,
+      final Failure? failure,
+      final List<MediaModel> medias}) = _$ExerciseStateImpl;
 
   @override
   BaseState get state;
   @override
   Failure? get failure;
+  @override
+  List<MediaModel> get medias;
   @override
   @JsonKey(ignore: true)
   _$$ExerciseStateImplCopyWith<_$ExerciseStateImpl> get copyWith =>
