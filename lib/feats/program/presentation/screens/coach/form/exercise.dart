@@ -198,9 +198,18 @@ class _ExerciseFormState extends State<ExerciseForm> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(64.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        blurRadius: 8,
+                        spreadRadius: 0,
+                        offset: const Offset(4, 4),
+                      ),
+                    ],
                   ),
                   child: Text(
                     'New exercise',
+                    textAlign: TextAlign.center,
                     style: context.theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                       fontSize: 18.sp,

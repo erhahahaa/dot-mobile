@@ -68,6 +68,14 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(64.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        blurRadius: 8,
+                        spreadRadius: 0,
+                        offset: const Offset(4, 4),
+                      ),
+                    ],
                   ),
                   child: Text(
                     "Novo Club",

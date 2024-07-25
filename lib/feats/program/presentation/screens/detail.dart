@@ -31,10 +31,8 @@ class ProgramDetailScreen extends StatelessWidget {
               children: [
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(
-                      width: 2,
-                      color: context.theme.colorScheme.onPrimary,
-                    ),
+                    shape: CircleBorder(),
+                    side: const BorderSide(width: 2, color: Colors.white),
                   ),
                   onPressed: () {
                     context.pop();
@@ -42,18 +40,9 @@ class ProgramDetailScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.arrow_circle_left_outlined,
+                        Icons.arrow_back_rounded,
                         color: context.theme.colorScheme.onPrimary,
                         size: 14.sp,
-                      ),
-                      SizedBox(width: 8.w),
-                      Text(
-                        context.str?.back ?? 'Back',
-                        style: TextStyle(
-                          color: context.theme.colorScheme.onPrimary,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.normal,
-                        ),
                       ),
                     ],
                   ),
@@ -66,9 +55,18 @@ class ProgramDetailScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(64.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        blurRadius: 8,
+                        spreadRadius: 0,
+                        offset: const Offset(4, 4),
+                      ),
+                    ],
                   ),
                   child: Text(
                     program.name,
+                    textAlign: TextAlign.center,
                     style: context.theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                       fontSize: 18.sp,
