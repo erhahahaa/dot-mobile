@@ -12,6 +12,57 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vector_graphics/vector_graphics.dart';
 
+class $AssetsGoogleFontsGen {
+  const $AssetsGoogleFontsGen();
+
+  /// File path: assets/google_fonts/Montserrat-Black.ttf
+  String get montserratBlack => 'assets/google_fonts/Montserrat-Black.ttf';
+
+  /// File path: assets/google_fonts/Montserrat-Bold.ttf
+  String get montserratBold => 'assets/google_fonts/Montserrat-Bold.ttf';
+
+  /// File path: assets/google_fonts/Montserrat-ExtraBold.ttf
+  String get montserratExtraBold =>
+      'assets/google_fonts/Montserrat-ExtraBold.ttf';
+
+  /// File path: assets/google_fonts/Montserrat-ExtraLight.ttf
+  String get montserratExtraLight =>
+      'assets/google_fonts/Montserrat-ExtraLight.ttf';
+
+  /// File path: assets/google_fonts/Montserrat-Light.ttf
+  String get montserratLight => 'assets/google_fonts/Montserrat-Light.ttf';
+
+  /// File path: assets/google_fonts/Montserrat-Medium.ttf
+  String get montserratMedium => 'assets/google_fonts/Montserrat-Medium.ttf';
+
+  /// File path: assets/google_fonts/Montserrat-Regular.ttf
+  String get montserratRegular => 'assets/google_fonts/Montserrat-Regular.ttf';
+
+  /// File path: assets/google_fonts/Montserrat-SemiBold.ttf
+  String get montserratSemiBold =>
+      'assets/google_fonts/Montserrat-SemiBold.ttf';
+
+  /// File path: assets/google_fonts/Montserrat-Thin.ttf
+  String get montserratThin => 'assets/google_fonts/Montserrat-Thin.ttf';
+
+  /// File path: assets/google_fonts/OFL.txt
+  String get ofl => 'assets/google_fonts/OFL.txt';
+
+  /// List of all assets
+  List<String> get values => [
+        montserratBlack,
+        montserratBold,
+        montserratExtraBold,
+        montserratExtraLight,
+        montserratLight,
+        montserratMedium,
+        montserratRegular,
+        montserratSemiBold,
+        montserratThin,
+        ofl
+      ];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -157,6 +208,7 @@ class $AssetsImagesTacticalBoardGen {
 class Assets {
   Assets._();
 
+  static const $AssetsGoogleFontsGen googleFonts = $AssetsGoogleFontsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }

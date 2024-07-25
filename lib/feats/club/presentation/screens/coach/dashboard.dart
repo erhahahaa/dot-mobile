@@ -53,7 +53,7 @@ class DashboardScreen extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                state.coachClubs.length.toString(),
+                                state.clubs.length.toString(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
@@ -70,7 +70,7 @@ class DashboardScreen extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                state.coachClubs.sumTotalMembers().toString(),
+                                state.clubs.sumTotalMembers().toString(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
@@ -87,7 +87,7 @@ class DashboardScreen extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                state.coachClubs.sumTotalPrograms().toString(),
+                                state.clubs.sumTotalPrograms().toString(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
@@ -104,7 +104,7 @@ class DashboardScreen extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                state.coachClubs.sumTotalExams().toString(),
+                                state.clubs.sumTotalExams().toString(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
@@ -134,7 +134,7 @@ class DashboardScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 8.h),
-                    if (state.coachClubs.isNotEmpty) ...[
+                    if (state.clubs.isNotEmpty) ...[
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(8.w),
@@ -146,9 +146,9 @@ class DashboardScreen extends StatelessWidget {
                                 .withOpacity(0.1),
                           ),
                           child: ListView.builder(
-                            itemCount: state.coachClubs.length,
+                            itemCount: state.clubs.length,
                             itemBuilder: (context, index) {
-                              final club = state.coachClubs[index];
+                              final club = state.clubs[index];
                               return ClubContainer(club: club);
                             },
                           ),

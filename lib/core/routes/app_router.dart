@@ -75,11 +75,24 @@ class AppRouter {
       /// [Athlete] routes
       StatefulShellRoute.indexedStack(
         parentNavigatorKey: _rootKey,
-        builder: (_, state, navigationShell) => BottomNavBar(
-          navigationShell: navigationShell,
-          routerState: state,
-          showBottomNavBar: true,
-          showCoachNavBar: false,
+        builder: (_, state, navigationShell) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (_) => di<ClubCubit>(),
+            ),
+            BlocProvider(
+              create: (_) => di<TacticalCubit>(),
+            ),
+            BlocProvider(
+              create: (_) => di<UserCubit>(),
+            ),
+          ],
+          child: BottomNavBar(
+            navigationShell: navigationShell,
+            routerState: state,
+            showBottomNavBar: true,
+            showCoachNavBar: false,
+          ),
         ),
         branches: [
           // Home
@@ -89,8 +102,8 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.athleteHome.path,
                 name: AppRoutes.athleteHome.name,
-                builder: (_, state) => BlocProvider(
-                  create: (_) => di<ClubCubit>()..init(routeName: state.name),
+                builder: (_, state) => BlocProvider.value(
+                  value: di<ClubCubit>()..init(routeName: state.name),
                   child: const HomeScreen(),
                 ),
               ),
@@ -119,7 +132,7 @@ class AppRouter {
                 name: AppRoutes.athleteExam.name,
                 builder: (_, __) => BlocProvider(
                   create: (_) => di<UserCubit>()..init(),
-                  child: AthleteExamScreen(),
+                  child: const AthleteExamScreen(),
                 ),
               ),
             ],
@@ -131,8 +144,8 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.athleteProfile.path,
                 name: AppRoutes.athleteProfile.name,
-                builder: (_, __) => BlocProvider(
-                  create: (_) => di<UserCubit>()..init(),
+                builder: (_, __) => BlocProvider.value(
+                  value: di<UserCubit>()..init(),
                   child: const ProfileScreen(),
                 ),
               ),
@@ -229,9 +242,9 @@ class AppRouter {
                 path: AppRoutes.coachClubMember.path,
                 name: AppRoutes.coachClubMember.name,
                 builder: (c, state) {
-                   final params = state.pathParameters;
+                  final params = state.pathParameters;
                   final clubId = int.parse(params['clubId'] ?? '0');
-                  
+
                   return BlocProvider.value(
                     value: c.read<ClubCubit>(),
                     child: MemberScreen(
@@ -390,7 +403,7 @@ class AppRouter {
                 name: 'coachMediaDummy',
                 builder: (c, __) => BlocProvider.value(
                   value: c.read<MediaCubit>(),
-                  child: Scaffold(),
+                  child: const Scaffold(),
                 ),
               ),
               GoRoute(
@@ -426,7 +439,7 @@ class AppRouter {
         ],
       )
     ],
-    initialLocation: AppRoutes.athleteHome.path,
+    initialLocation: AppRoutes.root.path,
     routerNeglect: true,
     debugLogDiagnostics: kDebugMode,
     refreshListenable: GoRouterRefreshStream(ctx.read<AuthCubit>().stream),

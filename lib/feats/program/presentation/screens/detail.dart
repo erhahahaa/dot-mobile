@@ -31,7 +31,7 @@ class ProgramDetailScreen extends StatelessWidget {
               children: [
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    shape: CircleBorder(),
+                    shape: const CircleBorder(),
                     side: const BorderSide(width: 2, color: Colors.white),
                   ),
                   onPressed: () {

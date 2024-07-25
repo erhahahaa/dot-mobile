@@ -57,7 +57,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                   children: [
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        shape: CircleBorder(),
+                        shape: const CircleBorder(),
                         side: BorderSide(
                           width: 2,
                           color: context.theme.colorScheme.onPrimary,

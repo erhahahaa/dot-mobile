@@ -6,8 +6,8 @@ class ClubState with _$ClubState {
     @Default(BaseState.initial) BaseState state,
     Failure? failure,
     @Default(UserModel()) UserModel user,
-    @Default([]) List<ClubModel> coachClubs,
-    @Default([]) List<ClubModel> athleteClubs,
+    @Default([]) List<ClubModel> clubs,
+    @Default([]) List<ClubModel> filteredClubs,
     File? image,
   }) = _ClubState;
 }

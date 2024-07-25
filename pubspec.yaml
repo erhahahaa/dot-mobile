@@ -44,6 +44,7 @@ dependencies:
   file_picker: ^8.0.6
   text_area: ^0.0.3
   easy_search_bar: ^2.5.0
+  easy_debounce: ^2.0.3
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +73,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/google_fonts/
     - assets/icons/
     - assets/images/
     - assets/images/bg/

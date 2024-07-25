@@ -9,7 +9,10 @@ import 'package:flutter/services.dart';
 import 'package:isar/isar.dart';
 
 void main() {
-  runZonedGuarded(() async { 
+  // compute(montserratLicense, null);
+  // GoogleFonts.config.allowRuntimeFetching = false;
+
+  runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await FirebaseServices.init();
     await Isar.initializeIsarCore();
@@ -25,3 +28,10 @@ void main() {
     await FirebaseCrashlytics.instance.recordError(error, stackTrace);
   });
 }
+
+// Future<void> montserratLicense(_) async {
+//   LicenseRegistry.addLicense(() async* {
+//     final license = await rootBundle.loadString('assets/google_fonts/OFL.txt');
+//     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+//   });
+// }

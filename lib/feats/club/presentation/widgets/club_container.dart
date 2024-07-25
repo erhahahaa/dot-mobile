@@ -8,25 +8,44 @@ import 'package:go_router/go_router.dart';
 
 class ClubContainer extends StatelessWidget {
   final ClubModel club;
+  final bool isCoach;
   const ClubContainer({
     super.key,
     required this.club,
+    this.isCoach = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
     return InkWell(
-      onTap: () => context.pushNamed(
-        AppRoutes.coachClubDetail.name,
-        pathParameters: {'id': club.id.toString()},
-        extra: {
+      onTap: () {
+        final params = {
+          'id': club.id.toString(),
+        };
+        final extra = {
           'club': club,
-        },
-      ),
+        };
+
+        if (isCoach) {
+          context.pushNamed(
+            AppRoutes.coachClubDetail.name,
+            pathParameters: params,
+            extra: extra,
+          );
+          return;
+        } else {
+          context.pushNamed(
+            AppRoutes.athleteClubDetail.name,
+            pathParameters: params,
+            extra: extra,
+          );
+        }
+      },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
-          color: Colors.white,
+          color: theme.colorScheme.primaryContainer.withOpacity(0.1),
         ),
         margin: EdgeInsets.only(bottom: 8.w),
         padding: EdgeInsets.all(8.w),
