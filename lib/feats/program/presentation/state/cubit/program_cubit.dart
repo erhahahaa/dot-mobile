@@ -29,17 +29,10 @@ class ProgramCubit extends Cubit<ProgramState> {
   }
 
   Future<void> init({
-    required String? routeName,
     int? clubId,
   }) async {
     if (clubId == null) return;
-
-    if (routeName == null || !routeName.startsWith('coach')) {
-      await athleteInit(clubId);
-    }
-    if (routeName == null || routeName.startsWith('coach')) {
-      await coachInit(clubId);
-    }
+    await getAll(clubId);
   }
 
   Future<UserEntity?> fetchLocalUser() async {
@@ -49,12 +42,6 @@ class ProgramCubit extends Cubit<ProgramState> {
       (r) => r,
     );
   }
-
-  Future<void> coachInit(int clubId) async {
-    await getAll(clubId);
-  }
-
-  Future<void> athleteInit(int clubId) async {}
 
   Future<void> create(CreateProgramParams params) async {
     safeEmit(

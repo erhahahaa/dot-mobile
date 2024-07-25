@@ -54,6 +54,7 @@ class DashboardScreen extends StatelessWidget {
                       child: ListClub(
                         clubs: state.filteredClubs,
                         padding: EdgeInsets.all(16.w),
+                        isCoach: true,
                       ),
                     ),
                   ],

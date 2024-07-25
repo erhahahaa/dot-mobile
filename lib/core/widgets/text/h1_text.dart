@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class H1Text extends StatelessWidget {
   final String text;
   final FontWeight fontWeight;
+  final Color? color;
 
   const H1Text(
     this.text, {
     super.key,
     this.fontWeight = FontWeight.w600,
+    this.color,
   });
 
   @override
@@ -17,6 +19,7 @@ class H1Text extends StatelessWidget {
       text,
       style: context.theme.textTheme.titleLarge?.copyWith(
         fontWeight: fontWeight,
+        color: color,
       ),
     );
   }

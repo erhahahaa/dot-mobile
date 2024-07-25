@@ -18,7 +18,7 @@ class ManageButton extends StatelessWidget {
         width: 95.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
-          color: context.theme.colorScheme.onPrimary,
+          color: context.theme.colorScheme.primaryContainer.withOpacity(0.1),
         ),
         child: Column(
           children: [

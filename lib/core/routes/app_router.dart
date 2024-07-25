@@ -261,8 +261,7 @@ class AppRouter {
                   final extra = state.extra as Map<String, dynamic>;
                   final club = extra['club'] as ClubModel;
                   return BlocProvider.value(
-                    value: c.read<ProgramCubit>()
-                      ..init(clubId: club.id, routeName: state.name),
+                    value: c.read<ProgramCubit>()..init(clubId: club.id),
                     child: ProgramScreen(club: club),
                   );
                 },
@@ -279,7 +278,6 @@ class AppRouter {
                       clubId: int.parse(
                         params['clubId'] ?? '0',
                       ),
-                      routeName: AppRoutes.coachCreateProgram.name,
                     ),
                   );
                 },
