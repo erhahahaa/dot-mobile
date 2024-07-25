@@ -28,9 +28,7 @@ class ClubCubit extends Cubit<ClubState> {
     );
   }
 
-  Future<void> init({
-    required String? routeName,
-  }) async {
+  Future<void> init() async {
     await fetchLocalUser();
     await getAll();
   }
@@ -180,7 +178,6 @@ class ClubCubit extends Cubit<ClubState> {
       },
     );
   }
-
 
   void search(String query) {
     final filteredClubs = state.clubs.where((element) {

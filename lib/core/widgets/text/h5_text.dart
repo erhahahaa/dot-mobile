@@ -1,21 +1,20 @@
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class H1Text extends StatelessWidget {
+class H5Text extends StatelessWidget {
   final String text;
   final FontWeight fontWeight;
-
-  const H1Text(
+  const H5Text(
     this.text, {
     super.key,
-    this.fontWeight = FontWeight.w600,
+    this.fontWeight = FontWeight.normal,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: context.theme.textTheme.titleLarge?.copyWith(
+      style: context.theme.textTheme.bodyMedium?.copyWith(
         fontWeight: fontWeight,
       ),
     );

@@ -29,7 +29,8 @@ class DotApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => di<AuthCubit>()),
-        BlocProvider(create: (context) => di<UserCubit>())
+        BlocProvider(create: (context) => di<UserCubit>()),
+        BlocProvider(create: (context) => di<ClubCubit>()),
       ],
       child: OKToast(
         child: ScreenUtilInit(

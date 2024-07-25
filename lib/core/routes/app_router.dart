@@ -78,9 +78,6 @@ class AppRouter {
         builder: (_, state, navigationShell) => MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (_) => di<ClubCubit>(),
-            ),
-            BlocProvider(
               create: (_) => di<TacticalCubit>(),
             ),
             BlocProvider(
@@ -103,7 +100,7 @@ class AppRouter {
                 path: AppRoutes.athleteHome.path,
                 name: AppRoutes.athleteHome.name,
                 builder: (_, state) => BlocProvider.value(
-                  value: di<ClubCubit>()..init(routeName: state.name),
+                  value: di<ClubCubit>()..init(),
                   child: const HomeScreen(),
                 ),
               ),
@@ -160,25 +157,22 @@ class AppRouter {
         builder: (_, state, navigationShell) => MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (_) => di<ClubCubit>()..init(routeName: state.name),
+              create: (_) => di<ProgramCubit>(),
             ),
             BlocProvider(
-              create: (_) => di<ProgramCubit>()..init(routeName: state.name),
+              create: (_) => di<ExerciseCubit>(),
             ),
             BlocProvider(
-              create: (_) => di<ExerciseCubit>()..init(),
+              create: (_) => di<ExamCubit>(),
             ),
             BlocProvider(
-              create: (_) => di<ExamCubit>()..init(),
+              create: (_) => di<QuestionCubit>(),
             ),
             BlocProvider(
-              create: (_) => di<QuestionCubit>()..init(),
+              create: (_) => di<TacticalCubit>(),
             ),
             BlocProvider(
-              create: (_) => di<TacticalCubit>()..init(),
-            ),
-            BlocProvider(
-              create: (_) => di<UserCubit>()..init(),
+              create: (_) => di<UserCubit>(),
             ),
             BlocProvider(
               create: (_) => di<MediaCubit>(),
@@ -200,7 +194,7 @@ class AppRouter {
                 path: AppRoutes.coachDashboard.path,
                 name: AppRoutes.coachDashboard.name,
                 builder: (c, state) => BlocProvider.value(
-                  value: c.read<ClubCubit>()..init(routeName: state.name),
+                  value: c.read<ClubCubit>()..init(),
                   child: const DashboardScreen(),
                 ),
               ),
