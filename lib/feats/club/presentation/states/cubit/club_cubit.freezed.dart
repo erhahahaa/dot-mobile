@@ -171,7 +171,7 @@ class __$$ClubStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ClubStateImpl implements _ClubState {
-  const _$ClubStateImpl(
+  _$ClubStateImpl(
       {this.state = BaseState.initial,
       this.failure,
       this.user = const UserModel(),
@@ -248,7 +248,7 @@ class _$ClubStateImpl implements _ClubState {
 }
 
 abstract class _ClubState implements ClubState {
-  const factory _ClubState(
+  factory _ClubState(
       {final BaseState state,
       final Failure? failure,
       final UserModel user,

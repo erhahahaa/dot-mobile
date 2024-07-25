@@ -20,7 +20,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
   Future<void> getAllMedia({required int clubId}) async {
     for (final parent in MediaParent.values) {
       final res = await _mediaRepo.getAll(
-        PaginationParams(),
+        const PaginationParams(),
         parent,
         clubId,
       );
