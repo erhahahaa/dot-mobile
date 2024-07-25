@@ -36,9 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        H1Text("My Club Training"),
+                        const H1Text("My Club Training"),
                         SizedBox(width: 8.w),
-                        SearchClub()
+                        const SearchClub()
                       ],
                     ),
                     SizedBox(height: 16.h),
