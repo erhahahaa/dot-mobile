@@ -1,1 +1,1 @@
-export 'package:dot_coaching/feats/club/data/models/club.dart';
+export 'package:dot_coaching/feats/club/data/models/club_model.dart';

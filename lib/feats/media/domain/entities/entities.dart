@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-export 'package:dot_coaching/feats/media/domain/entities/media.dart';
+export 'package:dot_coaching/feats/media/domain/entities/media_entity.dart';
 
 enum MediaParent {
   club,

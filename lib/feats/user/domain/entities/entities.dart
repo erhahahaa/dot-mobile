@@ -1,1 +1,1 @@
-export 'package:dot_coaching/feats/user/domain/entities/user.dart';
+export 'package:dot_coaching/feats/user/domain/entities/user_entity.dart';

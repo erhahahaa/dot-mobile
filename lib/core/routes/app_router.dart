@@ -1,6 +1,6 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/di.dart';
-import 'package:dot_coaching/feats/club/presentation/screens/coach/member.dart';
+import 'package:dot_coaching/feats/club/presentation/screens/coach/member_screen.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/foundation.dart';

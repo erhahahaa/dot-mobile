@@ -1,2 +1,2 @@
-export 'package:dot_coaching/feats/exam/data/repos/exam.dart';
-export 'package:dot_coaching/feats/exam/data/repos/question.dart';
+export 'package:dot_coaching/feats/exam/data/repos/exam_repo.dart';
+export 'package:dot_coaching/feats/exam/data/repos/question_repo.dart';

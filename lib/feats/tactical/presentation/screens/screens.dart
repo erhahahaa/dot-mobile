@@ -1,3 +1,3 @@
-export 'package:dot_coaching/feats/tactical/presentation/screens/tactical.dart';
-export 'package:dot_coaching/feats/tactical/presentation/screens/form.dart';
-export 'package:dot_coaching/feats/tactical/presentation/screens/detail.dart';
+export 'package:dot_coaching/feats/tactical/presentation/screens/tactical_screen.dart';
+export 'package:dot_coaching/feats/tactical/presentation/screens/tactical_form_screen.dart';
+export 'package:dot_coaching/feats/tactical/presentation/screens/detail_screen.dart';
