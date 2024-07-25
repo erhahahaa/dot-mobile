@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 enum AppRoutes {
   root("/"),
   splash('/splash'),
-
   // Auth
   authSignIn('/auth/sign-in'),
   authSignUp('/auth/sign-up'),
@@ -19,9 +18,9 @@ enum AppRoutes {
   athleteTactical('/tactical'),
   athleteTacticalDetail('/tactical/:id'),
 
-  // Athlete History
-  athleteHistory('/history'),
-  athleteHistoryDetail('/history/:id'),
+  // Athlete Exam
+  athleteExam('/exam'),
+  athleteExamDetail('/exam/:id'),
 
   // Athlete Profile
   athleteProfile('/profile'),
@@ -31,6 +30,7 @@ enum AppRoutes {
   coachCreateClub('/coach/club/create'),
   coachEditClub('/coach/club/edit'),
   coachClubDetail('/coach/club/:id'),
+  coachClubMember('/coach/club/member/:clubId'),
 
   // Coach Program
   coachProgram('/coach/program'),
@@ -38,7 +38,7 @@ enum AppRoutes {
   coachCreateProgram('/coach/program/create/:clubId'),
   coachCreateProgramExercise('/coach/program/exercise/create/:clubId'),
 
-  // Coach Exam 
+  // Coach Exam
   coachExam('/coach/exam'),
   coachExamDetail('/coach/exam/:id'),
   coachCreateExam('/coach/exam/create/:clubId'),
@@ -65,35 +65,17 @@ enum AppRoutes {
 
 class NavRoutes {
   static final athleteRoutes = <DotNavigationBarItem>[
-    DotNavigationBarItem(
-      icon: const Icon(Icons.home),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.videogame_asset_rounded),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.directions_run_rounded),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.person),
-    ),
+    DotNavigationBarItem(icon: const Icon(Icons.home)),
+    DotNavigationBarItem(icon: const Icon(Icons.videogame_asset_rounded)),
+    DotNavigationBarItem(icon: const Icon(Icons.directions_run_rounded)),
+    DotNavigationBarItem(icon: const Icon(Icons.person)),
   ];
 
   static final coachRoutes = <DotNavigationBarItem>[
-    DotNavigationBarItem(
-      icon: const Icon(Icons.home),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.post_add_rounded),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.videogame_asset_rounded),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.directions_run_rounded),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.person),
-    ),
+    DotNavigationBarItem(icon: const Icon(Icons.home)),
+    DotNavigationBarItem(icon: const Icon(Icons.post_add_rounded)),
+    DotNavigationBarItem(icon: const Icon(Icons.videogame_asset_rounded)),
+    DotNavigationBarItem(icon: const Icon(Icons.directions_run_rounded)),
+    DotNavigationBarItem(icon: const Icon(Icons.person)),
   ];
 }

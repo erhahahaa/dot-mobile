@@ -173,6 +173,7 @@ class _ExerciseFormState extends State<ExerciseForm> {
               children: [
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
+                    shape: CircleBorder(),
                     side: BorderSide(
                       width: 2,
                       color: context.theme.colorScheme.onPrimary,
@@ -182,18 +183,9 @@ class _ExerciseFormState extends State<ExerciseForm> {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.arrow_circle_left_outlined,
+                        Icons.arrow_back_rounded,
                         color: context.theme.colorScheme.onPrimary,
                         size: 14.sp,
-                      ),
-                      SizedBox(width: 8.w),
-                      Text(
-                        context.str?.back ?? 'Back',
-                        style: TextStyle(
-                          color: context.theme.colorScheme.onPrimary,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.normal,
-                        ),
                       ),
                     ],
                   ),
@@ -202,13 +194,22 @@ class _ExerciseFormState extends State<ExerciseForm> {
                 Container(
                   padding:
                       EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                  width: 216.w,
+                  width: 248.w,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(64.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        blurRadius: 8,
+                        spreadRadius: 0,
+                        offset: const Offset(4, 4),
+                      ),
+                    ],
                   ),
                   child: Text(
                     'New exercise',
+                    textAlign: TextAlign.center,
                     style: context.theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                       fontSize: 18.sp,

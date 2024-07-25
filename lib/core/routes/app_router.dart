@@ -1,5 +1,6 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/di.dart';
+import 'package:dot_coaching/feats/club/presentation/screens/coach/member.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/foundation.dart';
@@ -23,7 +24,7 @@ class AppRouter {
   static final _coachProgramShellKey = GlobalKey<NavigatorState>();
   static final _coachExamShellKey = GlobalKey<NavigatorState>();
   static final _coachTacticalShellKey = GlobalKey<NavigatorState>();
-  static final _coachHistoryShellKey = GlobalKey<NavigatorState>();
+
   static final _coachProfileShellKey = GlobalKey<NavigatorState>();
   static final _coachAssetShellKey = GlobalKey<NavigatorState>();
 
@@ -114,11 +115,11 @@ class AppRouter {
             navigatorKey: _athleteHistoryShellKey,
             routes: [
               GoRoute(
-                path: AppRoutes.athleteHistory.path,
-                name: AppRoutes.athleteHistory.name,
+                path: AppRoutes.athleteExam.path,
+                name: AppRoutes.athleteExam.name,
                 builder: (_, __) => BlocProvider(
                   create: (_) => di<UserCubit>()..init(),
-                  child: const HistoryScreen(),
+                  child: AthleteExamScreen(),
                 ),
               ),
             ],
@@ -224,8 +225,24 @@ class AppRouter {
                   );
                 },
               ),
+              GoRoute(
+                path: AppRoutes.coachClubMember.path,
+                name: AppRoutes.coachClubMember.name,
+                builder: (c, state) {
+                   final params = state.pathParameters;
+                  final clubId = int.parse(params['clubId'] ?? '0');
+                  
+                  return BlocProvider.value(
+                    value: c.read<ClubCubit>(),
+                    child: MemberScreen(
+                      clubId: clubId,
+                    ),
+                  );
+                },
+              ),
             ],
           ),
+
           // Program
           StatefulShellBranch(
             navigatorKey: _coachProgramShellKey,
@@ -248,6 +265,7 @@ class AppRouter {
                 name: AppRoutes.coachCreateProgram.name,
                 builder: (c, state) {
                   final params = state.pathParameters;
+
                   return BlocProvider.value(
                     value: c.read<ProgramCubit>(),
                     child: ProgramFormScreen(
@@ -264,10 +282,9 @@ class AppRouter {
                 name: AppRoutes.coachCreateProgramExercise.name,
                 builder: (c, state) {
                   final extra = state.extra as Map<String, dynamic>;
-                  final params = state.pathParameters;
-                  final clubId = int.parse(params['clubId'] ?? '0');
+
                   return BlocProvider.value(
-                    value: c.read<ExerciseCubit>()..getAllMedia(clubId: clubId),
+                    value: c.read<ProgramCubit>(),
                     child: ExerciseForm(
                       program: extra['program'] as ProgramModel,
                     ),
@@ -282,7 +299,7 @@ class AppRouter {
                   final program = extra['program'] as ProgramModel;
                   return BlocProvider.value(
                     value: c.read<ProgramCubit>(),
-                    child: PorgramDetailScreen(program: program),
+                    child: ProgramDetailScreen(program: program),
                   );
                 },
               ),
@@ -340,7 +357,9 @@ class AppRouter {
                   final exam = extra['exam'] as ExamModel;
                   return BlocProvider.value(
                     value: c.read<ExamCubit>(),
-                    child: ExamDetailScreen(exam: exam),
+                    child: ExamDetailScreen(
+                      exam: exam,
+                    ),
                   );
                 },
               ),
@@ -359,34 +378,6 @@ class AppRouter {
                   child: const TacticalScreen(),
                 ),
               ),
-              GoRoute(
-                path: AppRoutes.coachCreateTactical.path,
-                name: AppRoutes.coachCreateTactical.name,
-                builder: (c, state) {
-                  final params = state.pathParameters;
-                  final clubId = int.parse(params['clubId'] ?? '0');
-                  return BlocProvider.value(
-                    value: c.read<TacticalCubit>(),
-                    child: TacticalFormScreen(
-                      clubId: clubId,
-                    ),
-                  );
-                },
-              ),
-              GoRoute(
-                path: AppRoutes.coachTacticalDetail.path,
-                name: AppRoutes.coachTacticalDetail.name,
-                builder: (c, state) {
-                  final extra = state.extra as Map<String, dynamic>;
-                  final tactical = extra['tactical'] as TacticalModel;
-                  return BlocProvider.value(
-                    value: c.read<TacticalCubit>(),
-                    child: TacticalDetailScreen(
-                      tactical: tactical,
-                    ),
-                  );
-                },
-              ),
             ],
           ),
 
@@ -399,7 +390,7 @@ class AppRouter {
                 name: 'coachMediaDummy',
                 builder: (c, __) => BlocProvider.value(
                   value: c.read<MediaCubit>(),
-                  child: const Scaffold(),
+                  child: Scaffold(),
                 ),
               ),
               GoRoute(
@@ -414,21 +405,6 @@ class AppRouter {
                     child: AssetsScreen(clubId: clubId),
                   );
                 },
-              ),
-            ],
-          ),
-
-          // History
-          StatefulShellBranch(
-            navigatorKey: _coachHistoryShellKey,
-            routes: [
-              GoRoute(
-                path: AppRoutes.coachHistory.path,
-                name: AppRoutes.coachHistory.name,
-                builder: (c, __) => BlocProvider.value(
-                  value: c.read<UserCubit>(),
-                  child: const HistoryScreen(),
-                ),
               ),
             ],
           ),
@@ -450,7 +426,7 @@ class AppRouter {
         ],
       )
     ],
-    initialLocation: AppRoutes.root.path,
+    initialLocation: AppRoutes.athleteHome.path,
     routerNeglect: true,
     debugLogDiagnostics: kDebugMode,
     refreshListenable: GoRouterRefreshStream(ctx.read<AuthCubit>().stream),

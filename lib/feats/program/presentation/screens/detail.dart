@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class PorgramDetailScreen extends StatelessWidget {
+class ProgramDetailScreen extends StatelessWidget {
   final ProgramModel program;
-  const PorgramDetailScreen({super.key, required this.program});
+  const ProgramDetailScreen({super.key, required this.program});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,8 @@ class PorgramDetailScreen extends StatelessWidget {
               children: [
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(
-                      width: 2,
-                      color: context.theme.colorScheme.onPrimary,
-                    ),
+                    shape: CircleBorder(),
+                    side: const BorderSide(width: 2, color: Colors.white),
                   ),
                   onPressed: () {
                     context.pop();
@@ -42,18 +40,9 @@ class PorgramDetailScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.arrow_circle_left_outlined,
+                        Icons.arrow_back_rounded,
                         color: context.theme.colorScheme.onPrimary,
                         size: 14.sp,
-                      ),
-                      SizedBox(width: 8.w),
-                      Text(
-                        context.str?.back ?? 'Back',
-                        style: TextStyle(
-                          color: context.theme.colorScheme.onPrimary,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.normal,
-                        ),
                       ),
                     ],
                   ),
@@ -66,9 +55,18 @@ class PorgramDetailScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(64.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        blurRadius: 8,
+                        spreadRadius: 0,
+                        offset: const Offset(4, 4),
+                      ),
+                    ],
                   ),
                   child: Text(
                     program.name,
+                    textAlign: TextAlign.center,
                     style: context.theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                       fontSize: 18.sp,
