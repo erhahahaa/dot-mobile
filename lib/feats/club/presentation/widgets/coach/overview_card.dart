@@ -28,25 +28,25 @@ class OverviewCard extends StatelessWidget {
           Column(
             children: [
               H1Text(clubsCount.toString()),
-              H5Text('Clubs'),
+              const H5Text('Clubs'),
             ],
           ),
           Column(
             children: [
               H1Text(membersCount.toString()),
-              H5Text('Members'),
+              const H5Text('Members'),
             ],
           ),
           Column(
             children: [
               H1Text(programsCount.toString()),
-              H5Text('Programs'),
+              const H5Text('Programs'),
             ],
           ),
           Column(
             children: [
               H1Text(examsCount.toString()),
-              H5Text('Exams'),
+              const H5Text('Exams'),
             ],
           ),
         ],
