@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    permissions: write-all
     runs-on: ubuntu-latest
 
     steps:
@@ -26,10 +27,23 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-        
+
+      - name: Apply Dart fixes
+        run: dart fix --apply
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "Apply Dart fixes"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build apk release
         run: flutter build apk --release
-        
+
       - name: Upload APK to GitHub release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
