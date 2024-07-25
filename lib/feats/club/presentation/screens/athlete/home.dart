@@ -28,8 +28,10 @@ class _HomeScreenState extends State<HomeScreen> {
           SvgPicture.asset(
             "assets/images/bg/home-athlete.svg",
             width: 344.w,
+            height: 171.h,
           ),
           Positioned(
+            top: 170.h,
             bottom: 0,
             child: Container(
               width: 344.w,

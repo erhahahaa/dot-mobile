@@ -21,7 +21,6 @@ class UserCubit extends Cubit<UserState> {
     res.fold(
       (l) => null,
       (r) {
-        log.i('USER :${r.role}');
         final u = UserModel.fromEntity(r);
         safeEmit(
           isClosed: isClosed,

@@ -38,8 +38,10 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> init() async {
     final hasLocalUser = await getLocalMe();
     if (hasLocalUser) {
+      log.d('Has local user');
       checkAuth();
     } else {
+      log.d('No local user');
       safeEmit(
         isClosed: isClosed,
         emit: emit,

@@ -24,7 +24,9 @@ class DashboardScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: RefreshIndicator(
-          onRefresh: () => context.read<ClubCubit>().init(),
+          onRefresh: () => context
+              .read<ClubCubit>()
+              .init(routeName: AppRoutes.coachDashboard.name),
           child: Padding(
             padding: EdgeInsets.all(8.h),
             child: BlocBuilder<ClubCubit, ClubState>(
@@ -132,25 +134,34 @@ class DashboardScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 8.h),
-                    Container(
-                      padding: EdgeInsets.all(8.w),
-                      height: 540.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.r),
-                        color: Theme.of(context)
-                            .colorScheme
-                            .primaryContainer
-                            .withOpacity(0.1),
+                    if (state.coachClubs.isNotEmpty) ...[
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(8.w),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.r),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primaryContainer
+                                .withOpacity(0.1),
+                          ),
+                          child: ListView.builder(
+                            itemCount: state.coachClubs.length,
+                            itemBuilder: (context, index) {
+                              final club = state.coachClubs[index];
+                              return ClubContainer(club: club);
+                            },
+                          ),
+                        ),
                       ),
-                      child: ListView.builder(
-                        itemCount: state.coachClubs.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          final club = state.coachClubs[index];
-                          return ClubContainer(club: club);
-                        },
+                    ] else ...[
+                      Center(
+                        child: Text(
+                          'No clubs found',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                       ),
-                    ),
+                    ],
                   ],
                 );
               },

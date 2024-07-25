@@ -18,7 +18,7 @@ class ClubCubit extends Cubit<ClubState> {
     this._clubRepo,
     this._userRepo,
     this._imagePickerClient,
-  ) : super(const ClubState());
+  ) : super(ClubState());
 
   void emitCaller(ClubState s) {
     safeEmit(
@@ -28,10 +28,16 @@ class ClubCubit extends Cubit<ClubState> {
     );
   }
 
-  Future<void> init() async {
-    final u = await fetchLocalUser();
-    if (u != null) {
-      u.role == UserRole.coach ? await coachInit(u) : await athleteInit();
+  Future<void> init({
+    required String? routeName,
+  }) async {
+    if (routeName?.startsWith('coach') ?? false) {
+      final user = await fetchLocalUser();
+      if (user != null) {
+        await coachInit(user);
+      }
+    } else {
+      await athleteInit();
     }
   }
 
@@ -90,15 +96,14 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
-        final coachClub = List<ClubModel>.from(state.coachClubs);
-        coachClub.add(r);
+        state.coachClubs.add(r);
 
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
-            coachClubs: coachClub,
+            coachClubs: state.coachClubs,
           ),
         );
       },

@@ -37,13 +37,13 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.root.path,
         name: AppRoutes.root.name,
-        redirect: (_, __) => AppRoutes.athleteHome.path,
+        redirect: (_, __) => AppRoutes.splash.path,
       ),
       ShellRoute(
         navigatorKey: _authKey,
         parentNavigatorKey: _rootKey,
         builder: (c, __, child) => BlocProvider.value(
-          value: c.read<AuthCubit>()..init(),
+          value: c.read<AuthCubit>(),
           child: child,
         ),
         routes: [
@@ -88,8 +88,8 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.athleteHome.path,
                 name: AppRoutes.athleteHome.name,
-                builder: (_, __) => BlocProvider(
-                  create: (_) => di<ClubCubit>()..init(),
+                builder: (_, state) => BlocProvider(
+                  create: (_) => di<ClubCubit>()..init(routeName: state.name),
                   child: const HomeScreen(),
                 ),
               ),
@@ -146,7 +146,7 @@ class AppRouter {
         builder: (_, state, navigationShell) => MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (_) => di<ClubCubit>()..init(),
+              create: (_) => di<ClubCubit>()..init(routeName: state.name),
             ),
             BlocProvider(
               create: (_) => di<ProgramCubit>()..init(routeName: state.name),
@@ -185,8 +185,8 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.coachDashboard.path,
                 name: AppRoutes.coachDashboard.name,
-                builder: (c, __) => BlocProvider.value(
-                  value: c.read<ClubCubit>(),
+                builder: (c, state) => BlocProvider.value(
+                  value: c.read<ClubCubit>()..init(routeName: state.name),
                   child: const DashboardScreen(),
                 ),
               ),
