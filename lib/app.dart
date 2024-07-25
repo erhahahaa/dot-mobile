@@ -22,19 +22,14 @@ class DotApp extends StatelessWidget {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
 
-    // final brightness = View.of(context).platformDispatcher.platformBrightness;
     TextTheme textTheme = createTextTheme(context, "Montserrat", "Montserrat");
 
     MaterialTheme theme = MaterialTheme(textTheme);
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => di<AuthCubit>()..init(),
-        ),
-        BlocProvider(
-          create: (context) => di<UserCubit>()..init(),
-        )
+        BlocProvider(create: (context) => di<AuthCubit>()),
+        BlocProvider(create: (context) => di<UserCubit>())
       ],
       child: OKToast(
         child: ScreenUtilInit(

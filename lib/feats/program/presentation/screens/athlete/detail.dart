@@ -41,7 +41,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
               children: [
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    shape: CircleBorder(),
+                    shape: const CircleBorder(),
                     side: BorderSide(
                       width: 2,
                       color: context.theme.colorScheme.onPrimary,
@@ -112,7 +112,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.fromLTRB(8, 16, 8, 16),
+                  padding: const EdgeInsets.fromLTRB(8, 16, 8, 16),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
@@ -355,7 +355,7 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
                                                                                         borderRadius: BorderRadius.circular(8.0),
                                                                                       ),
                                                                                     ),
-                                                                                    padding: WidgetStateProperty.all(EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0)),
+                                                                                    padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0)),
                                                                                     fixedSize: WidgetStateProperty.all(
                                                                                       Size(100.w, 20.w),
                                                                                     ),

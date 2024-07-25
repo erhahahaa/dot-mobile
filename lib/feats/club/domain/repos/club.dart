@@ -4,8 +4,7 @@ import 'package:dot_coaching/feats/feats.dart';
 
 abstract class ClubRepo {
   Future<Either<Failure, List<ClubModel>>> getAll(
-    PaginationParams params,
-    int? creatorId,
+    PaginationParams params, 
   );
   Future<Either<Failure, ClubModel>> getById(
     ByIdParams params,

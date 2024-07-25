@@ -45,7 +45,7 @@ class _MemberScreenState extends State<MemberScreen> {
                   children: [
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        shape: CircleBorder(),
+                        shape: const CircleBorder(),
                         side: const BorderSide(width: 2, color: Colors.white),
                       ),
                       onPressed: () => context.pop(),
@@ -189,7 +189,7 @@ class _MemberScreenState extends State<MemberScreen> {
                                               style: OutlinedButton.styleFrom(
                                                 shape: const StadiumBorder(),
                                                 backgroundColor:
-                                                    Color(0xFFF15858),
+                                                    const Color(0xFFF15858),
                                                 padding:
                                                     const EdgeInsets.all(8),
                                               ),
@@ -219,7 +219,7 @@ class _MemberScreenState extends State<MemberScreen> {
                                               style: OutlinedButton.styleFrom(
                                                 shape: const StadiumBorder(),
                                                 backgroundColor:
-                                                    Color(0xFF18A5D1),
+                                                    const Color(0xFF18A5D1),
                                                 padding:
                                                     const EdgeInsets.all(8),
                                               ),
@@ -320,7 +320,7 @@ class _MemberScreenState extends State<MemberScreen> {
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Color(0xff2EC12B)),
+                        WidgetStateProperty.all<Color>(const Color(0xff2EC12B)),
                   ),
                   onPressed: () {
                     setState(() {
@@ -341,7 +341,7 @@ class _MemberScreenState extends State<MemberScreen> {
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Color(0xffF15858)),
+                        WidgetStateProperty.all<Color>(const Color(0xffF15858)),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -392,7 +392,7 @@ class _MemberScreenState extends State<MemberScreen> {
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Color(0xffF15858)),
+                        WidgetStateProperty.all<Color>(const Color(0xffF15858)),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -409,7 +409,7 @@ class _MemberScreenState extends State<MemberScreen> {
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Color(0xff2EC12B)),
+                        WidgetStateProperty.all<Color>(const Color(0xff2EC12B)),
                   ),
                   onPressed: () {
                     // Perform delete action here

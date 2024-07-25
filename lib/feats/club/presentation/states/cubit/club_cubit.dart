@@ -31,35 +31,26 @@ class ClubCubit extends Cubit<ClubState> {
   Future<void> init({
     required String? routeName,
   }) async {
-    if (routeName?.startsWith('coach') ?? false) {
-      final user = await fetchLocalUser();
-      if (user != null) {
-        await coachInit(user);
-      }
-    } else {
-      await athleteInit();
-    }
+    await fetchLocalUser();
+    await getAll();
   }
 
-  Future<UserEntity?> fetchLocalUser() async {
+  Future<void> fetchLocalUser() async {
     final res = await _userRepo.getMe();
     return res.fold(
       (l) => null,
-      (r) => r,
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(user: UserModel.fromEntity(r)),
+        );
+      },
     );
   }
 
-  Future<void> coachInit(UserEntity user) async {
-    await getAll(user);
-  }
-
-  Future<void> athleteInit() async {}
-
-  Future<void> getAll(UserEntity user) async {
-    final res = await _clubRepo.getAll(
-      const PaginationParams(),
-      user.role == UserRole.coach ? user.id : null,
-    );
+  Future<void> getAll() async {
+    final res = await _clubRepo.getAll(const PaginationParams());
 
     res.fold(
       (l) => safeEmit(
@@ -76,7 +67,8 @@ class ClubCubit extends Cubit<ClubState> {
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
-            coachClubs: r,
+            clubs: r,
+            filteredClubs: r,
           ),
         );
       },
@@ -96,14 +88,14 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
-        state.coachClubs.add(r);
+        state.clubs.add(r);
 
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
-            coachClubs: state.coachClubs,
+            clubs: state.clubs,
           ),
         );
       },
@@ -123,16 +115,15 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
-        final coachClub = List<ClubModel>.from(state.coachClubs);
-        final index = coachClub.indexWhere((element) => element.id == r.id);
-        coachClub[index] = r;
+        final index = state.clubs.indexWhere((element) => element.id == r.id);
+        state.clubs[index] = r;
 
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
-            coachClubs: coachClub,
+            clubs: state.clubs,
           ),
         );
       },
@@ -152,15 +143,14 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
-        final coachClub = List<ClubModel>.from(state.coachClubs);
-        coachClub.removeWhere((element) => element.id == params.id);
+        state.clubs.removeWhere((element) => element.id == r.id);
 
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
-            coachClubs: coachClub,
+            clubs: state.clubs,
           ),
         );
       },
@@ -188,6 +178,21 @@ class ClubCubit extends Cubit<ClubState> {
           ),
         );
       },
+    );
+  }
+
+
+  void search(String query) {
+    final filteredClubs = state.clubs.where((element) {
+      return element.name.toLowerCase().contains(query.toLowerCase());
+    }).toList();
+
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: state.copyWith(
+        filteredClubs: filteredClubs,
+      ),
     );
   }
 
