@@ -2,6 +2,7 @@ import 'package:dot_coaching/core/widgets/parent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class MemberScreen extends StatefulWidget {
   final int clubId;
@@ -47,7 +48,7 @@ class _MemberScreenState extends State<MemberScreen> {
                         shape: CircleBorder(),
                         side: const BorderSide(width: 2, color: Colors.white),
                       ),
-                      onPressed: () {},
+                      onPressed: () => context.pop(),
                       child: Icon(
                         Icons.arrow_back_rounded,
                         color: Colors.white,
@@ -59,11 +60,11 @@ class _MemberScreenState extends State<MemberScreen> {
                     ),
                     Container(
                       width: 248.w,
-                      height: 46.h,
-                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(16.r),
+                        borderRadius: BorderRadius.circular(64.r),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.25),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 enum AppRoutes {
   root("/"),
   splash('/splash'),
-
   // Auth
   authSignIn('/auth/sign-in'),
   authSignUp('/auth/sign-up'),
@@ -21,7 +20,7 @@ enum AppRoutes {
 
   // Athlete Exam
   athleteExam('/exam'),
-  athleteExamDetail('/eyyxam/:id'),
+  athleteExamDetail('/exam/:id'),
 
   // Athlete Profile
   athleteProfile('/profile'),
@@ -31,7 +30,7 @@ enum AppRoutes {
   coachCreateClub('/coach/club/create'),
   coachEditClub('/coach/club/edit'),
   coachClubDetail('/coach/club/:id'),
-  coachClubMember('/coach/club/:clubId'),
+  coachClubMember('/coach/club/member/:clubId'),
 
   // Coach Program
   coachProgram('/coach/program'),
@@ -66,35 +65,17 @@ enum AppRoutes {
 
 class NavRoutes {
   static final athleteRoutes = <DotNavigationBarItem>[
-    DotNavigationBarItem(
-      icon: const Icon(Icons.home),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.videogame_asset_rounded),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.directions_run_rounded),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.person),
-    ),
+    DotNavigationBarItem(icon: const Icon(Icons.home)),
+    DotNavigationBarItem(icon: const Icon(Icons.videogame_asset_rounded)),
+    DotNavigationBarItem(icon: const Icon(Icons.directions_run_rounded)),
+    DotNavigationBarItem(icon: const Icon(Icons.person)),
   ];
 
   static final coachRoutes = <DotNavigationBarItem>[
-    DotNavigationBarItem(
-      icon: const Icon(Icons.home),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.post_add_rounded),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.videogame_asset_rounded),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.directions_run_rounded),
-    ),
-    DotNavigationBarItem(
-      icon: const Icon(Icons.person),
-    ),
+    DotNavigationBarItem(icon: const Icon(Icons.home)),
+    DotNavigationBarItem(icon: const Icon(Icons.post_add_rounded)),
+    DotNavigationBarItem(icon: const Icon(Icons.videogame_asset_rounded)),
+    DotNavigationBarItem(icon: const Icon(Icons.directions_run_rounded)),
+    DotNavigationBarItem(icon: const Icon(Icons.person)),
   ];
 }

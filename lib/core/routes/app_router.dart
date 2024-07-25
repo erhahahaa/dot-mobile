@@ -229,11 +229,15 @@ class AppRouter {
                 path: AppRoutes.coachClubMember.path,
                 name: AppRoutes.coachClubMember.name,
                 builder: (c, state) {
-                  final params = state.pathParameters as Map<String, dynamic>;
+                   final params = state.pathParameters;
                   final clubId = int.parse(params['clubId'] ?? '0');
+                  
                   return BlocProvider.value(
-                      value: c.read<ClubCubit>(),
-                      child: MemberScreen(clubId: clubId));
+                    value: c.read<ClubCubit>(),
+                    child: MemberScreen(
+                      clubId: clubId,
+                    ),
+                  );
                 },
               ),
             ],
