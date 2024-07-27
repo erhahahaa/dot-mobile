@@ -87,7 +87,7 @@ class UserContainer extends StatelessWidget {
                 : ElevatedButton(
                     onPressed: () =>
                         context.read<ClubCubit>().addUser(clubId, user.id),
-                    child: Text("Add"),
+                    child: const Text("Add"),
                   ),
           ],
         ),
