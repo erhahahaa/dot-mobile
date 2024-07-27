@@ -64,7 +64,7 @@ class ProfileScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           DropDown<Locale>(
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.language,
                             ),
                             hint: 'Language',
@@ -72,27 +72,27 @@ class ProfileScreen extends StatelessWidget {
                             fillColor: context.containerColor(0.05),
                             items: [
                               DropdownMenuItem(
+                                value: const Locale('en', 'US'),
                                 child: Row(
                                   children: [
                                     Assets.images.flags.us.svg(width: 14.w),
                                     SizedBox(width: 8.w),
-                                    Text('English'),
+                                    const Text('English'),
                                   ],
                                 ),
-                                value: Locale('en', 'US'),
                               ),
                               DropdownMenuItem(
+                                value: const Locale('id', 'ID'),
                                 child: Row(
                                   children: [
                                     Assets.images.flags.id.svg(width: 14.w),
                                     SizedBox(width: 8.w),
-                                    Text('Bahasa'),
+                                    const Text('Bahasa'),
                                   ],
                                 ),
-                                value: Locale('id', 'ID'),
                               ),
                             ],
-                            value: Locale('en', 'US'),
+                            value: const Locale('en', 'US'),
                             onChanged: (value) {
                               if (value == null) return;
                               context.read<UserCubit>().setLocale(value);
@@ -100,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 8.h),
                           DropDown<ThemeMode>(
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.color_lens,
                             ),
                             hint: 'Theme',
@@ -108,40 +108,40 @@ class ProfileScreen extends StatelessWidget {
                             fillColor: context.containerColor(0.05),
                             items: [
                               DropdownMenuItem(
+                                value: ThemeMode.system,
                                 child: Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.computer,
                                     ),
                                     SizedBox(width: 8.w),
-                                    Text('System'),
+                                    const Text('System'),
                                   ],
                                 ),
-                                value: ThemeMode.system,
                               ),
                               DropdownMenuItem(
+                                value: ThemeMode.light,
                                 child: Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.light_mode,
                                     ),
                                     SizedBox(width: 8.w),
-                                    Text('Light'),
+                                    const Text('Light'),
                                   ],
                                 ),
-                                value: ThemeMode.light,
                               ),
                               DropdownMenuItem(
+                                value: ThemeMode.dark,
                                 child: Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.dark_mode,
                                     ),
                                     SizedBox(width: 8.w),
-                                    Text('Dark'),
+                                    const Text('Dark'),
                                   ],
                                 ),
-                                value: ThemeMode.dark,
                               ),
                             ],
                             value: ThemeMode.system,

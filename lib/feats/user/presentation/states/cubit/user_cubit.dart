@@ -53,6 +53,6 @@ class UserCubit extends Cubit<UserState> {
       ),
     );
 
-    log.e("USER CUBTI State: ${state}");
+    log.e("USER CUBTI State: $state");
   }
 }
