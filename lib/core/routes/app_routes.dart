@@ -34,6 +34,7 @@ enum AppRoutes {
   coachEditClub('/coach/club/edit'),
   coachClubDetail('/coach/club/:id'),
   coachClubMember('/coach/club/member/:clubId'),
+  coachAddMember('/coach/club/invite/:clubId'),
 
   // Coach Program
   coachProgram('/coach/program'),

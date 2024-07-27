@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../feats/club/presentation/screens/coach/add_member_screen.dart';
+
 class AppRouter {
   static late BuildContext ctx;
   static final _rootKey = GlobalKey<NavigatorState>();
@@ -247,6 +249,21 @@ class AppRouter {
                     value: c.read<ClubCubit>()
                       ..getMembers(const PaginationParams(), clubId),
                     child: MemberScreen(
+                      clubId: clubId,
+                    ),
+                  );
+                },
+              ),
+              GoRoute(
+                path: AppRoutes.coachAddMember.path,
+                name: AppRoutes.coachAddMember.name,
+                builder: (c, state) {
+                  final params = state.pathParameters;
+                  final clubId = int.parse(params['clubId'] ?? '0');
+
+                  return BlocProvider.value(
+                    value: c.read<ClubCubit>(),
+                    child: AddMemberScreen(
                       clubId: clubId,
                     ),
                   );

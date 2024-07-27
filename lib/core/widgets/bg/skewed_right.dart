@@ -22,13 +22,17 @@ class SkewedRightBackground extends StatelessWidget {
             ),
           ),
         ),
-        SvgPicture.asset(
-          "assets/images/bg/home-athlete.svg",
-          width: 344.w,
-          height: 171.h,
-          colorFilter: ColorFilter.mode(
-            theme.scaffoldBackgroundColor,
-            BlendMode.srcATop,
+        Positioned(
+          left: 0.w,
+          right: 0.w,
+          child: SvgPicture.asset(
+            "assets/images/bg/home-athlete.svg",
+            width: double.infinity,
+            height: 180.h,
+            colorFilter: ColorFilter.mode(
+              theme.scaffoldBackgroundColor,
+              BlendMode.srcATop,
+            ),
           ),
         ),
         Positioned(
@@ -41,7 +45,7 @@ class SkewedRightBackground extends StatelessWidget {
               color: theme.scaffoldBackgroundColor,
             ),
           ),
-        ), 
+        ),
         ...children,
       ],
     );

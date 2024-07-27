@@ -3,14 +3,14 @@ import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ListMember extends StatelessWidget {
-  final List<UserModel> members;
+class ListUser extends StatelessWidget {
+  final List<UserModel> users;
   final int clubId;
   final EdgeInsetsGeometry? padding;
 
-  const ListMember({
+  const ListUser({
     super.key,
-    required this.members,
+    required this.users,
     required this.clubId,
     this.padding,
   });
@@ -18,8 +18,7 @@ class ListMember extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-
-    if (members.isEmpty) {
+    if (users.isEmpty) {
       return Container(
         padding: EdgeInsets.all(8.w),
         decoration: BoxDecoration(
@@ -28,12 +27,13 @@ class ListMember extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            'No members found',
+            'No Users found',
             style: theme.textTheme.bodyLarge,
           ),
         ),
       );
     }
+
     return Container(
       padding: padding ?? EdgeInsets.all(8.w),
       decoration: BoxDecoration(
@@ -41,15 +41,15 @@ class ListMember extends StatelessWidget {
         color: theme.colorScheme.primaryContainer.withOpacity(0.1),
       ),
       child: ListView.builder(
-        itemCount: members.length,
+        itemCount: users.length,
         shrinkWrap: true,
         padding: EdgeInsets.zero,
         itemBuilder: (context, index) {
-          final user = members[index];
+          final user = users[index];
           return UserContainer(
             user: user,
             clubId: clubId,
-            withPopUp: true,
+            withPopUp: false,
           );
         },
       ),

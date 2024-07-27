@@ -27,4 +27,9 @@ abstract class ClubRepo {
     int clubId,
     int userId,
   );
+
+  Future<Either<Failure, UserModel>> addUser(
+    int clubId,
+    int userId,
+  );
 }

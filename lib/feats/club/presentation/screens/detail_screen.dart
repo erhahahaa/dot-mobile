@@ -83,7 +83,14 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                         ManageButton(
                           icon: Assets.icons.invite.svg(width: 32.w),
                           text: 'Invite',
-                          onTap: () {},
+                          onTap: () {
+                            context.pushNamed(
+                              AppRoutes.coachAddMember.name,
+                              pathParameters: {
+                                'clubId': widget.club.id.toString(),
+                              },
+                            );
+                          },
                         ),
                         ManageButton(
                           icon: Assets.icons.members.svg(width: 32.w),

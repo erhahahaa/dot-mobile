@@ -8,7 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class UserContainer extends StatelessWidget {
   final UserModel user;
   final int clubId;
-  const UserContainer({super.key, required this.user, required this.clubId});
+  final bool withPopUp;
+  const UserContainer({
+    super.key,
+    required this.user,
+    required this.clubId,
+    required this.withPopUp,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,40 +49,46 @@ class UserContainer extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            PopupMenuButton(
-              popUpAnimationStyle: AnimationStyle(
-                curve: Easing.emphasizedDecelerate,
-                duration: const Duration(milliseconds: 500),
-              ),
-              icon: const Icon(Icons.more_vert),
-              onSelected: (value) {
-                print(value);
-              },
-              itemBuilder: (context) {
-                return [
-                  const PopupMenuItem(
-                    child: Row(
-                      children: [
-                        Icon(Icons.edit),
-                        SizedBox(width: 8),
-                        Text('Edit'),
-                      ],
+            withPopUp
+                ? PopupMenuButton(
+                    popUpAnimationStyle: AnimationStyle(
+                      curve: Easing.emphasizedDecelerate,
+                      duration: const Duration(milliseconds: 500),
                     ),
+                    icon: const Icon(Icons.more_vert),
+                    onSelected: (value) {
+                      print(value);
+                    },
+                    itemBuilder: (context) {
+                      return [
+                        const PopupMenuItem(
+                          child: Row(
+                            children: [
+                              Icon(Icons.edit),
+                              SizedBox(width: 8),
+                              Text('Edit'),
+                            ],
+                          ),
+                        ),
+                        PopupMenuItem(
+                          child: const Row(
+                            children: [
+                              Icon(Icons.delete),
+                              SizedBox(width: 8),
+                              Text('Kick'),
+                            ],
+                          ),
+                          onTap: () =>
+                              context.read<ClubCubit>().kick(clubId, user.id),
+                        ),
+                      ];
+                    },
+                  )
+                : ElevatedButton(
+                    onPressed: () =>
+                        context.read<ClubCubit>().addUser(clubId, user.id),
+                    child: Text("Add"),
                   ),
-                  PopupMenuItem(
-                    child: const Row(
-                      children: [
-                        Icon(Icons.delete),
-                        SizedBox(width: 8),
-                        Text('Kick'),
-                      ],
-                    ),
-                    onTap: () =>
-                        context.read<ClubCubit>().kick(clubId, user.id),
-                  ),
-                ];
-              },
-            )
           ],
         ),
       ),

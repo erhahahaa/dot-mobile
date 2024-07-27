@@ -237,6 +237,30 @@ class ClubCubit extends Cubit<ClubState> {
     );
   }
 
+  Future<void> addUser(int clubId, int userId) async {
+    final res = await _clubRepo.addUser(clubId, userId);
+
+    res.fold(
+      (l) => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          state: BaseState.failure,
+          failure: l,
+        ),
+      ),
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+          ),
+        );
+      },
+    );
+  }
+
   void search(String query) {
     final filteredClubs = state.clubs.where((element) {
       return element.name.toLowerCase().contains(query.toLowerCase());
