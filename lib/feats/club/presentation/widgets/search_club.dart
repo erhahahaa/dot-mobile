@@ -46,7 +46,7 @@ class _SearchClubState extends State<SearchClub> {
         ),
         onSubmitted: (value) => context.read<ClubCubit>().search(value),
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.all(),
+          contentPadding: EdgeInsets.all(8.w),
           hintText: 'Search...',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.r),
