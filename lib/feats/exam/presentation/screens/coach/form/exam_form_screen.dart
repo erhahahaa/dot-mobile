@@ -16,7 +16,7 @@ class ExamFormScreen extends StatelessWidget {
     return Parent(
       body: RoundedTopBackground(
         title: exam == null ? 'New Exam' : 'Edit Exam',
-        child: Column(
+        child: const Column(
           children: [],
         ),
       ),

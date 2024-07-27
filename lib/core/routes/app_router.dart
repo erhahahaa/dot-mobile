@@ -195,7 +195,7 @@ class AppRouter {
                 //   value: c.read<ClubCubit>(),
                 //   child: const ClubFormScreen(),
                 // ),
-                builder: (_, __) => ClubFormScreen(),
+                builder: (_, __) => const ClubFormScreen(),
               ),
               GoRoute(
                 path: AppRoutes.coachEditClub.path,
