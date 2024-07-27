@@ -41,11 +41,11 @@ class DotApp extends StatelessWidget {
             AppRouter.setStream(ctx);
 
             return BlocBuilder<UserCubit, UserState>(
-              builder: (_, state) { 
+              builder: (_, state) {
                 return MaterialApp.router(
                   title: AppConstants.APP_NAME,
                   routerConfig: AppRouter.router,
-                  restorationScopeId: 'hatofitApp',
+                  restorationScopeId: 'dotApp',
                   localizationsDelegates: const [
                     Strings.delegate,
                     GlobalMaterialLocalizations.delegate,

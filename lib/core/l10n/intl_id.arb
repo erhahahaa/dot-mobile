@@ -32,5 +32,7 @@
   "about": "Tentang",
   "clubImageRequired": "Gambar klub wajib diisi",
   "successCreateProgram": "Berhasil membuat program",
-  "failedCreateProgram": "Gagal membuat program"
+  "failedCreateProgram": "Gagal membuat program",
+  "successCreateExercise": "Success create exercise",
+  "errorCreateExercise": "Gagal membuat exercise"
 }

@@ -102,4 +102,10 @@ class StringsId extends Strings {
 
   @override
   String get failedCreateProgram => 'Gagal membuat program';
+
+  @override
+  String get successCreateExercise => 'Success create exercise';
+
+  @override
+  String get errorCreateExercise => 'Gagal membuat exercise';
 }

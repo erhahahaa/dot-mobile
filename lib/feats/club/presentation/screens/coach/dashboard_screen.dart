@@ -11,25 +11,30 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Parent(
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => context.pushNamed(AppRoutes.coachCreateClub.name),
-        label: Row(
-          children: [
-            const Icon(Icons.add),
-            SizedBox(width: 8.w),
-            const Text('Create Club'),
-          ],
-        ),
-      ),
-      body: SafeArea(
-        child: RefreshIndicator(
-          onRefresh: () => context.read<ClubCubit>().init(),
-          child: Padding(
-            padding: EdgeInsets.all(8.h),
-            child: BlocBuilder<ClubCubit, ClubState>(
-              builder: (context, state) {
-                return Column(
+    return BlocBuilder<ClubCubit, ClubState>(
+      builder: (context, state) {
+        return Parent(
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {
+              context.read<ClubCubit>().emitCaller(state.copyWith(
+                    state: BaseState.initial,
+                  ));
+              context.pushNamed(AppRoutes.coachCreateClub.name);
+            },
+            label: Row(
+              children: [
+                const Icon(Icons.add),
+                SizedBox(width: 8.w),
+                const Text('Create Club'),
+              ],
+            ),
+          ),
+          body: SafeArea(
+            child: RefreshIndicator(
+              onRefresh: () => context.read<ClubCubit>().init(),
+              child: Padding(
+                padding: EdgeInsets.all(8.h),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const H1Text('Overview'),
@@ -58,12 +63,12 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ),
                   ],
-                );
-              },
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

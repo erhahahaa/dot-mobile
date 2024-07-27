@@ -102,4 +102,10 @@ class StringsEn extends Strings {
 
   @override
   String get failedCreateProgram => 'Failed to create program';
+
+  @override
+  String get successCreateExercise => 'Success create exercise';
+
+  @override
+  String get errorCreateExercise => 'Failed to create exercise';
 }

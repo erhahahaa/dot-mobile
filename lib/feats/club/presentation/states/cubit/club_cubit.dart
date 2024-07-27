@@ -20,11 +20,11 @@ class ClubCubit extends Cubit<ClubState> {
     this._imagePickerClient,
   ) : super(ClubState());
 
-  void emitCaller(ClubState s) {
+  void emitCaller(ClubState state) {
     safeEmit(
       isClosed: isClosed,
       emit: emit,
-      state: s,
+      state: state,
     );
   }
 
@@ -64,7 +64,7 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            state: BaseState.success,
+            // state: BaseState.success,
             clubs: r,
             filteredClubs: r,
           ),
@@ -122,7 +122,7 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            state: BaseState.success,
+            // state: BaseState.success,
             clubs: clubs,
           ),
         );
@@ -150,7 +150,7 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            state: BaseState.success,
+            // state: BaseState.success,
             clubs: clubs,
           ),
         );
@@ -171,11 +171,15 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
+        final List<ClubModel> clubs = List.from(state.clubs);
+        final index = clubs.indexWhere((element) => element.id == r.id);
+        clubs[index] = r;
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            state: BaseState.success,
+            // state: BaseState.success,
+            clubs: clubs,
           ),
         );
       },
@@ -199,7 +203,7 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            state: BaseState.success,
+            // state: BaseState.success,
             members: r,
             filteredMembers: r,
           ),

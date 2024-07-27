@@ -99,7 +99,17 @@ class _ExerciseFormState extends State<ExerciseForm> {
         floatingActionButton: BlocListener<ExerciseCubit, ExerciseState>(
           listener: (context, state) {
             if (state.state == BaseState.success) {
+              ToastModel(
+                message: context.str?.successCreateExercise,
+                type: ToastType.success,
+              ).fire(context);
               context.pop();
+            }
+            if (state.state == BaseState.failure) {
+              ToastModel(
+                message: context.str?.errorCreateExercise,
+                type: ToastType.error,
+              ).fire(context);
             }
           },
           child: FloatingActionButton.extended(

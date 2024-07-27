@@ -17,6 +17,16 @@ class ExerciseCubit extends Cubit<ExerciseState> {
 
   Future<void> init() async {}
 
+  void _emitInitial() {
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: state.copyWith(
+        state: BaseState.initial,
+      ),
+    );
+  }
+
   Future<void> getAllMedia({required int clubId}) async {
     for (final parent in MediaParent.values) {
       final res = await _mediaRepo.getAll(
@@ -57,6 +67,10 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           failure: l,
         ),
       );
+
+      Future.delayed(const Duration(seconds: 2), () {
+        _emitInitial();
+      });
     }, (r) {
       safeEmit(
         isClosed: isClosed,
@@ -65,6 +79,10 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           state: BaseState.success,
         ),
       );
+
+      Future.delayed(const Duration(seconds: 2), () {
+        _emitInitial();
+      });
     });
   }
 
@@ -79,6 +97,10 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           failure: l,
         ),
       );
+
+      Future.delayed(const Duration(seconds: 2), () {
+        _emitInitial();
+      });
     }, (r) {
       safeEmit(
         isClosed: isClosed,
@@ -87,6 +109,10 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           state: BaseState.success,
         ),
       );
+
+      Future.delayed(const Duration(seconds: 2), () {
+        _emitInitial();
+      });
     });
   }
 
@@ -101,6 +127,10 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           failure: l,
         ),
       );
+
+      Future.delayed(const Duration(seconds: 2), () {
+        _emitInitial();
+      });
     }, (r) {
       safeEmit(
         isClosed: isClosed,
@@ -109,6 +139,10 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           state: BaseState.success,
         ),
       );
+
+      Future.delayed(const Duration(seconds: 2), () {
+        _emitInitial();
+      });
     });
   }
 

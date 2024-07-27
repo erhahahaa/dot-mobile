@@ -290,6 +290,18 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Failed to create program'**
   String get failedCreateProgram;
+
+  /// No description provided for @successCreateExercise.
+  ///
+  /// In en, this message translates to:
+  /// **'Success create exercise'**
+  String get successCreateExercise;
+
+  /// No description provided for @errorCreateExercise.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create exercise'**
+  String get errorCreateExercise;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

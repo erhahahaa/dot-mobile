@@ -17,41 +17,44 @@ class ProfileNavigationButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(4.h),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: context.containerColor(0.05),
-        borderRadius: BorderRadius.circular(8.r),
-      ),
-      child: IntrinsicHeight(
-        child: Row(
-          children: [
-            SizedBox(width: 8.w),
-            Icon(
-              icon,
-              color: context.theme.colorScheme.primary,
-              size: 16.sp,
-            ),
-            SizedBox(width: 8.w),
-            Container(
-              width: 1,
-              height: 24.h,
-              color:
-                  context.theme.colorScheme.onPrimaryContainer.withOpacity(0.1),
-            ),
-            TextButton(
-              onPressed: onPressed,
-              child: H5Text(text),
-            ),
-            const Spacer(),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: context.theme.colorScheme.primary,
-              size: 16.sp,
-            ),
-            SizedBox(width: 8.w),
-          ],
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        padding: EdgeInsets.all(4.h),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: context.containerColor(0.05),
+          borderRadius: BorderRadius.circular(8.r),
+        ),
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              SizedBox(width: 8.w),
+              Icon(
+                icon,
+                color: context.theme.colorScheme.primary,
+                size: 16.sp,
+              ),
+              SizedBox(width: 8.w),
+              Container(
+                width: 1,
+                height: 24.h,
+                color: context.theme.colorScheme.onPrimaryContainer
+                    .withOpacity(0.1),
+              ),
+              TextButton(
+                onPressed: onPressed,
+                child: H5Text(text),
+              ),
+              const Spacer(),
+              Icon(
+                Icons.arrow_forward_ios,
+                color: context.theme.colorScheme.primary,
+                size: 16.sp,
+              ),
+              SizedBox(width: 8.w),
+            ],
+          ),
         ),
       ),
     );

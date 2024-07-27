@@ -32,5 +32,7 @@
   "about": "About",
   "clubImageRequired": "Club image is required",
   "successCreateProgram": "Success create program",
-  "failedCreateProgram":"Failed to create program"
+  "failedCreateProgram": "Failed to create program",
+  "successCreateExercise": "Success create exercise",
+  "errorCreateExercise": "Failed to create exercise"
 }

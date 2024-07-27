@@ -38,14 +38,14 @@ class ImagePickerClient with FirebaseCrashLogger {
         compressQuality: 10,
         uiSettings: [
           AndroidUiSettings(
-            toolbarTitle: 'Cropper',
+            toolbarTitle: 'DOT Image Cropper',
             // toolbarColor: Palette.maroonLatte,
             // toolbarWidgetColor: Palette.background,
             initAspectRatio: CropAspectRatioPreset.original,
             lockAspectRatio: true,
           ),
           IOSUiSettings(
-            title: 'Cropper',
+            title: 'DOT Image Croppe',
           ),
         ],
       );
