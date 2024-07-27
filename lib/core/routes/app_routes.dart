@@ -58,10 +58,10 @@ enum AppRoutes {
   coachHistoryDetail('/coach/history/:id'),
 
   // Coach Media
-  coachMedia('/coach/media/:clubId'),
+  coachMedia('/coach/media/:clubId');
 
   // Coach Profile
-  coachProfile('/coach/profile');
+  // coachProfile('/coach/profile');
 
   const AppRoutes(this.path);
   final String path;

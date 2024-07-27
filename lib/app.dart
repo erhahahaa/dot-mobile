@@ -30,7 +30,7 @@ class DotApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => di<AuthCubit>()),
         BlocProvider(create: (context) => di<UserCubit>()),
-        BlocProvider(create: (context) => di<ClubCubit>()),
+        // BlocProvider(create: (context) => di<ClubCubit>()),
       ],
       child: OKToast(
         child: ScreenUtilInit(

@@ -122,7 +122,10 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-              state: BaseState.success, clubs: clubs, updatedClub: r),
+            state: BaseState.success,
+            clubs: clubs,
+            updatedClub: r,
+          ),
         );
       },
     );

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-
 class AppRouter {
   static late BuildContext ctx;
   static final _rootKey = GlobalKey<NavigatorState>();
@@ -24,9 +23,9 @@ class AppRouter {
   static final _coachProgramShellKey = GlobalKey<NavigatorState>();
   static final _coachExamShellKey = GlobalKey<NavigatorState>();
   static final _coachTacticalShellKey = GlobalKey<NavigatorState>();
-
-  static final _coachProfileShellKey = GlobalKey<NavigatorState>();
   static final _coachAssetShellKey = GlobalKey<NavigatorState>();
+
+  // static final _coachProfileShellKey = GlobalKey<NavigatorState>();
 
   AppRouter.setStream(BuildContext c) {
     ctx = c;
@@ -77,9 +76,8 @@ class AppRouter {
         parentNavigatorKey: _rootKey,
         builder: (_, state, navigationShell) => MultiBlocProvider(
           providers: [
-            BlocProvider(
-              create: (_) => di<TacticalCubit>(),
-            ),
+            BlocProvider(create: (_) => di<ClubCubit>()),
+            BlocProvider(create: (_) => di<TacticalCubit>()),
           ],
           child: BottomNavBar(
             navigationShell: navigationShell,
@@ -161,27 +159,14 @@ class AppRouter {
         parentNavigatorKey: _rootKey,
         builder: (_, state, navigationShell) => MultiBlocProvider(
           providers: [
-            BlocProvider(
-              create: (_) => di<ProgramCubit>(),
-            ),
-            BlocProvider(
-              create: (_) => di<ExerciseCubit>(),
-            ),
-            BlocProvider(
-              create: (_) => di<ExamCubit>(),
-            ),
-            BlocProvider(
-              create: (_) => di<QuestionCubit>(),
-            ),
-            BlocProvider(
-              create: (_) => di<TacticalCubit>(),
-            ),
-            BlocProvider(
-              create: (_) => di<UserCubit>(),
-            ),
-            BlocProvider(
-              create: (_) => di<MediaCubit>(),
-            ),
+            BlocProvider(create: (_) => di<ClubCubit>()),
+            BlocProvider(create: (_) => di<ProgramCubit>()),
+            BlocProvider(create: (_) => di<ExerciseCubit>()),
+            BlocProvider(create: (_) => di<ExamCubit>()),
+            BlocProvider(create: (_) => di<QuestionCubit>()),
+            BlocProvider(create: (_) => di<TacticalCubit>()),
+            BlocProvider(create: (_) => di<UserCubit>()),
+            BlocProvider(create: (_) => di<MediaCubit>()),
           ],
           child: BottomNavBar(
             navigationShell: navigationShell,
@@ -206,10 +191,11 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.coachCreateClub.path,
                 name: AppRoutes.coachCreateClub.name,
-                builder: (c, __) => BlocProvider.value(
-                  value: c.read<ClubCubit>(),
-                  child: const ClubFormScreen(),
-                ),
+                // builder: (c, __) => BlocProvider.value(
+                //   value: c.read<ClubCubit>(),
+                //   child: const ClubFormScreen(),
+                // ),
+                builder: (_, __) => ClubFormScreen(),
               ),
               GoRoute(
                 path: AppRoutes.coachEditClub.path,
@@ -217,6 +203,7 @@ class AppRouter {
                 builder: (c, state) {
                   final extra = state.extra as Map<String, dynamic>;
                   final club = extra['club'] as ClubModel;
+
                   return BlocProvider.value(
                     value: c.read<ClubCubit>(),
                     child: ClubFormScreen(
@@ -435,20 +422,20 @@ class AppRouter {
             ],
           ),
 
-          // Profile
-          StatefulShellBranch(
-            navigatorKey: _coachProfileShellKey,
-            routes: [
-              GoRoute(
-                path: AppRoutes.coachProfile.path,
-                name: AppRoutes.coachProfile.name,
-                builder: (c, __) => BlocProvider.value(
-                  value: c.read<UserCubit>(),
-                  child: const ProfileScreen(),
-                ),
-              ),
-            ],
-          ),
+          // // Profile
+          // StatefulShellBranch(
+          //   navigatorKey: _coachProfileShellKey,
+          //   routes: [
+          //     GoRoute(
+          //       path: AppRoutes.coachProfile.path,
+          //       name: AppRoutes.coachProfile.name,
+          //       builder: (c, __) => BlocProvider.value(
+          //         value: c.read<UserCubit>(),
+          //         child: const ProfileScreen(),
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       )
     ],
