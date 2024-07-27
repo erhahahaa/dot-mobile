@@ -11,10 +11,10 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Parent(
-      body: BlocBuilder<UserCubit, UserState>(
-        builder: (context, state) {
-          return SkewedRightBackground(
+    return BlocBuilder<UserCubit, UserState>(
+      builder: (context, state) {
+        return Parent(
+          body: SkewedRightBackground(
             children: [
               Positioned(
                 top: 60.h,
@@ -192,9 +192,9 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
             ],
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

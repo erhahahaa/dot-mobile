@@ -14,10 +14,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Parent(
-      body: BlocBuilder<ClubCubit, ClubState>(
-        builder: (context, state) {
-          return SkewedRightBackground(
+    return BlocBuilder<ClubCubit, ClubState>(
+      builder: (context, state) {
+        return Parent(
+          body: SkewedRightBackground(
             children: [
               Positioned(
                 top: 60.h,
@@ -52,9 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ],
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

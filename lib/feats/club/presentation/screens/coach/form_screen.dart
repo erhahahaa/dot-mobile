@@ -82,38 +82,38 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final msg = Strings.of(context);
-    return Parent(
-      appBar: AppBar(
-        title: Text(
-          widget.club == null ? 'Create Club' : 'Edit ${widget.club?.name}',
-        ),
-      ),
-      body: BlocConsumer<ClubCubit, ClubState>(
-        listener: (context, state) {
-          if (state.state == BaseState.failure) {
-            ToastModel(
-              message: msg?.failedCreateClub,
-              type: ToastType.error,
-            ).fire(context);
-          }
-          if (state.state == BaseState.success) {
-            ToastModel(
-              message: msg?.successCreateClub,
-              type: ToastType.success,
-            ).fire(context);
+    return BlocConsumer<ClubCubit, ClubState>(
+      listener: (context, state) {
+        if (state.state == BaseState.failure) {
+          ToastModel(
+            message: msg?.failedCreateClub,
+            type: ToastType.error,
+          ).fire(context);
+        }
+        if (state.state == BaseState.success) {
+          ToastModel(
+            message: msg?.successCreateClub,
+            type: ToastType.success,
+          ).fire(context);
 
-            context.pop(state.updatedClub);
-            context.read<ClubCubit>().emitCaller(
-                  state.copyWith(
-                    state: BaseState.initial,
-                    updatedClub: null,
-                    image: null,
-                  ),
-                );
-          }
-        },
-        builder: (context, state) {
-          return SingleChildScrollView(
+          context.pop(state.updatedClub);
+          context.read<ClubCubit>().emitCaller(
+                state.copyWith(
+                  state: BaseState.initial,
+                  updatedClub: null,
+                  image: null,
+                ),
+              );
+        }
+      },
+      builder: (context, state) {
+        return Parent(
+          appBar: AppBar(
+            title: Text(
+              widget.club == null ? 'Create Club' : 'Edit ${widget.club?.name}',
+            ),
+          ),
+          body: SingleChildScrollView(
             child: Form(
               key: _formKey,
               child: Column(
@@ -252,9 +252,9 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
                 ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 

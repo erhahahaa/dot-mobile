@@ -191,11 +191,10 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.coachCreateClub.path,
                 name: AppRoutes.coachCreateClub.name,
-                // builder: (c, __) => BlocProvider.value(
-                //   value: c.read<ClubCubit>(),
-                //   child: const ClubFormScreen(),
-                // ),
-                builder: (_, __) => const ClubFormScreen(),
+                builder: (c, __) => BlocProvider.value(
+                  value: c.read<ClubCubit>(),
+                  child: const ClubFormScreen(),
+                ),
               ),
               GoRoute(
                 path: AppRoutes.coachEditClub.path,

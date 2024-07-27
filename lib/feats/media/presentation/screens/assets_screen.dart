@@ -9,10 +9,10 @@ class AssetsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Parent(
-      body: BlocBuilder<MediaCubit, MediaState>(
-        builder: (context, state) {
-          return RoundedTopBackground(
+    return BlocBuilder<MediaCubit, MediaState>(
+      builder: (context, state) {
+        return Parent(
+          body: RoundedTopBackground(
             title: 'Assets',
             child: AssetTab(
               clubId: clubId,
@@ -22,9 +22,9 @@ class AssetsScreen extends StatelessWidget {
               examMedias: state.examMedias,
               questionMedias: state.questionMedias,
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

@@ -74,9 +74,6 @@ class _ExerciseFormState extends State<ExerciseForm> {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    final Color draggableItemColor = colorScheme.secondary;
-
     Widget proxyDecorator(
         Widget child, int index, Animation<double> animation) {
       return AnimatedBuilder(
@@ -86,8 +83,8 @@ class _ExerciseFormState extends State<ExerciseForm> {
           final double elevation = lerpDouble(0, 6, animValue)!;
           return Material(
             elevation: elevation,
-            color: draggableItemColor,
-            shadowColor: draggableItemColor,
+            color: context.theme.colorScheme.surface,
+            shadowColor: context.theme.colorScheme.surface,
             child: child,
           );
         },
@@ -95,24 +92,24 @@ class _ExerciseFormState extends State<ExerciseForm> {
       );
     }
 
-    return Parent(
-        floatingActionButton: BlocListener<ExerciseCubit, ExerciseState>(
-          listener: (context, state) {
-            if (state.state == BaseState.success) {
-              ToastModel(
-                message: context.str?.successCreateExercise,
-                type: ToastType.success,
-              ).fire(context);
-              context.pop();
-            }
-            if (state.state == BaseState.failure) {
-              ToastModel(
-                message: context.str?.errorCreateExercise,
-                type: ToastType.error,
-              ).fire(context);
-            }
-          },
-          child: FloatingActionButton.extended(
+    return BlocListener<ExerciseCubit, ExerciseState>(
+      listener: (context, state) {
+        if (state.state == BaseState.success) {
+          ToastModel(
+            message: context.str?.successCreateExercise,
+            type: ToastType.success,
+          ).fire(context);
+          context.pop();
+        }
+        if (state.state == BaseState.failure) {
+          ToastModel(
+            message: context.str?.errorCreateExercise,
+            type: ToastType.error,
+          ).fire(context);
+        }
+      },
+      child: Parent(
+          floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
               for (ExerciseItem item in _items) {
                 if (!item.isExpanded) {
@@ -175,393 +172,396 @@ class _ExerciseFormState extends State<ExerciseForm> {
               ],
             ),
           ),
-        ),
-        body: RoundedTopBackground(
-          title: widget.exercises == null
-              ? 'Create Exercises'
-              : '${widget.program.name} Exercises',
-          child: Form(
-            key: _formKey,
-            child: ReorderableListView(
-              proxyDecorator: proxyDecorator,
-              scrollController: _scrollController,
-              footer: Padding(
-                padding: EdgeInsets.only(bottom: 512.h),
-                child: InkWell(
-                  key: const Key('add_exercise'),
-                  onTap: () {
-                    setState(() {
-                      _items.add(ExerciseItem(
-                        exercise: const ProgramExerciseModel(),
-                        nameFN: FocusNode(),
-                        setsFN: FocusNode(),
-                        repsFN: FocusNode(),
-                        restFN: FocusNode(),
-                        descriptionFN: FocusNode(),
-                        nameCon: TextEditingController(),
-                        setsCon: TextEditingController(),
-                        repsCon: TextEditingController(),
-                        restCon: TextEditingController(),
-                        descriptionCon: TextEditingController(),
-                      ));
-                    });
-                  },
-                  child: DottedBorder(
-                    borderType: BorderType.RRect,
-                    radius: Radius.circular(12.r),
-                    padding: EdgeInsets.all(6.w),
-                    strokeWidth: 2,
-                    color: Colors.blue,
-                    dashPattern: [12.w, 6.w],
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.r),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.add,
-                            color: Colors.blue,
-                            size: 24.sp,
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            'Add exercise',
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              children: <Widget>[
-                for (int index = 0; index < _items.length; index += 1)
-                  Container(
-                    key: Key('exerciseItem_$index'),
-                    padding: EdgeInsets.all(8.w),
-                    margin: EdgeInsets.only(bottom: 16.h),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primaryContainer
-                          .withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(16.r),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
+          body: RoundedTopBackground(
+            title: widget.exercises == null
+                ? 'Create Exercises'
+                : '${widget.program.name} Exercises',
+            child: Form(
+              key: _formKey,
+              child: ReorderableListView(
+                proxyDecorator: proxyDecorator,
+                scrollController: _scrollController,
+                footer: Padding(
+                  padding: EdgeInsets.only(bottom: 512.h),
+                  child: InkWell(
+                    key: const Key('add_exercise'),
+                    onTap: () {
+                      setState(() {
+                        _items.add(ExerciseItem(
+                          exercise: const ProgramExerciseModel(),
+                          nameFN: FocusNode(),
+                          setsFN: FocusNode(),
+                          repsFN: FocusNode(),
+                          restFN: FocusNode(),
+                          descriptionFN: FocusNode(),
+                          nameCon: TextEditingController(),
+                          setsCon: TextEditingController(),
+                          repsCon: TextEditingController(),
+                          restCon: TextEditingController(),
+                          descriptionCon: TextEditingController(),
+                        ));
+                      });
+                    },
+                    child: DottedBorder(
+                      borderType: BorderType.RRect,
+                      radius: Radius.circular(12.r),
+                      padding: EdgeInsets.all(6.w),
+                      strokeWidth: 2,
+                      color: Colors.blue,
+                      dashPattern: [12.w, 6.w],
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.r),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            IconButton(
-                              key: Key('expandIcon_$index'),
-                              icon: Icon(
-                                _items[index].isExpanded
-                                    ? Icons.arrow_drop_up
-                                    : Icons.arrow_drop_down,
-                                color: context.theme.colorScheme.onSurface,
-                                size: 24.sp,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _items[index].isExpanded =
-                                      !_items[index].isExpanded;
-                                });
-                              },
+                            Icon(
+                              Icons.add,
+                              color: Colors.blue,
+                              size: 24.sp,
                             ),
-                            Expanded(
-                              child: TextF(
-                                key: Key('exerciseName_$index'),
-                                currFocusNode: _items[index].nameFN,
-                                nextFocusNode: _items[index].setsFN,
-                                controller: _items[index].nameCon,
-                                isHintVisible: false,
-                                validator: (String? value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter exercise name';
-                                  }
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                  labelText: 'Exercise name',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12.r),
-                                  ),
-                                  hintText: 'Enter exercise name',
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 12.w,
-                                    vertical: 8.h,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            IconButton(
-                              key: Key('deleteIcon_$index'),
-                              icon: Icon(
-                                Icons.delete,
-                                color: context.theme.colorScheme.error,
-                                size: 24.sp,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _items.removeAt(index);
-                                });
-                              },
-                            ),
-                            // drag handle
-                            ReorderableDragStartListener(
-                              index: index,
-                              child: Container(
-                                padding: EdgeInsets.all(8.w),
-                                decoration: BoxDecoration(
-                                  color: context.theme.colorScheme.surface,
-                                  borderRadius: BorderRadius.circular(8.r),
-                                ),
-                                child: Icon(
-                                  Icons.drag_handle,
-                                  color: context.theme.colorScheme.onSurface,
-                                  size: 24.sp,
-                                ),
+                            SizedBox(width: 8.w),
+                            Text(
+                              'Add exercise',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ],
                         ),
-                        if (_items[index].isExpanded) ...[
-                          SizedBox(height: 16.h),
-                          InkWell(
-                            onTap: () async {
-                              final picked =
-                                  await showAdaptiveDialog<MediaModel>(
-                                context: context,
-                                builder: (_) {
-                                  return Dialog(
-                                    child: Container(
-                                        padding: EdgeInsets.all(16.w),
-                                        child: BlocProvider.value(
-                                          value: context.read<MediaCubit>(),
-                                          child: BlocBuilder<MediaCubit,
-                                              MediaState>(
-                                            builder: (context, state) {
-                                              return AssetTab(
-                                                showUploadButton: false,
-                                                clubId: widget.program.clubId,
-                                                clubMedias: state.clubMedias,
-                                                programMedias:
-                                                    state.programMedias,
-                                                exerciseMedias:
-                                                    state.exerciseMedias,
-                                                examMedias: state.examMedias,
-                                                questionMedias:
-                                                    state.questionMedias,
-                                                onTap: (media) {
-                                                  Navigator.of(context)
-                                                      .pop(media);
-                                                },
-                                              );
-                                            },
-                                          ),
-                                        )),
-                                  );
-                                },
-                              );
-
-                              log.f('picked: $picked');
-
-                              if (picked != null) {
-                                setState(() {
-                                  _items[index].media = picked;
-                                });
-                              }
-                            },
-                            child: Container(
-                              width: 310.w,
-                              height: 210.h,
-                              padding: EdgeInsets.all(8.w),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(12.r),
-                              ),
-                              child: _items[index].media != null
-                                  ? _items[index].media!.determineLoader(
-                                      width: 310.w, height: 210.h)
-                                  : Assets.images.placeholder.placeholder
-                                      .image(),
-                            ),
-                          ),
-                          SizedBox(height: 16.h),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: TextF(
-                                  key: Key('exerciseSets_$index'),
-                                  currFocusNode: _items[index].setsFN,
-                                  nextFocusNode: _items[index].repsFN,
-                                  controller: _items[index].setsCon,
-                                  isHintVisible: false,
-                                  keyboardType: TextInputType.number,
-                                  validator: (String? value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter number of sets';
-                                    }
-                                    if (int.tryParse(value) == null) {
-                                      return 'Invalid number';
-                                    }
-                                    return null;
-                                  },
-                                  decoration: InputDecoration(
-                                    labelText: 'Sets',
-                                    filled: true,
-                                    fillColor:
-                                        Colors.redAccent.withOpacity(0.1),
-                                    border: OutlineInputBorder(
-                                      gapPadding: 0,
-                                      borderRadius: BorderRadius.circular(12.r),
-                                      borderSide: BorderSide(
-                                        color:
-                                            Colors.redAccent.withOpacity(0.1),
-                                      ),
-                                    ),
-                                    hintText: 'Total sets',
-                                    contentPadding: EdgeInsets.symmetric(
-                                      horizontal: 12.w,
-                                      vertical: 8.h,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 8.w),
-                              Expanded(
-                                child: TextF(
-                                  key: Key('exerciseReps_$index'),
-                                  currFocusNode: _items[index].repsFN,
-                                  nextFocusNode: _items[index].restFN,
-                                  controller: _items[index].repsCon,
-                                  isHintVisible: false,
-                                  keyboardType: TextInputType.number,
-                                  validator: (String? value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter number of reps';
-                                    }
-                                    if (int.tryParse(value) == null) {
-                                      return 'Invalid number';
-                                    }
-                                    return null;
-                                  },
-                                  decoration: InputDecoration(
-                                    labelText: 'Reps',
-                                    filled: true,
-                                    fillColor:
-                                        Colors.amberAccent.withOpacity(0.1),
-                                    border: OutlineInputBorder(
-                                      gapPadding: 0,
-                                      borderRadius: BorderRadius.circular(12.r),
-                                      borderSide: BorderSide(
-                                        color:
-                                            Colors.amberAccent.withOpacity(0.1),
-                                      ),
-                                    ),
-                                    hintText: 'Total reps',
-                                    contentPadding: EdgeInsets.symmetric(
-                                      horizontal: 12.w,
-                                      vertical: 8.h,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 16.h),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: TextF(
-                                  key: Key('exerciseRest_$index'),
-                                  currFocusNode: _items[index].restFN,
-                                  nextFocusNode: _items[index].descriptionFN,
-                                  controller: _items[index].restCon,
-                                  isHintVisible: false,
-                                  keyboardType: TextInputType.number,
-                                  validator: (String? value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter rest time';
-                                    }
-                                    if (int.tryParse(value) == null) {
-                                      return 'Invalid number';
-                                    }
-                                    return null;
-                                  },
-                                  decoration: InputDecoration(
-                                    labelText: 'Rest time',
-                                    filled: true,
-                                    fillColor:
-                                        Colors.greenAccent.withOpacity(0.1),
-                                    border: OutlineInputBorder(
-                                      gapPadding: 0,
-                                      borderRadius: BorderRadius.circular(12.r),
-                                      borderSide: BorderSide(
-                                        color:
-                                            Colors.greenAccent.withOpacity(0.1),
-                                      ),
-                                    ),
-                                    hintText: 'Rest time in seconds',
-                                    contentPadding: EdgeInsets.symmetric(
-                                      horizontal: 12.w,
-                                      vertical: 8.h,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 16.h),
-                          TextF(
-                            key: Key('exerciseDescription_$index'),
-                            currFocusNode: _items[index].descriptionFN,
-                            controller: _items[index].descriptionCon,
-                            isHintVisible: false,
-                            maxLines: 10,
-                            decoration: InputDecoration(
-                              labelText: 'Description',
-                              filled: true,
-                              fillColor: Colors.blueAccent.withOpacity(0.1),
-                              border: OutlineInputBorder(
-                                gapPadding: 0,
-                                borderRadius: BorderRadius.circular(12.r),
-                                borderSide: BorderSide(
-                                  color: Colors.blueAccent.withOpacity(0.1),
-                                ),
-                              ),
-                              hintText: 'Enter exercise description',
-                              contentPadding: EdgeInsets.symmetric(
-                                horizontal: 12.w,
-                                vertical: 8.h,
-                              ),
-                            ),
-                          ),
-                        ]
-                      ],
+                      ),
                     ),
                   ),
-              ],
-              onReorder: (int oldIndex, int newIndex) {
-                setState(() {
-                  if (oldIndex < newIndex) {
-                    newIndex -= 1;
-                  }
+                ),
+                children: <Widget>[
+                  for (int index = 0; index < _items.length; index += 1)
+                    Container(
+                      key: Key('exerciseItem_$index'),
+                      padding: EdgeInsets.all(8.w),
+                      margin: EdgeInsets.only(bottom: 16.h),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .primaryContainer
+                            .withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                key: Key('expandIcon_$index'),
+                                icon: Icon(
+                                  _items[index].isExpanded
+                                      ? Icons.arrow_drop_up
+                                      : Icons.arrow_drop_down,
+                                  color: context.theme.colorScheme.onSurface,
+                                  size: 24.sp,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _items[index].isExpanded =
+                                        !_items[index].isExpanded;
+                                  });
+                                },
+                              ),
+                              Expanded(
+                                child: TextF(
+                                  key: Key('exerciseName_$index'),
+                                  currFocusNode: _items[index].nameFN,
+                                  nextFocusNode: _items[index].setsFN,
+                                  controller: _items[index].nameCon,
+                                  isHintVisible: false,
+                                  validator: (String? value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter exercise name';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                    labelText: 'Exercise name',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12.r),
+                                    ),
+                                    hintText: 'Enter exercise name',
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 12.w,
+                                      vertical: 8.h,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                key: Key('deleteIcon_$index'),
+                                icon: Icon(
+                                  Icons.delete,
+                                  color: context.theme.colorScheme.error,
+                                  size: 24.sp,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _items.removeAt(index);
+                                  });
+                                },
+                              ),
+                              // drag handle
+                              ReorderableDragStartListener(
+                                index: index,
+                                child: Container(
+                                  padding: EdgeInsets.all(8.w),
+                                  decoration: BoxDecoration(
+                                    color: context.theme.colorScheme.surface,
+                                    borderRadius: BorderRadius.circular(8.r),
+                                  ),
+                                  child: Icon(
+                                    Icons.drag_handle,
+                                    color: context.theme.colorScheme.onSurface,
+                                    size: 24.sp,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (_items[index].isExpanded) ...[
+                            SizedBox(height: 16.h),
+                            InkWell(
+                              onTap: () async {
+                                final picked =
+                                    await showAdaptiveDialog<MediaModel>(
+                                  context: context,
+                                  builder: (_) {
+                                    return Dialog(
+                                      child: Container(
+                                          padding: EdgeInsets.all(16.w),
+                                          child: BlocProvider.value(
+                                            value: context.read<MediaCubit>(),
+                                            child: BlocBuilder<MediaCubit,
+                                                MediaState>(
+                                              builder: (context, state) {
+                                                return AssetTab(
+                                                  showUploadButton: false,
+                                                  clubId: widget.program.clubId,
+                                                  clubMedias: state.clubMedias,
+                                                  programMedias:
+                                                      state.programMedias,
+                                                  exerciseMedias:
+                                                      state.exerciseMedias,
+                                                  examMedias: state.examMedias,
+                                                  questionMedias:
+                                                      state.questionMedias,
+                                                  onTap: (media) {
+                                                    Navigator.of(context)
+                                                        .pop(media);
+                                                  },
+                                                );
+                                              },
+                                            ),
+                                          )),
+                                    );
+                                  },
+                                );
 
-                  final ExerciseItem item = _items.removeAt(oldIndex);
-                  _items.insert(newIndex, item);
-                });
-              },
+                                log.f('picked: $picked');
+
+                                if (picked != null) {
+                                  setState(() {
+                                    _items[index].media = picked;
+                                  });
+                                }
+                              },
+                              child: Container(
+                                width: 310.w,
+                                height: 210.h,
+                                padding: EdgeInsets.all(8.w),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12.r),
+                                ),
+                                child: _items[index].media != null
+                                    ? _items[index].media!.determineLoader(
+                                        width: 310.w, height: 210.h)
+                                    : Assets.images.placeholder.placeholder
+                                        .image(),
+                              ),
+                            ),
+                            SizedBox(height: 16.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: TextF(
+                                    key: Key('exerciseSets_$index'),
+                                    currFocusNode: _items[index].setsFN,
+                                    nextFocusNode: _items[index].repsFN,
+                                    controller: _items[index].setsCon,
+                                    isHintVisible: false,
+                                    keyboardType: TextInputType.number,
+                                    validator: (String? value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter number of sets';
+                                      }
+                                      if (int.tryParse(value) == null) {
+                                        return 'Invalid number';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Sets',
+                                      filled: true,
+                                      fillColor:
+                                          Colors.redAccent.withOpacity(0.1),
+                                      border: OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius:
+                                            BorderRadius.circular(12.r),
+                                        borderSide: BorderSide(
+                                          color:
+                                              Colors.redAccent.withOpacity(0.1),
+                                        ),
+                                      ),
+                                      hintText: 'Total sets',
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 12.w,
+                                        vertical: 8.h,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 8.w),
+                                Expanded(
+                                  child: TextF(
+                                    key: Key('exerciseReps_$index'),
+                                    currFocusNode: _items[index].repsFN,
+                                    nextFocusNode: _items[index].restFN,
+                                    controller: _items[index].repsCon,
+                                    isHintVisible: false,
+                                    keyboardType: TextInputType.number,
+                                    validator: (String? value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter number of reps';
+                                      }
+                                      if (int.tryParse(value) == null) {
+                                        return 'Invalid number';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Reps',
+                                      filled: true,
+                                      fillColor:
+                                          Colors.amberAccent.withOpacity(0.1),
+                                      border: OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius:
+                                            BorderRadius.circular(12.r),
+                                        borderSide: BorderSide(
+                                          color: Colors.amberAccent
+                                              .withOpacity(0.1),
+                                        ),
+                                      ),
+                                      hintText: 'Total reps',
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 12.w,
+                                        vertical: 8.h,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: TextF(
+                                    key: Key('exerciseRest_$index'),
+                                    currFocusNode: _items[index].restFN,
+                                    nextFocusNode: _items[index].descriptionFN,
+                                    controller: _items[index].restCon,
+                                    isHintVisible: false,
+                                    keyboardType: TextInputType.number,
+                                    validator: (String? value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter rest time';
+                                      }
+                                      if (int.tryParse(value) == null) {
+                                        return 'Invalid number';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Rest time',
+                                      filled: true,
+                                      fillColor:
+                                          Colors.greenAccent.withOpacity(0.1),
+                                      border: OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius:
+                                            BorderRadius.circular(12.r),
+                                        borderSide: BorderSide(
+                                          color: Colors.greenAccent
+                                              .withOpacity(0.1),
+                                        ),
+                                      ),
+                                      hintText: 'Rest time in seconds',
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 12.w,
+                                        vertical: 8.h,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16.h),
+                            TextF(
+                              key: Key('exerciseDescription_$index'),
+                              currFocusNode: _items[index].descriptionFN,
+                              controller: _items[index].descriptionCon,
+                              isHintVisible: false,
+                              maxLines: 10,
+                              decoration: InputDecoration(
+                                labelText: 'Description',
+                                filled: true,
+                                fillColor: Colors.blueAccent.withOpacity(0.1),
+                                border: OutlineInputBorder(
+                                  gapPadding: 0,
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueAccent.withOpacity(0.1),
+                                  ),
+                                ),
+                                hintText: 'Enter exercise description',
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 12.w,
+                                  vertical: 8.h,
+                                ),
+                              ),
+                            ),
+                          ]
+                        ],
+                      ),
+                    ),
+                ],
+                onReorder: (int oldIndex, int newIndex) {
+                  setState(() {
+                    if (oldIndex < newIndex) {
+                      newIndex -= 1;
+                    }
+
+                    final ExerciseItem item = _items.removeAt(oldIndex);
+                    _items.insert(newIndex, item);
+                  });
+                },
+              ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }
 

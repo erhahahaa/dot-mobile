@@ -18,11 +18,10 @@ class _MemberScreenState extends State<MemberScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme;
-    return Parent(
-      body: BlocBuilder<ClubCubit, ClubState>(
-        builder: (context, state) {
-          return RoundedTopBackground(
+    return BlocBuilder<ClubCubit, ClubState>(
+      builder: (context, state) {
+        return Parent(
+          body: RoundedTopBackground(
             title: 'Members',
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,9 +46,9 @@ class _MemberScreenState extends State<MemberScreen> {
                 ListMember(members: state.members, clubId: widget.clubId),
               ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 

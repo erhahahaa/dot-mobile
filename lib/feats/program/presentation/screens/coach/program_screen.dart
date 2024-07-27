@@ -20,25 +20,25 @@ class _ProgramScreenState extends State<ProgramScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Parent(
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => context.pushNamed(
-          AppRoutes.coachCreateProgram.name,
-          pathParameters: {
-            'clubId': widget.club.id.toString(),
-          },
-        ),
-        label: Row(
-          children: [
-            const Icon(Icons.add),
-            SizedBox(width: 8.w),
-            const Text('New Program'),
-          ],
-        ),
-      ),
-      body: BlocBuilder<ProgramCubit, ProgramState>(
-        builder: (context, state) {
-          return RoundedTopBackground(
+    return BlocBuilder<ProgramCubit, ProgramState>(
+      builder: (context, state) {
+        return Parent(
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () => context.pushNamed(
+              AppRoutes.coachCreateProgram.name,
+              pathParameters: {
+                'clubId': widget.club.id.toString(),
+              },
+            ),
+            label: Row(
+              children: [
+                const Icon(Icons.add),
+                SizedBox(width: 8.w),
+                const Text('New Program'),
+              ],
+            ),
+          ),
+          body: RoundedTopBackground(
             title: widget.club.name,
             child: SingleChildScrollView(
               child: Column(
@@ -179,9 +179,9 @@ class _ProgramScreenState extends State<ProgramScreen> {
                 ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
