@@ -13,17 +13,16 @@ class UpdateClubParams with _$UpdateClubParams {
     required String id,
     required String name,
     required String description,
-    required File image,
+    File? image,
     required SportType type,
   }) = _UpdateClubParams;
 
   const UpdateClubParams._();
 
   FormData toFormData() => FormData.fromMap({
-        'id': id,
         'name': name,
         'description': description,
         'type': type.value,
-        'image': MultipartFile.fromFileSync(image.path),
+        'image': image != null ? MultipartFile.fromFileSync(image!.path) : null,
       });
 }

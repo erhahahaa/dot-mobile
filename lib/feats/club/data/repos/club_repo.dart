@@ -158,4 +158,16 @@ class ClubRepoImpl implements ClubRepo {
 
     return res;
   }
+
+  @override
+  Future<Either<Failure, ClubModel>> leave(
+    int clubId,
+  ) async {
+    final res = await _remote.getRequest(
+      '${ListAPI.CLUB}/$clubId/leave',
+      converter: (res) => ClubModel.fromJson(res['data']),
+    );
+
+    return res;
+  }
 }

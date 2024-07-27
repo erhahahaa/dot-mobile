@@ -24,6 +24,7 @@ mixin _$ClubState {
   List<UserModel> get members => throw _privateConstructorUsedError;
   List<UserModel> get filteredMembers => throw _privateConstructorUsedError;
   File? get image => throw _privateConstructorUsedError;
+  ClubModel? get updatedClub => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClubStateCopyWith<ClubState> get copyWith =>
@@ -43,9 +44,11 @@ abstract class $ClubStateCopyWith<$Res> {
       List<ClubModel> filteredClubs,
       List<UserModel> members,
       List<UserModel> filteredMembers,
-      File? image});
+      File? image,
+      ClubModel? updatedClub});
 
   $UserModelCopyWith<$Res> get user;
+  $ClubModelCopyWith<$Res>? get updatedClub;
 }
 
 /// @nodoc
@@ -69,6 +72,7 @@ class _$ClubStateCopyWithImpl<$Res, $Val extends ClubState>
     Object? members = null,
     Object? filteredMembers = null,
     Object? image = freezed,
+    Object? updatedClub = freezed,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -103,6 +107,10 @@ class _$ClubStateCopyWithImpl<$Res, $Val extends ClubState>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as File?,
+      updatedClub: freezed == updatedClub
+          ? _value.updatedClub
+          : updatedClub // ignore: cast_nullable_to_non_nullable
+              as ClubModel?,
     ) as $Val);
   }
 
@@ -111,6 +119,18 @@ class _$ClubStateCopyWithImpl<$Res, $Val extends ClubState>
   $UserModelCopyWith<$Res> get user {
     return $UserModelCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClubModelCopyWith<$Res>? get updatedClub {
+    if (_value.updatedClub == null) {
+      return null;
+    }
+
+    return $ClubModelCopyWith<$Res>(_value.updatedClub!, (value) {
+      return _then(_value.copyWith(updatedClub: value) as $Val);
     });
   }
 }
@@ -131,10 +151,13 @@ abstract class _$$ClubStateImplCopyWith<$Res>
       List<ClubModel> filteredClubs,
       List<UserModel> members,
       List<UserModel> filteredMembers,
-      File? image});
+      File? image,
+      ClubModel? updatedClub});
 
   @override
   $UserModelCopyWith<$Res> get user;
+  @override
+  $ClubModelCopyWith<$Res>? get updatedClub;
 }
 
 /// @nodoc
@@ -156,6 +179,7 @@ class __$$ClubStateImplCopyWithImpl<$Res>
     Object? members = null,
     Object? filteredMembers = null,
     Object? image = freezed,
+    Object? updatedClub = freezed,
   }) {
     return _then(_$ClubStateImpl(
       state: null == state
@@ -190,6 +214,10 @@ class __$$ClubStateImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as File?,
+      updatedClub: freezed == updatedClub
+          ? _value.updatedClub
+          : updatedClub // ignore: cast_nullable_to_non_nullable
+              as ClubModel?,
     ));
   }
 }
@@ -205,7 +233,8 @@ class _$ClubStateImpl implements _ClubState {
       final List<ClubModel> filteredClubs = const [],
       final List<UserModel> members = const [],
       final List<UserModel> filteredMembers = const [],
-      this.image})
+      this.image,
+      this.updatedClub})
       : _clubs = clubs,
         _filteredClubs = filteredClubs,
         _members = members,
@@ -257,10 +286,12 @@ class _$ClubStateImpl implements _ClubState {
 
   @override
   final File? image;
+  @override
+  final ClubModel? updatedClub;
 
   @override
   String toString() {
-    return 'ClubState(state: $state, failure: $failure, user: $user, clubs: $clubs, filteredClubs: $filteredClubs, members: $members, filteredMembers: $filteredMembers, image: $image)';
+    return 'ClubState(state: $state, failure: $failure, user: $user, clubs: $clubs, filteredClubs: $filteredClubs, members: $members, filteredMembers: $filteredMembers, image: $image, updatedClub: $updatedClub)';
   }
 
   @override
@@ -277,7 +308,9 @@ class _$ClubStateImpl implements _ClubState {
             const DeepCollectionEquality().equals(other._members, _members) &&
             const DeepCollectionEquality()
                 .equals(other._filteredMembers, _filteredMembers) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.updatedClub, updatedClub) ||
+                other.updatedClub == updatedClub));
   }
 
   @override
@@ -290,7 +323,8 @@ class _$ClubStateImpl implements _ClubState {
       const DeepCollectionEquality().hash(_filteredClubs),
       const DeepCollectionEquality().hash(_members),
       const DeepCollectionEquality().hash(_filteredMembers),
-      image);
+      image,
+      updatedClub);
 
   @JsonKey(ignore: true)
   @override
@@ -308,7 +342,8 @@ abstract class _ClubState implements ClubState {
       final List<ClubModel> filteredClubs,
       final List<UserModel> members,
       final List<UserModel> filteredMembers,
-      final File? image}) = _$ClubStateImpl;
+      final File? image,
+      final ClubModel? updatedClub}) = _$ClubStateImpl;
 
   @override
   BaseState get state;
@@ -326,6 +361,8 @@ abstract class _ClubState implements ClubState {
   List<UserModel> get filteredMembers;
   @override
   File? get image;
+  @override
+  ClubModel? get updatedClub;
   @override
   @JsonKey(ignore: true)
   _$$ClubStateImplCopyWith<_$ClubStateImpl> get copyWith =>

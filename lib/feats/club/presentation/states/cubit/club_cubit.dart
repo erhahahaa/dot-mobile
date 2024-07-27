@@ -122,9 +122,7 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            // state: BaseState.success,
-            clubs: clubs,
-          ),
+              state: BaseState.success, clubs: clubs, updatedClub: r),
         );
       },
     );
@@ -235,6 +233,30 @@ class ClubCubit extends Cubit<ClubState> {
           state: state.copyWith(
             state: BaseState.success,
             members: members,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> leave(int clubId) async {
+    final res = await _clubRepo.leave(clubId);
+
+    res.fold(
+      (l) => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          state: BaseState.failure,
+          failure: l,
+        ),
+      ),
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
           ),
         );
       },

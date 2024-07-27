@@ -11,5 +11,6 @@ class ClubState with _$ClubState {
     @Default([]) List<UserModel> members,
     @Default([]) List<UserModel> filteredMembers,
     File? image,
+    ClubModel? updatedClub,
   }) = _ClubState;
 }

@@ -3,6 +3,7 @@ import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,11 +16,19 @@ class ClubDetailScreen extends StatefulWidget {
 }
 
 class _ClubDetailScreenState extends State<ClubDetailScreen> {
+  late ClubModel _club;
+
+  @override
+  void initState() {
+    _club = widget.club;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Parent(
       body: RoundedTopBackground(
-        title: widget.club.name,
+        title: _club.name,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +55,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                           onTap: () => context.pushNamed(
                             AppRoutes.coachProgram.name,
                             extra: {
-                              'club': widget.club,
+                              'club': _club,
                             },
                           ),
                         ),
@@ -57,7 +66,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                             context.pushNamed(
                               AppRoutes.coachExam.name,
                               extra: {
-                                'club': widget.club,
+                                'club': _club,
                               },
                             );
                           },
@@ -69,7 +78,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                             context.pushNamed(
                               AppRoutes.coachTactical.name,
                               extra: {
-                                'club': widget.club,
+                                'club': _club,
                               },
                             );
                           },
@@ -87,7 +96,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                             context.pushNamed(
                               AppRoutes.coachAddMember.name,
                               pathParameters: {
-                                'clubId': widget.club.id.toString(),
+                                'clubId': _club.id.toString(),
                               },
                             );
                           },
@@ -99,7 +108,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                             context.pushNamed(
                               AppRoutes.coachClubMember.name,
                               pathParameters: {
-                                'clubId': widget.club.id.toString(),
+                                'clubId': _club.id.toString(),
                               },
                             );
                           },
@@ -111,7 +120,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                             context.pushNamed(
                               AppRoutes.coachMedia.name,
                               pathParameters: {
-                                'clubId': widget.club.id.toString(),
+                                'clubId': _club.id.toString(),
                               },
                             );
                           },
@@ -141,13 +150,20 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                 child: Column(
                   children: [
                     ElevatedButton(
-                      onPressed: () {
-                        context.pushNamed(
+                      onPressed: () async {
+                        final res = await context.pushNamed<ClubModel>(
                           AppRoutes.coachEditClub.name,
                           extra: {
-                            'club': widget.club,
+                            'club': _club,
                           },
                         );
+
+                        if (res == null) {
+                          return;
+                        }
+                        setState(() {
+                          _club = res;
+                        });
                       },
                       child: Row(
                         children: [
@@ -173,32 +189,51 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                       ),
                     ),
                     SizedBox(height: 4.h),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: context.theme.colorScheme.error,
-                      ),
-                      onPressed: () {},
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.logout,
-                            color: context.theme.colorScheme.onError,
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            context.str?.leave ?? 'Leave',
-                            style:
-                                context.theme.textTheme.titleMedium?.copyWith(
+                    BlocListener<ClubCubit, ClubState>(
+                      listener: (context, state) {
+                        if (state.state == BaseState.success) {
+                          ToastModel(
+                            message: 'Leave club successfully',
+                            type: ToastType.success,
+                          ).fire(context);
+                          context.pop();
+                        } else {
+                          ToastModel(
+                            message: 'Leave club unsuccessfully',
+                            type: ToastType.error,
+                          ).fire(context);
+                          context.pop();
+                        }
+                      },
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: context.theme.colorScheme.error,
+                        ),
+                        onPressed: () {
+                          context.read<ClubCubit>().leave(widget.club.id);
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.logout,
                               color: context.theme.colorScheme.onError,
                             ),
-                          ),
-                          const Spacer(),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 16.sp,
-                            color: context.theme.colorScheme.onError,
-                          ),
-                        ],
+                            SizedBox(width: 8.w),
+                            Text(
+                              context.str?.leave ?? 'Leave',
+                              style:
+                                  context.theme.textTheme.titleMedium?.copyWith(
+                                color: context.theme.colorScheme.onError,
+                              ),
+                            ),
+                            const Spacer(),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: 16.sp,
+                              color: context.theme.colorScheme.onError,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -215,7 +250,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
               Row(
                 children: [
                   CachedNetworkImage(
-                    imageUrl: sportImage(widget.club.media?.url).sanitize(),
+                    imageUrl: sportImage(_club.media?.url).sanitize(),
                     width: 48.w,
                     height: 48.w,
                     imageBuilder: (context, imageProvider) => Container(
@@ -235,7 +270,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.club.name,
+                        _club.name,
                         style: context.theme.textTheme.titleLarge
                             ?.copyWith(fontWeight: FontWeight.w600),
                       ),
@@ -251,7 +286,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                           borderRadius: BorderRadius.circular(32.r),
                         ),
                         child: Text(
-                          widget.club.type.name,
+                          _club.type.name,
                           style: context.theme.textTheme.bodyMedium,
                         ),
                       ),
@@ -260,11 +295,11 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                 ],
               ),
               Text(
-                'Established at: ${widget.club.createdAt!.toDayMonthYear(locale: context.locale.languageCode)}',
+                'Established at: ${_club.createdAt!.toDayMonthYear(locale: context.locale.languageCode)}',
                 style: context.theme.textTheme.bodyMedium,
               ),
               Text(
-                widget.club.description,
+                _club.description,
                 style: context.theme.textTheme.bodyMedium,
               ),
             ],
