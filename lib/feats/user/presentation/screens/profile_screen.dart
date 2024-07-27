@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
@@ -15,91 +14,181 @@ class ProfileScreen extends StatelessWidget {
     return Parent(
       body: BlocBuilder<UserCubit, UserState>(
         builder: (context, state) {
-          return Stack(
+          return SkewedRightBackground(
             children: [
               Positioned(
-                top: 0,
-                child: Assets.images.bg.gradientSkewedRight.svg(
-                  width: 344.w,
+                top: 60.h,
+                left: 18.w,
+                child: UserCard(
+                  user: state.user,
+                  isHome: false,
                 ),
               ),
               Positioned(
-                top: 60,
-                child: Container(
-                  width: 332.w,
-                  margin: EdgeInsets.all(8.w),
-                  padding: EdgeInsets.all(4.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.r),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    children: [
-                      CachedNetworkImage(
-                        width: 64.w,
-                        height: 64.w,
-                        imageUrl: state.user.image,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Text(
-                          error.toString(),
-                        ),
+                top: 180.h,
+                left: 22.w,
+                right: 22.w,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const H2Text('Club Management'),
+                    SizedBox(height: 8.h),
+                    Container(
+                      padding: EdgeInsets.all(8.w),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: context.containerColor(0.05),
+                        borderRadius: BorderRadius.circular(8.r),
                       ),
-                      SizedBox(width: 8.w),
-                      Column(
+                      child: Column(
                         children: [
-                          Text(
-                            state.user.name,
-                            style:
-                                Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                          ProfileNavigationButton(
+                            icon: Icons.sports_basketball,
+                            text: 'Club Dashboard',
+                            onPressed: () => context
+                                .pushNamed(AppRoutes.coachDashboard.name),
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 180,
-                child: Container(
-                  width: 332.w,
-                  margin: EdgeInsets.all(8.w),
-                  padding: EdgeInsets.all(4.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.r),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // TODO: Handle user roles
-                      // state.user.role == UserRole.coach
-                      //     ? TextButton(
-                      //         onPressed: () => context
-                      //             .pushNamed(AppRoutes.coachDashboard.name),
-                      //         child: const Text('Coach Dashboard'),
-                      //       )
-                      //     : const SizedBox(),
-                      TextButton(
-                        onPressed: () =>
-                            context.pushNamed(AppRoutes.coachDashboard.name),
-                        child: const Text('Coach Dashboard'),
+                    ),
+                    const H2Text('General'),
+                    SizedBox(height: 8.h),
+                    Container(
+                      padding: EdgeInsets.all(8.w),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: context.containerColor(0.05),
+                        borderRadius: BorderRadius.circular(8.r),
                       ),
-                      BlocListener<AuthCubit, AuthState>(
-                        listener: (context, state) {
-                          if (state.status == AuthStatus.unauthenticated) {
-                            context.goNamed(AppRoutes.authSignIn.name);
-                          }
-                        },
-                        child: TextButton(
-                          onPressed: () => context.read<AuthCubit>().logout(),
-                          child: const Text('Logout'),
-                        ),
+                      child: Column(
+                        children: [
+                          DropDown<Locale>(
+                            prefixIcon: Icon(
+                              Icons.language,
+                            ),
+                            hint: 'Language',
+                            contentPadding: EdgeInsets.all(8.w),
+                            fillColor: context.containerColor(0.05),
+                            items: [
+                              DropdownMenuItem(
+                                child: Row(
+                                  children: [
+                                    Assets.images.flags.us.svg(width: 14.w),
+                                    SizedBox(width: 8.w),
+                                    Text('English'),
+                                  ],
+                                ),
+                                value: Locale('en', 'US'),
+                              ),
+                              DropdownMenuItem(
+                                child: Row(
+                                  children: [
+                                    Assets.images.flags.id.svg(width: 14.w),
+                                    SizedBox(width: 8.w),
+                                    Text('Bahasa'),
+                                  ],
+                                ),
+                                value: Locale('id', 'ID'),
+                              ),
+                            ],
+                            value: Locale('en', 'US'),
+                            onChanged: (value) {
+                              if (value == null) return;
+                              context.read<UserCubit>().setLocale(value);
+                            },
+                          ),
+                          SizedBox(height: 8.h),
+                          DropDown<ThemeMode>(
+                            prefixIcon: Icon(
+                              Icons.color_lens,
+                            ),
+                            hint: 'Theme',
+                            contentPadding: EdgeInsets.all(8.w),
+                            fillColor: context.containerColor(0.05),
+                            items: [
+                              DropdownMenuItem(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.computer,
+                                    ),
+                                    SizedBox(width: 8.w),
+                                    Text('System'),
+                                  ],
+                                ),
+                                value: ThemeMode.system,
+                              ),
+                              DropdownMenuItem(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.light_mode,
+                                    ),
+                                    SizedBox(width: 8.w),
+                                    Text('Light'),
+                                  ],
+                                ),
+                                value: ThemeMode.light,
+                              ),
+                              DropdownMenuItem(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.dark_mode,
+                                    ),
+                                    SizedBox(width: 8.w),
+                                    Text('Dark'),
+                                  ],
+                                ),
+                                value: ThemeMode.dark,
+                              ),
+                            ],
+                            value: ThemeMode.system,
+                            onChanged: (value) {
+                              if (value == null) return;
+                              context.read<UserCubit>().setTheme(value);
+                              log.f('Theme changed to $value');
+                            },
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    const H2Text('User'),
+                    SizedBox(height: 8.h),
+                    Container(
+                      padding: EdgeInsets.all(8.w),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: context.containerColor(0.05),
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      child: Column(
+                        children: [
+                          ProfileNavigationButton(
+                            icon: Icons.person,
+                            text: 'Edit Profile',
+                            onPressed: () => context
+                                .pushNamed(AppRoutes.athleteEditProfile.name),
+                          ),
+                          const GappedDivider(),
+                          BlocListener<AuthCubit, AuthState>(
+                            listener: (context, state) {
+                              if (state.status == AuthStatus.unauthenticated) {
+                                context.goNamed(AppRoutes.authSignIn.name);
+                              }
+                            },
+                            child: ProfileNavigationButton(
+                              icon: Icons.logout,
+                              onPressed: () =>
+                                  context.read<AuthCubit>().logout(),
+                              text: 'Logout',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

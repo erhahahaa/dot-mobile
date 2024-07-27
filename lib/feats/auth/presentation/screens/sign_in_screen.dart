@@ -13,13 +13,17 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        final msg = Strings.of(context);
         if (state.state == BaseState.failure || state.failure != null) {
-          msg?.failedSignIn.toToastError(context);
+          ToastModel(
+            message: context.str?.failedSignIn,
+            type: ToastType.error,
+          ).fire(context);
         }
         if (state.status == AuthStatus.authenticated) {
-          msg?.successSignIn.toToastSuccess(context);
-          context.read<AuthCubit>().clear();
+          ToastModel(
+            message: context.str?.successSignIn,
+            type: ToastType.success,
+          ).fire(context);
           context.pushReplacementNamed(AppRoutes.athleteHome.name);
         }
       },

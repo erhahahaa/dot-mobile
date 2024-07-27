@@ -1,3 +1,4 @@
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,6 +10,7 @@ class ImagePickerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -18,7 +20,7 @@ class ImagePickerWidget extends StatelessWidget {
           shape: BoxShape.circle,
           border: Border.all(
             width: 3.w,
-            color: Theme.of(context).iconTheme.color ?? Colors.red,
+            color: theme.iconTheme.color ?? Colors.red,
           ),
         ),
         child: Stack(
@@ -35,12 +37,12 @@ class ImagePickerWidget extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    color: theme.colorScheme.onPrimaryContainer,
                     border: Border.all(width: 3.w),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.camera_alt,
-                    // color: Colors.white,
+                    color: theme.scaffoldBackgroundColor,
                   ),
                 ),
               ),

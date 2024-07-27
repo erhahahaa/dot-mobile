@@ -20,10 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
           return SkewedRightBackground(
             children: [
               Positioned(
-                top: 80.h,
+                top: 60.h,
                 left: 18.w,
                 child: UserCard(
-                  name: state.user.name.split(" ").first,
+                  user: state.user,
                 ),
               ),
               Positioned(
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           );
         },

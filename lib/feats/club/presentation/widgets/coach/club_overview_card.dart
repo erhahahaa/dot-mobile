@@ -3,9 +3,9 @@ import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class OverviewCard extends StatelessWidget {
+class ClubOverviewCard extends StatelessWidget {
   final int clubsCount, membersCount, programsCount, examsCount;
-  const OverviewCard({
+  const ClubOverviewCard({
     super.key,
     this.clubsCount = 0,
     this.membersCount = 0,

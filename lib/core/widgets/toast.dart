@@ -1,66 +1,67 @@
+import 'package:dot_coaching/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Toast extends StatelessWidget {
   final String title;
   final String message;
-  final IconData? icon;
-  final Color? color;
+  final IconData icon;
+  final Color color;
+  final ThemeData theme;
+  final bool isDarkMode;
+
   const Toast({
     super.key,
     required this.title,
     required this.message,
-    this.icon,
-    this.color,
+    required this.icon,
+    required this.color,
+    required this.theme,
+    required this.isDarkMode,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 80.h,
-      padding: EdgeInsets.all(8.w),
-      margin: EdgeInsets.symmetric(horizontal: 8.w),
+      padding: EdgeInsets.all(16.w),
+      margin: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: color ?? Theme.of(context).primaryColor,
-        borderRadius: BorderRadius.circular(8.r),
+        color: theme.scaffoldBackgroundColor,
+        borderRadius: BorderRadius.circular(8.w),
+        border: Border.all(
+          color: color,
+          width: 3.w,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: color.withOpacity(0.3),
+            blurRadius: 8.w,
+            spreadRadius: 2.w,
+          ),
+        ],
       ),
       child: Row(
         children: [
-          if (icon != null)
-            Icon(
-              icon,
-              color: Colors.black.withOpacity(0.5),
-              size: 32.sp,
-            ),
-          if (icon != null) SizedBox(width: 8.w),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                SizedBox(
-                  width: 250.w,
-                  child: Divider(
-                    color: Colors.white.withOpacity(0.5),
-                    thickness: 1,
-                  ),
-                ),
-                Text(
-                  message,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white.withOpacity(0.9),
-                      ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
+          Icon(
+            icon,
+            color: color,
+            size: 24.sp,
+          ),
+          SizedBox(width: 8.w),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              H2Text(
+                title,
+                color: theme.extension<AppColors>()?.text ?? Colors.black,
+              ),
+              const SizedBox(height: 4),
+              H6Text(
+                message,
+                color: theme.extension<AppColors>()?.text ?? Colors.black,
+              ),
+            ],
           ),
         ],
       ),

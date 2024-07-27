@@ -1,6 +1,5 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/di.dart';
-import 'package:dot_coaching/feats/club/presentation/screens/coach/member_screen.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/foundation.dart';
@@ -80,9 +79,6 @@ class AppRouter {
             BlocProvider(
               create: (_) => di<TacticalCubit>(),
             ),
-            BlocProvider(
-              create: (_) => di<UserCubit>(),
-            ),
           ],
           child: BottomNavBar(
             navigationShell: navigationShell,
@@ -144,6 +140,14 @@ class AppRouter {
                 builder: (_, __) => BlocProvider.value(
                   value: di<UserCubit>()..init(),
                   child: const ProfileScreen(),
+                ),
+              ),
+              GoRoute(
+                path: AppRoutes.athleteEditProfile.path,
+                name: AppRoutes.athleteEditProfile.name,
+                builder: (_, __) => BlocProvider.value(
+                  value: di<UserCubit>()..init(),
+                  child: const EditProfileScreen(),
                 ),
               ),
             ],
@@ -240,7 +244,8 @@ class AppRouter {
                   final clubId = int.parse(params['clubId'] ?? '0');
 
                   return BlocProvider.value(
-                    value: c.read<ClubCubit>(),
+                    value: c.read<ClubCubit>()
+                      ..getMembers(const PaginationParams(), clubId),
                     child: MemberScreen(
                       clubId: clubId,
                     ),

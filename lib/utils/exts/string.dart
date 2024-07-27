@@ -1,9 +1,5 @@
 import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/utils/utils.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:oktoast/oktoast.dart';
 
 extension StringExt on String {
   bool isValidEmail() {
@@ -25,123 +21,124 @@ extension StringExt on String {
     return '${this[0].toUpperCase()}${substring(1)}';
   }
 
-  void toToastError(
-    BuildContext context, {
-    TextAlign? textAlign,
-  }) {
-    try {
-      final title = isEmpty ? "error" : this;
-
-      showToastWidget(
-        Chirp(
-          text: title,
-          color: Theme.of(context).colorScheme.error,
-          icon: Icon(
-            Icons.error,
-            color: Colors.white,
-            size: 16.sp,
-          ),
-          padding: EdgeInsets.all(8.w),
-          textAlign: textAlign ?? TextAlign.left,
-        ),
-        dismissOtherToast: true,
-        position: ToastPosition.top,
-        duration: const Duration(seconds: 3),
-      );
-    } catch (e) {
-      log.e('ERROR [TOAST] ERR :\n$e');
+  String get capitalize {
+    if (isEmpty) {
+      return this;
     }
+    return split(' ').map((e) => e.capitalizeFirst!).join(' ');
   }
 
-  void toToastSuccess(
-    BuildContext context, {
-    TextAlign? textAlign,
-  }) {
-    try {
-      final title = isEmpty ? "success" : this;
+  // void toToastError(
+  //   BuildContext context, {
+  //   TextAlign? textAlign,
+  // }) {
+  //   try {
+  //     final title = isEmpty ? "error" : this;
 
-      //dismiss before show toast
+  //     showToastWidget(
+  //       Chirp(
+  //         text: title,
+  //         color: Theme.of(context).colorScheme.error,
+  //         icon: Icon(
+  //           Icons.error,
+  //           color: Colors.white,
+  //           size: 16.sp,
+  //         ),
+  //         padding: EdgeInsets.all(8.w),
+  //         textAlign: textAlign ?? TextAlign.left,
+  //       ),
+  //       dismissOtherToast: true,
+  //       position: ToastPosition.top,
+  //       duration: const Duration(seconds: 3),
+  //     );
+  //   } catch (e) {
+  //     log.e('ERROR [TOAST] ERR :\n$e');
+  //   }
+  // }
 
-      // showToast(msg)
-      showToastWidget(
-        Chirp(
-          text: title,
-          color: Theme.of(context).extension<AppColors>()!.green?.color,
-          icon: Icon(
-            Icons.check_circle,
-            color: Colors.white,
-            size: 16.sp,
-          ),
-          padding: EdgeInsets.all(8.w),
-          textAlign: textAlign ?? TextAlign.left,
-        ),
-        dismissOtherToast: true,
-        position: ToastPosition.top,
-        duration: const Duration(seconds: 3),
-      );
-    } catch (e) {
-      log.e('SUCCESS [TOAST] ERR :\n$e');
-    }
-  }
+  // void toToastSuccess(
+  //   BuildContext context, {
+  //   TextAlign? textAlign,
+  // }) {
+  //   try {
+  //     final title = isEmpty ? "success" : this;
 
-  void toToastInfo(
-    BuildContext context, {
-    TextAlign? textAlign,
-  }) {
-    try {
-      final title = isEmpty ? "info" : this;
+  //     showToastWidget(
+  //       Chirp(
+  //         text: title,
+  //         color: context.theme.extension<AppColors>()?.green ?? Colors.green,
+  //         icon: Icon(
+  //           Icons.check_circle,
+  //           color: Colors.white,
+  //           size: 16.sp,
+  //         ),
+  //         padding: EdgeInsets.all(8.w),
+  //         textAlign: textAlign ?? TextAlign.left,
+  //       ),
+  //       dismissOtherToast: true,
+  //       position: ToastPosition.top,
+  //       duration: const Duration(seconds: 3),
+  //     );
+  //   } catch (e) {
+  //     log.e('SUCCESS [TOAST] ERR :\n$e');
+  //   }
+  // }
 
-      //dismiss before show toast
+  // void toToastInfo(
+  //   BuildContext context, {
+  //   TextAlign? textAlign,
+  // }) {
+  //   try {
+  //     final title = isEmpty ? "info" : this;
 
-      showToastWidget(
-        Chirp(
-          text: title,
-          color: Theme.of(context).colorScheme.primaryFixedDim,
-          icon: Icon(
-            Icons.info,
-            color: Colors.white,
-            size: 16.sp,
-          ),
-          padding: EdgeInsets.all(8.w),
-          textAlign: textAlign ?? TextAlign.left,
-        ),
-        dismissOtherToast: true,
-        position: ToastPosition.top,
-        duration: const Duration(seconds: 3),
-      );
-    } catch (e) {
-      log.e('INFO [TOAST] ERR :\n$e');
-    }
-  }
+  //     showToastWidget(
+  //       Chirp(
+  //         text: title,
+  //         color: context.theme.primaryColor,
+  //         icon: Icon(
+  //           Icons.info,
+  //           color: Colors.white,
+  //           size: 16.sp,
+  //         ),
+  //         padding: EdgeInsets.all(8.w),
+  //         textAlign: textAlign ?? TextAlign.left,
+  //       ),
+  //       dismissOtherToast: true,
+  //       position: ToastPosition.top,
+  //       duration: const Duration(seconds: 3),
+  //     );
+  //   } catch (e) {
+  //     log.e('INFO [TOAST] ERR :\n$e');
+  //   }
+  // }
 
-  void toToastLoading(
-    BuildContext context, {
-    TextAlign? textAlign,
-  }) {
-    try {
-      final title = isEmpty ? "loading" : this;
-      //dismiss before show toast
+  // void toToastLoading(
+  //   BuildContext context, {
+  //   TextAlign? textAlign,
+  // }) {
+  //   try {
+  //     final title = isEmpty ? "loading" : this;
 
-      showToastWidget(
-        Chirp(
-          text: title,
-          color: Theme.of(context).colorScheme.primaryFixedDim,
-          icon: Icon(
-            Icons.info,
-            color: Colors.white,
-            size: 16.sp,
-          ),
-          padding: EdgeInsets.all(8.w),
-          textAlign: textAlign ?? TextAlign.left,
-        ),
-        dismissOtherToast: true,
-        position: ToastPosition.top,
-        duration: const Duration(seconds: 3),
-      );
-    } catch (e) {
-      log.e('LOADING [TOAST] ERR :\n$e');
-    }
-  }
+  //     showToastWidget(
+  //       Chirp(
+  //         text: title,
+  //         color: context.theme.shadowColor,
+  //         icon: Icon(
+  //           Icons.info,
+  //           color: Colors.white,
+  //           size: 16.sp,
+  //         ),
+  //         padding: EdgeInsets.all(8.w),
+  //         textAlign: textAlign ?? TextAlign.left,
+  //       ),
+  //       dismissOtherToast: true,
+  //       position: ToastPosition.top,
+  //       duration: const Duration(seconds: 3),
+  //     );
+  //   } catch (e) {
+  //     log.e('LOADING [TOAST] ERR :\n$e');
+  //   }
+  // }
 
   String sanitize() {
     if (contains('http://127.0.0.1')) {

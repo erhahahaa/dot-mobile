@@ -86,14 +86,15 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
-        state.clubs.add(r);
+        final List<ClubModel> clubs = List.from(state.clubs);
+        clubs.add(r);
 
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
-            clubs: state.clubs,
+            clubs: clubs,
           ),
         );
       },
@@ -113,15 +114,16 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
-        final index = state.clubs.indexWhere((element) => element.id == r.id);
-        state.clubs[index] = r;
+        final List<ClubModel> clubs = List.from(state.clubs);
+        final index = clubs.indexWhere((element) => element.id == r.id);
+        clubs[index] = r;
 
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
-            clubs: state.clubs,
+            clubs: clubs,
           ),
         );
       },
@@ -141,14 +143,15 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
-        state.clubs.removeWhere((element) => element.id == r.id);
+        final List<ClubModel> clubs = List.from(state.clubs);
+        clubs.removeWhere((element) => element.id == r.id);
 
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
-            clubs: state.clubs,
+            clubs: clubs,
           ),
         );
       },
@@ -173,6 +176,61 @@ class ClubCubit extends Cubit<ClubState> {
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> getMembers(PaginationParams params, int clubId) async {
+    final res = await _clubRepo.getMembers(params, clubId);
+
+    res.fold(
+      (l) => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          state: BaseState.failure,
+          failure: l,
+        ),
+      ),
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+            members: r,
+            filteredMembers: r,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> kick(int clubId, int userId) async {
+    final res = await _clubRepo.kick(clubId, userId);
+
+    res.fold(
+      (l) => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          state: BaseState.failure,
+          failure: l,
+        ),
+      ),
+      (r) {
+        log.e(r);
+        final List<UserModel> members = List.from(state.members);
+        members.removeWhere((element) => element.id == r.id);
+
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+            members: members,
           ),
         );
       },

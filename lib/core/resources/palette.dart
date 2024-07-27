@@ -2,8 +2,8 @@ import 'dart:ui';
 
 class Palette {
   Palette._();
-  static const Color primaryLight = Color(0xff3f51b5);
-  static const Color primaryDark = Color(0xff303f9f);
+  static const Color primaryLight = Color(0xff2c3dc8);
+  static const Color primaryDark = Color(0xff2c3dc8);
 
   static const Color accentLight = Color(0xff448aff);
   static const Color accentDark = Color(0xff2979ff);
@@ -11,8 +11,8 @@ class Palette {
   static const Color backgroundLight = Color(0xfff5f6ff);
   static const Color backgroundDark = Color(0xff1e1e2e);
 
-  static const Color cardLight = Color(0xFFE1E4EC);
-  static const Color cardDark = Color(0xff313244);
+  static const Color cardLight = Color(0xffE3E6FF);
+  static const Color cardDark = Color(0xff00031B);
 
   static const Color textLight = Color(0xff1e1e2e);
   static const Color textDark = Color(0xffeff1f5);
@@ -28,7 +28,7 @@ class Palette {
   static const Color roseWaterLight = Color(0xfff9c7b8);
   static const Color flamingoLight = Color(0xffe99696);
   static const Color pinkLight = Color(0xfff18ad2);
-  static const Color mauveLight = Color(0xffa775f9);
+  static const Color mauveLight = Color.fromARGB(255, 28, 16, 48);
   static const Color maroonLight = Color(0xffec6b77);
   static const Color peachLight = Color(0xfffcb466);
   static const Color yellowLight = Color(0xfff6d76d);

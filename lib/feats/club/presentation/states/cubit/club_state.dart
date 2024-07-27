@@ -8,6 +8,8 @@ class ClubState with _$ClubState {
     @Default(UserModel()) UserModel user,
     @Default([]) List<ClubModel> clubs,
     @Default([]) List<ClubModel> filteredClubs,
+    @Default([]) List<UserModel> members,
+    @Default([]) List<UserModel> filteredMembers,
     File? image,
   }) = _ClubState;
 }

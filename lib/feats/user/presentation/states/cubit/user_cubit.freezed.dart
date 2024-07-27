@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserState {
   BaseState get state => throw _privateConstructorUsedError;
   UserModel get user => throw _privateConstructorUsedError;
+  Locale get locale => throw _privateConstructorUsedError;
+  ThemeMode get themeMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserStateCopyWith<UserState> get copyWith =>
@@ -29,7 +31,8 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({BaseState state, UserModel user});
+  $Res call(
+      {BaseState state, UserModel user, Locale locale, ThemeMode themeMode});
 
   $UserModelCopyWith<$Res> get user;
 }
@@ -49,6 +52,8 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   $Res call({
     Object? state = null,
     Object? user = null,
+    Object? locale = null,
+    Object? themeMode = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -59,6 +64,14 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      locale: null == locale
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ) as $Val);
   }
 
@@ -79,7 +92,8 @@ abstract class _$$UserStateImplCopyWith<$Res>
       __$$UserStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BaseState state, UserModel user});
+  $Res call(
+      {BaseState state, UserModel user, Locale locale, ThemeMode themeMode});
 
   @override
   $UserModelCopyWith<$Res> get user;
@@ -98,6 +112,8 @@ class __$$UserStateImplCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
     Object? user = null,
+    Object? locale = null,
+    Object? themeMode = null,
   }) {
     return _then(_$UserStateImpl(
       state: null == state
@@ -108,6 +124,14 @@ class __$$UserStateImplCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      locale: null == locale
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ));
   }
 }
@@ -116,7 +140,10 @@ class __$$UserStateImplCopyWithImpl<$Res>
 
 class _$UserStateImpl implements _UserState {
   const _$UserStateImpl(
-      {this.state = BaseState.initial, this.user = const UserModel()});
+      {this.state = BaseState.initial,
+      this.user = const UserModel(),
+      this.locale = const Locale('en', 'US'),
+      this.themeMode = ThemeMode.system});
 
   @override
   @JsonKey()
@@ -124,10 +151,16 @@ class _$UserStateImpl implements _UserState {
   @override
   @JsonKey()
   final UserModel user;
+  @override
+  @JsonKey()
+  final Locale locale;
+  @override
+  @JsonKey()
+  final ThemeMode themeMode;
 
   @override
   String toString() {
-    return 'UserState(state: $state, user: $user)';
+    return 'UserState(state: $state, user: $user, locale: $locale, themeMode: $themeMode)';
   }
 
   @override
@@ -136,11 +169,14 @@ class _$UserStateImpl implements _UserState {
         (other.runtimeType == runtimeType &&
             other is _$UserStateImpl &&
             (identical(other.state, state) || other.state == state) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.locale, locale) || other.locale == locale) &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state, user);
+  int get hashCode => Object.hash(runtimeType, state, user, locale, themeMode);
 
   @JsonKey(ignore: true)
   @override
@@ -150,13 +186,20 @@ class _$UserStateImpl implements _UserState {
 }
 
 abstract class _UserState implements UserState {
-  const factory _UserState({final BaseState state, final UserModel user}) =
-      _$UserStateImpl;
+  const factory _UserState(
+      {final BaseState state,
+      final UserModel user,
+      final Locale locale,
+      final ThemeMode themeMode}) = _$UserStateImpl;
 
   @override
   BaseState get state;
   @override
   UserModel get user;
+  @override
+  Locale get locale;
+  @override
+  ThemeMode get themeMode;
   @override
   @JsonKey(ignore: true)
   _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>

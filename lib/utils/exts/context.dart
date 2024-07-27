@@ -9,4 +9,7 @@ extension ContextExtensions on BuildContext {
   Strings? get str => Strings.of(this);
 
   Locale get locale => Localizations.localeOf(this);
+
+  Color containerColor(double opacity) =>
+      theme.colorScheme.primaryContainer.withOpacity(opacity);
 }

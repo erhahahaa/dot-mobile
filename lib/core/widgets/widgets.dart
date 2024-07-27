@@ -8,3 +8,4 @@ export 'package:dot_coaching/core/widgets/parent.dart';
 export 'package:dot_coaching/core/widgets/text/text.dart';
 export 'package:dot_coaching/core/widgets/text_f.dart';
 export 'package:dot_coaching/core/widgets/toast.dart';
+export 'package:dot_coaching/core/widgets/gapped_divider.dart';

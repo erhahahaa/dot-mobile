@@ -1,213 +1,134 @@
-// import 'package:dot_coaching/core/core.dart';
-// import 'package:dot_coaching/core/resources/resources.dart';
+// import 'package:dot_coaching/core/resources/palette.dart';
+// import 'package:dot_coaching/utils/utils.dart';
 // import 'package:flutter/material.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// ThemeData lightTheme(BuildContext ctx) {
-//   final theme = Theme.of(ctx);
-//   final textTheme = theme.textTheme;
+// class DotTheme {
+//   final TextTheme textTheme;
 
-//   return ThemeData(
-//     useMaterial3: true,
-//     primaryColor: Palette.primaryLight,
-//     scaffoldBackgroundColor: Palette.backgroundLight,
-//     colorScheme: const ColorScheme.light(
-//       primary: Palette.primaryLight,
-//       secondary: Palette.accentLight,
-//       surface: Palette.backgroundLight,
-//       brightness: Brightness.light,
-//     ),
-//     textTheme: TextTheme(
-//       displayLarge: textTheme.displayLarge?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.displayLarge,
-//       ),
-//       displayMedium: textTheme.displayMedium?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.displayMedium,
-//       ),
-//       displaySmall: textTheme.displaySmall?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.displaySmall,
-//       ),
-//       headlineLarge: textTheme.headlineLarge?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.headingLarge,
-//       ),
-//       headlineMedium: textTheme.headlineMedium?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.headingMedium,
-//       ),
-//       headlineSmall: textTheme.headlineSmall?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.headingSmall,
-//       ),
-//       titleLarge: textTheme.titleLarge?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.titleLarge,
-//       ),
-//       titleMedium: textTheme.titleMedium?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.titleMedium,
-//       ),
-//       titleSmall: textTheme.titleSmall?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.titleSmall,
-//       ),
-//       bodyLarge: textTheme.bodyLarge?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.bodyLarge,
-//       ),
-//       bodyMedium: textTheme.bodyMedium?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.bodyMedium,
-//       ),
-//       bodySmall: textTheme.bodySmall?.copyWith(
-//         color: Palette.textLight,
-//         fontSize: Dimens.bodySmall,
-//       ),
-//     ),
-//     navigationBarTheme: const NavigationBarThemeData(
-//       backgroundColor: Palette.backgroundLight,
-//       indicatorColor: Palette.accentLight,
-//     ),
-//     elevatedButtonTheme: ElevatedButtonThemeData(
-//       style: ElevatedButton.styleFrom(
-//         backgroundColor: Palette.accentLight,
-//         shape: RoundedRectangleBorder(
-//           borderRadius: BorderRadius.circular(Dimens.borderRadiusMedium),
+//   DotTheme(this.textTheme);
+
+//   ThemeData light(BuildContext context) => ThemeData(
+//         useMaterial3: true,
+//         primaryColor: Palette.primaryLight,
+//         disabledColor: Palette.shadowLight,
+//         hintColor: Palette.subTextLight,
+//         cardColor: Palette.cardLight,
+//         scaffoldBackgroundColor: Palette.backgroundLight,
+//         colorScheme: ColorScheme.light().copyWith(
+//           primary: Palette.primaryLight,
 //         ),
-//       ),
-//     ),
-//     brightness: Brightness.light,
-//     iconTheme: const IconThemeData(color: Palette.primaryLight),
-//     visualDensity: VisualDensity.adaptivePlatformDensity,
-//     extensions: const <ThemeExtension<dynamic>>[
-//       AppColors(
-//         background: Palette.backgroundLight,
-//         card: Palette.cardLight,
-//         subtitle: Palette.subTextLight,
-//         shadow: Palette.shadowDark,
-//         green: Palette.greenLight,
-//         roseWater: Palette.roseWaterLight,
-//         flamingo: Palette.flamingoLight,
-//         pink: Palette.pinkLight,
-//         mauve: Palette.mauveLight,
-//         maroon: Palette.maroonLight,
-//         peach: Palette.peachLight,
-//         yellow: Palette.yellowLight,
-//         teal: Palette.tealLight,
-//         sapphire: Palette.sapphireLight,
-//         sky: Palette.skyLight,
-//         blue: Palette.blueLight,
-//         lavender: Palette.lavenderLight,
-//         red: Palette.redLight,
-//       ),
-//     ],
-//   );
-// }
-
-// ThemeData darkTheme(BuildContext ctx) {
-//   final theme = Theme.of(ctx);
-//   final textTheme = theme.textTheme;
-
-//   return ThemeData(
-//     useMaterial3: true,
-//     primaryColor: Palette.primaryDark,
-//     scaffoldBackgroundColor: Palette.backgroundDark,
-//     colorScheme: const ColorScheme.dark(
-//       primary: Palette.primaryDark,
-//       secondary: Palette.accentDark,
-//       surface: Palette.backgroundDark,
-//       brightness: Brightness.dark,
-//     ),
-//     textTheme: TextTheme(
-//       displayLarge: textTheme.displayLarge?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.displayLarge,
-//       ),
-//       displayMedium: textTheme.displayMedium?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.displayMedium,
-//       ),
-//       displaySmall: textTheme.displaySmall?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.displaySmall,
-//       ),
-//       headlineLarge: textTheme.headlineLarge?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.headingLarge,
-//       ),
-//       headlineMedium: textTheme.headlineMedium?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.headingMedium,
-//       ),
-//       headlineSmall: textTheme.headlineSmall?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.headingSmall,
-//       ),
-//       titleLarge: textTheme.titleLarge?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.titleLarge,
-//       ),
-//       titleMedium: textTheme.titleMedium?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.titleMedium,
-//       ),
-//       titleSmall: textTheme.titleSmall?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.titleSmall,
-//       ),
-//       bodyLarge: textTheme.bodyLarge?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.bodyLarge,
-//       ),
-//       bodyMedium: textTheme.bodyMedium?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.bodyMedium,
-//       ),
-//       bodySmall: textTheme.bodySmall?.copyWith(
-//         color: Palette.tealDark,
-//         fontSize: Dimens.bodySmall,
-//       ),
-//     ),
-//     navigationBarTheme: const NavigationBarThemeData(
-//       backgroundColor: Palette.backgroundDark,
-//       indicatorColor: Palette.accentDark,
-//     ),
-//     elevatedButtonTheme: ElevatedButtonThemeData(
-//       style: ElevatedButton.styleFrom(
-//         backgroundColor: Palette.accentDark,
-//         shape: RoundedRectangleBorder(
-//           borderRadius: BorderRadius.circular(Dimens.borderRadiusMedium),
+//         textTheme: textTheme.apply(
+//           bodyColor: context.theme.colorScheme.onSurface,
+//           displayColor: context.theme.colorScheme.onSurface,
 //         ),
-//       ),
-//     ),
-//     brightness: Brightness.dark,
-//     iconTheme: const IconThemeData(color: Palette.primaryDark),
-//     visualDensity: VisualDensity.adaptivePlatformDensity,
-//     extensions: const <ThemeExtension<dynamic>>[
-//       AppColors(
-//         background: Palette.backgroundDark,
-//         card: Palette.cardDark,
-//         subtitle: Palette.subTextDark,
-//         shadow: Palette.shadowDark,
-//         green: Palette.greenDark,
-//         roseWater: Palette.roseWaterDark,
-//         flamingo: Palette.flamingoDark,
-//         pink: Palette.pinkDark,
-//         mauve: Palette.mauveDark,
-//         maroon: Palette.maroonDark,
-//         peach: Palette.peachDark,
-//         yellow: Palette.yellowDark,
-//         teal: Palette.tealDark,
-//         sapphire: Palette.sapphireDark,
-//         sky: Palette.skyDark,
-//         blue: Palette.blueDark,
-//         lavender: Palette.lavenderDark,
-//         red: Palette.redDark,
-//       ),
-//     ],
-//   );
+//         elevatedButtonTheme: ElevatedButtonThemeData(
+//           style: ButtonStyle(
+//             backgroundColor: WidgetStateProperty.all<Color>(
+//               context.theme.colorScheme.primary,
+//             ),
+//             textStyle: WidgetStateProperty.all<TextStyle>(
+//               textTheme.titleMedium!.copyWith(
+//                 color: context.theme.colorScheme.onPrimary,
+//               ),
+//             ),
+//             shape: WidgetStateProperty.all<OutlinedBorder>(
+//               RoundedRectangleBorder(
+//                 borderRadius: BorderRadius.circular(8.r),
+//               ),
+//             ),
+//           ),
+//         ),
+//         brightness: Brightness.light,
+//         iconTheme: const IconThemeData(color: Palette.primaryLight),
+//         visualDensity: VisualDensity.adaptivePlatformDensity,
+//         extensions: const <ThemeExtension<dynamic>>[
+//           AppColors(
+//             background: Palette.backgroundLight,
+//             card: Palette.cardLight,
+//             subtitle: Palette.subTextLight,
+//             shadow: Palette.shadowDark,
+//             green: Palette.greenLight,
+//             roseWater: Palette.roseWaterLight,
+//             flamingo: Palette.flamingoLight,
+//             pink: Palette.pinkLight,
+//             mauve: Palette.mauveLight,
+//             maroon: Palette.maroonLight,
+//             peach: Palette.peachLight,
+//             yellow: Palette.yellowLight,
+//             teal: Palette.tealLight,
+//             sapphire: Palette.sapphireLight,
+//             sky: Palette.skyLight,
+//             blue: Palette.blueLight,
+//             lavender: Palette.lavenderLight,
+//             red: Palette.redLight,
+//             text: Palette.textLight,
+//             subText: Palette.subTextLight,
+//           ),
+//         ],
+//       );
+
+//   ThemeData dark(BuildContext context) => ThemeData(
+//         useMaterial3: true,
+//         brightness: Brightness.dark,
+//         colorScheme: ColorScheme.dark().copyWith(
+//           primary: Palette.primaryDark,
+//         ),
+//         textTheme: textTheme.apply(
+//           bodyColor: context.theme.colorScheme.onSurface,
+//           displayColor: context.theme.colorScheme.onSurface,
+//         ),
+//         scaffoldBackgroundColor: Palette.backgroundDark,
+//         primaryColor: Palette.primaryDark,
+//         disabledColor: Palette.shadowDark,
+//         hintColor: Palette.subTextDark,
+//         cardColor: Palette.cardDark,
+//         elevatedButtonTheme: ElevatedButtonThemeData(
+//           style: ButtonStyle(
+//             backgroundColor: WidgetStateProperty.all<Color>(
+//               context.theme.colorScheme.primary,
+//             ),
+//             textStyle: WidgetStateProperty.all<TextStyle>(
+//               textTheme.titleMedium!.copyWith(
+//                 color: context.theme.colorScheme.onPrimary,
+//               ),
+//             ),
+//             shape: WidgetStateProperty.all<OutlinedBorder>(
+//               RoundedRectangleBorder(
+//                 borderRadius: BorderRadius.circular(8.r),
+//               ),
+//             ),
+//           ),
+//         ),
+//         iconTheme: const IconThemeData(color: Palette.primaryDark),
+//         visualDensity: VisualDensity.adaptivePlatformDensity,
+//         extensions: const <ThemeExtension<dynamic>>[
+//           AppColors(
+//             background: Palette.backgroundDark,
+//             card: Palette.cardDark,
+//             subtitle: Palette.subTextDark,
+//             shadow: Palette.shadowDark,
+//             green: Palette.greenDark,
+//             roseWater: Palette.roseWaterDark,
+//             flamingo: Palette.flamingoDark,
+//             pink: Palette.pinkDark,
+//             mauve: Palette.mauveDark,
+//             maroon: Palette.maroonDark,
+//             peach: Palette.peachDark,
+//             yellow: Palette.yellowDark,
+//             teal: Palette.tealDark,
+//             sapphire: Palette.sapphireDark,
+//             sky: Palette.skyDark,
+//             blue: Palette.blueDark,
+//             lavender: Palette.lavenderDark,
+//             red: Palette.redDark,
+//             text: Palette.textDark,
+//             subText: Palette.subTextDark,
+//           ),
+//         ],
+//       );
+
+//   ThemeData theme(ColorScheme colorScheme) => ThemeData();
 // }
 
 // class AppColors extends ThemeExtension<AppColors> {
@@ -230,6 +151,8 @@
 //   final Color? blue;
 //   final Color? lavender;
 //   final Color? red;
+//   final Color? text;
+//   final Color? subText;
 
 //   const AppColors({
 //     this.background,
@@ -251,6 +174,8 @@
 //     this.blue,
 //     this.lavender,
 //     this.red,
+//     this.text,
+//     this.subText,
 //   });
 
 //   @override
@@ -274,6 +199,8 @@
 //     Color? blue,
 //     Color? lavender,
 //     Color? red,
+//     Color? text,
+//     Color? subText,
 //   }) {
 //     return AppColors(
 //       background: background ?? this.background,
@@ -295,6 +222,8 @@
 //       blue: blue ?? this.blue,
 //       lavender: lavender ?? this.lavender,
 //       red: red ?? this.red,
+//       text: text ?? this.text,
+//       subText: subText ?? this.subText,
 //     );
 //   }
 
@@ -326,6 +255,8 @@
 //       lavender: Color.lerp(lavender, other.lavender, t),
 //       sky: Color.lerp(sky, other.sky, t),
 //       red: Color.lerp(red, other.red, t),
+//       text: Color.lerp(text, other.text, t),
+//       subText: Color.lerp(subText, other.subText, t),
 //     );
 //   }
 // }

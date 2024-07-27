@@ -91,12 +91,17 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
       body: BlocConsumer<ClubCubit, ClubState>(
         listener: (context, state) {
           if (state.state == BaseState.failure) {
-            (msg?.failedCreateClub ?? 'Failed create club')
-                .toToastError(context);
+            ToastModel(
+              message: msg?.failedCreateClub,
+              type: ToastType.error,
+            ).fire(context);
           }
           if (state.state == BaseState.success) {
-            (msg?.successCreateClub ?? 'Success create club')
-                .toToastSuccess(context);
+            ToastModel(
+              message: msg?.successCreateClub,
+              type: ToastType.success,
+            ).fire(context);
+
             context.read<ClubCubit>().emitCaller(
                   state.copyWith(
                     state: BaseState.initial,
@@ -260,10 +265,9 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
         ),
       );
     } else {
-      imageWidget = Assets.images.dotLogo.image();
+      imageWidget = Assets.images.placeholder.placeholder.image();
     }
 
-// clip image to circle
     return ClipOval(
       child: imageWidget,
     );

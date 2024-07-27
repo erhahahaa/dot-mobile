@@ -1,14 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserCard extends StatelessWidget {
-  final bool withHello;
-  final String name;
+  final bool isHome;
+  final UserModel user;
   const UserCard({
     super.key,
-    this.withHello = true,
-    this.name = "Folks",
+    this.isHome = true,
+    required this.user,
   });
 
   @override
@@ -30,17 +33,37 @@ class UserCard extends StatelessWidget {
           ),
         ],
       ),
-      child: withHello ? _buildRow(theme) : _buildColumn(theme),
+      child: isHome ? _buildHome(theme) : _buildProfile(theme),
     );
   }
 
-  Widget _buildColumn(ThemeData theme) {
-    return const Column(
-      children: [],
+  Widget _buildProfile(ThemeData theme) {
+    return Row(
+      children: [
+        CachedNetworkImage(
+          width: 64.w,
+          height: 64.w,
+          imageUrl: user.image,
+          placeholder: (context, url) => const CircularProgressIndicator(),
+          errorWidget: (context, url, error) => Text(
+            error.toString(),
+          ),
+        ),
+        SizedBox(width: 8.w),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            H2Text(user.name),
+            SizedBox(height: 4.h),
+            H6Text(user.expertise ?? "No expertise"),
+          ],
+        ),
+      ],
     );
   }
 
-  Widget _buildRow(ThemeData theme) {
+  Widget _buildHome(ThemeData theme) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -55,7 +78,7 @@ class UserCard extends StatelessWidget {
               ),
             ),
             Text(
-              name,
+              user.name.split(" ").first,
               style: theme.textTheme.titleLarge?.copyWith(
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w600,

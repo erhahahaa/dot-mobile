@@ -40,30 +40,35 @@ class DotApp extends StatelessWidget {
           builder: (ctx, child) {
             AppRouter.setStream(ctx);
 
-            return MaterialApp.router(
-              title: AppConstants.APP_NAME,
-              routerConfig: AppRouter.router,
-              restorationScopeId: 'hatofitApp',
-              localizationsDelegates: const [
-                Strings.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              debugShowCheckedModeBanner: false,
-              builder: (c, child) {
-                return MediaQuery(
-                  data: MediaQuery.of(c).copyWith(
-                    textScaler: const TextScaler.linear(1),
-                    alwaysUse24HourFormat: true,
-                  ),
-                  child: child!,
+            return BlocBuilder<UserCubit, UserState>(
+              builder: (_, state) { 
+                return MaterialApp.router(
+                  title: AppConstants.APP_NAME,
+                  routerConfig: AppRouter.router,
+                  restorationScopeId: 'hatofitApp',
+                  localizationsDelegates: const [
+                    Strings.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  debugShowCheckedModeBanner: false,
+                  builder: (c, child) {
+                    return MediaQuery(
+                      data: MediaQuery.of(c).copyWith(
+                        textScaler: const TextScaler.linear(1),
+                        alwaysUse24HourFormat: true,
+                      ),
+                      child: child!,
+                    );
+                  },
+                  theme: theme.light(),
+                  darkTheme: theme.dark(),
+                  themeMode: state.themeMode,
+                  supportedLocales: L10n.all,
+                  locale: state.locale,
                 );
               },
-              theme: theme.light(),
-              darkTheme: theme.dark(),
-              themeMode: ThemeMode.system,
-              supportedLocales: L10n.all,
             );
           },
         ),

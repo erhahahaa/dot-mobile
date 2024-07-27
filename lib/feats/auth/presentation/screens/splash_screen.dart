@@ -15,7 +15,10 @@ class SplashScreen extends StatelessWidget {
       listener: (BuildContext context, AuthState state) {
         final failure = state.failure;
         if (failure != null) {
-          failure.message.toToastError(context);
+          ToastModel(
+            message: failure.message,
+            type: ToastType.error,
+          ).fire(context);
         }
         if (state.status == AuthStatus.unauthenticated) {
           context.goNamed(AppRoutes.authSignIn.name);

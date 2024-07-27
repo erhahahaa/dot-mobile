@@ -4,7 +4,7 @@ import 'package:dot_coaching/feats/feats.dart';
 
 abstract class ClubRepo {
   Future<Either<Failure, List<ClubModel>>> getAll(
-    PaginationParams params, 
+    PaginationParams params,
   );
   Future<Either<Failure, ClubModel>> getById(
     ByIdParams params,
@@ -17,5 +17,14 @@ abstract class ClubRepo {
   );
   Future<Either<Failure, ClubModel>> delete(
     ByIdParams params,
+  );
+  Future<Either<Failure, List<UserModel>>> getMembers(
+    PaginationParams params,
+    int clubId,
+  );
+
+  Future<Either<Failure, UserModel>> kick(
+    int clubId,
+    int userId,
   );
 }

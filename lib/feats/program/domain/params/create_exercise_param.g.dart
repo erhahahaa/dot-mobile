@@ -10,6 +10,7 @@ _$CreateProgramExerciseParamsImpl _$$CreateProgramExerciseParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateProgramExerciseParamsImpl(
       programId: (json['programId'] as num?)?.toInt() ?? 0,
+      mediaId: (json['mediaId'] as num?)?.toInt() ?? 0,
       name: json['name'] as String? ?? '',
       description: json['description'] as String? ?? '',
       repetition: (json['repetition'] as num?)?.toInt() ?? 0,
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$CreateProgramExerciseParamsImplToJson(
         _$CreateProgramExerciseParamsImpl instance) =>
     <String, dynamic>{
       'programId': instance.programId,
+      'mediaId': instance.mediaId,
       'name': instance.name,
       'description': instance.description,
       'repetition': instance.repetition,

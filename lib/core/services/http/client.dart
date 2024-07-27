@@ -22,7 +22,7 @@ class DioClient with FirebaseCrashLogger {
         _auth = token.first.token;
       }
       _dio = _createDio();
-      // _dio.interceptors.add(DioInterceptor());
+      _dio.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
@@ -35,7 +35,7 @@ class DioClient with FirebaseCrashLogger {
         _auth = token.first.token;
       }
       _dio = _createDio();
-      // _dio.interceptors.add(DioInterceptor());
+      _dio.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
@@ -52,8 +52,8 @@ class DioClient with FirebaseCrashLogger {
               'Authorization': "Bearer $_auth",
             },
           },
-          receiveTimeout: const Duration(minutes: 1),
-          connectTimeout: const Duration(minutes: 1),
+          receiveTimeout: const Duration(minutes: 10),
+          connectTimeout: const Duration(minutes: 10),
           validateStatus: (int? status) {
             return status! > 0;
           },

@@ -113,4 +113,36 @@ class ClubRepoImpl implements ClubRepo {
 
     return res;
   }
+
+  @override
+  Future<Either<Failure, List<UserModel>>> getMembers(
+    PaginationParams params,
+    int clubId,
+  ) async {
+    final res = await _remote.getRequest(
+      '${ListAPI.CLUB}/$clubId/members',
+      converter: (res) {
+        final List<UserModel> users = [];
+        for (final item in res['data']) {
+          users.add(UserModel.fromJson(item));
+        }
+        return users;
+      },
+    );
+
+    return res;
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> kick(
+    int clubId,
+    int userId,
+  ) async {
+    final res = await _remote.getRequest(
+      '${ListAPI.CLUB}/$clubId/kick/$userId',
+      converter: (res) => UserModel.fromJson(res['data']),
+    );
+
+    return res;
+  }
 }

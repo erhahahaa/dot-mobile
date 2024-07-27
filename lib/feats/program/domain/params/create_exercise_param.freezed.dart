@@ -22,6 +22,7 @@ CreateProgramExerciseParams _$CreateProgramExerciseParamsFromJson(
 /// @nodoc
 mixin _$CreateProgramExerciseParams {
   int get programId => throw _privateConstructorUsedError;
+  int get mediaId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   int get repetition => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $CreateProgramExerciseParamsCopyWith<$Res> {
   @useResult
   $Res call(
       {int programId,
+      int mediaId,
       String name,
       String description,
       int repetition,
@@ -66,6 +68,7 @@ class _$CreateProgramExerciseParamsCopyWithImpl<$Res,
   @override
   $Res call({
     Object? programId = null,
+    Object? mediaId = null,
     Object? name = null,
     Object? description = null,
     Object? repetition = null,
@@ -76,6 +79,10 @@ class _$CreateProgramExerciseParamsCopyWithImpl<$Res,
       programId: null == programId
           ? _value.programId
           : programId // ignore: cast_nullable_to_non_nullable
+              as int,
+      mediaId: null == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
@@ -112,6 +119,7 @@ abstract class _$$CreateProgramExerciseParamsImplCopyWith<$Res>
   @useResult
   $Res call(
       {int programId,
+      int mediaId,
       String name,
       String description,
       int repetition,
@@ -133,6 +141,7 @@ class __$$CreateProgramExerciseParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? programId = null,
+    Object? mediaId = null,
     Object? name = null,
     Object? description = null,
     Object? repetition = null,
@@ -143,6 +152,10 @@ class __$$CreateProgramExerciseParamsImplCopyWithImpl<$Res>
       programId: null == programId
           ? _value.programId
           : programId // ignore: cast_nullable_to_non_nullable
+              as int,
+      mediaId: null == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
@@ -174,6 +187,7 @@ class _$CreateProgramExerciseParamsImpl
     implements _CreateProgramExerciseParams {
   const _$CreateProgramExerciseParamsImpl(
       {this.programId = 0,
+      this.mediaId = 0,
       this.name = '',
       this.description = '',
       this.repetition = 0,
@@ -187,6 +201,9 @@ class _$CreateProgramExerciseParamsImpl
   @override
   @JsonKey()
   final int programId;
+  @override
+  @JsonKey()
+  final int mediaId;
   @override
   @JsonKey()
   final String name;
@@ -205,7 +222,7 @@ class _$CreateProgramExerciseParamsImpl
 
   @override
   String toString() {
-    return 'CreateProgramExerciseParams(programId: $programId, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest)';
+    return 'CreateProgramExerciseParams(programId: $programId, mediaId: $mediaId, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest)';
   }
 
   @override
@@ -215,6 +232,7 @@ class _$CreateProgramExerciseParamsImpl
             other is _$CreateProgramExerciseParamsImpl &&
             (identical(other.programId, programId) ||
                 other.programId == programId) &&
+            (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -226,8 +244,8 @@ class _$CreateProgramExerciseParamsImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, programId, name, description, repetition, sets, rest);
+  int get hashCode => Object.hash(runtimeType, programId, mediaId, name,
+      description, repetition, sets, rest);
 
   @JsonKey(ignore: true)
   @override
@@ -248,6 +266,7 @@ abstract class _CreateProgramExerciseParams
     implements CreateProgramExerciseParams {
   const factory _CreateProgramExerciseParams(
       {final int programId,
+      final int mediaId,
       final String name,
       final String description,
       final int repetition,
@@ -259,6 +278,8 @@ abstract class _CreateProgramExerciseParams
 
   @override
   int get programId;
+  @override
+  int get mediaId;
   @override
   String get name;
   @override

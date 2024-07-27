@@ -26,6 +26,7 @@ enum AppRoutes {
 
   // Athlete Profile
   athleteProfile('/profile'),
+  athleteEditProfile('/profile/edit'),
 
   // Coach Dashboard
   coachDashboard('/coach/club'),

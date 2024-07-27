@@ -15,10 +15,17 @@ class SignUpScreen extends StatelessWidget {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state.state == BaseState.failure || state.failure != null) {
-          msg?.failedSignUp.toToastError(context);
+          ToastModel(
+            message: context.str?.failedSignUp,
+            type: ToastType.error,
+          ).fire(context);
         }
         if (state.status == AuthStatus.authenticated) {
-          msg?.successSignUp.toToastSuccess(context);
+          ToastModel(
+            message: context.str?.successSignUp,
+            type: ToastType.success,
+          ).fire(context);
+
           context.read<AuthCubit>().clear();
           context.pushReplacementNamed(AppRoutes.authSignIn.name);
         }

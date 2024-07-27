@@ -128,6 +128,17 @@ class _ExerciseFormState extends State<ExerciseForm> {
                 );
               }
 
+              for (ExerciseItem item in _items) {
+                if (item.media == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Please select an image for each exercise'),
+                    ),
+                  );
+                  return;
+                }
+              }
+
               if (_formKey.currentState?.validate() ?? false) {
                 final List<CreateProgramExerciseParams> exercises = [];
                 for (ExerciseItem item in _items) {
@@ -139,6 +150,7 @@ class _ExerciseFormState extends State<ExerciseForm> {
                       rest: int.parse(item.restCon.text),
                       description: item.descriptionCon.text,
                       programId: widget.program.id,
+                      mediaId: item.media?.id ?? 0,
                     ),
                   );
                 }
@@ -313,15 +325,49 @@ class _ExerciseFormState extends State<ExerciseForm> {
                         if (_items[index].isExpanded) ...[
                           SizedBox(height: 16.h),
                           InkWell(
-                            onTap: () {
-                              showAdaptiveDialog(
+                            onTap: () async {
+                              final picked =
+                                  await showAdaptiveDialog<MediaModel>(
                                 context: context,
-                                builder: (context) {
+                                builder: (_) {
                                   return Dialog(
-                                    child: Container(),
+                                    child: Container(
+                                        padding: EdgeInsets.all(16.w),
+                                        child: BlocProvider.value(
+                                          value: context.read<MediaCubit>(),
+                                          child: BlocBuilder<MediaCubit,
+                                              MediaState>(
+                                            builder: (context, state) {
+                                              return AssetTab(
+                                                showUploadButton: false,
+                                                clubId: widget.program.clubId,
+                                                clubMedias: state.clubMedias,
+                                                programMedias:
+                                                    state.programMedias,
+                                                exerciseMedias:
+                                                    state.exerciseMedias,
+                                                examMedias: state.examMedias,
+                                                questionMedias:
+                                                    state.questionMedias,
+                                                onTap: (media) {
+                                                  Navigator.of(context)
+                                                      .pop(media);
+                                                },
+                                              );
+                                            },
+                                          ),
+                                        )),
                                   );
                                 },
                               );
+
+                              log.f('picked: $picked');
+
+                              if (picked != null) {
+                                setState(() {
+                                  _items[index].media = picked;
+                                });
+                              }
                             },
                             child: Container(
                               width: 310.w,
@@ -331,7 +377,11 @@ class _ExerciseFormState extends State<ExerciseForm> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(12.r),
                               ),
-                              child: Assets.images.dotLogo.image(),
+                              child: _items[index].media != null
+                                  ? _items[index].media!.determineLoader(
+                                      width: 310.w, height: 210.h)
+                                  : Assets.images.placeholder.placeholder
+                                      .image(),
                             ),
                           ),
                           SizedBox(height: 16.h),
@@ -507,6 +557,7 @@ class _ExerciseFormState extends State<ExerciseForm> {
 
 class ExerciseItem {
   ProgramExerciseModel exercise;
+  MediaModel? media;
 
   FocusNode nameFN;
   FocusNode setsFN;
@@ -535,6 +586,7 @@ class ExerciseItem {
     required this.restCon,
     required this.descriptionCon,
     this.isExpanded = false,
+    this.media,
   });
 
   void dispose() {

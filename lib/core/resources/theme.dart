@@ -1,3 +1,4 @@
+import "package:dot_coaching/core/core.dart";
 import "package:flutter/material.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
 
@@ -9,10 +10,10 @@ class MaterialTheme {
   static ColorScheme lightScheme() {
     return const ColorScheme(
       brightness: Brightness.light,
-      primary: Color(0xff2c3dc8),
-      surfaceTint: Color(0xff3d4dd7),
+      primary: Color(0xff5868F1),
+      surfaceTint: Color(0xff5868F1),
       onPrimary: Color(0xffffffff),
-      primaryContainer: Color(0xff5666ef),
+      primaryContainer: Color(0xff8a96f8),
       onPrimaryContainer: Color(0xffffffff),
       secondary: Color(0xff8c5006),
       onSecondary: Color(0xffffffff),
@@ -26,7 +27,7 @@ class MaterialTheme {
       onError: Color(0xffffffff),
       errorContainer: Color(0xffffdad6),
       onErrorContainer: Color(0xff410002),
-      surface: Color(0xfffbf8ff),
+      surface: Palette.accentDark,
       onSurface: Color(0xff1a1b23),
       onSurfaceVariant: Color(0xff454654),
       outline: Color(0xff757686),
@@ -57,17 +58,42 @@ class MaterialTheme {
     );
   }
 
+  static const lightExtensions = [
+    AppColors(
+      background: Palette.backgroundLight,
+      card: Palette.cardLight,
+      subtitle: Palette.subTextLight,
+      shadow: Palette.shadowDark,
+      green: Palette.greenLight,
+      roseWater: Palette.roseWaterLight,
+      flamingo: Palette.flamingoLight,
+      pink: Palette.pinkLight,
+      mauve: Palette.mauveLight,
+      maroon: Palette.maroonLight,
+      peach: Palette.peachLight,
+      yellow: Palette.yellowLight,
+      teal: Palette.tealLight,
+      sapphire: Palette.sapphireLight,
+      sky: Palette.skyLight,
+      blue: Palette.blueLight,
+      lavender: Palette.lavenderLight,
+      red: Palette.redLight,
+      text: Palette.textLight,
+      subText: Palette.subTextLight,
+    ),
+  ];
+
   ThemeData light() {
-    return theme(lightScheme());
+    return theme(lightScheme(), lightExtensions);
   }
 
   static ColorScheme darkScheme() {
     return const ColorScheme(
       brightness: Brightness.dark,
-      primary: Color(0xffbdc2ff),
-      surfaceTint: Color(0xffbdc2ff),
-      onPrimary: Color(0xff00149e),
-      primaryContainer: Color(0xff4e5ee7),
+      primary: Color(0xff5868F1),
+      surfaceTint: Color(0xff5868F1),
+      onPrimary: Color(0xffc2c7ff),
+      primaryContainer: Color(0xff3d4dd7),
       onPrimaryContainer: Color(0xffffffff),
       secondary: Color(0xffffcea5),
       onSecondary: Color(0xff4b2800),
@@ -112,11 +138,40 @@ class MaterialTheme {
     );
   }
 
+  static const darkExtensions = [
+    AppColors(
+      background: Palette.backgroundDark,
+      card: Palette.cardDark,
+      subtitle: Palette.subTextDark,
+      shadow: Palette.shadowDark,
+      green: Palette.greenDark,
+      roseWater: Palette.roseWaterDark,
+      flamingo: Palette.flamingoDark,
+      pink: Palette.pinkDark,
+      mauve: Palette.mauveDark,
+      maroon: Palette.maroonDark,
+      peach: Palette.peachDark,
+      yellow: Palette.yellowDark,
+      teal: Palette.tealDark,
+      sapphire: Palette.sapphireDark,
+      sky: Palette.skyDark,
+      blue: Palette.blueDark,
+      lavender: Palette.lavenderDark,
+      red: Palette.redDark,
+      text: Palette.textDark,
+      subText: Palette.subTextDark,
+    ),
+  ];
+
   ThemeData dark() {
-    return theme(darkScheme());
+    return theme(darkScheme(), darkExtensions);
   }
 
-  ThemeData theme(ColorScheme colorScheme) => ThemeData(
+  ThemeData theme(
+    ColorScheme colorScheme,
+    Iterable<ThemeExtension<dynamic>>? extensions,
+  ) =>
+      ThemeData(
         useMaterial3: true,
         brightness: colorScheme.brightness,
         colorScheme: colorScheme,
@@ -126,10 +181,11 @@ class MaterialTheme {
         ),
         scaffoldBackgroundColor: colorScheme.surface,
         canvasColor: colorScheme.surface,
+        cardColor: colorScheme.surface,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all<Color>(
-              colorScheme.primary,
+              Palette.primaryLight,
             ),
             textStyle: WidgetStateProperty.all<TextStyle>(
               textTheme.titleMedium!.copyWith(
@@ -143,156 +199,136 @@ class MaterialTheme {
             ),
           ),
         ),
+        extensions: extensions,
       );
-
-  /// Purple
-  static const purple = ExtendedColor(
-    seed: Color(0xff763ad8),
-    value: Color(0xff763ad8),
-    light: ColorFamily(
-      color: Color(0xff6019c1),
-      onColor: Color(0xffffffff),
-      colorContainer: Color(0xff854ce8),
-      onColorContainer: Color(0xffffffff),
-    ),
-    dark: ColorFamily(
-      color: Color(0xffd4bbff),
-      onColor: Color(0xff40008c),
-      colorContainer: Color(0xff6d2fcf),
-      onColorContainer: Color(0xfffffeff),
-    ),
-  );
-
-  /// Teal
-  static const teal = ExtendedColor(
-    seed: Color(0xff009bcc),
-    value: Color(0xff009bcc),
-    light: ColorFamily(
-      color: Color(0xff006687),
-      onColor: Color(0xffffffff),
-      colorContainer: Color(0xff29a9da),
-      onColorContainer: Color(0xff00111a),
-    ),
-    dark: ColorFamily(
-      color: Color(0xff74d1ff),
-      onColor: Color(0xff003548),
-      colorContainer: Color(0xff007ea6),
-      onColorContainer: Color(0xffffffff),
-    ),
-  );
-
-  /// Green
-  static const green = ExtendedColor(
-    seed: Color(0xff28aa64),
-    value: Color(0xff28aa64),
-    light: ColorFamily(
-      color: Color(0xff006d3b),
-      onColor: Color(0xffffffff),
-      colorContainer: Color(0xff3ab770),
-      onColorContainer: Color(0xff001b0b),
-    ),
-    dark: ColorFamily(
-      color: Color(0xff64dd91),
-      onColor: Color(0xff00391c),
-      colorContainer: Color(0xff00864a),
-      onColorContainer: Color(0xffffffff),
-    ),
-  );
-
-  List<ExtendedColor> get extendedColors => [
-        purple,
-        teal,
-        green,
-      ];
 }
 
 class AppColors extends ThemeExtension<AppColors> {
-  final ColorFamily? purple;
-  final ColorFamily? teal;
-  final ColorFamily? green;
+  final Color? background;
+  final Color? card;
+  final Color? buttonText;
+  final Color? subtitle;
+  final Color? shadow;
+  final Color? green;
+  final Color? roseWater;
+  final Color? flamingo;
+  final Color? pink;
+  final Color? mauve;
+  final Color? maroon;
+  final Color? peach;
+  final Color? yellow;
+  final Color? teal;
+  final Color? sky;
+  final Color? sapphire;
+  final Color? blue;
+  final Color? lavender;
+  final Color? red;
+  final Color? text;
+  final Color? subText;
 
-  const AppColors({this.purple, this.teal, this.green});
+  const AppColors({
+    this.background,
+    this.card,
+    this.buttonText,
+    this.subtitle,
+    this.shadow,
+    this.green,
+    this.roseWater,
+    this.flamingo,
+    this.pink,
+    this.mauve,
+    this.maroon,
+    this.peach,
+    this.yellow,
+    this.teal,
+    this.sapphire,
+    this.sky,
+    this.blue,
+    this.lavender,
+    this.red,
+    this.text,
+    this.subText,
+  });
 
   @override
   ThemeExtension<AppColors> copyWith({
-    ColorFamily? purple,
-    ColorFamily? teal,
-    ColorFamily? green,
-  }) =>
-      AppColors(
-        purple: purple ?? this.purple,
-        teal: teal ?? this.teal,
-        green: green ?? this.green,
-      );
+    Color? background,
+    Color? card,
+    Color? buttonText,
+    Color? subtitle,
+    Color? shadow,
+    Color? green,
+    Color? roseWater,
+    Color? flamingo,
+    Color? pink,
+    Color? mauve,
+    Color? maroon,
+    Color? peach,
+    Color? yellow,
+    Color? teal,
+    Color? sky,
+    Color? sapphire,
+    Color? blue,
+    Color? lavender,
+    Color? red,
+    Color? text,
+    Color? subText,
+  }) {
+    return AppColors(
+      background: background ?? this.background,
+      card: card ?? this.card,
+      buttonText: buttonText ?? this.buttonText,
+      subtitle: subtitle ?? this.subtitle,
+      shadow: shadow ?? this.shadow,
+      green: green ?? this.green,
+      roseWater: roseWater ?? this.roseWater,
+      flamingo: flamingo ?? this.flamingo,
+      pink: pink ?? this.pink,
+      mauve: mauve ?? this.mauve,
+      maroon: maroon ?? this.maroon,
+      peach: peach ?? this.peach,
+      yellow: yellow ?? this.yellow,
+      teal: teal ?? this.teal,
+      sky: sky ?? this.sky,
+      sapphire: sapphire ?? this.sapphire,
+      blue: blue ?? this.blue,
+      lavender: lavender ?? this.lavender,
+      red: red ?? this.red,
+      text: text ?? this.text,
+      subText: subText ?? this.subText,
+    );
+  }
 
   @override
   ThemeExtension<AppColors> lerp(
     covariant ThemeExtension<AppColors>? other,
     double t,
   ) {
-    if (other is! AppColors) return this;
-
+    if (other is! AppColors) {
+      return this;
+    }
     return AppColors(
-      purple: ColorFamily(
-        color: Color.lerp(purple!.color, other.purple!.color, t)!,
-        onColor: Color.lerp(purple!.onColor, other.purple!.onColor, t)!,
-        colorContainer: Color.lerp(
-            purple!.colorContainer, other.purple!.colorContainer, t)!,
-        onColorContainer: Color.lerp(
-          purple!.onColorContainer,
-          other.purple!.onColorContainer,
-          t,
-        )!,
-      ),
-      teal: ColorFamily(
-        color: Color.lerp(teal!.color, other.teal!.color, t)!,
-        onColor: Color.lerp(teal!.onColor, other.teal!.onColor, t)!,
-        colorContainer:
-            Color.lerp(teal!.colorContainer, other.teal!.colorContainer, t)!,
-        onColorContainer: Color.lerp(
-          teal!.onColorContainer,
-          other.teal!.onColorContainer,
-          t,
-        )!,
-      ),
-      green: ColorFamily(
-        color: Color.lerp(green!.color, other.green!.color, t)!,
-        onColor: Color.lerp(green!.onColor, other.green!.onColor, t)!,
-        colorContainer:
-            Color.lerp(green!.colorContainer, other.green!.colorContainer, t)!,
-        onColorContainer: Color.lerp(
-          green!.onColorContainer,
-          other.green!.onColorContainer,
-          t,
-        )!,
-      ),
+      background: Color.lerp(background, other.background, t),
+      card: Color.lerp(card, other.card, t),
+      buttonText: Color.lerp(buttonText, other.buttonText, t),
+      subtitle: Color.lerp(subtitle, other.subtitle, t),
+      shadow: Color.lerp(shadow, other.shadow, t),
+      green: Color.lerp(green, other.green, t),
+      roseWater: Color.lerp(roseWater, other.roseWater, t),
+      flamingo: Color.lerp(flamingo, other.flamingo, t),
+      pink: Color.lerp(pink, other.pink, t),
+      mauve: Color.lerp(mauve, other.mauve, t),
+      maroon: Color.lerp(maroon, other.maroon, t),
+      peach: Color.lerp(peach, other.peach, t),
+      yellow: Color.lerp(yellow, other.yellow, t),
+      teal: Color.lerp(teal, other.teal, t),
+      sapphire: Color.lerp(sapphire, other.sapphire, t),
+      blue: Color.lerp(blue, other.blue, t),
+      lavender: Color.lerp(lavender, other.lavender, t),
+      sky: Color.lerp(sky, other.sky, t),
+      red: Color.lerp(red, other.red, t),
+      text: Color.lerp(text, other.text, t),
+      subText: Color.lerp(subText, other.subText, t),
     );
   }
-}
-
-class ExtendedColor {
-  final Color seed, value;
-  final ColorFamily light;
-  final ColorFamily dark;
-
-  const ExtendedColor({
-    required this.seed,
-    required this.value,
-    required this.light,
-    required this.dark,
-  });
-}
-
-class ColorFamily {
-  const ColorFamily({
-    required this.color,
-    required this.onColor,
-    required this.colorContainer,
-    required this.onColorContainer,
-  });
-
-  final Color color;
-  final Color onColor;
-  final Color colorContainer;
-  final Color onColorContainer;
 }

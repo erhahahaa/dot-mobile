@@ -21,6 +21,8 @@ mixin _$ClubState {
   UserModel get user => throw _privateConstructorUsedError;
   List<ClubModel> get clubs => throw _privateConstructorUsedError;
   List<ClubModel> get filteredClubs => throw _privateConstructorUsedError;
+  List<UserModel> get members => throw _privateConstructorUsedError;
+  List<UserModel> get filteredMembers => throw _privateConstructorUsedError;
   File? get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,6 +41,8 @@ abstract class $ClubStateCopyWith<$Res> {
       UserModel user,
       List<ClubModel> clubs,
       List<ClubModel> filteredClubs,
+      List<UserModel> members,
+      List<UserModel> filteredMembers,
       File? image});
 
   $UserModelCopyWith<$Res> get user;
@@ -62,6 +66,8 @@ class _$ClubStateCopyWithImpl<$Res, $Val extends ClubState>
     Object? user = null,
     Object? clubs = null,
     Object? filteredClubs = null,
+    Object? members = null,
+    Object? filteredMembers = null,
     Object? image = freezed,
   }) {
     return _then(_value.copyWith(
@@ -85,6 +91,14 @@ class _$ClubStateCopyWithImpl<$Res, $Val extends ClubState>
           ? _value.filteredClubs
           : filteredClubs // ignore: cast_nullable_to_non_nullable
               as List<ClubModel>,
+      members: null == members
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<UserModel>,
+      filteredMembers: null == filteredMembers
+          ? _value.filteredMembers
+          : filteredMembers // ignore: cast_nullable_to_non_nullable
+              as List<UserModel>,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -115,6 +129,8 @@ abstract class _$$ClubStateImplCopyWith<$Res>
       UserModel user,
       List<ClubModel> clubs,
       List<ClubModel> filteredClubs,
+      List<UserModel> members,
+      List<UserModel> filteredMembers,
       File? image});
 
   @override
@@ -137,6 +153,8 @@ class __$$ClubStateImplCopyWithImpl<$Res>
     Object? user = null,
     Object? clubs = null,
     Object? filteredClubs = null,
+    Object? members = null,
+    Object? filteredMembers = null,
     Object? image = freezed,
   }) {
     return _then(_$ClubStateImpl(
@@ -160,6 +178,14 @@ class __$$ClubStateImplCopyWithImpl<$Res>
           ? _value._filteredClubs
           : filteredClubs // ignore: cast_nullable_to_non_nullable
               as List<ClubModel>,
+      members: null == members
+          ? _value._members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<UserModel>,
+      filteredMembers: null == filteredMembers
+          ? _value._filteredMembers
+          : filteredMembers // ignore: cast_nullable_to_non_nullable
+              as List<UserModel>,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -177,9 +203,13 @@ class _$ClubStateImpl implements _ClubState {
       this.user = const UserModel(),
       final List<ClubModel> clubs = const [],
       final List<ClubModel> filteredClubs = const [],
+      final List<UserModel> members = const [],
+      final List<UserModel> filteredMembers = const [],
       this.image})
       : _clubs = clubs,
-        _filteredClubs = filteredClubs;
+        _filteredClubs = filteredClubs,
+        _members = members,
+        _filteredMembers = filteredMembers;
 
   @override
   @JsonKey()
@@ -207,12 +237,30 @@ class _$ClubStateImpl implements _ClubState {
     return EqualUnmodifiableListView(_filteredClubs);
   }
 
+  final List<UserModel> _members;
+  @override
+  @JsonKey()
+  List<UserModel> get members {
+    if (_members is EqualUnmodifiableListView) return _members;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_members);
+  }
+
+  final List<UserModel> _filteredMembers;
+  @override
+  @JsonKey()
+  List<UserModel> get filteredMembers {
+    if (_filteredMembers is EqualUnmodifiableListView) return _filteredMembers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredMembers);
+  }
+
   @override
   final File? image;
 
   @override
   String toString() {
-    return 'ClubState(state: $state, failure: $failure, user: $user, clubs: $clubs, filteredClubs: $filteredClubs, image: $image)';
+    return 'ClubState(state: $state, failure: $failure, user: $user, clubs: $clubs, filteredClubs: $filteredClubs, members: $members, filteredMembers: $filteredMembers, image: $image)';
   }
 
   @override
@@ -226,6 +274,9 @@ class _$ClubStateImpl implements _ClubState {
             const DeepCollectionEquality().equals(other._clubs, _clubs) &&
             const DeepCollectionEquality()
                 .equals(other._filteredClubs, _filteredClubs) &&
+            const DeepCollectionEquality().equals(other._members, _members) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredMembers, _filteredMembers) &&
             (identical(other.image, image) || other.image == image));
   }
 
@@ -237,6 +288,8 @@ class _$ClubStateImpl implements _ClubState {
       user,
       const DeepCollectionEquality().hash(_clubs),
       const DeepCollectionEquality().hash(_filteredClubs),
+      const DeepCollectionEquality().hash(_members),
+      const DeepCollectionEquality().hash(_filteredMembers),
       image);
 
   @JsonKey(ignore: true)
@@ -253,6 +306,8 @@ abstract class _ClubState implements ClubState {
       final UserModel user,
       final List<ClubModel> clubs,
       final List<ClubModel> filteredClubs,
+      final List<UserModel> members,
+      final List<UserModel> filteredMembers,
       final File? image}) = _$ClubStateImpl;
 
   @override
@@ -265,6 +320,10 @@ abstract class _ClubState implements ClubState {
   List<ClubModel> get clubs;
   @override
   List<ClubModel> get filteredClubs;
+  @override
+  List<UserModel> get members;
+  @override
+  List<UserModel> get filteredMembers;
   @override
   File? get image;
   @override

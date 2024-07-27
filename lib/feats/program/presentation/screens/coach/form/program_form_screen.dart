@@ -8,11 +8,11 @@ import 'package:go_router/go_router.dart';
 
 class ProgramFormScreen extends StatefulWidget {
   final ProgramModel? program;
-  final int clubId; 
+  final int clubId;
   const ProgramFormScreen({
     super.key,
     this.program,
-    required this.clubId, 
+    required this.clubId,
   });
 
   @override
@@ -60,7 +60,7 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () {
-        return context.read<ProgramCubit>().init( );
+        return context.read<ProgramCubit>().init();
       },
       child: Parent(
         body: RoundedTopBackground(
@@ -194,8 +194,12 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                 BlocConsumer<ProgramCubit, ProgramState>(
                   listener: (context, state) {
                     if (state.state == BaseState.success) {
-                      (context.str?.successCreateProgram ?? 'Program created')
-                          .toToastSuccess(context);
+                      ToastModel(
+                        message: context.str?.successCreateProgram ??
+                            'Program created',
+                        type: ToastType.success,
+                      ).fire(context);
+
                       final program = state.createdProgram;
                       if (program != null) {
                         context.read<ProgramCubit>().emitCaller(
@@ -210,8 +214,11 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                       }
                     }
                     if (state.state == BaseState.failure) {
-                      (context.str?.failedCreateProgram ?? 'Program created')
-                          .toToastSuccess(context);
+                      ToastModel(
+                        message: context.str?.failedCreateProgram ??
+                            'Failed to create program',
+                        type: ToastType.error,
+                      ).fire(context);
                     }
                   },
                   builder: (context, state) {

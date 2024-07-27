@@ -77,6 +77,8 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/images/bg/
-    - assets/images/hero/
-    - assets/images/tactical-board/
     - assets/images/exam/
+    - assets/images/flags/
+    - assets/images/hero/
+    - assets/images/placeholder/
+    - assets/images/tactical-board/

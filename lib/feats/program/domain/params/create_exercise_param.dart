@@ -7,6 +7,7 @@ part 'create_exercise_param.g.dart';
 class CreateProgramExerciseParams with _$CreateProgramExerciseParams {
   const factory CreateProgramExerciseParams({
     @Default(0) int programId,
+    @Default(0) int mediaId,
     @Default('') String name,
     @Default('') String description,
     @Default(0) int repetition,

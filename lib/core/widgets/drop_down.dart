@@ -10,6 +10,8 @@ class DropDown<T> extends StatefulWidget {
   final ValueChanged<T?>? onChanged;
   final Widget? prefixIcon;
   final Function(T)? validator;
+  final EdgeInsetsGeometry? contentPadding;
+  final Color? fillColor;
 
   const DropDown({
     super.key,
@@ -20,6 +22,8 @@ class DropDown<T> extends StatefulWidget {
     this.hintIsVisible = true,
     this.prefixIcon,
     this.validator,
+    this.contentPadding,
+    this.fillColor,
   });
 
   @override
@@ -64,7 +68,8 @@ class _DropDownState<T> extends State<DropDown<T>> {
                 isDense: true,
                 isCollapsed: true,
                 filled: true,
-                fillColor: context.theme.colorScheme.surface,
+                fillColor:
+                    widget.fillColor ?? context.theme.colorScheme.surface,
                 prefixIcon: SizedBox(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -88,10 +93,11 @@ class _DropDownState<T> extends State<DropDown<T>> {
                   minHeight: 24.h,
                   minWidth: 24.h,
                 ),
-                contentPadding: EdgeInsets.symmetric(
-                  horizontal: 12.w,
-                  vertical: 16.h,
-                ),
+                contentPadding: widget.contentPadding ??
+                    EdgeInsets.symmetric(
+                      horizontal: 12.w,
+                      vertical: 16.h,
+                    ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(
                     4.r,

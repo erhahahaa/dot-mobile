@@ -1,5 +1,4 @@
 import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/di.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -124,7 +123,6 @@ class AuthCubit extends Cubit<AuthState> {
         );
       },
       (r) {
-        di.reset();
         safeEmit(
           isClosed: isClosed,
           emit: emit,
@@ -211,7 +209,6 @@ class AuthCubit extends Cubit<AuthState> {
         );
       },
       (r) {
-        di.reset();
         safeEmit(
           isClosed: isClosed,
           emit: emit,

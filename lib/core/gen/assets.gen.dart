@@ -138,8 +138,15 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/exam
   $AssetsImagesExamGen get exam => const $AssetsImagesExamGen();
 
+  /// Directory path: assets/images/flags
+  $AssetsImagesFlagsGen get flags => const $AssetsImagesFlagsGen();
+
   /// Directory path: assets/images/hero
   $AssetsImagesHeroGen get hero => const $AssetsImagesHeroGen();
+
+  /// Directory path: assets/images/placeholder
+  $AssetsImagesPlaceholderGen get placeholder =>
+      const $AssetsImagesPlaceholderGen();
 
   /// Directory path: assets/images/tactical-board
   $AssetsImagesTacticalBoardGen get tacticalBoard =>
@@ -179,6 +186,19 @@ class $AssetsImagesExamGen {
   List<AssetGenImage> get values => [examLogo];
 }
 
+class $AssetsImagesFlagsGen {
+  const $AssetsImagesFlagsGen();
+
+  /// File path: assets/images/flags/id.svg
+  SvgGenImage get id => const SvgGenImage('assets/images/flags/id.svg');
+
+  /// File path: assets/images/flags/us.svg
+  SvgGenImage get us => const SvgGenImage('assets/images/flags/us.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [id, us];
+}
+
 class $AssetsImagesHeroGen {
   const $AssetsImagesHeroGen();
 
@@ -192,6 +212,21 @@ class $AssetsImagesHeroGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [signIn, signUp];
+}
+
+class $AssetsImagesPlaceholderGen {
+  const $AssetsImagesPlaceholderGen();
+
+  /// File path: assets/images/placeholder/placeholder.png
+  AssetGenImage get placeholder =>
+      const AssetGenImage('assets/images/placeholder/placeholder.png');
+
+  /// File path: assets/images/placeholder/sport.png
+  AssetGenImage get sport =>
+      const AssetGenImage('assets/images/placeholder/sport.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [placeholder, sport];
 }
 
 class $AssetsImagesTacticalBoardGen {

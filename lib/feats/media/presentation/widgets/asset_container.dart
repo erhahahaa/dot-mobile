@@ -6,7 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AssetContainer extends StatelessWidget {
   final MediaModel media;
-  const AssetContainer({super.key, required this.media});
+  final Function(MediaModel)? onTap;
+  const AssetContainer({super.key, required this.media, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +21,20 @@ class AssetContainer extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: media.determineLoader(width: 128.w, height: 128.w),
+          InkWell(
+            onTap: () => onTap != null ? onTap!(media) : null,
+            child: Expanded(
+              child: media.determineLoader(width: 128.w, height: 128.w),
+            ),
           ),
           const Divider(),
-          Text(
-            media.name.maxChar(length: 15),
-            style: context.theme.textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w600,
+          InkWell(
+            onTap: () => onTap != null ? onTap!(media) : null,
+            child: Text(
+              media.name.maxChar(length: 15),
+              style: context.theme.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           Row(
@@ -72,8 +79,10 @@ class AssetContainer extends StatelessWidget {
                                   ),
                                   onTap: () {
                                     media.url.sanitize().toClipboard();
-                                    'Copied to clipboard'
-                                        .toToastSuccess(context);
+                                    ToastModel(
+                                      message: 'URL copied',
+                                      type: ToastType.success,
+                                    ).fire(context);
                                   },
                                 )
                               ],

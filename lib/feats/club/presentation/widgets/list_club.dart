@@ -23,7 +23,7 @@ class ListClub extends StatelessWidget {
         padding: padding ?? EdgeInsets.all(8.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
-          color: theme.colorScheme.primaryContainer.withOpacity(0.1),
+          color: context.containerColor(0.1),
         ),
         child: Center(
           child: Text(
@@ -38,7 +38,7 @@ class ListClub extends StatelessWidget {
       padding: padding ?? EdgeInsets.all(8.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.r),
-        color: theme.colorScheme.primaryContainer.withOpacity(0.1),
+        color: context.containerColor(0.05),
       ),
       child: ListView.builder(
         itemCount: clubs.length,

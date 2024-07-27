@@ -34,7 +34,7 @@ class DashboardScreen extends StatelessWidget {
                   children: [
                     const H1Text('Overview'),
                     SizedBox(height: 8.h),
-                    OverviewCard(
+                    ClubOverviewCard(
                       clubsCount: state.clubs.length,
                       membersCount: state.clubs.sumTotalMembers(),
                       programsCount: state.clubs.sumTotalPrograms(),
