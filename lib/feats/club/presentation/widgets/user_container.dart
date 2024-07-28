@@ -64,8 +64,8 @@ class UserContainer extends StatelessWidget {
                          PopupMenuItem(
                           child: Row(
                             children: [
-                              Icon(Icons.edit),
-                              SizedBox(width: 8),
+                              const Icon(Icons.edit),
+                              const SizedBox(width: 8),
                               Text(
                                 context.str?.edit ??
                                     'Edit',
@@ -76,8 +76,8 @@ class UserContainer extends StatelessWidget {
                         PopupMenuItem(
                           child:  Row(
                             children: [
-                              Icon(Icons.delete),
-                              SizedBox(width: 8),
+                              const Icon(Icons.delete),
+                              const SizedBox(width: 8),
                               Text(
                                 context.str?.kick ??
                                     'Kick',
