@@ -209,7 +209,9 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8.w),
                     child: Button(
-                      text: msg?.createClub ?? 'Create Club',
+                      text: widget.club == null
+                          ? msg?.createClub ?? 'Create Club'
+                          : msg?.editClub ?? 'Edit Club',
                       onPressed: () {
                         if (_formKey.currentState?.validate() ?? false) {
                           final img = state.image;
@@ -223,27 +225,28 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
                               imageError = null;
                             });
                           }
-                          if (widget.club == null && img != null) {
-                            context.read<ClubCubit>().create(
-                                  CreateClubParams(
-                                    name: _nameController.text,
-                                    description: _descriptionController.text,
-                                    type: selectedSportType,
-                                    image: img,
-                                  ),
-                                );
-                          } else {
-                            if (widget.club?.id != null) {
-                              context.read<ClubCubit>().update(
-                                    UpdateClubParams(
-                                      id: widget.club!.id.toString(),
+                          if (widget.club == null) {
+                            if (img != null) {
+                              context.read<ClubCubit>().create(
+                                    CreateClubParams(
                                       name: _nameController.text,
                                       description: _descriptionController.text,
-                                      image: img,
                                       type: selectedSportType,
+                                      image: img,
                                     ),
                                   );
                             }
+                          } else {
+                            context.read<ClubCubit>().update(
+                                  UpdateClubParams(
+                                    id: widget.club!.id.toString(),
+                                    name: _nameController.text,
+                                    description: _descriptionController.text,
+                                    image:
+                                        img, // assuming img can be null here if updating without changing the image
+                                    type: selectedSportType,
+                                  ),
+                                );
                           }
                         }
                       },

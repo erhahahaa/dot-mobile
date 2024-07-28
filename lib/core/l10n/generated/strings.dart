@@ -800,6 +800,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Upload'**
   String get upload;
+
+  /// No description provided for @editClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Club'**
+  String get editClub;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

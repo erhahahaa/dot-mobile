@@ -48,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                           ProfileNavigationButton(
                             icon: Icons.sports_basketball,
                             text:
-                                context.str?.clubDashboard ?? 'Club Dashboardg',
+                                context.str?.clubDashboard ?? 'Club Dashboard',
                             onPressed: () => context
                                 .pushNamed(AppRoutes.coachDashboard.name),
                           ),

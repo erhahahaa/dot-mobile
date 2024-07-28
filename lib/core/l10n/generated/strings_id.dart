@@ -357,4 +357,7 @@ class StringsId extends Strings {
 
   @override
   String get upload => 'Unggah';
+
+  @override
+  String get editClub => 'Ubah Klub';
 }

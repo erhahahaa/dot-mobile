@@ -357,4 +357,7 @@ class StringsEn extends Strings {
 
   @override
   String get upload => 'Upload';
+
+  @override
+  String get editClub => 'Edit Club';
 }
