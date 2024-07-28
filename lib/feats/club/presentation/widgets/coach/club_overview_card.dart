@@ -28,25 +28,33 @@ class ClubOverviewCard extends StatelessWidget {
           Column(
             children: [
               H1Text(clubsCount.toString()),
-              const H5Text('Clubs'),
+               H5Text(
+                context.str?.clubs ?? 'Clubs',
+              ),
             ],
           ),
           Column(
             children: [
               H1Text(membersCount.toString()),
-              const H5Text('Members'),
+               H5Text(
+                context.str?.members ?? 'Members',
+              ),
             ],
           ),
           Column(
             children: [
               H1Text(programsCount.toString()),
-              const H5Text('Programs'),
+               H5Text(
+                context.str?.programs ?? 'Programs',
+              ),
             ],
           ),
           Column(
             children: [
               H1Text(examsCount.toString()),
-              const H5Text('Exams'),
+               H5Text(
+                context.str?.exams ?? 'Exams',
+              ),
             ],
           ),
         ],

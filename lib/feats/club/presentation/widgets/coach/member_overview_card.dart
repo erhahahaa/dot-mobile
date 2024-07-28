@@ -28,13 +28,17 @@ class MemberOverviewCard extends StatelessWidget {
           Column(
             children: [
               H1Text(totalMembers.toString()),
-              const H5Text('Members'),
+              H5Text(
+                context.str?.members ?? 'Members',
+              ),
             ],
           ),
           Column(
             children: [
               H1Text(totalAthletes.toString()),
-              const H5Text('Athletes'),
+              H5Text(
+                context.str?.athletes ?? 'Athletes',
+              ),
             ],
           ),
           Column(

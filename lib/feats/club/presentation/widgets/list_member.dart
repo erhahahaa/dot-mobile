@@ -28,7 +28,7 @@ class ListMember extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            'No members found',
+            context.str?.noMembersFound ?? 'No members found',
             style: theme.textTheme.bodyLarge,
           ),
         ),

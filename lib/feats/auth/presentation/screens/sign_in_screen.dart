@@ -11,6 +11,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final msg = Strings.of(context);
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state.state == BaseState.failure || state.failure != null) {
@@ -48,8 +49,8 @@ class SignInScreen extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
-                  const Text(
-                    'or',
+                  Text(
+                    context.str?.or ?? 'or',
                   ),
                   Expanded(
                     child: Container(
@@ -64,14 +65,14 @@ class SignInScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Don\'t have an account?',
+                  Text(
+                    msg?.dontHaveAnAccount ?? 'Don\t have an account?',
                   ),
                   SizedBox(width: 4.w),
                   InkWell(
                     onTap: () => context.pushNamed(AppRoutes.authSignUp.name),
                     child: Text(
-                      'Sign Up',
+                      msg?.signUp ?? 'Sign Up',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.w600,

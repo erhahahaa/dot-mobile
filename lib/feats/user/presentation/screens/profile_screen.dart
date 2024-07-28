@@ -32,7 +32,9 @@ class ProfileScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const H2Text('Club Management'),
+                    H2Text(
+                      context.str?.clubManagement ?? 'Club Management',
+                    ),
                     SizedBox(height: 8.h),
                     Container(
                       padding: EdgeInsets.all(8.w),
@@ -45,14 +47,17 @@ class ProfileScreen extends StatelessWidget {
                         children: [
                           ProfileNavigationButton(
                             icon: Icons.sports_basketball,
-                            text: 'Club Dashboard',
+                            text:
+                                context.str?.clubDashboard ?? 'Club Dashboardg',
                             onPressed: () => context
                                 .pushNamed(AppRoutes.coachDashboard.name),
                           ),
                         ],
                       ),
                     ),
-                    const H2Text('General'),
+                    H2Text(
+                      context.str?.general ?? 'General',
+                    ),
                     SizedBox(height: 8.h),
                     Container(
                       padding: EdgeInsets.all(8.w),
@@ -67,7 +72,7 @@ class ProfileScreen extends StatelessWidget {
                             prefixIcon: const Icon(
                               Icons.language,
                             ),
-                            hint: 'Language',
+                            hint: context.str?.language ?? 'Language',
                             contentPadding: EdgeInsets.all(8.w),
                             fillColor: context.containerColor(0.05),
                             items: [
@@ -77,7 +82,9 @@ class ProfileScreen extends StatelessWidget {
                                   children: [
                                     Assets.images.flags.us.svg(width: 14.w),
                                     SizedBox(width: 8.w),
-                                    const Text('English'),
+                                    Text(
+                                      context.str?.english ?? 'English',
+                                    ),
                                   ],
                                 ),
                               ),
@@ -87,7 +94,9 @@ class ProfileScreen extends StatelessWidget {
                                   children: [
                                     Assets.images.flags.id.svg(width: 14.w),
                                     SizedBox(width: 8.w),
-                                    const Text('Bahasa'),
+                                    Text(
+                                      context.str?.indonesian ?? 'Indonesian',
+                                    ),
                                   ],
                                 ),
                               ),
@@ -103,7 +112,7 @@ class ProfileScreen extends StatelessWidget {
                             prefixIcon: const Icon(
                               Icons.color_lens,
                             ),
-                            hint: 'Theme',
+                            hint: context.str?.theme ?? 'Theme',
                             contentPadding: EdgeInsets.all(8.w),
                             fillColor: context.containerColor(0.05),
                             items: [
@@ -115,7 +124,9 @@ class ProfileScreen extends StatelessWidget {
                                       Icons.computer,
                                     ),
                                     SizedBox(width: 8.w),
-                                    const Text('System'),
+                                    Text(
+                                      context.str?.system ?? 'System',
+                                    ),
                                   ],
                                 ),
                               ),
@@ -127,7 +138,9 @@ class ProfileScreen extends StatelessWidget {
                                       Icons.light_mode,
                                     ),
                                     SizedBox(width: 8.w),
-                                    const Text('Light'),
+                                    Text(
+                                      context.str?.light ?? 'Light Mode',
+                                    ),
                                   ],
                                 ),
                               ),
@@ -139,7 +152,9 @@ class ProfileScreen extends StatelessWidget {
                                       Icons.dark_mode,
                                     ),
                                     SizedBox(width: 8.w),
-                                    const Text('Dark'),
+                                    Text(
+                                      context.str?.dark ?? 'Dark Mode',
+                                    ),
                                   ],
                                 ),
                               ),
@@ -154,7 +169,9 @@ class ProfileScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const H2Text('User'),
+                    H2Text(
+                      context.str?.user ?? 'User',
+                    ),
                     SizedBox(height: 8.h),
                     Container(
                       padding: EdgeInsets.all(8.w),
@@ -167,22 +184,34 @@ class ProfileScreen extends StatelessWidget {
                         children: [
                           ProfileNavigationButton(
                             icon: Icons.person,
-                            text: 'Edit Profile',
+                            text: context.str?.editProfile ?? 'Edit Profile',
                             onPressed: () => context
                                 .pushNamed(AppRoutes.athleteEditProfile.name),
                           ),
-                          const GappedDivider(),
                           BlocListener<AuthCubit, AuthState>(
                             listener: (context, state) {
                               if (state.status == AuthStatus.unauthenticated) {
+                                ToastModel(
+                                  message: context.str?.successLogout ??
+                                      "Successfully logged out",
+                                  type: ToastType.success,
+                                ).fire(context);
                                 context.goNamed(AppRoutes.authSignIn.name);
+                              } else if (state.state == BaseState.failure ||
+                                  state.failure != null) {
+                                ToastModel(
+                                  message: context.str?.failedLogout ??
+                                      "Failed to logout",
+                                  type: ToastType.error,
+                                ).fire(context);
                               }
                             },
                             child: ProfileNavigationButton(
                               icon: Icons.logout,
-                              onPressed: () =>
-                                  context.read<AuthCubit>().logout(),
-                              text: 'Logout',
+                              onPressed: () {
+                                context.read<AuthCubit>().logout();
+                              },
+                              text: context.str?.logout ?? 'Logout',
                             ),
                           ),
                         ],

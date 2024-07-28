@@ -67,6 +67,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
 
   @override
   Widget build(BuildContext context) {
+    
     return AutofillGroup(
       child: Form(
         key: _formKey,
@@ -96,11 +97,11 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                       Icons.person,
                       color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
-                    hintText: 'Name',
-                    hint: "Name",
+                    hintText: context.str?.enterYourName ?? 'Enter your name',
+                    hint: context.str?.name ?? 'Name',
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Name is required';
+                        return context.str?.nameRequired ?? 'Name is required';
                       }
                       return null;
                     },
@@ -118,14 +119,15 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                       Icons.email,
                       color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
-                    hintText: 'Email',
+                    hintText: context.str?.enterYourEmail ?? 'Enter your email',
                     hint: "Email",
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Email is required';
+                        return context.str?.emailRequired ??
+                            'Email is required';
                       }
                       if (!value.isValidEmail()) {
-                        return 'Invalid email';
+                        return context.str?.invalidEmail ?? 'Invalid email';
                       }
                       return null;
                     },
@@ -143,14 +145,17 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                       '+62',
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
-                    hintText: 'Phone',
-                    hint: "Phone",
+                    hintText: context.str?.enterYourPhoneNumber ??
+                        'Enter your phone number',
+                    hint: context.str?.phoneNumber ?? 'Phone Number',
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Phone is required';
+                        return context.str?.phoneNumberRequired ??
+                            'Phone number is required';
                       }
                       if (!value.isValidPhoneNumber()) {
-                        return 'Invalid phone';
+                        return context.str?.invalidPhoneNumber ??
+                            'Invalid phone number';
                       }
 
                       return null;
@@ -172,8 +177,9 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                               color:
                                   Theme.of(context).textTheme.bodyLarge?.color,
                             ),
-                            hintText: 'Enter your password',
-                            hint: 'Password',
+                            hintText: context.str?.enterYourPass ??
+                                'Enter your password',
+                            hint: context.str?.password ?? 'Password',
                             keyboardType: TextInputType.visiblePassword,
                             maxLines: 1,
                             obscureText: state.passwordVisibility ==
@@ -196,7 +202,8 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                             ),
                             validator: (String? value) {
                               if (value == null || value.isEmpty) {
-                                return 'Password is required';
+                                return context.str?.passRequired ??
+                                    'Password is required';
                               }
                               return null;
                             },
@@ -215,7 +222,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                   padding: EdgeInsets.symmetric(horizontal: 12.w),
                   child: Button(
                     key: const Key('signUpForm_signUpButton'),
-                    text: 'Sign Up',
+                    text: context.str?.signUp ?? 'Sign Up',
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         context.read<AuthCubit>().signUp(

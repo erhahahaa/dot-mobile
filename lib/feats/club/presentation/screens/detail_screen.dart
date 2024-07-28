@@ -26,17 +26,18 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final msg = Strings.of(context);
     return BlocListener<ClubCubit, ClubState>(
       listener: (context, state) {
         if (state.state == BaseState.success) {
           ToastModel(
-            message: 'Leave club successfully',
+            message: msg?.leaveClubSuccess ?? 'Leave club successfully',
             type: ToastType.success,
           ).fire(context);
           context.pop();
         } else {
           ToastModel(
-            message: 'Leave club unsuccessfully',
+            message: msg?.failedLeaveClub ?? 'Failed to leave club',
             type: ToastType.error,
           ).fire(context);
           context.pop();
@@ -67,7 +68,8 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                         children: [
                           ManageButton(
                             icon: Assets.icons.program.svg(width: 32.w),
-                            text: 'Program',
+                            text: context.str?.program ??
+                                'Program',
                             onTap: () => context.pushNamed(
                               AppRoutes.coachProgram.name,
                               extra: {
@@ -77,7 +79,8 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                           ),
                           ManageButton(
                             icon: Assets.icons.exam.svg(width: 32.w),
-                            text: 'Exam',
+                            text: context.str?.exam ??
+                                'Exam',
                             onTap: () {
                               context.pushNamed(
                                 AppRoutes.coachExam.name,
@@ -89,7 +92,8 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                           ),
                           ManageButton(
                             icon: Assets.icons.tactical.svg(width: 32.w),
-                            text: 'Tactical',
+                            text: context.str?.tactical ??
+                                'Tactical',
                             onTap: () {
                               context.pushNamed(
                                 AppRoutes.coachTactical.name,
@@ -107,7 +111,8 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                         children: [
                           ManageButton(
                             icon: Assets.icons.invite.svg(width: 32.w),
-                            text: 'Invite',
+                            text: context.str?.invite ??
+                                'Invite',
                             onTap: () {
                               context.pushNamed(
                                 AppRoutes.coachAddMember.name,
@@ -119,7 +124,8 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                           ),
                           ManageButton(
                             icon: Assets.icons.members.svg(width: 32.w),
-                            text: 'Members',
+                            text: context.str?.members ??
+                                'Members',
                             onTap: () {
                               context.pushNamed(
                                 AppRoutes.coachClubMember.name,
@@ -131,7 +137,8 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                           ),
                           ManageButton(
                             icon: Assets.icons.assets.svg(width: 32.w),
-                            text: 'Assets',
+                            text: context.str?.assets ??
+                                'Assets',
                             onTap: () {
                               context.pushNamed(
                                 AppRoutes.coachMedia.name,
@@ -294,9 +301,10 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                   ],
                 ),
                 Text(
-                  'Established at: ${_club.createdAt!.toDayMonthYear(locale: context.locale.languageCode)}',
+                  '${context.str?.establishedAt ?? 'establishedAt:'} ${_club.createdAt?.toDayMonthYear(locale: context.locale.languageCode) ?? ''}',
                   style: context.theme.textTheme.bodyMedium,
                 ),
+
                 Text(
                   _club.description,
                   style: context.theme.textTheme.bodyMedium,

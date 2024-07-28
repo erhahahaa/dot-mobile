@@ -62,7 +62,8 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
       listener: (context, state) {
         if (state.state == BaseState.success) {
           ToastModel(
-            message: context.str?.successCreateProgram ?? 'Program created',
+            message: context.str?.successCreateProgram ??
+                'Successfully create program',
             type: ToastType.success,
           ).fire(context);
 
@@ -91,7 +92,9 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
       builder: (context, state) {
         return Parent(
           body: RoundedTopBackground(
-            title: widget.program == null ? 'Create Program' : 'Edit Program',
+            title: widget.program == null
+                ? (context.str?.createProgram ?? 'Create Program')
+                : (context.str?.editProgram ?? 'Edit Program'),
             child: Form(
               key: _formKey,
               child: Column(
@@ -106,11 +109,13 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                       Icons.sports,
                       color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
-                    hintText: 'Enter program name',
-                    hint: 'Name',
+                    hintText:
+                        context.str?.enterProgramName ?? 'Enter program name',
+                    hint: context.str?.name ?? 'Name',
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Program name is requeired';
+                        return context.str?.programNameRequired ??
+                            'Program name is required';
                       }
                       return null;
                     },
@@ -126,10 +131,13 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                       Icons.calendar_month,
                       color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
-                    hint: 'Start Date',
+                    hint: context.str?.startDate ?? 'Start Date',
+                    hintText:
+                        context.str?.enterStartDate ?? 'Enter the start date',
                     validator: (String? value) {
                       if (value == null || value.isEmpty || _start == null) {
-                        return 'Start date is requeired';
+                        return context.str?.startDateRequired ??
+                            'Start date is required';
                       }
                       return null;
                     },
@@ -177,10 +185,12 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                       color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
                     // enabled: false,
-                    hint: 'End Date',
+                    hint: context.str?.endDate ?? 'End Date',
+                    hintText: context.str?.enterEndDate ?? 'Enter the end date',
                     validator: (String? value) {
                       if (value == null || value.isEmpty || _end == null) {
-                        return 'End date is requeired';
+                        return context.str?.endDateRequired ??
+                            'End date is required';
                       }
                       return null;
                     },
@@ -220,7 +230,7 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                   SizedBox(height: 16.h),
                   Button(
                     key: const Key('createProgramForm_createButton'),
-                    text: 'Create',
+                    text: context.str?.create ?? 'Create',
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         if (_end == null && _start == null) {

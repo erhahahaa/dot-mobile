@@ -81,15 +81,16 @@ class _SigInpFormWidgetState extends State<SignInFormWidget> {
                       Icons.email_outlined,
                       color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
-                    hintText: 'Enter your email',
+                    hintText: context.str?.enterYourEmail ?? 'Enter your email',
                     hint: 'Email',
                     keyboardType: TextInputType.emailAddress,
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Email is required';
+                        return context.str?.emailRequired ??
+                            'Email is required';
                       }
                       if (!value.isValidEmail()) {
-                        return 'Invalid email';
+                        return context.str?.invalidEmail ?? 'Invalid email';
                       }
                       return null;
                     },
@@ -110,8 +111,9 @@ class _SigInpFormWidgetState extends State<SignInFormWidget> {
                               color:
                                   Theme.of(context).textTheme.bodyLarge?.color,
                             ),
-                            hintText: 'Enter your password',
-                            hint: 'Password',
+                            hintText: context.str?.enterYourPass ??
+                                'Enter your password',
+                            hint: context.str?.password ?? 'Password',
                             keyboardType: TextInputType.visiblePassword,
                             maxLines: 1,
                             obscureText: state.passwordVisibility ==
@@ -134,7 +136,9 @@ class _SigInpFormWidgetState extends State<SignInFormWidget> {
                             ),
                             validator: (String? value) {
                               if (value == null || value.isEmpty) {
-                                return 'Password is required';
+                                return context.str?.passRequired ??
+                                    'Password is required';
+                                
                               }
                               return null;
                             },
@@ -153,7 +157,7 @@ class _SigInpFormWidgetState extends State<SignInFormWidget> {
                   padding: EdgeInsets.symmetric(horizontal: 12.w),
                   child: Button(
                     key: const Key('signInForm_signInButton'),
-                    text: 'Sign In',
+                    text: context.str?.signIn ?? 'Sign In',
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         context.read<AuthCubit>().signIn(

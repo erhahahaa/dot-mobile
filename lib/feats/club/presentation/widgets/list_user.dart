@@ -27,7 +27,7 @@ class ListUser extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            'No Users found',
+            context.str?.noUsersFound ?? 'No users found',
             style: theme.textTheme.bodyLarge,
           ),
         ),

@@ -34,7 +34,9 @@ class _ProgramScreenState extends State<ProgramScreen> {
               children: [
                 const Icon(Icons.add),
                 SizedBox(width: 8.w),
-                const Text('New Program'),
+                 Text(
+                  context.str?.newProgram ?? 'New Program',
+                ),
               ],
             ),
           ),
@@ -46,7 +48,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                   Row(
                     children: [
                       Text(
-                        'Calendar',
+                        context.str?.calendar ?? 'Calendar',
                         style: context.theme.textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
@@ -99,7 +101,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                   Row(
                     children: [
                       Text(
-                        'Programs',
+                        context.str?.programs ?? 'Programs',
                         style: context.theme.textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),

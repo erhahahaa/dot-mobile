@@ -51,8 +51,8 @@ class SignUpScreen extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
-                  const Text(
-                    'or',
+                   Text(
+                    context.str?.or ?? 'or',
                   ),
                   Expanded(
                     child: Container(

@@ -43,6 +43,6 @@ const _$SportTypeEnumMap = {
   SportType.volleyBall: 'volleyBall',
   SportType.basketBall: 'basketBall',
   SportType.soccer: 'soccer',
-  SportType.miniSoccer: 'miniSoccer',
+  SportType.futsal: 'miniSoccer',
   SportType.handBall: 'handBall',
 };

@@ -4,13 +4,13 @@ extension SportTypeX on SportType {
   String get name {
     switch (this) {
       case SportType.volleyBall:
-        return 'Volley Ball';
+        return 'Volleyball';
       case SportType.basketBall:
-        return 'Basket Ball';
+        return 'Basketball';
       case SportType.soccer:
         return 'Soccer';
-      case SportType.miniSoccer:
-        return 'Mini Soccer';
+      case SportType.futsal:
+        return 'Futsal';
       case SportType.handBall:
         return 'Handball';
     }
@@ -24,8 +24,8 @@ extension SportTypeX on SportType {
         return 'basketBall';
       case SportType.soccer:
         return 'soccer';
-      case SportType.miniSoccer:
-        return 'miniSoccer';
+      case SportType.futsal:
+        return 'futsal';
       case SportType.handBall:
         return 'handBall';
     }

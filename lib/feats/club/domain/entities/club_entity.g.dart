@@ -245,7 +245,7 @@ const _ClubEntitytypeValueEnumMap = {
   0: SportType.volleyBall,
   1: SportType.basketBall,
   2: SportType.soccer,
-  3: SportType.miniSoccer,
+  3: SportType.futsal,
   4: SportType.handBall,
 };
 

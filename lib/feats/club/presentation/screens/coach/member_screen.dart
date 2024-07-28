@@ -22,11 +22,13 @@ class _MemberScreenState extends State<MemberScreen> {
       builder: (context, state) {
         return Parent(
           body: RoundedTopBackground(
-            title: 'Members',
+            title: context.str?.members ?? 'Members',
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const H1Text('Overview'),
+                 H1Text(
+                  context.str?.overview ?? 'Overview',
+                ),
                 SizedBox(height: 8.h),
                 MemberOverviewCard(
                   totalMembers: state.members.length,
@@ -37,7 +39,9 @@ class _MemberScreenState extends State<MemberScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const H1Text("Members"),
+                     H1Text(
+                      context.str?.members ?? 'Members',
+                    ),
                     SizedBox(width: 8.w),
                     const SearchClub()
                   ],
@@ -134,7 +138,7 @@ class _MemberScreenState extends State<MemberScreen> {
                     Navigator.of(context).pop();
                   },
                   child: Text(
-                    "Cancel",
+                    context.str?.cancel ?? 'Cancel',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14.sp,

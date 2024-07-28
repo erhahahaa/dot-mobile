@@ -7,7 +7,7 @@ enum SportType {
   volleyBall,
   basketBall,
   soccer,
-  miniSoccer,
+  futsal,
   handBall,
 }
 

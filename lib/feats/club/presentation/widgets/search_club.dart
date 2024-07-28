@@ -1,4 +1,5 @@
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +48,7 @@ class _SearchClubState extends State<SearchClub> {
         onSubmitted: (value) => context.read<ClubCubit>().search(value),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(8.w),
-          hintText: 'Search...',
+          hintText: context.str?.search ?? 'Search',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.r),
             borderSide: BorderSide.none,

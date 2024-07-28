@@ -1,5 +1,6 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const H1Text("My Club Training"),
+                        H1Text(
+                          context.str?.myClubTraining ?? 'My Club Training',
+                        ),
                         SizedBox(width: 8.w),
                         const SearchClub()
                       ],

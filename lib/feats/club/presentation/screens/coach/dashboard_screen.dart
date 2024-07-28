@@ -25,7 +25,9 @@ class DashboardScreen extends StatelessWidget {
               children: [
                 const Icon(Icons.add),
                 SizedBox(width: 8.w),
-                const Text('Create Club'),
+                 Text(
+                  context.str?.createClub ?? 'Create Club',
+                ),
               ],
             ),
           ),
@@ -37,7 +39,9 @@ class DashboardScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const H1Text('Overview'),
+                     H1Text(
+                      context.str?.overview ?? 'Overview',
+                    ),
                     SizedBox(height: 8.h),
                     ClubOverviewCard(
                       clubsCount: state.clubs.length,
@@ -49,7 +53,9 @@ class DashboardScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const H1Text("Clubs"),
+                         H1Text(
+                          context.str?.clubs ?? 'Clubs',
+                        ),
                         SizedBox(width: 8.w),
                         const SearchClub()
                       ],

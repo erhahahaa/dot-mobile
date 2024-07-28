@@ -1,11 +1,11 @@
 import 'package:dot_coaching/core/widgets/parent.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AthleteExamScreen extends StatelessWidget {
   const AthleteExamScreen({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +107,7 @@ class AthleteExamScreen extends StatelessWidget {
                     Column(
                       children: [
                         Text(
-                          "History",
+                          context.str?.history ?? 'History',
                           style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w600,
@@ -218,7 +218,8 @@ class AthleteExamScreen extends StatelessWidget {
                                   shape: const StadiumBorder(),
                                   side: const BorderSide(
                                       width: 1, color: Color(0xFF575FFF)),
-                                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12),
                                 ),
                                 onPressed: () {},
                                 child: Row(
@@ -226,7 +227,7 @@ class AthleteExamScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "Download PDF",
+                                      context.str?.download ?? 'Download PDF',
                                       style: TextStyle(
                                         color: const Color(0xFF575FFF),
                                         fontSize: 11.sp,

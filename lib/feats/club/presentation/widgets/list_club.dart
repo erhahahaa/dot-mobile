@@ -27,7 +27,7 @@ class ListClub extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            'No clubs found',
+            context.str?.noClubsFound ?? 'No clubs found',
             style: theme.textTheme.bodyLarge,
           ),
         ),
