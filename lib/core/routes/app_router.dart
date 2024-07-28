@@ -25,8 +25,6 @@ class AppRouter {
   static final _coachTacticalShellKey = GlobalKey<NavigatorState>();
   static final _coachAssetShellKey = GlobalKey<NavigatorState>();
 
-  // static final _coachProfileShellKey = GlobalKey<NavigatorState>();
-
   AppRouter.setStream(BuildContext c) {
     ctx = c;
   }

@@ -15,8 +15,8 @@ Future<void> initDependencies() async {
   di.registerSingleton<DioClient>(
     DioClient(di<IsarClient>()),
   );
-  di.registerSingleton<ImagePickerClient>(
-    ImagePickerClient(),
+  di.registerLazySingleton<ImagePickerClient>(
+    () => ImagePickerClient(),
   );
 
   di.registerLazySingleton<FilePickerClient>(
@@ -70,15 +70,15 @@ void _intiRepos() {
     ),
   );
 
-  di.registerSingleton<TacticalRepo>(
-    TacticalRepoImpl(
+  di.registerLazySingleton<TacticalRepo>(
+    () => TacticalRepoImpl(
       di<DioClient>(),
       di<IsarClient>(),
     ),
   );
 
-  di.registerSingleton<MediaRepo>(
-    MediaRepoImpl(
+  di.registerLazySingleton<MediaRepo>(
+    () => MediaRepoImpl(
       di<DioClient>(),
       di<IsarClient>(),
     ),

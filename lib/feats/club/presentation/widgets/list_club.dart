@@ -7,6 +7,7 @@ class ListClub extends StatelessWidget {
   final List<ClubModel> clubs;
   final EdgeInsetsGeometry? padding;
   final bool isCoach;
+  
   const ListClub({
     super.key,
     required this.clubs,

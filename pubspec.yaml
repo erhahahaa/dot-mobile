@@ -45,6 +45,7 @@ dependencies:
   text_area: ^0.0.3
   easy_search_bar: ^2.5.0
   easy_debounce: ^2.0.3
+  skeletonizer: ^1.4.1+1
 
 dev_dependencies:
   flutter_test:

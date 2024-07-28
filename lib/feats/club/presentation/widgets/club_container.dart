@@ -20,25 +20,25 @@ class ClubContainer extends StatelessWidget {
     final theme = context.theme;
     return InkWell(
       onTap: () {
-        final params = {
-          'id': club.id.toString(),
-        };
-        final extra = {
-          'club': club,
-        };
-
         if (isCoach) {
           context.pushNamed(
             AppRoutes.coachClubDetail.name,
-            pathParameters: params,
-            extra: extra,
+            pathParameters: {
+              'id': club.id.toString(),
+            },
+            extra: {
+              'club': club,
+            },
           );
-          return;
         } else {
           context.pushNamed(
             AppRoutes.athleteClubDetail.name,
-            pathParameters: params,
-            extra: extra,
+            pathParameters: {
+              'id': club.id.toString(),
+            },
+            extra: {
+              'club': club,
+            },
           );
         }
       },
