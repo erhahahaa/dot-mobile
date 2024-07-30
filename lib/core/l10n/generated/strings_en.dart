@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for English (`en`).
 class StringsEn extends Strings {
-  StringsEn([super.locale = 'en']);
+  StringsEn([String locale = 'en']) : super(locale);
 
   @override
   String get about => 'About';
@@ -137,6 +137,9 @@ class StringsEn extends Strings {
   String get enterYourEmail => 'Enter your email';
 
   @override
+  String get enterYourGender => 'Enter your gender';
+
+  @override
   String get enterYourName => 'Enter your name';
 
   @override
@@ -144,6 +147,9 @@ class StringsEn extends Strings {
 
   @override
   String get enterYourPhoneNumber => 'Enter your phone number';
+
+  @override
+  String get enterYourUsername => 'Enter your username';
 
   @override
   String get errorCreateExercise => 'Failed to create exercise';
@@ -186,6 +192,12 @@ class StringsEn extends Strings {
 
   @override
   String get futsal => 'Futsal';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get genderRequired => 'Gender is required';
 
   @override
   String get general => 'General';
@@ -372,6 +384,12 @@ class StringsEn extends Strings {
 
   @override
   String get user => 'User';
+
+  @override
+  String get username => 'Username';
+
+  @override
+  String get usernameRequired => 'Username is required';
 
   @override
   String get volleyBall => 'Volleyball';

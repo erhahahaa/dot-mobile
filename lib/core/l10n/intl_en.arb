@@ -44,9 +44,11 @@
   "enterProgramName": "Enter program name",
   "enterStartDate": "Enter the start date",
   "enterYourEmail": "Enter your email",
+  "enterYourGender": "Enter your gender",
   "enterYourName": "Enter your name",
   "enterYourPass": "Enter your password",
   "enterYourPhoneNumber": "Enter your phone number",
+  "enterYourUsername": "Enter your username",
   "errorCreateExercise": "Failed to create exercise",
   "establishedAt": "Established at :",
   "exam": "Exam",
@@ -61,6 +63,8 @@
   "failedSignIn": "Failed to sign in",
   "failedSignUp": "Failed to sign up",
   "futsal": "Futsal",
+  "gender": "Gender",
+  "genderRequired": "Gender is required",
   "general": "General",
   "handBall": "Handball",
   "hello": "Hello",
@@ -123,5 +127,7 @@
   "updateClub": "Update Club",
   "upload": "Upload",
   "user": "User",
+  "username": "Username",
+  "usernameRequired": "Username is required",
   "volleyBall": "Volleyball"
 }

@@ -23,7 +23,9 @@ mixin _$RegisterParams {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  UserGender get gender => throw _privateConstructorUsedError;
   UserRole get role => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +44,9 @@ abstract class $RegisterParamsCopyWith<$Res> {
       {String email,
       String password,
       String name,
+      String username,
       String phone,
+      UserGender gender,
       UserRole role});
 }
 
@@ -62,7 +66,9 @@ class _$RegisterParamsCopyWithImpl<$Res, $Val extends RegisterParams>
     Object? email = null,
     Object? password = null,
     Object? name = null,
+    Object? username = null,
     Object? phone = null,
+    Object? gender = null,
     Object? role = null,
   }) {
     return _then(_value.copyWith(
@@ -78,10 +84,18 @@ class _$RegisterParamsCopyWithImpl<$Res, $Val extends RegisterParams>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as UserGender,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -102,7 +116,9 @@ abstract class _$$RegisterParamsImplCopyWith<$Res>
       {String email,
       String password,
       String name,
+      String username,
       String phone,
+      UserGender gender,
       UserRole role});
 }
 
@@ -120,7 +136,9 @@ class __$$RegisterParamsImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? name = null,
+    Object? username = null,
     Object? phone = null,
+    Object? gender = null,
     Object? role = null,
   }) {
     return _then(_$RegisterParamsImpl(
@@ -136,10 +154,18 @@ class __$$RegisterParamsImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as UserGender,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -155,7 +181,9 @@ class _$RegisterParamsImpl implements _RegisterParams {
       {required this.email,
       required this.password,
       required this.name,
+      required this.username,
       required this.phone,
+      required this.gender,
       required this.role});
 
   factory _$RegisterParamsImpl.fromJson(Map<String, dynamic> json) =>
@@ -168,13 +196,17 @@ class _$RegisterParamsImpl implements _RegisterParams {
   @override
   final String name;
   @override
+  final String username;
+  @override
   final String phone;
+  @override
+  final UserGender gender;
   @override
   final UserRole role;
 
   @override
   String toString() {
-    return 'RegisterParams(email: $email, password: $password, name: $name, phone: $phone, role: $role)';
+    return 'RegisterParams(email: $email, password: $password, name: $name, username: $username, phone: $phone, gender: $gender, role: $role)';
   }
 
   @override
@@ -186,14 +218,17 @@ class _$RegisterParamsImpl implements _RegisterParams {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, name, phone, role);
+  int get hashCode => Object.hash(
+      runtimeType, email, password, name, username, phone, gender, role);
 
   @JsonKey(ignore: true)
   @override
@@ -215,7 +250,9 @@ abstract class _RegisterParams implements RegisterParams {
       {required final String email,
       required final String password,
       required final String name,
+      required final String username,
       required final String phone,
+      required final UserGender gender,
       required final UserRole role}) = _$RegisterParamsImpl;
 
   factory _RegisterParams.fromJson(Map<String, dynamic> json) =
@@ -228,7 +265,11 @@ abstract class _RegisterParams implements RegisterParams {
   @override
   String get name;
   @override
+  String get username;
+  @override
   String get phone;
+  @override
+  UserGender get gender;
   @override
   UserRole get role;
   @override

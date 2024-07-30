@@ -357,6 +357,12 @@ abstract class Strings {
   /// **'Enter your email'**
   String get enterYourEmail;
 
+  /// No description provided for @enterYourGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your gender'**
+  String get enterYourGender;
+
   /// No description provided for @enterYourName.
   ///
   /// In en, this message translates to:
@@ -374,6 +380,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Enter your phone number'**
   String get enterYourPhoneNumber;
+
+  /// No description provided for @enterYourUsername.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your username'**
+  String get enterYourUsername;
 
   /// No description provided for @errorCreateExercise.
   ///
@@ -458,6 +470,18 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Futsal'**
   String get futsal;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @genderRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender is required'**
+  String get genderRequired;
 
   /// No description provided for @general.
   ///
@@ -830,6 +854,18 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'User'**
   String get user;
+
+  /// No description provided for @username.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get username;
+
+  /// No description provided for @usernameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Username is required'**
+  String get usernameRequired;
 
   /// No description provided for @volleyBall.
   ///

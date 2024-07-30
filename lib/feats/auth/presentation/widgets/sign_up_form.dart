@@ -15,59 +15,61 @@ class SignUpFormWidget extends StatefulWidget {
 class _SignUpFormWidgetState extends State<SignUpFormWidget> {
   late TextEditingController _nameController;
   late TextEditingController _emailController;
+  late TextEditingController _usernameController;
   late TextEditingController _phoneController;
   late TextEditingController _passwordController;
+  late TextEditingController _genderController;
 
   late FocusNode _nameFocusNode;
   late FocusNode _emailFocusNode;
+  late FocusNode _usernameFocusNode;
   late FocusNode _phoneFocusNode;
   late FocusNode _passwordFocusNode;
+  late FocusNode _genderFocusNode;
 
-  late GlobalKey<FormState> _formKey;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
-    _nameController = TextEditingController(
-      text: 'John Doe',
-    );
-    _emailController = TextEditingController(
-      text: 'john@gmail.com',
-    );
-    _phoneController = TextEditingController(
-      text: '81234567890',
-    );
-    _passwordController = TextEditingController(
-      text: 'password',
-    );
+    super.initState();
+
+    _nameController = TextEditingController(text: 'John Doe');
+    _emailController = TextEditingController(text: 'john@gmail.com');
+    _usernameController = TextEditingController(text: 'John');
+    _phoneController = TextEditingController(text: '81234567890');
+    _passwordController = TextEditingController(text: 'password');
+    _genderController =
+        TextEditingController(text: 'Male'); // Use 'Male' instead of 'male'
 
     _nameFocusNode = FocusNode();
     _emailFocusNode = FocusNode();
+    _usernameFocusNode = FocusNode();
     _phoneFocusNode = FocusNode();
     _passwordFocusNode = FocusNode();
-
-    _formKey = GlobalKey<FormState>();
-
-    super.initState();
+    _genderFocusNode = FocusNode();
   }
 
   @override
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
+    _usernameController.dispose();
+    _phoneController.dispose();
     _passwordController.dispose();
+    _genderController.dispose();
 
     _nameFocusNode.dispose();
     _emailFocusNode.dispose();
+    _usernameFocusNode.dispose();
+    _phoneFocusNode.dispose();
     _passwordFocusNode.dispose();
-
-    _formKey.currentState?.dispose();
+    _genderFocusNode.dispose();
 
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return AutofillGroup(
       child: Form(
         key: _formKey,
@@ -89,7 +91,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                     key: const Key('signUpForm_name'),
                     autofillHints: const [AutofillHints.name],
                     currFocusNode: _nameFocusNode,
-                    nextFocusNode: _emailFocusNode,
+                    nextFocusNode: _usernameFocusNode,
                     textInputAction: TextInputAction.next,
                     controller: _nameController,
                     keyboardType: TextInputType.name,
@@ -108,10 +110,34 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                   ),
                   SizedBox(height: 12.h),
                   TextF(
+                    key: const Key('signUpForm_username'),
+                    autofillHints: const [AutofillHints.username],
+                    currFocusNode: _usernameFocusNode,
+                    nextFocusNode: _emailFocusNode,
+                    textInputAction: TextInputAction.next,
+                    controller: _usernameController,
+                    keyboardType: TextInputType.username,
+                    prefixIcon: Icon(
+                      Icons.co_present_rounded,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
+                    hintText:
+                        context.str?.enterYourUsername ?? 'Enter your username',
+                    hint: context.str?.username ?? 'Username',
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return context.str?.usernameRequired ??
+                            'Username is required';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 12.h),
+                  TextF(
                     key: const Key('signUpForm_email'),
                     autofillHints: const [AutofillHints.email],
                     currFocusNode: _emailFocusNode,
-                    nextFocusNode: _passwordFocusNode,
+                    nextFocusNode: _genderFocusNode,
                     textInputAction: TextInputAction.next,
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -128,6 +154,40 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                       }
                       if (!value.isValidEmail()) {
                         return context.str?.invalidEmail ?? 'Invalid email';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 12.h),
+                  DropdownButtonFormField<String>(
+                    key: const Key('signUpForm_gender'),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.male_rounded,
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                      ),
+                      labelText: context.str?.gender ?? 'Gender',
+                      hintText:
+                          context.str?.enterYourGender ?? 'Enter your gender',
+                    ),
+                    value: _genderController.text.isNotEmpty
+                        ? _genderController.text
+                        : null,
+                    items: ['Male', 'Female'].map((String gender) {
+                      return DropdownMenuItem<String>(
+                        value: gender,
+                        child: Text(gender),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _genderController.text = newValue!;
+                      });
+                    },
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return context.str?.genderRequired ??
+                            'Gender is required';
                       }
                       return null;
                     },
@@ -157,7 +217,6 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                         return context.str?.invalidPhoneNumber ??
                             'Invalid phone number';
                       }
-
                       return null;
                     },
                   ),
@@ -229,15 +288,15 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                               RegisterParams(
                                 name: _nameController.text,
                                 email: _emailController.text,
+                                username: _usernameController.text,
                                 password: _passwordController.text,
                                 phone: _phoneController.text,
+                                gender: UserGender.male,
                                 role: UserRole.athlete,
                               ),
                             );
                       }
                     },
-                    // isLoading: state.state == BaseState.loading,
-                    // isDisabled: state.state == BaseState.loading,
                   ),
                 );
               },
