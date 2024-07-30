@@ -5,15 +5,6 @@ class StringsEn extends Strings {
   StringsEn([super.locale = 'en']);
 
   @override
-  String get successUpdateExercises => 'Successfully update exercises';
-
-  @override
-  String get programDetail => 'Program Detail';
-
-  @override
-  String get updateClub => 'Update Club';
-
-  @override
   String get about => 'About';
 
   @override
@@ -179,6 +170,9 @@ class StringsEn extends Strings {
   String get failedCreateProgram => 'Failed to create program';
 
   @override
+  String get failedEditProgram => 'Failed to edit program';
+
+  @override
   String get failedLeaveClub => 'Failed to leave club';
 
   @override
@@ -278,6 +272,9 @@ class StringsEn extends Strings {
   String get overview => 'Overview';
 
   @override
+  String get pageNotFound => 'Page not found';
+
+  @override
   String get passRequired => 'Password is required';
 
   @override
@@ -291,6 +288,9 @@ class StringsEn extends Strings {
 
   @override
   String get program => 'Program';
+
+  @override
+  String get programDetail => 'Program Detail';
 
   @override
   String get programNameRequired => 'Program name is required';
@@ -332,6 +332,9 @@ class StringsEn extends Strings {
   String get startDateRequired => 'Start date is required';
 
   @override
+  String get succesEditProgram => 'Successfully edit program';
+
+  @override
   String get successCreateClub => 'Successfully created club';
 
   @override
@@ -339,12 +342,6 @@ class StringsEn extends Strings {
 
   @override
   String get successCreateProgram => 'Successfully create program';
-
-  @override
-  String get succesEditProgram => 'Successfully edit program';
-
-  @override
-  String get failedEditProgram => 'Failed to edit program';
 
   @override
   String get successLogout => 'Successfully logged out';
@@ -356,6 +353,9 @@ class StringsEn extends Strings {
   String get successSignUp => 'Successfully signed up ';
 
   @override
+  String get successUpdateExercises => 'Successfully update exercises';
+
+  @override
   String get system => 'System';
 
   @override
@@ -365,6 +365,9 @@ class StringsEn extends Strings {
   String get theme => 'Theme';
 
   @override
+  String get updateClub => 'Update Club';
+
+  @override
   String get upload => 'Upload';
 
   @override
@@ -372,7 +375,4 @@ class StringsEn extends Strings {
 
   @override
   String get volleyBall => 'Volleyball';
-
-  @override
-  String get pageNotFound => 'Page not found';
 }

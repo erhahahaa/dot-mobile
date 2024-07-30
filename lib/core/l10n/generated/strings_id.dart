@@ -5,15 +5,6 @@ class StringsId extends Strings {
   StringsId([super.locale = 'id']);
 
   @override
-  String get successUpdateExercises => 'Berhasil memperbarui latihan';
-
-  @override
-  String get programDetail => 'Detail Program';
-
-  @override
-  String get updateClub => 'Perbarui Klub';
-
-  @override
   String get about => 'Tentang';
 
   @override
@@ -179,6 +170,9 @@ class StringsId extends Strings {
   String get failedCreateProgram => 'Gagal membuat program';
 
   @override
+  String get failedEditProgram => 'Gagal mengubah program';
+
+  @override
   String get failedLeaveClub => 'Gagal meninggalkan klub';
 
   @override
@@ -278,6 +272,9 @@ class StringsId extends Strings {
   String get overview => 'Ringkasan';
 
   @override
+  String get pageNotFound => 'Halaman tidak ditemukan';
+
+  @override
   String get passRequired => 'Password wajib diisi';
 
   @override
@@ -291,6 +288,9 @@ class StringsId extends Strings {
 
   @override
   String get program => 'Program';
+
+  @override
+  String get programDetail => 'Detail Program';
 
   @override
   String get programNameRequired => 'Nama program wajib diisi';
@@ -332,47 +332,47 @@ class StringsId extends Strings {
   String get startDateRequired => 'Tanggal mulai wajib diisi';
 
   @override
-  String get successCreateClub => 'Berhasil membuat klub';
+  String get succesEditProgram => 'Successfully edit program';
 
   @override
-  String get successCreateExercise => 'Berhasil membuat latihan';
+  String get successCreateClub => 'Successfully created club';
 
   @override
-  String get successCreateProgram => 'Berhasil membuat program';
+  String get successCreateExercise => 'Successfully to create exercise';
 
   @override
-  String get succesEditProgram => 'Berhasil mengubah program';
+  String get successCreateProgram => 'Successfully create program';
 
   @override
-  String get failedEditProgram => 'Gagal mengubah program';
+  String get successLogout => 'Successfully logged out';
 
   @override
-  String get successLogout => 'Berhasil keluar';
+  String get successSignIn => 'Successfully signed in ';
 
   @override
-  String get successSignIn => 'Berhasil masuk';
+  String get successSignUp => 'Successfully signed up ';
 
   @override
-  String get successSignUp => 'Berhasil daftar';
+  String get successUpdateExercises => 'Successfully update exercises';
 
   @override
-  String get system => 'Sistem';
+  String get system => 'System';
 
   @override
-  String get tactical => 'Taktis';
+  String get tactical => 'Tactical';
 
   @override
-  String get theme => 'Tema';
+  String get theme => 'Theme';
+
+  @override
+  String get updateClub => 'Update Club';
 
   @override
   String get upload => 'Unggah';
 
   @override
-  String get user => 'Pengguna';
+  String get user => 'User';
 
   @override
-  String get volleyBall => 'Voli';
-
-  @override
-  String get pageNotFound => 'Halaman tidak ditemukan';
+  String get volleyBall => 'Volleyball';
 }

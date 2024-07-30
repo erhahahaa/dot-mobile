@@ -16,9 +16,11 @@ class ProgramExerciseModel with _$ProgramExerciseModel {
     @Default(0) int order,
     @Default('Dot Exercise 0') String name,
     String? description,
-    @Default(1) int repetition,
-    @Default(1) int sets,
-    @Default(0) int rest,
+    ProgramUnitValueModel? repetition,
+    ProgramUnitValueModel? sets,
+    ProgramUnitValueModel? rest,
+    ProgramUnitValueModel? tempo,
+    ProgramUnitValueModel? intensity,
     MediaEmbedModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -35,9 +37,21 @@ class ProgramExerciseModel with _$ProgramExerciseModel {
       order: entity.order,
       name: entity.name,
       description: entity.description,
-      repetition: entity.repetition,
-      sets: entity.sets,
-      rest: entity.rest,
+      repetition: entity.repetition != null
+          ? ProgramUnitValueModel.fromEntity(entity.repetition!)
+          : null,
+      sets: entity.sets != null
+          ? ProgramUnitValueModel.fromEntity(entity.sets!)
+          : null,
+      rest: entity.rest != null
+          ? ProgramUnitValueModel.fromEntity(entity.rest!)
+          : null,
+      tempo: entity.tempo != null
+          ? ProgramUnitValueModel.fromEntity(entity.tempo!)
+          : null,
+      intensity: entity.intensity != null
+          ? ProgramUnitValueModel.fromEntity(entity.intensity!)
+          : null,
       media: entity.media != null
           ? MediaEmbedModel.fromEntity(entity.media!)
           : null,
@@ -54,9 +68,11 @@ class ProgramExerciseModel with _$ProgramExerciseModel {
       order: Random().nextInt(100),
       name: BoneMock.name,
       description: BoneMock.subtitle,
-      repetition: Random().nextInt(100),
-      sets: Random().nextInt(100),
-      rest: Random().nextInt(100),
+      repetition: ProgramUnitValueModel.fake(),
+      sets: ProgramUnitValueModel.fake(),
+      rest: ProgramUnitValueModel.fake(),
+      tempo: ProgramUnitValueModel.fake(),
+      intensity: ProgramUnitValueModel.fake(),
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
     );
@@ -72,12 +88,48 @@ extension ProgramExerciseModelX on ProgramExerciseModel {
       order: order,
       name: name,
       description: description,
-      repetition: repetition,
-      sets: sets,
-      rest: rest,
+      repetition: repetition?.toEntity(),
+      sets: sets?.toEntity(),
+      rest: rest?.toEntity(),
+      tempo: tempo?.toEntity(),
       media: media?.toEntity(),
+      intensity: intensity?.toEntity(),
       createdAt: createdAt,
       updatedAt: updatedAt,
+    );
+  }
+}
+
+@freezed
+class ProgramUnitValueModel with _$ProgramUnitValueModel {
+  const factory ProgramUnitValueModel({
+    String? unit,
+    @Default(0) int value,
+  }) = _ProgramUnitValueModel;
+
+  factory ProgramUnitValueModel.fromJson(Map<String, dynamic> json) =>
+      _$ProgramUnitValueModelFromJson(json);
+
+  static ProgramUnitValueModel fromEntity(ProgramUnitValueEntity entity) {
+    return ProgramUnitValueModel(
+      unit: entity.unit,
+      value: entity.value,
+    );
+  }
+
+  static ProgramUnitValueModel fake() {
+    return ProgramUnitValueModel(
+      unit: BoneMock.name,
+      value: Random().nextInt(100),
+    );
+  }
+}
+
+extension ProgramUnitValueModelX on ProgramUnitValueModel {
+  ProgramUnitValueEntity toEntity() {
+    return ProgramUnitValueEntity(
+      unit: unit,
+      value: value,
     );
   }
 }

@@ -26,9 +26,11 @@ mixin _$ProgramExerciseModel {
   int get order => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  int get repetition => throw _privateConstructorUsedError;
-  int get sets => throw _privateConstructorUsedError;
-  int get rest => throw _privateConstructorUsedError;
+  ProgramUnitValueModel? get repetition => throw _privateConstructorUsedError;
+  ProgramUnitValueModel? get sets => throw _privateConstructorUsedError;
+  ProgramUnitValueModel? get rest => throw _privateConstructorUsedError;
+  ProgramUnitValueModel? get tempo => throw _privateConstructorUsedError;
+  ProgramUnitValueModel? get intensity => throw _privateConstructorUsedError;
   MediaEmbedModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
@@ -52,13 +54,20 @@ abstract class $ProgramExerciseModelCopyWith<$Res> {
       int order,
       String name,
       String? description,
-      int repetition,
-      int sets,
-      int rest,
+      ProgramUnitValueModel? repetition,
+      ProgramUnitValueModel? sets,
+      ProgramUnitValueModel? rest,
+      ProgramUnitValueModel? tempo,
+      ProgramUnitValueModel? intensity,
       MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
+  $ProgramUnitValueModelCopyWith<$Res>? get repetition;
+  $ProgramUnitValueModelCopyWith<$Res>? get sets;
+  $ProgramUnitValueModelCopyWith<$Res>? get rest;
+  $ProgramUnitValueModelCopyWith<$Res>? get tempo;
+  $ProgramUnitValueModelCopyWith<$Res>? get intensity;
   $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
@@ -82,9 +91,11 @@ class _$ProgramExerciseModelCopyWithImpl<$Res,
     Object? order = null,
     Object? name = null,
     Object? description = freezed,
-    Object? repetition = null,
-    Object? sets = null,
-    Object? rest = null,
+    Object? repetition = freezed,
+    Object? sets = freezed,
+    Object? rest = freezed,
+    Object? tempo = freezed,
+    Object? intensity = freezed,
     Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -114,18 +125,26 @@ class _$ProgramExerciseModelCopyWithImpl<$Res,
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      repetition: null == repetition
+      repetition: freezed == repetition
           ? _value.repetition
           : repetition // ignore: cast_nullable_to_non_nullable
-              as int,
-      sets: null == sets
+              as ProgramUnitValueModel?,
+      sets: freezed == sets
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as int,
-      rest: null == rest
+              as ProgramUnitValueModel?,
+      rest: freezed == rest
           ? _value.rest
           : rest // ignore: cast_nullable_to_non_nullable
-              as int,
+              as ProgramUnitValueModel?,
+      tempo: freezed == tempo
+          ? _value.tempo
+          : tempo // ignore: cast_nullable_to_non_nullable
+              as ProgramUnitValueModel?,
+      intensity: freezed == intensity
+          ? _value.intensity
+          : intensity // ignore: cast_nullable_to_non_nullable
+              as ProgramUnitValueModel?,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -139,6 +158,66 @@ class _$ProgramExerciseModelCopyWithImpl<$Res,
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProgramUnitValueModelCopyWith<$Res>? get repetition {
+    if (_value.repetition == null) {
+      return null;
+    }
+
+    return $ProgramUnitValueModelCopyWith<$Res>(_value.repetition!, (value) {
+      return _then(_value.copyWith(repetition: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProgramUnitValueModelCopyWith<$Res>? get sets {
+    if (_value.sets == null) {
+      return null;
+    }
+
+    return $ProgramUnitValueModelCopyWith<$Res>(_value.sets!, (value) {
+      return _then(_value.copyWith(sets: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProgramUnitValueModelCopyWith<$Res>? get rest {
+    if (_value.rest == null) {
+      return null;
+    }
+
+    return $ProgramUnitValueModelCopyWith<$Res>(_value.rest!, (value) {
+      return _then(_value.copyWith(rest: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProgramUnitValueModelCopyWith<$Res>? get tempo {
+    if (_value.tempo == null) {
+      return null;
+    }
+
+    return $ProgramUnitValueModelCopyWith<$Res>(_value.tempo!, (value) {
+      return _then(_value.copyWith(tempo: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProgramUnitValueModelCopyWith<$Res>? get intensity {
+    if (_value.intensity == null) {
+      return null;
+    }
+
+    return $ProgramUnitValueModelCopyWith<$Res>(_value.intensity!, (value) {
+      return _then(_value.copyWith(intensity: value) as $Val);
+    });
   }
 
   @override
@@ -169,13 +248,25 @@ abstract class _$$ProgramExerciseModelImplCopyWith<$Res>
       int order,
       String name,
       String? description,
-      int repetition,
-      int sets,
-      int rest,
+      ProgramUnitValueModel? repetition,
+      ProgramUnitValueModel? sets,
+      ProgramUnitValueModel? rest,
+      ProgramUnitValueModel? tempo,
+      ProgramUnitValueModel? intensity,
       MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
+  @override
+  $ProgramUnitValueModelCopyWith<$Res>? get repetition;
+  @override
+  $ProgramUnitValueModelCopyWith<$Res>? get sets;
+  @override
+  $ProgramUnitValueModelCopyWith<$Res>? get rest;
+  @override
+  $ProgramUnitValueModelCopyWith<$Res>? get tempo;
+  @override
+  $ProgramUnitValueModelCopyWith<$Res>? get intensity;
   @override
   $MediaEmbedModelCopyWith<$Res>? get media;
 }
@@ -197,9 +288,11 @@ class __$$ProgramExerciseModelImplCopyWithImpl<$Res>
     Object? order = null,
     Object? name = null,
     Object? description = freezed,
-    Object? repetition = null,
-    Object? sets = null,
-    Object? rest = null,
+    Object? repetition = freezed,
+    Object? sets = freezed,
+    Object? rest = freezed,
+    Object? tempo = freezed,
+    Object? intensity = freezed,
     Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -229,18 +322,26 @@ class __$$ProgramExerciseModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      repetition: null == repetition
+      repetition: freezed == repetition
           ? _value.repetition
           : repetition // ignore: cast_nullable_to_non_nullable
-              as int,
-      sets: null == sets
+              as ProgramUnitValueModel?,
+      sets: freezed == sets
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as int,
-      rest: null == rest
+              as ProgramUnitValueModel?,
+      rest: freezed == rest
           ? _value.rest
           : rest // ignore: cast_nullable_to_non_nullable
-              as int,
+              as ProgramUnitValueModel?,
+      tempo: freezed == tempo
+          ? _value.tempo
+          : tempo // ignore: cast_nullable_to_non_nullable
+              as ProgramUnitValueModel?,
+      intensity: freezed == intensity
+          ? _value.intensity
+          : intensity // ignore: cast_nullable_to_non_nullable
+              as ProgramUnitValueModel?,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -267,9 +368,11 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
       this.order = 0,
       this.name = 'Dot Exercise 0',
       this.description,
-      this.repetition = 1,
-      this.sets = 1,
-      this.rest = 0,
+      this.repetition,
+      this.sets,
+      this.rest,
+      this.tempo,
+      this.intensity,
       this.media,
       this.createdAt,
       this.updatedAt});
@@ -294,14 +397,15 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
   @override
   final String? description;
   @override
-  @JsonKey()
-  final int repetition;
+  final ProgramUnitValueModel? repetition;
   @override
-  @JsonKey()
-  final int sets;
+  final ProgramUnitValueModel? sets;
   @override
-  @JsonKey()
-  final int rest;
+  final ProgramUnitValueModel? rest;
+  @override
+  final ProgramUnitValueModel? tempo;
+  @override
+  final ProgramUnitValueModel? intensity;
   @override
   final MediaEmbedModel? media;
   @override
@@ -311,7 +415,7 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
 
   @override
   String toString() {
-    return 'ProgramExerciseModel(id: $id, programId: $programId, mediaId: $mediaId, order: $order, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ProgramExerciseModel(id: $id, programId: $programId, mediaId: $mediaId, order: $order, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest, tempo: $tempo, intensity: $intensity, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -331,6 +435,9 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
                 other.repetition == repetition) &&
             (identical(other.sets, sets) || other.sets == sets) &&
             (identical(other.rest, rest) || other.rest == rest) &&
+            (identical(other.tempo, tempo) || other.tempo == tempo) &&
+            (identical(other.intensity, intensity) ||
+                other.intensity == intensity) &&
             (identical(other.media, media) || other.media == media) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
@@ -340,8 +447,22 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, programId, mediaId, order,
-      name, description, repetition, sets, rest, media, createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      programId,
+      mediaId,
+      order,
+      name,
+      description,
+      repetition,
+      sets,
+      rest,
+      tempo,
+      intensity,
+      media,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -367,9 +488,11 @@ abstract class _ProgramExerciseModel implements ProgramExerciseModel {
       final int order,
       final String name,
       final String? description,
-      final int repetition,
-      final int sets,
-      final int rest,
+      final ProgramUnitValueModel? repetition,
+      final ProgramUnitValueModel? sets,
+      final ProgramUnitValueModel? rest,
+      final ProgramUnitValueModel? tempo,
+      final ProgramUnitValueModel? intensity,
       final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$ProgramExerciseModelImpl;
@@ -390,11 +513,15 @@ abstract class _ProgramExerciseModel implements ProgramExerciseModel {
   @override
   String? get description;
   @override
-  int get repetition;
+  ProgramUnitValueModel? get repetition;
   @override
-  int get sets;
+  ProgramUnitValueModel? get sets;
   @override
-  int get rest;
+  ProgramUnitValueModel? get rest;
+  @override
+  ProgramUnitValueModel? get tempo;
+  @override
+  ProgramUnitValueModel? get intensity;
   @override
   MediaEmbedModel? get media;
   @override
@@ -404,5 +531,164 @@ abstract class _ProgramExerciseModel implements ProgramExerciseModel {
   @override
   @JsonKey(ignore: true)
   _$$ProgramExerciseModelImplCopyWith<_$ProgramExerciseModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ProgramUnitValueModel _$ProgramUnitValueModelFromJson(
+    Map<String, dynamic> json) {
+  return _ProgramUnitValueModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProgramUnitValueModel {
+  String? get unit => throw _privateConstructorUsedError;
+  int get value => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProgramUnitValueModelCopyWith<ProgramUnitValueModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProgramUnitValueModelCopyWith<$Res> {
+  factory $ProgramUnitValueModelCopyWith(ProgramUnitValueModel value,
+          $Res Function(ProgramUnitValueModel) then) =
+      _$ProgramUnitValueModelCopyWithImpl<$Res, ProgramUnitValueModel>;
+  @useResult
+  $Res call({String? unit, int value});
+}
+
+/// @nodoc
+class _$ProgramUnitValueModelCopyWithImpl<$Res,
+        $Val extends ProgramUnitValueModel>
+    implements $ProgramUnitValueModelCopyWith<$Res> {
+  _$ProgramUnitValueModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? unit = freezed,
+    Object? value = null,
+  }) {
+    return _then(_value.copyWith(
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProgramUnitValueModelImplCopyWith<$Res>
+    implements $ProgramUnitValueModelCopyWith<$Res> {
+  factory _$$ProgramUnitValueModelImplCopyWith(
+          _$ProgramUnitValueModelImpl value,
+          $Res Function(_$ProgramUnitValueModelImpl) then) =
+      __$$ProgramUnitValueModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? unit, int value});
+}
+
+/// @nodoc
+class __$$ProgramUnitValueModelImplCopyWithImpl<$Res>
+    extends _$ProgramUnitValueModelCopyWithImpl<$Res,
+        _$ProgramUnitValueModelImpl>
+    implements _$$ProgramUnitValueModelImplCopyWith<$Res> {
+  __$$ProgramUnitValueModelImplCopyWithImpl(_$ProgramUnitValueModelImpl _value,
+      $Res Function(_$ProgramUnitValueModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? unit = freezed,
+    Object? value = null,
+  }) {
+    return _then(_$ProgramUnitValueModelImpl(
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProgramUnitValueModelImpl implements _ProgramUnitValueModel {
+  const _$ProgramUnitValueModelImpl({this.unit, this.value = 0});
+
+  factory _$ProgramUnitValueModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProgramUnitValueModelImplFromJson(json);
+
+  @override
+  final String? unit;
+  @override
+  @JsonKey()
+  final int value;
+
+  @override
+  String toString() {
+    return 'ProgramUnitValueModel(unit: $unit, value: $value)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProgramUnitValueModelImpl &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, unit, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProgramUnitValueModelImplCopyWith<_$ProgramUnitValueModelImpl>
+      get copyWith => __$$ProgramUnitValueModelImplCopyWithImpl<
+          _$ProgramUnitValueModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProgramUnitValueModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProgramUnitValueModel implements ProgramUnitValueModel {
+  const factory _ProgramUnitValueModel({final String? unit, final int value}) =
+      _$ProgramUnitValueModelImpl;
+
+  factory _ProgramUnitValueModel.fromJson(Map<String, dynamic> json) =
+      _$ProgramUnitValueModelImpl.fromJson;
+
+  @override
+  String? get unit;
+  @override
+  int get value;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProgramUnitValueModelImplCopyWith<_$ProgramUnitValueModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

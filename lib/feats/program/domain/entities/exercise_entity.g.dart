@@ -28,49 +28,64 @@ const ProgramExerciseEntitySchema = CollectionSchema(
       name: r'description',
       type: IsarType.string,
     ),
-    r'media': PropertySchema(
+    r'intensity': PropertySchema(
       id: 2,
+      name: r'intensity',
+      type: IsarType.object,
+      target: r'ProgramUnitValueEntity',
+    ),
+    r'media': PropertySchema(
+      id: 3,
       name: r'media',
       type: IsarType.object,
       target: r'MediaEmbedEntity',
     ),
     r'mediaId': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'mediaId',
       type: IsarType.long,
     ),
     r'name': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'name',
       type: IsarType.string,
     ),
     r'order': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'order',
       type: IsarType.long,
     ),
     r'programId': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'programId',
       type: IsarType.long,
     ),
     r'repetition': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'repetition',
-      type: IsarType.long,
+      type: IsarType.object,
+      target: r'ProgramUnitValueEntity',
     ),
     r'rest': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'rest',
-      type: IsarType.long,
+      type: IsarType.object,
+      target: r'ProgramUnitValueEntity',
     ),
     r'sets': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'sets',
-      type: IsarType.long,
+      type: IsarType.object,
+      target: r'ProgramUnitValueEntity',
+    ),
+    r'tempo': PropertySchema(
+      id: 11,
+      name: r'tempo',
+      type: IsarType.object,
+      target: r'ProgramUnitValueEntity',
     ),
     r'updatedAt': PropertySchema(
-      id: 10,
+      id: 12,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -89,7 +104,10 @@ const ProgramExerciseEntitySchema = CollectionSchema(
       single: true,
     )
   },
-  embeddedSchemas: {r'MediaEmbedEntity': MediaEmbedEntitySchema},
+  embeddedSchemas: {
+    r'ProgramUnitValueEntity': ProgramUnitValueEntitySchema,
+    r'MediaEmbedEntity': MediaEmbedEntitySchema
+  },
   getId: _programExerciseEntityGetId,
   getLinks: _programExerciseEntityGetLinks,
   attach: _programExerciseEntityAttach,
@@ -109,6 +127,14 @@ int _programExerciseEntityEstimateSize(
     }
   }
   {
+    final value = object.intensity;
+    if (value != null) {
+      bytesCount += 3 +
+          ProgramUnitValueEntitySchema.estimateSize(
+              value, allOffsets[ProgramUnitValueEntity]!, allOffsets);
+    }
+  }
+  {
     final value = object.media;
     if (value != null) {
       bytesCount += 3 +
@@ -117,6 +143,38 @@ int _programExerciseEntityEstimateSize(
     }
   }
   bytesCount += 3 + object.name.length * 3;
+  {
+    final value = object.repetition;
+    if (value != null) {
+      bytesCount += 3 +
+          ProgramUnitValueEntitySchema.estimateSize(
+              value, allOffsets[ProgramUnitValueEntity]!, allOffsets);
+    }
+  }
+  {
+    final value = object.rest;
+    if (value != null) {
+      bytesCount += 3 +
+          ProgramUnitValueEntitySchema.estimateSize(
+              value, allOffsets[ProgramUnitValueEntity]!, allOffsets);
+    }
+  }
+  {
+    final value = object.sets;
+    if (value != null) {
+      bytesCount += 3 +
+          ProgramUnitValueEntitySchema.estimateSize(
+              value, allOffsets[ProgramUnitValueEntity]!, allOffsets);
+    }
+  }
+  {
+    final value = object.tempo;
+    if (value != null) {
+      bytesCount += 3 +
+          ProgramUnitValueEntitySchema.estimateSize(
+              value, allOffsets[ProgramUnitValueEntity]!, allOffsets);
+    }
+  }
   return bytesCount;
 }
 
@@ -128,20 +186,47 @@ void _programExerciseEntitySerialize(
 ) {
   writer.writeDateTime(offsets[0], object.createdAt);
   writer.writeString(offsets[1], object.description);
-  writer.writeObject<MediaEmbedEntity>(
+  writer.writeObject<ProgramUnitValueEntity>(
     offsets[2],
+    allOffsets,
+    ProgramUnitValueEntitySchema.serialize,
+    object.intensity,
+  );
+  writer.writeObject<MediaEmbedEntity>(
+    offsets[3],
     allOffsets,
     MediaEmbedEntitySchema.serialize,
     object.media,
   );
-  writer.writeLong(offsets[3], object.mediaId);
-  writer.writeString(offsets[4], object.name);
-  writer.writeLong(offsets[5], object.order);
-  writer.writeLong(offsets[6], object.programId);
-  writer.writeLong(offsets[7], object.repetition);
-  writer.writeLong(offsets[8], object.rest);
-  writer.writeLong(offsets[9], object.sets);
-  writer.writeDateTime(offsets[10], object.updatedAt);
+  writer.writeLong(offsets[4], object.mediaId);
+  writer.writeString(offsets[5], object.name);
+  writer.writeLong(offsets[6], object.order);
+  writer.writeLong(offsets[7], object.programId);
+  writer.writeObject<ProgramUnitValueEntity>(
+    offsets[8],
+    allOffsets,
+    ProgramUnitValueEntitySchema.serialize,
+    object.repetition,
+  );
+  writer.writeObject<ProgramUnitValueEntity>(
+    offsets[9],
+    allOffsets,
+    ProgramUnitValueEntitySchema.serialize,
+    object.rest,
+  );
+  writer.writeObject<ProgramUnitValueEntity>(
+    offsets[10],
+    allOffsets,
+    ProgramUnitValueEntitySchema.serialize,
+    object.sets,
+  );
+  writer.writeObject<ProgramUnitValueEntity>(
+    offsets[11],
+    allOffsets,
+    ProgramUnitValueEntitySchema.serialize,
+    object.tempo,
+  );
+  writer.writeDateTime(offsets[12], object.updatedAt);
 }
 
 ProgramExerciseEntity _programExerciseEntityDeserialize(
@@ -154,19 +239,41 @@ ProgramExerciseEntity _programExerciseEntityDeserialize(
     createdAt: reader.readDateTimeOrNull(offsets[0]),
     description: reader.readStringOrNull(offsets[1]),
     id: id,
-    media: reader.readObjectOrNull<MediaEmbedEntity>(
+    intensity: reader.readObjectOrNull<ProgramUnitValueEntity>(
       offsets[2],
+      ProgramUnitValueEntitySchema.deserialize,
+      allOffsets,
+    ),
+    media: reader.readObjectOrNull<MediaEmbedEntity>(
+      offsets[3],
       MediaEmbedEntitySchema.deserialize,
       allOffsets,
     ),
-    mediaId: reader.readLongOrNull(offsets[3]),
-    name: reader.readStringOrNull(offsets[4]) ?? 'DOT Exercise 0',
-    order: reader.readLongOrNull(offsets[5]) ?? 0,
-    programId: reader.readLongOrNull(offsets[6]) ?? 0,
-    repetition: reader.readLongOrNull(offsets[7]) ?? 1,
-    rest: reader.readLongOrNull(offsets[8]) ?? 0,
-    sets: reader.readLongOrNull(offsets[9]) ?? 1,
-    updatedAt: reader.readDateTimeOrNull(offsets[10]),
+    mediaId: reader.readLongOrNull(offsets[4]),
+    name: reader.readStringOrNull(offsets[5]) ?? 'DOT Exercise 0',
+    order: reader.readLongOrNull(offsets[6]) ?? 0,
+    programId: reader.readLongOrNull(offsets[7]) ?? 0,
+    repetition: reader.readObjectOrNull<ProgramUnitValueEntity>(
+      offsets[8],
+      ProgramUnitValueEntitySchema.deserialize,
+      allOffsets,
+    ),
+    rest: reader.readObjectOrNull<ProgramUnitValueEntity>(
+      offsets[9],
+      ProgramUnitValueEntitySchema.deserialize,
+      allOffsets,
+    ),
+    sets: reader.readObjectOrNull<ProgramUnitValueEntity>(
+      offsets[10],
+      ProgramUnitValueEntitySchema.deserialize,
+      allOffsets,
+    ),
+    tempo: reader.readObjectOrNull<ProgramUnitValueEntity>(
+      offsets[11],
+      ProgramUnitValueEntitySchema.deserialize,
+      allOffsets,
+    ),
+    updatedAt: reader.readDateTimeOrNull(offsets[12]),
   );
   return object;
 }
@@ -183,26 +290,50 @@ P _programExerciseEntityDeserializeProp<P>(
     case 1:
       return (reader.readStringOrNull(offset)) as P;
     case 2:
+      return (reader.readObjectOrNull<ProgramUnitValueEntity>(
+        offset,
+        ProgramUnitValueEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
+    case 3:
       return (reader.readObjectOrNull<MediaEmbedEntity>(
         offset,
         MediaEmbedEntitySchema.deserialize,
         allOffsets,
       )) as P;
-    case 3:
-      return (reader.readLongOrNull(offset)) as P;
     case 4:
-      return (reader.readStringOrNull(offset) ?? 'DOT Exercise 0') as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 5:
-      return (reader.readLongOrNull(offset) ?? 0) as P;
+      return (reader.readStringOrNull(offset) ?? 'DOT Exercise 0') as P;
     case 6:
       return (reader.readLongOrNull(offset) ?? 0) as P;
     case 7:
-      return (reader.readLongOrNull(offset) ?? 1) as P;
-    case 8:
       return (reader.readLongOrNull(offset) ?? 0) as P;
+    case 8:
+      return (reader.readObjectOrNull<ProgramUnitValueEntity>(
+        offset,
+        ProgramUnitValueEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
     case 9:
-      return (reader.readLongOrNull(offset) ?? 1) as P;
+      return (reader.readObjectOrNull<ProgramUnitValueEntity>(
+        offset,
+        ProgramUnitValueEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
     case 10:
+      return (reader.readObjectOrNull<ProgramUnitValueEntity>(
+        offset,
+        ProgramUnitValueEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
+    case 11:
+      return (reader.readObjectOrNull<ProgramUnitValueEntity>(
+        offset,
+        ProgramUnitValueEntitySchema.deserialize,
+        allOffsets,
+      )) as P;
+    case 12:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -595,6 +726,24 @@ extension ProgramExerciseEntityQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> intensityIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'intensity',
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> intensityIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'intensity',
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
       QAfterFilterCondition> mediaIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -937,169 +1086,73 @@ extension ProgramExerciseEntityQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> repetitionEqualTo(int value) {
+      QAfterFilterCondition> repetitionIsNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
+      return query.addFilterCondition(const FilterCondition.isNull(
         property: r'repetition',
-        value: value,
       ));
     });
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> repetitionGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
+      QAfterFilterCondition> repetitionIsNotNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
+      return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'repetition',
-        value: value,
       ));
     });
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> repetitionLessThan(
-    int value, {
-    bool include = false,
-  }) {
+      QAfterFilterCondition> restIsNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'repetition',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> repetitionBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'repetition',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> restEqualTo(int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
+      return query.addFilterCondition(const FilterCondition.isNull(
         property: r'rest',
-        value: value,
       ));
     });
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> restGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
+      QAfterFilterCondition> restIsNotNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
+      return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'rest',
-        value: value,
       ));
     });
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> restLessThan(
-    int value, {
-    bool include = false,
-  }) {
+      QAfterFilterCondition> setsIsNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'rest',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> restBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'rest',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> setsEqualTo(int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
+      return query.addFilterCondition(const FilterCondition.isNull(
         property: r'sets',
-        value: value,
       ));
     });
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> setsGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
+      QAfterFilterCondition> setsIsNotNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
+      return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'sets',
-        value: value,
       ));
     });
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> setsLessThan(
-    int value, {
-    bool include = false,
-  }) {
+      QAfterFilterCondition> tempoIsNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'sets',
-        value: value,
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'tempo',
       ));
     });
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
-      QAfterFilterCondition> setsBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
+      QAfterFilterCondition> tempoIsNotNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'sets',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'tempo',
       ));
     });
   }
@@ -1182,9 +1235,44 @@ extension ProgramExerciseEntityQueryFilter on QueryBuilder<
 extension ProgramExerciseEntityQueryObject on QueryBuilder<
     ProgramExerciseEntity, ProgramExerciseEntity, QFilterCondition> {
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> intensity(FilterQuery<ProgramUnitValueEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'intensity');
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
       QAfterFilterCondition> media(FilterQuery<MediaEmbedEntity> q) {
     return QueryBuilder.apply(this, (query) {
       return query.object(q, r'media');
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> repetition(FilterQuery<ProgramUnitValueEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'repetition');
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> rest(FilterQuery<ProgramUnitValueEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'rest');
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> sets(FilterQuery<ProgramUnitValueEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'sets');
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> tempo(FilterQuery<ProgramUnitValueEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'tempo');
     });
   }
 }
@@ -1289,48 +1377,6 @@ extension ProgramExerciseEntityQuerySortBy
       sortByProgramIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'programId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      sortByRepetition() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'repetition', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      sortByRepetitionDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'repetition', Sort.desc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      sortByRest() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'rest', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      sortByRestDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'rest', Sort.desc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      sortBySets() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sets', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      sortBySetsDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sets', Sort.desc);
     });
   }
 
@@ -1450,48 +1496,6 @@ extension ProgramExerciseEntityQuerySortThenBy
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      thenByRepetition() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'repetition', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      thenByRepetitionDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'repetition', Sort.desc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      thenByRest() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'rest', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      thenByRestDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'rest', Sort.desc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      thenBySets() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sets', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
-      thenBySetsDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'sets', Sort.desc);
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
       thenByUpdatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'updatedAt', Sort.asc);
@@ -1551,27 +1555,6 @@ extension ProgramExerciseEntityQueryWhereDistinct
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QDistinct>
-      distinctByRepetition() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'repetition');
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QDistinct>
-      distinctByRest() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'rest');
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QDistinct>
-      distinctBySets() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'sets');
-    });
-  }
-
-  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QDistinct>
       distinctByUpdatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'updatedAt');
@@ -1598,6 +1581,13 @@ extension ProgramExerciseEntityQueryProperty on QueryBuilder<
       descriptionProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'description');
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramUnitValueEntity?, QQueryOperations>
+      intensityProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'intensity');
     });
   }
 
@@ -1634,22 +1624,31 @@ extension ProgramExerciseEntityQueryProperty on QueryBuilder<
     });
   }
 
-  QueryBuilder<ProgramExerciseEntity, int, QQueryOperations>
+  QueryBuilder<ProgramExerciseEntity, ProgramUnitValueEntity?, QQueryOperations>
       repetitionProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'repetition');
     });
   }
 
-  QueryBuilder<ProgramExerciseEntity, int, QQueryOperations> restProperty() {
+  QueryBuilder<ProgramExerciseEntity, ProgramUnitValueEntity?, QQueryOperations>
+      restProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'rest');
     });
   }
 
-  QueryBuilder<ProgramExerciseEntity, int, QQueryOperations> setsProperty() {
+  QueryBuilder<ProgramExerciseEntity, ProgramUnitValueEntity?, QQueryOperations>
+      setsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'sets');
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramUnitValueEntity?, QQueryOperations>
+      tempoProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'tempo');
     });
   }
 
@@ -1660,3 +1659,303 @@ extension ProgramExerciseEntityQueryProperty on QueryBuilder<
     });
   }
 }
+
+// **************************************************************************
+// IsarEmbeddedGenerator
+// **************************************************************************
+
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+
+const ProgramUnitValueEntitySchema = Schema(
+  name: r'ProgramUnitValueEntity',
+  id: -6228949604285086453,
+  properties: {
+    r'unit': PropertySchema(
+      id: 0,
+      name: r'unit',
+      type: IsarType.string,
+    ),
+    r'value': PropertySchema(
+      id: 1,
+      name: r'value',
+      type: IsarType.long,
+    )
+  },
+  estimateSize: _programUnitValueEntityEstimateSize,
+  serialize: _programUnitValueEntitySerialize,
+  deserialize: _programUnitValueEntityDeserialize,
+  deserializeProp: _programUnitValueEntityDeserializeProp,
+);
+
+int _programUnitValueEntityEstimateSize(
+  ProgramUnitValueEntity object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  {
+    final value = object.unit;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  return bytesCount;
+}
+
+void _programUnitValueEntitySerialize(
+  ProgramUnitValueEntity object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeString(offsets[0], object.unit);
+  writer.writeLong(offsets[1], object.value);
+}
+
+ProgramUnitValueEntity _programUnitValueEntityDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = ProgramUnitValueEntity(
+    unit: reader.readStringOrNull(offsets[0]),
+    value: reader.readLongOrNull(offsets[1]) ?? 0,
+  );
+  return object;
+}
+
+P _programUnitValueEntityDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readStringOrNull(offset)) as P;
+    case 1:
+      return (reader.readLongOrNull(offset) ?? 0) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
+  }
+}
+
+extension ProgramUnitValueEntityQueryFilter on QueryBuilder<
+    ProgramUnitValueEntity, ProgramUnitValueEntity, QFilterCondition> {
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> unitIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'unit',
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> unitIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'unit',
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> unitEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'unit',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> unitGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'unit',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> unitLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'unit',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> unitBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'unit',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> unitStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'unit',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> unitEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'unit',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+          QAfterFilterCondition>
+      unitContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'unit',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+          QAfterFilterCondition>
+      unitMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'unit',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> unitIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'unit',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> unitIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'unit',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> valueEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'value',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> valueGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'value',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> valueLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'value',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramUnitValueEntity, ProgramUnitValueEntity,
+      QAfterFilterCondition> valueBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'value',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+}
+
+extension ProgramUnitValueEntityQueryObject on QueryBuilder<
+    ProgramUnitValueEntity, ProgramUnitValueEntity, QFilterCondition> {}

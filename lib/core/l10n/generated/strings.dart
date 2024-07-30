@@ -60,8 +60,7 @@ import 'strings_id.dart';
 /// be consistent with the languages listed in the Strings.supportedLocales
 /// property.
 abstract class Strings {
-  Strings(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  Strings(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -81,8 +80,7 @@ abstract class Strings {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -94,24 +92,6 @@ abstract class Strings {
     Locale('en'),
     Locale('id')
   ];
-
-  /// No description provided for @successUpdateExercises.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully update exercises'**
-  String get successUpdateExercises;
-
-  /// No description provided for @programDetail.
-  ///
-  /// In en, this message translates to:
-  /// **'Program Detail'**
-  String get programDetail;
-
-  /// No description provided for @updateClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Update Club'**
-  String get updateClub;
 
   /// No description provided for @about.
   ///
@@ -443,6 +423,12 @@ abstract class Strings {
   /// **'Failed to create program'**
   String get failedCreateProgram;
 
+  /// No description provided for @failedEditProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to edit program'**
+  String get failedEditProgram;
+
   /// No description provided for @failedLeaveClub.
   ///
   /// In en, this message translates to:
@@ -641,6 +627,12 @@ abstract class Strings {
   /// **'Overview'**
   String get overview;
 
+  /// No description provided for @pageNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Page not found'**
+  String get pageNotFound;
+
   /// No description provided for @passRequired.
   ///
   /// In en, this message translates to:
@@ -670,6 +662,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Program'**
   String get program;
+
+  /// No description provided for @programDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Program Detail'**
+  String get programDetail;
 
   /// No description provided for @programNameRequired.
   ///
@@ -749,6 +747,12 @@ abstract class Strings {
   /// **'Start date is required'**
   String get startDateRequired;
 
+  /// No description provided for @succesEditProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully edit program'**
+  String get succesEditProgram;
+
   /// No description provided for @successCreateClub.
   ///
   /// In en, this message translates to:
@@ -766,18 +770,6 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Successfully create program'**
   String get successCreateProgram;
-
-  /// No description provided for @succesEditProgram.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully edit program'**
-  String get succesEditProgram;
-
-  /// No description provided for @failedEditProgram.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to edit program'**
-  String get failedEditProgram;
 
   /// No description provided for @successLogout.
   ///
@@ -797,6 +789,12 @@ abstract class Strings {
   /// **'Successfully signed up '**
   String get successSignUp;
 
+  /// No description provided for @successUpdateExercises.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully update exercises'**
+  String get successUpdateExercises;
+
   /// No description provided for @system.
   ///
   /// In en, this message translates to:
@@ -815,6 +813,12 @@ abstract class Strings {
   /// **'Theme'**
   String get theme;
 
+  /// No description provided for @updateClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Club'**
+  String get updateClub;
+
   /// No description provided for @upload.
   ///
   /// In en, this message translates to:
@@ -832,12 +836,6 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Volleyball'**
   String get volleyBall;
-
-  /// No description provided for @pageNotFound.
-  ///
-  /// In en, this message translates to:
-  /// **'Page not found'**
-  String get pageNotFound;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {
@@ -849,25 +847,25 @@ class _StringsDelegate extends LocalizationsDelegate<Strings> {
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'id'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'id'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_StringsDelegate old) => false;
 }
 
 Strings lookupStrings(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en':
-      return StringsEn();
-    case 'id':
-      return StringsId();
+    case 'en': return StringsEn();
+    case 'id': return StringsId();
   }
 
   throw FlutterError(
-      'Strings.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'Strings.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

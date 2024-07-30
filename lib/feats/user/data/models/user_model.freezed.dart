@@ -23,9 +23,15 @@ mixin _$UserModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
+  UserGender get gender => throw _privateConstructorUsedError;
   UserRole get role => throw _privateConstructorUsedError;
+  String? get bornPlace => throw _privateConstructorUsedError;
+  DateTime? get bornDate => throw _privateConstructorUsedError;
+  String? get religion => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
   String? get expertise => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
@@ -46,9 +52,15 @@ abstract class $UserModelCopyWith<$Res> {
       {int id,
       String name,
       String email,
+      String username,
       String image,
       String? phone,
+      UserGender gender,
       UserRole role,
+      String? bornPlace,
+      DateTime? bornDate,
+      String? religion,
+      String? address,
       String? expertise,
       DateTime? createdAt,
       DateTime? updatedAt,
@@ -71,9 +83,15 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? id = null,
     Object? name = null,
     Object? email = null,
+    Object? username = null,
     Object? image = null,
     Object? phone = freezed,
+    Object? gender = null,
     Object? role = null,
+    Object? bornPlace = freezed,
+    Object? bornDate = freezed,
+    Object? religion = freezed,
+    Object? address = freezed,
     Object? expertise = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -92,6 +110,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -100,10 +122,30 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as UserGender,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as UserRole,
+      bornPlace: freezed == bornPlace
+          ? _value.bornPlace
+          : bornPlace // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bornDate: freezed == bornDate
+          ? _value.bornDate
+          : bornDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      religion: freezed == religion
+          ? _value.religion
+          : religion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
       expertise: freezed == expertise
           ? _value.expertise
           : expertise // ignore: cast_nullable_to_non_nullable
@@ -136,9 +178,15 @@ abstract class _$$UserModelImplCopyWith<$Res>
       {int id,
       String name,
       String email,
+      String username,
       String image,
       String? phone,
+      UserGender gender,
       UserRole role,
+      String? bornPlace,
+      DateTime? bornDate,
+      String? religion,
+      String? address,
       String? expertise,
       DateTime? createdAt,
       DateTime? updatedAt,
@@ -159,9 +207,15 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? email = null,
+    Object? username = null,
     Object? image = null,
     Object? phone = freezed,
+    Object? gender = null,
     Object? role = null,
+    Object? bornPlace = freezed,
+    Object? bornDate = freezed,
+    Object? religion = freezed,
+    Object? address = freezed,
     Object? expertise = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -180,6 +234,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -188,10 +246,30 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as UserGender,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as UserRole,
+      bornPlace: freezed == bornPlace
+          ? _value.bornPlace
+          : bornPlace // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bornDate: freezed == bornDate
+          ? _value.bornDate
+          : bornDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      religion: freezed == religion
+          ? _value.religion
+          : religion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
       expertise: freezed == expertise
           ? _value.expertise
           : expertise // ignore: cast_nullable_to_non_nullable
@@ -219,9 +297,15 @@ class _$UserModelImpl implements _UserModel {
       {this.id = 0,
       this.name = 'Folks',
       this.email = 'folks@dot.com',
+      this.username = 'folks',
       this.image = "https://api.dicebear.com/9.x/adventurer/png",
       this.phone,
+      this.gender = UserGender.male,
       this.role = UserRole.athlete,
+      this.bornPlace,
+      this.bornDate,
+      this.religion,
+      this.address,
       this.expertise,
       this.createdAt,
       this.updatedAt,
@@ -241,12 +325,26 @@ class _$UserModelImpl implements _UserModel {
   final String email;
   @override
   @JsonKey()
+  final String username;
+  @override
+  @JsonKey()
   final String image;
   @override
   final String? phone;
   @override
   @JsonKey()
+  final UserGender gender;
+  @override
+  @JsonKey()
   final UserRole role;
+  @override
+  final String? bornPlace;
+  @override
+  final DateTime? bornDate;
+  @override
+  final String? religion;
+  @override
+  final String? address;
   @override
   final String? expertise;
   @override
@@ -258,7 +356,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, image: $image, phone: $phone, role: $role, expertise: $expertise, createdAt: $createdAt, updatedAt: $updatedAt, token: $token)';
+    return 'UserModel(id: $id, name: $name, email: $email, username: $username, image: $image, phone: $phone, gender: $gender, role: $role, bornPlace: $bornPlace, bornDate: $bornDate, religion: $religion, address: $address, expertise: $expertise, createdAt: $createdAt, updatedAt: $updatedAt, token: $token)';
   }
 
   @override
@@ -269,9 +367,19 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.role, role) || other.role == role) &&
+            (identical(other.bornPlace, bornPlace) ||
+                other.bornPlace == bornPlace) &&
+            (identical(other.bornDate, bornDate) ||
+                other.bornDate == bornDate) &&
+            (identical(other.religion, religion) ||
+                other.religion == religion) &&
+            (identical(other.address, address) || other.address == address) &&
             (identical(other.expertise, expertise) ||
                 other.expertise == expertise) &&
             (identical(other.createdAt, createdAt) ||
@@ -283,8 +391,24 @@ class _$UserModelImpl implements _UserModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, email, image, phone,
-      role, expertise, createdAt, updatedAt, token);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      email,
+      username,
+      image,
+      phone,
+      gender,
+      role,
+      bornPlace,
+      bornDate,
+      religion,
+      address,
+      expertise,
+      createdAt,
+      updatedAt,
+      token);
 
   @JsonKey(ignore: true)
   @override
@@ -305,9 +429,15 @@ abstract class _UserModel implements UserModel {
       {final int id,
       final String name,
       final String email,
+      final String username,
       final String image,
       final String? phone,
+      final UserGender gender,
       final UserRole role,
+      final String? bornPlace,
+      final DateTime? bornDate,
+      final String? religion,
+      final String? address,
       final String? expertise,
       final DateTime? createdAt,
       final DateTime? updatedAt,
@@ -323,11 +453,23 @@ abstract class _UserModel implements UserModel {
   @override
   String get email;
   @override
+  String get username;
+  @override
   String get image;
   @override
   String? get phone;
   @override
+  UserGender get gender;
+  @override
   UserRole get role;
+  @override
+  String? get bornPlace;
+  @override
+  DateTime? get bornDate;
+  @override
+  String? get religion;
+  @override
+  String? get address;
   @override
   String? get expertise;
   @override

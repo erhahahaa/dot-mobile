@@ -12,7 +12,7 @@ class QuestionModel with _$QuestionModel {
     int? mediaId,
     @Default(QuestionType.essay) QuestionType type,
     @Default('Mention 5 basic Movement') String content,
-    @Default('') String answer,
+    String? answer,
     MediaEmbedModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,

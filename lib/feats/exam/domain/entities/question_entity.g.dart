@@ -87,7 +87,12 @@ int _questionEntityEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.answer.length * 3;
+  {
+    final value = object.answer;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   bytesCount += 3 + object.content.length * 3;
   {
     final value = object.media;
@@ -128,7 +133,7 @@ QuestionEntity _questionEntityDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = QuestionEntity(
-    answer: reader.readStringOrNull(offsets[0]) ?? '',
+    answer: reader.readStringOrNull(offsets[0]),
     content: reader.readStringOrNull(offsets[1]) ?? 'Mention 5 basic Movement',
     createdAt: reader.readDateTimeOrNull(offsets[2]),
     examId: reader.readLongOrNull(offsets[3]) ?? 0,
@@ -154,7 +159,7 @@ P _questionEntityDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readStringOrNull(offset) ?? '') as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 1:
       return (reader.readStringOrNull(offset) ?? 'Mention 5 basic Movement')
           as P;
@@ -291,8 +296,26 @@ extension QuestionEntityQueryWhere
 extension QuestionEntityQueryFilter
     on QueryBuilder<QuestionEntity, QuestionEntity, QFilterCondition> {
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      answerIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'answer',
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      answerIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'answer',
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       answerEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -306,7 +329,7 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       answerGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -322,7 +345,7 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       answerLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -338,8 +361,8 @@ extension QuestionEntityQueryFilter
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       answerBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1252,7 +1275,7 @@ extension QuestionEntityQueryProperty
     });
   }
 
-  QueryBuilder<QuestionEntity, String, QQueryOperations> answerProperty() {
+  QueryBuilder<QuestionEntity, String?, QQueryOperations> answerProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'answer');
     });

@@ -14,7 +14,7 @@ _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
       type: $enumDecodeNullable(_$QuestionTypeEnumMap, json['type']) ??
           QuestionType.essay,
       content: json['content'] as String? ?? 'Mention 5 basic Movement',
-      answer: json['answer'] as String? ?? '',
+      answer: json['answer'] as String?,
       media: json['media'] == null
           ? null
           : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),

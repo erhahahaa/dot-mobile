@@ -22,7 +22,7 @@ class DioClient with FirebaseCrashLogger {
         _auth = token.first.token;
       }
       _dio = _createDio();
-      // _dio.interceptors.add(DioInterceptor());
+      _dio.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
@@ -35,7 +35,7 @@ class DioClient with FirebaseCrashLogger {
         _auth = token.first.token;
       }
       _dio = _createDio();
-      // _dio.interceptors.add(DioInterceptor());
+      _dio.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }

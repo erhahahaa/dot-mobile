@@ -15,9 +15,26 @@ _$ProgramExerciseModelImpl _$$ProgramExerciseModelImplFromJson(
       order: (json['order'] as num?)?.toInt() ?? 0,
       name: json['name'] as String? ?? 'Dot Exercise 0',
       description: json['description'] as String?,
-      repetition: (json['repetition'] as num?)?.toInt() ?? 1,
-      sets: (json['sets'] as num?)?.toInt() ?? 1,
-      rest: (json['rest'] as num?)?.toInt() ?? 0,
+      repetition: json['repetition'] == null
+          ? null
+          : ProgramUnitValueModel.fromJson(
+              json['repetition'] as Map<String, dynamic>),
+      sets: json['sets'] == null
+          ? null
+          : ProgramUnitValueModel.fromJson(
+              json['sets'] as Map<String, dynamic>),
+      rest: json['rest'] == null
+          ? null
+          : ProgramUnitValueModel.fromJson(
+              json['rest'] as Map<String, dynamic>),
+      tempo: json['tempo'] == null
+          ? null
+          : ProgramUnitValueModel.fromJson(
+              json['tempo'] as Map<String, dynamic>),
+      intensity: json['intensity'] == null
+          ? null
+          : ProgramUnitValueModel.fromJson(
+              json['intensity'] as Map<String, dynamic>),
       media: json['media'] == null
           ? null
           : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),
@@ -41,7 +58,23 @@ Map<String, dynamic> _$$ProgramExerciseModelImplToJson(
       'repetition': instance.repetition,
       'sets': instance.sets,
       'rest': instance.rest,
+      'tempo': instance.tempo,
+      'intensity': instance.intensity,
       'media': instance.media,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
+    };
+
+_$ProgramUnitValueModelImpl _$$ProgramUnitValueModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProgramUnitValueModelImpl(
+      unit: json['unit'] as String?,
+      value: (json['value'] as num?)?.toInt() ?? 0,
+    );
+
+Map<String, dynamic> _$$ProgramUnitValueModelImplToJson(
+        _$ProgramUnitValueModelImpl instance) =>
+    <String, dynamic>{
+      'unit': instance.unit,
+      'value': instance.value,
     };

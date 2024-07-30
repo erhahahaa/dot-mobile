@@ -11,9 +11,11 @@ class ProgramExerciseEntity {
   int order;
   String name;
   String? description;
-  int repetition;
-  int sets;
-  int rest;
+  ProgramUnitValueEntity? repetition;
+  ProgramUnitValueEntity? sets;
+  ProgramUnitValueEntity? rest;
+  ProgramUnitValueEntity? tempo;
+  ProgramUnitValueEntity? intensity;
   MediaEmbedEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -28,11 +30,24 @@ class ProgramExerciseEntity {
     this.order = 0,
     this.name = 'DOT Exercise 0',
     this.description,
-    this.repetition = 1,
-    this.sets = 1,
-    this.rest = 0,
+    this.repetition,
+    this.sets,
+    this.rest,
+    this.tempo,
+    this.intensity,
     this.media,
     this.createdAt,
     this.updatedAt,
+  });
+}
+
+@embedded
+class ProgramUnitValueEntity {
+  String? unit;
+  int value;
+
+  ProgramUnitValueEntity({
+    this.unit,
+    this.value = 0,
   });
 }

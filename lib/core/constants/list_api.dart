@@ -3,7 +3,7 @@
 class ListAPI {
   ListAPI._();
 
-  static const String BASE_URL = 'http://192.168.7.169:3000';
+  static const String BASE_URL = 'http://192.168.112.169:3000';
   // static const String BASE_URL = 'https://dot-api.zenta.dev';
 
   static const String AUTH_SIGN_UP = '/auth/sign-up';
@@ -16,6 +16,7 @@ class ListAPI {
   static const String CLUB_PROGRAM_EXERCISE = '/club/program/exercise';
   static const String CLUB_EXAM = '/club/exam';
   static const String CLUB_EXAM_QUESTION = '/club/exam/question';
+  static const String CLUB_EXAM_EVALUATION = '/club/exam/evaluation';
   static const String CLUB_TACTICAL = '/club/tactical';
 
   static const String MEDIA = '/media';

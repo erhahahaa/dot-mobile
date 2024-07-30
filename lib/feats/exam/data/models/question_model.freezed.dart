@@ -25,7 +25,7 @@ mixin _$QuestionModel {
   int? get mediaId => throw _privateConstructorUsedError;
   QuestionType get type => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
-  String get answer => throw _privateConstructorUsedError;
+  String? get answer => throw _privateConstructorUsedError;
   MediaEmbedModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $QuestionModelCopyWith<$Res> {
       int? mediaId,
       QuestionType type,
       String content,
-      String answer,
+      String? answer,
       MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
@@ -74,7 +74,7 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
     Object? mediaId = freezed,
     Object? type = null,
     Object? content = null,
-    Object? answer = null,
+    Object? answer = freezed,
     Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -100,10 +100,10 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      answer: null == answer
+      answer: freezed == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -146,7 +146,7 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
       int? mediaId,
       QuestionType type,
       String content,
-      String answer,
+      String? answer,
       MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
@@ -171,7 +171,7 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
     Object? mediaId = freezed,
     Object? type = null,
     Object? content = null,
-    Object? answer = null,
+    Object? answer = freezed,
     Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -197,10 +197,10 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      answer: null == answer
+      answer: freezed == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -226,7 +226,7 @@ class _$QuestionModelImpl implements _QuestionModel {
       this.mediaId,
       this.type = QuestionType.essay,
       this.content = 'Mention 5 basic Movement',
-      this.answer = '',
+      this.answer,
       this.media,
       this.createdAt,
       this.updatedAt});
@@ -249,8 +249,7 @@ class _$QuestionModelImpl implements _QuestionModel {
   @JsonKey()
   final String content;
   @override
-  @JsonKey()
-  final String answer;
+  final String? answer;
   @override
   final MediaEmbedModel? media;
   @override
@@ -307,7 +306,7 @@ abstract class _QuestionModel implements QuestionModel {
       final int? mediaId,
       final QuestionType type,
       final String content,
-      final String answer,
+      final String? answer,
       final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$QuestionModelImpl;
@@ -326,7 +325,7 @@ abstract class _QuestionModel implements QuestionModel {
   @override
   String get content;
   @override
-  String get answer;
+  String? get answer;
   @override
   MediaEmbedModel? get media;
   @override
