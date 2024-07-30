@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DropDown<T> extends StatefulWidget {
+  final FocusNode? currFocusNode;
+  final FocusNode? nextFocusNode;
   final T value;
   final List<DropdownMenuItem<T>> items;
   final bool hintIsVisible;
@@ -15,6 +17,8 @@ class DropDown<T> extends StatefulWidget {
 
   const DropDown({
     super.key,
+    this.currFocusNode,
+    this.nextFocusNode,
     required this.value,
     required this.items,
     this.hint,
@@ -58,6 +62,7 @@ class _DropDownState<T> extends State<DropDown<T>> {
             padding: EdgeInsets.zero,
             child: DropdownButtonFormField<T>(
               isExpanded: true,
+              focusNode: widget.currFocusNode,
               dropdownColor: Theme.of(context).scaffoldBackgroundColor,
               icon: const Icon(Icons.arrow_drop_down),
               onTap: () {
@@ -147,7 +152,19 @@ class _DropDownState<T> extends State<DropDown<T>> {
               value: widget.value,
               items: widget.items,
               validator: widget.validator as String? Function(T?)?,
-              onChanged: widget.onChanged,
+              onChanged: (value) {
+                if (value == null) return;
+                if (widget.onChanged != null) {
+                  widget.onChanged!(value);
+                }
+                setState(() {
+                  fieldFocusChange(
+                    context,
+                    widget.currFocusNode ?? FocusNode(),
+                    widget.nextFocusNode,
+                  );
+                });
+              },
             ),
           ),
         ],

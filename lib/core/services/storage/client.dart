@@ -11,6 +11,8 @@ class IsarClient {
   Isar get isar => _isar;
 
   IsarCollection<UserEntity> get users => _isar.userEntitys;
+  IsarCollection<UserPreferencesEntity> get userPreferences =>
+      _isar.userPreferencesEntitys;
   IsarCollection<ClubEntity> get clubs => _isar.clubEntitys;
   IsarCollection<ProgramEntity> get programs => _isar.programEntitys;
   IsarCollection<ProgramExerciseEntity> get programExercises =>
@@ -36,6 +38,7 @@ class IsarClient {
     return await Isar.open(
       [
         UserEntitySchema,
+        UserPreferencesEntitySchema,
         ClubEntitySchema,
         ProgramEntitySchema,
         ProgramExerciseEntitySchema,

@@ -4,5 +4,11 @@ import 'package:dot_coaching/feats/feats.dart';
 
 abstract class UserRepo {
   Future<Either<Failure, UserEntity>> getMe();
+  Future<Either<Failure, UserPreferencesModel>> getUserPref();
+  Future<Either<Failure, bool>> saveUserPref(UserPreferencesModel model);
+  Future<Either<Failure, List<String>>> findUsername(
+    String username,
+    String email,
+  );
   Future<bool> clear();
 }

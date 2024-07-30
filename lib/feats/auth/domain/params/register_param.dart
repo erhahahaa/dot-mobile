@@ -11,7 +11,7 @@ class RegisterParams with _$RegisterParams {
     required String password,
     required String name,
     required String username,
-    required String phone,
+    required int phone,
     required UserGender gender,
     required UserRole role,
   }) = _RegisterParams;

@@ -13,24 +13,24 @@ class SignInFormWidget extends StatefulWidget {
 }
 
 class _SigInpFormWidgetState extends State<SignInFormWidget> {
-  late TextEditingController _emailController;
+  late TextEditingController _identifierController;
   late TextEditingController _passwordController;
 
-  late FocusNode _emailFocusNode;
+  late FocusNode _identifierFocusNode;
   late FocusNode _passwordFocusNode;
 
   late GlobalKey<FormState> _formKey;
 
   @override
   void initState() {
-    _emailController = TextEditingController(
+    _identifierController = TextEditingController(
       text: 'john@gmail.com',
     );
     _passwordController = TextEditingController(
       text: 'password',
     );
 
-    _emailFocusNode = FocusNode();
+    _identifierFocusNode = FocusNode();
     _passwordFocusNode = FocusNode();
 
     _formKey = GlobalKey<FormState>();
@@ -40,10 +40,10 @@ class _SigInpFormWidgetState extends State<SignInFormWidget> {
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _identifierController.dispose();
     _passwordController.dispose();
 
-    _emailFocusNode.dispose();
+    _identifierFocusNode.dispose();
     _passwordFocusNode.dispose();
 
     _formKey.currentState?.dispose();
@@ -72,25 +72,39 @@ class _SigInpFormWidgetState extends State<SignInFormWidget> {
                 children: [
                   TextF(
                     autofillHints: const [AutofillHints.email],
-                    key: const Key('signInForm_emailField'),
-                    currFocusNode: _emailFocusNode,
+                    key: const Key('signInForm_identifierField'),
+                    currFocusNode: _identifierFocusNode,
                     nextFocusNode: _passwordFocusNode,
-                    controller: _emailController,
+                    controller: _identifierController,
                     textInputAction: TextInputAction.next,
                     prefixIcon: Icon(
                       Icons.email_outlined,
                       color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
-                    hintText: context.str?.enterYourEmail ?? 'Enter your email',
-                    hint: 'Email',
+                    hintText: context.str?.enterEmailOrUsernameOrPhone,
+                    hint: context.str?.emailOrUsernameOrPhone,
                     keyboardType: TextInputType.emailAddress,
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return context.str?.emailRequired ??
-                            'Email is required';
+                        return context.str?.identifierRequired ??
+                            'Identifier is required';
                       }
-                      if (!value.isValidEmail()) {
-                        return context.str?.invalidEmail ?? 'Invalid email';
+                      if (value.isEmail) {
+                        if (!value.isValidEmail()) {
+                          return context.str?.invalidEmail ?? 'Invalid email';
+                        }
+                      }
+
+                      if (value.isPhoneNumber) {
+                        if (!value.isValidPhoneNumber()) {
+                          return context.str?.invalidPhoneNumber ??
+                              'Invalid phone number';
+                        }
+                      }
+
+                      if (value.contains(' ')) {
+                        return context.str?.noSpaceAllowed ??
+                            'No space allowed';
                       }
                       return null;
                     },
@@ -138,7 +152,6 @@ class _SigInpFormWidgetState extends State<SignInFormWidget> {
                               if (value == null || value.isEmpty) {
                                 return context.str?.passRequired ??
                                     'Password is required';
-                                
                               }
                               return null;
                             },
@@ -162,7 +175,7 @@ class _SigInpFormWidgetState extends State<SignInFormWidget> {
                       if (_formKey.currentState!.validate()) {
                         context.read<AuthCubit>().signIn(
                               LoginParams(
-                                email: _emailController.text,
+                                identifier: _identifierController.text,
                                 password: _passwordController.text,
                               ),
                             );

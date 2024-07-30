@@ -12,7 +12,7 @@ _$RegisterParamsImpl _$$RegisterParamsImplFromJson(Map<String, dynamic> json) =>
       password: json['password'] as String,
       name: json['name'] as String,
       username: json['username'] as String,
-      phone: json['phone'] as String,
+      phone: (json['phone'] as num).toInt(),
       gender: $enumDecode(_$UserGenderEnumMap, json['gender']),
       role: $enumDecode(_$UserRoleEnumMap, json['role']),
     );
@@ -29,12 +29,12 @@ Map<String, dynamic> _$$RegisterParamsImplToJson(
       'role': _$UserRoleEnumMap[instance.role]!,
     };
 
-const _$UserRoleEnumMap = {
-  UserRole.coach: 'coach',
-  UserRole.athlete: 'athlete',
-};
-
 const _$UserGenderEnumMap = {
   UserGender.male: 'male',
   UserGender.female: 'female',
+};
+
+const _$UserRoleEnumMap = {
+  UserRole.coach: 'coach',
+  UserRole.athlete: 'athlete',
 };

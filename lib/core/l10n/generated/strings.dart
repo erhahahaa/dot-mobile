@@ -6,7 +6,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'strings_en.dart';
+import 'strings_es.dart';
+import 'strings_hi.dart';
 import 'strings_id.dart';
+import 'strings_zh.dart';
 
 /// Callers can lookup localized strings with an instance of Strings
 /// returned by `Strings.of(context)`.
@@ -90,7 +93,10 @@ abstract class Strings {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('id')
+    Locale('es'),
+    Locale('hi'),
+    Locale('id'),
+    Locale('zh')
   ];
 
   /// No description provided for @about.
@@ -116,6 +122,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Add Member'**
   String get addMember;
+
+  /// No description provided for @alert.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert'**
+  String get alert;
 
   /// No description provided for @alreadyHaveAnAccount.
   ///
@@ -303,11 +315,29 @@ abstract class Strings {
   /// **'Edit Program'**
   String get editProgram;
 
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @emailOrUsernameOrPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Email / Username / Phone'**
+  String get emailOrUsernameOrPhone;
+
   /// No description provided for @emailRequired.
   ///
   /// In en, this message translates to:
   /// **'Email is required'**
   String get emailRequired;
+
+  /// No description provided for @emailUsernamePhoneAlreadyRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'Email / Username / Phone already registered'**
+  String get emailUsernamePhoneAlreadyRegistered;
 
   /// No description provided for @endDate.
   ///
@@ -338,6 +368,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Enter club name'**
   String get enterClubName;
+
+  /// No description provided for @enterEmailOrUsernameOrPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter email / username / phone'**
+  String get enterEmailOrUsernameOrPhone;
 
   /// No description provided for @enterEndDate.
   ///
@@ -392,6 +428,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Enter your username'**
   String get enterYourUsername;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
 
   /// No description provided for @errorCreateExercise.
   ///
@@ -513,11 +555,23 @@ abstract class Strings {
   /// **'History'**
   String get history;
 
+  /// No description provided for @identifierRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Identifier is required'**
+  String get identifierRequired;
+
   /// No description provided for @indonesian.
   ///
   /// In en, this message translates to:
   /// **'Indonesian'**
   String get indonesian;
+
+  /// No description provided for @info.
+  ///
+  /// In en, this message translates to:
+  /// **'Info'**
+  String get info;
 
   /// No description provided for @invalidEmail.
   ///
@@ -597,6 +651,12 @@ abstract class Strings {
   /// **'My Club'**
   String get myClub;
 
+  /// No description provided for @myClubTraining.
+  ///
+  /// In en, this message translates to:
+  /// **'My Club'**
+  String get myClubTraining;
+
   /// No description provided for @name.
   ///
   /// In en, this message translates to:
@@ -638,6 +698,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'No members found'**
   String get noMembersFound;
+
+  /// No description provided for @noSpaceAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Space no allowed'**
+  String get noSpaceAllowed;
 
   /// No description provided for @noUsersFound.
   ///
@@ -783,6 +849,12 @@ abstract class Strings {
   /// **'Successfully edit program'**
   String get succesEditProgram;
 
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
   /// No description provided for @successCreateClub.
   ///
   /// In en, this message translates to:
@@ -873,6 +945,18 @@ abstract class Strings {
   /// **'Username'**
   String get username;
 
+  /// No description provided for @usernameCantContainUppercase.
+  ///
+  /// In en, this message translates to:
+  /// **'Username cannot contain capital letters'**
+  String get usernameCantContainUppercase;
+
+  /// No description provided for @usernameNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Username is not available'**
+  String get usernameNotAvailable;
+
   /// No description provided for @usernameRequired.
   ///
   /// In en, this message translates to:
@@ -895,7 +979,7 @@ class _StringsDelegate extends LocalizationsDelegate<Strings> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'id'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'hi', 'id', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_StringsDelegate old) => false;
@@ -907,7 +991,10 @@ Strings lookupStrings(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return StringsEn();
+    case 'es': return StringsEs();
+    case 'hi': return StringsHi();
     case 'id': return StringsId();
+    case 'zh': return StringsZh();
   }
 
   throw FlutterError(

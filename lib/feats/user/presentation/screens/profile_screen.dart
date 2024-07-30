@@ -75,33 +75,20 @@ class ProfileScreen extends StatelessWidget {
                             hint: context.str?.language ?? 'Language',
                             contentPadding: EdgeInsets.all(8.w),
                             fillColor: context.containerColor(0.05),
-                            items: [
-                              DropdownMenuItem(
-                                value: const Locale('en', 'US'),
-                                child: Row(
-                                  children: [
-                                    Assets.images.flags.us.svg(width: 14.w),
-                                    SizedBox(width: 8.w),
-                                    Text(
-                                      context.str?.english ?? 'English',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: const Locale('id', 'ID'),
-                                child: Row(
-                                  children: [
-                                    Assets.images.flags.id.svg(width: 14.w),
-                                    SizedBox(width: 8.w),
-                                    Text(
-                                      context.str?.indonesian ?? 'Indonesian',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                            value: const Locale('en', 'US'),
+                            items: L10n.all
+                                .map((locale) => DropdownMenuItem(
+                                      value: locale,
+                                      child: Row(
+                                        children: [
+                                          L10n.getIcon(locale.languageCode),
+                                          SizedBox(width: 8.w),
+                                          Text(L10n.getFlag(
+                                              locale.languageCode)),
+                                        ],
+                                      ),
+                                    ))
+                                .toList(),
+                            value: state.locale,
                             onChanged: (value) {
                               if (value == null) return;
                               context.read<UserCubit>().setLocale(value);

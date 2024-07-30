@@ -27,6 +27,7 @@ class UserCubit extends Cubit<UserState> {
       );
 
   Future<void> init() async {
+    await _fetchUserPref();
     await _fetchLocalUser();
   }
 
@@ -48,7 +49,32 @@ class UserCubit extends Cubit<UserState> {
     );
   }
 
+  Future<void> _fetchUserPref() async {
+    final res = await _userRepo.getUserPref();
+
+    res.fold(
+      (l) => _userRepo
+          .saveUserPref(UserPreferencesModel())
+          .then((_) => _fetchUserPref()),
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            locale: r.locale,
+            themeMode: r.themeMode,
+          ),
+        );
+      },
+    );
+  }
+
   Future<void> setLocale(Locale locale) async {
+    final param = UserPreferencesModel(
+      locale: locale,
+      themeMode: state.themeMode,
+    );
+    await _userRepo.saveUserPref(param);
     safeEmit(
       isClosed: isClosed,
       emit: emit,
@@ -59,6 +85,11 @@ class UserCubit extends Cubit<UserState> {
   }
 
   Future<void> setTheme(ThemeMode themeMode) async {
+    final param = UserPreferencesModel(
+      locale: state.locale,
+      themeMode: themeMode,
+    );
+    await _userRepo.saveUserPref(param);
     safeEmit(
       isClosed: isClosed,
       emit: emit,

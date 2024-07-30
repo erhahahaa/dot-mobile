@@ -66,7 +66,7 @@ const UserEntitySchema = CollectionSchema(
     r'phone': PropertySchema(
       id: 9,
       name: r'phone',
-      type: IsarType.string,
+      type: IsarType.long,
     ),
     r'religion': PropertySchema(
       id: 10,
@@ -151,12 +151,6 @@ int _userEntityEstimateSize(
   bytesCount += 3 + object.image.length * 3;
   bytesCount += 3 + object.name.length * 3;
   {
-    final value = object.phone;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
     final value = object.religion;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
@@ -187,7 +181,7 @@ void _userEntitySerialize(
   writer.writeByte(offsets[6], object.gender.index);
   writer.writeString(offsets[7], object.image);
   writer.writeString(offsets[8], object.name);
-  writer.writeString(offsets[9], object.phone);
+  writer.writeLong(offsets[9], object.phone);
   writer.writeString(offsets[10], object.religion);
   writer.writeByte(offsets[11], object.role.index);
   writer.writeString(offsets[12], object.token);
@@ -214,7 +208,7 @@ UserEntity _userEntityDeserialize(
     image: reader.readStringOrNull(offsets[7]) ??
         'https://api.dicebear.com/9.x/adventurer/png',
     name: reader.readStringOrNull(offsets[8]) ?? 'Folks',
-    phone: reader.readStringOrNull(offsets[9]),
+    phone: reader.readLongOrNull(offsets[9]) ?? 6281555444333,
     religion: reader.readStringOrNull(offsets[10]),
     role: _UserEntityroleValueEnumMap[reader.readByteOrNull(offsets[11])] ??
         UserRole.athlete,
@@ -253,7 +247,7 @@ P _userEntityDeserializeProp<P>(
     case 8:
       return (reader.readStringOrNull(offset) ?? 'Folks') as P;
     case 9:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset) ?? 6281555444333) as P;
     case 10:
       return (reader.readStringOrNull(offset)) as P;
     case 11:
@@ -1616,71 +1610,47 @@ extension UserEntityQueryFilter
     });
   }
 
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> phoneIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'phone',
-      ));
-    });
-  }
-
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> phoneIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'phone',
-      ));
-    });
-  }
-
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> phoneEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'phone',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> phoneGreaterThan(
-    String? value, {
+    int value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'phone',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> phoneLessThan(
-    String? value, {
+    int value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'phone',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> phoneBetween(
-    String? lower,
-    String? upper, {
+    int lower,
+    int upper, {
     bool includeLower = true,
     bool includeUpper = true,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
@@ -1689,76 +1659,6 @@ extension UserEntityQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> phoneStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'phone',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> phoneEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'phone',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> phoneContains(
-      String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'phone',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> phoneMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'phone',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition> phoneIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'phone',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<UserEntity, UserEntity, QAfterFilterCondition>
-      phoneIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'phone',
-        value: '',
       ));
     });
   }
@@ -2767,10 +2667,9 @@ extension UserEntityQueryWhereDistinct
     });
   }
 
-  QueryBuilder<UserEntity, UserEntity, QDistinct> distinctByPhone(
-      {bool caseSensitive = true}) {
+  QueryBuilder<UserEntity, UserEntity, QDistinct> distinctByPhone() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'phone', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'phone');
     });
   }
 
@@ -2870,7 +2769,7 @@ extension UserEntityQueryProperty
     });
   }
 
-  QueryBuilder<UserEntity, String?, QQueryOperations> phoneProperty() {
+  QueryBuilder<UserEntity, int, QQueryOperations> phoneProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'phone');
     });

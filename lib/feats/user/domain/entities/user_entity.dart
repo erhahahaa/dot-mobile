@@ -14,7 +14,7 @@ class UserEntity {
   String email;
   String username;
   String image;
-  String? phone;
+  int phone;
   @enumerated
   UserGender gender;
   @enumerated
@@ -34,7 +34,7 @@ class UserEntity {
     this.email = 'folks@dot.com',
     this.username = 'folks',
     this.image = 'https://api.dicebear.com/9.x/adventurer/png',
-    this.phone,
+    this.phone = 6281555444333,
     this.gender = UserGender.male,
     this.role = UserRole.athlete,
     this.bornPlace,

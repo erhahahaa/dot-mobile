@@ -24,7 +24,7 @@ mixin _$RegisterParams {
   String get password => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
+  int get phone => throw _privateConstructorUsedError;
   UserGender get gender => throw _privateConstructorUsedError;
   UserRole get role => throw _privateConstructorUsedError;
 
@@ -45,7 +45,7 @@ abstract class $RegisterParamsCopyWith<$Res> {
       String password,
       String name,
       String username,
-      String phone,
+      int phone,
       UserGender gender,
       UserRole role});
 }
@@ -91,7 +91,7 @@ class _$RegisterParamsCopyWithImpl<$Res, $Val extends RegisterParams>
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -117,7 +117,7 @@ abstract class _$$RegisterParamsImplCopyWith<$Res>
       String password,
       String name,
       String username,
-      String phone,
+      int phone,
       UserGender gender,
       UserRole role});
 }
@@ -161,7 +161,7 @@ class __$$RegisterParamsImplCopyWithImpl<$Res>
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -198,7 +198,7 @@ class _$RegisterParamsImpl implements _RegisterParams {
   @override
   final String username;
   @override
-  final String phone;
+  final int phone;
   @override
   final UserGender gender;
   @override
@@ -251,7 +251,7 @@ abstract class _RegisterParams implements RegisterParams {
       required final String password,
       required final String name,
       required final String username,
-      required final String phone,
+      required final int phone,
       required final UserGender gender,
       required final UserRole role}) = _$RegisterParamsImpl;
 
@@ -267,7 +267,7 @@ abstract class _RegisterParams implements RegisterParams {
   @override
   String get username;
   @override
-  String get phone;
+  int get phone;
   @override
   UserGender get gender;
   @override

@@ -14,7 +14,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       username: json['username'] as String? ?? 'folks',
       image: json['image'] as String? ??
           "https://api.dicebear.com/9.x/adventurer/png",
-      phone: json['phone'] as String?,
+      phone: (json['phone'] as num?)?.toInt() ?? 6281555444333,
       gender: $enumDecodeNullable(_$UserGenderEnumMap, json['gender']) ??
           UserGender.male,
       role: $enumDecodeNullable(_$UserRoleEnumMap, json['role']) ??

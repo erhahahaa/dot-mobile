@@ -25,7 +25,7 @@ mixin _$UserModel {
   String get email => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
+  int get phone => throw _privateConstructorUsedError;
   UserGender get gender => throw _privateConstructorUsedError;
   UserRole get role => throw _privateConstructorUsedError;
   String? get bornPlace => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $UserModelCopyWith<$Res> {
       String email,
       String username,
       String image,
-      String? phone,
+      int phone,
       UserGender gender,
       UserRole role,
       String? bornPlace,
@@ -85,7 +85,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? email = null,
     Object? username = null,
     Object? image = null,
-    Object? phone = freezed,
+    Object? phone = null,
     Object? gender = null,
     Object? role = null,
     Object? bornPlace = freezed,
@@ -118,10 +118,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: freezed == phone
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -180,7 +180,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String email,
       String username,
       String image,
-      String? phone,
+      int phone,
       UserGender gender,
       UserRole role,
       String? bornPlace,
@@ -209,7 +209,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? email = null,
     Object? username = null,
     Object? image = null,
-    Object? phone = freezed,
+    Object? phone = null,
     Object? gender = null,
     Object? role = null,
     Object? bornPlace = freezed,
@@ -242,10 +242,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: freezed == phone
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -299,7 +299,7 @@ class _$UserModelImpl implements _UserModel {
       this.email = 'folks@dot.com',
       this.username = 'folks',
       this.image = "https://api.dicebear.com/9.x/adventurer/png",
-      this.phone,
+      this.phone = 6281555444333,
       this.gender = UserGender.male,
       this.role = UserRole.athlete,
       this.bornPlace,
@@ -330,7 +330,8 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   final String image;
   @override
-  final String? phone;
+  @JsonKey()
+  final int phone;
   @override
   @JsonKey()
   final UserGender gender;
@@ -431,7 +432,7 @@ abstract class _UserModel implements UserModel {
       final String email,
       final String username,
       final String image,
-      final String? phone,
+      final int phone,
       final UserGender gender,
       final UserRole role,
       final String? bornPlace,
@@ -457,7 +458,7 @@ abstract class _UserModel implements UserModel {
   @override
   String get image;
   @override
-  String? get phone;
+  int get phone;
   @override
   UserGender get gender;
   @override

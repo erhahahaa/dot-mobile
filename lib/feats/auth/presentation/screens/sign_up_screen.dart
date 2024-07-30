@@ -15,8 +15,16 @@ class SignUpScreen extends StatelessWidget {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state.state == BaseState.failure || state.failure != null) {
+          String? m;
+          if (state.failure?.message
+                  .startsWith('Email, username, or phone already exists') ??
+              false) {
+            m = context.str?.emailUsernamePhoneAlreadyRegistered;
+          } else {
+            m = context.str?.failedSignUp;
+          }
           ToastModel(
-            message: context.str?.failedSignUp,
+            message: m,
             type: ToastType.error,
           ).fire(context);
         }
@@ -51,7 +59,7 @@ class SignUpScreen extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
-                   Text(
+                  Text(
                     context.str?.or ?? 'or',
                   ),
                   Expanded(

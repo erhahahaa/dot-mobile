@@ -207,12 +207,4 @@ class _TextFState extends State<TextF> {
     );
   }
 
-  void fieldFocusChange(
-    BuildContext context,
-    FocusNode currentFocus,
-    FocusNode? nextFocus,
-  ) {
-    currentFocus.unfocus();
-    FocusScope.of(context).requestFocus(nextFocus);
-  }
 }

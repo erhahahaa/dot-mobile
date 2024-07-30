@@ -20,7 +20,7 @@ class BottomNavBar extends StatelessWidget {
 
   void _goBranch(int index) => navigationShell.goBranch(
         index,
-        initialLocation: index == navigationShell.currentIndex,
+        // initialLocation: index == navigationShell.currentIndex,
       );
 
   @override

@@ -131,7 +131,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       nextFocusNode: _emailFocusNode,
                       textInputAction: TextInputAction.next,
                       controller: _usernameController,
-                      keyboardType: TextInputType.username,
+                      keyboardType: TextInputType.name,
                       prefixIcon: Icon(
                         Icons.co_present_rounded,
                         color: Theme.of(context).textTheme.bodyLarge?.color,
@@ -162,7 +162,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       hintText:
                           context.str?.enterYourEmail ?? 'Enter your email',
-                      hint: "Email",
+                      hint: context.str?.email ?? 'Email',
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
                           return context.str?.emailRequired ??
@@ -179,6 +179,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       hint: msg?.gender,
                       value: selectedUserGender,
                       items: userGender,
+                      currFocusNode: _genderFocusNode,
+                      nextFocusNode: _phoneFocusNode,
                       prefixIcon: Icon(
                         Icons.male_rounded,
                         color: Theme.of(context).textTheme.bodyLarge?.color,
@@ -284,6 +286,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   onPressed: () {},
                 ),
               ),
+              SizedBox(height: 96.h),
             ],
           ),
         ),

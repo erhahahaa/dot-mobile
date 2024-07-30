@@ -2,6 +2,33 @@ import 'package:dot_coaching/core/core.dart';
 import 'package:flutter/services.dart';
 
 extension StringExt on String {
+  bool isContainUpperCase() {
+    return contains(RegExp(r'[A-Z]'));
+  }
+
+  bool get isEmail {
+    if (contains('@') && contains('.')) {
+      return true;
+    }
+    return false;
+  }
+
+  bool get isPhoneNumber {
+    if (startsWith('8')) {
+      return true;
+    }
+    if (startsWith('0')) {
+      return true;
+    }
+    if (startsWith('+')) {
+      return true;
+    }
+    if (startsWith('62')) {
+      return true;
+    }
+    return false;
+  }
+
   bool isValidEmail() {
     return RegExp(
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',

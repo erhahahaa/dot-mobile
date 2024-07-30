@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Indonesian (`id`).
 class StringsId extends Strings {
-  StringsId([super.locale = 'id']);
+  StringsId([String locale = 'id']) : super(locale);
 
   @override
   String get about => 'Tentang';
@@ -15,6 +15,9 @@ class StringsId extends Strings {
 
   @override
   String get addMember => 'Tambahkan Anggota';
+
+  @override
+  String get alert => 'Peringatan';
 
   @override
   String get alreadyHaveAnAccount => 'Sudah punya akun?';
@@ -110,7 +113,16 @@ class StringsId extends Strings {
   String get editProgram => 'Ubah Program';
 
   @override
+  String get email => 'Email';
+
+  @override
+  String get emailOrUsernameOrPhone => 'Email / Nama pengguna / Telepon';
+
+  @override
   String get emailRequired => 'Email wajib diisi';
+
+  @override
+  String get emailUsernamePhoneAlreadyRegistered => 'Email / Nama pengguna / Telepon sudah terdaftar';
 
   @override
   String get endDate => 'Tanggal Berakhir';
@@ -126,6 +138,9 @@ class StringsId extends Strings {
 
   @override
   String get enterClubName => 'Masukkan nama klub';
+
+  @override
+  String get enterEmailOrUsernameOrPhone => 'Masukan email / nama pengguna / telepon';
 
   @override
   String get enterEndDate => 'Masukkan tanggal berakhir';
@@ -153,6 +168,9 @@ class StringsId extends Strings {
 
   @override
   String get enterYourUsername => 'Masukkan nama pengguna anda';
+
+  @override
+  String get error => 'Gagal';
 
   @override
   String get errorCreateExercise => 'Gagal membuat latihan';
@@ -215,7 +233,13 @@ class StringsId extends Strings {
   String get history => 'Riwayat';
 
   @override
+  String get identifierRequired => 'Identitas wajib diisi';
+
+  @override
   String get indonesian => 'Bahasa Indonesia';
+
+  @override
+  String get info => 'Informasi';
 
   @override
   String get invalidEmail => 'Email tidak valid';
@@ -257,6 +281,9 @@ class StringsId extends Strings {
   String get myClub => 'Klub Saya';
 
   @override
+  String get myClubTraining => 'Klub Saya';
+
+  @override
   String get name => 'Nama';
 
   @override
@@ -276,6 +303,9 @@ class StringsId extends Strings {
 
   @override
   String get noMembersFound => 'Anggota tidak ditemukan';
+
+  @override
+  String get noSpaceAllowed => 'Tidak diperbolehkan ada spasi';
 
   @override
   String get noUsersFound => 'Pengguna tidak ditemukan';
@@ -350,6 +380,9 @@ class StringsId extends Strings {
   String get succesEditProgram => 'Berhasil mengubah program';
 
   @override
+  String get success => 'Berhasil';
+
+  @override
   String get successCreateClub => 'Berhasil membuat club';
 
   @override
@@ -393,6 +426,12 @@ class StringsId extends Strings {
 
   @override
   String get username => 'Nama Penguna';
+
+  @override
+  String get usernameCantContainUppercase => 'Nama pengguna tidak boleh mengandung huruf kapital';
+
+  @override
+  String get usernameNotAvailable => 'Nama pengguna tidak tersedia';
 
   @override
   String get usernameRequired => 'Nama penguna wajib diisi';

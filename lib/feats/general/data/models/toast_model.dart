@@ -34,16 +34,16 @@ extension ToastTypeExt on ToastType {
     }
   }
 
-  String get title {
+  String title(BuildContext context) {
     switch (this) {
       case ToastType.error:
-        return 'Error';
+        return context.str?.error ?? 'Error';
       case ToastType.success:
-        return 'Success';
+        return context.str?.success ?? 'Success';
       case ToastType.info:
-        return 'Info';
+        return context.str?.info ?? 'Info';
       case ToastType.warning:
-        return 'Warning';
+        return context.str?.alert ?? 'Warning';
     }
   }
 }
@@ -62,8 +62,8 @@ extension ToastModelExt on ToastModel {
       showToastWidget(
         context: context,
         Toast(
-          title: type.title,
-          message: message ?? type.title,
+          title: type.title(context),
+          message: message ?? type.title(context),
           icon: type.icon(context),
           color: type.color(context),
           theme: context.theme,

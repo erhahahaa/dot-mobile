@@ -3,22 +3,12 @@ part of 'auth_cubit.dart';
 @freezed
 class AuthState with _$AuthState {
   const factory AuthState({
-    @Default(
-      BaseState.initial,
-    )
-    BaseState state,
-    @Default(
-      AuthStatus.unknown,
-    )
-    AuthStatus status,
+    @Default(BaseState.initial) BaseState state,
+    @Default(AuthStatus.unknown) AuthStatus status,
     Failure? failure,
-    @Default(
-      PasswordVisibility.hidden,
-    )
-    PasswordVisibility passwordVisibility,
-    @Default(
-      PasswordVisibility.hidden,
-    )
+    @Default(PasswordVisibility.hidden) PasswordVisibility passwordVisibility,
+    @Default(PasswordVisibility.hidden)
     PasswordVisibility confirmPasswordVisibility,
+    @Default([]) List<String> usernameSuggestions,
   }) = _AuthState;
 }

@@ -29,6 +29,13 @@ class AuthCubit extends Cubit<AuthState> {
         emit: emit,
         state: state.copyWith(state: BaseState.loading),
       );
+  void clearUsernameSuggestions() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          usernameSuggestions: [],
+        ),
+      );
 
   void showHidePassword() {
     safeEmit(
@@ -169,6 +176,45 @@ class AuthCubit extends Cubit<AuthState> {
           state: state.copyWith(
             state: BaseState.success,
             status: AuthStatus.authenticated,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> checkUsername(
+    String username,
+    String email,
+  ) async {
+    final res = await _userRepo.findUsername(username, email);
+    res.fold(
+      (l) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.failure,
+            failure: l,
+          ),
+        );
+        Future.delayed(
+          const Duration(seconds: 2),
+          () => safeEmit(
+            isClosed: isClosed,
+            emit: emit,
+            state: state.copyWith(
+              failure: null,
+            ),
+          ),
+        );
+      },
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+            usernameSuggestions: r,
           ),
         );
       },

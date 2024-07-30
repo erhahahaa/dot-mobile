@@ -23,6 +23,7 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   PasswordVisibility get confirmPasswordVisibility =>
       throw _privateConstructorUsedError;
+  List<String> get usernameSuggestions => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -39,7 +40,8 @@ abstract class $AuthStateCopyWith<$Res> {
       AuthStatus status,
       Failure? failure,
       PasswordVisibility passwordVisibility,
-      PasswordVisibility confirmPasswordVisibility});
+      PasswordVisibility confirmPasswordVisibility,
+      List<String> usernameSuggestions});
 }
 
 /// @nodoc
@@ -60,6 +62,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? failure = freezed,
     Object? passwordVisibility = null,
     Object? confirmPasswordVisibility = null,
+    Object? usernameSuggestions = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -82,6 +85,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.confirmPasswordVisibility
           : confirmPasswordVisibility // ignore: cast_nullable_to_non_nullable
               as PasswordVisibility,
+      usernameSuggestions: null == usernameSuggestions
+          ? _value.usernameSuggestions
+          : usernameSuggestions // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -99,7 +106,8 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       AuthStatus status,
       Failure? failure,
       PasswordVisibility passwordVisibility,
-      PasswordVisibility confirmPasswordVisibility});
+      PasswordVisibility confirmPasswordVisibility,
+      List<String> usernameSuggestions});
 }
 
 /// @nodoc
@@ -118,6 +126,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
     Object? failure = freezed,
     Object? passwordVisibility = null,
     Object? confirmPasswordVisibility = null,
+    Object? usernameSuggestions = null,
   }) {
     return _then(_$AuthStateImpl(
       state: null == state
@@ -140,6 +149,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.confirmPasswordVisibility
           : confirmPasswordVisibility // ignore: cast_nullable_to_non_nullable
               as PasswordVisibility,
+      usernameSuggestions: null == usernameSuggestions
+          ? _value._usernameSuggestions
+          : usernameSuggestions // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -152,7 +165,9 @@ class _$AuthStateImpl implements _AuthState {
       this.status = AuthStatus.unknown,
       this.failure,
       this.passwordVisibility = PasswordVisibility.hidden,
-      this.confirmPasswordVisibility = PasswordVisibility.hidden});
+      this.confirmPasswordVisibility = PasswordVisibility.hidden,
+      final List<String> usernameSuggestions = const []})
+      : _usernameSuggestions = usernameSuggestions;
 
   @override
   @JsonKey()
@@ -168,10 +183,19 @@ class _$AuthStateImpl implements _AuthState {
   @override
   @JsonKey()
   final PasswordVisibility confirmPasswordVisibility;
+  final List<String> _usernameSuggestions;
+  @override
+  @JsonKey()
+  List<String> get usernameSuggestions {
+    if (_usernameSuggestions is EqualUnmodifiableListView)
+      return _usernameSuggestions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_usernameSuggestions);
+  }
 
   @override
   String toString() {
-    return 'AuthState(state: $state, status: $status, failure: $failure, passwordVisibility: $passwordVisibility, confirmPasswordVisibility: $confirmPasswordVisibility)';
+    return 'AuthState(state: $state, status: $status, failure: $failure, passwordVisibility: $passwordVisibility, confirmPasswordVisibility: $confirmPasswordVisibility, usernameSuggestions: $usernameSuggestions)';
   }
 
   @override
@@ -186,12 +210,20 @@ class _$AuthStateImpl implements _AuthState {
                 other.passwordVisibility == passwordVisibility) &&
             (identical(other.confirmPasswordVisibility,
                     confirmPasswordVisibility) ||
-                other.confirmPasswordVisibility == confirmPasswordVisibility));
+                other.confirmPasswordVisibility == confirmPasswordVisibility) &&
+            const DeepCollectionEquality()
+                .equals(other._usernameSuggestions, _usernameSuggestions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state, status, failure,
-      passwordVisibility, confirmPasswordVisibility);
+  int get hashCode => Object.hash(
+      runtimeType,
+      state,
+      status,
+      failure,
+      passwordVisibility,
+      confirmPasswordVisibility,
+      const DeepCollectionEquality().hash(_usernameSuggestions));
 
   @JsonKey(ignore: true)
   @override
@@ -206,7 +238,8 @@ abstract class _AuthState implements AuthState {
       final AuthStatus status,
       final Failure? failure,
       final PasswordVisibility passwordVisibility,
-      final PasswordVisibility confirmPasswordVisibility}) = _$AuthStateImpl;
+      final PasswordVisibility confirmPasswordVisibility,
+      final List<String> usernameSuggestions}) = _$AuthStateImpl;
 
   @override
   BaseState get state;
@@ -218,6 +251,8 @@ abstract class _AuthState implements AuthState {
   PasswordVisibility get passwordVisibility;
   @override
   PasswordVisibility get confirmPasswordVisibility;
+  @override
+  List<String> get usernameSuggestions;
   @override
   @JsonKey(ignore: true)
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>

@@ -86,6 +86,7 @@ void _intiRepos() {
 
   sl.registerLazySingleton<UserRepo>(
     () => UserRepoImpl(
+      sl<DioClient>(),
       sl<IsarClient>(),
     ),
   );

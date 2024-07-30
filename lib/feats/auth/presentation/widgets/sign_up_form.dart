@@ -1,6 +1,7 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,17 +17,15 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
   late TextEditingController _nameController;
   late TextEditingController _emailController;
   late TextEditingController _usernameController;
-
   late TextEditingController _phoneController;
   late TextEditingController _passwordController;
-  late TextEditingController _genderController;
 
   late FocusNode _nameFocusNode;
   late FocusNode _emailFocusNode;
   late FocusNode _usernameFocusNode;
+  late FocusNode _genderFocusNode;
   late FocusNode _phoneFocusNode;
   late FocusNode _passwordFocusNode;
-  late FocusNode _genderFocusNode;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -38,10 +37,9 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
     super.initState();
     _nameController = TextEditingController(text: 'John Doe');
     _emailController = TextEditingController(text: 'john@gmail.com');
-    _usernameController = TextEditingController(text: 'John');
+    _usernameController = TextEditingController(text: 'john');
     _phoneController = TextEditingController(text: '81234567890');
     _passwordController = TextEditingController(text: 'password');
-    _genderController = TextEditingController(text: 'Male');
 
     _nameFocusNode = FocusNode();
     _emailFocusNode = FocusNode();
@@ -63,22 +61,18 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
     _usernameController.dispose();
     _phoneController.dispose();
     _passwordController.dispose();
-    _genderController.dispose();
 
     _nameFocusNode.dispose();
     _emailFocusNode.dispose();
     _usernameFocusNode.dispose();
     _phoneFocusNode.dispose();
     _passwordFocusNode.dispose();
-    _genderFocusNode.dispose();
 
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final msg = Strings.of(context);
     return AutofillGroup(
       child: Form(
         key: _formKey,
@@ -100,7 +94,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                     key: const Key('signUpForm_name'),
                     autofillHints: const [AutofillHints.name],
                     currFocusNode: _nameFocusNode,
-                    nextFocusNode: _usernameFocusNode,
+                    nextFocusNode: _emailFocusNode,
                     textInputAction: TextInputAction.next,
                     controller: _nameController,
                     keyboardType: TextInputType.name,
@@ -119,34 +113,10 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                   ),
                   SizedBox(height: 12.h),
                   TextF(
-                    key: const Key('signUpForm_username'),
-                    autofillHints: const [AutofillHints.username],
-                    currFocusNode: _usernameFocusNode,
-                    nextFocusNode: _emailFocusNode,
-                    textInputAction: TextInputAction.next,
-                    controller: _usernameController,
-                    keyboardType: TextInputType.username,
-                    prefixIcon: Icon(
-                      Icons.co_present_rounded,
-                      color: Theme.of(context).textTheme.bodyLarge?.color,
-                    ),
-                    hintText:
-                        context.str?.enterYourUsername ?? 'Enter your username',
-                    hint: context.str?.username ?? 'Username',
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return context.str?.usernameRequired ??
-                            'Username is required';
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 12.h),
-                  TextF(
                     key: const Key('signUpForm_email'),
                     autofillHints: const [AutofillHints.email],
                     currFocusNode: _emailFocusNode,
-                    nextFocusNode: _genderFocusNode,
+                    nextFocusNode: _usernameFocusNode,
                     textInputAction: TextInputAction.next,
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -155,7 +125,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                       color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
                     hintText: context.str?.enterYourEmail ?? 'Enter your email',
-                    hint: "Email",
+                    hint: context.str?.email ?? 'Email',
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return context.str?.emailRequired ??
@@ -168,10 +138,149 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                     },
                   ),
                   SizedBox(height: 12.h),
+                  BlocConsumer<AuthCubit, AuthState>(
+                    listener: (context, state) {
+                      if (state.state == BaseState.failure ||
+                          state.failure != null) {
+                        log.e(state.failure?.message);
+                        if (state.failure?.message.startsWith(
+                                'Email, username, or phone already exists') ??
+                            false) {
+                          context.read<AuthCubit>().checkUsername(
+                                _usernameController.text,
+                                _emailController.text,
+                              );
+                        }
+                      }
+                    },
+                    builder: (context, state) {
+                      return TextF(
+                        key: const Key('signUpForm_username'),
+                        autofillHints: const [AutofillHints.username],
+                        currFocusNode: _usernameFocusNode,
+                        nextFocusNode: _emailFocusNode,
+                        textInputAction: TextInputAction.next,
+                        controller: _usernameController,
+                        keyboardType: TextInputType.name,
+                        prefixIcon: Icon(
+                          Icons.co_present_rounded,
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                        ),
+                        hintText: context.str?.enterYourUsername ??
+                            'Enter your username',
+                        hint: context.str?.username ?? 'Username',
+                        onChanged: (String? val) {
+                          if (val != null && val.isNotEmpty) {
+                            final authCubit = context.read<AuthCubit>();
+                            authCubit.clearUsernameSuggestions();
+                            authCubit.emitLoading();
+                            EasyDebounce.debounce(
+                              'username',
+                              const Duration(milliseconds: 500),
+                              () async =>
+                                  await context.read<AuthCubit>().checkUsername(
+                                        val,
+                                        _emailController.text,
+                                      ),
+                            );
+                          }
+                        },
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return context.str?.usernameRequired ??
+                                'Username is required';
+                          }
+                          if (value.isContainUpperCase()) {
+                            return context.str?.usernameCantContainUppercase ??
+                                'Username must not contain uppercase';
+                          }
+                          if (state.usernameSuggestions.isNotEmpty) {
+                            return context.str?.usernameNotAvailable ??
+                                'Username not available';
+                          }
+                          return null;
+                        },
+                        suffixIcon: state.usernameSuggestions.isEmpty
+                            ? state.state == BaseState.loading
+                                ? Transform.scale(
+                                    scale: 0.3,
+                                    child: CircularProgressIndicator(),
+                                  )
+                                : Icon(
+                                    Icons.check_circle,
+                                    color: Colors.green,
+                                  )
+                            : IconButton(
+                                padding: EdgeInsets.zero,
+                                constraints: const BoxConstraints(),
+                                onPressed: () {
+                                  _usernameController.clear();
+                                  context
+                                      .read<AuthCubit>()
+                                      .clearUsernameSuggestions();
+                                },
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.color,
+                                ),
+                              ),
+                      );
+                    },
+                  ),
+                  SizedBox(height: 12.h),
+                  BlocBuilder<AuthCubit, AuthState>(
+                    builder: (context, state) {
+                      if (state.usernameSuggestions.isEmpty) {
+                        return Container();
+                      } else {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: Text(
+                                'Username suggestions',
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                            ),
+                            SizedBox(height: 12.h),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 12.w),
+                              child: Wrap(
+                                spacing: 12.w,
+                                runSpacing: 12.h,
+                                children: state.usernameSuggestions
+                                    .map(
+                                      (suggestion) => InkWell(
+                                        onTap: () {
+                                          _usernameController.text = suggestion;
+                                          context
+                                              .read<AuthCubit>()
+                                              .clearUsernameSuggestions();
+                                        },
+                                        child: Chip(
+                                          label: Text(suggestion),
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                              ),
+                            ),
+                            SizedBox(height: 12.h),
+                          ],
+                        );
+                      }
+                    },
+                  ),
                   DropDown<UserGender>(
-                    hint: msg?.gender,
+                    hint: context.str?.gender,
                     value: selectedUserGender,
                     items: userGender,
+                    currFocusNode: _genderFocusNode,
+                    nextFocusNode: _phoneFocusNode,
                     prefixIcon: Icon(
                       Icons.male_rounded,
                       color: Theme.of(context).textTheme.bodyLarge?.color,
@@ -274,18 +383,25 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                     key: const Key('signUpForm_signUpButton'),
                     text: context.str?.signUp ?? 'Sign Up',
                     onPressed: () {
+                      context.read<AuthCubit>().checkUsername(
+                            _usernameController.text,
+                            _emailController.text,
+                          );
                       if (_formKey.currentState!.validate()) {
-                        context.read<AuthCubit>().signUp(
-                              RegisterParams(
-                                name: _nameController.text,
-                                email: _emailController.text,
-                                username: _usernameController.text,
-                                password: _passwordController.text,
-                                phone: _phoneController.text,
-                                gender: UserGender.male,
-                                role: UserRole.athlete,
-                              ),
-                            );
+                        if (state.usernameSuggestions.isEmpty) {
+                          context.read<AuthCubit>().signUp(
+                                RegisterParams(
+                                  name: _nameController.text,
+                                  email: _emailController.text,
+                                  username:
+                                      _usernameController.text.toLowerCase(),
+                                  password: _passwordController.text,
+                                  phone: int.parse(_phoneController.text),
+                                  gender: selectedUserGender,
+                                  role: UserRole.athlete,
+                                ),
+                              );
+                        }
                       }
                     },
                   ),

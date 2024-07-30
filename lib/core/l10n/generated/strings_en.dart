@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for English (`en`).
 class StringsEn extends Strings {
-  StringsEn([super.locale = 'en']);
+  StringsEn([String locale = 'en']) : super(locale);
 
   @override
   String get about => 'About';
@@ -15,6 +15,9 @@ class StringsEn extends Strings {
 
   @override
   String get addMember => 'Add Member';
+
+  @override
+  String get alert => 'Alert';
 
   @override
   String get alreadyHaveAnAccount => 'Already have an account?';
@@ -110,7 +113,16 @@ class StringsEn extends Strings {
   String get editProgram => 'Edit Program';
 
   @override
+  String get email => 'Email';
+
+  @override
+  String get emailOrUsernameOrPhone => 'Email / Username / Phone';
+
+  @override
   String get emailRequired => 'Email is required';
+
+  @override
+  String get emailUsernamePhoneAlreadyRegistered => 'Email / Username / Phone already registered';
 
   @override
   String get endDate => 'End Date';
@@ -126,6 +138,9 @@ class StringsEn extends Strings {
 
   @override
   String get enterClubName => 'Enter club name';
+
+  @override
+  String get enterEmailOrUsernameOrPhone => 'Enter email / username / phone';
 
   @override
   String get enterEndDate => 'Enter the end date';
@@ -153,6 +168,9 @@ class StringsEn extends Strings {
 
   @override
   String get enterYourUsername => 'Enter your username';
+
+  @override
+  String get error => 'Error';
 
   @override
   String get errorCreateExercise => 'Failed to create exercise';
@@ -215,7 +233,13 @@ class StringsEn extends Strings {
   String get history => 'History';
 
   @override
+  String get identifierRequired => 'Identifier is required';
+
+  @override
   String get indonesian => 'Indonesian';
+
+  @override
+  String get info => 'Info';
 
   @override
   String get invalidEmail => 'Invalid email';
@@ -257,6 +281,9 @@ class StringsEn extends Strings {
   String get myClub => 'My Club';
 
   @override
+  String get myClubTraining => 'My Club';
+
+  @override
   String get name => 'Name';
 
   @override
@@ -276,6 +303,9 @@ class StringsEn extends Strings {
 
   @override
   String get noMembersFound => 'No members found';
+
+  @override
+  String get noSpaceAllowed => 'Space no allowed';
 
   @override
   String get noUsersFound => 'No users found';
@@ -350,6 +380,9 @@ class StringsEn extends Strings {
   String get succesEditProgram => 'Successfully edit program';
 
   @override
+  String get success => 'Success';
+
+  @override
   String get successCreateClub => 'Successfully created club';
 
   @override
@@ -393,6 +426,12 @@ class StringsEn extends Strings {
 
   @override
   String get username => 'Username';
+
+  @override
+  String get usernameCantContainUppercase => 'Username cannot contain capital letters';
+
+  @override
+  String get usernameNotAvailable => 'Username is not available';
 
   @override
   String get usernameRequired => 'Username is required';

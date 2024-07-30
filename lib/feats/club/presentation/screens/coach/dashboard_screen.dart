@@ -37,7 +37,7 @@ class DashboardScreen extends StatelessWidget {
             child: RefreshIndicator(
               onRefresh: () => context.read<ClubCubit>().init(),
               child: Padding(
-                padding: EdgeInsets.all(8.h),
+                padding: EdgeInsets.all(16.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
