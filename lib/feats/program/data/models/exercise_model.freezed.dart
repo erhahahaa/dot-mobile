@@ -23,6 +23,7 @@ mixin _$ProgramExerciseModel {
   int get id => throw _privateConstructorUsedError;
   int get programId => throw _privateConstructorUsedError;
   int? get mediaId => throw _privateConstructorUsedError;
+  int get order => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int get repetition => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ abstract class $ProgramExerciseModelCopyWith<$Res> {
       {int id,
       int programId,
       int? mediaId,
+      int order,
       String name,
       String? description,
       int repetition,
@@ -77,6 +79,7 @@ class _$ProgramExerciseModelCopyWithImpl<$Res,
     Object? id = null,
     Object? programId = null,
     Object? mediaId = freezed,
+    Object? order = null,
     Object? name = null,
     Object? description = freezed,
     Object? repetition = null,
@@ -99,6 +102,10 @@ class _$ProgramExerciseModelCopyWithImpl<$Res,
           ? _value.mediaId
           : mediaId // ignore: cast_nullable_to_non_nullable
               as int?,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -159,6 +166,7 @@ abstract class _$$ProgramExerciseModelImplCopyWith<$Res>
       {int id,
       int programId,
       int? mediaId,
+      int order,
       String name,
       String? description,
       int repetition,
@@ -186,6 +194,7 @@ class __$$ProgramExerciseModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? programId = null,
     Object? mediaId = freezed,
+    Object? order = null,
     Object? name = null,
     Object? description = freezed,
     Object? repetition = null,
@@ -208,6 +217,10 @@ class __$$ProgramExerciseModelImplCopyWithImpl<$Res>
           ? _value.mediaId
           : mediaId // ignore: cast_nullable_to_non_nullable
               as int?,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -251,6 +264,7 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
       {this.id = 0,
       this.programId = 0,
       this.mediaId,
+      this.order = 0,
       this.name = 'Dot Exercise 0',
       this.description,
       this.repetition = 1,
@@ -271,6 +285,9 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
   final int programId;
   @override
   final int? mediaId;
+  @override
+  @JsonKey()
+  final int order;
   @override
   @JsonKey()
   final String name;
@@ -294,7 +311,7 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
 
   @override
   String toString() {
-    return 'ProgramExerciseModel(id: $id, programId: $programId, mediaId: $mediaId, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ProgramExerciseModel(id: $id, programId: $programId, mediaId: $mediaId, order: $order, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -306,6 +323,7 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
             (identical(other.programId, programId) ||
                 other.programId == programId) &&
             (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
+            (identical(other.order, order) || other.order == order) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -322,8 +340,8 @@ class _$ProgramExerciseModelImpl implements _ProgramExerciseModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, programId, mediaId, name,
-      description, repetition, sets, rest, media, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, programId, mediaId, order,
+      name, description, repetition, sets, rest, media, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -346,6 +364,7 @@ abstract class _ProgramExerciseModel implements ProgramExerciseModel {
       {final int id,
       final int programId,
       final int? mediaId,
+      final int order,
       final String name,
       final String? description,
       final int repetition,
@@ -364,6 +383,8 @@ abstract class _ProgramExerciseModel implements ProgramExerciseModel {
   int get programId;
   @override
   int? get mediaId;
+  @override
+  int get order;
   @override
   String get name;
   @override

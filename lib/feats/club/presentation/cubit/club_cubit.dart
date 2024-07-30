@@ -20,13 +20,29 @@ class ClubCubit extends Cubit<ClubState> {
     this._imagePickerClient,
   ) : super(ClubState());
 
-  void emitCaller(ClubState state) {
+  void clear() {
     safeEmit(
       isClosed: isClosed,
       emit: emit,
-      state: state,
+      state: ClubState(),
     );
   }
+
+  void emitInitial() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          state: BaseState.initial,
+          image: null,
+          updatedClub: null,
+        ),
+      );
+
+  void emitLoading() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(state: BaseState.loading),
+      );
 
   Future<void> init() async {
     await fetchLocalUser();
@@ -34,6 +50,7 @@ class ClubCubit extends Cubit<ClubState> {
   }
 
   Future<void> fetchLocalUser() async {
+    emitLoading();
     final res = await _userRepo.getMe();
     return res.fold(
       (l) => null,
@@ -48,6 +65,7 @@ class ClubCubit extends Cubit<ClubState> {
   }
 
   Future<void> getAll() async {
+    emitLoading();
     final res = await _clubRepo.getAll(const PaginationParams());
 
     res.fold(
@@ -64,7 +82,7 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            // state: BaseState.success,
+            state: BaseState.success,
             clubs: r,
             filteredClubs: r,
           ),
@@ -73,7 +91,10 @@ class ClubCubit extends Cubit<ClubState> {
     );
   }
 
-  Future<void> create(CreateClubParams params) async {
+  Future<void> create(
+    CreateClubParams params,
+  ) async {
+    emitLoading();
     final res = await _clubRepo.create(params);
 
     res.fold(
@@ -95,13 +116,17 @@ class ClubCubit extends Cubit<ClubState> {
           state: state.copyWith(
             state: BaseState.success,
             clubs: clubs,
+            filteredClubs: clubs,
           ),
         );
       },
     );
   }
 
-  Future<void> update(UpdateClubParams params) async {
+  Future<void> update(
+    UpdateClubParams params,
+  ) async {
+    emitLoading();
     final res = await _clubRepo.update(params);
 
     res.fold(
@@ -124,6 +149,7 @@ class ClubCubit extends Cubit<ClubState> {
           state: state.copyWith(
             state: BaseState.success,
             clubs: clubs,
+            filteredClubs: clubs,
             updatedClub: r,
           ),
         );
@@ -131,7 +157,10 @@ class ClubCubit extends Cubit<ClubState> {
     );
   }
 
-  Future<void> delete(ByIdParams params) async {
+  Future<void> delete(
+    ByIdParams params,
+  ) async {
+    emitLoading();
     final res = await _clubRepo.delete(params);
 
     res.fold(
@@ -151,15 +180,19 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            // state: BaseState.success,
+            state: BaseState.success,
             clubs: clubs,
+            filteredClubs: clubs,
           ),
         );
       },
     );
   }
 
-  Future<void> getById(ByIdParams params) async {
+  Future<void> getById(
+    ByIdParams params,
+  ) async {
+    emitLoading();
     final res = await _clubRepo.getById(params);
 
     res.fold(
@@ -179,15 +212,20 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            // state: BaseState.success,
+            state: BaseState.success,
             clubs: clubs,
+            filteredClubs: clubs,
           ),
         );
       },
     );
   }
 
-  Future<void> getMembers(PaginationParams params, int clubId) async {
+  Future<void> getMembers(
+    PaginationParams params,
+    int clubId,
+  ) async {
+    emitLoading();
     final res = await _clubRepo.getMembers(params, clubId);
 
     res.fold(
@@ -204,7 +242,7 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            // state: BaseState.success,
+            state: BaseState.success,
             members: r,
             filteredMembers: r,
           ),
@@ -213,7 +251,11 @@ class ClubCubit extends Cubit<ClubState> {
     );
   }
 
-  Future<void> kick(int clubId, int userId) async {
+  Future<void> kick(
+    int clubId,
+    int userId,
+  ) async {
+    emitLoading();
     final res = await _clubRepo.kick(clubId, userId);
 
     res.fold(
@@ -226,7 +268,6 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
-        log.e(r);
         final List<UserModel> members = List.from(state.members);
         members.removeWhere((element) => element.id == r.id);
 
@@ -242,7 +283,10 @@ class ClubCubit extends Cubit<ClubState> {
     );
   }
 
-  Future<void> leave(int clubId) async {
+  Future<void> leave(
+    int clubId,
+  ) async {
+    emitLoading();
     final res = await _clubRepo.leave(clubId);
 
     res.fold(
@@ -255,18 +299,27 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
+        final List<ClubModel> clubs = List.from(state.clubs);
+        clubs.removeWhere((element) => element.id == r.id);
+
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
+            clubs: clubs,
+            filteredClubs: clubs,
           ),
         );
       },
     );
   }
 
-  Future<void> addUser(int clubId, int userId) async {
+  Future<void> addUser(
+    int clubId,
+    int userId,
+  ) async {
+    emitLoading();
     final res = await _clubRepo.addUser(clubId, userId);
 
     res.fold(

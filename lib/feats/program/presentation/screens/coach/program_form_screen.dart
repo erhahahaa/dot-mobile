@@ -8,11 +8,11 @@ import 'package:go_router/go_router.dart';
 
 class ProgramFormScreen extends StatefulWidget {
   final ProgramModel? program;
-  final int clubId;
+  final ClubModel club;
   const ProgramFormScreen({
     super.key,
     this.program,
-    required this.clubId,
+    required this.club,
   });
 
   @override
@@ -31,14 +31,23 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
   @override
   void initState() {
     _nameCon = TextEditingController(text: widget.program?.name);
-    _startDateCon = TextEditingController();
-    _endDateCon = TextEditingController();
+    _startDateCon = TextEditingController(
+      text: widget.program?.startDate?.toDayMonthYear(),
+    );
+    _endDateCon = TextEditingController(
+      text: widget.program?.endDate?.toDayMonthYear(),
+    );
 
     _nameFn = FocusNode();
     _startDateFn = FocusNode();
     _endDateFn = FocusNode();
 
     _formKey = GlobalKey<FormState>();
+
+    if (widget.program != null) {
+      _start = widget.program!.startDate;
+      _end = widget.program!.endDate;
+    }
     super.initState();
   }
 
@@ -61,32 +70,49 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
     return BlocConsumer<ProgramCubit, ProgramState>(
       listener: (context, state) {
         if (state.state == BaseState.success) {
-          ToastModel(
-            message: context.str?.successCreateProgram ??
-                'Successfully create program',
-            type: ToastType.success,
-          ).fire(context);
+          // ToastModel(
+          //   message: widget.program == null
+          //       ? context.str?.successCreateProgram
+          //       : context.str?.succesEditProgram,
+          //   type: ToastType.success,
+          // ).fire(context);
 
           final program = state.createdProgram;
-          if (program != null) {
-            context
-                .read<ProgramCubit>()
-                .emitCaller(state.copyWith(state: BaseState.initial));
+          if (program != null && widget.program == null) {
             context.pushReplacementNamed(
               AppRoutes.coachCreateProgramExercise.name,
-              pathParameters: {
-                'clubId': widget.clubId.toString(),
+              extra: {
+                'club': widget.club,
+                'program': program,
               },
-              extra: {'program': program},
             );
           }
+          if (program != null && widget.program != null) {
+            final eCub = context.read<ExerciseCubit>();
+
+            eCub.getAll(const PaginationParams(), program.id).then(
+              (_) {
+                context.pushReplacementNamed(
+                  AppRoutes.coachEditProgramExercise.name,
+                  extra: {
+                    'club': widget.club,
+                    'program': program,
+                    'exercises': eCub.state.exercises,
+                  },
+                );
+              },
+            );
+          }
+          context.read<ProgramCubit>().emitInitial();
         }
         if (state.state == BaseState.failure) {
           ToastModel(
-            message:
-                context.str?.failedCreateProgram ?? 'Failed to create program',
+            message: widget.program == null
+                ? context.str?.failedCreateProgram
+                : context.str?.failedEditProgram,
             type: ToastType.error,
           ).fire(context);
+          context.read<ProgramCubit>().emitInitial();
         }
       },
       builder: (context, state) {
@@ -146,6 +172,7 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                         context: context,
                         firstDate: DateTime(1970),
                         lastDate: _end == null ? DateTime(2030) : _end!,
+                        initialDate: _end,
                       );
                       if (res != null) {
                         setState(() {
@@ -160,6 +187,7 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                           context: context,
                           firstDate: DateTime(1970),
                           lastDate: _end == null ? DateTime(2030) : _end!,
+                          initialDate: _start,
                         );
                         if (res != null) {
                           setState(() {
@@ -199,6 +227,7 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                         context: context,
                         firstDate: _start == null ? DateTime(1970) : _start!,
                         lastDate: DateTime(2030),
+                        initialDate: _end,
                       );
                       if (res != null) {
                         setState(() {
@@ -213,6 +242,7 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                           context: context,
                           firstDate: _start == null ? DateTime(1970) : _start!,
                           lastDate: DateTime(2030),
+                          initialDate: _end,
                         );
                         if (res != null) {
                           setState(() {
@@ -230,20 +260,35 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                   SizedBox(height: 16.h),
                   Button(
                     key: const Key('createProgramForm_createButton'),
-                    text: context.str?.create ?? 'Create',
+                    text: widget.program == null
+                        ? context.str?.create ?? 'Create'
+                        : context.str?.edit ?? 'Edit',
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         if (_end == null && _start == null) {
                           return;
                         }
-                        context.read<ProgramCubit>().create(
-                              CreateProgramParams(
-                                clubId: widget.clubId,
-                                name: _nameCon.text,
-                                startDate: _start!,
-                                endDate: _end!,
-                              ),
-                            );
+
+                        if (widget.program != null) {
+                          context.read<ProgramCubit>().update(
+                                UpdateProgramParams(
+                                  id: widget.program!.id,
+                                  clubId: widget.club.id,
+                                  name: _nameCon.text,
+                                  startDate: _start!,
+                                  endDate: _end!,
+                                ),
+                              );
+                        } else {
+                          context.read<ProgramCubit>().create(
+                                CreateProgramParams(
+                                  clubId: widget.club.id,
+                                  name: _nameCon.text,
+                                  startDate: _start!,
+                                  endDate: _end!,
+                                ),
+                              );
+                        }
                       }
                     },
                     isLoading: state.state == BaseState.loading,

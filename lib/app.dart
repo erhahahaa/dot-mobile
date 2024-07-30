@@ -1,6 +1,6 @@
 import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/di.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/sl.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,9 +28,9 @@ class DotApp extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => di<AuthCubit>()),
-        BlocProvider(create: (context) => di<UserCubit>()),
-        // BlocProvider(create: (context) => di<ClubCubit>()),
+        BlocProvider(create: (context) => sl<AuthCubit>()),
+        BlocProvider(create: (context) => sl<UserCubit>()),
+        // BlocProvider(create: (context) => sl<ClubCubit>()),
       ],
       child: OKToast(
         child: ScreenUtilInit(
@@ -59,7 +59,8 @@ class DotApp extends StatelessWidget {
                         textScaler: const TextScaler.linear(1),
                         alwaysUse24HourFormat: true,
                       ),
-                      child: child!,
+                      child: child ??
+                          const Center(child: CircularProgressIndicator()),
                     );
                   },
                   theme: theme.light(),

@@ -12,6 +12,20 @@ class UserCubit extends Cubit<UserState> {
   final UserRepo _userRepo;
   UserCubit(this._userRepo) : super(const UserState());
 
+  void clear() {
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: const UserState(),
+    );
+  }
+
+  void emitLoading() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(state: BaseState.loading),
+      );
+
   Future<void> init() async {
     await _fetchLocalUser();
   }

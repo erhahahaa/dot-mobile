@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 part 'club_model.freezed.dart';
 part 'club_model.g.dart';
@@ -36,6 +39,16 @@ class ClubModel with _$ClubModel {
       programCount: entity.programCount,
       examCount: entity.examCount,
       createdAt: entity.createdAt,
+    );
+  }
+
+  static ClubModel fake() {
+    return ClubModel(
+      id: Random().nextInt(100),
+      name: BoneMock.name,
+      description: BoneMock.subtitle,
+      type: SportType.basketBall,
+      createdAt: DateTime.now(),
     );
   }
 }

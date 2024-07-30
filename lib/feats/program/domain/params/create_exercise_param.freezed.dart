@@ -21,10 +21,11 @@ CreateProgramExerciseParams _$CreateProgramExerciseParamsFromJson(
 
 /// @nodoc
 mixin _$CreateProgramExerciseParams {
+  int get order => throw _privateConstructorUsedError;
   int get programId => throw _privateConstructorUsedError;
   int get mediaId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   int get repetition => throw _privateConstructorUsedError;
   int get sets => throw _privateConstructorUsedError;
   int get rest => throw _privateConstructorUsedError;
@@ -44,10 +45,11 @@ abstract class $CreateProgramExerciseParamsCopyWith<$Res> {
           CreateProgramExerciseParams>;
   @useResult
   $Res call(
-      {int programId,
+      {int order,
+      int programId,
       int mediaId,
       String name,
-      String description,
+      String? description,
       int repetition,
       int sets,
       int rest});
@@ -67,15 +69,20 @@ class _$CreateProgramExerciseParamsCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? order = null,
     Object? programId = null,
     Object? mediaId = null,
     Object? name = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? repetition = null,
     Object? sets = null,
     Object? rest = null,
   }) {
     return _then(_value.copyWith(
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
       programId: null == programId
           ? _value.programId
           : programId // ignore: cast_nullable_to_non_nullable
@@ -88,10 +95,10 @@ class _$CreateProgramExerciseParamsCopyWithImpl<$Res,
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       repetition: null == repetition
           ? _value.repetition
           : repetition // ignore: cast_nullable_to_non_nullable
@@ -118,10 +125,11 @@ abstract class _$$CreateProgramExerciseParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int programId,
+      {int order,
+      int programId,
       int mediaId,
       String name,
-      String description,
+      String? description,
       int repetition,
       int sets,
       int rest});
@@ -140,15 +148,20 @@ class __$$CreateProgramExerciseParamsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? order = null,
     Object? programId = null,
     Object? mediaId = null,
     Object? name = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? repetition = null,
     Object? sets = null,
     Object? rest = null,
   }) {
     return _then(_$CreateProgramExerciseParamsImpl(
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
       programId: null == programId
           ? _value.programId
           : programId // ignore: cast_nullable_to_non_nullable
@@ -161,10 +174,10 @@ class __$$CreateProgramExerciseParamsImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       repetition: null == repetition
           ? _value.repetition
           : repetition // ignore: cast_nullable_to_non_nullable
@@ -186,10 +199,11 @@ class __$$CreateProgramExerciseParamsImplCopyWithImpl<$Res>
 class _$CreateProgramExerciseParamsImpl
     implements _CreateProgramExerciseParams {
   const _$CreateProgramExerciseParamsImpl(
-      {this.programId = 0,
+      {this.order = 0,
+      this.programId = 0,
       this.mediaId = 0,
       this.name = '',
-      this.description = '',
+      this.description,
       this.repetition = 0,
       this.sets = 0,
       this.rest = 0});
@@ -200,6 +214,9 @@ class _$CreateProgramExerciseParamsImpl
 
   @override
   @JsonKey()
+  final int order;
+  @override
+  @JsonKey()
   final int programId;
   @override
   @JsonKey()
@@ -208,8 +225,7 @@ class _$CreateProgramExerciseParamsImpl
   @JsonKey()
   final String name;
   @override
-  @JsonKey()
-  final String description;
+  final String? description;
   @override
   @JsonKey()
   final int repetition;
@@ -222,7 +238,7 @@ class _$CreateProgramExerciseParamsImpl
 
   @override
   String toString() {
-    return 'CreateProgramExerciseParams(programId: $programId, mediaId: $mediaId, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest)';
+    return 'CreateProgramExerciseParams(order: $order, programId: $programId, mediaId: $mediaId, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest)';
   }
 
   @override
@@ -230,6 +246,7 @@ class _$CreateProgramExerciseParamsImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateProgramExerciseParamsImpl &&
+            (identical(other.order, order) || other.order == order) &&
             (identical(other.programId, programId) ||
                 other.programId == programId) &&
             (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
@@ -244,7 +261,7 @@ class _$CreateProgramExerciseParamsImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, programId, mediaId, name,
+  int get hashCode => Object.hash(runtimeType, order, programId, mediaId, name,
       description, repetition, sets, rest);
 
   @JsonKey(ignore: true)
@@ -265,10 +282,11 @@ class _$CreateProgramExerciseParamsImpl
 abstract class _CreateProgramExerciseParams
     implements CreateProgramExerciseParams {
   const factory _CreateProgramExerciseParams(
-      {final int programId,
+      {final int order,
+      final int programId,
       final int mediaId,
       final String name,
-      final String description,
+      final String? description,
       final int repetition,
       final int sets,
       final int rest}) = _$CreateProgramExerciseParamsImpl;
@@ -277,13 +295,15 @@ abstract class _CreateProgramExerciseParams
       _$CreateProgramExerciseParamsImpl.fromJson;
 
   @override
+  int get order;
+  @override
   int get programId;
   @override
   int get mediaId;
   @override
   String get name;
   @override
-  String get description;
+  String? get description;
   @override
   int get repetition;
   @override

@@ -21,9 +21,12 @@ UpdateProgramExerciseParams _$UpdateProgramExerciseParamsFromJson(
 
 /// @nodoc
 mixin _$UpdateProgramExerciseParams {
+  int get id => throw _privateConstructorUsedError;
+  int get order => throw _privateConstructorUsedError;
   int get programId => throw _privateConstructorUsedError;
+  int get mediaId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   int get repetition => throw _privateConstructorUsedError;
   int get sets => throw _privateConstructorUsedError;
   int get rest => throw _privateConstructorUsedError;
@@ -43,9 +46,12 @@ abstract class $UpdateProgramExerciseParamsCopyWith<$Res> {
           UpdateProgramExerciseParams>;
   @useResult
   $Res call(
-      {int programId,
+      {int id,
+      int order,
+      int programId,
+      int mediaId,
       String name,
-      String description,
+      String? description,
       int repetition,
       int sets,
       int rest});
@@ -65,26 +71,41 @@ class _$UpdateProgramExerciseParamsCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? order = null,
     Object? programId = null,
+    Object? mediaId = null,
     Object? name = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? repetition = null,
     Object? sets = null,
     Object? rest = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
       programId: null == programId
           ? _value.programId
           : programId // ignore: cast_nullable_to_non_nullable
+              as int,
+      mediaId: null == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       repetition: null == repetition
           ? _value.repetition
           : repetition // ignore: cast_nullable_to_non_nullable
@@ -111,9 +132,12 @@ abstract class _$$UpdateProgramExerciseParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int programId,
+      {int id,
+      int order,
+      int programId,
+      int mediaId,
       String name,
-      String description,
+      String? description,
       int repetition,
       int sets,
       int rest});
@@ -132,26 +156,41 @@ class __$$UpdateProgramExerciseParamsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? order = null,
     Object? programId = null,
+    Object? mediaId = null,
     Object? name = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? repetition = null,
     Object? sets = null,
     Object? rest = null,
   }) {
     return _then(_$UpdateProgramExerciseParamsImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
       programId: null == programId
           ? _value.programId
           : programId // ignore: cast_nullable_to_non_nullable
+              as int,
+      mediaId: null == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       repetition: null == repetition
           ? _value.repetition
           : repetition // ignore: cast_nullable_to_non_nullable
@@ -173,9 +212,12 @@ class __$$UpdateProgramExerciseParamsImplCopyWithImpl<$Res>
 class _$UpdateProgramExerciseParamsImpl
     implements _UpdateProgramExerciseParams {
   const _$UpdateProgramExerciseParamsImpl(
-      {this.programId = 0,
+      {this.id = 0,
+      this.order = 0,
+      this.programId = 0,
+      this.mediaId = 0,
       this.name = '',
-      this.description = '',
+      this.description,
       this.repetition = 0,
       this.sets = 0,
       this.rest = 0});
@@ -186,13 +228,21 @@ class _$UpdateProgramExerciseParamsImpl
 
   @override
   @JsonKey()
+  final int id;
+  @override
+  @JsonKey()
+  final int order;
+  @override
+  @JsonKey()
   final int programId;
+  @override
+  @JsonKey()
+  final int mediaId;
   @override
   @JsonKey()
   final String name;
   @override
-  @JsonKey()
-  final String description;
+  final String? description;
   @override
   @JsonKey()
   final int repetition;
@@ -205,7 +255,7 @@ class _$UpdateProgramExerciseParamsImpl
 
   @override
   String toString() {
-    return 'UpdateProgramExerciseParams(programId: $programId, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest)';
+    return 'UpdateProgramExerciseParams(id: $id, order: $order, programId: $programId, mediaId: $mediaId, name: $name, description: $description, repetition: $repetition, sets: $sets, rest: $rest)';
   }
 
   @override
@@ -213,8 +263,11 @@ class _$UpdateProgramExerciseParamsImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateProgramExerciseParamsImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.order, order) || other.order == order) &&
             (identical(other.programId, programId) ||
                 other.programId == programId) &&
+            (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -226,8 +279,8 @@ class _$UpdateProgramExerciseParamsImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, programId, name, description, repetition, sets, rest);
+  int get hashCode => Object.hash(runtimeType, id, order, programId, mediaId,
+      name, description, repetition, sets, rest);
 
   @JsonKey(ignore: true)
   @override
@@ -247,9 +300,12 @@ class _$UpdateProgramExerciseParamsImpl
 abstract class _UpdateProgramExerciseParams
     implements UpdateProgramExerciseParams {
   const factory _UpdateProgramExerciseParams(
-      {final int programId,
+      {final int id,
+      final int order,
+      final int programId,
+      final int mediaId,
       final String name,
-      final String description,
+      final String? description,
       final int repetition,
       final int sets,
       final int rest}) = _$UpdateProgramExerciseParamsImpl;
@@ -258,11 +314,17 @@ abstract class _UpdateProgramExerciseParams
       _$UpdateProgramExerciseParamsImpl.fromJson;
 
   @override
+  int get id;
+  @override
+  int get order;
+  @override
   int get programId;
+  @override
+  int get mediaId;
   @override
   String get name;
   @override
-  String get description;
+  String? get description;
   @override
   int get repetition;
   @override

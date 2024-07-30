@@ -49,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListClub(
                         clubs: state.filteredClubs,
                         padding: EdgeInsets.all(16.w),
+                        isLoading: state.state == BaseState.loading,
                       ),
                     ),
                   ],

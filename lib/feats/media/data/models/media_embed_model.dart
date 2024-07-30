@@ -7,10 +7,11 @@ part 'media_embed_model.g.dart';
 @freezed
 class MediaEmbedModel with _$MediaEmbedModel {
   const factory MediaEmbedModel({
+    @Default(0) int id,
     @Default('') String name,
     @Default(0) int fileSize,
     @Default('') String url,
-    @Default('') String type,
+    @Default(MediaType.applicationOctetStream) MediaType type,
   }) = _MediaEmbedModel;
 
   factory MediaEmbedModel.fromJson(Map<String, dynamic> json) =>
@@ -21,7 +22,7 @@ class MediaEmbedModel with _$MediaEmbedModel {
       name: entity.name ?? '',
       fileSize: entity.fileSize ?? 0,
       url: entity.url ?? '',
-      type: entity.type ?? '',
+      type: entity.type  ,
     );
   }
 }

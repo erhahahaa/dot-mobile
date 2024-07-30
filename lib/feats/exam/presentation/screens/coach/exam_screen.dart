@@ -17,9 +17,6 @@ class ExamScreen extends StatelessWidget {
         return Parent(
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
-              context.read<ExamCubit>().emitCaller(state.copyWith(
-                    state: BaseState.initial,
-                  ));
               context.pushNamed(
                 AppRoutes.coachCreateExam.name,
                 pathParameters: {

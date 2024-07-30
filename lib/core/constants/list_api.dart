@@ -3,8 +3,8 @@
 class ListAPI {
   ListAPI._();
 
-  // static const String BASE_URL = 'http:192.168.97.169:3000/api';
-  static const String BASE_URL = 'https://dot-api.zenta.dev';
+  static const String BASE_URL = 'http://192.168.7.169:3000';
+  // static const String BASE_URL = 'https://dot-api.zenta.dev';
 
   static const String AUTH_SIGN_UP = '/auth/sign-up';
   static const String AUTH_SIGN_IN = '/auth/sign-in';

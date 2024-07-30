@@ -20,13 +20,25 @@ class ProgramCubit extends Cubit<ProgramState> {
     this._userRepo,
   ) : super(const ProgramState());
 
-  void emitCaller(ProgramState s) {
+  void clear() {
     safeEmit(
       isClosed: isClosed,
       emit: emit,
-      state: s,
+      state: const ProgramState(),
     );
   }
+
+  void emitInitial() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(state: BaseState.initial),
+      );
+
+  void emitLoading() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(state: BaseState.loading),
+      );
 
   Future<void> init({
     int? clubId,
@@ -44,12 +56,7 @@ class ProgramCubit extends Cubit<ProgramState> {
   }
 
   Future<void> create(CreateProgramParams params) async {
-    safeEmit(
-      isClosed: isClosed,
-      emit: emit,
-      state: state,
-    );
-
+    emitLoading();
     final res = await _programRepo.create(params);
 
     res.fold(
@@ -74,21 +81,24 @@ class ProgramCubit extends Cubit<ProgramState> {
         );
       },
       (r) {
+        final List<ProgramModel> programs = List.from(state.programs);
+        programs.add(r);
+
         safeEmit(
           isClosed: isClosed,
           emit: emit,
-          state: state.copyWith(state: BaseState.success, createdProgram: r),
+          state: state.copyWith(
+            state: BaseState.success,
+            createdProgram: r,
+            programs: programs,
+          ),
         );
       },
     );
   }
 
   Future<void> update(UpdateProgramParams params) async {
-    safeEmit(
-      isClosed: isClosed,
-      emit: emit,
-      state: state,
-    );
+    emitLoading();
 
     final res = await _programRepo.update(params);
 
@@ -114,11 +124,17 @@ class ProgramCubit extends Cubit<ProgramState> {
         );
       },
       (r) {
+        final List<ProgramModel> programs = List.from(state.programs);
+        final index = programs.indexWhere((element) => element.id == r.id);
+        programs[index] = r;
+
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
+            createdProgram: r,
+            programs: programs,
           ),
         );
       },
@@ -126,11 +142,7 @@ class ProgramCubit extends Cubit<ProgramState> {
   }
 
   Future<void> delete(ByIdParams params) async {
-    safeEmit(
-      isClosed: isClosed,
-      emit: emit,
-      state: state,
-    );
+    emitLoading();
 
     final res = await _programRepo.delete(params);
 
@@ -156,11 +168,15 @@ class ProgramCubit extends Cubit<ProgramState> {
         );
       },
       (r) {
+        final List<ProgramModel> exercises = List.from(state.programs);
+        exercises.removeWhere((element) => element.id == r.id);
+
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
+            programs: exercises,
           ),
         );
       },
@@ -168,11 +184,7 @@ class ProgramCubit extends Cubit<ProgramState> {
   }
 
   Future<void> getById(ByIdParams params) async {
-    safeEmit(
-      isClosed: isClosed,
-      emit: emit,
-      state: state,
-    );
+    emitLoading();
 
     final res = await _programRepo.getById(params);
 
@@ -210,6 +222,7 @@ class ProgramCubit extends Cubit<ProgramState> {
   }
 
   Future<void> getAll(int clubId) async {
+    emitLoading();
     final res = await _programRepo.getAll(
       const PaginationParams(),
       clubId,

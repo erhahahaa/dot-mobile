@@ -11,7 +11,10 @@ class AuthCubit extends Cubit<AuthState> {
   final AuthRepo _authRepo;
   final UserRepo _userRepo;
 
-  AuthCubit(this._authRepo, this._userRepo) : super(const AuthState());
+  AuthCubit(
+    this._authRepo,
+    this._userRepo,
+  ) : super(const AuthState());
 
   void clear() {
     safeEmit(
@@ -20,6 +23,12 @@ class AuthCubit extends Cubit<AuthState> {
       state: const AuthState(),
     );
   }
+
+  void emitLoading() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(state: BaseState.loading),
+      );
 
   void showHidePassword() {
     safeEmit(
@@ -93,13 +102,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void signIn(LoginParams params) async {
-    safeEmit(
-      isClosed: isClosed,
-      emit: emit,
-      state: state.copyWith(
-        state: BaseState.loading,
-      ),
-    );
+    emitLoading();
     final res = await _authRepo.signIn(params);
     res.fold(
       (l) {
@@ -136,13 +139,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void signUp(RegisterParams params) async {
-    safeEmit(
-      isClosed: isClosed,
-      emit: emit,
-      state: state.copyWith(
-        state: BaseState.loading,
-      ),
-    );
+    emitLoading();
     final res = await _authRepo.signUp(params);
     res.fold(
       (l) {
@@ -179,13 +176,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void logout() async {
-    safeEmit(
-      isClosed: isClosed,
-      emit: emit,
-      state: state.copyWith(
-        state: BaseState.loading,
-      ),
-    );
+    emitLoading();
     final res = await _authRepo.logout();
     res.fold(
       (l) {

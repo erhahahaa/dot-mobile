@@ -238,7 +238,7 @@ const _ClubEntitytypeEnumValueMap = {
   'volleyBall': 0,
   'basketBall': 1,
   'soccer': 2,
-  'miniSoccer': 3,
+  'futsal': 3,
   'handBall': 4,
 };
 const _ClubEntitytypeValueEnumMap = {

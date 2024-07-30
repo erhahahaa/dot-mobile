@@ -39,14 +39,18 @@ enum AppRoutes {
   // Coach Program
   coachProgram('/coach/program'),
   coachProgramDetail('/coach/program/:id'),
-  coachCreateProgram('/coach/program/create/:clubId'),
-  coachCreateProgramExercise('/coach/program/exercise/create/:clubId'),
+  coachCreateProgram('/coach/program/create'),
+  coachEditProgram('/coach/program/edit'),
+  coachCreateProgramExercise('/coach/program/exercise/create'),
+  coachEditProgramExercise('/coach/program/exercise/edit'),
 
   // Coach Exam
   coachExam('/coach/exam'),
   coachExamDetail('/coach/exam/:id'),
-  coachCreateExam('/coach/exam/create/:clubId'),
-  coachCreateQuestion('/coach/exam/question/create/:clubId'),
+  coachCreateExam('/coach/exam/create'),
+  coachEditExam('/coach/exam/edit'),
+  coachCreateQuestion('/coach/exam/question/create'),
+  coachEditQuestion('/coach/exam/question/edit'),
 
   // Coach Tactical
   coachTactical('/coach/tactical'),

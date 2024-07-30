@@ -12,6 +12,7 @@ class AssetTab extends StatelessWidget {
       questionMedias;
   final bool showUploadButton;
   final Function(MediaModel)? onTap;
+  final bool isLoading;
 
   const AssetTab({
     super.key,
@@ -23,6 +24,7 @@ class AssetTab extends StatelessWidget {
     required this.questionMedias,
     this.showUploadButton = true,
     this.onTap,
+    required this.isLoading,
   });
 
   final _tabs = const [
@@ -75,30 +77,36 @@ class AssetTab extends StatelessWidget {
                 ClubAssetView(
                   medias: clubMedias,
                   onTap: onTap,
+                  isLoading: isLoading,
+                  clubId: clubId,
                 ),
                 ProgramAssetView(
                   medias: programMedias,
                   clubId: clubId,
                   showUploadButton: showUploadButton,
                   onTap: onTap,
+                  isLoading: isLoading,
                 ),
                 ExerciseAssetView(
                   medias: exerciseMedias,
                   clubId: clubId,
                   showUploadButton: showUploadButton,
                   onTap: onTap,
+                  isLoading: isLoading,
                 ),
                 ExamAssetView(
                   medias: examMedias,
                   clubId: clubId,
                   showUploadButton: showUploadButton,
                   onTap: onTap,
+                  isLoading: isLoading,
                 ),
                 QuestionAssetView(
                   medias: questionMedias,
                   clubId: clubId,
                   showUploadButton: showUploadButton,
                   onTap: onTap,
+                  isLoading: isLoading,
                 ),
               ],
             ),

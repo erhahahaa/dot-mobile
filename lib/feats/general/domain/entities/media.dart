@@ -1,3 +1,4 @@
+import 'package:dot_coaching/feats/feats.dart';
 import 'package:isar/isar.dart';
 
 part 'media.g.dart';
@@ -6,13 +7,14 @@ part 'media.g.dart';
 class MediaEmbedEntity {
   String? name;
   int? fileSize;
+  @enumerated
+  MediaType type;
   String? url;
-  String? type;
 
   MediaEmbedEntity({
     this.name,
     this.fileSize,
     this.url,
-    this.type,
+    this.type = MediaType.applicationOctetStream,
   });
 }

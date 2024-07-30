@@ -1,5 +1,6 @@
 export 'package:dot_coaching/core/widgets/bg/bg.dart';
 export 'package:dot_coaching/core/widgets/button.dart';
+export 'package:dot_coaching/core/widgets/floating_button_extended.dart';
 export 'package:dot_coaching/core/widgets/chirp.dart';
 export 'package:dot_coaching/core/widgets/container/container.dart';
 export 'package:dot_coaching/core/widgets/drop_down.dart';

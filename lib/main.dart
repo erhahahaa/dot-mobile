@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:dot_coaching/app.dart';
 import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/di.dart';
+import 'package:dot_coaching/sl.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

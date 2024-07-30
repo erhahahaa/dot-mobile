@@ -15,19 +15,30 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     this._mediaRepo,
   ) : super(const ExerciseState());
 
-  Future<void> init() async {}
-
-  void _emitInitial() {
+  void clear() {
     safeEmit(
       isClosed: isClosed,
       emit: emit,
-      state: state.copyWith(
-        state: BaseState.initial,
-      ),
+      state: const ExerciseState(),
     );
   }
 
+  void emitInitial() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(state: BaseState.initial),
+      );
+
+  void emitLoading() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(state: BaseState.loading),
+      );
+
+  Future<void> init() async {}
+
   Future<void> getAllMedia({required int clubId}) async {
+    emitLoading();
     for (final parent in MediaParent.values) {
       final res = await _mediaRepo.getAll(
         const PaginationParams(),
@@ -57,6 +68,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
   }
 
   Future<void> create(List<CreateProgramExerciseParams> params) async {
+    emitLoading();
     final res = await _exerciseRepo.create(params);
     res.fold((l) {
       safeEmit(
@@ -67,10 +79,6 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           failure: l,
         ),
       );
-
-      Future.delayed(const Duration(seconds: 2), () {
-        _emitInitial();
-      });
     }, (r) {
       safeEmit(
         isClosed: isClosed,
@@ -79,16 +87,14 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           state: BaseState.success,
         ),
       );
-
-      Future.delayed(const Duration(seconds: 2), () {
-        _emitInitial();
-      });
     });
   }
 
-  Future<void> update(List<UpdateProgramExerciseParams> params) async {
-    final res = await _exerciseRepo.update(params);
+  Future<void> updateBulk(List<UpdateProgramExerciseParams> params) async {
+    emitLoading();
+    final res = await _exerciseRepo.updateBulk(params);
     res.fold((l) {
+      log.e('updateBulk error: ${l.message}');
       safeEmit(
         isClosed: isClosed,
         emit: emit,
@@ -97,10 +103,6 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           failure: l,
         ),
       );
-
-      Future.delayed(const Duration(seconds: 2), () {
-        _emitInitial();
-      });
     }, (r) {
       safeEmit(
         isClosed: isClosed,
@@ -109,44 +111,15 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           state: BaseState.success,
         ),
       );
-
-      Future.delayed(const Duration(seconds: 2), () {
-        _emitInitial();
-      });
     });
   }
 
   Future<void> delete(ByIdParams params) async {
-    final res = await _exerciseRepo.delete(params);
-    res.fold((l) {
-      safeEmit(
-        isClosed: isClosed,
-        emit: emit,
-        state: state.copyWith(
-          state: BaseState.failure,
-          failure: l,
-        ),
-      );
-
-      Future.delayed(const Duration(seconds: 2), () {
-        _emitInitial();
-      });
-    }, (r) {
-      safeEmit(
-        isClosed: isClosed,
-        emit: emit,
-        state: state.copyWith(
-          state: BaseState.success,
-        ),
-      );
-
-      Future.delayed(const Duration(seconds: 2), () {
-        _emitInitial();
-      });
-    });
+    await _exerciseRepo.delete(params);
   }
 
   Future<void> getById(ByIdParams params) async {
+    emitLoading();
     final res = await _exerciseRepo.getById(params);
 
     res.fold((l) {
@@ -173,6 +146,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     PaginationParams params,
     int programId,
   ) async {
+    emitLoading();
     final res = await _exerciseRepo.getAll(params, programId);
     res.fold((l) {
       safeEmit(
@@ -189,6 +163,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
         emit: emit,
         state: state.copyWith(
           state: BaseState.success,
+          exercises: r,
         ),
       );
     });

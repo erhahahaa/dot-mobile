@@ -26,7 +26,8 @@ const MediaEmbedEntitySchema = Schema(
     r'type': PropertySchema(
       id: 2,
       name: r'type',
-      type: IsarType.string,
+      type: IsarType.byte,
+      enumMap: _MediaEmbedEntitytypeEnumValueMap,
     ),
     r'url': PropertySchema(
       id: 3,
@@ -53,12 +54,6 @@ int _mediaEmbedEntityEstimateSize(
     }
   }
   {
-    final value = object.type;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
     final value = object.url;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
@@ -75,7 +70,7 @@ void _mediaEmbedEntitySerialize(
 ) {
   writer.writeLong(offsets[0], object.fileSize);
   writer.writeString(offsets[1], object.name);
-  writer.writeString(offsets[2], object.type);
+  writer.writeByte(offsets[2], object.type.index);
   writer.writeString(offsets[3], object.url);
 }
 
@@ -88,7 +83,9 @@ MediaEmbedEntity _mediaEmbedEntityDeserialize(
   final object = MediaEmbedEntity(
     fileSize: reader.readLongOrNull(offsets[0]),
     name: reader.readStringOrNull(offsets[1]),
-    type: reader.readStringOrNull(offsets[2]),
+    type:
+        _MediaEmbedEntitytypeValueEnumMap[reader.readByteOrNull(offsets[2])] ??
+            MediaType.applicationOctetStream,
     url: reader.readStringOrNull(offsets[3]),
   );
   return object;
@@ -106,13 +103,64 @@ P _mediaEmbedEntityDeserializeProp<P>(
     case 1:
       return (reader.readStringOrNull(offset)) as P;
     case 2:
-      return (reader.readStringOrNull(offset)) as P;
+      return (_MediaEmbedEntitytypeValueEnumMap[
+              reader.readByteOrNull(offset)] ??
+          MediaType.applicationOctetStream) as P;
     case 3:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
+
+const _MediaEmbedEntitytypeEnumValueMap = {
+  'imagePng': 0,
+  'imageJpeg': 1,
+  'imageJpg': 2,
+  'imageGif': 3,
+  'imageSvgXml': 4,
+  'applicationPdf': 5,
+  'applicationMsword': 6,
+  'applicationVndOpenXMLFormatsWord': 7,
+  'applicationVndMsExcel': 8,
+  'applicationVndOpenXMLFormatsExcel': 9,
+  'textPlain': 10,
+  'videoMp4': 11,
+  'videoAvi': 12,
+  'videoMpeg': 13,
+  'videoQuicktime': 14,
+  'audioMpeg': 15,
+  'audioWav': 16,
+  'audioOgg': 17,
+  'applicationZip': 18,
+  'applicationXRarCompressed': 19,
+  'applicationTar': 20,
+  'applicationOctetStream': 21,
+};
+const _MediaEmbedEntitytypeValueEnumMap = {
+  0: MediaType.imagePng,
+  1: MediaType.imageJpeg,
+  2: MediaType.imageJpg,
+  3: MediaType.imageGif,
+  4: MediaType.imageSvgXml,
+  5: MediaType.applicationPdf,
+  6: MediaType.applicationMsword,
+  7: MediaType.applicationVndOpenXMLFormatsWord,
+  8: MediaType.applicationVndMsExcel,
+  9: MediaType.applicationVndOpenXMLFormatsExcel,
+  10: MediaType.textPlain,
+  11: MediaType.videoMp4,
+  12: MediaType.videoAvi,
+  13: MediaType.videoMpeg,
+  14: MediaType.videoQuicktime,
+  15: MediaType.audioMpeg,
+  16: MediaType.audioWav,
+  17: MediaType.audioOgg,
+  18: MediaType.applicationZip,
+  19: MediaType.applicationXRarCompressed,
+  20: MediaType.applicationTar,
+  21: MediaType.applicationOctetStream,
+};
 
 extension MediaEmbedEntityQueryFilter
     on QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QFilterCondition> {
@@ -345,76 +393,49 @@ extension MediaEmbedEntityQueryFilter
   }
 
   QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
-      typeIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'type',
-      ));
-    });
-  }
-
-  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
-      typeIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'type',
-      ));
-    });
-  }
-
-  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
-      typeEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
+      typeEqualTo(MediaType value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'type',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       typeGreaterThan(
-    String? value, {
+    MediaType value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'type',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       typeLessThan(
-    String? value, {
+    MediaType value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'type',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       typeBetween(
-    String? lower,
-    String? upper, {
+    MediaType lower,
+    MediaType upper, {
     bool includeLower = true,
     bool includeUpper = true,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
@@ -423,77 +444,6 @@ extension MediaEmbedEntityQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
-      typeStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'type',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
-      typeEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'type',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
-      typeContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'type',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
-      typeMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'type',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
-      typeIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'type',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
-      typeIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'type',
-        value: '',
       ));
     });
   }

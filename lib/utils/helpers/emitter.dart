@@ -6,7 +6,7 @@ void safeEmit<T>({
   required T state,
 }) {
   if (isClosed) {
-    log.d("Cubit is closed");
+    log.e("Cubit is closed");
     return;
   } else {
     emit(state);

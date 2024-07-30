@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ExerciseState {
   BaseState get state => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
+  List<ProgramExerciseModel> get exercises =>
+      throw _privateConstructorUsedError;
   List<MediaModel> get medias => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +33,11 @@ abstract class $ExerciseStateCopyWith<$Res> {
           ExerciseState value, $Res Function(ExerciseState) then) =
       _$ExerciseStateCopyWithImpl<$Res, ExerciseState>;
   @useResult
-  $Res call({BaseState state, Failure? failure, List<MediaModel> medias});
+  $Res call(
+      {BaseState state,
+      Failure? failure,
+      List<ProgramExerciseModel> exercises,
+      List<MediaModel> medias});
 }
 
 /// @nodoc
@@ -49,6 +55,7 @@ class _$ExerciseStateCopyWithImpl<$Res, $Val extends ExerciseState>
   $Res call({
     Object? state = null,
     Object? failure = freezed,
+    Object? exercises = null,
     Object? medias = null,
   }) {
     return _then(_value.copyWith(
@@ -60,6 +67,10 @@ class _$ExerciseStateCopyWithImpl<$Res, $Val extends ExerciseState>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      exercises: null == exercises
+          ? _value.exercises
+          : exercises // ignore: cast_nullable_to_non_nullable
+              as List<ProgramExerciseModel>,
       medias: null == medias
           ? _value.medias
           : medias // ignore: cast_nullable_to_non_nullable
@@ -76,7 +87,11 @@ abstract class _$$ExerciseStateImplCopyWith<$Res>
       __$$ExerciseStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BaseState state, Failure? failure, List<MediaModel> medias});
+  $Res call(
+      {BaseState state,
+      Failure? failure,
+      List<ProgramExerciseModel> exercises,
+      List<MediaModel> medias});
 }
 
 /// @nodoc
@@ -92,6 +107,7 @@ class __$$ExerciseStateImplCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
     Object? failure = freezed,
+    Object? exercises = null,
     Object? medias = null,
   }) {
     return _then(_$ExerciseStateImpl(
@@ -103,6 +119,10 @@ class __$$ExerciseStateImplCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      exercises: null == exercises
+          ? _value._exercises
+          : exercises // ignore: cast_nullable_to_non_nullable
+              as List<ProgramExerciseModel>,
       medias: null == medias
           ? _value._medias
           : medias // ignore: cast_nullable_to_non_nullable
@@ -117,14 +137,25 @@ class _$ExerciseStateImpl implements _ExerciseState {
   const _$ExerciseStateImpl(
       {this.state = BaseState.initial,
       this.failure,
+      final List<ProgramExerciseModel> exercises = const [],
       final List<MediaModel> medias = const []})
-      : _medias = medias;
+      : _exercises = exercises,
+        _medias = medias;
 
   @override
   @JsonKey()
   final BaseState state;
   @override
   final Failure? failure;
+  final List<ProgramExerciseModel> _exercises;
+  @override
+  @JsonKey()
+  List<ProgramExerciseModel> get exercises {
+    if (_exercises is EqualUnmodifiableListView) return _exercises;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_exercises);
+  }
+
   final List<MediaModel> _medias;
   @override
   @JsonKey()
@@ -136,7 +167,7 @@ class _$ExerciseStateImpl implements _ExerciseState {
 
   @override
   String toString() {
-    return 'ExerciseState(state: $state, failure: $failure, medias: $medias)';
+    return 'ExerciseState(state: $state, failure: $failure, exercises: $exercises, medias: $medias)';
   }
 
   @override
@@ -146,11 +177,17 @@ class _$ExerciseStateImpl implements _ExerciseState {
             other is _$ExerciseStateImpl &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.failure, failure) || other.failure == failure) &&
+            const DeepCollectionEquality()
+                .equals(other._exercises, _exercises) &&
             const DeepCollectionEquality().equals(other._medias, _medias));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state, failure,
+  int get hashCode => Object.hash(
+      runtimeType,
+      state,
+      failure,
+      const DeepCollectionEquality().hash(_exercises),
       const DeepCollectionEquality().hash(_medias));
 
   @JsonKey(ignore: true)
@@ -164,12 +201,15 @@ abstract class _ExerciseState implements ExerciseState {
   const factory _ExerciseState(
       {final BaseState state,
       final Failure? failure,
+      final List<ProgramExerciseModel> exercises,
       final List<MediaModel> medias}) = _$ExerciseStateImpl;
 
   @override
   BaseState get state;
   @override
   Failure? get failure;
+  @override
+  List<ProgramExerciseModel> get exercises;
   @override
   List<MediaModel> get medias;
   @override

@@ -12,6 +12,20 @@ class TacticalCubit extends Cubit<TacticalState> {
     this._tacticalRepo,
   ) : super(const TacticalState());
 
+  void clear() {
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: const TacticalState(),
+    );
+  }
+
+  void emitLoading() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(state: BaseState.loading),
+      );
+
   Future<void> init() async {}
 
   Future<void> create(CreateTacticalParams params) async {

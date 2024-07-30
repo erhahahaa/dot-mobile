@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/utils/utils.dart';
 
 class ExerciseRepoImpl implements ExerciseRepo {
   final DioClient _remote;
@@ -111,24 +112,51 @@ class ExerciseRepoImpl implements ExerciseRepo {
   }
 
   @override
-  Future<Either<Failure, ProgramExerciseModel>> update(
+  Future<Either<Failure, List<ProgramExerciseModel>>> updateBulk(
     List<UpdateProgramExerciseParams> params,
   ) async {
+    List<Future> futures = [];
     final List<Map<String, dynamic>> body = [];
     for (final param in params) {
+      if (param.id == 0) {
+        final newExerciseFuture = create([
+          CreateProgramExerciseParams(
+            programId: param.programId,
+            mediaId: param.mediaId,
+            name: param.name,
+            description: param.description,
+            repetition: param.repetition,
+            sets: param.sets,
+            rest: param.rest,
+            order: param.order,
+          )
+        ]);
+        futures.add(newExerciseFuture);
+        continue;
+      }
       body.add(param.toJson());
     }
+    log.i('body: $body');
+    await Future.wait(futures);
     final res = await _remote.putRequest(
-      ListAPI.CLUB_PROGRAM_EXERCISE,
+      '${ListAPI.CLUB_PROGRAM_EXERCISE}/bulk',
       listData: body,
-      converter: (res) => ProgramExerciseModel.fromJson(res['data']),
+      converter: (res) {
+        final List<ProgramExerciseModel> exercises = [];
+        for (final data in res['data']) {
+          exercises.add(ProgramExerciseModel.fromJson(data));
+        }
+        return exercises;
+      },
     );
 
     res.fold(
       (l) => null,
-      (r) => _local.isar.writeTxn(
-        () async => _local.programExercises.put(r.toEntity()),
-      ),
+      (r) => _local.isar.writeTxn(() async {
+        for (final item in r) {
+          await _local.programExercises.put(item.toEntity());
+        }
+      }),
     );
 
     return res;

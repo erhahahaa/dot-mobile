@@ -23,20 +23,25 @@ class AssetContainer extends StatelessWidget {
         children: [
           InkWell(
             onTap: () => onTap != null ? onTap!(media) : null,
-            child: Expanded(
-              child: media.determineLoader(width: 128.w, height: 128.w),
+            child: ClipRRect(
+              child: SizedBox(
+                width: 104.w,
+                height: 104.w,
+                child: media.determineLoader(width: 104.w, height: 104.w),
+              ),
             ),
           ),
           const Divider(),
           InkWell(
             onTap: () => onTap != null ? onTap!(media) : null,
             child: Text(
-              media.name.maxChar(length: 15),
+              media.name.maxChar(length: onTap != null ? 11 : 17),
               style: context.theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
+          SizedBox(height: 8.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

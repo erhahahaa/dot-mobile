@@ -89,6 +89,7 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
             message: msg?.failedCreateClub,
             type: ToastType.error,
           ).fire(context);
+          context.read<ClubCubit>().emitInitial();
         }
         if (state.state == BaseState.success) {
           ToastModel(
@@ -97,13 +98,7 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
           ).fire(context);
 
           context.pop(state.updatedClub);
-          context.read<ClubCubit>().emitCaller(
-                state.copyWith(
-                  state: BaseState.initial,
-                  updatedClub: null,
-                  image: null,
-                ),
-              );
+          context.read<ClubCubit>().emitInitial();
         }
       },
       builder: (context, state) {
@@ -211,7 +206,9 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
                     child: Button(
                       text: widget.club == null
                           ? msg?.createClub ?? 'Create Club'
-                          : msg?.editClub ?? 'Edit Club',
+                          : msg?.updateClub ?? 'Update Club',
+                      isLoading: state.state == BaseState.loading,
+                      isDisabled: state.state == BaseState.loading,
                       onPressed: () {
                         if (_formKey.currentState?.validate() ?? false) {
                           final img = state.image;
@@ -225,28 +222,28 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
                               imageError = null;
                             });
                           }
-                          if (widget.club == null) {
-                            if (img != null) {
-                              context.read<ClubCubit>().create(
-                                    CreateClubParams(
+                          context.read<ClubCubit>().emitLoading();
+                          if (widget.club == null && img != null) {
+                            context.read<ClubCubit>().create(
+                                  CreateClubParams(
+                                    name: _nameController.text,
+                                    description: _descriptionController.text,
+                                    type: selectedSportType,
+                                    image: img,
+                                  ),
+                                );
+                          } else {
+                            if (widget.club?.id != null) {
+                              context.read<ClubCubit>().update(
+                                    UpdateClubParams(
+                                      id: widget.club!.id.toString(),
                                       name: _nameController.text,
                                       description: _descriptionController.text,
-                                      type: selectedSportType,
                                       image: img,
+                                      type: selectedSportType,
                                     ),
                                   );
                             }
-                          } else {
-                            context.read<ClubCubit>().update(
-                                  UpdateClubParams(
-                                    id: widget.club!.id.toString(),
-                                    name: _nameController.text,
-                                    description: _descriptionController.text,
-                                    image:
-                                        img, // assuming img can be null here if updating without changing the image
-                                    type: selectedSportType,
-                                  ),
-                                );
                           }
                         }
                       },

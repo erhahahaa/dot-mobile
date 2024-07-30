@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 part 'program_model.freezed.dart';
 part 'program_model.g.dart';
@@ -32,6 +35,16 @@ class ProgramModel with _$ProgramModel {
           : null,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
+    );
+  }
+
+  static ProgramModel fake() {
+    return ProgramModel(
+      id: Random().nextInt(100),
+      clubId: Random().nextInt(100),
+      name: BoneMock.name,
+      startDate: DateTime.now(),
+      endDate: DateTime.now(),
     );
   }
 }

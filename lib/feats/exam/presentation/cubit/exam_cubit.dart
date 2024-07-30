@@ -13,15 +13,23 @@ class ExamCubit extends Cubit<ExamState> {
     this._examRepo,
   ) : super(const ExamState());
 
-  void emitCaller(ExamState state) {
+  void clear() {
     safeEmit(
       isClosed: isClosed,
       emit: emit,
-      state: state,
+      state: const ExamState(),
     );
   }
 
-  Future<void> init() async {}
+  void emitLoading() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(state: BaseState.loading),
+      );
+
+  Future<void> init({
+    required int clubId,
+  }) async {}
 
   Future<void> create(CreateExamParams params) async {
     final res = await _examRepo.create(params);

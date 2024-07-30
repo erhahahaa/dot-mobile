@@ -11,21 +11,23 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ClubCubit, ClubState>(
+    return BlocConsumer<ClubCubit, ClubState>(
+      listener: (context, state) {
+        if (state.state == BaseState.success) {
+          context.read<ClubCubit>().emitInitial();
+        }
+      },
       builder: (context, state) {
         return Parent(
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
-              context.read<ClubCubit>().emitCaller(state.copyWith(
-                    state: BaseState.initial,
-                  ));
               context.pushNamed(AppRoutes.coachCreateClub.name);
             },
             label: Row(
               children: [
                 const Icon(Icons.add),
                 SizedBox(width: 8.w),
-                 Text(
+                Text(
                   context.str?.createClub ?? 'Create Club',
                 ),
               ],
@@ -39,7 +41,7 @@ class DashboardScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     H1Text(
+                    H1Text(
                       context.str?.overview ?? 'Overview',
                     ),
                     SizedBox(height: 8.h),
@@ -53,7 +55,7 @@ class DashboardScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                         H1Text(
+                        H1Text(
                           context.str?.clubs ?? 'Clubs',
                         ),
                         SizedBox(width: 8.w),
@@ -63,6 +65,7 @@ class DashboardScreen extends StatelessWidget {
                     SizedBox(height: 8.h),
                     Expanded(
                       child: ListClub(
+                        isLoading: state.state == BaseState.loading,
                         clubs: state.filteredClubs,
                         padding: EdgeInsets.all(16.w),
                         isCoach: true,

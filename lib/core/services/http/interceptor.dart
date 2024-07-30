@@ -56,8 +56,8 @@ class DioInterceptor extends Interceptor with FirebaseCrashLogger {
     log.d(
       // ignore: unnecessary_null_comparison
       "◀ RESPONSE ${response.statusCode} ${response.requestOptions != null ? (response.requestOptions.baseUrl + response.requestOptions.path) : 'URL'}\n\n"
-      "Headers:\n"
-      "$headerMessage\n"
+      // "Headers:\n"
+      // "$headerMessage\n"
       "❖ Results : \n"
       "Response: $prettyJson",
     );

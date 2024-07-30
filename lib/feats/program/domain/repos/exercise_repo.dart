@@ -13,7 +13,7 @@ abstract class ExerciseRepo {
   Future<Either<Failure, List<ProgramExerciseModel>>> create(
     List<CreateProgramExerciseParams> params,
   );
-  Future<Either<Failure, ProgramExerciseModel>> update(
+  Future<Either<Failure, List<ProgramExerciseModel>>> updateBulk(
     List<UpdateProgramExerciseParams> params,
   );
   Future<Either<Failure, ProgramExerciseModel>> delete(

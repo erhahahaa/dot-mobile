@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 part 'media_model.freezed.dart';
 part 'media_model.g.dart';
@@ -38,6 +41,19 @@ class MediaModel with _$MediaModel {
       url: entity.url,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
+    );
+  }
+
+  static fake() {
+    return MediaModel(
+      id: Random().nextInt(100),
+      creatorId: Random().nextInt(100),
+      clubId: Random().nextInt(100),
+      name: BoneMock.name,
+      description: BoneMock.subtitle,
+      fileSize: Random().nextInt(100),
+      path: BoneMock.subtitle,
+      url: BoneMock.subtitle,
     );
   }
 }

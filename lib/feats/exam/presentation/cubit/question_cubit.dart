@@ -13,6 +13,28 @@ class QuestionCubit extends Cubit<QuestionState> {
     this._questionRepo,
   ) : super(const QuestionState());
 
+  void clear() {
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: const QuestionState(),
+    );
+  }
+
+  void emitInitial() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          state: BaseState.initial,
+        ),
+      );
+
+  void emitLoading() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(state: BaseState.loading),
+      );
+
   Future<void> init() async {}
 
   Future<void> create(CreateQuestionParams params) async {

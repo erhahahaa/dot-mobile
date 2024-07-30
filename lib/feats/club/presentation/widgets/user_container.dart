@@ -61,26 +61,24 @@ class UserContainer extends StatelessWidget {
                     },
                     itemBuilder: (context) {
                       return [
-                         PopupMenuItem(
+                        PopupMenuItem(
                           child: Row(
                             children: [
                               const Icon(Icons.edit),
                               const SizedBox(width: 8),
                               Text(
-                                context.str?.edit ??
-                                    'Edit',
+                                context.str?.edit ?? 'Edit',
                               ),
                             ],
                           ),
                         ),
                         PopupMenuItem(
-                          child:  Row(
+                          child: Row(
                             children: [
                               const Icon(Icons.delete),
                               const SizedBox(width: 8),
                               Text(
-                                context.str?.kick ??
-                                    'Kick',
+                                context.str?.kick ?? 'Kick',
                               ),
                             ],
                           ),
@@ -93,7 +91,7 @@ class UserContainer extends StatelessWidget {
                 : ElevatedButton(
                     onPressed: () =>
                         context.read<ClubCubit>().addUser(clubId, user.id),
-                    child:  Text(
+                    child: Text(
                       context.str?.add ?? 'Add',
                     ),
                   ),

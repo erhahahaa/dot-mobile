@@ -6,10 +6,11 @@ part 'create_exercise_param.g.dart';
 @freezed
 class CreateProgramExerciseParams with _$CreateProgramExerciseParams {
   const factory CreateProgramExerciseParams({
+    @Default(0) int order,
     @Default(0) int programId,
     @Default(0) int mediaId,
     @Default('') String name,
-    @Default('') String description,
+    String? description,
     @Default(0) int repetition,
     @Default(0) int sets,
     @Default(0) int rest,

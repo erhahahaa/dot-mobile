@@ -10,16 +10,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-export 'package:dot_coaching/feats/program/presentation/screens/coach/form/exercise_form_screen.dart';
-export 'package:dot_coaching/feats/program/presentation/screens/coach/form/program_form_screen.dart';
+export 'package:dot_coaching/feats/program/presentation/screens/coach/exercise_form_screen.dart';
+export 'package:dot_coaching/feats/program/presentation/screens/coach/program_form_screen.dart';
 
 class ExerciseForm extends StatefulWidget {
   final ProgramModel program;
   final List<ProgramExerciseModel>? exercises;
+  final ClubModel club;
   const ExerciseForm({
     super.key,
     required this.program,
     this.exercises,
+    required this.club,
   });
 
   @override
@@ -53,6 +55,14 @@ class _ExerciseFormState extends State<ExerciseForm> {
           repsCon: TextEditingController(text: exercise.repetition.toString()),
           restCon: TextEditingController(text: exercise.rest.toString()),
           descriptionCon: TextEditingController(text: exercise.description),
+          media: exercise.media != null
+              ? MediaModel(
+                  id: exercise.media!.id,
+                  url: exercise.media!.url,
+                  type: exercise.media!.type,
+                )
+              : null,
+          order: exercise.order,
         ));
       }
     }
@@ -92,24 +102,29 @@ class _ExerciseFormState extends State<ExerciseForm> {
       );
     }
 
-    return BlocListener<ExerciseCubit, ExerciseState>(
+    return BlocConsumer<ExerciseCubit, ExerciseState>(
       listener: (context, state) {
         if (state.state == BaseState.success) {
           ToastModel(
-            message: context.str?.successCreateExercise,
+            message: widget.exercises == null
+                ? context.str?.successCreateExercise
+                : context.str?.successUpdateExercises,
             type: ToastType.success,
           ).fire(context);
           context.pop();
+          context.read<ExerciseCubit>().emitInitial();
         }
         if (state.state == BaseState.failure) {
           ToastModel(
             message: context.str?.errorCreateExercise,
             type: ToastType.error,
           ).fire(context);
+          context.read<ExerciseCubit>().emitInitial();
         }
       },
-      child: Parent(
-          floatingActionButton: FloatingActionButton.extended(
+      builder: (context, state) {
+        return Parent(
+          floatingActionButton: FloatingButtonExtended(
             onPressed: () {
               for (ExerciseItem item in _items) {
                 if (!item.isExpanded) {
@@ -147,30 +162,52 @@ class _ExerciseFormState extends State<ExerciseForm> {
               }
 
               if (_formKey.currentState?.validate() ?? false) {
-                final List<CreateProgramExerciseParams> exercises = [];
-                for (ExerciseItem item in _items) {
-                  exercises.add(
-                    CreateProgramExerciseParams(
-                      name: item.nameCon.text,
-                      sets: int.parse(item.setsCon.text),
-                      repetition: int.parse(item.repsCon.text),
-                      rest: int.parse(item.restCon.text),
-                      description: item.descriptionCon.text,
-                      programId: widget.program.id,
-                      mediaId: item.media?.id ?? 0,
-                    ),
-                  );
+                if (widget.exercises == null) {
+                  final List<CreateProgramExerciseParams> exercises = [];
+                  for (ExerciseItem item in _items) {
+                    exercises.add(
+                      CreateProgramExerciseParams(
+                        name: item.nameCon.text,
+                        sets: int.parse(item.setsCon.text),
+                        repetition: int.parse(item.repsCon.text),
+                        rest: int.parse(item.restCon.text),
+                        description: item.descriptionCon.text.isNotEmpty
+                            ? item.descriptionCon.text
+                            : null,
+                        programId: widget.program.id,
+                        mediaId: item.media?.id ?? 0,
+                        order: item.order,
+                      ),
+                    );
+                  }
+                  context.read<ExerciseCubit>().create(exercises);
+                } else {
+                  final List<UpdateProgramExerciseParams> exercises = [];
+                  for (ExerciseItem item in _items) {
+                    exercises.add(
+                      UpdateProgramExerciseParams(
+                        id: item.exercise.id,
+                        name: item.nameCon.text,
+                        sets: int.parse(item.setsCon.text),
+                        repetition: int.parse(item.repsCon.text),
+                        rest: int.parse(item.restCon.text),
+                        description: item.descriptionCon.text.isNotEmpty
+                            ? item.descriptionCon.text
+                            : null,
+                        programId: widget.program.id,
+                        mediaId: item.media?.id ?? 0,
+                        order: item.order,
+                      ),
+                    );
+                  }
+                  context.read<ExerciseCubit>().updateBulk(exercises);
                 }
-                context.read<ExerciseCubit>().create(exercises);
               }
             },
-            label: Row(
-              children: [
-                const Icon(Icons.save),
-                SizedBox(width: 8.w),
-                const Text('Save'),
-              ],
-            ),
+            icon: const Icon(Icons.save),
+            text: 'Save',
+            isDisabled: state.state == BaseState.loading,
+            isLoading: state.state == BaseState.loading,
           ),
           body: RoundedTopBackground(
             title: widget.exercises == null
@@ -199,6 +236,7 @@ class _ExerciseFormState extends State<ExerciseForm> {
                           repsCon: TextEditingController(),
                           restCon: TextEditingController(),
                           descriptionCon: TextEditingController(),
+                          order: _items.length,
                         ));
                       });
                     },
@@ -305,6 +343,15 @@ class _ExerciseFormState extends State<ExerciseForm> {
                                   size: 24.sp,
                                 ),
                                 onPressed: () {
+                                  if (_items[index].exercise.id != 0) {
+                                    context.read<ExerciseCubit>().delete(
+                                          ByIdParams(
+                                              id: _items[index]
+                                                  .exercise
+                                                  .id
+                                                  .toString()),
+                                        );
+                                  }
                                   setState(() {
                                     _items.removeAt(index);
                                   });
@@ -339,13 +386,19 @@ class _ExerciseFormState extends State<ExerciseForm> {
                                     return Dialog(
                                       child: Container(
                                           padding: EdgeInsets.all(16.w),
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.75,
                                           child: BlocProvider.value(
                                             value: context.read<MediaCubit>(),
                                             child: BlocBuilder<MediaCubit,
                                                 MediaState>(
                                               builder: (context, state) {
                                                 return AssetTab(
-                                                  showUploadButton: false,
+                                                  isLoading: state.state ==
+                                                      BaseState.loading,
+                                                  showUploadButton: true,
                                                   clubId: widget.program.clubId,
                                                   clubMedias: state.clubMedias,
                                                   programMedias:
@@ -366,8 +419,6 @@ class _ExerciseFormState extends State<ExerciseForm> {
                                     );
                                   },
                                 );
-
-                                log.f('picked: $picked');
 
                                 if (picked != null) {
                                   setState(() {
@@ -556,11 +607,19 @@ class _ExerciseFormState extends State<ExerciseForm> {
 
                     final ExerciseItem item = _items.removeAt(oldIndex);
                     _items.insert(newIndex, item);
+
+                    // update the order of the items
+                    for (int i = 0; i < _items.length; i++) {
+                      log.f('item order: ${_items[i].order}');
+                      _items[i].order = i;
+                    }
                   });
                 },
               ),
             ),
-          )),
+          ),
+        );
+      },
     );
   }
 }
@@ -582,6 +641,7 @@ class ExerciseItem {
   TextEditingController descriptionCon;
 
   bool isExpanded;
+  int order;
 
   ExerciseItem({
     required this.exercise,
@@ -597,6 +657,7 @@ class ExerciseItem {
     required this.descriptionCon,
     this.isExpanded = false,
     this.media,
+    required this.order,
   });
 
   void dispose() {

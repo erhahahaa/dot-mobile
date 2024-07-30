@@ -1,6 +1,6 @@
 import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/di.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/sl.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class AppRouter {
   static final _athleteProfileShellKey = GlobalKey<NavigatorState>();
 
   /// [Coach] keys
-  static final _coachDashboardKey = GlobalKey<NavigatorState>();
+  static final _coachClubKey = GlobalKey<NavigatorState>();
   static final _coachProgramShellKey = GlobalKey<NavigatorState>();
   static final _coachExamShellKey = GlobalKey<NavigatorState>();
   static final _coachTacticalShellKey = GlobalKey<NavigatorState>();
@@ -35,7 +35,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.root.path,
         name: AppRoutes.root.name,
-        redirect: (_, __) => AppRoutes.splash.path,
+        redirect: (_, __) => AppRoutes.coachDashboard.path,
       ),
       ShellRoute(
         navigatorKey: _authKey,
@@ -74,8 +74,8 @@ class AppRouter {
         parentNavigatorKey: _rootKey,
         builder: (_, state, navigationShell) => MultiBlocProvider(
           providers: [
-            BlocProvider(create: (_) => di<ClubCubit>()),
-            BlocProvider(create: (_) => di<TacticalCubit>()),
+            BlocProvider(create: (_) => sl<ClubCubit>()),
+            BlocProvider(create: (_) => sl<TacticalCubit>()),
           ],
           child: BottomNavBar(
             navigationShell: navigationShell,
@@ -93,7 +93,7 @@ class AppRouter {
                 path: AppRoutes.athleteHome.path,
                 name: AppRoutes.athleteHome.name,
                 builder: (_, state) => BlocProvider.value(
-                  value: di<ClubCubit>()..init(),
+                  value: sl<ClubCubit>()..init(),
                   child: const HomeScreen(),
                 ),
               ),
@@ -107,7 +107,7 @@ class AppRouter {
                 path: AppRoutes.athleteTactical.path,
                 name: AppRoutes.athleteTactical.name,
                 builder: (_, __) => BlocProvider(
-                  create: (_) => di<TacticalCubit>()..init(),
+                  create: (_) => sl<TacticalCubit>()..init(),
                   child: const TacticalScreen(),
                 ),
               ),
@@ -121,7 +121,7 @@ class AppRouter {
                 path: AppRoutes.athleteExam.path,
                 name: AppRoutes.athleteExam.name,
                 builder: (_, __) => BlocProvider(
-                  create: (_) => di<UserCubit>()..init(),
+                  create: (_) => sl<UserCubit>()..init(),
                   child: const AthleteExamScreen(),
                 ),
               ),
@@ -134,311 +134,679 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.athleteProfile.path,
                 name: AppRoutes.athleteProfile.name,
-                builder: (_, __) => BlocProvider.value(
-                  value: di<UserCubit>()..init(),
-                  child: const ProfileScreen(),
-                ),
+                builder: (_, __) => const ProfileScreen(),
+                // builder: (_, __) => BlocProvider.value(
+                //   value: sl<UserCubit>()..init(),
+                //   child: const ProfileScreen(),
+                // ),
               ),
               GoRoute(
                 path: AppRoutes.athleteEditProfile.path,
                 name: AppRoutes.athleteEditProfile.name,
-                builder: (_, __) => BlocProvider.value(
-                  value: di<UserCubit>()..init(),
-                  child: const EditProfileScreen(),
-                ),
+                builder: (_, __) => const EditProfileScreen(),
+                // builder: (_, __) => BlocProvider.value(
+                //   value: sl<UserCubit>()..init(),
+                //   child: const EditProfileScreen(),
+                // ),
               ),
             ],
           ),
         ],
       ),
 
-      /// [Coach] routes
-      StatefulShellRoute.indexedStack(
+      /// [Coach Club] routes
+      ShellRoute(
+        navigatorKey: _coachClubKey,
         parentNavigatorKey: _rootKey,
-        builder: (_, state, navigationShell) => MultiBlocProvider(
-          providers: [
-            BlocProvider(create: (_) => di<ClubCubit>()),
-            BlocProvider(create: (_) => di<ProgramCubit>()),
-            BlocProvider(create: (_) => di<ExerciseCubit>()),
-            BlocProvider(create: (_) => di<ExamCubit>()),
-            BlocProvider(create: (_) => di<QuestionCubit>()),
-            BlocProvider(create: (_) => di<TacticalCubit>()),
-            BlocProvider(create: (_) => di<UserCubit>()),
-            BlocProvider(create: (_) => di<MediaCubit>()),
-          ],
-          child: BottomNavBar(
-            navigationShell: navigationShell,
-            routerState: state,
-            showBottomNavBar: false,
-            showCoachNavBar: true,
+        builder: (context, state, child) {
+          return BlocProvider(
+            create: (_) => sl<ClubCubit>()..init(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            parentNavigatorKey: _coachClubKey,
+            path: AppRoutes.coachDashboard.path,
+            name: AppRoutes.coachDashboard.name,
+            builder: (_, __) => const DashboardScreen(),
           ),
-        ),
-        branches: [
-          // Home
-          StatefulShellBranch(
-            navigatorKey: _coachDashboardKey,
-            routes: [
-              GoRoute(
-                path: AppRoutes.coachDashboard.path,
-                name: AppRoutes.coachDashboard.name,
-                builder: (c, state) => BlocProvider.value(
-                  value: c.read<ClubCubit>()..init(),
-                  child: const DashboardScreen(),
+          GoRoute(
+            parentNavigatorKey: _coachClubKey,
+            path: AppRoutes.coachCreateClub.path,
+            name: AppRoutes.coachCreateClub.name,
+            builder: (_, __) => const ClubFormScreen(),
+          ),
+          GoRoute(
+            path: AppRoutes.coachEditClub.path,
+            name: AppRoutes.coachEditClub.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final club = extra['club'] as ClubModel;
+
+              return ClubFormScreen(club: club);
+
+              // return BlocProvider.value(
+              //   value: c.read<ClubCubit>()..emitInitial(),
+              //   child: ClubFormScreen(club: club),
+              // );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachClubDetail.path,
+            name: AppRoutes.coachClubDetail.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final club = extra['club'] as ClubModel;
+
+              return ClubDetailScreen(club: club);
+
+              // return BlocProvider.value(
+              //   value: c.read<ClubCubit>(),
+              //   child: ClubDetailScreen(club: club),
+              // );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachClubMember.path,
+            name: AppRoutes.coachClubMember.name,
+            builder: (c, state) {
+              final params = state.pathParameters;
+              final clubId = int.parse(params['clubId'] ?? '0');
+
+              return BlocProvider.value(
+                value: c.read<ClubCubit>()
+                  ..getMembers(const PaginationParams(), clubId),
+                child: MemberScreen(
+                  clubId: clubId,
                 ),
-              ),
-              GoRoute(
-                path: AppRoutes.coachCreateClub.path,
-                name: AppRoutes.coachCreateClub.name,
-                builder: (c, __) => BlocProvider.value(
-                  value: c.read<ClubCubit>(),
-                  child: const ClubFormScreen(),
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachAddMember.path,
+            name: AppRoutes.coachAddMember.name,
+            builder: (c, state) {
+              final params = state.pathParameters;
+              final clubId = int.parse(params['clubId'] ?? '0');
+
+              return BlocProvider.value(
+                value: c.read<ClubCubit>(),
+                child: AddMemberScreen(
+                  clubId: clubId,
                 ),
-              ),
-              GoRoute(
-                path: AppRoutes.coachEditClub.path,
-                name: AppRoutes.coachEditClub.name,
-                builder: (c, state) {
-                  final extra = state.extra as Map<String, dynamic>;
-                  final club = extra['club'] as ClubModel;
+              );
+            },
+          ),
+        ],
+      ),
 
-                  return BlocProvider.value(
-                    value: c.read<ClubCubit>(),
-                    child: ClubFormScreen(
-                      club: club,
-                    ),
-                  );
-                },
-              ),
-              GoRoute(
-                path: AppRoutes.coachClubDetail.path,
-                name: AppRoutes.coachClubDetail.name,
-                builder: (c, state) {
-                  final extra = state.extra as Map<String, dynamic>;
-                  final club = extra['club'] as ClubModel;
-                  return BlocProvider.value(
-                    value: c.read<ClubCubit>(),
-                    child: ClubDetailScreen(club: club),
-                  );
-                },
-              ),
-              GoRoute(
-                path: AppRoutes.coachClubMember.path,
-                name: AppRoutes.coachClubMember.name,
-                builder: (c, state) {
-                  final params = state.pathParameters;
-                  final clubId = int.parse(params['clubId'] ?? '0');
+      /// [Coach Program] routes
+      ShellRoute(
+        navigatorKey: _coachProgramShellKey,
+        parentNavigatorKey: _rootKey,
+        builder: (context, state, child) {
+          final extra = state.extra as Map<String, dynamic>;
+          final club = extra['club'] as ClubModel;
 
-                  return BlocProvider.value(
-                    value: c.read<ClubCubit>()
-                      ..getMembers(const PaginationParams(), clubId),
-                    child: MemberScreen(
-                      clubId: clubId,
-                    ),
-                  );
-                },
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) => sl<ProgramCubit>()..init(clubId: club.id),
               ),
-              GoRoute(
-                path: AppRoutes.coachAddMember.path,
-                name: AppRoutes.coachAddMember.name,
-                builder: (c, state) {
-                  final params = state.pathParameters;
-                  final clubId = int.parse(params['clubId'] ?? '0');
-
-                  return BlocProvider.value(
-                    value: c.read<ClubCubit>(),
-                    child: AddMemberScreen(
-                      clubId: clubId,
-                    ),
-                  );
-                },
+              BlocProvider(create: (_) => sl<ExerciseCubit>()..emitInitial()),
+              BlocProvider(
+                create: (_) => sl<MediaCubit>()..init(clubId: club.id),
               ),
             ],
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: AppRoutes.coachProgram.path,
+            name: AppRoutes.coachProgram.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final club = extra['club'] as ClubModel;
+
+              return ProgramScreen(club: club);
+            },
           ),
+          GoRoute(
+            path: AppRoutes.coachCreateProgram.path,
+            name: AppRoutes.coachCreateProgram.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final club = extra['club'] as ClubModel;
 
-          // Program
-          StatefulShellBranch(
-            navigatorKey: _coachProgramShellKey,
-            routes: [
-              GoRoute(
-                path: AppRoutes.coachProgram.path,
-                name: AppRoutes.coachProgram.name,
-                builder: (c, state) {
-                  final extra = state.extra as Map<String, dynamic>;
-                  final club = extra['club'] as ClubModel;
-                  return BlocProvider.value(
-                    value: c.read<ProgramCubit>()..init(clubId: club.id),
-                    child: ProgramScreen(club: club),
-                  );
-                },
-              ),
-              GoRoute(
-                path: AppRoutes.coachCreateProgram.path,
-                name: AppRoutes.coachCreateProgram.name,
-                builder: (c, state) {
-                  final params = state.pathParameters;
+              return ProgramFormScreen(
+                club: club,
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachEditProgram.path,
+            name: AppRoutes.coachEditProgram.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final program = extra['program'] as ProgramModel;
+              final club = extra['club'] as ClubModel;
 
-                  return BlocProvider.value(
-                    value: c.read<ProgramCubit>(),
-                    child: ProgramFormScreen(
-                      clubId: int.parse(
-                        params['clubId'] ?? '0',
-                      ),
-                    ),
-                  );
-                },
-              ),
-              GoRoute(
-                path: AppRoutes.coachCreateProgramExercise.path,
-                name: AppRoutes.coachCreateProgramExercise.name,
-                builder: (c, state) {
-                  final extra = state.extra as Map<String, dynamic>;
+              return ProgramFormScreen(
+                club: club,
+                program: program,
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachCreateProgramExercise.path,
+            name: AppRoutes.coachCreateProgramExercise.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final program = extra['program'] as ProgramModel;
+              final club = extra['club'] as ClubModel;
 
-                  return BlocProvider.value(
-                    value: c.read<ProgramCubit>(),
-                    child: ExerciseForm(
-                      program: extra['program'] as ProgramModel,
-                    ),
-                  );
-                },
+              return ExerciseForm(
+                club: club,
+                program: program,
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachEditProgramExercise.path,
+            name: AppRoutes.coachEditProgramExercise.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final program = extra['program'] as ProgramModel;
+              final exercises =
+                  extra['exercises'] as List<ProgramExerciseModel>;
+              final club = extra['club'] as ClubModel;
+
+              return ExerciseForm(
+                club: club,
+                program: program,
+                exercises: exercises,
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachProgramDetail.path,
+            name: AppRoutes.coachProgramDetail.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final program = extra['program'] as ProgramModel;
+
+              return ProgramDetailScreen(program: program);
+            },
+          ),
+        ],
+      ),
+
+      /// [Coach Exam] routes
+      ShellRoute(
+        navigatorKey: _coachExamShellKey,
+        parentNavigatorKey: _rootKey,
+        builder: (context, state, child) {
+          final extra = state.extra as Map<String, dynamic>;
+          final club = extra['club'] as ClubModel;
+
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) => sl<ExamCubit>()..init(clubId: club.id),
               ),
-              GoRoute(
-                path: AppRoutes.coachProgramDetail.path,
-                name: AppRoutes.coachProgramDetail.name,
-                builder: (c, state) {
-                  final extra = state.extra as Map<String, dynamic>;
-                  final program = extra['program'] as ProgramModel;
-                  return BlocProvider.value(
-                    value: c.read<ProgramCubit>(),
-                    child: ProgramDetailScreen(program: program),
-                  );
-                },
+              BlocProvider(create: (_) => sl<QuestionCubit>()..emitInitial()),
+              BlocProvider(
+                create: (_) => sl<MediaCubit>()..init(clubId: club.id),
               ),
             ],
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: AppRoutes.coachExam.path,
+            name: AppRoutes.coachExam.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final club = extra['club'] as ClubModel;
+
+              return ExamScreen(club: club);
+            },
           ),
+          GoRoute(
+            path: AppRoutes.coachCreateExam.path,
+            name: AppRoutes.coachCreateExam.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final club = extra['club'] as ClubModel;
 
-          // Exam
-          StatefulShellBranch(
-            navigatorKey: _coachExamShellKey,
-            routes: [
-              GoRoute(
-                path: AppRoutes.coachExam.path,
-                name: AppRoutes.coachExam.name,
-                builder: (c, state) {
-                  final extra = state.extra as Map<String, dynamic>;
-                  final club = extra['club'] as ClubModel;
-                  return BlocProvider.value(
-                    value: c.read<ExamCubit>(),
-                    child: ExamScreen(club: club),
-                  );
-                },
-              ),
-              GoRoute(
-                path: AppRoutes.coachCreateExam.path,
-                name: AppRoutes.coachCreateExam.name,
-                builder: (c, state) {
-                  final params = state.pathParameters;
-                  return BlocProvider.value(
-                    value: c.read<ExamCubit>(),
-                    child: ExamFormScreen(
-                      clubId: int.parse(params['clubId'] ?? '0'),
-                    ),
-                  );
-                },
-              ),
-              GoRoute(
-                path: AppRoutes.coachCreateQuestion.path,
-                name: AppRoutes.coachCreateQuestion.name,
-                builder: (c, state) {
-                  final extra = state.extra as Map<String, dynamic>;
-                  final exam = extra['exam'] as ExamModel;
-                  return BlocProvider.value(
-                    value: c.read<QuestionCubit>(),
-                    child: QuestionFormScreen(
-                      exam: exam,
-                    ),
-                  );
-                },
-              ),
-              GoRoute(
-                path: AppRoutes.coachExamDetail.path,
-                name: AppRoutes.coachExamDetail.name,
-                builder: (c, state) {
-                  final extra = state.extra as Map<String, dynamic>;
-                  final exam = extra['exam'] as ExamModel;
-                  return BlocProvider.value(
-                    value: c.read<ExamCubit>(),
-                    child: ExamDetailScreen(
-                      exam: exam,
-                    ),
-                  );
-                },
-              ),
-            ],
+              return ExamFormScreen(club: club);
+            },
           ),
+          GoRoute(
+            path: AppRoutes.coachCreateQuestion.path,
+            name: AppRoutes.coachCreateQuestion.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final exam = extra['exam'] as ExamModel;
+              final club = extra['club'] as ClubModel;
 
-          // Tactical
-          StatefulShellBranch(
-            navigatorKey: _coachTacticalShellKey,
-            routes: [
-              GoRoute(
-                path: AppRoutes.coachTactical.path,
-                name: AppRoutes.coachTactical.name,
-                builder: (c, __) => BlocProvider.value(
-                  value: c.read<TacticalCubit>(),
-                  child: const TacticalScreen(),
-                ),
-              ),
-            ],
+              return QuestionFormScreen(exam: exam, club: club);
+            },
           ),
+          GoRoute(
+            path: AppRoutes.coachEditExam.path,
+            name: AppRoutes.coachEditExam.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final exam = extra['exam'] as ExamModel;
+              final club = extra['club'] as ClubModel;
 
-          // Assets
-          StatefulShellBranch(
-            navigatorKey: _coachAssetShellKey,
-            routes: [
-              GoRoute(
-                path: '/coach/media/dummy',
-                name: 'coachMediaDummy',
-                builder: (c, __) => BlocProvider.value(
-                  value: c.read<MediaCubit>(),
-                  child: const Scaffold(),
-                ),
-              ),
-              GoRoute(
-                path: AppRoutes.coachMedia.path,
-                name: AppRoutes.coachMedia.name,
-                builder: (c, state) {
-                  final params = state.pathParameters;
-                  final clubId = int.parse(params['clubId'] ?? '0');
-
-                  return BlocProvider.value(
-                    value: c.read<MediaCubit>(),
-                    child: AssetsScreen(clubId: clubId),
-                  );
-                },
-              ),
-            ],
+              return ExamFormScreen(exam: exam, club: club);
+            },
           ),
+          GoRoute(
+            path: AppRoutes.coachEditQuestion.path,
+            name: AppRoutes.coachEditQuestion.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final questions = extra['questions'] as List<QuestionModel>;
+              final exam = extra['exam'] as ExamModel;
+              final club = extra['club'] as ClubModel;
 
-          // // Profile
-          // StatefulShellBranch(
-          //   navigatorKey: _coachProfileShellKey,
-          //   routes: [
-          //     GoRoute(
-          //       path: AppRoutes.coachProfile.path,
-          //       name: AppRoutes.coachProfile.name,
-          //       builder: (c, __) => BlocProvider.value(
-          //         value: c.read<UserCubit>(),
-          //         child: const ProfileScreen(),
-          //       ),
-          //     ),
-          //   ],
-          // ),
+              return QuestionFormScreen(
+                exam: exam,
+                questions: questions,
+                club: club,
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachExamDetail.path,
+            name: AppRoutes.coachExamDetail.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final exam = extra['exam'] as ExamModel;
+
+              return ExamDetailScreen(exam: exam);
+            },
+          ),
+        ],
+      ),
+
+      /// [Coach Tactical] routes
+      ShellRoute(
+        navigatorKey: _coachTacticalShellKey,
+        parentNavigatorKey: _rootKey,
+        builder: (context, state, child) {
+          return BlocProvider(
+            create: (_) => sl<TacticalCubit>()..init(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: AppRoutes.coachTactical.path,
+            name: AppRoutes.coachTactical.name,
+            builder: (_, __) => const TacticalScreen(),
+          ),
+          GoRoute(
+            path: AppRoutes.coachTacticalDetail.path,
+            name: AppRoutes.coachTacticalDetail.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final tactical = extra['tactical'] as TacticalModel;
+
+              return TacticalDetailScreen(tactical: tactical);
+            },
+          ),
+        ],
+      ),
+
+      /// [Coach Asset] routes
+      ShellRoute(
+        navigatorKey: _coachAssetShellKey,
+        parentNavigatorKey: _rootKey,
+        builder: (context, state, child) {
+          final extra = state.extra as Map<String, dynamic>;
+          final club = extra['club'] as ClubModel;
+
+          return BlocProvider(
+            create: (_) => sl<MediaCubit>()..init(clubId: club.id),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(path: '/coach/media/dummy', name: 'coachMediaDummy'),
+          GoRoute(
+            path: AppRoutes.coachMedia.path,
+            name: AppRoutes.coachMedia.name,
+            builder: (c, state) {
+              final params = state.pathParameters;
+              final clubId = int.parse(params['clubId'] ?? '0');
+
+              return AssetsScreen(clubId: clubId);
+            },
+          ),
         ],
       )
+
+      // StatefulShellRoute.indexedStack(
+      //   parentNavigatorKey: _rootKey,
+      //   builder: (_, state, navigationShell) => MultiBlocProvider(
+      //     providers: [
+      //       BlocProvider(create: (_) => sl<ClubCubit>()..init()),
+      //       BlocProvider(create: (_) => sl<ProgramCubit>()),
+      //       BlocProvider(create: (_) => sl<ExerciseCubit>()),
+      //       BlocProvider(create: (_) => sl<ExamCubit>()),
+      //       BlocProvider(create: (_) => sl<QuestionCubit>()),
+      //       BlocProvider(create: (_) => sl<TacticalCubit>()),
+      //       BlocProvider(create: (_) => sl<MediaCubit>()),
+      //     ],
+      //     child: BottomNavBar(
+      //       navigationShell: navigationShell,
+      //       routerState: state,
+      //       showBottomNavBar: false,
+      //       showCoachNavBar: true,
+      //     ),
+      //   ),
+      //   branches: [
+      //     // Home
+      //     StatefulShellBranch(
+      //       navigatorKey: _coachClubKey,
+      //       routes: [
+      //         GoRoute(
+      //           path: AppRoutes.coachDashboard.path,
+      //           name: AppRoutes.coachDashboard.name,
+      //           builder: (c, state) => BlocProvider.value(
+      //             value: c.read<ClubCubit>(),
+      //             child: const DashboardScreen(),
+      //           ),
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachCreateClub.path,
+      //           name: AppRoutes.coachCreateClub.name,
+      //           builder: (c, __) => BlocProvider.value(
+      //             value: c.read<ClubCubit>()..emitInitial(),
+      //             child: const ClubFormScreen(),
+      //           ),
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachEditClub.path,
+      //           name: AppRoutes.coachEditClub.name,
+      //           builder: (c, state) {
+      //             final extra = state.extra as Map<String, dynamic>;
+      //             final club = extra['club'] as ClubModel;
+
+      //             return BlocProvider.value(
+      //               value: c.read<ClubCubit>()..emitInitial(),
+      //               child: ClubFormScreen(club: club),
+      //             );
+      //           },
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachClubDetail.path,
+      //           name: AppRoutes.coachClubDetail.name,
+      //           builder: (c, state) {
+      //             final extra = state.extra as Map<String, dynamic>;
+      //             final club = extra['club'] as ClubModel;
+
+      //             // return ClubDetailScreen(club: club);
+      //             return BlocProvider.value(
+      //               value: c.read<ClubCubit>(),
+      //               child: ClubDetailScreen(club: club),
+      //             );
+      //           },
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachClubMember.path,
+      //           name: AppRoutes.coachClubMember.name,
+      //           builder: (c, state) {
+      //             final params = state.pathParameters;
+      //             final clubId = int.parse(params['clubId'] ?? '0');
+
+      //             return BlocProvider.value(
+      //               value: c.read<ClubCubit>()
+      //                 ..getMembers(const PaginationParams(), clubId),
+      //               child: MemberScreen(
+      //                 clubId: clubId,
+      //               ),
+      //             );
+      //           },
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachAddMember.path,
+      //           name: AppRoutes.coachAddMember.name,
+      //           builder: (c, state) {
+      //             final params = state.pathParameters;
+      //             final clubId = int.parse(params['clubId'] ?? '0');
+
+      //             return BlocProvider.value(
+      //               value: c.read<ClubCubit>(),
+      //               child: AddMemberScreen(
+      //                 clubId: clubId,
+      //               ),
+      //             );
+      //           },
+      //         ),
+      //       ],
+      //     ),
+
+      //     // Program
+      //     StatefulShellBranch(
+      //       navigatorKey: _coachProgramShellKey,
+      //       routes: [
+      //         GoRoute(
+      //           path: AppRoutes.coachProgram.path,
+      //           name: AppRoutes.coachProgram.name,
+      //           builder: (c, state) {
+      //             final extra = state.extra as Map<String, dynamic>;
+      //             final club = extra['club'] as ClubModel;
+
+      //             return BlocProvider(
+      //               create: (_) => sl<ProgramCubit>()..init(clubId: club.id),
+      //               child: ProgramScreen(club: club),
+      //             );
+      //           },
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachCreateProgram.path,
+      //           name: AppRoutes.coachCreateProgram.name,
+      //           builder: (c, state) {
+      //             final params = state.pathParameters;
+
+      //             return BlocProvider.value(
+      //               value: c.read<ProgramCubit>()..emitInitial(),
+      //               child: ProgramFormScreen(
+      //                 clubId: int.parse(params['clubId'] ?? '0'),
+      //               ),
+      //             );
+      //           },
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachEditProgram.path,
+      //           name: AppRoutes.coachEditProgram.name,
+      //           builder: (c, state) {
+      //             final params = state.pathParameters;
+      //             final extra = state.extra as Map<String, dynamic>;
+      //             final program = extra['program'] as ProgramModel;
+
+      //             return BlocProvider.value(
+      //               value: c.read<ProgramCubit>()..emitInitial(),
+      //               child: ProgramFormScreen(
+      //                 clubId: int.parse(params['clubId'] ?? '0'),
+      //                 program: program,
+      //               ),
+      //             );
+      //           },
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachCreateProgramExercise.path,
+      //           name: AppRoutes.coachCreateProgramExercise.name,
+      //           builder: (c, state) {
+      //             final extra = state.extra as Map<String, dynamic>;
+      //             final program = extra['program'] as ProgramModel;
+
+      //             return BlocProvider.value(
+      //               value: c.read<ExerciseCubit>()..emitInitial(),
+      //               child: ExerciseForm(
+      //                 program: program,
+      //               ),
+      //             );
+      //           },
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachEditProgramExercise.path,
+      //           name: AppRoutes.coachEditProgramExercise.name,
+      //           builder: (c, state) {
+      //             final extra = state.extra as Map<String, dynamic>;
+      //             final program = extra['program'] as ProgramModel;
+      //             final exercises =
+      //                 extra['exercises'] as List<ProgramExerciseModel>;
+      //             return BlocProvider.value(
+      //               value: c.read<ExerciseCubit>()..emitInitial(),
+      //               child: ExerciseForm(
+      //                 program: program,
+      //                 exercises: exercises,
+      //               ),
+      //             );
+      //           },
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachProgramDetail.path,
+      //           name: AppRoutes.coachProgramDetail.name,
+      //           builder: (c, state) {
+      //             final extra = state.extra as Map<String, dynamic>;
+      //             final program = extra['program'] as ProgramModel;
+      //             return BlocProvider.value(
+      //               value: c.read<ProgramCubit>(),
+      //               child: ProgramDetailScreen(program: program),
+      //             );
+      //           },
+      //         ),
+      //       ],
+      //     ),
+
+      //     // Exam
+      //     StatefulShellBranch(
+      //       navigatorKey: _coachExamShellKey,
+      //       routes: [
+      //         GoRoute(
+      //           path: AppRoutes.coachExam.path,
+      //           name: AppRoutes.coachExam.name,
+      //           builder: (c, state) {
+      //             final extra = state.extra as Map<String, dynamic>;
+      //             final club = extra['club'] as ClubModel;
+      //             return BlocProvider.value(
+      //               value: c.read<ExamCubit>(),
+      //               child: ExamScreen(club: club),
+      //             );
+      //           },
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachCreateExam.path,
+      //           name: AppRoutes.coachCreateExam.name,
+      //           builder: (c, state) {
+      //             final params = state.pathParameters;
+      //             return BlocProvider.value(
+      //               value: c.read<ExamCubit>(),
+      //               child: ExamFormScreen(
+      //                 clubId: int.parse(params['clubId'] ?? '0'),
+      //               ),
+      //             );
+      //           },
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachCreateQuestion.path,
+      //           name: AppRoutes.coachCreateQuestion.name,
+      //           builder: (c, state) {
+      //             final extra = state.extra as Map<String, dynamic>;
+      //             final exam = extra['exam'] as ExamModel;
+      //             return BlocProvider.value(
+      //               value: c.read<QuestionCubit>(),
+      //               child: QuestionFormScreen(
+      //                 exam: exam,
+      //               ),
+      //             );
+      //           },
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachExamDetail.path,
+      //           name: AppRoutes.coachExamDetail.name,
+      //           builder: (c, state) {
+      //             final extra = state.extra as Map<String, dynamic>;
+      //             final exam = extra['exam'] as ExamModel;
+      //             return BlocProvider.value(
+      //               value: c.read<ExamCubit>(),
+      //               child: ExamDetailScreen(
+      //                 exam: exam,
+      //               ),
+      //             );
+      //           },
+      //         ),
+      //       ],
+      //     ),
+
+      //     // Tactical
+      //     StatefulShellBranch(
+      //       navigatorKey: _coachTacticalShellKey,
+      //       routes: [
+      //         GoRoute(
+      //           path: AppRoutes.coachTactical.path,
+      //           name: AppRoutes.coachTactical.name,
+      //           builder: (c, __) => BlocProvider.value(
+      //             value: c.read<TacticalCubit>(),
+      //             child: const TacticalScreen(),
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+
+      //     // Assets
+      //     StatefulShellBranch(
+      //       navigatorKey: _coachAssetShellKey,
+      //       routes: [
+      //         GoRoute(
+      //           path: '/coach/media/dummy',
+      //           name: 'coachMediaDummy',
+      //           builder: (c, __) => BlocProvider.value(
+      //             value: c.read<MediaCubit>(),
+      //             child: const Scaffold(),
+      //           ),
+      //         ),
+      //         GoRoute(
+      //           path: AppRoutes.coachMedia.path,
+      //           name: AppRoutes.coachMedia.name,
+      //           builder: (c, state) {
+      //             final params = state.pathParameters;
+      //             final clubId = int.parse(params['clubId'] ?? '0');
+
+      //             return BlocProvider.value(
+      //               value: c.read<MediaCubit>(),
+      //               child: AssetsScreen(clubId: clubId),
+      //             );
+      //           },
+      //         ),
+      //       ],
+      //     ),
+      //   ],
+      // )
     ],
     initialLocation: AppRoutes.root.path,
     routerNeglect: true,
     debugLogDiagnostics: kDebugMode,
+    errorBuilder: (context, state) {
+      return Scaffold(
+        body: Center(
+          child: Text(
+            'Error: ${state.error}',
+            style: const TextStyle(color: Colors.red),
+          ),
+        ),
+      );
+    },
     refreshListenable: GoRouterRefreshStream(ctx.read<AuthCubit>().stream),
   );
 }

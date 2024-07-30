@@ -44,28 +44,33 @@ const ProgramExerciseEntitySchema = CollectionSchema(
       name: r'name',
       type: IsarType.string,
     ),
-    r'programId': PropertySchema(
+    r'order': PropertySchema(
       id: 5,
+      name: r'order',
+      type: IsarType.long,
+    ),
+    r'programId': PropertySchema(
+      id: 6,
       name: r'programId',
       type: IsarType.long,
     ),
     r'repetition': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'repetition',
       type: IsarType.long,
     ),
     r'rest': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'rest',
       type: IsarType.long,
     ),
     r'sets': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'sets',
       type: IsarType.long,
     ),
     r'updatedAt': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -131,11 +136,12 @@ void _programExerciseEntitySerialize(
   );
   writer.writeLong(offsets[3], object.mediaId);
   writer.writeString(offsets[4], object.name);
-  writer.writeLong(offsets[5], object.programId);
-  writer.writeLong(offsets[6], object.repetition);
-  writer.writeLong(offsets[7], object.rest);
-  writer.writeLong(offsets[8], object.sets);
-  writer.writeDateTime(offsets[9], object.updatedAt);
+  writer.writeLong(offsets[5], object.order);
+  writer.writeLong(offsets[6], object.programId);
+  writer.writeLong(offsets[7], object.repetition);
+  writer.writeLong(offsets[8], object.rest);
+  writer.writeLong(offsets[9], object.sets);
+  writer.writeDateTime(offsets[10], object.updatedAt);
 }
 
 ProgramExerciseEntity _programExerciseEntityDeserialize(
@@ -155,11 +161,12 @@ ProgramExerciseEntity _programExerciseEntityDeserialize(
     ),
     mediaId: reader.readLongOrNull(offsets[3]),
     name: reader.readStringOrNull(offsets[4]) ?? 'DOT Exercise 0',
-    programId: reader.readLongOrNull(offsets[5]) ?? 0,
-    repetition: reader.readLongOrNull(offsets[6]) ?? 1,
-    rest: reader.readLongOrNull(offsets[7]) ?? 0,
-    sets: reader.readLongOrNull(offsets[8]) ?? 1,
-    updatedAt: reader.readDateTimeOrNull(offsets[9]),
+    order: reader.readLongOrNull(offsets[5]) ?? 0,
+    programId: reader.readLongOrNull(offsets[6]) ?? 0,
+    repetition: reader.readLongOrNull(offsets[7]) ?? 1,
+    rest: reader.readLongOrNull(offsets[8]) ?? 0,
+    sets: reader.readLongOrNull(offsets[9]) ?? 1,
+    updatedAt: reader.readDateTimeOrNull(offsets[10]),
   );
   return object;
 }
@@ -188,12 +195,14 @@ P _programExerciseEntityDeserializeProp<P>(
     case 5:
       return (reader.readLongOrNull(offset) ?? 0) as P;
     case 6:
-      return (reader.readLongOrNull(offset) ?? 1) as P;
-    case 7:
       return (reader.readLongOrNull(offset) ?? 0) as P;
-    case 8:
+    case 7:
       return (reader.readLongOrNull(offset) ?? 1) as P;
+    case 8:
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 9:
+      return (reader.readLongOrNull(offset) ?? 1) as P;
+    case 10:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -816,6 +825,62 @@ extension ProgramExerciseEntityQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> orderEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'order',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> orderGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'order',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> orderLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'order',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
+      QAfterFilterCondition> orderBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'order',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity,
       QAfterFilterCondition> programIdEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1200,6 +1265,20 @@ extension ProgramExerciseEntityQuerySortBy
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
+      sortByOrder() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'order', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
+      sortByOrderDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'order', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
       sortByProgramId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'programId', Sort.asc);
@@ -1343,6 +1422,20 @@ extension ProgramExerciseEntityQuerySortThenBy
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
+      thenByOrder() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'order', Sort.asc);
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
+      thenByOrderDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'order', Sort.desc);
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QAfterSortBy>
       thenByProgramId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'programId', Sort.asc);
@@ -1444,6 +1537,13 @@ extension ProgramExerciseEntityQueryWhereDistinct
   }
 
   QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QDistinct>
+      distinctByOrder() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'order');
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, ProgramExerciseEntity, QDistinct>
       distinctByProgramId() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'programId');
@@ -1518,6 +1618,12 @@ extension ProgramExerciseEntityQueryProperty on QueryBuilder<
   QueryBuilder<ProgramExerciseEntity, String, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
+    });
+  }
+
+  QueryBuilder<ProgramExerciseEntity, int, QQueryOperations> orderProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'order');
     });
   }
 

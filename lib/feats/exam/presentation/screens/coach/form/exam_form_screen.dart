@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 
 class ExamFormScreen extends StatelessWidget {
   final ExamModel? exam;
-  final int clubId;
+  final ClubModel club;
+
   const ExamFormScreen({
     super.key,
     this.exam,
-    required this.clubId,
+    required this.club,
   });
 
   @override

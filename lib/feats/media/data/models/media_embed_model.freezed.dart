@@ -20,10 +20,11 @@ MediaEmbedModel _$MediaEmbedModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MediaEmbedModel {
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get fileSize => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
+  MediaType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,7 @@ abstract class $MediaEmbedModelCopyWith<$Res> {
           MediaEmbedModel value, $Res Function(MediaEmbedModel) then) =
       _$MediaEmbedModelCopyWithImpl<$Res, MediaEmbedModel>;
   @useResult
-  $Res call({String name, int fileSize, String url, String type});
+  $Res call({int id, String name, int fileSize, String url, MediaType type});
 }
 
 /// @nodoc
@@ -53,12 +54,17 @@ class _$MediaEmbedModelCopyWithImpl<$Res, $Val extends MediaEmbedModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? fileSize = null,
     Object? url = null,
     Object? type = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -74,7 +80,7 @@ class _$MediaEmbedModelCopyWithImpl<$Res, $Val extends MediaEmbedModel>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MediaType,
     ) as $Val);
   }
 }
@@ -87,7 +93,7 @@ abstract class _$$MediaEmbedModelImplCopyWith<$Res>
       __$$MediaEmbedModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, int fileSize, String url, String type});
+  $Res call({int id, String name, int fileSize, String url, MediaType type});
 }
 
 /// @nodoc
@@ -101,12 +107,17 @@ class __$$MediaEmbedModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? fileSize = null,
     Object? url = null,
     Object? type = null,
   }) {
     return _then(_$MediaEmbedModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -122,7 +133,7 @@ class __$$MediaEmbedModelImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MediaType,
     ));
   }
 }
@@ -131,11 +142,18 @@ class __$$MediaEmbedModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MediaEmbedModelImpl implements _MediaEmbedModel {
   const _$MediaEmbedModelImpl(
-      {this.name = '', this.fileSize = 0, this.url = '', this.type = ''});
+      {this.id = 0,
+      this.name = '',
+      this.fileSize = 0,
+      this.url = '',
+      this.type = MediaType.applicationOctetStream});
 
   factory _$MediaEmbedModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MediaEmbedModelImplFromJson(json);
 
+  @override
+  @JsonKey()
+  final int id;
   @override
   @JsonKey()
   final String name;
@@ -147,11 +165,11 @@ class _$MediaEmbedModelImpl implements _MediaEmbedModel {
   final String url;
   @override
   @JsonKey()
-  final String type;
+  final MediaType type;
 
   @override
   String toString() {
-    return 'MediaEmbedModel(name: $name, fileSize: $fileSize, url: $url, type: $type)';
+    return 'MediaEmbedModel(id: $id, name: $name, fileSize: $fileSize, url: $url, type: $type)';
   }
 
   @override
@@ -159,6 +177,7 @@ class _$MediaEmbedModelImpl implements _MediaEmbedModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MediaEmbedModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.fileSize, fileSize) ||
                 other.fileSize == fileSize) &&
@@ -168,7 +187,7 @@ class _$MediaEmbedModelImpl implements _MediaEmbedModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, fileSize, url, type);
+  int get hashCode => Object.hash(runtimeType, id, name, fileSize, url, type);
 
   @JsonKey(ignore: true)
   @override
@@ -187,14 +206,17 @@ class _$MediaEmbedModelImpl implements _MediaEmbedModel {
 
 abstract class _MediaEmbedModel implements MediaEmbedModel {
   const factory _MediaEmbedModel(
-      {final String name,
+      {final int id,
+      final String name,
       final int fileSize,
       final String url,
-      final String type}) = _$MediaEmbedModelImpl;
+      final MediaType type}) = _$MediaEmbedModelImpl;
 
   factory _MediaEmbedModel.fromJson(Map<String, dynamic> json) =
       _$MediaEmbedModelImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get name;
   @override
@@ -202,7 +224,7 @@ abstract class _MediaEmbedModel implements MediaEmbedModel {
   @override
   String get url;
   @override
-  String get type;
+  MediaType get type;
   @override
   @JsonKey(ignore: true)
   _$$MediaEmbedModelImplCopyWith<_$MediaEmbedModelImpl> get copyWith =>

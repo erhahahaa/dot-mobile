@@ -20,7 +20,22 @@ class MediaCubit extends Cubit<MediaState> {
     this._filePickerClient,
   ) : super(const MediaState());
 
+  void clear() {
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: const MediaState(),
+    );
+  }
+
+  void emitLoading() => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(state: BaseState.loading),
+      );
+
   Future<void> init({required clubId}) async {
+    emitLoading();
     for (final parent in MediaParent.values) {
       await getAll(parent: parent, clubId: clubId);
     }
@@ -37,7 +52,7 @@ class MediaCubit extends Cubit<MediaState> {
     );
 
     res.fold(
-      (l) => _emitFailureState(message: "Failed to fetch asset"),
+      (l) => null,
       (r) => _updateMediaState(parent, r),
     );
   }
@@ -68,6 +83,7 @@ class MediaCubit extends Cubit<MediaState> {
     }
 
     final lastFile = file.files.last;
+    emitLoading();
     final uploadResult = await _mediaRepo.upload(
       UpsertMediaParams(
         id: 0,
@@ -148,29 +164,29 @@ class MediaCubit extends Cubit<MediaState> {
   void _addMediaToParentList(MediaParent parent, MediaModel media) {
     switch (parent) {
       case MediaParent.club:
-        _updateStateWithMediaList(
-          clubMedias: List.from(state.clubMedias)..add(media),
-        );
+        final List<MediaModel> medias = List.from(state.clubMedias);
+        medias.add(media);
+        _updateStateWithMediaList(clubMedias: medias);
         break;
       case MediaParent.program:
-        _updateStateWithMediaList(
-          programMedias: List.from(state.programMedias)..add(media),
-        );
+        final List<MediaModel> medias = List.from(state.programMedias);
+        medias.add(media);
+        _updateStateWithMediaList(programMedias: medias);
         break;
       case MediaParent.exercise:
-        _updateStateWithMediaList(
-          exerciseMedias: List.from(state.exerciseMedias)..add(media),
-        );
+        final List<MediaModel> medias = List.from(state.exerciseMedias);
+        medias.add(media);
+        _updateStateWithMediaList(exerciseMedias: medias);
         break;
       case MediaParent.exam:
-        _updateStateWithMediaList(
-          examMedias: List.from(state.examMedias)..add(media),
-        );
+        final List<MediaModel> medias = List.from(state.examMedias);
+        medias.add(media);
+        _updateStateWithMediaList(examMedias: medias);
         break;
       case MediaParent.question:
-        _updateStateWithMediaList(
-          questionMedias: List.from(state.questionMedias)..add(media),
-        );
+        final List<MediaModel> medias = List.from(state.questionMedias);
+        medias.add(media);
+        _updateStateWithMediaList(questionMedias: medias);
         break;
       case MediaParent.user:
         return;
