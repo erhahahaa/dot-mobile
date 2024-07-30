@@ -101,6 +101,9 @@ class StringsId extends Strings {
   String get edit => 'Ubah';
 
   @override
+  String get editClub => 'Ubah Klub';
+
+  @override
   String get editProfile => 'Ubah Profil';
 
   @override
@@ -206,7 +209,7 @@ class StringsId extends Strings {
   String get handBall => 'Bola Tangan';
 
   @override
-  String get hello => 'Halo';
+  String get hello => 'Halo,';
 
   @override
   String get history => 'Riwayat';
@@ -251,7 +254,7 @@ class StringsId extends Strings {
   String get members => 'Anggota';
 
   @override
-  String get myClubTraining => 'Pelatihan Klub Saya';
+  String get myClub => 'Klub Saya';
 
   @override
   String get name => 'Nama';
@@ -263,7 +266,7 @@ class StringsId extends Strings {
   String get newProgram => 'Program Baru';
 
   @override
-  String get noClubsFound => 'Tidak ada club yang ditemukan';
+  String get noClubsFound => 'Tidak ada klub yang ditemukan';
 
   @override
   String get noEvents => 'Tidak ada kegiatan';
@@ -332,7 +335,7 @@ class StringsId extends Strings {
   String get soccer => 'Sepak Bola';
 
   @override
-  String get sport => 'Olahraga';
+  String get sport => 'Olahraga :';
 
   @override
   String get sportType => 'Jenis Olahraga';

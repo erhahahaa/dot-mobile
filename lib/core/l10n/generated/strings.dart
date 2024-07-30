@@ -285,6 +285,12 @@ abstract class Strings {
   /// **'Edit'**
   String get edit;
 
+  /// No description provided for @editClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Club'**
+  String get editClub;
+
   /// No description provided for @editProfile.
   ///
   /// In en, this message translates to:
@@ -498,7 +504,7 @@ abstract class Strings {
   /// No description provided for @hello.
   ///
   /// In en, this message translates to:
-  /// **'Hello'**
+  /// **'Hello,'**
   String get hello;
 
   /// No description provided for @history.
@@ -585,11 +591,11 @@ abstract class Strings {
   /// **'Members'**
   String get members;
 
-  /// No description provided for @myClubTraining.
+  /// No description provided for @myClub.
   ///
   /// In en, this message translates to:
-  /// **'My Club Training'**
-  String get myClubTraining;
+  /// **'My Club'**
+  String get myClub;
 
   /// No description provided for @name.
   ///
@@ -750,7 +756,7 @@ abstract class Strings {
   /// No description provided for @sport.
   ///
   /// In en, this message translates to:
-  /// **'Sport'**
+  /// **'Sport :'**
   String get sport;
 
   /// No description provided for @sportType.

@@ -55,6 +55,7 @@ class ListClub extends StatelessWidget {
         child: Center(
           child: Text(
             context.str?.noClubsFound ?? 'No clubs found',
+            textAlign: TextAlign.center,
             style: context.theme.textTheme.bodyLarge,
           ),
         ),

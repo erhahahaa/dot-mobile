@@ -101,6 +101,9 @@ class StringsEn extends Strings {
   String get edit => 'Edit';
 
   @override
+  String get editClub => 'Edit Club';
+
+  @override
   String get editProfile => 'Edit Profile';
 
   @override
@@ -206,7 +209,7 @@ class StringsEn extends Strings {
   String get handBall => 'Handball';
 
   @override
-  String get hello => 'Hello';
+  String get hello => 'Hello,';
 
   @override
   String get history => 'History';
@@ -251,7 +254,7 @@ class StringsEn extends Strings {
   String get members => 'Members';
 
   @override
-  String get myClubTraining => 'My Club Training';
+  String get myClub => 'My Club';
 
   @override
   String get name => 'Name';
@@ -332,7 +335,7 @@ class StringsEn extends Strings {
   String get soccer => 'Soccer';
 
   @override
-  String get sport => 'Sport';
+  String get sport => 'Sport :';
 
   @override
   String get sportType => 'Sport Type';

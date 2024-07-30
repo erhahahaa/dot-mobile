@@ -105,7 +105,9 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
         return Parent(
           appBar: AppBar(
             title: Text(
-              widget.club == null ? 'Create Club' : 'Edit ${widget.club?.name}',
+              widget.club == null
+                  ? context.str?.createClub ?? 'Create Club'
+                  : '${context.str?.editClub ?? 'Edit Club'} ${widget.club?.name}',
             ),
           ),
           body: SingleChildScrollView(

@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class UserCard extends StatelessWidget {
   final bool isHome;
   final UserModel user;
+
   const UserCard({
     super.key,
     this.isHome = true,
@@ -33,11 +34,12 @@ class UserCard extends StatelessWidget {
           ),
         ],
       ),
-      child: isHome ? _buildHome(theme) : _buildProfile(theme),
+      child:
+          isHome ? _buildHome(context, theme) : _buildProfile(context, theme),
     );
   }
 
-  Widget _buildProfile(ThemeData theme) {
+  Widget _buildProfile(BuildContext context, ThemeData theme) {
     return Row(
       children: [
         CachedNetworkImage(
@@ -56,14 +58,15 @@ class UserCard extends StatelessWidget {
           children: [
             H2Text(user.name),
             SizedBox(height: 4.h),
-            H6Text(user.expertise ?? "No expertise"),
+            H6Text(
+                user.expertise ?? context.str?.noExpertise ?? 'No expertise'),
           ],
         ),
       ],
     );
   }
 
-  Widget _buildHome(ThemeData theme) {
+  Widget _buildHome(BuildContext context, ThemeData theme) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -72,7 +75,7 @@ class UserCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Hello,",
+              context.str?.hello ?? 'Hello,',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w500,
               ),
@@ -92,7 +95,7 @@ class UserCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Sport :",
+              context.str?.sport ?? 'Sport :',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w500,
               ),
@@ -113,7 +116,7 @@ class UserCard extends StatelessWidget {
                   ),
                   SizedBox(width: 8.w),
                   Text(
-                    "Volleyball",
+                    context.str?.volleyBall ?? 'Volleyball',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.sp,
