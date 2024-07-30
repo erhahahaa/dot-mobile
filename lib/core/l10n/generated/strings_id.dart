@@ -3,6 +3,7 @@ import 'strings.dart';
 /// The translations for Indonesian (`id`).
 class StringsId extends Strings {
   StringsId([String locale = 'id']) : super(locale);
+  StringsId([String locale = 'id']) : super(locale);
 
   @override
   String get about => 'Tentang';
@@ -344,40 +345,44 @@ class StringsId extends Strings {
   String get startDateRequired => 'Tanggal mulai wajib diisi';
 
   @override
-  String get succesEditProgram => 'Berhasil mengubah program';
+  String get succesEditProgram => 'Berhasil memperbarui program';
 
   @override
-  String get successCreateClub => 'Berhasil membuat club';
+  String get successCreateClub => 'Berhasil membuat klub';
 
   @override
   String get successCreateExercise => 'Berhasil membuat latihan';
+  String get successCreateExercise => 'Berhasil membuat latihan';
 
   @override
+  String get successCreateProgram => 'Berhasil membuat program';
   String get successCreateProgram => 'Berhasil membuat program';
 
   @override
   String get successLogout => 'Berhasil keluar';
 
   @override
-  String get successSignIn => 'Berhasil masuk ';
+  String get successSignIn => 'Berhasil masuk';
 
   @override
-  String get successSignUp => 'Berhasil daftar';
+  String get successSignUp => 'Berhasil mendaftar';
 
   @override
-  String get successUpdateExercises => 'Berhasil mengubah latihan';
+  String get successUpdateExercises => 'Berhasil memperbarui latihan';
 
   @override
   String get system => 'Sistem';
+  String get system => 'Sistem';
 
   @override
-  String get tactical => 'Taktis';
+  String get tactical => 'Taktik';
 
   @override
   String get theme => 'Tema';
+  String get theme => 'Tema';
 
   @override
-  String get updateClub => 'Ubah Club';
+  String get updateClub => 'Perbarui klub';
 
   @override
   String get upload => 'Unggah';
@@ -386,11 +391,5 @@ class StringsId extends Strings {
   String get user => 'Pengguna';
 
   @override
-  String get username => 'Nama Penguna';
-
-  @override
-  String get usernameRequired => 'Nama penguna wajib diisi';
-
-  @override
-  String get volleyBall => 'Voli';
+  String get volleyBall => 'Bola Voli';
 }
