@@ -54,7 +54,7 @@ class UserCubit extends Cubit<UserState> {
 
     res.fold(
       (l) => _userRepo
-          .saveUserPref(UserPreferencesModel())
+          .saveUserPref(const UserPreferencesModel())
           .then((_) => _fetchUserPref()),
       (r) {
         safeEmit(

@@ -204,9 +204,9 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                             ? state.state == BaseState.loading
                                 ? Transform.scale(
                                     scale: 0.3,
-                                    child: CircularProgressIndicator(),
+                                    child: const CircularProgressIndicator(),
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.check_circle,
                                     color: Colors.green,
                                   )
