@@ -51,8 +51,8 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
     _genderFocusNode = FocusNode();
 
     userGender = [
-      DropdownMenuItem(value: UserGender.male, child: Text('Male')),
-      DropdownMenuItem(value: UserGender.female, child: Text('Female')),
+      const DropdownMenuItem(value: UserGender.male, child: Text('Male')),
+      const DropdownMenuItem(value: UserGender.female, child: Text('Female')),
     ];
   }
 
