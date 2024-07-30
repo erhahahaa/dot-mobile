@@ -16,6 +16,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
   late TextEditingController _nameController;
   late TextEditingController _emailController;
   late TextEditingController _usernameController;
+
   late TextEditingController _phoneController;
   late TextEditingController _passwordController;
   late TextEditingController _genderController;
@@ -29,17 +30,18 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  UserGender selectedUserGender = UserGender.male;
+  late List<DropdownMenuItem<UserGender>> userGender;
+
   @override
   void initState() {
     super.initState();
-
     _nameController = TextEditingController(text: 'John Doe');
     _emailController = TextEditingController(text: 'john@gmail.com');
     _usernameController = TextEditingController(text: 'John');
     _phoneController = TextEditingController(text: '81234567890');
     _passwordController = TextEditingController(text: 'password');
-    _genderController =
-        TextEditingController(text: 'Male'); // Use 'Male' instead of 'male'
+    _genderController = TextEditingController(text: 'Male');
 
     _nameFocusNode = FocusNode();
     _emailFocusNode = FocusNode();
@@ -47,6 +49,11 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
     _phoneFocusNode = FocusNode();
     _passwordFocusNode = FocusNode();
     _genderFocusNode = FocusNode();
+
+    userGender = [
+      DropdownMenuItem(value: UserGender.male, child: Text('Male')),
+      DropdownMenuItem(value: UserGender.female, child: Text('Female')),
+    ];
   }
 
   @override
@@ -70,6 +77,8 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final msg = Strings.of(context);
     return AutofillGroup(
       child: Form(
         key: _formKey,
@@ -159,38 +168,20 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                     },
                   ),
                   SizedBox(height: 12.h),
-                  DropdownButtonFormField<String>(
-                    key: const Key('signUpForm_gender'),
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.male_rounded,
-                        color: Theme.of(context).textTheme.bodyLarge?.color,
-                      ),
-                      labelText: context.str?.gender ?? 'Gender',
-                      hintText:
-                          context.str?.enterYourGender ?? 'Enter your gender',
+                  DropDown<UserGender>(
+                    hint: msg?.gender,
+                    value: selectedUserGender,
+                    items: userGender,
+                    prefixIcon: Icon(
+                      Icons.male_rounded,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
-                    value: _genderController.text.isNotEmpty
-                        ? _genderController.text
-                        : null,
-                    items: ['Male', 'Female'].map((String gender) {
-                      return DropdownMenuItem<String>(
-                        value: gender,
-                        child: Text(gender),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        _genderController.text = newValue!;
-                      });
-                    },
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return context.str?.genderRequired ??
-                            'Gender is required';
+                    onChanged: (value) => setState(() {
+                      if (value == null) {
+                        return;
                       }
-                      return null;
-                    },
+                      selectedUserGender = value;
+                    }),
                   ),
                   SizedBox(height: 12.h),
                   TextF(

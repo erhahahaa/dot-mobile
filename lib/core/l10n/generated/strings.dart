@@ -849,6 +849,12 @@ abstract class Strings {
   /// **'Update Club'**
   String get updateClub;
 
+  /// No description provided for @updateProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Profile'**
+  String get updateProfile;
+
   /// No description provided for @upload.
   ///
   /// In en, this message translates to:

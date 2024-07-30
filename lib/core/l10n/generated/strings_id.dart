@@ -380,7 +380,10 @@ class StringsId extends Strings {
   String get theme => 'Tema';
 
   @override
-  String get updateClub => 'Ubah Club';
+  String get updateClub => 'Perbarui Club';
+
+  @override
+  String get updateProfile => 'Perbarui Profil';
 
   @override
   String get upload => 'Unggah';

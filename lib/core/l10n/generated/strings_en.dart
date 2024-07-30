@@ -383,6 +383,9 @@ class StringsEn extends Strings {
   String get updateClub => 'Update Club';
 
   @override
+  String get updateProfile => 'Update Profile';
+
+  @override
   String get upload => 'Upload';
 
   @override
