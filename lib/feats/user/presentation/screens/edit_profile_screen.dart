@@ -102,7 +102,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 child: Column(
                   children: [
                     TextF(
-                      key: const Key('signUpForm_name'),
+                      key: const Key('editProfileForm_name'),
                       autofillHints: const [AutofillHints.name],
                       currFocusNode: _nameFocusNode,
                       nextFocusNode: _usernameFocusNode,
@@ -125,7 +125,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     SizedBox(height: 12.h),
                     TextF(
-                      key: const Key('signUpForm_username'),
+                      key: const Key('editProfileForm_username'),
                       autofillHints: const [AutofillHints.username],
                       currFocusNode: _usernameFocusNode,
                       nextFocusNode: _emailFocusNode,
@@ -149,7 +149,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     SizedBox(height: 12.h),
                     TextF(
-                      key: const Key('signUpForm_email'),
+                      key: const Key('editProfileForm_email'),
                       autofillHints: const [AutofillHints.email],
                       currFocusNode: _emailFocusNode,
                       nextFocusNode: _genderFocusNode,
@@ -192,7 +192,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     SizedBox(height: 12.h),
                     TextF(
-                      key: const Key('signUpForm_phone'),
+                      key: const Key('editProfileForm_phone'),
                       autofillHints: const [AutofillHints.telephoneNumber],
                       currFocusNode: _phoneFocusNode,
                       nextFocusNode: _passwordFocusNode,
@@ -225,7 +225,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           children: [
                             TextF(
                               autofillHints: const [AutofillHints.password],
-                              key: const Key('signInForm_passwordField'),
+                              key: const Key('editProfileForm_passwordField'),
                               currFocusNode: _passwordFocusNode,
                               controller: _passwordController,
                               textInputAction: TextInputAction.done,
