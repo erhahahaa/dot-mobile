@@ -2,8 +2,7 @@ import 'strings.dart';
 
 /// The translations for Indonesian (`id`).
 class StringsId extends Strings {
-  StringsId([super.locale = 'id']);
-  StringsId([super.locale = 'id']);
+  StringsId([String locale = 'id']) : super(locale);
 
   @override
   String get about => 'Tentang';
@@ -348,18 +347,14 @@ class StringsId extends Strings {
   String get startDateRequired => 'Tanggal mulai wajib diisi';
 
   @override
-  String get succesEditProgram => 'Berhasil memperbarui program';
+  String get succesEditProgram => 'Berhasil mengubah program';
 
   @override
-  String get successCreateClub => 'Berhasil membuat klub';
+  String get successCreateClub => 'Berhasil membuat club';
 
   @override
   String get successCreateExercise => 'Berhasil membuat latihan';
-  @override
-  String get successCreateExercise => 'Berhasil membuat latihan';
 
-  @override
-  String get successCreateProgram => 'Berhasil membuat program';
   @override
   String get successCreateProgram => 'Berhasil membuat program';
 
@@ -367,29 +362,25 @@ class StringsId extends Strings {
   String get successLogout => 'Berhasil keluar';
 
   @override
-  String get successSignIn => 'Berhasil masuk';
+  String get successSignIn => 'Berhasil masuk ';
 
   @override
-  String get successSignUp => 'Berhasil mendaftar';
+  String get successSignUp => 'Berhasil daftar';
 
   @override
-  String get successUpdateExercises => 'Berhasil memperbarui latihan';
+  String get successUpdateExercises => 'Berhasil mengubah latihan';
 
-  @override
-  String get system => 'Sistem';
   @override
   String get system => 'Sistem';
 
   @override
-  String get tactical => 'Taktik';
+  String get tactical => 'Taktis';
 
   @override
   String get theme => 'Tema';
-  @override
-  String get theme => 'Tema';
 
   @override
-  String get updateClub => 'Perbarui klub';
+  String get updateClub => 'Ubah Club';
 
   @override
   String get upload => 'Unggah';
@@ -398,5 +389,11 @@ class StringsId extends Strings {
   String get user => 'Pengguna';
 
   @override
-  String get volleyBall => 'Bola Voli';
+  String get username => 'Nama Penguna';
+
+  @override
+  String get usernameRequired => 'Nama penguna wajib diisi';
+
+  @override
+  String get volleyBall => 'Voli';
 }
