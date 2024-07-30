@@ -19,5 +19,7 @@ class ListAPI {
   static const String CLUB_EXAM_EVALUATION = '/club/exam/evaluation';
   static const String CLUB_TACTICAL = '/club/tactical';
 
+  static const String USER = '/user';
+
   static const String MEDIA = '/media';
 }
