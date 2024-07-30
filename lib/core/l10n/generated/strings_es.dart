@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Spanish Castilian (`es`).
 class StringsEs extends Strings {
-  StringsEs([super.locale = 'es']);
+  StringsEs([String locale = 'es']) : super(locale);
 
   @override
   String get about => 'Acerca de';
@@ -15,6 +15,12 @@ class StringsEs extends Strings {
 
   @override
   String get addMember => 'Añadir miembro';
+
+  @override
+  String get address => 'Dirección';
+
+  @override
+  String get addressRequired => 'La dirección es obligatoria';
 
   @override
   String get alert => 'Alerta';
@@ -36,6 +42,18 @@ class StringsEs extends Strings {
 
   @override
   String get basketBall => 'Baloncesto';
+
+  @override
+  String get bornDate => 'Fecha de Nacimiento';
+
+  @override
+  String get bornDateRequired => 'La fecha de nacimiento es obligatoria';
+
+  @override
+  String get bornPlace => 'Lugar de Nacimiento';
+
+  @override
+  String get bornPlaceRequired => 'El lugar de nacimiento es obligatorio';
 
   @override
   String get calendar => 'Calendario';
@@ -152,7 +170,19 @@ class StringsEs extends Strings {
   String get enterStartDate => 'Introduce la fecha de inicio';
 
   @override
+  String get enterYourAddress => 'Ingrese su dirección';
+
+  @override
+  String get enterYourBornDate => 'Ingrese su fecha de nacimiento';
+
+  @override
+  String get enterYourBornPlace => 'Ingrese su lugar de nacimiento';
+
+  @override
   String get enterYourEmail => 'Introduce tu correo electrónico';
+
+  @override
+  String get enterYourExpertise => 'Ingrese su experiencia';
 
   @override
   String get enterYourGender => 'Introduce tu género';
@@ -165,6 +195,9 @@ class StringsEs extends Strings {
 
   @override
   String get enterYourPhoneNumber => 'Introduce tu número de teléfono';
+
+  @override
+  String get enterYourReligion => 'Ingrese su religión';
 
   @override
   String get enterYourUsername => 'Introduce tu nombre de usuario';
@@ -188,10 +221,19 @@ class StringsEs extends Strings {
   String get exercise => 'Ejercicio';
 
   @override
+  String get expertise => 'Experiencia';
+
+  @override
+  String get expertiseRequired => 'La experiencia es obligatoria';
+
+  @override
   String get expiredSession => 'Expirado';
 
   @override
   String get failedCreateClub => 'Error al crear el club';
+
+  @override
+  String get failedCreateExercises => 'Error al crear los ejercicios';
 
   @override
   String get failedCreateProgram => 'Error al crear el programa';
@@ -210,6 +252,15 @@ class StringsEs extends Strings {
 
   @override
   String get failedSignUp => 'Error al registrarse';
+
+  @override
+  String get failedUpdateClub => 'Error al actualizar el club';
+
+  @override
+  String get failedUpdateExercises => 'Error al actualizar los ejercicios';
+
+  @override
+  String get failedUpdateProfile => 'Error al actualizar el perfil';
 
   @override
   String get futsal => 'Fútbol sala';
@@ -347,6 +398,12 @@ class StringsEs extends Strings {
   String get question => 'Pregunta';
 
   @override
+  String get religion => 'Religión';
+
+  @override
+  String get religionRequired => 'La religión es obligatoria';
+
+  @override
   String get search => 'Buscar';
 
   @override
@@ -389,6 +446,9 @@ class StringsEs extends Strings {
   String get successCreateExercise => 'Ejercicio creado con éxito';
 
   @override
+  String get successCreateExercises => 'Ejercicios creados con éxito';
+
+  @override
   String get successCreateProgram => 'Programa creado con éxito';
 
   @override
@@ -401,7 +461,13 @@ class StringsEs extends Strings {
   String get successSignUp => 'Registro exitoso';
 
   @override
+  String get successUpdateClub => 'Club actualizado con éxito';
+
+  @override
   String get successUpdateExercises => 'Ejercicios actualizados con éxito';
+
+  @override
+  String get successUpdateProfile => 'Perfil actualizado con éxito';
 
   @override
   String get system => 'Sistema';

@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Chinese (`zh`).
 class StringsZh extends Strings {
-  StringsZh([super.locale = 'zh']);
+  StringsZh([String locale = 'zh']) : super(locale);
 
   @override
   String get about => '关于';
@@ -15,6 +15,12 @@ class StringsZh extends Strings {
 
   @override
   String get addMember => '添加成员';
+
+  @override
+  String get address => '地址';
+
+  @override
+  String get addressRequired => '地址是必填项';
 
   @override
   String get alert => '警报';
@@ -36,6 +42,18 @@ class StringsZh extends Strings {
 
   @override
   String get basketBall => '篮球';
+
+  @override
+  String get bornDate => '出生日期';
+
+  @override
+  String get bornDateRequired => '出生日期是必填项';
+
+  @override
+  String get bornPlace => '出生地点';
+
+  @override
+  String get bornPlaceRequired => '出生地点是必填项';
 
   @override
   String get calendar => '日历';
@@ -152,7 +170,19 @@ class StringsZh extends Strings {
   String get enterStartDate => '输入开始日期';
 
   @override
+  String get enterYourAddress => '请输入您的地址';
+
+  @override
+  String get enterYourBornDate => '请输入您的出生日期';
+
+  @override
+  String get enterYourBornPlace => '请输入您的出生地点';
+
+  @override
   String get enterYourEmail => '输入您的邮箱';
+
+  @override
+  String get enterYourExpertise => '请输入您的专长';
 
   @override
   String get enterYourGender => '输入您的性别';
@@ -165,6 +195,9 @@ class StringsZh extends Strings {
 
   @override
   String get enterYourPhoneNumber => '输入您的电话号码';
+
+  @override
+  String get enterYourReligion => '请输入您的宗教';
 
   @override
   String get enterYourUsername => '输入您的用户名';
@@ -188,10 +221,19 @@ class StringsZh extends Strings {
   String get exercise => '练习';
 
   @override
+  String get expertise => '专长';
+
+  @override
+  String get expertiseRequired => '专长是必填项';
+
+  @override
   String get expiredSession => '已过期';
 
   @override
   String get failedCreateClub => '创建俱乐部失败';
+
+  @override
+  String get failedCreateExercises => '创建练习失败';
 
   @override
   String get failedCreateProgram => '创建计划失败';
@@ -210,6 +252,15 @@ class StringsZh extends Strings {
 
   @override
   String get failedSignUp => '注册失败';
+
+  @override
+  String get failedUpdateClub => '更新俱乐部失败';
+
+  @override
+  String get failedUpdateExercises => '更新练习失败';
+
+  @override
+  String get failedUpdateProfile => '更新个人资料失败';
 
   @override
   String get futsal => '室内五人制足球';
@@ -347,6 +398,12 @@ class StringsZh extends Strings {
   String get question => '问题';
 
   @override
+  String get religion => '宗教';
+
+  @override
+  String get religionRequired => '宗教是必填项';
+
+  @override
   String get search => '搜索';
 
   @override
@@ -389,6 +446,9 @@ class StringsZh extends Strings {
   String get successCreateExercise => '练习创建成功';
 
   @override
+  String get successCreateExercises => '成功创建练习';
+
+  @override
   String get successCreateProgram => '计划创建成功';
 
   @override
@@ -401,7 +461,13 @@ class StringsZh extends Strings {
   String get successSignUp => '注册成功';
 
   @override
+  String get successUpdateClub => '成功更新俱乐部';
+
+  @override
   String get successUpdateExercises => '练习更新成功';
+
+  @override
+  String get successUpdateProfile => '成功更新个人资料';
 
   @override
   String get system => '系统';

@@ -35,7 +35,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.root.path,
         name: AppRoutes.root.name,
-        redirect: (_, __) => AppRoutes.athleteHome.path,
+        redirect: (_, __) => AppRoutes.splash.path,
       ),
       ShellRoute(
         navigatorKey: _authKey,
@@ -794,7 +794,7 @@ class AppRouter {
       //   ],
       // )
     ],
-    initialLocation: AppRoutes.athleteHome.path,
+    initialLocation: AppRoutes.root.path,
     routerNeglect: true,
     debugLogDiagnostics: kDebugMode,
     errorBuilder: (context, state) {

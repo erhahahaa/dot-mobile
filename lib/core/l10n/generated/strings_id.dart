@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Indonesian (`id`).
 class StringsId extends Strings {
-  StringsId([super.locale = 'id']);
+  StringsId([String locale = 'id']) : super(locale);
 
   @override
   String get about => 'Tentang';
@@ -15,6 +15,12 @@ class StringsId extends Strings {
 
   @override
   String get addMember => 'Tambahkan Anggota';
+
+  @override
+  String get address => 'Alamat';
+
+  @override
+  String get addressRequired => 'Alamat diperlukan';
 
   @override
   String get alert => 'Peringatan';
@@ -36,6 +42,18 @@ class StringsId extends Strings {
 
   @override
   String get basketBall => 'Basket';
+
+  @override
+  String get bornDate => 'Tanggal Lahir';
+
+  @override
+  String get bornDateRequired => 'Tanggal lahir diperlukan';
+
+  @override
+  String get bornPlace => 'Tempat Lahir';
+
+  @override
+  String get bornPlaceRequired => 'Tempat lahir diperlukan';
 
   @override
   String get calendar => 'Kalender';
@@ -152,7 +170,19 @@ class StringsId extends Strings {
   String get enterStartDate => 'Masukkan tanggal dimulai';
 
   @override
+  String get enterYourAddress => 'Masukkan alamat Anda';
+
+  @override
+  String get enterYourBornDate => 'Masukkan tanggal lahir Anda';
+
+  @override
+  String get enterYourBornPlace => 'Masukkan tempat lahir Anda';
+
+  @override
   String get enterYourEmail => 'Masukkan email anda';
+
+  @override
+  String get enterYourExpertise => 'Masukkan keahlian Anda';
 
   @override
   String get enterYourGender => 'Pilih jenis kelamin anda';
@@ -165,6 +195,9 @@ class StringsId extends Strings {
 
   @override
   String get enterYourPhoneNumber => 'Masukkan nomor telepon anda';
+
+  @override
+  String get enterYourReligion => 'Masukkan agama Anda';
 
   @override
   String get enterYourUsername => 'Masukkan nama pengguna anda';
@@ -188,10 +221,19 @@ class StringsId extends Strings {
   String get exercise => 'Latihan';
 
   @override
+  String get expertise => 'Keahlian';
+
+  @override
+  String get expertiseRequired => 'Keahlian diperlukan';
+
+  @override
   String get expiredSession => 'Kadaluarsa';
 
   @override
   String get failedCreateClub => 'Gagal membuat klub';
+
+  @override
+  String get failedCreateExercises => 'Gagal membuat latihan';
 
   @override
   String get failedCreateProgram => 'Gagal membuat program';
@@ -210,6 +252,15 @@ class StringsId extends Strings {
 
   @override
   String get failedSignUp => 'Gagal daftar';
+
+  @override
+  String get failedUpdateClub => 'Gagal memperbarui klub';
+
+  @override
+  String get failedUpdateExercises => 'Gagal memperbarui latihan';
+
+  @override
+  String get failedUpdateProfile => 'Gagal memperbarui profil';
 
   @override
   String get futsal => 'Futsal';
@@ -347,6 +398,12 @@ class StringsId extends Strings {
   String get question => 'Pertanyaan';
 
   @override
+  String get religion => 'Agama';
+
+  @override
+  String get religionRequired => 'Agama diperlukan';
+
+  @override
   String get search => 'Cari';
 
   @override
@@ -389,6 +446,9 @@ class StringsId extends Strings {
   String get successCreateExercise => 'Berhasil membuat latihan';
 
   @override
+  String get successCreateExercises => 'Berhasil membuat latihan';
+
+  @override
   String get successCreateProgram => 'Berhasil membuat program';
 
   @override
@@ -401,7 +461,13 @@ class StringsId extends Strings {
   String get successSignUp => 'Berhasil daftar';
 
   @override
+  String get successUpdateClub => 'Berhasil memperbarui klub';
+
+  @override
   String get successUpdateExercises => 'Berhasil mengubah latihan';
+
+  @override
+  String get successUpdateProfile => 'Berhasil memperbarui profil';
 
   @override
   String get system => 'Sistem';

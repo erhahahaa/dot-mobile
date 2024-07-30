@@ -116,7 +116,7 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
               child: Column(
                 children: [
                   ImagePickerWidget(
-                    firstChild: determineClubImage(
+                    firstChild: imageFallback(
                       state.image,
                       widget.club?.media?.url,
                     ),
@@ -260,67 +260,4 @@ class _ClubFormScreenState extends State<ClubFormScreen> {
     );
   }
 
-  Widget determineClubImage(File? image, String? url) {
-    Widget imageWidget;
-    if (image != null) {
-      imageWidget = Image.file(image);
-    } else if (url != null) {
-      imageWidget = CachedNetworkImage(
-        imageUrl: url.sanitize(),
-        width: 150.w,
-        height: 150.w,
-        imageBuilder: (context, imageProvider) => Container(
-          width: 150.w,
-          height: 150.w,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: imageProvider,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-      );
-    } else {
-      imageWidget = Assets.images.placeholder.placeholder.image();
-    }
-
-    return ClipOval(
-      child: imageWidget,
-    );
-  }
-
-  Widget pickImageDialog({
-    required Function()? galleryTap,
-    required Function()? cameraTap,
-  }) {
-    return Dialog(
-      child: Container(
-        padding: EdgeInsets.all(8.w),
-        height: 200.h,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.r),
-          color: Theme.of(context).colorScheme.onPrimary,
-        ),
-        child: Column(
-          children: [
-            InkWell(
-              onTap: galleryTap,
-              child: const ListTile(
-                leading: Icon(Icons.photo_library),
-                title: Text('Gallery'),
-              ),
-            ),
-            InkWell(
-              onTap: cameraTap,
-              child: const ListTile(
-                leading: Icon(Icons.camera_alt),
-                title: Text('Camera'),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

@@ -123,6 +123,18 @@ abstract class Strings {
   /// **'Add Member'**
   String get addMember;
 
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get address;
+
+  /// No description provided for @addressRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Address is required'**
+  String get addressRequired;
+
   /// No description provided for @alert.
   ///
   /// In en, this message translates to:
@@ -164,6 +176,30 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Basketball'**
   String get basketBall;
+
+  /// No description provided for @bornDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Born Date'**
+  String get bornDate;
+
+  /// No description provided for @bornDateRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Born date is required'**
+  String get bornDateRequired;
+
+  /// No description provided for @bornPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Born Place'**
+  String get bornPlace;
+
+  /// No description provided for @bornPlaceRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Born place is required'**
+  String get bornPlaceRequired;
 
   /// No description provided for @calendar.
   ///
@@ -393,11 +429,35 @@ abstract class Strings {
   /// **'Enter the start date'**
   String get enterStartDate;
 
+  /// No description provided for @enterYourAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your address'**
+  String get enterYourAddress;
+
+  /// No description provided for @enterYourBornDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your born date'**
+  String get enterYourBornDate;
+
+  /// No description provided for @enterYourBornPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your born place'**
+  String get enterYourBornPlace;
+
   /// No description provided for @enterYourEmail.
   ///
   /// In en, this message translates to:
   /// **'Enter your email'**
   String get enterYourEmail;
+
+  /// No description provided for @enterYourExpertise.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your expertise'**
+  String get enterYourExpertise;
 
   /// No description provided for @enterYourGender.
   ///
@@ -422,6 +482,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Enter your phone number'**
   String get enterYourPhoneNumber;
+
+  /// No description provided for @enterYourReligion.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your religion'**
+  String get enterYourReligion;
 
   /// No description provided for @enterYourUsername.
   ///
@@ -465,6 +531,18 @@ abstract class Strings {
   /// **'Exercise'**
   String get exercise;
 
+  /// No description provided for @expertise.
+  ///
+  /// In en, this message translates to:
+  /// **'Expertise'**
+  String get expertise;
+
+  /// No description provided for @expertiseRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expertise is required'**
+  String get expertiseRequired;
+
   /// No description provided for @expiredSession.
   ///
   /// In en, this message translates to:
@@ -476,6 +554,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Failed to create club'**
   String get failedCreateClub;
+
+  /// No description provided for @failedCreateExercises.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create exercises'**
+  String get failedCreateExercises;
 
   /// No description provided for @failedCreateProgram.
   ///
@@ -512,6 +596,24 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Failed to sign up'**
   String get failedSignUp;
+
+  /// No description provided for @failedUpdateClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update club'**
+  String get failedUpdateClub;
+
+  /// No description provided for @failedUpdateExercises.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update exercises'**
+  String get failedUpdateExercises;
+
+  /// No description provided for @failedUpdateProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update profile'**
+  String get failedUpdateProfile;
 
   /// No description provided for @futsal.
   ///
@@ -783,6 +885,18 @@ abstract class Strings {
   /// **'Question'**
   String get question;
 
+  /// No description provided for @religion.
+  ///
+  /// In en, this message translates to:
+  /// **'Religion'**
+  String get religion;
+
+  /// No description provided for @religionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Religion is required'**
+  String get religionRequired;
+
   /// No description provided for @search.
   ///
   /// In en, this message translates to:
@@ -867,6 +981,12 @@ abstract class Strings {
   /// **'Successfully to create exercise'**
   String get successCreateExercise;
 
+  /// No description provided for @successCreateExercises.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully create exercises'**
+  String get successCreateExercises;
+
   /// No description provided for @successCreateProgram.
   ///
   /// In en, this message translates to:
@@ -891,11 +1011,23 @@ abstract class Strings {
   /// **'Successfully signed up '**
   String get successSignUp;
 
+  /// No description provided for @successUpdateClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully update club'**
+  String get successUpdateClub;
+
   /// No description provided for @successUpdateExercises.
   ///
   /// In en, this message translates to:
   /// **'Successfully update exercises'**
   String get successUpdateExercises;
+
+  /// No description provided for @successUpdateProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully update profile'**
+  String get successUpdateProfile;
 
   /// No description provided for @system.
   ///

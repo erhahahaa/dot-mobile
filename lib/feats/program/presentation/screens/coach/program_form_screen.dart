@@ -212,7 +212,6 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                       Icons.calendar_month,
                       color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
-                    // enabled: false,
                     hint: context.str?.endDate ?? 'End Date',
                     hintText: context.str?.enterEndDate ?? 'Enter the end date',
                     validator: (String? value) {

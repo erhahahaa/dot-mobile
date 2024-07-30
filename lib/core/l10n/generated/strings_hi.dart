@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Hindi (`hi`).
 class StringsHi extends Strings {
-  StringsHi([super.locale = 'hi']);
+  StringsHi([String locale = 'hi']) : super(locale);
 
   @override
   String get about => 'के बारे में';
@@ -15,6 +15,12 @@ class StringsHi extends Strings {
 
   @override
   String get addMember => 'सदस्य जोड़ें';
+
+  @override
+  String get address => 'पता';
+
+  @override
+  String get addressRequired => 'पता आवश्यक है';
 
   @override
   String get alert => 'चेतावनी';
@@ -36,6 +42,18 @@ class StringsHi extends Strings {
 
   @override
   String get basketBall => 'बास्केटबॉल';
+
+  @override
+  String get bornDate => 'जन्म तिथि';
+
+  @override
+  String get bornDateRequired => 'जन्म तिथि आवश्यक है';
+
+  @override
+  String get bornPlace => 'जन्म स्थान';
+
+  @override
+  String get bornPlaceRequired => 'जन्म स्थान आवश्यक है';
 
   @override
   String get calendar => 'कैलेंडर';
@@ -152,7 +170,19 @@ class StringsHi extends Strings {
   String get enterStartDate => 'प्रारंभ तिथि दर्ज करें';
 
   @override
+  String get enterYourAddress => 'अपना पता दर्ज करें';
+
+  @override
+  String get enterYourBornDate => 'अपनी जन्म तिथि दर्ज करें';
+
+  @override
+  String get enterYourBornPlace => 'अपना जन्म स्थान दर्ज करें';
+
+  @override
   String get enterYourEmail => 'अपना ईमेल दर्ज करें';
+
+  @override
+  String get enterYourExpertise => 'अपनी विशेषज्ञता दर्ज करें';
 
   @override
   String get enterYourGender => 'अपना लिंग दर्ज करें';
@@ -165,6 +195,9 @@ class StringsHi extends Strings {
 
   @override
   String get enterYourPhoneNumber => 'अपना फोन नंबर दर्ज करें';
+
+  @override
+  String get enterYourReligion => 'अपना धर्म दर्ज करें';
 
   @override
   String get enterYourUsername => 'अपना उपयोगकर्ता नाम दर्ज करें';
@@ -188,10 +221,19 @@ class StringsHi extends Strings {
   String get exercise => 'व्यायाम';
 
   @override
+  String get expertise => 'विशेषज्ञता';
+
+  @override
+  String get expertiseRequired => 'विशेषज्ञता आवश्यक है';
+
+  @override
   String get expiredSession => 'समाप्त';
 
   @override
   String get failedCreateClub => 'क्लब बनाने में विफल';
+
+  @override
+  String get failedCreateExercises => 'अभ्यास बनाने में विफल';
 
   @override
   String get failedCreateProgram => 'कार्यक्रम बनाने में विफल';
@@ -210,6 +252,15 @@ class StringsHi extends Strings {
 
   @override
   String get failedSignUp => 'साइन अप करने में विफल';
+
+  @override
+  String get failedUpdateClub => 'क्लब अपडेट करने में विफल';
+
+  @override
+  String get failedUpdateExercises => 'अभ्यास अपडेट करने में विफल';
+
+  @override
+  String get failedUpdateProfile => 'प्रोफ़ाइल अपडेट करने में विफल';
 
   @override
   String get futsal => 'फुटसल';
@@ -347,6 +398,12 @@ class StringsHi extends Strings {
   String get question => 'प्रश्न';
 
   @override
+  String get religion => 'धर्म';
+
+  @override
+  String get religionRequired => 'धर्म आवश्यक है';
+
+  @override
   String get search => 'खोजें';
 
   @override
@@ -389,6 +446,9 @@ class StringsHi extends Strings {
   String get successCreateExercise => 'व्यायाम सफलतापूर्वक बनाया गया';
 
   @override
+  String get successCreateExercises => 'अभ्यास सफलतापूर्वक बनाए गए';
+
+  @override
   String get successCreateProgram => 'कार्यक्रम सफलतापूर्वक बनाया गया';
 
   @override
@@ -401,7 +461,13 @@ class StringsHi extends Strings {
   String get successSignUp => 'सफलतापूर्वक साइन अप किया गया';
 
   @override
+  String get successUpdateClub => 'क्लब सफलतापूर्वक अपडेट किया गया';
+
+  @override
   String get successUpdateExercises => 'व्यायाम सफलतापूर्वक अपडेट किया गया';
+
+  @override
+  String get successUpdateProfile => 'प्रोफ़ाइल सफलतापूर्वक अपडेट की गई';
 
   @override
   String get system => 'सिस्टम';

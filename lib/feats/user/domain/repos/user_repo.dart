@@ -10,5 +10,6 @@ abstract class UserRepo {
     String username,
     String email,
   );
+  Future<Either<Failure, UserModel>> updateProfile(UpdateUserParams params);
   Future<bool> clear();
 }

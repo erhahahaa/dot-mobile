@@ -100,7 +100,11 @@ class _TextFState extends State<TextF> {
               maxLines: widget.maxLines ?? 10,
               inputFormatters: widget.inputFormatters,
               textAlignVertical: TextAlignVertical.center,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: widget.enabled == false
+                        ? Theme.of(context).disabledColor
+                        : Theme.of(context).textTheme.bodyMedium?.color,
+                  ),
               cursorColor: const Color(0xff4c4f69),
               decoration: widget.decoration ??
                   InputDecoration(
@@ -206,5 +210,4 @@ class _TextFState extends State<TextF> {
       ),
     );
   }
-
 }

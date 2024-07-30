@@ -144,6 +144,7 @@ void _initCubits() {
   sl.registerFactory(
     () => UserCubit(
       sl<UserRepo>(),
+      sl<ImagePickerClient>(),
     ),
   );
 }

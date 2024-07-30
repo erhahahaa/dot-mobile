@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:isar/isar.dart';
@@ -80,8 +81,10 @@ class UserRepoImpl implements UserRepo {
   Future<Either<Failure, bool>> saveUserPref(
     UserPreferencesModel model,
   ) async {
+    final entity = model.toEntity();
+    entity.id = 1;
     final res = await _local.isar.writeTxn(() async {
-      return await _local.userPreferences.put(model.toEntity()).then((value) {
+      return await _local.userPreferences.put(entity).then((value) {
         return true;
       }).catchError((e) {
         return false;
@@ -89,5 +92,58 @@ class UserRepoImpl implements UserRepo {
     });
 
     return Right(res);
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> updateProfile(
+    UpdateUserParams params,
+  ) async {
+    Future<Either<Failure, UserModel>> updateUserProfile() async {
+      return await _remote.putRequest(
+        '${ListAPI.USER}/update',
+        data: params.toJson(),
+        converter: (res) => UserModel.fromJson(res['data']),
+      );
+    }
+
+    Future<void> saveUserLocally(UserModel userModel) async {
+      await _local.isar.writeTxn(() async {
+        await _local.isar.userEntitys.clear();
+        await _local.isar.userEntitys.put(userModel.toEntity());
+      });
+    }
+
+    if (params.image != null) {
+      final photoUpdateRes = await _remote.putRequest(
+        '${ListAPI.USER}/update-photo',
+        formData: FormData.fromMap({
+          'image': await MultipartFile.fromFile(params.image?.path ?? ''),
+        }),
+        converter: (res) => UserModel.fromJson(res['data']),
+      );
+
+      return photoUpdateRes.fold(
+        (l) => Left(l),
+        (_) async {
+          final userUpdateRes = await updateUserProfile();
+          return userUpdateRes.fold(
+            (l) => Left(l),
+            (r) async {
+              await saveUserLocally(r);
+              return Right(r);
+            },
+          );
+        },
+      );
+    } else {
+      final userUpdateRes = await updateUserProfile();
+      return userUpdateRes.fold(
+        (l) => Left(l),
+        (r) async {
+          await saveUserLocally(r);
+          return Right(r);
+        },
+      );
+    }
   }
 }

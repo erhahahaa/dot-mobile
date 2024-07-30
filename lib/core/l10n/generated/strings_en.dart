@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for English (`en`).
 class StringsEn extends Strings {
-  StringsEn([super.locale = 'en']);
+  StringsEn([String locale = 'en']) : super(locale);
 
   @override
   String get about => 'About';
@@ -15,6 +15,12 @@ class StringsEn extends Strings {
 
   @override
   String get addMember => 'Add Member';
+
+  @override
+  String get address => 'Address';
+
+  @override
+  String get addressRequired => 'Address is required';
 
   @override
   String get alert => 'Alert';
@@ -36,6 +42,18 @@ class StringsEn extends Strings {
 
   @override
   String get basketBall => 'Basketball';
+
+  @override
+  String get bornDate => 'Born Date';
+
+  @override
+  String get bornDateRequired => 'Born date is required';
+
+  @override
+  String get bornPlace => 'Born Place';
+
+  @override
+  String get bornPlaceRequired => 'Born place is required';
 
   @override
   String get calendar => 'Calendar';
@@ -152,7 +170,19 @@ class StringsEn extends Strings {
   String get enterStartDate => 'Enter the start date';
 
   @override
+  String get enterYourAddress => 'Enter your address';
+
+  @override
+  String get enterYourBornDate => 'Enter your born date';
+
+  @override
+  String get enterYourBornPlace => 'Enter your born place';
+
+  @override
   String get enterYourEmail => 'Enter your email';
+
+  @override
+  String get enterYourExpertise => 'Enter your expertise';
 
   @override
   String get enterYourGender => 'Enter your gender';
@@ -165,6 +195,9 @@ class StringsEn extends Strings {
 
   @override
   String get enterYourPhoneNumber => 'Enter your phone number';
+
+  @override
+  String get enterYourReligion => 'Enter your religion';
 
   @override
   String get enterYourUsername => 'Enter your username';
@@ -188,10 +221,19 @@ class StringsEn extends Strings {
   String get exercise => 'Exercise';
 
   @override
+  String get expertise => 'Expertise';
+
+  @override
+  String get expertiseRequired => 'Expertise is required';
+
+  @override
   String get expiredSession => 'Expired';
 
   @override
   String get failedCreateClub => 'Failed to create club';
+
+  @override
+  String get failedCreateExercises => 'Failed to create exercises';
 
   @override
   String get failedCreateProgram => 'Failed to create program';
@@ -210,6 +252,15 @@ class StringsEn extends Strings {
 
   @override
   String get failedSignUp => 'Failed to sign up';
+
+  @override
+  String get failedUpdateClub => 'Failed to update club';
+
+  @override
+  String get failedUpdateExercises => 'Failed to update exercises';
+
+  @override
+  String get failedUpdateProfile => 'Failed to update profile';
 
   @override
   String get futsal => 'Futsal';
@@ -347,6 +398,12 @@ class StringsEn extends Strings {
   String get question => 'Question';
 
   @override
+  String get religion => 'Religion';
+
+  @override
+  String get religionRequired => 'Religion is required';
+
+  @override
   String get search => 'Search';
 
   @override
@@ -389,6 +446,9 @@ class StringsEn extends Strings {
   String get successCreateExercise => 'Successfully to create exercise';
 
   @override
+  String get successCreateExercises => 'Successfully create exercises';
+
+  @override
   String get successCreateProgram => 'Successfully create program';
 
   @override
@@ -401,7 +461,13 @@ class StringsEn extends Strings {
   String get successSignUp => 'Successfully signed up ';
 
   @override
+  String get successUpdateClub => 'Successfully update club';
+
+  @override
   String get successUpdateExercises => 'Successfully update exercises';
+
+  @override
+  String get successUpdateProfile => 'Successfully update profile';
 
   @override
   String get system => 'System';

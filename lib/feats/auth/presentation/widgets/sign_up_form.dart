@@ -138,7 +138,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                     },
                   ),
                   SizedBox(height: 12.h),
-                  BlocConsumer<AuthCubit, AuthState>(
+                  BlocConsumer<UserCubit, UserState>(
                     listener: (context, state) {
                       if (state.state == BaseState.failure ||
                           state.failure != null) {
@@ -146,7 +146,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                         if (state.failure?.message.startsWith(
                                 'Email, username, or phone already exists') ??
                             false) {
-                          context.read<AuthCubit>().checkUsername(
+                          context.read<UserCubit>().checkUsername(
                                 _usernameController.text,
                                 _emailController.text,
                               );
@@ -158,7 +158,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                         key: const Key('signUpForm_username'),
                         autofillHints: const [AutofillHints.username],
                         currFocusNode: _usernameFocusNode,
-                        nextFocusNode: _emailFocusNode,
+                        nextFocusNode: _genderFocusNode,
                         textInputAction: TextInputAction.next,
                         controller: _usernameController,
                         keyboardType: TextInputType.name,
@@ -171,14 +171,14 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                         hint: context.str?.username ?? 'Username',
                         onChanged: (String? val) {
                           if (val != null && val.isNotEmpty) {
-                            final authCubit = context.read<AuthCubit>();
-                            authCubit.clearUsernameSuggestions();
-                            authCubit.emitLoading();
+                            final userCubit = context.read<UserCubit>();
+                            userCubit.clearUsernameSuggestions();
+                            userCubit.emitLoading();
                             EasyDebounce.debounce(
                               'username',
                               const Duration(milliseconds: 500),
                               () async =>
-                                  await context.read<AuthCubit>().checkUsername(
+                                  await context.read<UserCubit>().checkUsername(
                                         val,
                                         _emailController.text,
                                       ),
@@ -216,7 +216,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                 onPressed: () {
                                   _usernameController.clear();
                                   context
-                                      .read<AuthCubit>()
+                                      .read<UserCubit>()
                                       .clearUsernameSuggestions();
                                 },
                                 icon: Icon(
@@ -231,7 +231,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                     },
                   ),
                   SizedBox(height: 12.h),
-                  BlocBuilder<AuthCubit, AuthState>(
+                  BlocBuilder<UserCubit, UserState>(
                     builder: (context, state) {
                       if (state.usernameSuggestions.isEmpty) {
                         return Container();
@@ -258,7 +258,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                         onTap: () {
                                           _usernameController.text = suggestion;
                                           context
-                                              .read<AuthCubit>()
+                                              .read<UserCubit>()
                                               .clearUsernameSuggestions();
                                         },
                                         child: Chip(
@@ -375,36 +375,40 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
               ),
             ),
             SizedBox(height: 12.h),
-            BlocBuilder<AuthCubit, AuthState>(
-              builder: (context, state) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
-                  child: Button(
-                    key: const Key('signUpForm_signUpButton'),
-                    text: context.str?.signUp ?? 'Sign Up',
-                    onPressed: () {
-                      context.read<AuthCubit>().checkUsername(
-                            _usernameController.text,
-                            _emailController.text,
-                          );
-                      if (_formKey.currentState!.validate()) {
-                        if (state.usernameSuggestions.isEmpty) {
-                          context.read<AuthCubit>().signUp(
-                                RegisterParams(
-                                  name: _nameController.text,
-                                  email: _emailController.text,
-                                  username:
-                                      _usernameController.text.toLowerCase(),
-                                  password: _passwordController.text,
-                                  phone: int.parse(_phoneController.text),
-                                  gender: selectedUserGender,
-                                  role: UserRole.athlete,
-                                ),
+            BlocBuilder<UserCubit, UserState>(
+              builder: (context, userState) {
+                return BlocBuilder<AuthCubit, AuthState>(
+                  builder: (context, state) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12.w),
+                      child: Button(
+                        key: const Key('signUpForm_signUpButton'),
+                        text: context.str?.signUp ?? 'Sign Up',
+                        onPressed: () {
+                          context.read<UserCubit>().checkUsername(
+                                _usernameController.text,
+                                _emailController.text,
                               );
-                        }
-                      }
-                    },
-                  ),
+                          if (_formKey.currentState!.validate()) {
+                            if (userState.usernameSuggestions.isEmpty) {
+                              context.read<AuthCubit>().signUp(
+                                    RegisterParams(
+                                      name: _nameController.text,
+                                      email: _emailController.text,
+                                      username: _usernameController.text
+                                          .toLowerCase(),
+                                      password: _passwordController.text,
+                                      phone: int.parse(_phoneController.text),
+                                      gender: selectedUserGender,
+                                      role: UserRole.athlete,
+                                    ),
+                                  );
+                            }
+                          }
+                        },
+                      ),
+                    );
+                  },
                 );
               },
             ),
