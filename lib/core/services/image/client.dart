@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -57,30 +60,47 @@ class ImagePickerClient with FirebaseCrashLogger {
     }
   }
 
-  Future<Either<Failure, CroppedFile>> getImageFromGallery() async {
+  Future<Either<Failure, File>> getImageFromGallery() async {
     try {
       final res = await imagePicker.pickImage(
         source: ImageSource.gallery,
         imageQuality: 100,
       );
+      log.e('FILE PATH: ${res?.path}');
       if (res == null) return const Left(NoDataFailure('No image selected'));
-      final res2 = await cropImage(res);
-      return res2;
+      final crop = await cropImage(res);
+      return crop.fold(
+        (l) => Left(l),
+        (r) {
+          File file;
+          file = File(r.path);
+          file = file.renameSync(res.path);
+          return Right(file);
+        },
+      );
     } on Exception catch (e, stackTrace) {
       nonFatalError(error: e, stackTrace: stackTrace);
       return Left(NoDataFailure(e.toString()));
     }
   }
 
-  Future<Either<Failure, CroppedFile>> getImageFromCamera() async {
+  Future<Either<Failure, File>> getImageFromCamera() async {
     try {
       final res = await imagePicker.pickImage(
         source: ImageSource.camera,
         imageQuality: 100,
       );
       if (res == null) return const Left(NoDataFailure('No image selected'));
-      final res2 = await cropImage(res);
-      return res2;
+      final crop = await cropImage(res);
+      return crop.fold(
+        (l) => Left(l),
+        (r) {
+          File file;
+          file = File(r.path);
+          file = file.renameSync(res.path);
+          return Right(file);
+        },
+      );
     } on Exception catch (e, stackTrace) {
       nonFatalError(error: e, stackTrace: stackTrace);
       return Left(NoDataFailure(e.toString()));

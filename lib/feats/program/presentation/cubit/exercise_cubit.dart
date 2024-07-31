@@ -91,6 +91,9 @@ class ExerciseCubit extends Cubit<ExerciseState> {
   }
 
   Future<void> updateBulk(List<UpdateProgramExerciseParams> params) async {
+    for (final p in params) {
+      log.d('updateBulk: ${p.toJson()}');
+    }
     emitLoading();
     final res = await _exerciseRepo.updateBulk(params);
     res.fold((l) {

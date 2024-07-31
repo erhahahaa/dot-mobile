@@ -251,7 +251,15 @@ class DioClient with FirebaseCrashLogger {
       );
     }
 
-    final res = e.response?.data as Map<String, dynamic>;
+    final res = e.response?.data as Map<String, dynamic>?;
+    if (res == null) {
+      return Left(
+        ServerFailure(
+          message: "Internal Server Error",
+          exception: e,
+        ),
+      );
+    }
     nonFatalError(error: e, stackTrace: stackTrace);
     return Left(
       ServerFailure(

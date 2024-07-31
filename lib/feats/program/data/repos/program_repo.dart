@@ -18,7 +18,32 @@ class ProgramRepoImpl implements ProgramRepo {
       converter: (res) => ProgramModel.fromJson(res['data']),
     );
 
-    return res;
+    return res.fold(
+      (l) => Left(l),
+      (r) async {
+        await _local.isar.writeTxn(
+          () async => _local.programs.put(r.toEntity()),
+        );
+        if (params.image != null) {
+          final photoUpdateRes = await _remote.putRequest(
+            '${ListAPI.CLUB_PROGRAM}/${r.id}/image',
+            formData: params.toFormData(),
+            converter: (res) => ProgramModel.fromJson(res['data']),
+          );
+
+          return photoUpdateRes.fold(
+            (l) => Left(l),
+            (_) async {
+              await _local.isar.writeTxn(
+                () async => _local.programs.put(r.toEntity()),
+              );
+              return Right(r);
+            },
+          );
+        }
+        return Right(r);
+      },
+    );
   }
 
   @override

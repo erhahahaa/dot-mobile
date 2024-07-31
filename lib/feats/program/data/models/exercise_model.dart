@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 part 'exercise_model.freezed.dart';
 part 'exercise_model.g.dart';
@@ -66,8 +65,8 @@ class ProgramExerciseModel with _$ProgramExerciseModel {
       programId: Random().nextInt(100),
       mediaId: Random().nextInt(100),
       order: Random().nextInt(100),
-      name: BoneMock.name,
-      description: BoneMock.subtitle,
+      name: 'asdasd',
+      description: 'asdasd',
       repetition: ProgramUnitValueModel.fake(),
       sets: ProgramUnitValueModel.fake(),
       rest: ProgramUnitValueModel.fake(),
@@ -119,7 +118,7 @@ class ProgramUnitValueModel with _$ProgramUnitValueModel {
 
   static ProgramUnitValueModel fake() {
     return ProgramUnitValueModel(
-      unit: BoneMock.name,
+      unit: 'asdfa',
       value: Random().nextInt(100),
     );
   }

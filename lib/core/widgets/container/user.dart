@@ -42,13 +42,17 @@ class UserCard extends StatelessWidget {
   Widget _buildProfile(BuildContext context, ThemeData theme) {
     return Row(
       children: [
-        CachedNetworkImage(
-          width: 64.w,
+        SizedBox(
           height: 64.w,
-          imageUrl: user.image,
-          placeholder: (context, url) => const CircularProgressIndicator(),
-          errorWidget: (context, url, error) => Text(
-            error.toString(),
+          child: ClipOval(
+            child: CachedNetworkImage(
+              height: 64.w,
+              imageUrl: user.image,
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Text(
+                error.toString(),
+              ),
+            ),
           ),
         ),
         SizedBox(width: 8.w),
@@ -58,8 +62,10 @@ class UserCard extends StatelessWidget {
           children: [
             H2Text(user.name),
             SizedBox(height: 4.h),
-            H6Text(
-                user.expertise ?? context.str?.noExpertise ?? 'No expertise'),
+            Chirp(
+              text:
+                  user.expertise ?? context.str?.noExpertise ?? 'No expertise',
+            ),
           ],
         ),
       ],

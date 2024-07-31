@@ -78,38 +78,70 @@ class _ExerciseContainerState extends State<ExerciseContainer> {
                       Colors.grey,
             ),
           ),
-          child: Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
+              Row(
                 children: [
-                  Chirp(
-                    text: 'Reps : ${widget.exercise.repetition}',
-                    color: Colors.amberAccent.withOpacity(0.5),
-                    style: context.theme.textTheme.titleMedium?.copyWith(
-                      fontSize: 14.sp,
-                    ),
+                  Column(
+                    children: [
+                      Chirp(
+                        padding: EdgeInsets.all(4.w),
+                        text:
+                            'Sets : ${widget.exercise.sets?.value} ${widget.exercise.sets?.unit}',
+                        color: Colors.redAccent.withOpacity(0.5),
+                        style: context.theme.textTheme.titleMedium?.copyWith(
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      Chirp(
+                        padding: EdgeInsets.all(4.w),
+                        text:
+                            'Rest : ${widget.exercise.rest?.value} ${widget.exercise.rest?.unit}',
+                        color: Colors.amberAccent.withOpacity(0.5),
+                        style: context.theme.textTheme.titleMedium?.copyWith(
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 8.h),
-                  Chirp(
-                    text: 'Sets : ${widget.exercise.sets}',
-                    color: Colors.redAccent.withOpacity(0.5),
-                    style: context.theme.textTheme.titleMedium?.copyWith(
-                      fontSize: 14.sp,
-                    ),
+                  const Spacer(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Chirp(
+                        padding: EdgeInsets.all(4.w),
+                        text:
+                            'Reps : ${widget.exercise.repetition?.value} ${widget.exercise.repetition?.unit}',
+                        color: Colors.greenAccent.withOpacity(0.5),
+                        style: context.theme.textTheme.titleMedium?.copyWith(
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      Chirp(
+                        padding: EdgeInsets.all(4.w),
+                        text:
+                            'Tempo : ${widget.exercise.tempo?.value} ${widget.exercise.tempo?.unit}',
+                        color: Colors.orangeAccent.withOpacity(0.5),
+                        style: context.theme.textTheme.titleMedium?.copyWith(
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              const Spacer(),
-              Column(
-                children: [
-                  Chirp(
-                    text: 'Rest : ${widget.exercise.rest}',
-                    color: Colors.greenAccent.withOpacity(0.5),
-                    style: context.theme.textTheme.titleMedium?.copyWith(
-                      fontSize: 14.sp,
-                    ),
-                  ),
-                ],
+              SizedBox(height: 8.h),
+              Chirp(
+                text:
+                    'Intensity : ${widget.exercise.intensity?.value} ${widget.exercise.intensity?.unit}',
+                mainAxisSize: MainAxisSize.max,
+                color: Colors.purpleAccent.withOpacity(0.5),
+                style: context.theme.textTheme.titleMedium?.copyWith(
+                  fontSize: 14.sp,
+                ),
               ),
             ],
           ),

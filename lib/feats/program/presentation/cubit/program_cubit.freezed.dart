@@ -20,6 +20,7 @@ mixin _$ProgramState {
   List<ProgramModel> get programs => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
   ProgramModel? get createdProgram => throw _privateConstructorUsedError;
+  File? get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProgramStateCopyWith<ProgramState> get copyWith =>
@@ -36,7 +37,8 @@ abstract class $ProgramStateCopyWith<$Res> {
       {BaseState state,
       List<ProgramModel> programs,
       Failure? failure,
-      ProgramModel? createdProgram});
+      ProgramModel? createdProgram,
+      File? image});
 
   $ProgramModelCopyWith<$Res>? get createdProgram;
 }
@@ -58,6 +60,7 @@ class _$ProgramStateCopyWithImpl<$Res, $Val extends ProgramState>
     Object? programs = null,
     Object? failure = freezed,
     Object? createdProgram = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -76,6 +79,10 @@ class _$ProgramStateCopyWithImpl<$Res, $Val extends ProgramState>
           ? _value.createdProgram
           : createdProgram // ignore: cast_nullable_to_non_nullable
               as ProgramModel?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ) as $Val);
   }
 
@@ -104,7 +111,8 @@ abstract class _$$ProgramStateImplCopyWith<$Res>
       {BaseState state,
       List<ProgramModel> programs,
       Failure? failure,
-      ProgramModel? createdProgram});
+      ProgramModel? createdProgram,
+      File? image});
 
   @override
   $ProgramModelCopyWith<$Res>? get createdProgram;
@@ -125,6 +133,7 @@ class __$$ProgramStateImplCopyWithImpl<$Res>
     Object? programs = null,
     Object? failure = freezed,
     Object? createdProgram = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$ProgramStateImpl(
       state: null == state
@@ -143,6 +152,10 @@ class __$$ProgramStateImplCopyWithImpl<$Res>
           ? _value.createdProgram
           : createdProgram // ignore: cast_nullable_to_non_nullable
               as ProgramModel?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ));
   }
 }
@@ -154,7 +167,8 @@ class _$ProgramStateImpl implements _ProgramState {
       {this.state = BaseState.initial,
       final List<ProgramModel> programs = const [],
       this.failure,
-      this.createdProgram})
+      this.createdProgram,
+      this.image})
       : _programs = programs;
 
   @override
@@ -173,10 +187,12 @@ class _$ProgramStateImpl implements _ProgramState {
   final Failure? failure;
   @override
   final ProgramModel? createdProgram;
+  @override
+  final File? image;
 
   @override
   String toString() {
-    return 'ProgramState(state: $state, programs: $programs, failure: $failure, createdProgram: $createdProgram)';
+    return 'ProgramState(state: $state, programs: $programs, failure: $failure, createdProgram: $createdProgram, image: $image)';
   }
 
   @override
@@ -188,12 +204,18 @@ class _$ProgramStateImpl implements _ProgramState {
             const DeepCollectionEquality().equals(other._programs, _programs) &&
             (identical(other.failure, failure) || other.failure == failure) &&
             (identical(other.createdProgram, createdProgram) ||
-                other.createdProgram == createdProgram));
+                other.createdProgram == createdProgram) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state,
-      const DeepCollectionEquality().hash(_programs), failure, createdProgram);
+  int get hashCode => Object.hash(
+      runtimeType,
+      state,
+      const DeepCollectionEquality().hash(_programs),
+      failure,
+      createdProgram,
+      image);
 
   @JsonKey(ignore: true)
   @override
@@ -207,7 +229,8 @@ abstract class _ProgramState implements ProgramState {
       {final BaseState state,
       final List<ProgramModel> programs,
       final Failure? failure,
-      final ProgramModel? createdProgram}) = _$ProgramStateImpl;
+      final ProgramModel? createdProgram,
+      final File? image}) = _$ProgramStateImpl;
 
   @override
   BaseState get state;
@@ -217,6 +240,8 @@ abstract class _ProgramState implements ProgramState {
   Failure? get failure;
   @override
   ProgramModel? get createdProgram;
+  @override
+  File? get image;
   @override
   @JsonKey(ignore: true)
   _$$ProgramStateImplCopyWith<_$ProgramStateImpl> get copyWith =>

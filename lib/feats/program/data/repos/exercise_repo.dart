@@ -128,6 +128,8 @@ class ExerciseRepoImpl implements ExerciseRepo {
             repetition: param.repetition,
             sets: param.sets,
             rest: param.rest,
+            tempo: param.tempo,
+            intensity: param.intensity,
             order: param.order,
           )
         ]);
@@ -135,6 +137,7 @@ class ExerciseRepoImpl implements ExerciseRepo {
         continue;
       }
       body.add(param.toJson());
+      log.e('JSON: ${param.toJson()}');
     }
     log.i('body: $body');
     await Future.wait(futures);

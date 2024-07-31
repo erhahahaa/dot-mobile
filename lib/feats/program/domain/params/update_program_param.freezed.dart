@@ -24,7 +24,10 @@ mixin _$UpdateProgramParams {
   int get clubId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   DateTime? get startDate => throw _privateConstructorUsedError;
-  DateTime? get endDate => throw _privateConstructorUsedError;
+  DateTime? get endDate =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  File? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +46,8 @@ abstract class $UpdateProgramParamsCopyWith<$Res> {
       int clubId,
       String name,
       DateTime? startDate,
-      DateTime? endDate});
+      DateTime? endDate,
+      @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
 
 /// @nodoc
@@ -64,6 +68,7 @@ class _$UpdateProgramParamsCopyWithImpl<$Res, $Val extends UpdateProgramParams>
     Object? name = null,
     Object? startDate = freezed,
     Object? endDate = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -86,6 +91,10 @@ class _$UpdateProgramParamsCopyWithImpl<$Res, $Val extends UpdateProgramParams>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ) as $Val);
   }
 }
@@ -103,7 +112,8 @@ abstract class _$$UpdateProgramParamsImplCopyWith<$Res>
       int clubId,
       String name,
       DateTime? startDate,
-      DateTime? endDate});
+      DateTime? endDate,
+      @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
 
 /// @nodoc
@@ -122,6 +132,7 @@ class __$$UpdateProgramParamsImplCopyWithImpl<$Res>
     Object? name = null,
     Object? startDate = freezed,
     Object? endDate = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$UpdateProgramParamsImpl(
       id: null == id
@@ -144,19 +155,25 @@ class __$$UpdateProgramParamsImplCopyWithImpl<$Res>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UpdateProgramParamsImpl implements _UpdateProgramParams {
+class _$UpdateProgramParamsImpl extends _UpdateProgramParams {
   const _$UpdateProgramParamsImpl(
       {this.id = 0,
       this.clubId = 0,
       this.name = '',
       this.startDate,
-      this.endDate});
+      this.endDate,
+      @JsonKey(includeFromJson: false, includeToJson: false) this.image})
+      : super._();
 
   factory _$UpdateProgramParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpdateProgramParamsImplFromJson(json);
@@ -174,10 +191,14 @@ class _$UpdateProgramParamsImpl implements _UpdateProgramParams {
   final DateTime? startDate;
   @override
   final DateTime? endDate;
+// ignore: invalid_annotation_target
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final File? image;
 
   @override
   String toString() {
-    return 'UpdateProgramParams(id: $id, clubId: $clubId, name: $name, startDate: $startDate, endDate: $endDate)';
+    return 'UpdateProgramParams(id: $id, clubId: $clubId, name: $name, startDate: $startDate, endDate: $endDate, image: $image)';
   }
 
   @override
@@ -190,13 +211,14 @@ class _$UpdateProgramParamsImpl implements _UpdateProgramParams {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate));
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, clubId, name, startDate, endDate);
+      Object.hash(runtimeType, id, clubId, name, startDate, endDate, image);
 
   @JsonKey(ignore: true)
   @override
@@ -213,13 +235,16 @@ class _$UpdateProgramParamsImpl implements _UpdateProgramParams {
   }
 }
 
-abstract class _UpdateProgramParams implements UpdateProgramParams {
+abstract class _UpdateProgramParams extends UpdateProgramParams {
   const factory _UpdateProgramParams(
       {final int id,
       final int clubId,
       final String name,
       final DateTime? startDate,
-      final DateTime? endDate}) = _$UpdateProgramParamsImpl;
+      final DateTime? endDate,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final File? image}) = _$UpdateProgramParamsImpl;
+  const _UpdateProgramParams._() : super._();
 
   factory _UpdateProgramParams.fromJson(Map<String, dynamic> json) =
       _$UpdateProgramParamsImpl.fromJson;
@@ -234,6 +259,9 @@ abstract class _UpdateProgramParams implements UpdateProgramParams {
   DateTime? get startDate;
   @override
   DateTime? get endDate;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  File? get image;
   @override
   @JsonKey(ignore: true)
   _$$UpdateProgramParamsImplCopyWith<_$UpdateProgramParamsImpl> get copyWith =>

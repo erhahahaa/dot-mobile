@@ -1,3 +1,4 @@
+import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_exercise_param.freezed.dart';
@@ -11,9 +12,11 @@ class CreateProgramExerciseParams with _$CreateProgramExerciseParams {
     @Default(0) int mediaId,
     @Default('') String name,
     String? description,
-    @Default(0) int repetition,
-    @Default(0) int sets,
-    @Default(0) int rest,
+    @Default(ProgramUnitValueModel()) ProgramUnitValueModel repetition,
+    @Default(ProgramUnitValueModel()) ProgramUnitValueModel sets,
+    @Default(ProgramUnitValueModel()) ProgramUnitValueModel rest,
+    @Default(ProgramUnitValueModel()) ProgramUnitValueModel tempo,
+    @Default(ProgramUnitValueModel()) ProgramUnitValueModel intensity,
   }) = _CreateProgramExerciseParams;
 
   factory CreateProgramExerciseParams.fromJson(Map<String, dynamic> json) =>

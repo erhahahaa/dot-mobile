@@ -118,6 +118,7 @@ void _initCubits() {
     () => ProgramCubit(
       sl<ProgramRepo>(),
       sl<UserRepo>(),
+      sl<ImagePickerClient>(),
     ),
   );
 

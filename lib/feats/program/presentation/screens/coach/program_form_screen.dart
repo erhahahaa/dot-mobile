@@ -123,71 +123,67 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                 : (context.str?.editProgram ?? 'Edit Program'),
             child: Form(
               key: _formKey,
-              child: Column(
-                children: [
-                  TextF(
-                    key: const Key('createProgramForm_nameField'),
-                    currFocusNode: _nameFn,
-                    nextFocusNode: _startDateFn,
-                    controller: _nameCon,
-                    textInputAction: TextInputAction.next,
-                    prefixIcon: Icon(
-                      Icons.sports,
-                      color: Theme.of(context).textTheme.bodyLarge?.color,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SportImageContainer(
+                      imageUrl: widget.program?.media?.url,
+                      file: state.image,
+                      width: 344.w,
+                      height: 200.w,
+                      borderRadius: BorderRadius.circular(12.r),
+                      onPressed: () =>
+                          context.read<ProgramCubit>().pickImageFromGallery(),
                     ),
-                    hintText:
-                        context.str?.enterProgramName ?? 'Enter program name',
-                    hint: context.str?.name ?? 'Name',
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return context.str?.programNameRequired ??
-                            'Program name is required';
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 8.h),
-                  TextF(
-                    key: const Key('createProgramForm_startDateField'),
-                    currFocusNode: _startDateFn,
-                    nextFocusNode: _endDateFn,
-                    controller: _startDateCon,
-                    textInputAction: TextInputAction.next,
-                    prefixIcon: Icon(
-                      Icons.calendar_month,
-                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    SizedBox(height: 16.h),
+                    TextF(
+                      key: const Key('createProgramForm_nameField'),
+                      currFocusNode: _nameFn,
+                      nextFocusNode: _startDateFn,
+                      controller: _nameCon,
+                      textInputAction: TextInputAction.next,
+                      prefixIcon: Icon(
+                        Icons.sports,
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                      ),
+                      hintText:
+                          context.str?.enterProgramName ?? 'Enter program name',
+                      hint: context.str?.name ?? 'Name',
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return context.str?.programNameRequired ??
+                              'Program name is required';
+                        }
+                        return null;
+                      },
                     ),
-                    hint: context.str?.startDate ?? 'Start Date',
-                    hintText:
-                        context.str?.enterStartDate ?? 'Enter the start date',
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty || _start == null) {
-                        return context.str?.startDateRequired ??
-                            'Start date is required';
-                      }
-                      return null;
-                    },
-                    onTap: () async {
-                      final res = await showDatePicker(
-                        context: context,
-                        firstDate: DateTime(1970),
-                        lastDate: _end == null ? DateTime(2030) : _end!,
-                        initialDate: _end,
-                      );
-                      if (res != null) {
-                        setState(() {
-                          _start = res;
-                          _startDateCon.text = res.toDayMonthYear();
-                        });
-                      }
-                    },
-                    suffixIcon: IconButton(
-                      onPressed: () async {
+                    SizedBox(height: 8.h),
+                    TextF(
+                      key: const Key('createProgramForm_startDateField'),
+                      currFocusNode: _startDateFn,
+                      nextFocusNode: _endDateFn,
+                      controller: _startDateCon,
+                      textInputAction: TextInputAction.next,
+                      prefixIcon: Icon(
+                        Icons.calendar_month,
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                      ),
+                      hint: context.str?.startDate ?? 'Start Date',
+                      hintText:
+                          context.str?.enterStartDate ?? 'Enter the start date',
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty || _start == null) {
+                          return context.str?.startDateRequired ??
+                              'Start date is required';
+                        }
+                        return null;
+                      },
+                      onTap: () async {
                         final res = await showDatePicker(
                           context: context,
                           firstDate: DateTime(1970),
                           lastDate: _end == null ? DateTime(2030) : _end!,
-                          initialDate: _start,
+                          initialDate: _end,
                         );
                         if (res != null) {
                           setState(() {
@@ -196,47 +192,48 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                           });
                         }
                       },
-                      icon: Icon(
-                        Icons.calendar_today,
-                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                      suffixIcon: IconButton(
+                        onPressed: () async {
+                          final res = await showDatePicker(
+                            context: context,
+                            firstDate: DateTime(1970),
+                            lastDate: _end == null ? DateTime(2030) : _end!,
+                            initialDate: _start,
+                          );
+                          if (res != null) {
+                            setState(() {
+                              _start = res;
+                              _startDateCon.text = res.toDayMonthYear();
+                            });
+                          }
+                        },
+                        icon: Icon(
+                          Icons.calendar_today,
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 8.h),
-                  TextF(
-                    key: const Key('createProgramForm_endDateField'),
-                    currFocusNode: _endDateFn,
-                    controller: _endDateCon,
-                    textInputAction: TextInputAction.done,
-                    prefixIcon: Icon(
-                      Icons.calendar_month,
-                      color: Theme.of(context).textTheme.bodyLarge?.color,
-                    ),
-                    hint: context.str?.endDate ?? 'End Date',
-                    hintText: context.str?.enterEndDate ?? 'Enter the end date',
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty || _end == null) {
-                        return context.str?.endDateRequired ??
-                            'End date is required';
-                      }
-                      return null;
-                    },
-                    onTap: () async {
-                      final res = await showDatePicker(
-                        context: context,
-                        firstDate: _start == null ? DateTime(1970) : _start!,
-                        lastDate: DateTime(2030),
-                        initialDate: _end,
-                      );
-                      if (res != null) {
-                        setState(() {
-                          _end = res;
-                          _endDateCon.text = res.toDayMonthYear();
-                        });
-                      }
-                    },
-                    suffixIcon: IconButton(
-                      onPressed: () async {
+                    SizedBox(height: 8.h),
+                    TextF(
+                      key: const Key('createProgramForm_endDateField'),
+                      currFocusNode: _endDateFn,
+                      controller: _endDateCon,
+                      textInputAction: TextInputAction.done,
+                      prefixIcon: Icon(
+                        Icons.calendar_month,
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                      ),
+                      hint: context.str?.endDate ?? 'End Date',
+                      hintText:
+                          context.str?.enterEndDate ?? 'Enter the end date',
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty || _end == null) {
+                          return context.str?.endDateRequired ??
+                              'End date is required';
+                        }
+                        return null;
+                      },
+                      onTap: () async {
                         final res = await showDatePicker(
                           context: context,
                           firstDate: _start == null ? DateTime(1970) : _start!,
@@ -250,50 +247,69 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                           });
                         }
                       },
-                      icon: Icon(
-                        Icons.calendar_today,
-                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                      suffixIcon: IconButton(
+                        onPressed: () async {
+                          final res = await showDatePicker(
+                            context: context,
+                            firstDate:
+                                _start == null ? DateTime(1970) : _start!,
+                            lastDate: DateTime(2030),
+                            initialDate: _end,
+                          );
+                          if (res != null) {
+                            setState(() {
+                              _end = res;
+                              _endDateCon.text = res.toDayMonthYear();
+                            });
+                          }
+                        },
+                        icon: Icon(
+                          Icons.calendar_today,
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 16.h),
-                  Button(
-                    key: const Key('createProgramForm_createButton'),
-                    text: widget.program == null
-                        ? context.str?.create ?? 'Create'
-                        : context.str?.edit ?? 'Edit',
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        if (_end == null && _start == null) {
-                          return;
-                        }
+                    SizedBox(height: 16.h),
+                    Button(
+                      key: const Key('createProgramForm_createButton'),
+                      text: widget.program == null
+                          ? context.str?.create ?? 'Create'
+                          : context.str?.edit ?? 'Edit',
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          if (_end == null && _start == null) {
+                            return;
+                          }
 
-                        if (widget.program != null) {
-                          context.read<ProgramCubit>().update(
-                                UpdateProgramParams(
-                                  id: widget.program!.id,
-                                  clubId: widget.club.id,
-                                  name: _nameCon.text,
-                                  startDate: _start!,
-                                  endDate: _end!,
-                                ),
-                              );
-                        } else {
-                          context.read<ProgramCubit>().create(
-                                CreateProgramParams(
-                                  clubId: widget.club.id,
-                                  name: _nameCon.text,
-                                  startDate: _start!,
-                                  endDate: _end!,
-                                ),
-                              );
+                          if (widget.program != null) {
+                            context.read<ProgramCubit>().update(
+                                  UpdateProgramParams(
+                                    id: widget.program!.id,
+                                    clubId: widget.club.id,
+                                    name: _nameCon.text,
+                                    startDate: _start!,
+                                    endDate: _end!,
+                                    image: state.image,
+                                  ),
+                                );
+                          } else {
+                            context.read<ProgramCubit>().create(
+                                  CreateProgramParams(
+                                    clubId: widget.club.id,
+                                    name: _nameCon.text,
+                                    startDate: _start!,
+                                    endDate: _end!,
+                                    image: state.image,
+                                  ),
+                                );
+                          }
                         }
-                      }
-                    },
-                    isLoading: state.state == BaseState.loading,
-                    isDisabled: state.state == BaseState.loading,
-                  ),
-                ],
+                      },
+                      isLoading: state.state == BaseState.loading,
+                      isDisabled: state.state == BaseState.loading,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

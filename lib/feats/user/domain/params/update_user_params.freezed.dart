@@ -269,7 +269,7 @@ class __$$UpdateUserParamsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UpdateUserParamsImpl implements _UpdateUserParams {
+class _$UpdateUserParamsImpl extends _UpdateUserParams {
   const _$UpdateUserParamsImpl(
       {required this.id,
       required this.email,
@@ -284,7 +284,8 @@ class _$UpdateUserParamsImpl implements _UpdateUserParams {
       this.religion,
       this.address,
       this.expertise,
-      @JsonKey(includeFromJson: false, includeToJson: false) this.image});
+      @JsonKey(includeFromJson: false, includeToJson: false) this.image})
+      : super._();
 
   factory _$UpdateUserParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpdateUserParamsImplFromJson(json);
@@ -386,7 +387,7 @@ class _$UpdateUserParamsImpl implements _UpdateUserParams {
   }
 }
 
-abstract class _UpdateUserParams implements UpdateUserParams {
+abstract class _UpdateUserParams extends UpdateUserParams {
   const factory _UpdateUserParams(
       {required final int id,
       required final String email,
@@ -403,6 +404,7 @@ abstract class _UpdateUserParams implements UpdateUserParams {
       final String? expertise,
       @JsonKey(includeFromJson: false, includeToJson: false)
       final File? image}) = _$UpdateUserParamsImpl;
+  const _UpdateUserParams._() : super._();
 
   factory _UpdateUserParams.fromJson(Map<String, dynamic> json) =
       _$UpdateUserParamsImpl.fromJson;

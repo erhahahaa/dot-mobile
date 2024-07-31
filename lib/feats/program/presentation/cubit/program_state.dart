@@ -7,5 +7,6 @@ class ProgramState with _$ProgramState {
     @Default([]) List<ProgramModel> programs,
     Failure? failure,
     ProgramModel? createdProgram,
+    File? image,
   }) = _ProgramState;
 }

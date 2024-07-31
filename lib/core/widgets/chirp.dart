@@ -1,4 +1,5 @@
 import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,6 +11,9 @@ class Chirp extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final Widget? spacer;
   final TextAlign textAlign;
+  final double? width, height;
+  final MainAxisSize mainAxisSize;
+
   const Chirp({
     super.key,
     required this.text,
@@ -19,6 +23,9 @@ class Chirp extends StatelessWidget {
     this.padding,
     this.spacer,
     this.textAlign = TextAlign.left,
+    this.width,
+    this.height,
+    this.mainAxisSize = MainAxisSize.min,
   });
 
   @override
@@ -35,8 +42,10 @@ class Chirp extends StatelessWidget {
           30.r,
         ),
       ),
+      width: width,
+      height: height,
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: mainAxisSize,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (icon != null) icon!,
@@ -44,9 +53,9 @@ class Chirp extends StatelessWidget {
           Text(
             text,
             style: style ??
-                Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.white,
-                    ),
+                context.theme.textTheme.bodyMedium?.copyWith(
+                  color: Colors.white,
+                ),
             textAlign: textAlign,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,

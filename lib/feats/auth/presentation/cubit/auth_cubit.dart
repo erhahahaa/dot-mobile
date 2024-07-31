@@ -67,6 +67,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> checkAuth() async {
+    emitLoading();
     final res = await _authRepo.me();
     res.fold(
       (l) {
@@ -174,8 +175,6 @@ class AuthCubit extends Cubit<AuthState> {
       },
     );
   }
-
-
 
   void logout() async {
     emitLoading();

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -26,6 +27,12 @@ class UpdateUserParams with _$UpdateUserParams {
     @JsonKey(includeFromJson: false, includeToJson: false) File? image,
   }) = _UpdateUserParams;
 
+  const UpdateUserParams._();
+
   factory UpdateUserParams.fromJson(Map<String, dynamic> json) =>
       _$UpdateUserParamsFromJson(json);
+
+  FormData toFormData() => FormData.fromMap({
+        'image': image != null ? MultipartFile.fromFileSync(image!.path) : null,
+      });
 }

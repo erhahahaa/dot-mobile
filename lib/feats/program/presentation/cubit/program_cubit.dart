@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:dot_coaching/core/core.dart';
@@ -14,10 +15,12 @@ part 'program_state.dart';
 class ProgramCubit extends Cubit<ProgramState> {
   final ProgramRepo _programRepo;
   final UserRepo _userRepo;
+  final ImagePickerClient _imagePickerClient;
 
   ProgramCubit(
     this._programRepo,
     this._userRepo,
+    this._imagePickerClient,
   ) : super(const ProgramState());
 
   void clear() {
@@ -91,6 +94,7 @@ class ProgramCubit extends Cubit<ProgramState> {
             state: BaseState.success,
             createdProgram: r,
             programs: programs,
+            image: null,
           ),
         );
       },
@@ -135,6 +139,7 @@ class ProgramCubit extends Cubit<ProgramState> {
             state: BaseState.success,
             createdProgram: r,
             programs: programs,
+            image: null,
           ),
         );
       },
@@ -248,6 +253,24 @@ class ProgramCubit extends Cubit<ProgramState> {
             programs: r,
           ),
         );
+      },
+    );
+  }
+
+  Future<bool> pickImageFromGallery() async {
+    final res = await _imagePickerClient.getImageFromGallery();
+
+    return res.fold(
+      (l) => false,
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            image: File(r.path),
+          ),
+        );
+        return true;
       },
     );
   }

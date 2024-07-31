@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:isar/isar.dart';
@@ -15,8 +14,9 @@ class UserRepoImpl implements UserRepo {
 
   @override
   Future<Either<Failure, UserEntity>> getMe() async {
-    final res =
-        await _local.isar.userEntitys.filter().tokenIsNotEmpty().findAll();
+    final res = await _local.isar.txn(() async {
+      return await _local.isar.userEntitys.filter().tokenIsNotEmpty().findAll();
+    });
 
     if (res.isEmpty) {
       return const Left(StorageFailure(message: 'No user data found'));
@@ -116,9 +116,7 @@ class UserRepoImpl implements UserRepo {
     if (params.image != null) {
       final photoUpdateRes = await _remote.putRequest(
         '${ListAPI.USER}/update-photo',
-        formData: FormData.fromMap({
-          'image': await MultipartFile.fromFile(params.image?.path ?? ''),
-        }),
+        formData: params.toFormData(),
         converter: (res) => UserModel.fromJson(res['data']),
       );
 

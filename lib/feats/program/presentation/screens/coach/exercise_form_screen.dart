@@ -49,11 +49,25 @@ class _ExerciseFormState extends State<ExerciseForm> {
           setsFN: FocusNode(),
           repsFN: FocusNode(),
           restFN: FocusNode(),
+          tempoFN: FocusNode(),
+          intensityFn: FocusNode(),
           descriptionFN: FocusNode(),
           nameCon: TextEditingController(text: exercise.name),
-          setsCon: TextEditingController(text: exercise.sets.toString()),
-          repsCon: TextEditingController(text: exercise.repetition.toString()),
-          restCon: TextEditingController(text: exercise.rest.toString()),
+          setsCon: TextEditingController(text: exercise.sets?.value.toString()),
+          repsCon: TextEditingController(
+              text: exercise.repetition?.value.toString()),
+          restCon: TextEditingController(text: exercise.rest?.value.toString()),
+          tempoCon:
+              TextEditingController(text: exercise.tempo?.value.toString()),
+          intensityCon:
+              TextEditingController(text: exercise.intensity?.value.toString()),
+          setsUnit: exercise.sets?.unit?.toSetsUnit ?? ProgramSetsUnit.set,
+          repsUnit: exercise.repetition?.unit?.toRepitionUnit ??
+              ProgramRepitionUnit.rep,
+          restUnit: exercise.rest?.unit?.toRestUnit ?? ProgramRestUnit.sec,
+          tempoUnit: exercise.tempo?.unit?.toTempoUnit ?? ProgramTempoUnit.bpm,
+          intensityUnit: exercise.intensity?.unit?.toIntesityUnit ??
+              ProgramIntensityUnit.rpe,
           descriptionCon: TextEditingController(text: exercise.description),
           media: exercise.media != null
               ? MediaModel(
@@ -168,14 +182,31 @@ class _ExerciseFormState extends State<ExerciseForm> {
                     exercises.add(
                       CreateProgramExerciseParams(
                         name: item.nameCon.text,
-                        sets: int.parse(item.setsCon.text),
-                        repetition: int.parse(item.repsCon.text),
-                        rest: int.parse(item.restCon.text),
                         description: item.descriptionCon.text.isNotEmpty
                             ? item.descriptionCon.text
                             : null,
                         programId: widget.program.id,
                         mediaId: item.media?.id ?? 0,
+                        sets: ProgramUnitValueModel(
+                          unit: item.setsUnit.value,
+                          value: int.parse(item.setsCon.text),
+                        ),
+                        repetition: ProgramUnitValueModel(
+                          unit: item.repsUnit.value,
+                          value: int.parse(item.repsCon.text),
+                        ),
+                        rest: ProgramUnitValueModel(
+                          unit: item.restUnit.value,
+                          value: int.parse(item.restCon.text),
+                        ),
+                        tempo: ProgramUnitValueModel(
+                          unit: item.tempoUnit.value,
+                          value: int.parse(item.tempoCon.text),
+                        ),
+                        intensity: ProgramUnitValueModel(
+                          unit: item.intensityUnit.value,
+                          value: int.parse(item.intensityCon.text),
+                        ),
                         order: item.order,
                       ),
                     );
@@ -188,14 +219,31 @@ class _ExerciseFormState extends State<ExerciseForm> {
                       UpdateProgramExerciseParams(
                         id: item.exercise.id,
                         name: item.nameCon.text,
-                        sets: int.parse(item.setsCon.text),
-                        repetition: int.parse(item.repsCon.text),
-                        rest: int.parse(item.restCon.text),
                         description: item.descriptionCon.text.isNotEmpty
                             ? item.descriptionCon.text
                             : null,
                         programId: widget.program.id,
                         mediaId: item.media?.id ?? 0,
+                        sets: ProgramUnitValueModel(
+                          unit: item.setsUnit.value,
+                          value: int.parse(item.setsCon.text),
+                        ),
+                        repetition: ProgramUnitValueModel(
+                          unit: item.repsUnit.value,
+                          value: int.parse(item.repsCon.text),
+                        ),
+                        rest: ProgramUnitValueModel(
+                          unit: item.restUnit.value,
+                          value: int.parse(item.restCon.text),
+                        ),
+                        tempo: ProgramUnitValueModel(
+                          unit: item.tempoUnit.value,
+                          value: int.parse(item.tempoCon.text),
+                        ),
+                        intensity: ProgramUnitValueModel(
+                          unit: item.intensityUnit.value,
+                          value: int.parse(item.intensityCon.text),
+                        ),
                         order: item.order,
                       ),
                     );
@@ -230,11 +278,15 @@ class _ExerciseFormState extends State<ExerciseForm> {
                           setsFN: FocusNode(),
                           repsFN: FocusNode(),
                           restFN: FocusNode(),
+                          tempoFN: FocusNode(),
+                          intensityFn: FocusNode(),
                           descriptionFN: FocusNode(),
                           nameCon: TextEditingController(),
                           setsCon: TextEditingController(),
                           repsCon: TextEditingController(),
                           restCon: TextEditingController(),
+                          tempoCon: TextEditingController(),
+                          intensityCon: TextEditingController(),
                           descriptionCon: TextEditingController(),
                           order: _items.length,
                         ));
@@ -445,6 +497,7 @@ class _ExerciseFormState extends State<ExerciseForm> {
                             Row(
                               children: [
                                 Expanded(
+                                  flex: 2,
                                   child: TextF(
                                     key: Key('exerciseSets_$index'),
                                     currFocusNode: _items[index].setsFN,
@@ -485,6 +538,51 @@ class _ExerciseFormState extends State<ExerciseForm> {
                                 ),
                                 SizedBox(width: 8.w),
                                 Expanded(
+                                  child: DropDown<ProgramSetsUnit>(
+                                    key: Key('exerciseSets_$index'),
+                                    hintIsVisible: false,
+                                    items: ProgramSetsUnit.values.map((unit) {
+                                      return DropdownMenuItem(
+                                        value: unit,
+                                        child: Text(unit.name),
+                                      );
+                                    }).toList(),
+                                    value: _items[index].setsUnit,
+                                    onChanged: (ProgramSetsUnit? value) {
+                                      if (value == null) return;
+                                      setState(() {
+                                        _items[index].setsUnit = value;
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Sets',
+                                      filled: true,
+                                      fillColor:
+                                          Colors.redAccent.withOpacity(0.1),
+                                      border: OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius:
+                                            BorderRadius.circular(12.r),
+                                        borderSide: BorderSide(
+                                          color:
+                                              Colors.redAccent.withOpacity(0.1),
+                                        ),
+                                      ),
+                                      hintText: 'Total sets',
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 12.w,
+                                        vertical: 8.h,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 2,
                                   child: TextF(
                                     key: Key('exerciseReps_$index'),
                                     currFocusNode: _items[index].repsFN,
@@ -505,17 +603,58 @@ class _ExerciseFormState extends State<ExerciseForm> {
                                       labelText: 'Reps',
                                       filled: true,
                                       fillColor:
-                                          Colors.amberAccent.withOpacity(0.1),
+                                          Colors.yellowAccent.withOpacity(0.1),
                                       border: OutlineInputBorder(
                                         gapPadding: 0,
                                         borderRadius:
                                             BorderRadius.circular(12.r),
                                         borderSide: BorderSide(
-                                          color: Colors.amberAccent
+                                          color: Colors.yellowAccent
                                               .withOpacity(0.1),
                                         ),
                                       ),
-                                      hintText: 'Total reps',
+                                      hintText: 'Total sets',
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 12.w,
+                                        vertical: 8.h,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 8.w),
+                                Expanded(
+                                  child: DropDown<ProgramRepitionUnit>(
+                                    key: Key('exerciseRepsUnit_$index'),
+                                    hintIsVisible: false,
+                                    items:
+                                        ProgramRepitionUnit.values.map((unit) {
+                                      return DropdownMenuItem(
+                                        value: unit,
+                                        child: Text(unit.name),
+                                      );
+                                    }).toList(),
+                                    value: _items[index].repsUnit,
+                                    onChanged: (ProgramRepitionUnit? value) {
+                                      if (value == null) return;
+                                      setState(() {
+                                        _items[index].repsUnit = value;
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Reps',
+                                      filled: true,
+                                      fillColor:
+                                          Colors.yellowAccent.withOpacity(0.1),
+                                      border: OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius:
+                                            BorderRadius.circular(12.r),
+                                        borderSide: BorderSide(
+                                          color: Colors.yellowAccent
+                                              .withOpacity(0.1),
+                                        ),
+                                      ),
+                                      hintText: 'Total sets',
                                       contentPadding: EdgeInsets.symmetric(
                                         horizontal: 12.w,
                                         vertical: 8.h,
@@ -529,10 +668,11 @@ class _ExerciseFormState extends State<ExerciseForm> {
                             Row(
                               children: [
                                 Expanded(
+                                  flex: 2,
                                   child: TextF(
                                     key: Key('exerciseRest_$index'),
                                     currFocusNode: _items[index].restFN,
-                                    nextFocusNode: _items[index].descriptionFN,
+                                    nextFocusNode: _items[index].tempoFN,
                                     controller: _items[index].restCon,
                                     isHintVisible: false,
                                     keyboardType: TextInputType.number,
@@ -560,6 +700,217 @@ class _ExerciseFormState extends State<ExerciseForm> {
                                         ),
                                       ),
                                       hintText: 'Rest time in seconds',
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 12.w,
+                                        vertical: 8.h,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 8.w),
+                                Expanded(
+                                  child: DropDown<ProgramRestUnit>(
+                                    key: Key('exerciseRestUnit_$index'),
+                                    hintIsVisible: false,
+                                    items: ProgramRestUnit.values.map((unit) {
+                                      return DropdownMenuItem(
+                                        value: unit,
+                                        child: Text(unit.name),
+                                      );
+                                    }).toList(),
+                                    value: _items[index].restUnit,
+                                    onChanged: (ProgramRestUnit? value) {
+                                      if (value == null) return;
+                                      setState(() {
+                                        _items[index].restUnit = value;
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Rest time',
+                                      filled: true,
+                                      fillColor:
+                                          Colors.greenAccent.withOpacity(0.1),
+                                      border: OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius:
+                                            BorderRadius.circular(12.r),
+                                        borderSide: BorderSide(
+                                          color: Colors.greenAccent
+                                              .withOpacity(0.1),
+                                        ),
+                                      ),
+                                      hintText: 'Rest time in seconds',
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 12.w,
+                                        vertical: 8.h,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: TextF(
+                                    key: Key('exerciseTempo_$index'),
+                                    currFocusNode: _items[index].tempoFN,
+                                    nextFocusNode: _items[index].intensityFn,
+                                    controller: _items[index].tempoCon,
+                                    isHintVisible: false,
+                                    keyboardType: TextInputType.number,
+                                    validator: (String? value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter tempo';
+                                      }
+                                      if (int.tryParse(value) == null) {
+                                        return 'Invalid number';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Tempo',
+                                      filled: true,
+                                      fillColor:
+                                          Colors.orangeAccent.withOpacity(0.1),
+                                      border: OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius:
+                                            BorderRadius.circular(12.r),
+                                        borderSide: BorderSide(
+                                          color: Colors.orangeAccent
+                                              .withOpacity(0.1),
+                                        ),
+                                      ),
+                                      hintText: 'Tempo',
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 12.w,
+                                        vertical: 8.h,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 8.w),
+                                Expanded(
+                                  child: DropDown<ProgramTempoUnit>(
+                                    key: Key('exerciseTempoUnit_$index'),
+                                    hintIsVisible: false,
+                                    items: ProgramTempoUnit.values.map((unit) {
+                                      return DropdownMenuItem(
+                                        value: unit,
+                                        child: Text(unit.name),
+                                      );
+                                    }).toList(),
+                                    value: _items[index].tempoUnit,
+                                    onChanged: (ProgramTempoUnit? value) {
+                                      if (value == null) return;
+                                      setState(() {
+                                        _items[index].tempoUnit = value;
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Tempo',
+                                      filled: true,
+                                      fillColor:
+                                          Colors.orangeAccent.withOpacity(0.1),
+                                      border: OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius:
+                                            BorderRadius.circular(12.r),
+                                        borderSide: BorderSide(
+                                          color: Colors.orangeAccent
+                                              .withOpacity(0.1),
+                                        ),
+                                      ),
+                                      hintText: 'Tempo',
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 12.w,
+                                        vertical: 8.h,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: TextF(
+                                    key: Key('exerciseIntensity_$index'),
+                                    currFocusNode: _items[index].intensityFn,
+                                    nextFocusNode: _items[index].descriptionFN,
+                                    controller: _items[index].intensityCon,
+                                    isHintVisible: false,
+                                    keyboardType: TextInputType.number,
+                                    validator: (String? value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter intensity';
+                                      }
+                                      if (int.tryParse(value) == null) {
+                                        return 'Invalid number';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Intensity',
+                                      filled: true,
+                                      fillColor:
+                                          Colors.purpleAccent.withOpacity(0.1),
+                                      border: OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius:
+                                            BorderRadius.circular(12.r),
+                                        borderSide: BorderSide(
+                                          color: Colors.purpleAccent
+                                              .withOpacity(0.1),
+                                        ),
+                                      ),
+                                      hintText: 'Intensity',
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 12.w,
+                                        vertical: 8.h,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 8.w),
+                                Expanded(
+                                  child: DropDown<ProgramIntensityUnit>(
+                                    key: Key('exerciseIntensityUnit_$index'),
+                                    hintIsVisible: false,
+                                    items:
+                                        ProgramIntensityUnit.values.map((unit) {
+                                      return DropdownMenuItem(
+                                        value: unit,
+                                        child: Text(unit.name),
+                                      );
+                                    }).toList(),
+                                    value: _items[index].intensityUnit,
+                                    onChanged: (ProgramIntensityUnit? value) {
+                                      if (value == null) return;
+                                      setState(() {
+                                        _items[index].intensityUnit = value;
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Intensity',
+                                      filled: true,
+                                      fillColor:
+                                          Colors.purpleAccent.withOpacity(0.1),
+                                      border: OutlineInputBorder(
+                                        gapPadding: 0,
+                                        borderRadius:
+                                            BorderRadius.circular(12.r),
+                                        borderSide: BorderSide(
+                                          color: Colors.purpleAccent
+                                              .withOpacity(0.1),
+                                        ),
+                                      ),
+                                      hintText: 'Intensity',
                                       contentPadding: EdgeInsets.symmetric(
                                         horizontal: 12.w,
                                         vertical: 8.h,
@@ -632,13 +983,23 @@ class ExerciseItem {
   FocusNode setsFN;
   FocusNode repsFN;
   FocusNode restFN;
+  FocusNode tempoFN;
+  FocusNode intensityFn;
   FocusNode descriptionFN;
 
   TextEditingController nameCon;
   TextEditingController setsCon;
   TextEditingController repsCon;
   TextEditingController restCon;
+  TextEditingController tempoCon;
+  TextEditingController intensityCon;
   TextEditingController descriptionCon;
+
+  ProgramRepitionUnit repsUnit;
+  ProgramSetsUnit setsUnit;
+  ProgramRestUnit restUnit;
+  ProgramTempoUnit tempoUnit;
+  ProgramIntensityUnit intensityUnit;
 
   bool isExpanded;
   int order;
@@ -649,12 +1010,21 @@ class ExerciseItem {
     required this.setsFN,
     required this.repsFN,
     required this.restFN,
+    required this.tempoFN,
+    required this.intensityFn,
     required this.descriptionFN,
     required this.nameCon,
     required this.setsCon,
     required this.repsCon,
     required this.restCon,
+    required this.tempoCon,
+    required this.intensityCon,
     required this.descriptionCon,
+    this.repsUnit = ProgramRepitionUnit.rep,
+    this.setsUnit = ProgramSetsUnit.set,
+    this.restUnit = ProgramRestUnit.sec,
+    this.tempoUnit = ProgramTempoUnit.bpm,
+    this.intensityUnit = ProgramIntensityUnit.rpe,
     this.isExpanded = false,
     this.media,
     required this.order,
