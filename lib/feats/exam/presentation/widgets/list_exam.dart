@@ -37,7 +37,7 @@ class ListExam extends StatelessWidget {
 
   Widget _buildListExam(BuildContext context) {
     if (isLoading) {
-      final exam = List.generate(3, (index) => ExamModel()).toList();
+      final exam = List.generate(3, (index) => const ExamModel()).toList();
 
       return Skeletonizer(
           child: ListView.builder(

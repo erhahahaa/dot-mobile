@@ -50,8 +50,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _genderFocusNode = FocusNode();
 
     userGender = [
-      DropdownMenuItem(value: UserGender.male, child: Text('Male')),
-      DropdownMenuItem(value: UserGender.female, child: Text('Female')),
+      const DropdownMenuItem(value: UserGender.male, child: Text('Male')),
+      const DropdownMenuItem(value: UserGender.female, child: Text('Female')),
     ];
   }
 
@@ -88,7 +88,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           key: _formKey,
           child: Column(
             children: [
-              ImagePickerWidget(),
+              const ImagePickerWidget(),
               Container(
                 padding: EdgeInsets.all(8.w),
                 margin: EdgeInsets.all(8.w),
