@@ -24,7 +24,7 @@ class _MemberScreenState extends State<MemberScreen> {
           body: RefreshIndicator(
             onRefresh: () => context
                 .read<ClubCubit>()
-                .getMembers(PaginationParams(), widget.clubId),
+                .getMembers(const PaginationParams(), widget.clubId),
             child: RoundedTopBackground(
               title: context.str?.members ?? 'Members',
               child: SingleChildScrollView(

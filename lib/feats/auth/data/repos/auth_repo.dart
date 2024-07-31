@@ -108,9 +108,9 @@ class AuthRepoImpl implements AuthRepo {
     );
 
     if (res == 0) {
-      return Right(true);
+      return const Right(true);
     } else {
-      return Left(StorageFailure(message: 'Failed to logout'));
+      return const Left(StorageFailure(message: 'Failed to logout'));
     }
   }
 }

@@ -39,7 +39,7 @@ class ImagePickerClient with FirebaseCrashLogger {
     try {
       final res = await _imageCropper.cropImage(
         sourcePath: image.path,
-        aspectRatio: aspectRatio ?? CropAspectRatio(ratioX: 1, ratioY: 1),
+        aspectRatio: aspectRatio ?? const CropAspectRatio(ratioX: 1, ratioY: 1),
         // cropStyle: CropStyle.circle,
         compressQuality: 10,
         uiSettings: [
