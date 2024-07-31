@@ -144,4 +144,26 @@ class UserRepoImpl implements UserRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, List<UserModel>>> search(
+    String query,
+  ) async {
+    final res = await _remote.getRequest(
+      '${ListAPI.USER}/search',
+      queryParameters: {
+        'query': query,
+      },
+      converter: (res) {
+        List<UserModel> data = [];
+        for (var item in res['data']) {
+          data.add(UserModel.fromJson(item));
+        }
+
+        return data;
+      },
+    );
+
+    return res;
+  }
 }

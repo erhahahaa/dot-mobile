@@ -1,18 +1,25 @@
-import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SearchClub extends StatefulWidget {
-  const SearchClub({super.key});
+class ClubSearchBar extends StatefulWidget {
+  final Function(String) onSearch;
+  final double? width, height;
+  final int? debounceTime;
+  const ClubSearchBar({
+    super.key,
+    required this.onSearch,
+    this.width,
+    this.height,
+    this.debounceTime,
+  });
 
   @override
-  State<SearchClub> createState() => _SearchClubState();
+  State<ClubSearchBar> createState() => _ClubSearchBarState();
 }
 
-class _SearchClubState extends State<SearchClub> {
+class _ClubSearchBarState extends State<ClubSearchBar> {
   late TextEditingController _controller;
   late FocusNode _focusNode;
 
@@ -33,8 +40,8 @@ class _SearchClubState extends State<SearchClub> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 119.w,
-      height: 30.h,
+      width: widget.width ?? 119.w,
+      height: widget.height ?? 30.h,
       child: TextField(
         textAlignVertical: TextAlignVertical.center,
         controller: _controller,
@@ -42,10 +49,14 @@ class _SearchClubState extends State<SearchClub> {
         textInputAction: TextInputAction.search,
         onChanged: (value) => EasyDebounce.debounce(
           'search_club',
-          const Duration(milliseconds: 100),
-          () => context.read<ClubCubit>().search(value),
+          Duration(milliseconds: widget.debounceTime ?? 100),
+          () => widget.onSearch(
+            _controller.text,
+          ),
         ),
-        onSubmitted: (value) => context.read<ClubCubit>().search(value),
+        onSubmitted: (value) => widget.onSearch(
+          _controller.text,
+        ),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(8.w),
           hintText: context.str?.search ?? 'Search',

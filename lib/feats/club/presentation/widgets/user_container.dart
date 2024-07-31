@@ -9,11 +9,14 @@ class UserContainer extends StatelessWidget {
   final UserModel user;
   final int clubId;
   final bool withPopUp;
+  final bool showUsername;
+
   const UserContainer({
     super.key,
     required this.user,
     required this.clubId,
     required this.withPopUp,
+    this.showUsername = false,
   });
 
   @override
@@ -27,6 +30,7 @@ class UserContainer extends StatelessWidget {
           color: theme.colorScheme.primaryContainer.withOpacity(0.1),
         ),
         padding: EdgeInsets.all(8.w),
+        margin: EdgeInsets.only(bottom: 8.w),
         child: Row(
           children: [
             CircleAvatar(
@@ -41,11 +45,23 @@ class UserContainer extends StatelessWidget {
                   user.name,
                   style: theme.textTheme.bodyLarge,
                 ),
-                Chirp(
-                  text: user.role.name.capitalize,
-                  style: theme.textTheme.bodySmall,
-                  color: user.role.color,
-                )
+                if (showUsername) ...[
+                  Chirp(
+                    text: '@${user.username}',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.surface,
+                    ),
+                    color: user.role.color,
+                  )
+                ] else ...[
+                  Chirp(
+                    text: user.role.name.capitalize,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.surface,
+                    ),
+                    color: user.role.color,
+                  )
+                ]
               ],
             ),
             const Spacer(),
@@ -93,6 +109,8 @@ class UserContainer extends StatelessWidget {
                         context.read<ClubCubit>().addUser(clubId, user.id),
                     child: Text(
                       context.str?.add ?? 'Add',
+                      style: theme.textTheme.bodyMedium
+                          ?.copyWith(color: theme.colorScheme.surface),
                     ),
                   ),
           ],

@@ -11,5 +11,6 @@ abstract class UserRepo {
     String email,
   );
   Future<Either<Failure, UserModel>> updateProfile(UpdateUserParams params);
+  Future<Either<Failure, List<UserModel>>> search(String query);
   Future<bool> clear();
 }

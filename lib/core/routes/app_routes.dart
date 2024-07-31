@@ -62,7 +62,7 @@ enum AppRoutes {
   coachHistoryDetail('/coach/history/:id'),
 
   // Coach Media
-  coachMedia('/coach/media/:clubId');
+  coachMedia('/coach/media');
 
   // Coach Profile
   // coachProfile('/coach/profile');

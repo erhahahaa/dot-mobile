@@ -3,6 +3,7 @@ import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -118,8 +119,8 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                           onTap: () {
                             context.pushNamed(
                               AppRoutes.coachMedia.name,
-                              pathParameters: {
-                                'clubId': _club.id.toString(),
+                              extra: {
+                                'club': _club,
                               },
                             );
                           },
@@ -166,7 +167,52 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                           });
                         }),
                     SizedBox(height: 4.h),
-                    LeaveButton(clubId: widget.club.id),
+                    LeaveButton(
+                      clubId: widget.club.id,
+                      onPressed: () => showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            title:
+                                H2Text(context.str?.leaveClub ?? 'Leave Club'),
+                            content: H4Text(
+                              context.str?.leaveClubConfirmation ??
+                                  'Are you sure you want to leave this club?',
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: Text(context.str?.cancel ?? 'Cancel'),
+                              ),
+                              BlocListener<ClubCubit, ClubState>(
+                                  listenWhen: (p, c) => p.state != c.state,
+                                  listener: (context, state) {
+                                    if (state.state == BaseState.failure) {
+                                      ToastModel(
+                                        message: context.str?.failedLeaveClub,
+                                        type: ToastType.error,
+                                      ).fire(context);
+                                    }
+
+                                    if (state.state == BaseState.success) {
+                                      ToastModel(
+                                        message: context.str?.leaveClubSuccess,
+                                        type: ToastType.success,
+                                      ).fire(context);
+                                      context.pop();
+                                    }
+                                  },
+                                  child: TextButton(
+                                    onPressed: () => context
+                                        .read<ClubCubit>()
+                                        .leave(widget.club.id),
+                                    child: Text(context.str?.leave ?? 'Leave'),
+                                  )),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),

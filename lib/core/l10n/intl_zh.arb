@@ -166,5 +166,8 @@
   "usernameCantContainUppercase": "用户名不能包含大写字母",
   "usernameNotAvailable": "用户名不可用",
   "usernameRequired": "用户名是必需的",
-  "volleyBall": "排球"
+  "volleyBall": "排球",
+  "warning": "警告",
+  "leaveClub": "离开俱乐部",
+  "leaveClubConfirmation": "您确定要离开这个俱乐部吗？"
 }

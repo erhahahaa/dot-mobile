@@ -5,8 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EditButton extends StatelessWidget {
   final ClubModel club;
-  final void Function()? onPressed;
-  const EditButton({super.key, required this.club, this.onPressed});
+  final VoidCallback? onPressed;
+
+  const EditButton({
+    super.key,
+    required this.club,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {

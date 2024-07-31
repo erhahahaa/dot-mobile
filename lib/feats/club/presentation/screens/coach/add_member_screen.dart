@@ -7,7 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddMemberScreen extends StatelessWidget {
   final int clubId;
-  const AddMemberScreen({super.key, required this.clubId});
+
+  const AddMemberScreen({
+    super.key,
+    required this.clubId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +20,24 @@ class AddMemberScreen extends StatelessWidget {
         builder: (context, state) {
           return RoundedTopBackground(
             title: context.str?.addMember ?? 'Add Member',
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SearchClub(),
-                SizedBox(height: 8.h),
-                ListUser(users: state.members, clubId: clubId),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ClubSearchBar(
+                    onSearch: context.read<ClubCubit>().searchUser,
+                    debounceTime: 500,
+                    height: 48.h,
+                  ),
+                  SizedBox(height: 8.h),
+                  ListUser(
+                    users: state.users,
+                    clubId: clubId,
+                    showUsername: true,
+                    isLoading: state.state == BaseState.loading,
+                  ),
+                ],
+              ),
             ),
           );
         },

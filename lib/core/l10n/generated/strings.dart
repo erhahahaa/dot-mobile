@@ -1100,6 +1100,24 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Volleyball'**
   String get volleyBall;
+
+  /// No description provided for @warning.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get warning;
+
+  /// No description provided for @leaveClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave Club'**
+  String get leaveClub;
+
+  /// No description provided for @leaveClubConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to leave this club?'**
+  String get leaveClubConfirmation;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

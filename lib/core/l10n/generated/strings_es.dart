@@ -504,4 +504,13 @@ class StringsEs extends Strings {
 
   @override
   String get volleyBall => 'Voleibol';
+
+  @override
+  String get warning => 'Advertencia';
+
+  @override
+  String get leaveClub => 'Dejar club';
+
+  @override
+  String get leaveClubConfirmation => '¿Estás seguro de que quieres dejar este club?';
 }

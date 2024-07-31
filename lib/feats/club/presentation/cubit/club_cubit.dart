@@ -69,14 +69,15 @@ class ClubCubit extends Cubit<ClubState> {
     final res = await _clubRepo.getAll(const PaginationParams());
 
     res.fold(
-      (l) => safeEmit(
-        isClosed: isClosed,
-        emit: emit,
-        state: state.copyWith(
-          state: BaseState.failure,
-          failure: l,
-        ),
-      ),
+      // (l) => safeEmit(
+      //   isClosed: isClosed,
+      //   emit: emit,
+      //   state: state.copyWith(
+      //     state: BaseState.failure,
+      //     failure: l,
+      //   ),
+      // ),
+      (l) => emitInitial(),
       (r) {
         safeEmit(
           isClosed: isClosed,
@@ -229,14 +230,7 @@ class ClubCubit extends Cubit<ClubState> {
     final res = await _clubRepo.getMembers(params, clubId);
 
     res.fold(
-      (l) => safeEmit(
-        isClosed: isClosed,
-        emit: emit,
-        state: state.copyWith(
-          state: BaseState.failure,
-          failure: l,
-        ),
-      ),
+      (l) => emitInitial(),
       (r) {
         safeEmit(
           isClosed: isClosed,
@@ -343,7 +337,35 @@ class ClubCubit extends Cubit<ClubState> {
     );
   }
 
-  void search(String query) {
+  Future<void> searchUser(
+    String query,
+  ) async {
+    emitLoading();
+    final res = await _userRepo.search(query);
+
+    res.fold(
+      (l) => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          state: BaseState.failure,
+          failure: l,
+        ),
+      ),
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+            users: r,
+          ),
+        );
+      },
+    );
+  }
+
+  void searchClub(String query) {
     final filteredClubs = state.clubs.where((element) {
       return element.name.toLowerCase().contains(query.toLowerCase());
     }).toList();
@@ -353,6 +375,20 @@ class ClubCubit extends Cubit<ClubState> {
       emit: emit,
       state: state.copyWith(
         filteredClubs: filteredClubs,
+      ),
+    );
+  }
+
+  void searchMember(String query) {
+    final filteredMembers = state.members.where((element) {
+      return element.name.toLowerCase().contains(query.toLowerCase());
+    }).toList();
+
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: state.copyWith(
+        filteredMembers: filteredMembers,
       ),
     );
   }

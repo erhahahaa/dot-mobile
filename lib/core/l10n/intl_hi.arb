@@ -166,5 +166,8 @@
   "usernameCantContainUppercase": "उपयोगकर्ता नाम में बड़े अक्षर नहीं हो सकते",
   "usernameNotAvailable": "उपयोगकर्ता नाम उपलब्ध नहीं है",
   "usernameRequired": "उपयोगकर्ता नाम आवश्यक है",
-  "volleyBall": "वॉलीबॉल"
+  "volleyBall": "वॉलीबॉल",
+  "warning": "चेतावनी",
+  "leaveClub": "क्लब छोड़ें",
+  "leaveClubConfirmation": "क्या आप वाकई इस क्लब को छोड़ना चाहते हैं?"
 }

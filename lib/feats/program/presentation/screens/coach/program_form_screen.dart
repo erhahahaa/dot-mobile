@@ -141,7 +141,7 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                       currFocusNode: _nameFn,
                       nextFocusNode: _startDateFn,
                       controller: _nameCon,
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.done,
                       prefixIcon: Icon(
                         Icons.sports,
                         color: Theme.of(context).textTheme.bodyLarge?.color,
@@ -163,7 +163,7 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                       currFocusNode: _startDateFn,
                       nextFocusNode: _endDateFn,
                       controller: _startDateCon,
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.done,
                       prefixIcon: Icon(
                         Icons.calendar_month,
                         color: Theme.of(context).textTheme.bodyLarge?.color,

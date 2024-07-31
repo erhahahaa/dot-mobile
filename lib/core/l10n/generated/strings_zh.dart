@@ -504,4 +504,13 @@ class StringsZh extends Strings {
 
   @override
   String get volleyBall => '排球';
+
+  @override
+  String get warning => '警告';
+
+  @override
+  String get leaveClub => '离开俱乐部';
+
+  @override
+  String get leaveClubConfirmation => '您确定要离开这个俱乐部吗？';
 }

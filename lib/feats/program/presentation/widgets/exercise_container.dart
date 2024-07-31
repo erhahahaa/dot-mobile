@@ -63,10 +63,19 @@ class _ExerciseContainerState extends State<ExerciseContainer> {
       children: [
         _buildTitle(),
         SizedBox(height: 8.h),
-        widget.exercise.media != null
-            ? widget.exercise.media!
-                .determineLoader(width: 310.w, height: 310.h)
-            : Container(),
+        Container(
+          width: 310.w,
+          height: 210.h,
+          padding: EdgeInsets.all(8.w),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+          child: widget.exercise.media != null
+              ? widget.exercise.media!
+                  .determineLoader(width: 310.w, height: 310.h)
+              : Container(),
+        ),
         SizedBox(height: 8.h),
         Container(
           padding: EdgeInsets.all(8.w),

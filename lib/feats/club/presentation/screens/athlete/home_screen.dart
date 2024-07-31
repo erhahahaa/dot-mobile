@@ -41,7 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           context.str?.myClub ?? 'My Club',
                         ),
                         SizedBox(width: 8.w),
-                        const SearchClub()
+                        ClubSearchBar(
+                          onSearch: context.read<ClubCubit>().searchClub,
+                        ),
                       ],
                     ),
                     SizedBox(height: 16.h),

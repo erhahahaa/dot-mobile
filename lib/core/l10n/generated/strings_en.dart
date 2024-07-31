@@ -504,4 +504,13 @@ class StringsEn extends Strings {
 
   @override
   String get volleyBall => 'Volleyball';
+
+  @override
+  String get warning => 'Warning';
+
+  @override
+  String get leaveClub => 'Leave Club';
+
+  @override
+  String get leaveClubConfirmation => 'Are you sure you want to leave this club?';
 }
