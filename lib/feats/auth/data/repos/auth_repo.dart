@@ -99,18 +99,18 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, bool>> logout() async {
-    final res = await _remote.getRequest(
-      ListAPI.AUTH_LOGOUT,
-      converter: (res) => true,
+    await _local.isar.writeTxn(() async {
+      await _local.isar.userEntitys.clear();
+    });
+
+    final res = await _local.isar.txn(
+      () async => await _local.isar.userEntitys.count(),
     );
 
-    res.fold(
-      (l) => null,
-      (r) async => await _local.isar.writeTxn(() async {
-        await _local.isar.userEntitys.clear();
-      }),
-    );
-
-    return res;
+    if (res == 0) {
+      return const Right(true);
+    } else {
+      return const Left(StorageFailure(message: 'Failed to logout'));
+    }
   }
 }

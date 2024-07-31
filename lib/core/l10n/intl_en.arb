@@ -167,5 +167,8 @@
   "usernameCantContainUppercase": "Username cannot contain capital letters",
   "usernameNotAvailable": "Username is not available",
   "usernameRequired": "Username is required",
-  "volleyBall": "Volleyball"
+  "volleyBall": "Volleyball",
+  "warning": "Warning",
+  "leaveClub": "Leave Club",
+  "leaveClubConfirmation": "Are you sure you want to leave this club?"
 }

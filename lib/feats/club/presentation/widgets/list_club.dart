@@ -1,3 +1,4 @@
+import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class ListClub extends StatelessWidget {
 
   Widget _buildListClub(BuildContext context) {
     if (isLoading) {
-      final fakeClub = List.generate(3, (index) => ClubModel.fake()).toList();
+      final fakeClub = List.generate(9, (index) => ClubModel.fake()).toList();
 
       return Skeletonizer(
           child: ListView.builder(
@@ -46,12 +47,7 @@ class ListClub extends StatelessWidget {
     }
 
     if (clubs.isEmpty) {
-      return Container(
-        padding: padding ?? EdgeInsets.all(8.w),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.r),
-          color: context.containerColor(0.1),
-        ),
+      return EightContainer(
         child: Center(
           child: Text(
             context.str?.noClubsFound ?? 'No clubs found',

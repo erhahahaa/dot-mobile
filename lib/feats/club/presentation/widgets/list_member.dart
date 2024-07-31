@@ -1,31 +1,52 @@
+import 'package:dot_coaching/core/widgets/container/eight.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ListMember extends StatelessWidget {
   final List<UserModel> members;
   final int clubId;
   final EdgeInsetsGeometry? padding;
+  final bool isLoading;
 
   const ListMember({
     super.key,
     required this.members,
     required this.clubId,
     this.padding,
+    required this.isLoading,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
 
-    if (members.isEmpty) {
-      return Container(
-        padding: EdgeInsets.all(8.w),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.r),
-          color: theme.colorScheme.primaryContainer.withOpacity(0.1),
+    if (isLoading) {
+      final fakeUser = List.generate(8, (index) => UserModel.fake()).toList();
+
+      return EightContainer(
+        height: 550.h,
+        child: Skeletonizer(
+          child: ListView.builder(
+            itemCount: fakeUser.length,
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            itemBuilder: (context, index) {
+              return UserContainer(
+                user: fakeUser[index],
+                clubId: clubId,
+                withPopUp: false,
+              );
+            },
+          ),
         ),
+      );
+    }
+
+    if (members.isEmpty) {
+      return EightContainer(
         child: Center(
           child: Text(
             context.str?.noMembersFound ?? 'No members found',
@@ -34,12 +55,7 @@ class ListMember extends StatelessWidget {
         ),
       );
     }
-    return Container(
-      padding: padding ?? EdgeInsets.all(8.w),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.r),
-        color: theme.colorScheme.primaryContainer.withOpacity(0.1),
-      ),
+    return EightContainer(
       child: ListView.builder(
         itemCount: members.length,
         shrinkWrap: true,

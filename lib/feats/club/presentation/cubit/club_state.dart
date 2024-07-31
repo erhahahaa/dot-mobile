@@ -10,6 +10,7 @@ class ClubState with _$ClubState {
     @Default([]) List<ClubModel> filteredClubs,
     @Default([]) List<UserModel> members,
     @Default([]) List<UserModel> filteredMembers,
+    @Default([]) List<UserModel> users,
     File? image,
     ClubModel? updatedClub,
   }) = _ClubState;

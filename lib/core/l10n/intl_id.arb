@@ -167,5 +167,8 @@
   "usernameCantContainUppercase": "Nama pengguna tidak boleh mengandung huruf kapital",
   "usernameNotAvailable": "Nama pengguna tidak tersedia",
   "usernameRequired": "Nama penguna wajib diisi",
-  "volleyBall": "Voli"
+  "volleyBall": "Voli",
+  "warning": "Peringatan",
+  "leaveClub": "Keluar dari klub",
+  "leaveClubConfirmation": "Apakah Anda yakin ingin meninggalkan klub ini?"
 }

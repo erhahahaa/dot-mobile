@@ -1035,11 +1035,18 @@ class ExerciseItem {
     setsFN.dispose();
     repsFN.dispose();
     restFN.dispose();
+    tempoFN.dispose();
+    intensityFn.dispose();
     descriptionFN.dispose();
+
     nameCon.dispose();
     setsCon.dispose();
     repsCon.dispose();
     restCon.dispose();
+    tempoCon.dispose();
+    intensityCon.dispose();
     descriptionCon.dispose();
+
+    media = null;
   }
 }

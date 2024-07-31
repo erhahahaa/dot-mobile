@@ -507,4 +507,13 @@ class StringsHi extends Strings {
 
   @override
   String get volleyBall => 'वॉलीबॉल';
+
+  @override
+  String get warning => 'चेतावनी';
+
+  @override
+  String get leaveClub => 'क्लब छोड़ें';
+
+  @override
+  String get leaveClubConfirmation => 'क्या आप वाकई इस क्लब को छोड़ना चाहते हैं?';
 }

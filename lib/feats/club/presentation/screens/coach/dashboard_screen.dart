@@ -59,7 +59,9 @@ class DashboardScreen extends StatelessWidget {
                           context.str?.clubs ?? 'Clubs',
                         ),
                         SizedBox(width: 8.w),
-                        const SearchClub()
+                        ClubSearchBar(
+                          onSearch: context.read<ClubCubit>().searchClub,
+                        ),
                       ],
                     ),
                     SizedBox(height: 8.h),

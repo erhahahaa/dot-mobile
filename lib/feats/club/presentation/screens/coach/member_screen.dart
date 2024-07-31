@@ -21,34 +21,47 @@ class _MemberScreenState extends State<MemberScreen> {
     return BlocBuilder<ClubCubit, ClubState>(
       builder: (context, state) {
         return Parent(
-          body: RoundedTopBackground(
-            title: context.str?.members ?? 'Members',
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                 H1Text(
-                  context.str?.overview ?? 'Overview',
-                ),
-                SizedBox(height: 8.h),
-                MemberOverviewCard(
-                  totalMembers: state.members.length,
-                  totalAthletes: state.members.sumTotalAthletes(),
-                  totalCoaches: state.members.sumTotalCoaches(),
-                ),
-                SizedBox(height: 16.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          body: RefreshIndicator(
+            onRefresh: () => context
+                .read<ClubCubit>()
+                .getMembers(const PaginationParams(), widget.clubId),
+            child: RoundedTopBackground(
+              title: context.str?.members ?? 'Members',
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     H1Text(
-                      context.str?.members ?? 'Members',
+                    H1Text(
+                      context.str?.overview ?? 'Overview',
                     ),
-                    SizedBox(width: 8.w),
-                    const SearchClub()
+                    SizedBox(height: 8.h),
+                    MemberOverviewCard(
+                      totalMembers: state.members.length,
+                      totalAthletes: state.members.sumTotalAthletes(),
+                      totalCoaches: state.members.sumTotalCoaches(),
+                    ),
+                    SizedBox(height: 16.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        H1Text(
+                          context.str?.members ?? 'Members',
+                        ),
+                        SizedBox(width: 8.w),
+                        ClubSearchBar(
+                          onSearch: context.read<ClubCubit>().searchMember,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8.h),
+                    ListMember(
+                      members: state.filteredMembers,
+                      clubId: widget.clubId,
+                      isLoading: state.state == BaseState.loading,
+                    ),
                   ],
                 ),
-                SizedBox(height: 8.h),
-                ListMember(members: state.members, clubId: widget.clubId),
-              ],
+              ),
             ),
           ),
         );

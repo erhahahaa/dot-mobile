@@ -32,11 +32,14 @@ class ImagePickerClient with FirebaseCrashLogger {
   ImagePicker _createImagePicker() => ImagePicker();
   ImageCropper _createImageCropper() => ImageCropper();
 
-  Future<Either<Failure, CroppedFile>> cropImage(XFile image) async {
+  Future<Either<Failure, CroppedFile>> cropImage(
+    XFile image, {
+    CropAspectRatio? aspectRatio,
+  }) async {
     try {
       final res = await _imageCropper.cropImage(
         sourcePath: image.path,
-        aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+        aspectRatio: aspectRatio ?? const CropAspectRatio(ratioX: 1, ratioY: 1),
         // cropStyle: CropStyle.circle,
         compressQuality: 10,
         uiSettings: [
@@ -60,7 +63,9 @@ class ImagePickerClient with FirebaseCrashLogger {
     }
   }
 
-  Future<Either<Failure, File>> getImageFromGallery() async {
+  Future<Either<Failure, File>> getImageFromGallery({
+    CropAspectRatio? aspectRatio,
+  }) async {
     try {
       final res = await imagePicker.pickImage(
         source: ImageSource.gallery,
@@ -68,7 +73,7 @@ class ImagePickerClient with FirebaseCrashLogger {
       );
       log.e('FILE PATH: ${res?.path}');
       if (res == null) return const Left(NoDataFailure('No image selected'));
-      final crop = await cropImage(res);
+      final crop = await cropImage(res, aspectRatio: aspectRatio);
       return crop.fold(
         (l) => Left(l),
         (r) {
@@ -84,14 +89,16 @@ class ImagePickerClient with FirebaseCrashLogger {
     }
   }
 
-  Future<Either<Failure, File>> getImageFromCamera() async {
+  Future<Either<Failure, File>> getImageFromCamera({
+    CropAspectRatio? aspectRatio,
+  }) async {
     try {
       final res = await imagePicker.pickImage(
         source: ImageSource.camera,
         imageQuality: 100,
       );
       if (res == null) return const Left(NoDataFailure('No image selected'));
-      final crop = await cropImage(res);
+      final crop = await cropImage(res, aspectRatio: aspectRatio);
       return crop.fold(
         (l) => Left(l),
         (r) {

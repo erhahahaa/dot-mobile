@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
@@ -46,6 +49,16 @@ class UserModel with _$UserModel {
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
       token: entity.token,
+    );
+  }
+
+  static UserModel fake() {
+    return UserModel(
+      id: Random().nextInt(100),
+      name: BoneMock.name,
+      email: BoneMock.email,
+      username: BoneMock.subtitle,
+      role: UserRole.athlete,
     );
   }
 }

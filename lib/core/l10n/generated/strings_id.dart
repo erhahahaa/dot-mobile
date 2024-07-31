@@ -507,4 +507,13 @@ class StringsId extends Strings {
 
   @override
   String get volleyBall => 'Voli';
+
+  @override
+  String get warning => 'Peringatan';
+
+  @override
+  String get leaveClub => 'Keluar dari klub';
+
+  @override
+  String get leaveClubConfirmation => 'Apakah Anda yakin ingin meninggalkan klub ini?';
 }

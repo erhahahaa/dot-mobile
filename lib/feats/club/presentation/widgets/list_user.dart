@@ -1,30 +1,54 @@
+import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ListUser extends StatelessWidget {
   final List<UserModel> users;
   final int clubId;
   final EdgeInsetsGeometry? padding;
+  final bool showUsername, isLoading;
 
   const ListUser({
     super.key,
     required this.users,
     required this.clubId,
     this.padding,
+    this.showUsername = false,
+    required this.isLoading,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    if (users.isEmpty) {
-      return Container(
-        padding: EdgeInsets.all(8.w),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.r),
-          color: theme.colorScheme.primaryContainer.withOpacity(0.1),
+
+    if (isLoading) {
+      final fakeUser = List.generate(8, (index) => UserModel.fake()).toList();
+
+      return EightContainer(
+        height: 550.h,
+        child: Skeletonizer(
+          child: ListView.builder(
+            itemCount: fakeUser.length,
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            itemBuilder: (context, index) {
+              return UserContainer(
+                user: fakeUser[index],
+                clubId: clubId,
+                withPopUp: false,
+                showUsername: showUsername,
+              );
+            },
+          ),
         ),
+      );
+    }
+
+    if (users.isEmpty) {
+      return EightContainer(
         child: Center(
           child: Text(
             context.str?.noUsersFound ?? 'No users found',
@@ -34,12 +58,8 @@ class ListUser extends StatelessWidget {
       );
     }
 
-    return Container(
-      padding: padding ?? EdgeInsets.all(8.w),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.r),
-        color: theme.colorScheme.primaryContainer.withOpacity(0.1),
-      ),
+    return EightContainer(
+      height: 550.h,
       child: ListView.builder(
         itemCount: users.length,
         shrinkWrap: true,
@@ -50,6 +70,7 @@ class ListUser extends StatelessWidget {
             user: user,
             clubId: clubId,
             withPopUp: false,
+            showUsername: showUsername,
           );
         },
       ),
