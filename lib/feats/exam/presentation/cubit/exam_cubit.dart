@@ -42,7 +42,7 @@ class ExamCubit extends Cubit<ExamState> {
   Future<void> init({
     required int clubId,
   }) async {
-    await getAll(PaginationParams(), clubId);
+    await getAll(const PaginationParams(), clubId);
   }
 
   Future<void> create(CreateExamParams params) async {

@@ -66,7 +66,7 @@ class _ExamFormScreenState extends State<ExamFormScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<ExamCubit, ExamState>(
       listener: (context, state) {
-        log.f('ExamFormScreen listener State: ${state}');
+        log.f('ExamFormScreen listener State: $state');
         if (state.state == BaseState.success) {
           final exam = state.createdExam;
           if (exam != null && widget.exam == null) {
@@ -150,7 +150,7 @@ class _ExamFormScreenState extends State<ExamFormScreen> {
                     ),
                     SizedBox(height: 8.h),
                     TextF(
-                      key: Key('createExamForm_descriptionField'),
+                      key: const Key('createExamForm_descriptionField'),
                       currFocusNode: _descriptionFn,
                       nextFocusNode: _dueAtFn,
                       controller: _descriptionCon,
