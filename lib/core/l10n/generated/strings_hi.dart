@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Hindi (`hi`).
 class StringsHi extends Strings {
-  StringsHi([super.locale = 'hi']);
+  StringsHi([String locale = 'hi']) : super(locale);
 
   @override
   String get about => 'के बारे में';
@@ -339,6 +339,9 @@ class StringsHi extends Strings {
 
   @override
   String get nameRequired => 'नाम आवश्यक है';
+
+  @override
+  String get newExam => 'New Exam';
 
   @override
   String get newProgram => 'नया कार्यक्रम';

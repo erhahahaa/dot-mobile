@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Indonesian (`id`).
 class StringsId extends Strings {
-  StringsId([super.locale = 'id']);
+  StringsId([String locale = 'id']) : super(locale);
 
   @override
   String get about => 'Tentang';
@@ -339,6 +339,9 @@ class StringsId extends Strings {
 
   @override
   String get nameRequired => 'Nama wajib diisi';
+
+  @override
+  String get newExam => 'Tes Baru';
 
   @override
   String get newProgram => 'Program Baru';

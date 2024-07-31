@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Spanish Castilian (`es`).
 class StringsEs extends Strings {
-  StringsEs([super.locale = 'es']);
+  StringsEs([String locale = 'es']) : super(locale);
 
   @override
   String get about => 'Acerca de';
@@ -339,6 +339,9 @@ class StringsEs extends Strings {
 
   @override
   String get nameRequired => 'Se requiere el nombre';
+
+  @override
+  String get newExam => 'Nuevo examen';
 
   @override
   String get newProgram => 'Nuevo programa';

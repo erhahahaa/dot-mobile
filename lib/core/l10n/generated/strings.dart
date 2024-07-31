@@ -771,6 +771,12 @@ abstract class Strings {
   /// **'Name is required'**
   String get nameRequired;
 
+  /// No description provided for @newExam.
+  ///
+  /// In en, this message translates to:
+  /// **'New Exam'**
+  String get newExam;
+
   /// No description provided for @newProgram.
   ///
   /// In en, this message translates to:

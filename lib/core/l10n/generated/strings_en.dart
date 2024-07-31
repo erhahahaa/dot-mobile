@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for English (`en`).
 class StringsEn extends Strings {
-  StringsEn([super.locale = 'en']);
+  StringsEn([String locale = 'en']) : super(locale);
 
   @override
   String get about => 'About';
@@ -339,6 +339,9 @@ class StringsEn extends Strings {
 
   @override
   String get nameRequired => 'Name is required';
+
+  @override
+  String get newExam => 'New Exam';
 
   @override
   String get newProgram => 'New Program';
