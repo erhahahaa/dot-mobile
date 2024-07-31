@@ -56,8 +56,8 @@ class SportImageContainer extends StatelessWidget {
                 ),
               ),
             ),
-            placeholder: (context, url) => CircularProgressIndicator(),
-            errorWidget: (context, url, error) => Icon(Icons.error),
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
         ],
         Positioned(
