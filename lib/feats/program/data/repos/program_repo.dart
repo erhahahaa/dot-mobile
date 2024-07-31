@@ -21,9 +21,6 @@ class ProgramRepoImpl implements ProgramRepo {
     return res.fold(
       (l) => Left(l),
       (r) async {
-        await _local.isar.writeTxn(
-          () async => _local.programs.put(r.toEntity()),
-        );
         if (params.image != null) {
           final photoUpdateRes = await _remote.putRequest(
             '${ListAPI.CLUB_PROGRAM}/${r.id}/image',
@@ -41,6 +38,9 @@ class ProgramRepoImpl implements ProgramRepo {
             },
           );
         }
+        await _local.isar.writeTxn(
+          () async => _local.programs.put(r.toEntity()),
+        );
         return Right(r);
       },
     );
@@ -128,13 +128,31 @@ class ProgramRepoImpl implements ProgramRepo {
       converter: (res) => ProgramModel.fromJson(res['data']),
     );
 
-    res.fold(
-      (l) => null,
-      (r) => _local.isar.writeTxn(
-        () async => _local.programs.put(r.toEntity()),
-      ),
-    );
+    return res.fold(
+      (l) => Left(l),
+      (r) async {
+        if (params.image != null) {
+          final photoUpdateRes = await _remote.putRequest(
+            '${ListAPI.CLUB_PROGRAM}/${r.id}/image',
+            formData: params.toFormData(),
+            converter: (res) => ProgramModel.fromJson(res['data']),
+          );
 
-    return res;
+          return photoUpdateRes.fold(
+            (l) => Left(l),
+            (_) async {
+              await _local.isar.writeTxn(
+                () async => _local.programs.put(r.toEntity()),
+              );
+              return Right(r);
+            },
+          );
+        }
+        await _local.isar.writeTxn(
+          () async => _local.programs.put(r.toEntity()),
+        );
+        return Right(r);
+      },
+    );
   }
 }

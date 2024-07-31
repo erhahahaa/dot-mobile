@@ -18,14 +18,32 @@ class ExamRepoImpl implements ExamRepo {
       converter: (res) => ExamModel.fromJson(res['data']),
     );
 
-    res.fold(
-      (l) => null,
-      (r) => _local.isar.writeTxn(() async {
-        await _local.exams.put(r.toEntity());
-      }),
-    );
+    return res.fold(
+      (l) => Left(l),
+      (r) async {
+        if (params.image != null) {
+          final photoUpdateRes = await _remote.putRequest(
+            '${ListAPI.CLUB_EXAM}/${r.id}/image',
+            formData: params.toFormData(),
+            converter: (res) => ProgramModel.fromJson(res['data']),
+          );
 
-    return res;
+          return photoUpdateRes.fold(
+            (l) => Left(l),
+            (_) async {
+              await _local.isar.writeTxn(
+                () async => _local.exams.put(r.toEntity()),
+              );
+              return Right(r);
+            },
+          );
+        }
+        await _local.isar.writeTxn(
+          () async => _local.exams.put(r.toEntity()),
+        );
+        return Right(r);
+      },
+    );
   }
 
   @override
@@ -50,9 +68,15 @@ class ExamRepoImpl implements ExamRepo {
   @override
   Future<Either<Failure, List<ExamModel>>> getAll(
     PaginationParams params,
+    int clubId,
   ) async {
     final res = await _remote.getRequest(
       ListAPI.CLUB_EXAM,
+      queryParameters: {
+        'clubId': clubId,
+        'cursor': params.cursor,
+        'limit': params.limit,
+      },
       converter: (res) {
         final List<ExamModel> exams = [];
         for (final item in res['data']) {
@@ -109,7 +133,31 @@ class ExamRepoImpl implements ExamRepo {
         () async => _local.exams.put(r.toEntity()),
       ),
     );
+    return res.fold(
+      (l) => Left(l),
+      (r) async {
+        if (params.image != null) {
+          final photoUpdateRes = await _remote.putRequest(
+            '${ListAPI.CLUB_EXAM}/${r.id}/image',
+            formData: params.toFormData(),
+            converter: (res) => ProgramModel.fromJson(res['data']),
+          );
 
-    return res;
+          return photoUpdateRes.fold(
+            (l) => Left(l),
+            (_) async {
+              await _local.isar.writeTxn(
+                () async => _local.exams.put(r.toEntity()),
+              );
+              return Right(r);
+            },
+          );
+        }
+        await _local.isar.writeTxn(
+          () async => _local.exams.put(r.toEntity()),
+        );
+        return Right(r);
+      },
+    );
   }
 }

@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Hindi (`hi`).
 class StringsHi extends Strings {
-  StringsHi([super.locale = 'hi']);
+  StringsHi([String locale = 'hi']) : super(locale);
 
   @override
   String get about => 'के बारे में';
@@ -101,6 +101,9 @@ class StringsHi extends Strings {
   String get createClub => 'क्लब बनाएं';
 
   @override
+  String get createExam => 'परीक्षा बनाएँ';
+
+  @override
   String get createProgram => 'कार्यक्रम बनाएं';
 
   @override
@@ -108,6 +111,9 @@ class StringsHi extends Strings {
 
   @override
   String get delete => 'हटाएं';
+
+  @override
+  String get description => 'विवरण';
 
   @override
   String get detail => 'विवरण';
@@ -119,10 +125,19 @@ class StringsHi extends Strings {
   String get download => 'डाउनलोड करें';
 
   @override
+  String get dueAt => 'में निर्धारित';
+
+  @override
+  String get dueAtRequired => 'समाप्ति तिथि आवश्यक है';
+
+  @override
   String get edit => 'संपादित करें';
 
   @override
   String get editClub => 'क्लब संपादित करें';
+
+  @override
+  String get editExam => 'परीक्षा संपादित करें';
 
   @override
   String get editProfile => 'प्रोफ़ाइल संपादित करें';
@@ -143,6 +158,9 @@ class StringsHi extends Strings {
   String get emailUsernamePhoneAlreadyRegistered => 'ईमेल / उपयोगकर्ता नाम / फोन पहले से पंजीकृत है';
 
   @override
+  String get emptyExam => 'परीक्षा खाली है';
+
+  @override
   String get endDate => 'समाप्ति तिथि';
 
   @override
@@ -158,10 +176,22 @@ class StringsHi extends Strings {
   String get enterClubName => 'क्लब का नाम दर्ज करें';
 
   @override
+  String get enterDescription => 'विवरण दर्ज करें';
+
+  @override
+  String get enterDueAt => 'समाप्ति तिथि दर्ज करें';
+
+  @override
   String get enterEmailOrUsernameOrPhone => 'ईमेल / उपयोगकर्ता नाम / फोन दर्ज करें';
 
   @override
   String get enterEndDate => 'समाप्ति तिथि दर्ज करें';
+
+  @override
+  String get enterExamDescription => 'परीक्षा का विवरण दर्ज करें';
+
+  @override
+  String get enterExamTitle => 'परीक्षा का शीर्षक दर्ज करें';
 
   @override
   String get enterProgramName => 'कार्यक्रम का नाम दर्ज करें';
@@ -215,7 +245,13 @@ class StringsHi extends Strings {
   String get exam => 'परीक्षा';
 
   @override
+  String get examDescription => 'परीक्षा का विवरण';
+
+  @override
   String get exams => 'परीक्षाएँ';
+
+  @override
+  String get examTitleRequired => 'परीक्षा का शीर्षक आवश्यक है';
 
   @override
   String get exercise => 'व्यायाम';
@@ -233,10 +269,16 @@ class StringsHi extends Strings {
   String get failedCreateClub => 'क्लब बनाने में विफल';
 
   @override
+  String get failedCreateExam => 'परीक्षा बनाने में विफल';
+
+  @override
   String get failedCreateExercises => 'अभ्यास बनाने में विफल';
 
   @override
   String get failedCreateProgram => 'कार्यक्रम बनाने में विफल';
+
+  @override
+  String get failedEditExam => 'परीक्षा संपादित करने में विफल';
 
   @override
   String get failedEditProgram => 'कार्यक्रम संपादित करने में विफल';
@@ -312,6 +354,12 @@ class StringsHi extends Strings {
 
   @override
   String get leave => 'छोड़ें';
+
+  @override
+  String get leaveClub => 'क्लब छोड़ें';
+
+  @override
+  String get leaveClubConfirmation => 'क्या आप वाकई इस क्लब को छोड़ना चाहते हैं?';
 
   @override
   String get leaveClubSuccess => 'क्लब सफलतापूर्वक छोड़ दिया';
@@ -482,6 +530,9 @@ class StringsHi extends Strings {
   String get theme => 'थीम';
 
   @override
+  String get title => 'शीर्षक';
+
+  @override
   String get updateClub => 'क्लब अपडेट करें';
 
   @override
@@ -510,10 +561,4 @@ class StringsHi extends Strings {
 
   @override
   String get warning => 'चेतावनी';
-
-  @override
-  String get leaveClub => 'क्लब छोड़ें';
-
-  @override
-  String get leaveClubConfirmation => 'क्या आप वाकई इस क्लब को छोड़ना चाहते हैं?';
 }

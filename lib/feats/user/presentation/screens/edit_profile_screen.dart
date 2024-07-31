@@ -131,7 +131,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       nextFocusNode: _emailFocusNode,
                       textInputAction: TextInputAction.next,
                       controller: _usernameController,
-                      keyboardType: TextInputType.username,
+                      keyboardType: TextInputType.name,
                       prefixIcon: Icon(
                         Icons.co_present_rounded,
                         color: Theme.of(context).textTheme.bodyLarge?.color,

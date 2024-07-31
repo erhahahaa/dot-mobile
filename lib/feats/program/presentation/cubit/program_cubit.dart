@@ -14,12 +14,10 @@ part 'program_state.dart';
 
 class ProgramCubit extends Cubit<ProgramState> {
   final ProgramRepo _programRepo;
-  final UserRepo _userRepo;
   final ImagePickerClient _imagePickerClient;
 
   ProgramCubit(
     this._programRepo,
-    this._userRepo,
     this._imagePickerClient,
   ) : super(const ProgramState());
 
@@ -48,14 +46,6 @@ class ProgramCubit extends Cubit<ProgramState> {
   }) async {
     if (clubId == null) return;
     await getAll(clubId);
-  }
-
-  Future<UserEntity?> fetchLocalUser() async {
-    final res = await _userRepo.getMe();
-    return res.fold(
-      (l) => null,
-      (r) => r,
-    );
   }
 
   Future<void> create(CreateProgramParams params) async {

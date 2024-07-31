@@ -9,8 +9,11 @@ part 'question_state.dart';
 
 class QuestionCubit extends Cubit<QuestionState> {
   final QuestionRepo _questionRepo;
+  final ImagePickerClient _imagePickerClient;
+
   QuestionCubit(
     this._questionRepo,
+    this._imagePickerClient,
   ) : super(const QuestionState());
 
   void clear() {
@@ -125,8 +128,8 @@ class QuestionCubit extends Cubit<QuestionState> {
     });
   }
 
-  Future<void> getAll(PaginationParams params) async {
-    final res = await _questionRepo.getAll(params);
+  Future<void> getAll(PaginationParams params, int examId) async {
+    final res = await _questionRepo.getAll(params, examId);
     res.fold((l) {
       safeEmit(
         isClosed: isClosed,

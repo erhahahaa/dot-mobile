@@ -20,6 +20,8 @@ mixin _$ExamState {
   Failure? get failure => throw _privateConstructorUsedError;
   List<ExamModel> get exams => throw _privateConstructorUsedError;
   List<ExamModel> get filteredExams => throw _privateConstructorUsedError;
+  ExamModel? get createdExam => throw _privateConstructorUsedError;
+  File? get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ExamStateCopyWith<ExamState> get copyWith =>
@@ -35,7 +37,11 @@ abstract class $ExamStateCopyWith<$Res> {
       {BaseState state,
       Failure? failure,
       List<ExamModel> exams,
-      List<ExamModel> filteredExams});
+      List<ExamModel> filteredExams,
+      ExamModel? createdExam,
+      File? image});
+
+  $ExamModelCopyWith<$Res>? get createdExam;
 }
 
 /// @nodoc
@@ -55,6 +61,8 @@ class _$ExamStateCopyWithImpl<$Res, $Val extends ExamState>
     Object? failure = freezed,
     Object? exams = null,
     Object? filteredExams = null,
+    Object? createdExam = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -73,7 +81,27 @@ class _$ExamStateCopyWithImpl<$Res, $Val extends ExamState>
           ? _value.filteredExams
           : filteredExams // ignore: cast_nullable_to_non_nullable
               as List<ExamModel>,
+      createdExam: freezed == createdExam
+          ? _value.createdExam
+          : createdExam // ignore: cast_nullable_to_non_nullable
+              as ExamModel?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ExamModelCopyWith<$Res>? get createdExam {
+    if (_value.createdExam == null) {
+      return null;
+    }
+
+    return $ExamModelCopyWith<$Res>(_value.createdExam!, (value) {
+      return _then(_value.copyWith(createdExam: value) as $Val);
+    });
   }
 }
 
@@ -89,7 +117,12 @@ abstract class _$$ExamStateImplCopyWith<$Res>
       {BaseState state,
       Failure? failure,
       List<ExamModel> exams,
-      List<ExamModel> filteredExams});
+      List<ExamModel> filteredExams,
+      ExamModel? createdExam,
+      File? image});
+
+  @override
+  $ExamModelCopyWith<$Res>? get createdExam;
 }
 
 /// @nodoc
@@ -107,6 +140,8 @@ class __$$ExamStateImplCopyWithImpl<$Res>
     Object? failure = freezed,
     Object? exams = null,
     Object? filteredExams = null,
+    Object? createdExam = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$ExamStateImpl(
       state: null == state
@@ -125,6 +160,14 @@ class __$$ExamStateImplCopyWithImpl<$Res>
           ? _value._filteredExams
           : filteredExams // ignore: cast_nullable_to_non_nullable
               as List<ExamModel>,
+      createdExam: freezed == createdExam
+          ? _value.createdExam
+          : createdExam // ignore: cast_nullable_to_non_nullable
+              as ExamModel?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ));
   }
 }
@@ -136,7 +179,9 @@ class _$ExamStateImpl implements _ExamState {
       {this.state = BaseState.initial,
       this.failure,
       final List<ExamModel> exams = const [],
-      final List<ExamModel> filteredExams = const []})
+      final List<ExamModel> filteredExams = const [],
+      this.createdExam,
+      this.image})
       : _exams = exams,
         _filteredExams = filteredExams;
 
@@ -164,8 +209,13 @@ class _$ExamStateImpl implements _ExamState {
   }
 
   @override
+  final ExamModel? createdExam;
+  @override
+  final File? image;
+
+  @override
   String toString() {
-    return 'ExamState(state: $state, failure: $failure, exams: $exams, filteredExams: $filteredExams)';
+    return 'ExamState(state: $state, failure: $failure, exams: $exams, filteredExams: $filteredExams, createdExam: $createdExam, image: $image)';
   }
 
   @override
@@ -177,7 +227,10 @@ class _$ExamStateImpl implements _ExamState {
             (identical(other.failure, failure) || other.failure == failure) &&
             const DeepCollectionEquality().equals(other._exams, _exams) &&
             const DeepCollectionEquality()
-                .equals(other._filteredExams, _filteredExams));
+                .equals(other._filteredExams, _filteredExams) &&
+            (identical(other.createdExam, createdExam) ||
+                other.createdExam == createdExam) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
@@ -186,7 +239,9 @@ class _$ExamStateImpl implements _ExamState {
       state,
       failure,
       const DeepCollectionEquality().hash(_exams),
-      const DeepCollectionEquality().hash(_filteredExams));
+      const DeepCollectionEquality().hash(_filteredExams),
+      createdExam,
+      image);
 
   @JsonKey(ignore: true)
   @override
@@ -200,7 +255,9 @@ abstract class _ExamState implements ExamState {
       {final BaseState state,
       final Failure? failure,
       final List<ExamModel> exams,
-      final List<ExamModel> filteredExams}) = _$ExamStateImpl;
+      final List<ExamModel> filteredExams,
+      final ExamModel? createdExam,
+      final File? image}) = _$ExamStateImpl;
 
   @override
   BaseState get state;
@@ -210,6 +267,10 @@ abstract class _ExamState implements ExamState {
   List<ExamModel> get exams;
   @override
   List<ExamModel> get filteredExams;
+  @override
+  ExamModel? get createdExam;
+  @override
+  File? get image;
   @override
   @JsonKey(ignore: true)
   _$$ExamStateImplCopyWith<_$ExamStateImpl> get copyWith =>

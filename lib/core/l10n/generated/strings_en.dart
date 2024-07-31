@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for English (`en`).
 class StringsEn extends Strings {
-  StringsEn([super.locale = 'en']);
+  StringsEn([String locale = 'en']) : super(locale);
 
   @override
   String get about => 'About';
@@ -101,6 +101,9 @@ class StringsEn extends Strings {
   String get createClub => 'Create Club';
 
   @override
+  String get createExam => 'Create Exam';
+
+  @override
   String get createProgram => 'Create Program';
 
   @override
@@ -108,6 +111,9 @@ class StringsEn extends Strings {
 
   @override
   String get delete => 'Delete';
+
+  @override
+  String get description => 'Description';
 
   @override
   String get detail => 'Detail';
@@ -119,10 +125,19 @@ class StringsEn extends Strings {
   String get download => 'Download';
 
   @override
+  String get dueAt => 'Due at';
+
+  @override
+  String get dueAtRequired => 'Due at is required';
+
+  @override
   String get edit => 'Edit';
 
   @override
   String get editClub => 'Edit Club';
+
+  @override
+  String get editExam => 'Edit Exam';
 
   @override
   String get editProfile => 'Edit Profile';
@@ -143,6 +158,9 @@ class StringsEn extends Strings {
   String get emailUsernamePhoneAlreadyRegistered => 'Email / Username / Phone already registered';
 
   @override
+  String get emptyExam => 'Exam is empty';
+
+  @override
   String get endDate => 'End Date';
 
   @override
@@ -158,10 +176,22 @@ class StringsEn extends Strings {
   String get enterClubName => 'Enter club name';
 
   @override
+  String get enterDescription => 'Enter description';
+
+  @override
+  String get enterDueAt => 'Enter due at';
+
+  @override
   String get enterEmailOrUsernameOrPhone => 'Enter email / username / phone';
 
   @override
   String get enterEndDate => 'Enter the end date';
+
+  @override
+  String get enterExamDescription => 'Enter exam description';
+
+  @override
+  String get enterExamTitle => 'Enter exam title';
 
   @override
   String get enterProgramName => 'Enter program name';
@@ -215,7 +245,13 @@ class StringsEn extends Strings {
   String get exam => 'Exam';
 
   @override
+  String get examDescription => 'Exam Description';
+
+  @override
   String get exams => 'Exams';
+
+  @override
+  String get examTitleRequired => 'Exam title is required';
 
   @override
   String get exercise => 'Exercise';
@@ -233,10 +269,16 @@ class StringsEn extends Strings {
   String get failedCreateClub => 'Failed to create club';
 
   @override
+  String get failedCreateExam => 'Failed to create exam';
+
+  @override
   String get failedCreateExercises => 'Failed to create exercises';
 
   @override
   String get failedCreateProgram => 'Failed to create program';
+
+  @override
+  String get failedEditExam => 'Failed to edit exam';
 
   @override
   String get failedEditProgram => 'Failed to edit program';
@@ -312,6 +354,12 @@ class StringsEn extends Strings {
 
   @override
   String get leave => 'Leave';
+
+  @override
+  String get leaveClub => 'Leave Club';
+
+  @override
+  String get leaveClubConfirmation => 'Are you sure you want to leave this club?';
 
   @override
   String get leaveClubSuccess => 'Successfully leave club';
@@ -482,6 +530,9 @@ class StringsEn extends Strings {
   String get theme => 'Theme';
 
   @override
+  String get title => 'Title';
+
+  @override
   String get updateClub => 'Update Club';
 
   @override
@@ -510,10 +561,4 @@ class StringsEn extends Strings {
 
   @override
   String get warning => 'Warning';
-
-  @override
-  String get leaveClub => 'Leave Club';
-
-  @override
-  String get leaveClubConfirmation => 'Are you sure you want to leave this club?';
 }

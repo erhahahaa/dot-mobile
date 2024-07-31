@@ -5,6 +5,7 @@ import 'package:dot_coaching/feats/feats.dart';
 abstract class QuestionRepo {
   Future<Either<Failure, List<QuestionModel>>> getAll(
     PaginationParams params,
+    int examId,
   );
   Future<Either<Failure, QuestionModel>> getById(
     ByIdParams params,

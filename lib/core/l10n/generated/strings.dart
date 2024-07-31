@@ -291,6 +291,12 @@ abstract class Strings {
   /// **'Create Club'**
   String get createClub;
 
+  /// No description provided for @createExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Exam'**
+  String get createExam;
+
   /// No description provided for @createProgram.
   ///
   /// In en, this message translates to:
@@ -308,6 +314,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Delete'**
   String get delete;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
 
   /// No description provided for @detail.
   ///
@@ -327,6 +339,18 @@ abstract class Strings {
   /// **'Download'**
   String get download;
 
+  /// No description provided for @dueAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Due at'**
+  String get dueAt;
+
+  /// No description provided for @dueAtRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Due at is required'**
+  String get dueAtRequired;
+
   /// No description provided for @edit.
   ///
   /// In en, this message translates to:
@@ -338,6 +362,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Edit Club'**
   String get editClub;
+
+  /// No description provided for @editExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Exam'**
+  String get editExam;
 
   /// No description provided for @editProfile.
   ///
@@ -375,6 +405,12 @@ abstract class Strings {
   /// **'Email / Username / Phone already registered'**
   String get emailUsernamePhoneAlreadyRegistered;
 
+  /// No description provided for @emptyExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam is empty'**
+  String get emptyExam;
+
   /// No description provided for @endDate.
   ///
   /// In en, this message translates to:
@@ -405,6 +441,18 @@ abstract class Strings {
   /// **'Enter club name'**
   String get enterClubName;
 
+  /// No description provided for @enterDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter description'**
+  String get enterDescription;
+
+  /// No description provided for @enterDueAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter due at'**
+  String get enterDueAt;
+
   /// No description provided for @enterEmailOrUsernameOrPhone.
   ///
   /// In en, this message translates to:
@@ -416,6 +464,18 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Enter the end date'**
   String get enterEndDate;
+
+  /// No description provided for @enterExamDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter exam description'**
+  String get enterExamDescription;
+
+  /// No description provided for @enterExamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter exam title'**
+  String get enterExamTitle;
 
   /// No description provided for @enterProgramName.
   ///
@@ -519,11 +579,23 @@ abstract class Strings {
   /// **'Exam'**
   String get exam;
 
+  /// No description provided for @examDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Description'**
+  String get examDescription;
+
   /// No description provided for @exams.
   ///
   /// In en, this message translates to:
   /// **'Exams'**
   String get exams;
+
+  /// No description provided for @examTitleRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam title is required'**
+  String get examTitleRequired;
 
   /// No description provided for @exercise.
   ///
@@ -555,6 +627,12 @@ abstract class Strings {
   /// **'Failed to create club'**
   String get failedCreateClub;
 
+  /// No description provided for @failedCreateExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create exam'**
+  String get failedCreateExam;
+
   /// No description provided for @failedCreateExercises.
   ///
   /// In en, this message translates to:
@@ -566,6 +644,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Failed to create program'**
   String get failedCreateProgram;
+
+  /// No description provided for @failedEditExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to edit exam'**
+  String get failedEditExam;
 
   /// No description provided for @failedEditProgram.
   ///
@@ -716,6 +800,18 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Leave'**
   String get leave;
+
+  /// No description provided for @leaveClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave Club'**
+  String get leaveClub;
+
+  /// No description provided for @leaveClubConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to leave this club?'**
+  String get leaveClubConfirmation;
 
   /// No description provided for @leaveClubSuccess.
   ///
@@ -1053,6 +1149,12 @@ abstract class Strings {
   /// **'Theme'**
   String get theme;
 
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
   /// No description provided for @updateClub.
   ///
   /// In en, this message translates to:
@@ -1112,18 +1214,6 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Warning'**
   String get warning;
-
-  /// No description provided for @leaveClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Leave Club'**
-  String get leaveClub;
-
-  /// No description provided for @leaveClubConfirmation.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to leave this club?'**
-  String get leaveClubConfirmation;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

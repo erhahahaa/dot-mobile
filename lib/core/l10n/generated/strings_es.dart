@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Spanish Castilian (`es`).
 class StringsEs extends Strings {
-  StringsEs([super.locale = 'es']);
+  StringsEs([String locale = 'es']) : super(locale);
 
   @override
   String get about => 'Acerca de';
@@ -101,6 +101,9 @@ class StringsEs extends Strings {
   String get createClub => 'Crear club';
 
   @override
+  String get createExam => 'Crear examen';
+
+  @override
   String get createProgram => 'Crear programa';
 
   @override
@@ -108,6 +111,9 @@ class StringsEs extends Strings {
 
   @override
   String get delete => 'Eliminar';
+
+  @override
+  String get description => 'Descripción';
 
   @override
   String get detail => 'Detalle';
@@ -119,10 +125,19 @@ class StringsEs extends Strings {
   String get download => 'Descargar';
 
   @override
+  String get dueAt => 'Vencimiento en';
+
+  @override
+  String get dueAtRequired => 'La fecha límite es obligatoria';
+
+  @override
   String get edit => 'Editar';
 
   @override
   String get editClub => 'Editar Club';
+
+  @override
+  String get editExam => 'Editar examen';
 
   @override
   String get editProfile => 'Editar perfil';
@@ -143,6 +158,9 @@ class StringsEs extends Strings {
   String get emailUsernamePhoneAlreadyRegistered => 'Correo electrónico / Nombre de usuario / Teléfono ya registrado';
 
   @override
+  String get emptyExam => 'El examen está vacío';
+
+  @override
   String get endDate => 'Fecha de finalización';
 
   @override
@@ -158,10 +176,22 @@ class StringsEs extends Strings {
   String get enterClubName => 'Introduce el nombre del club';
 
   @override
+  String get enterDescription => 'Ingrese la descripción';
+
+  @override
+  String get enterDueAt => 'Ingrese la fecha límite';
+
+  @override
   String get enterEmailOrUsernameOrPhone => 'Introduce correo electrónico / nombre de usuario / teléfono';
 
   @override
   String get enterEndDate => 'Introduce la fecha de finalización';
+
+  @override
+  String get enterExamDescription => 'Ingrese la descripción del examen';
+
+  @override
+  String get enterExamTitle => 'Ingrese el título del examen';
 
   @override
   String get enterProgramName => 'Introduce el nombre del programa';
@@ -215,7 +245,13 @@ class StringsEs extends Strings {
   String get exam => 'Examen';
 
   @override
+  String get examDescription => 'Descripción del examen';
+
+  @override
   String get exams => 'Exámenes';
+
+  @override
+  String get examTitleRequired => 'El título del examen es obligatorio';
 
   @override
   String get exercise => 'Ejercicio';
@@ -233,10 +269,16 @@ class StringsEs extends Strings {
   String get failedCreateClub => 'Error al crear el club';
 
   @override
+  String get failedCreateExam => 'Error al crear el examen';
+
+  @override
   String get failedCreateExercises => 'Error al crear los ejercicios';
 
   @override
   String get failedCreateProgram => 'Error al crear el programa';
+
+  @override
+  String get failedEditExam => 'Error al editar el examen';
 
   @override
   String get failedEditProgram => 'Error al editar el programa';
@@ -312,6 +354,12 @@ class StringsEs extends Strings {
 
   @override
   String get leave => 'Dejar';
+
+  @override
+  String get leaveClub => 'Dejar club';
+
+  @override
+  String get leaveClubConfirmation => '¿Estás seguro de que quieres dejar este club?';
 
   @override
   String get leaveClubSuccess => 'Club dejado con éxito';
@@ -482,6 +530,9 @@ class StringsEs extends Strings {
   String get theme => 'Tema';
 
   @override
+  String get title => 'Título';
+
+  @override
   String get updateClub => 'Actualizar club';
 
   @override
@@ -510,10 +561,4 @@ class StringsEs extends Strings {
 
   @override
   String get warning => 'Advertencia';
-
-  @override
-  String get leaveClub => 'Dejar club';
-
-  @override
-  String get leaveClubConfirmation => '¿Estás seguro de que quieres dejar este club?';
 }

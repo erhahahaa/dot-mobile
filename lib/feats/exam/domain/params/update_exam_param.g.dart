@@ -11,7 +11,7 @@ _$UpdateExamParamsImpl _$$UpdateExamParamsImplFromJson(
     _$UpdateExamParamsImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
       clubId: (json['clubId'] as num?)?.toInt() ?? 0,
-      name: json['name'] as String? ?? '',
+      title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
       dueAt: json['dueAt'] == null
           ? null
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$UpdateExamParamsImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'clubId': instance.clubId,
-      'name': instance.name,
+      'title': instance.title,
       'description': instance.description,
       'dueAt': instance.dueAt?.toIso8601String(),
     };

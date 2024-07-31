@@ -10,7 +10,7 @@ _$CreateExamParamsImpl _$$CreateExamParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateExamParamsImpl(
       clubId: (json['clubId'] as num?)?.toInt() ?? 0,
-      name: json['name'] as String? ?? '',
+      title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
       dueAt: json['dueAt'] == null
           ? null
@@ -21,7 +21,7 @@ Map<String, dynamic> _$$CreateExamParamsImplToJson(
         _$CreateExamParamsImpl instance) =>
     <String, dynamic>{
       'clubId': instance.clubId,
-      'name': instance.name,
+      'title': instance.title,
       'description': instance.description,
       'dueAt': instance.dueAt?.toIso8601String(),
     };

@@ -111,13 +111,19 @@ void _initCubits() {
   sl.registerFactory(
     () => ExamCubit(
       sl<ExamRepo>(),
+      sl<ImagePickerClient>(),
+    ),
+  );
+  sl.registerFactory(
+    () => QuestionCubit(
+      sl<QuestionRepo>(),
+      sl<ImagePickerClient>(),
     ),
   );
 
   sl.registerFactory(
     () => ProgramCubit(
-      sl<ProgramRepo>(),
-      sl<UserRepo>(),
+      sl<ProgramRepo>(), 
       sl<ImagePickerClient>(),
     ),
   );

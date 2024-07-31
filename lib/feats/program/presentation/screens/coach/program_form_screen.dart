@@ -70,13 +70,6 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
     return BlocConsumer<ProgramCubit, ProgramState>(
       listener: (context, state) {
         if (state.state == BaseState.success) {
-          // ToastModel(
-          //   message: widget.program == null
-          //       ? context.str?.successCreateProgram
-          //       : context.str?.succesEditProgram,
-          //   type: ToastType.success,
-          // ).fire(context);
-
           final program = state.createdProgram;
           if (program != null && widget.program == null) {
             context.pushReplacementNamed(

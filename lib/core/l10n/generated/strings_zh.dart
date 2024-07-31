@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Chinese (`zh`).
 class StringsZh extends Strings {
-  StringsZh([super.locale = 'zh']);
+  StringsZh([String locale = 'zh']) : super(locale);
 
   @override
   String get about => '关于';
@@ -101,6 +101,9 @@ class StringsZh extends Strings {
   String get createClub => '创建俱乐部';
 
   @override
+  String get createExam => '创建考试';
+
+  @override
   String get createProgram => '创建计划';
 
   @override
@@ -108,6 +111,9 @@ class StringsZh extends Strings {
 
   @override
   String get delete => '删除';
+
+  @override
+  String get description => '描述';
 
   @override
   String get detail => '详情';
@@ -119,10 +125,19 @@ class StringsZh extends Strings {
   String get download => '下载';
 
   @override
+  String get dueAt => '到期';
+
+  @override
+  String get dueAtRequired => '截止时间是必填项';
+
+  @override
   String get edit => '编辑';
 
   @override
   String get editClub => '编辑俱乐部';
+
+  @override
+  String get editExam => '编辑考试';
 
   @override
   String get editProfile => '编辑资料';
@@ -143,6 +158,9 @@ class StringsZh extends Strings {
   String get emailUsernamePhoneAlreadyRegistered => '邮箱 / 用户名 / 电话已被注册';
 
   @override
+  String get emptyExam => '考试为空';
+
+  @override
   String get endDate => '结束日期';
 
   @override
@@ -158,10 +176,22 @@ class StringsZh extends Strings {
   String get enterClubName => '输入俱乐部名称';
 
   @override
+  String get enterDescription => '输入描述';
+
+  @override
+  String get enterDueAt => '输入截止时间';
+
+  @override
   String get enterEmailOrUsernameOrPhone => '输入邮箱 / 用户名 / 电话';
 
   @override
   String get enterEndDate => '输入结束日期';
+
+  @override
+  String get enterExamDescription => '输入考试描述';
+
+  @override
+  String get enterExamTitle => '输入考试标题';
 
   @override
   String get enterProgramName => '输入计划名称';
@@ -215,7 +245,13 @@ class StringsZh extends Strings {
   String get exam => '考试';
 
   @override
+  String get examDescription => '考试描述';
+
+  @override
   String get exams => '考试';
+
+  @override
+  String get examTitleRequired => '考试标题是必填项';
 
   @override
   String get exercise => '练习';
@@ -233,10 +269,16 @@ class StringsZh extends Strings {
   String get failedCreateClub => '创建俱乐部失败';
 
   @override
+  String get failedCreateExam => '创建考试失败';
+
+  @override
   String get failedCreateExercises => '创建练习失败';
 
   @override
   String get failedCreateProgram => '创建计划失败';
+
+  @override
+  String get failedEditExam => '编辑考试失败';
 
   @override
   String get failedEditProgram => '编辑计划失败';
@@ -312,6 +354,12 @@ class StringsZh extends Strings {
 
   @override
   String get leave => '离开';
+
+  @override
+  String get leaveClub => '离开俱乐部';
+
+  @override
+  String get leaveClubConfirmation => '您确定要离开这个俱乐部吗？';
 
   @override
   String get leaveClubSuccess => '成功离开俱乐部';
@@ -482,6 +530,9 @@ class StringsZh extends Strings {
   String get theme => '主题';
 
   @override
+  String get title => '标题';
+
+  @override
   String get updateClub => '更新俱乐部';
 
   @override
@@ -510,10 +561,4 @@ class StringsZh extends Strings {
 
   @override
   String get warning => '警告';
-
-  @override
-  String get leaveClub => '离开俱乐部';
-
-  @override
-  String get leaveClubConfirmation => '您确定要离开这个俱乐部吗？';
 }

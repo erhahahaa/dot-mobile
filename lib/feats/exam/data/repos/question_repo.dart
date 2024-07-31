@@ -50,9 +50,14 @@ class QuestionRepoImpl implements QuestionRepo {
   @override
   Future<Either<Failure, List<QuestionModel>>> getAll(
     PaginationParams params,
+    int examId,
   ) async {
     final res = await _remote.getRequest(
       ListAPI.CLUB_EXAM_QUESTION,
+      queryParameters: params.toJson()
+        ..addAll(
+          {'examId': examId},
+        ),
       converter: (res) {
         final List<QuestionModel> questions = [];
         for (final item in res['data']) {

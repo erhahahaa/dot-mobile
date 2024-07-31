@@ -35,13 +35,14 @@ class _ProgramScreenState extends State<ProgramScreen> {
             isDisabled: state.state == BaseState.loading,
             isLoading: state.state == BaseState.loading,
           ),
-          body: RefreshIndicator(
-            onRefresh: () => context.read<ProgramCubit>().init(
-                  clubId: widget.club.id,
-                ),
-            child: RoundedTopBackground(
-              title: widget.club.name,
+          body: RoundedTopBackground(
+            title: widget.club.name,
+            child: RefreshIndicator(
+              onRefresh: () => context.read<ProgramCubit>().init(
+                    clubId: widget.club.id,
+                  ),
               child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
                     Row(
@@ -129,66 +130,6 @@ class _ProgramScreenState extends State<ProgramScreen> {
                             isLoading: state.state == BaseState.loading,
                             club: widget.club,
                           ),
-                    // hideListProgram
-                    //     ? Container()
-                    //     : Container(
-                    //         padding: EdgeInsets.all(8.w),
-                    //         height: 380.h,
-                    //         margin: EdgeInsets.only(bottom: 96.h),
-                    //         decoration: BoxDecoration(
-                    //           borderRadius: BorderRadius.circular(8.r),
-                    //           color: Theme.of(context)
-                    //               .colorScheme
-                    //               .primaryContainer
-                    //               .withOpacity(0.1),
-                    //         ),
-                    //         child: ListView.builder(
-                    //           padding: EdgeInsets.zero,
-                    //           itemCount: state.programs.length,
-                    //           shrinkWrap: true,
-                    //           itemBuilder: (context, index) {
-                    //             final program = state.programs[index];
-                    //             return InkWell(
-                    //               onTap: () => context.pushNamed(
-                    //                   AppRoutes.coachProgramDetail.name,
-                    //                   pathParameters: {
-                    //                     'id': program.id.toString()
-                    //                   },
-                    //                   extra: {
-                    //                     'program': program,
-                    //                   }),
-                    //               child: Container(
-                    //                 padding: EdgeInsets.all(16.w),
-                    //                 margin: EdgeInsets.only(bottom: 8.w),
-                    //                 decoration: BoxDecoration(
-                    //                   borderRadius: BorderRadius.circular(8.r),
-                    //                   color: context
-                    //                       .theme.colorScheme.primaryContainer
-                    //                       .withOpacity(0.1),
-                    //                 ),
-                    //                 child: Row(
-                    //                   mainAxisAlignment:
-                    //                       MainAxisAlignment.spaceBetween,
-                    //                   children: [
-                    //                     Text(
-                    //                       program.name,
-                    //                       style: context
-                    //                           .theme.textTheme.titleMedium
-                    //                           ?.copyWith(
-                    //                         fontWeight: FontWeight.w600,
-                    //                       ),
-                    //                     ),
-                    //                     Icon(
-                    //                       Icons.arrow_forward_ios,
-                    //                       size: 16.sp,
-                    //                     )
-                    //                   ],
-                    //                 ),
-                    //               ),
-                    //             );
-                    //           },
-                    //         ),
-                    //       ),
                   ],
                 ),
               ),

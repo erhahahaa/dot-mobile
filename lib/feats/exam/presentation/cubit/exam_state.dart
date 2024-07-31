@@ -7,5 +7,7 @@ class ExamState with _$ExamState {
     Failure? failure,
     @Default([]) List<ExamModel> exams,
     @Default([]) List<ExamModel> filteredExams,
+    ExamModel? createdExam,
+    File? image,
   }) = _ExamState;
 }

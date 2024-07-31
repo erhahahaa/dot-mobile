@@ -1,4 +1,4 @@
-import 'package:dot_coaching/feats/exam/presentation/widgets/exam_container.dart';
+import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/exts/exts.dart';
 import 'package:flutter/material.dart';
@@ -23,35 +23,30 @@ class ListExam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: padding ?? EdgeInsets.all(8.w),
-      height: 380.h,
-      margin: EdgeInsets.only(bottom: 96.h),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.r),
-        color: context.containerColor(0.05),
-      ),
+    return EightContainer(
       child: _buildListExam(context),
     );
   }
 
   Widget _buildListExam(BuildContext context) {
     if (isLoading) {
-      final exam = List.generate(3, (index) => const ExamModel()).toList();
+      final fakeExam = List.generate(9, (index) => ExamModel.fake()).toList();
 
       return Skeletonizer(
-          child: ListView.builder(
-        itemCount: exam.length,
-        shrinkWrap: true,
-        padding: EdgeInsets.zero,
-        itemBuilder: (context, index) {
-          return ExamContainer(
-            exam: exam[index],
-            isCoach: isCoach,
-            club: club,
-          );
-        },
-      ));
+        child: ListView.builder(
+          physics: const AlwaysScrollableScrollPhysics(),
+          itemCount: fakeExam.length,
+          shrinkWrap: true,
+          padding: EdgeInsets.zero,
+          itemBuilder: (context, index) {
+            return ExamContainer(
+              exam: fakeExam[index],
+              isCoach: isCoach,
+              club: club,
+            );
+          },
+        ),
+      );
     }
 
     if (exams.isEmpty) {
@@ -59,11 +54,11 @@ class ListExam extends StatelessWidget {
         padding: padding ?? EdgeInsets.all(8.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
-          color: context.containerColor(0.1),
+          color: context.containerColor(0.05),
         ),
         child: Center(
           child: Text(
-            'No exams found',
+            context.str?.emptyExam ?? 'Exam is empty',
             style: context.theme.textTheme.bodyLarge,
           ),
         ),
@@ -71,6 +66,7 @@ class ListExam extends StatelessWidget {
     }
 
     return ListView.builder(
+      physics: const AlwaysScrollableScrollPhysics(),
       itemCount: exams.length,
       shrinkWrap: true,
       padding: EdgeInsets.zero,

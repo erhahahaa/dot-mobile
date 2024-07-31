@@ -22,9 +22,12 @@ UpdateExamParams _$UpdateExamParamsFromJson(Map<String, dynamic> json) {
 mixin _$UpdateExamParams {
   int get id => throw _privateConstructorUsedError;
   int get clubId => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  DateTime? get dueAt => throw _privateConstructorUsedError;
+  DateTime? get dueAt =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  File? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +42,12 @@ abstract class $UpdateExamParamsCopyWith<$Res> {
       _$UpdateExamParamsCopyWithImpl<$Res, UpdateExamParams>;
   @useResult
   $Res call(
-      {int id, int clubId, String name, String description, DateTime? dueAt});
+      {int id,
+      int clubId,
+      String title,
+      String description,
+      DateTime? dueAt,
+      @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
 
 /// @nodoc
@@ -57,9 +65,10 @@ class _$UpdateExamParamsCopyWithImpl<$Res, $Val extends UpdateExamParams>
   $Res call({
     Object? id = null,
     Object? clubId = null,
-    Object? name = null,
+    Object? title = null,
     Object? description = null,
     Object? dueAt = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -70,9 +79,9 @@ class _$UpdateExamParamsCopyWithImpl<$Res, $Val extends UpdateExamParams>
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -82,6 +91,10 @@ class _$UpdateExamParamsCopyWithImpl<$Res, $Val extends UpdateExamParams>
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ) as $Val);
   }
 }
@@ -95,7 +108,12 @@ abstract class _$$UpdateExamParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, int clubId, String name, String description, DateTime? dueAt});
+      {int id,
+      int clubId,
+      String title,
+      String description,
+      DateTime? dueAt,
+      @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
 
 /// @nodoc
@@ -111,9 +129,10 @@ class __$$UpdateExamParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? clubId = null,
-    Object? name = null,
+    Object? title = null,
     Object? description = null,
     Object? dueAt = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$UpdateExamParamsImpl(
       id: null == id
@@ -124,9 +143,9 @@ class __$$UpdateExamParamsImplCopyWithImpl<$Res>
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -136,19 +155,25 @@ class __$$UpdateExamParamsImplCopyWithImpl<$Res>
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UpdateExamParamsImpl implements _UpdateExamParams {
+class _$UpdateExamParamsImpl extends _UpdateExamParams {
   const _$UpdateExamParamsImpl(
       {this.id = 0,
       this.clubId = 0,
-      this.name = '',
+      this.title = '',
       this.description = '',
-      this.dueAt});
+      this.dueAt,
+      @JsonKey(includeFromJson: false, includeToJson: false) this.image})
+      : super._();
 
   factory _$UpdateExamParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpdateExamParamsImplFromJson(json);
@@ -161,16 +186,20 @@ class _$UpdateExamParamsImpl implements _UpdateExamParams {
   final int clubId;
   @override
   @JsonKey()
-  final String name;
+  final String title;
   @override
   @JsonKey()
   final String description;
   @override
   final DateTime? dueAt;
+// ignore: invalid_annotation_target
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final File? image;
 
   @override
   String toString() {
-    return 'UpdateExamParams(id: $id, clubId: $clubId, name: $name, description: $description, dueAt: $dueAt)';
+    return 'UpdateExamParams(id: $id, clubId: $clubId, title: $title, description: $description, dueAt: $dueAt, image: $image)';
   }
 
   @override
@@ -180,16 +209,17 @@ class _$UpdateExamParamsImpl implements _UpdateExamParams {
             other is _$UpdateExamParamsImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.clubId, clubId) || other.clubId == clubId) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.dueAt, dueAt) || other.dueAt == dueAt));
+            (identical(other.dueAt, dueAt) || other.dueAt == dueAt) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, clubId, name, description, dueAt);
+      Object.hash(runtimeType, id, clubId, title, description, dueAt, image);
 
   @JsonKey(ignore: true)
   @override
@@ -206,13 +236,16 @@ class _$UpdateExamParamsImpl implements _UpdateExamParams {
   }
 }
 
-abstract class _UpdateExamParams implements UpdateExamParams {
+abstract class _UpdateExamParams extends UpdateExamParams {
   const factory _UpdateExamParams(
       {final int id,
       final int clubId,
-      final String name,
+      final String title,
       final String description,
-      final DateTime? dueAt}) = _$UpdateExamParamsImpl;
+      final DateTime? dueAt,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final File? image}) = _$UpdateExamParamsImpl;
+  const _UpdateExamParams._() : super._();
 
   factory _UpdateExamParams.fromJson(Map<String, dynamic> json) =
       _$UpdateExamParamsImpl.fromJson;
@@ -222,11 +255,14 @@ abstract class _UpdateExamParams implements UpdateExamParams {
   @override
   int get clubId;
   @override
-  String get name;
+  String get title;
   @override
   String get description;
   @override
   DateTime? get dueAt;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  File? get image;
   @override
   @JsonKey(ignore: true)
   _$$UpdateExamParamsImplCopyWith<_$UpdateExamParamsImpl> get copyWith =>

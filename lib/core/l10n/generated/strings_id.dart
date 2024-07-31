@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Indonesian (`id`).
 class StringsId extends Strings {
-  StringsId([super.locale = 'id']);
+  StringsId([String locale = 'id']) : super(locale);
 
   @override
   String get about => 'Tentang';
@@ -101,6 +101,9 @@ class StringsId extends Strings {
   String get createClub => 'Buat Klub';
 
   @override
+  String get createExam => 'Buat Ujian';
+
+  @override
   String get createProgram => 'Buat Program';
 
   @override
@@ -108,6 +111,9 @@ class StringsId extends Strings {
 
   @override
   String get delete => 'Hapus';
+
+  @override
+  String get description => 'Deskripsi';
 
   @override
   String get detail => 'Rincian';
@@ -119,10 +125,19 @@ class StringsId extends Strings {
   String get download => 'Unduh';
 
   @override
+  String get dueAt => 'Tenggat';
+
+  @override
+  String get dueAtRequired => 'Tanggal jatuh tempo diperlukan';
+
+  @override
   String get edit => 'Ubah';
 
   @override
   String get editClub => 'Ubah Klub';
+
+  @override
+  String get editExam => 'Edit Ujian';
 
   @override
   String get editProfile => 'Ubah Profil';
@@ -143,6 +158,9 @@ class StringsId extends Strings {
   String get emailUsernamePhoneAlreadyRegistered => 'Email / Nama pengguna / Telepon sudah terdaftar';
 
   @override
+  String get emptyExam => 'Ujian kosong';
+
+  @override
   String get endDate => 'Tanggal Berakhir';
 
   @override
@@ -158,10 +176,22 @@ class StringsId extends Strings {
   String get enterClubName => 'Masukkan nama klub';
 
   @override
+  String get enterDescription => 'Masukkan deskripsi';
+
+  @override
+  String get enterDueAt => 'Masukkan tanggal jatuh tempo';
+
+  @override
   String get enterEmailOrUsernameOrPhone => 'Masukan email / nama pengguna / telepon';
 
   @override
   String get enterEndDate => 'Masukkan tanggal berakhir';
+
+  @override
+  String get enterExamDescription => 'Masukkan deskripsi ujian';
+
+  @override
+  String get enterExamTitle => 'Masukkan judul ujian';
 
   @override
   String get enterProgramName => 'Masukkan nama program';
@@ -215,7 +245,13 @@ class StringsId extends Strings {
   String get exam => 'Tes';
 
   @override
+  String get examDescription => 'Deskripsi Ujian';
+
+  @override
   String get exams => 'Tes';
+
+  @override
+  String get examTitleRequired => 'Judul ujian diperlukan';
 
   @override
   String get exercise => 'Latihan';
@@ -233,10 +269,16 @@ class StringsId extends Strings {
   String get failedCreateClub => 'Gagal membuat klub';
 
   @override
+  String get failedCreateExam => 'Gagal membuat ujian';
+
+  @override
   String get failedCreateExercises => 'Gagal membuat latihan';
 
   @override
   String get failedCreateProgram => 'Gagal membuat program';
+
+  @override
+  String get failedEditExam => 'Gagal mengedit ujian';
 
   @override
   String get failedEditProgram => 'Gagal mengubah program';
@@ -312,6 +354,12 @@ class StringsId extends Strings {
 
   @override
   String get leave => 'Keluar';
+
+  @override
+  String get leaveClub => 'Keluar dari klub';
+
+  @override
+  String get leaveClubConfirmation => 'Apakah Anda yakin ingin meninggalkan klub ini?';
 
   @override
   String get leaveClubSuccess => 'Berhasil meninggalkan klub';
@@ -482,6 +530,9 @@ class StringsId extends Strings {
   String get theme => 'Tema';
 
   @override
+  String get title => 'Judul';
+
+  @override
   String get updateClub => 'Perbarui Club';
 
   @override
@@ -510,10 +561,4 @@ class StringsId extends Strings {
 
   @override
   String get warning => 'Peringatan';
-
-  @override
-  String get leaveClub => 'Keluar dari klub';
-
-  @override
-  String get leaveClubConfirmation => 'Apakah Anda yakin ingin meninggalkan klub ini?';
 }

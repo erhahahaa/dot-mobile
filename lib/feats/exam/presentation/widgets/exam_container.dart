@@ -12,6 +12,7 @@ class ExamContainer extends StatelessWidget {
   final ExamModel exam;
   final ClubModel club;
   final bool isCoach;
+
   const ExamContainer({
     super.key,
     required this.exam,
@@ -52,17 +53,8 @@ class ExamContainer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              H3Text(
-                exam.title,
-                // style: context.theme.textTheme.titleMedium?.copyWith(
-                //   fontWeight: FontWeight.w500,
-                // ),
-              ),
-              Row(
-                children: [
-                  H6Text(exam.dueAt?.toDayMonthYear() ?? ''),
-                ],
-              ),
+              H3Text(exam.title),
+              H6Text('${context.str?.dueAt} ${exam.dueAt?.toDayMonthYear()}'),
             ],
           ),
           const Spacer(),

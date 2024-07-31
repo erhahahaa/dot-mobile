@@ -256,7 +256,7 @@ class AppRouter {
                   ..clear()
                   ..init(clubId: club.id),
               ),
-              BlocProvider(create: (_) => sl<ExerciseCubit>()..emitInitial()),
+              BlocProvider(create: (_) => sl<QuestionCubit>()..emitInitial()),
               BlocProvider(
                 create: (_) => sl<MediaCubit>()..init(clubId: club.id),
               ),
@@ -390,8 +390,8 @@ class AppRouter {
             },
           ),
           GoRoute(
-            path: AppRoutes.coachCreateQuestion.path,
-            name: AppRoutes.coachCreateQuestion.name,
+            path: AppRoutes.coachCreateExamQuestion.path,
+            name: AppRoutes.coachCreateExamQuestion.name,
             builder: (c, state) {
               final extra = state.extra as Map<String, dynamic>;
               final exam = extra['exam'] as ExamModel;
@@ -412,8 +412,8 @@ class AppRouter {
             },
           ),
           GoRoute(
-            path: AppRoutes.coachEditQuestion.path,
-            name: AppRoutes.coachEditQuestion.name,
+            path: AppRoutes.coachEditExamQuestion.path,
+            name: AppRoutes.coachEditExamQuestion.name,
             builder: (c, state) {
               final extra = state.extra as Map<String, dynamic>;
               final questions = extra['questions'] as List<QuestionModel>;

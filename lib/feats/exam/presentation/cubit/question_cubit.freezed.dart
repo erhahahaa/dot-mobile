@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$QuestionState {
   BaseState get state => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
+  List<QuestionModel> get questions => throw _privateConstructorUsedError;
+  List<MediaModel> get medias => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $QuestionStateCopyWith<QuestionState> get copyWith =>
@@ -30,7 +32,11 @@ abstract class $QuestionStateCopyWith<$Res> {
           QuestionState value, $Res Function(QuestionState) then) =
       _$QuestionStateCopyWithImpl<$Res, QuestionState>;
   @useResult
-  $Res call({BaseState state, Failure? failure});
+  $Res call(
+      {BaseState state,
+      Failure? failure,
+      List<QuestionModel> questions,
+      List<MediaModel> medias});
 }
 
 /// @nodoc
@@ -48,6 +54,8 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
   $Res call({
     Object? state = null,
     Object? failure = freezed,
+    Object? questions = null,
+    Object? medias = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -58,6 +66,14 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      questions: null == questions
+          ? _value.questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<QuestionModel>,
+      medias: null == medias
+          ? _value.medias
+          : medias // ignore: cast_nullable_to_non_nullable
+              as List<MediaModel>,
     ) as $Val);
   }
 }
@@ -70,7 +86,11 @@ abstract class _$$QuestionStateImplCopyWith<$Res>
       __$$QuestionStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BaseState state, Failure? failure});
+  $Res call(
+      {BaseState state,
+      Failure? failure,
+      List<QuestionModel> questions,
+      List<MediaModel> medias});
 }
 
 /// @nodoc
@@ -86,6 +106,8 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
     Object? failure = freezed,
+    Object? questions = null,
+    Object? medias = null,
   }) {
     return _then(_$QuestionStateImpl(
       state: null == state
@@ -96,6 +118,14 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      questions: null == questions
+          ? _value._questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<QuestionModel>,
+      medias: null == medias
+          ? _value._medias
+          : medias // ignore: cast_nullable_to_non_nullable
+              as List<MediaModel>,
     ));
   }
 }
@@ -103,17 +133,40 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$QuestionStateImpl implements _QuestionState {
-  const _$QuestionStateImpl({this.state = BaseState.initial, this.failure});
+  const _$QuestionStateImpl(
+      {this.state = BaseState.initial,
+      this.failure,
+      final List<QuestionModel> questions = const [],
+      final List<MediaModel> medias = const []})
+      : _questions = questions,
+        _medias = medias;
 
   @override
   @JsonKey()
   final BaseState state;
   @override
   final Failure? failure;
+  final List<QuestionModel> _questions;
+  @override
+  @JsonKey()
+  List<QuestionModel> get questions {
+    if (_questions is EqualUnmodifiableListView) return _questions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questions);
+  }
+
+  final List<MediaModel> _medias;
+  @override
+  @JsonKey()
+  List<MediaModel> get medias {
+    if (_medias is EqualUnmodifiableListView) return _medias;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_medias);
+  }
 
   @override
   String toString() {
-    return 'QuestionState(state: $state, failure: $failure)';
+    return 'QuestionState(state: $state, failure: $failure, questions: $questions, medias: $medias)';
   }
 
   @override
@@ -122,11 +175,19 @@ class _$QuestionStateImpl implements _QuestionState {
         (other.runtimeType == runtimeType &&
             other is _$QuestionStateImpl &&
             (identical(other.state, state) || other.state == state) &&
-            (identical(other.failure, failure) || other.failure == failure));
+            (identical(other.failure, failure) || other.failure == failure) &&
+            const DeepCollectionEquality()
+                .equals(other._questions, _questions) &&
+            const DeepCollectionEquality().equals(other._medias, _medias));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state, failure);
+  int get hashCode => Object.hash(
+      runtimeType,
+      state,
+      failure,
+      const DeepCollectionEquality().hash(_questions),
+      const DeepCollectionEquality().hash(_medias));
 
   @JsonKey(ignore: true)
   @override
@@ -137,12 +198,19 @@ class _$QuestionStateImpl implements _QuestionState {
 
 abstract class _QuestionState implements QuestionState {
   const factory _QuestionState(
-      {final BaseState state, final Failure? failure}) = _$QuestionStateImpl;
+      {final BaseState state,
+      final Failure? failure,
+      final List<QuestionModel> questions,
+      final List<MediaModel> medias}) = _$QuestionStateImpl;
 
   @override
   BaseState get state;
   @override
   Failure? get failure;
+  @override
+  List<QuestionModel> get questions;
+  @override
+  List<MediaModel> get medias;
   @override
   @JsonKey(ignore: true)
   _$$QuestionStateImplCopyWith<_$QuestionStateImpl> get copyWith =>

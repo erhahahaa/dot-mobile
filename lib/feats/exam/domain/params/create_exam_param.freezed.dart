@@ -21,9 +21,12 @@ CreateExamParams _$CreateExamParamsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CreateExamParams {
   int get clubId => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  DateTime? get dueAt => throw _privateConstructorUsedError;
+  DateTime? get dueAt =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  File? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +40,12 @@ abstract class $CreateExamParamsCopyWith<$Res> {
           CreateExamParams value, $Res Function(CreateExamParams) then) =
       _$CreateExamParamsCopyWithImpl<$Res, CreateExamParams>;
   @useResult
-  $Res call({int clubId, String name, String description, DateTime? dueAt});
+  $Res call(
+      {int clubId,
+      String title,
+      String description,
+      DateTime? dueAt,
+      @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
 
 /// @nodoc
@@ -54,18 +62,19 @@ class _$CreateExamParamsCopyWithImpl<$Res, $Val extends CreateExamParams>
   @override
   $Res call({
     Object? clubId = null,
-    Object? name = null,
+    Object? title = null,
     Object? description = null,
     Object? dueAt = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -75,6 +84,10 @@ class _$CreateExamParamsCopyWithImpl<$Res, $Val extends CreateExamParams>
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ) as $Val);
   }
 }
@@ -87,7 +100,12 @@ abstract class _$$CreateExamParamsImplCopyWith<$Res>
       __$$CreateExamParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int clubId, String name, String description, DateTime? dueAt});
+  $Res call(
+      {int clubId,
+      String title,
+      String description,
+      DateTime? dueAt,
+      @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
 
 /// @nodoc
@@ -102,18 +120,19 @@ class __$$CreateExamParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? clubId = null,
-    Object? name = null,
+    Object? title = null,
     Object? description = null,
     Object? dueAt = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$CreateExamParamsImpl(
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -123,15 +142,24 @@ class __$$CreateExamParamsImplCopyWithImpl<$Res>
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CreateExamParamsImpl implements _CreateExamParams {
+class _$CreateExamParamsImpl extends _CreateExamParams {
   const _$CreateExamParamsImpl(
-      {this.clubId = 0, this.name = '', this.description = '', this.dueAt});
+      {this.clubId = 0,
+      this.title = '',
+      this.description = '',
+      this.dueAt,
+      @JsonKey(includeFromJson: false, includeToJson: false) this.image})
+      : super._();
 
   factory _$CreateExamParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateExamParamsImplFromJson(json);
@@ -141,16 +169,20 @@ class _$CreateExamParamsImpl implements _CreateExamParams {
   final int clubId;
   @override
   @JsonKey()
-  final String name;
+  final String title;
   @override
   @JsonKey()
   final String description;
   @override
   final DateTime? dueAt;
+// ignore: invalid_annotation_target
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final File? image;
 
   @override
   String toString() {
-    return 'CreateExamParams(clubId: $clubId, name: $name, description: $description, dueAt: $dueAt)';
+    return 'CreateExamParams(clubId: $clubId, title: $title, description: $description, dueAt: $dueAt, image: $image)';
   }
 
   @override
@@ -159,16 +191,17 @@ class _$CreateExamParamsImpl implements _CreateExamParams {
         (other.runtimeType == runtimeType &&
             other is _$CreateExamParamsImpl &&
             (identical(other.clubId, clubId) || other.clubId == clubId) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.dueAt, dueAt) || other.dueAt == dueAt));
+            (identical(other.dueAt, dueAt) || other.dueAt == dueAt) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, clubId, name, description, dueAt);
+      Object.hash(runtimeType, clubId, title, description, dueAt, image);
 
   @JsonKey(ignore: true)
   @override
@@ -185,12 +218,15 @@ class _$CreateExamParamsImpl implements _CreateExamParams {
   }
 }
 
-abstract class _CreateExamParams implements CreateExamParams {
+abstract class _CreateExamParams extends CreateExamParams {
   const factory _CreateExamParams(
       {final int clubId,
-      final String name,
+      final String title,
       final String description,
-      final DateTime? dueAt}) = _$CreateExamParamsImpl;
+      final DateTime? dueAt,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final File? image}) = _$CreateExamParamsImpl;
+  const _CreateExamParams._() : super._();
 
   factory _CreateExamParams.fromJson(Map<String, dynamic> json) =
       _$CreateExamParamsImpl.fromJson;
@@ -198,11 +234,14 @@ abstract class _CreateExamParams implements CreateExamParams {
   @override
   int get clubId;
   @override
-  String get name;
+  String get title;
   @override
   String get description;
   @override
   DateTime? get dueAt;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  File? get image;
   @override
   @JsonKey(ignore: true)
   _$$CreateExamParamsImplCopyWith<_$CreateExamParamsImpl> get copyWith =>

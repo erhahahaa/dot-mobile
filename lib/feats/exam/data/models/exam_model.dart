@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 part 'exam_model.freezed.dart';
 part 'exam_model.g.dart';
@@ -33,6 +36,15 @@ class ExamModel with _$ExamModel {
           : null,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
+    );
+  }
+
+  static ExamModel fake() {
+    return ExamModel(
+      id: Random().nextInt(100),
+      clubId: Random().nextInt(100),
+      title: BoneMock.name,
+      description: BoneMock.subtitle,
     );
   }
 }

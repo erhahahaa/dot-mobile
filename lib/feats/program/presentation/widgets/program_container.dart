@@ -12,6 +12,7 @@ class ProgramContainer extends StatelessWidget {
   final ProgramModel program;
   final ClubModel club;
   final bool isCoach;
+
   const ProgramContainer({
     super.key,
     required this.program,
@@ -52,12 +53,7 @@ class ProgramContainer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              H3Text(
-                program.name,
-                // style: context.theme.textTheme.titleMedium?.copyWith(
-                //   fontWeight: FontWeight.w500,
-                // ),
-              ),
+              H3Text(program.name),
               Row(
                 children: [
                   H6Text(program.startDate?.toDayMonthYear() ?? ''),
