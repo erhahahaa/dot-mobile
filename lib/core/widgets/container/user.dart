@@ -107,30 +107,14 @@ class UserCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 6.h),
-            Container(
-              padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
-              decoration: BoxDecoration(
-                color: const Color(0xFF763AD8),
-                borderRadius: BorderRadius.circular(20.r),
-              ),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.sports_volleyball,
-                    color: Colors.white,
-                    size: 16,
-                  ),
-                  SizedBox(width: 8.w),
-                  Text(
-                    context.str?.volleyBall ?? 'Volleyball',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ],
-              ),
+            Row(
+              children: [
+                Chirp(
+                  text: user.expertise ??
+                      context.str?.noExpertise ??
+                      'No expertise',
+                ),
+              ],
             ),
           ],
         ),

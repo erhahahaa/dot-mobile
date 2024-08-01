@@ -107,17 +107,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final msg = Strings.of(context);
     return BlocConsumer<UserCubit, UserState>(
       listenWhen: (p, c) {
-        if (p.state != c.state) {
-          return true;
-        }
-        if (p.user != c.user) {
-          return true;
-        }
-        return false;
+        return p.state != c.state || p.user != c.user;
       },
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state.state == BaseState.failure) {
+          ToastModel(
+            message: msg?.failedUpdateProfile,
+            type: ToastType.error,
+          ).fire(context);
+        } else if (state.state == BaseState.success) {
+          ToastModel(
+            message: msg?.successUpdateProfile,
+            type: ToastType.success,
+          ).fire(context);
+
+          context.read<UserCubit>().emitInitial();
+        }
+      },
       builder: (context, state) {
         return Parent(
           appBar: AppBar(

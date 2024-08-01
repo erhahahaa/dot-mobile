@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 left: 18.w,
                 child: UserCard(
                   user: state.user,
+                  
                 ),
               ),
               Positioned(
