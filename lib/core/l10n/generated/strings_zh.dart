@@ -2,7 +2,7 @@ import 'strings.dart';
 
 /// The translations for Chinese (`zh`).
 class StringsZh extends Strings {
-  StringsZh([String locale = 'zh']) : super(locale);
+  StringsZh([super.locale = 'zh']);
 
   @override
   String get about => '关于';
