@@ -30,7 +30,7 @@ class _ExamDetailScreenState extends State<ExamDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            H1Text('Exam Detail'),
+            const H1Text('Exam Detail'),
             SizedBox(height: 8.h),
             EightContainer(
               width: double.infinity,
@@ -49,7 +49,7 @@ class _ExamDetailScreenState extends State<ExamDetailScreen> {
               ),
             ),
             SizedBox(height: 16.h),
-            H1Text('Questions'),
+            const H1Text('Questions'),
             SizedBox(height: 8.h),
             BlocBuilder<QuestionCubit, QuestionState>(
               builder: (context, state) {

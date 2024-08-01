@@ -171,7 +171,7 @@ class _QuestionFormScreenState extends State<QuestionFormScreen> {
                           Row(
                             children: [
                               H2Text('Question ${index + 1}'),
-                              Spacer(),
+                              const Spacer(),
                               IconButton(
                                 key: Key('deleteIcon_$index'),
                                 icon: Icon(
