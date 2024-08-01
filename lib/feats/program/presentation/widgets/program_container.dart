@@ -36,7 +36,6 @@ class ProgramContainer extends StatelessWidget {
             imageUrl: sportImage(program.media?.url).sanitize(),
             width: 48.w,
             height: 48.w,
-            // make image rounded
             imageBuilder: (context, imageProvider) => Container(
               width: 48.w,
               height: 48.w,
@@ -50,27 +49,34 @@ class ProgramContainer extends StatelessWidget {
             ),
           ),
           SizedBox(width: 8.w),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              H3Text(program.name),
-              Row(
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(8.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  H6Text(program.startDate?.toDayMonthYear() ?? ''),
-                  const H6Text(' - '),
-                  H6Text(program.endDate?.toDayMonthYear() ?? ''),
+                  H3Text(program.name),
+                  Wrap(
+                    spacing: 4.w, // Space between date texts
+                    children: [
+                      H6Text(
+                        program.startDate?.toDayMonthYear() ?? '',
+                      ),
+                      const Text(' - '),
+                      H6Text(
+                        program.endDate?.toDayMonthYear() ?? '',
+                      ),
+                    ],
+                  ),
                 ],
               ),
-            ],
+            ),
           ),
-          const Spacer(),
           isCoach
               ? PopupMenuButton(
-                  popUpAnimationStyle: AnimationStyle(
-                    curve: Easing.emphasizedDecelerate,
-                    duration: const Duration(milliseconds: 500),
+                  icon: const Icon(
+                    Icons.more_vert,
                   ),
-                  icon: const Icon(Icons.more_vert),
                   itemBuilder: (context) {
                     return [
                       PopupMenuItem(
