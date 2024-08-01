@@ -67,9 +67,6 @@ class _DropDownState<T> extends State<DropDown<T>> {
               focusNode: widget.currFocusNode,
               dropdownColor: Theme.of(context).scaffoldBackgroundColor,
               icon: const Icon(Icons.arrow_drop_down),
-              onTap: () {
-                log.f("Dropdown tapped");
-              },
               decoration: widget.decoration ??
                   InputDecoration(
                     alignLabelWithHint: true,

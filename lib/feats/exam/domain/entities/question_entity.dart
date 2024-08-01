@@ -12,8 +12,9 @@ class QuestionEntity {
   int? mediaId;
   @enumerated
   QuestionType type;
-  String content;
-  String? answer;
+  String question;
+  List<QuestionOptionEntity> options;
+  int order;
   MediaEmbedEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -26,10 +27,22 @@ class QuestionEntity {
     this.examId = 0,
     this.mediaId,
     this.type = QuestionType.essay,
-    this.content = 'Mention 5 basic Movement',
-    this.answer,
+    this.question = 'Mention 5 basic Movement',
+    this.options = const [],
+    this.order = 0,
     this.media,
     this.createdAt,
     this.updatedAt,
+  });
+}
+
+@embedded
+class QuestionOptionEntity {
+  int order;
+  String text;
+
+  QuestionOptionEntity({
+    this.order = 0,
+    this.text = 'Option 1',
   });
 }

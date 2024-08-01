@@ -150,7 +150,6 @@ class ProfileScreen extends StatelessWidget {
                             onChanged: (value) {
                               if (value == null) return;
                               context.read<UserCubit>().setTheme(value);
-                              log.f('Theme changed to $value');
                             },
                           ),
                         ],

@@ -15,6 +15,7 @@ void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await FirebaseServices.init();
+    // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     await Isar.initializeIsarCore();
     await initDependencies();
 
@@ -28,6 +29,19 @@ void main() {
     await FirebaseCrashlytics.instance.recordError(error, stackTrace);
   });
 }
+
+// @pragma('vm:entry-point')
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async { 
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+
+//   log.d('RUNNING IN THE BACKGROUND');
+
+//   log.f('Received message: $message');
+ 
+// }
+
 
 // Future<void> montserratLicense(_) async {
 //   LicenseRegistry.addLicense(() async* {

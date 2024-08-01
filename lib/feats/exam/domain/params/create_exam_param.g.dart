@@ -11,7 +11,7 @@ _$CreateExamParamsImpl _$$CreateExamParamsImplFromJson(
     _$CreateExamParamsImpl(
       clubId: (json['clubId'] as num?)?.toInt() ?? 0,
       title: json['title'] as String? ?? '',
-      description: json['description'] as String? ?? '',
+      description: json['description'] as String?,
       dueAt: json['dueAt'] == null
           ? null
           : DateTime.parse(json['dueAt'] as String),

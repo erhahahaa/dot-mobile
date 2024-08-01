@@ -10,7 +10,7 @@ abstract class ExerciseRepo {
   Future<Either<Failure, ProgramExerciseModel>> getById(
     ByIdParams params,
   );
-  Future<Either<Failure, List<ProgramExerciseModel>>> create(
+  Future<Either<Failure, List<ProgramExerciseModel>>> createBulk(
     List<CreateProgramExerciseParams> params,
   );
   Future<Either<Failure, List<ProgramExerciseModel>>> updateBulk(

@@ -21,10 +21,12 @@ UpdateQuestionParams _$UpdateQuestionParamsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UpdateQuestionParams {
   int get id => throw _privateConstructorUsedError;
+  int get order => throw _privateConstructorUsedError;
   int get examId => throw _privateConstructorUsedError;
+  int? get mediaId => throw _privateConstructorUsedError;
   QuestionType get type => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
-  String get answer => throw _privateConstructorUsedError;
+  String get question => throw _privateConstructorUsedError;
+  List<QuestionOptionModel> get options => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +41,13 @@ abstract class $UpdateQuestionParamsCopyWith<$Res> {
       _$UpdateQuestionParamsCopyWithImpl<$Res, UpdateQuestionParams>;
   @useResult
   $Res call(
-      {int id, int examId, QuestionType type, String content, String answer});
+      {int id,
+      int order,
+      int examId,
+      int? mediaId,
+      QuestionType type,
+      String question,
+      List<QuestionOptionModel> options});
 }
 
 /// @nodoc
@@ -57,32 +65,42 @@ class _$UpdateQuestionParamsCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = null,
+    Object? order = null,
     Object? examId = null,
+    Object? mediaId = freezed,
     Object? type = null,
-    Object? content = null,
-    Object? answer = null,
+    Object? question = null,
+    Object? options = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
       examId: null == examId
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
+      mediaId: freezed == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
+              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as QuestionType,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      question: null == question
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
               as String,
-      answer: null == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String,
+      options: null == options
+          ? _value.options
+          : options // ignore: cast_nullable_to_non_nullable
+              as List<QuestionOptionModel>,
     ) as $Val);
   }
 }
@@ -96,7 +114,13 @@ abstract class _$$UpdateQuestionParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, int examId, QuestionType type, String content, String answer});
+      {int id,
+      int order,
+      int examId,
+      int? mediaId,
+      QuestionType type,
+      String question,
+      List<QuestionOptionModel> options});
 }
 
 /// @nodoc
@@ -111,32 +135,42 @@ class __$$UpdateQuestionParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? order = null,
     Object? examId = null,
+    Object? mediaId = freezed,
     Object? type = null,
-    Object? content = null,
-    Object? answer = null,
+    Object? question = null,
+    Object? options = null,
   }) {
     return _then(_$UpdateQuestionParamsImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
       examId: null == examId
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
+      mediaId: freezed == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
+              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as QuestionType,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      question: null == question
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
               as String,
-      answer: null == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String,
+      options: null == options
+          ? _value._options
+          : options // ignore: cast_nullable_to_non_nullable
+              as List<QuestionOptionModel>,
     ));
   }
 }
@@ -146,10 +180,13 @@ class __$$UpdateQuestionParamsImplCopyWithImpl<$Res>
 class _$UpdateQuestionParamsImpl implements _UpdateQuestionParams {
   const _$UpdateQuestionParamsImpl(
       {this.id = 0,
+      this.order = 0,
       this.examId = 0,
+      this.mediaId,
       this.type = QuestionType.essay,
-      this.content = '',
-      this.answer = ''});
+      this.question = '',
+      final List<QuestionOptionModel> options = const []})
+      : _options = options;
 
   factory _$UpdateQuestionParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpdateQuestionParamsImplFromJson(json);
@@ -159,20 +196,30 @@ class _$UpdateQuestionParamsImpl implements _UpdateQuestionParams {
   final int id;
   @override
   @JsonKey()
+  final int order;
+  @override
+  @JsonKey()
   final int examId;
+  @override
+  final int? mediaId;
   @override
   @JsonKey()
   final QuestionType type;
   @override
   @JsonKey()
-  final String content;
+  final String question;
+  final List<QuestionOptionModel> _options;
   @override
   @JsonKey()
-  final String answer;
+  List<QuestionOptionModel> get options {
+    if (_options is EqualUnmodifiableListView) return _options;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_options);
+  }
 
   @override
   String toString() {
-    return 'UpdateQuestionParams(id: $id, examId: $examId, type: $type, content: $content, answer: $answer)';
+    return 'UpdateQuestionParams(id: $id, order: $order, examId: $examId, mediaId: $mediaId, type: $type, question: $question, options: $options)';
   }
 
   @override
@@ -181,16 +228,19 @@ class _$UpdateQuestionParamsImpl implements _UpdateQuestionParams {
         (other.runtimeType == runtimeType &&
             other is _$UpdateQuestionParamsImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.order, order) || other.order == order) &&
             (identical(other.examId, examId) || other.examId == examId) &&
+            (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.content, content) || other.content == content) &&
-            (identical(other.answer, answer) || other.answer == answer));
+            (identical(other.question, question) ||
+                other.question == question) &&
+            const DeepCollectionEquality().equals(other._options, _options));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, examId, type, content, answer);
+  int get hashCode => Object.hash(runtimeType, id, order, examId, mediaId, type,
+      question, const DeepCollectionEquality().hash(_options));
 
   @JsonKey(ignore: true)
   @override
@@ -211,10 +261,12 @@ class _$UpdateQuestionParamsImpl implements _UpdateQuestionParams {
 abstract class _UpdateQuestionParams implements UpdateQuestionParams {
   const factory _UpdateQuestionParams(
       {final int id,
+      final int order,
       final int examId,
+      final int? mediaId,
       final QuestionType type,
-      final String content,
-      final String answer}) = _$UpdateQuestionParamsImpl;
+      final String question,
+      final List<QuestionOptionModel> options}) = _$UpdateQuestionParamsImpl;
 
   factory _UpdateQuestionParams.fromJson(Map<String, dynamic> json) =
       _$UpdateQuestionParamsImpl.fromJson;
@@ -222,13 +274,17 @@ abstract class _UpdateQuestionParams implements UpdateQuestionParams {
   @override
   int get id;
   @override
+  int get order;
+  @override
   int get examId;
+  @override
+  int? get mediaId;
   @override
   QuestionType get type;
   @override
-  String get content;
+  String get question;
   @override
-  String get answer;
+  List<QuestionOptionModel> get options;
   @override
   @JsonKey(ignore: true)
   _$$UpdateQuestionParamsImplCopyWith<_$UpdateQuestionParamsImpl>

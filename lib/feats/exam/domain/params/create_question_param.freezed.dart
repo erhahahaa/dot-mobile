@@ -20,11 +20,12 @@ CreateQuestionParams _$CreateQuestionParamsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreateQuestionParams {
-  int get clubId => throw _privateConstructorUsedError;
+  int get order => throw _privateConstructorUsedError;
   int get examId => throw _privateConstructorUsedError;
+  int? get mediaId => throw _privateConstructorUsedError;
   QuestionType get type => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
-  String get answer => throw _privateConstructorUsedError;
+  String get question => throw _privateConstructorUsedError;
+  List<QuestionOptionModel> get options => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,11 +40,12 @@ abstract class $CreateQuestionParamsCopyWith<$Res> {
       _$CreateQuestionParamsCopyWithImpl<$Res, CreateQuestionParams>;
   @useResult
   $Res call(
-      {int clubId,
+      {int order,
       int examId,
+      int? mediaId,
       QuestionType type,
-      String content,
-      String answer});
+      String question,
+      List<QuestionOptionModel> options});
 }
 
 /// @nodoc
@@ -60,33 +62,38 @@ class _$CreateQuestionParamsCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? clubId = null,
+    Object? order = null,
     Object? examId = null,
+    Object? mediaId = freezed,
     Object? type = null,
-    Object? content = null,
-    Object? answer = null,
+    Object? question = null,
+    Object? options = null,
   }) {
     return _then(_value.copyWith(
-      clubId: null == clubId
-          ? _value.clubId
-          : clubId // ignore: cast_nullable_to_non_nullable
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
               as int,
       examId: null == examId
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
+      mediaId: freezed == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
+              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as QuestionType,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      question: null == question
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
               as String,
-      answer: null == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String,
+      options: null == options
+          ? _value.options
+          : options // ignore: cast_nullable_to_non_nullable
+              as List<QuestionOptionModel>,
     ) as $Val);
   }
 }
@@ -100,11 +107,12 @@ abstract class _$$CreateQuestionParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int clubId,
+      {int order,
       int examId,
+      int? mediaId,
       QuestionType type,
-      String content,
-      String answer});
+      String question,
+      List<QuestionOptionModel> options});
 }
 
 /// @nodoc
@@ -118,33 +126,38 @@ class __$$CreateQuestionParamsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? clubId = null,
+    Object? order = null,
     Object? examId = null,
+    Object? mediaId = freezed,
     Object? type = null,
-    Object? content = null,
-    Object? answer = null,
+    Object? question = null,
+    Object? options = null,
   }) {
     return _then(_$CreateQuestionParamsImpl(
-      clubId: null == clubId
-          ? _value.clubId
-          : clubId // ignore: cast_nullable_to_non_nullable
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
               as int,
       examId: null == examId
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
+      mediaId: freezed == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
+              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as QuestionType,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      question: null == question
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
               as String,
-      answer: null == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String,
+      options: null == options
+          ? _value._options
+          : options // ignore: cast_nullable_to_non_nullable
+              as List<QuestionOptionModel>,
     ));
   }
 }
@@ -153,34 +166,43 @@ class __$$CreateQuestionParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CreateQuestionParamsImpl implements _CreateQuestionParams {
   const _$CreateQuestionParamsImpl(
-      {this.clubId = 0,
+      {this.order = 0,
       this.examId = 0,
+      this.mediaId,
       this.type = QuestionType.essay,
-      this.content = '',
-      this.answer = ''});
+      this.question = '',
+      final List<QuestionOptionModel> options = const []})
+      : _options = options;
 
   factory _$CreateQuestionParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateQuestionParamsImplFromJson(json);
 
   @override
   @JsonKey()
-  final int clubId;
+  final int order;
   @override
   @JsonKey()
   final int examId;
+  @override
+  final int? mediaId;
   @override
   @JsonKey()
   final QuestionType type;
   @override
   @JsonKey()
-  final String content;
+  final String question;
+  final List<QuestionOptionModel> _options;
   @override
   @JsonKey()
-  final String answer;
+  List<QuestionOptionModel> get options {
+    if (_options is EqualUnmodifiableListView) return _options;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_options);
+  }
 
   @override
   String toString() {
-    return 'CreateQuestionParams(clubId: $clubId, examId: $examId, type: $type, content: $content, answer: $answer)';
+    return 'CreateQuestionParams(order: $order, examId: $examId, mediaId: $mediaId, type: $type, question: $question, options: $options)';
   }
 
   @override
@@ -188,17 +210,19 @@ class _$CreateQuestionParamsImpl implements _CreateQuestionParams {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateQuestionParamsImpl &&
-            (identical(other.clubId, clubId) || other.clubId == clubId) &&
+            (identical(other.order, order) || other.order == order) &&
             (identical(other.examId, examId) || other.examId == examId) &&
+            (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.content, content) || other.content == content) &&
-            (identical(other.answer, answer) || other.answer == answer));
+            (identical(other.question, question) ||
+                other.question == question) &&
+            const DeepCollectionEquality().equals(other._options, _options));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, clubId, examId, type, content, answer);
+  int get hashCode => Object.hash(runtimeType, order, examId, mediaId, type,
+      question, const DeepCollectionEquality().hash(_options));
 
   @JsonKey(ignore: true)
   @override
@@ -218,25 +242,28 @@ class _$CreateQuestionParamsImpl implements _CreateQuestionParams {
 
 abstract class _CreateQuestionParams implements CreateQuestionParams {
   const factory _CreateQuestionParams(
-      {final int clubId,
+      {final int order,
       final int examId,
+      final int? mediaId,
       final QuestionType type,
-      final String content,
-      final String answer}) = _$CreateQuestionParamsImpl;
+      final String question,
+      final List<QuestionOptionModel> options}) = _$CreateQuestionParamsImpl;
 
   factory _CreateQuestionParams.fromJson(Map<String, dynamic> json) =
       _$CreateQuestionParamsImpl.fromJson;
 
   @override
-  int get clubId;
+  int get order;
   @override
   int get examId;
   @override
+  int? get mediaId;
+  @override
   QuestionType get type;
   @override
-  String get content;
+  String get question;
   @override
-  String get answer;
+  List<QuestionOptionModel> get options;
   @override
   @JsonKey(ignore: true)
   _$$CreateQuestionParamsImplCopyWith<_$CreateQuestionParamsImpl>

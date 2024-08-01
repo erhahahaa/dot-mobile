@@ -12,7 +12,7 @@ class UpdateExamParams with _$UpdateExamParams {
     @Default(0) int id,
     @Default(0) int clubId,
     @Default('') String title,
-    @Default('') String description,
+    String? description,
     DateTime? dueAt,
     // ignore: invalid_annotation_target
     @JsonKey(includeFromJson: false, includeToJson: false) File? image,

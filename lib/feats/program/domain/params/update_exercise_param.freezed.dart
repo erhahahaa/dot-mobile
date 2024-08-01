@@ -24,7 +24,7 @@ mixin _$UpdateProgramExerciseParams {
   int get id => throw _privateConstructorUsedError;
   int get order => throw _privateConstructorUsedError;
   int get programId => throw _privateConstructorUsedError;
-  int get mediaId => throw _privateConstructorUsedError;
+  int? get mediaId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   ProgramUnitValueModel get repetition => throw _privateConstructorUsedError;
@@ -51,7 +51,7 @@ abstract class $UpdateProgramExerciseParamsCopyWith<$Res> {
       {int id,
       int order,
       int programId,
-      int mediaId,
+      int? mediaId,
       String name,
       String? description,
       ProgramUnitValueModel repetition,
@@ -84,7 +84,7 @@ class _$UpdateProgramExerciseParamsCopyWithImpl<$Res,
     Object? id = null,
     Object? order = null,
     Object? programId = null,
-    Object? mediaId = null,
+    Object? mediaId = freezed,
     Object? name = null,
     Object? description = freezed,
     Object? repetition = null,
@@ -106,10 +106,10 @@ class _$UpdateProgramExerciseParamsCopyWithImpl<$Res,
           ? _value.programId
           : programId // ignore: cast_nullable_to_non_nullable
               as int,
-      mediaId: null == mediaId
+      mediaId: freezed == mediaId
           ? _value.mediaId
           : mediaId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -195,7 +195,7 @@ abstract class _$$UpdateProgramExerciseParamsImplCopyWith<$Res>
       {int id,
       int order,
       int programId,
-      int mediaId,
+      int? mediaId,
       String name,
       String? description,
       ProgramUnitValueModel repetition,
@@ -232,7 +232,7 @@ class __$$UpdateProgramExerciseParamsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? order = null,
     Object? programId = null,
-    Object? mediaId = null,
+    Object? mediaId = freezed,
     Object? name = null,
     Object? description = freezed,
     Object? repetition = null,
@@ -254,10 +254,10 @@ class __$$UpdateProgramExerciseParamsImplCopyWithImpl<$Res>
           ? _value.programId
           : programId // ignore: cast_nullable_to_non_nullable
               as int,
-      mediaId: null == mediaId
+      mediaId: freezed == mediaId
           ? _value.mediaId
           : mediaId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -298,7 +298,7 @@ class _$UpdateProgramExerciseParamsImpl
       {this.id = 0,
       this.order = 0,
       this.programId = 0,
-      this.mediaId = 0,
+      this.mediaId,
       this.name = '',
       this.description,
       this.repetition = const ProgramUnitValueModel(),
@@ -321,8 +321,7 @@ class _$UpdateProgramExerciseParamsImpl
   @JsonKey()
   final int programId;
   @override
-  @JsonKey()
-  final int mediaId;
+  final int? mediaId;
   @override
   @JsonKey()
   final String name;
@@ -397,7 +396,7 @@ abstract class _UpdateProgramExerciseParams
           {final int id,
           final int order,
           final int programId,
-          final int mediaId,
+          final int? mediaId,
           final String name,
           final String? description,
           final ProgramUnitValueModel repetition,
@@ -417,7 +416,7 @@ abstract class _UpdateProgramExerciseParams
   @override
   int get programId;
   @override
-  int get mediaId;
+  int? get mediaId;
   @override
   String get name;
   @override

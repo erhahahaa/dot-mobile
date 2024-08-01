@@ -11,16 +11,16 @@ class StringsEs extends Strings {
   String get activeSession => 'Activo';
 
   @override
-  String get add => 'Añadir';
+  String get add => 'Agregar';
 
   @override
-  String get addMember => 'Añadir miembro';
+  String get addMember => 'Agregar Miembro';
 
   @override
   String get address => 'Dirección';
 
   @override
-  String get addressRequired => 'La dirección es obligatoria';
+  String get addressRequired => 'La dirección es requerida';
 
   @override
   String get alert => 'Alerta';
@@ -38,7 +38,7 @@ class StringsEs extends Strings {
   String get athletes => 'Atletas';
 
   @override
-  String get back => 'Atrás';
+  String get back => 'Volver';
 
   @override
   String get basketBall => 'Baloncesto';
@@ -47,13 +47,13 @@ class StringsEs extends Strings {
   String get bornDate => 'Fecha de Nacimiento';
 
   @override
-  String get bornDateRequired => 'La fecha de nacimiento es obligatoria';
+  String get bornDateRequired => 'La fecha de nacimiento es requerida';
 
   @override
   String get bornPlace => 'Lugar de Nacimiento';
 
   @override
-  String get bornPlaceRequired => 'El lugar de nacimiento es obligatorio';
+  String get bornPlaceRequired => 'El lugar de nacimiento es requerido';
 
   @override
   String get calendar => 'Calendario';
@@ -65,25 +65,25 @@ class StringsEs extends Strings {
   String get club => 'Club';
 
   @override
-  String get clubDashboard => 'Panel del club';
+  String get clubDashboard => 'Panel del Club';
 
   @override
-  String get clubDescription => 'Descripción del club';
+  String get clubDescription => 'Descripción del Club';
 
   @override
-  String get clubDescriptionRequired => 'Se requiere la descripción del club';
+  String get clubDescriptionRequired => 'La descripción del club es requerida';
 
   @override
-  String get clubImageRequired => 'Se requiere la imagen del club';
+  String get clubImageRequired => 'La imagen del club es requerida';
 
   @override
-  String get clubManagement => 'Gestión del club';
+  String get clubManagement => 'Gestión del Club';
 
   @override
-  String get clubName => 'Nombre del club';
+  String get clubName => 'Nombre del Club';
 
   @override
-  String get clubNameRequired => 'Se requiere el nombre del club';
+  String get clubNameRequired => 'El nombre del club es requerido';
 
   @override
   String get clubs => 'Clubes';
@@ -98,16 +98,16 @@ class StringsEs extends Strings {
   String get create => 'Crear';
 
   @override
-  String get createClub => 'Crear club';
+  String get createClub => 'Crear Club';
 
   @override
-  String get createExam => 'Crear examen';
+  String get createExam => 'Crear Examen';
 
   @override
-  String get createProgram => 'Crear programa';
+  String get createProgram => 'Crear Programa';
 
   @override
-  String get dark => 'Modo oscuro';
+  String get dark => 'Modo Oscuro';
 
   @override
   String get delete => 'Eliminar';
@@ -125,10 +125,10 @@ class StringsEs extends Strings {
   String get download => 'Descargar';
 
   @override
-  String get dueAt => 'Vencimiento en';
+  String get dueAt => 'Vence el';
 
   @override
-  String get dueAtRequired => 'La fecha límite es obligatoria';
+  String get dueAtRequired => 'La fecha de vencimiento es requerida';
 
   @override
   String get edit => 'Editar';
@@ -137,55 +137,55 @@ class StringsEs extends Strings {
   String get editClub => 'Editar Club';
 
   @override
-  String get editExam => 'Editar examen';
+  String get editExam => 'Editar Examen';
 
   @override
-  String get editProfile => 'Editar perfil';
+  String get editProfile => 'Editar Perfil';
 
   @override
-  String get editProgram => 'Editar programa';
+  String get editProgram => 'Editar Programa';
 
   @override
   String get email => 'Correo Electrónico';
 
   @override
-  String get emailOrUsernameOrPhone => 'Correo electrónico / Nombre de usuario / Teléfono';
+  String get emailOrUsernameOrPhone => 'Correo Electrónico / Nombre de Usuario / Teléfono';
 
   @override
-  String get emailRequired => 'Se requiere correo electrónico';
+  String get emailRequired => 'El correo electrónico es requerido';
 
   @override
-  String get emailUsernamePhoneAlreadyRegistered => 'Correo electrónico / Nombre de usuario / Teléfono ya registrado';
+  String get emailUsernamePhoneAlreadyRegistered => 'Correo Electrónico / Nombre de Usuario / Teléfono ya registrado';
 
   @override
   String get emptyExam => 'El examen está vacío';
 
   @override
-  String get endDate => 'Fecha de finalización';
+  String get endDate => 'Fecha de Fin';
 
   @override
-  String get endDateRequired => 'Se requiere la fecha de finalización';
+  String get endDateRequired => 'La fecha de fin es requerida';
 
   @override
   String get english => 'Inglés';
 
   @override
-  String get enterClubDescription => 'Introduce la descripción del club';
+  String get enterClubDescription => 'Ingrese la descripción del club';
 
   @override
-  String get enterClubName => 'Introduce el nombre del club';
+  String get enterClubName => 'Ingrese el nombre del club';
 
   @override
   String get enterDescription => 'Ingrese la descripción';
 
   @override
-  String get enterDueAt => 'Ingrese la fecha límite';
+  String get enterDueAt => 'Ingrese la fecha de vencimiento';
 
   @override
-  String get enterEmailOrUsernameOrPhone => 'Introduce correo electrónico / nombre de usuario / teléfono';
+  String get enterEmailOrUsernameOrPhone => 'Ingrese correo electrónico / nombre de usuario / teléfono';
 
   @override
-  String get enterEndDate => 'Introduce la fecha de finalización';
+  String get enterEndDate => 'Ingrese la fecha de fin';
 
   @override
   String get enterExamDescription => 'Ingrese la descripción del examen';
@@ -194,10 +194,10 @@ class StringsEs extends Strings {
   String get enterExamTitle => 'Ingrese el título del examen';
 
   @override
-  String get enterProgramName => 'Introduce el nombre del programa';
+  String get enterProgramName => 'Ingrese el nombre del programa';
 
   @override
-  String get enterStartDate => 'Introduce la fecha de inicio';
+  String get enterStartDate => 'Ingrese la fecha de inicio';
 
   @override
   String get enterYourAddress => 'Ingrese su dirección';
@@ -209,28 +209,28 @@ class StringsEs extends Strings {
   String get enterYourBornPlace => 'Ingrese su lugar de nacimiento';
 
   @override
-  String get enterYourEmail => 'Introduce tu correo electrónico';
+  String get enterYourEmail => 'Ingrese su correo electrónico';
 
   @override
-  String get enterYourExpertise => 'Ingrese su experiencia';
+  String get enterYourExpertise => 'Ingrese su especialidad';
 
   @override
-  String get enterYourGender => 'Introduce tu género';
+  String get enterYourGender => 'Ingrese su género';
 
   @override
-  String get enterYourName => 'Introduce tu nombre';
+  String get enterYourName => 'Ingrese su nombre';
 
   @override
-  String get enterYourPass => 'Introduce tu contraseña';
+  String get enterYourPass => 'Ingrese su contraseña';
 
   @override
-  String get enterYourPhoneNumber => 'Introduce tu número de teléfono';
+  String get enterYourPhoneNumber => 'Ingrese su número de teléfono';
 
   @override
   String get enterYourReligion => 'Ingrese su religión';
 
   @override
-  String get enterYourUsername => 'Introduce tu nombre de usuario';
+  String get enterYourUsername => 'Ingrese su nombre de usuario';
 
   @override
   String get error => 'Error';
@@ -239,28 +239,37 @@ class StringsEs extends Strings {
   String get errorCreateExercise => 'Error al crear el ejercicio';
 
   @override
+  String get errorCreateQuestion => 'Error al crear la pregunta';
+
+  @override
+  String get errorUpdateExercise => 'Error al actualizar el ejercicio';
+
+  @override
+  String get errorUpdateQuestion => 'Error al actualizar la pregunta';
+
+  @override
   String get establishedAt => 'Establecido en:';
 
   @override
   String get exam => 'Examen';
 
   @override
-  String get examDescription => 'Descripción del examen';
+  String get examDescription => 'Descripción del Examen';
 
   @override
   String get exams => 'Exámenes';
 
   @override
-  String get examTitleRequired => 'El título del examen es obligatorio';
+  String get examTitleRequired => 'El título del examen es requerido';
 
   @override
   String get exercise => 'Ejercicio';
 
   @override
-  String get expertise => 'Experiencia';
+  String get expertise => 'Especialidad';
 
   @override
-  String get expertiseRequired => 'La experiencia es obligatoria';
+  String get expertiseRequired => 'La especialidad es requerida';
 
   @override
   String get expiredSession => 'Expirado';
@@ -305,13 +314,13 @@ class StringsEs extends Strings {
   String get failedUpdateProfile => 'Error al actualizar el perfil';
 
   @override
-  String get futsal => 'Fútbol sala';
+  String get futsal => 'Fútbol Sala';
 
   @override
   String get gender => 'Género';
 
   @override
-  String get genderRequired => 'Se requiere el género';
+  String get genderRequired => 'El género es requerido';
 
   @override
   String get general => 'General';
@@ -320,13 +329,13 @@ class StringsEs extends Strings {
   String get handBall => 'Balonmano';
 
   @override
-  String get hello => 'Hola';
+  String get hello => 'Hola,';
 
   @override
   String get history => 'Historia';
 
   @override
-  String get identifierRequired => 'Se requiere identificador';
+  String get identifierRequired => 'El identificador es requerido';
 
   @override
   String get indonesian => 'Indonesio';
@@ -335,10 +344,10 @@ class StringsEs extends Strings {
   String get info => 'Información';
 
   @override
-  String get invalidEmail => 'Correo electrónico inválido';
+  String get invalidEmail => 'Correo electrónico no válido';
 
   @override
-  String get invalidPhoneNumber => 'Número de teléfono inválido';
+  String get invalidPhoneNumber => 'Número de teléfono no válido';
 
   @override
   String get invite => 'Invitar';
@@ -353,10 +362,10 @@ class StringsEs extends Strings {
   String get language => 'Idioma';
 
   @override
-  String get leave => 'Dejar';
+  String get leave => 'Salir';
 
   @override
-  String get leaveClub => 'Dejar club';
+  String get leaveClub => 'Dejar el Club';
 
   @override
   String get leaveClubConfirmation => '¿Estás seguro de que quieres dejar este club?';
@@ -365,10 +374,10 @@ class StringsEs extends Strings {
   String get leaveClubSuccess => 'Club dejado con éxito';
 
   @override
-  String get light => 'Modo claro';
+  String get light => 'Modo Claro';
 
   @override
-  String get logout => 'Cerrar sesión';
+  String get logout => 'Cerrar Sesión';
 
   @override
   String get management => 'Gestión';
@@ -380,19 +389,19 @@ class StringsEs extends Strings {
   String get myClub => 'Mi Club';
 
   @override
-  String get myClubTraining => 'Entrenamiento de mi club';
+  String get myClubTraining => 'Mi Club';
 
   @override
   String get name => 'Nombre';
 
   @override
-  String get nameRequired => 'Se requiere el nombre';
+  String get nameRequired => 'El nombre es requerido';
 
   @override
-  String get newExam => 'Nuevo examen';
+  String get newExam => 'Nuevo Examen';
 
   @override
-  String get newProgram => 'Nuevo programa';
+  String get newProgram => 'Nuevo Programa';
 
   @override
   String get noClubsFound => 'No se encontraron clubes';
@@ -401,13 +410,13 @@ class StringsEs extends Strings {
   String get noEvents => 'No hay eventos';
 
   @override
-  String get noExpertise => 'Sin experiencia';
+  String get noExpertise => 'Sin especialidad';
 
   @override
   String get noMembersFound => 'No se encontraron miembros';
 
   @override
-  String get noSpaceAllowed => 'No se permite espacio';
+  String get noSpaceAllowed => 'No se permiten espacios';
 
   @override
   String get noUsersFound => 'No se encontraron usuarios';
@@ -416,31 +425,31 @@ class StringsEs extends Strings {
   String get or => 'o';
 
   @override
-  String get overview => 'Visión general';
+  String get overview => 'Visión General';
 
   @override
   String get pageNotFound => 'Página no encontrada';
 
   @override
-  String get passRequired => 'Se requiere contraseña';
+  String get passRequired => 'La contraseña es requerida';
 
   @override
   String get password => 'Contraseña';
 
   @override
-  String get phoneNumber => 'Número de teléfono';
+  String get phoneNumber => 'Número de Teléfono';
 
   @override
-  String get phoneNumberRequired => 'Se requiere número de teléfono';
+  String get phoneNumberRequired => 'El número de teléfono es requerido';
 
   @override
   String get program => 'Programa';
 
   @override
-  String get programDetail => 'Detalle del programa';
+  String get programDetail => 'Detalle del Programa';
 
   @override
-  String get programNameRequired => 'Se requiere el nombre del programa';
+  String get programNameRequired => 'El nombre del programa es requerido';
 
   @override
   String get programs => 'Programas';
@@ -452,7 +461,7 @@ class StringsEs extends Strings {
   String get religion => 'Religión';
 
   @override
-  String get religionRequired => 'La religión es obligatoria';
+  String get religionRequired => 'La religión es requerida';
 
   @override
   String get search => 'Buscar';
@@ -461,10 +470,10 @@ class StringsEs extends Strings {
   String get session => 'Sesión';
 
   @override
-  String get settings => 'Configuraciones';
+  String get settings => 'Configuración';
 
   @override
-  String get signIn => 'Iniciar sesión';
+  String get signIn => 'Iniciar Sesión';
 
   @override
   String get signUp => 'Registrarse';
@@ -473,16 +482,16 @@ class StringsEs extends Strings {
   String get soccer => 'Fútbol';
 
   @override
-  String get sport => 'Deporte';
+  String get sport => 'Deporte:';
 
   @override
-  String get sportType => 'Tipo de deporte';
+  String get sportType => 'Tipo de Deporte';
 
   @override
-  String get startDate => 'Fecha de inicio';
+  String get startDate => 'Fecha de Inicio';
 
   @override
-  String get startDateRequired => 'Se requiere la fecha de inicio';
+  String get startDateRequired => 'La fecha de inicio es requerida';
 
   @override
   String get succesEditProgram => 'Programa editado con éxito';
@@ -503,6 +512,9 @@ class StringsEs extends Strings {
   String get successCreateProgram => 'Programa creado con éxito';
 
   @override
+  String get successCreateQuestion => 'Pregunta creada con éxito';
+
+  @override
   String get successLogout => 'Sesión cerrada con éxito';
 
   @override
@@ -521,6 +533,9 @@ class StringsEs extends Strings {
   String get successUpdateProfile => 'Perfil actualizado con éxito';
 
   @override
+  String get successUpdateQuestions => 'Preguntas actualizadas con éxito';
+
+  @override
   String get system => 'Sistema';
 
   @override
@@ -533,7 +548,7 @@ class StringsEs extends Strings {
   String get title => 'Título';
 
   @override
-  String get updateClub => 'Actualizar club';
+  String get updateClub => 'Actualizar Club';
 
   @override
   String get updateProfile => 'Actualizar Perfil';
@@ -545,7 +560,7 @@ class StringsEs extends Strings {
   String get user => 'Usuario';
 
   @override
-  String get username => 'Nombre de usuario';
+  String get username => 'Nombre de Usuario';
 
   @override
   String get usernameCantContainUppercase => 'El nombre de usuario no puede contener letras mayúsculas';
@@ -554,7 +569,7 @@ class StringsEs extends Strings {
   String get usernameNotAvailable => 'Nombre de usuario no disponible';
 
   @override
-  String get usernameRequired => 'Se requiere nombre de usuario';
+  String get usernameRequired => 'El nombre de usuario es requerido';
 
   @override
   String get volleyBall => 'Voleibol';

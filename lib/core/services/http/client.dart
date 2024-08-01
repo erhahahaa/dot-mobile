@@ -6,7 +6,6 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
-import 'package:dot_coaching/utils/helpers/helpers.dart';
 import 'package:isar/isar.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -117,7 +116,6 @@ class DioClient with FirebaseCrashLogger {
           response: response,
         );
       }
-      log.f("Response: ${response.data}");
       if (converter == null) {
         return Right(response.data as T);
       } else {

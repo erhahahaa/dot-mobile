@@ -40,8 +40,9 @@ class QuestionCubit extends Cubit<QuestionState> {
 
   Future<void> init() async {}
 
-  Future<void> create(CreateQuestionParams params) async {
-    final res = await _questionRepo.create(params);
+  Future<void> createBulk(List<CreateQuestionParams> params) async {
+    emitLoading();
+    final res = await _questionRepo.createBulk(params);
     res.fold((l) {
       safeEmit(
         isClosed: isClosed,
@@ -62,29 +63,35 @@ class QuestionCubit extends Cubit<QuestionState> {
     });
   }
 
-  Future<void> update(UpdateQuestionParams params) async {
-    final res = await _questionRepo.update(params);
-    res.fold((l) {
-      safeEmit(
-        isClosed: isClosed,
-        emit: emit,
-        state: state.copyWith(
-          state: BaseState.failure,
-          failure: l,
-        ),
-      );
-    }, (r) {
-      safeEmit(
-        isClosed: isClosed,
-        emit: emit,
-        state: state.copyWith(
-          state: BaseState.success,
-        ),
-      );
-    });
+  Future<void> updateBulk(List<UpdateQuestionParams> params) async {
+    emitLoading();
+    final res = await _questionRepo.updateBulk(params);
+
+    res.fold(
+      (l) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.failure,
+            failure: l,
+          ),
+        );
+      },
+      (r) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.success,
+          ),
+        );
+      },
+    );
   }
 
   Future<void> delete(ByIdParams params) async {
+    emitLoading();
     final res = await _questionRepo.delete(params);
     res.fold((l) {
       safeEmit(
@@ -107,6 +114,7 @@ class QuestionCubit extends Cubit<QuestionState> {
   }
 
   Future<void> getById(ByIdParams params) async {
+    emitLoading();
     final res = await _questionRepo.getById(params);
     res.fold((l) {
       safeEmit(
@@ -129,7 +137,9 @@ class QuestionCubit extends Cubit<QuestionState> {
   }
 
   Future<void> getAll(PaginationParams params, int examId) async {
+    emitLoading();
     final res = await _questionRepo.getAll(params, examId);
+
     res.fold((l) {
       safeEmit(
         isClosed: isClosed,
@@ -145,6 +155,7 @@ class QuestionCubit extends Cubit<QuestionState> {
         emit: emit,
         state: state.copyWith(
           state: BaseState.success,
+          questions: r,
         ),
       );
     });

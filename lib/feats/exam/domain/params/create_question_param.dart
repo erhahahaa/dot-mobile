@@ -7,11 +7,12 @@ part 'create_question_param.g.dart';
 @freezed
 class CreateQuestionParams with _$CreateQuestionParams {
   const factory CreateQuestionParams({
-    @Default(0) int clubId,
+    @Default(0) int order,
     @Default(0) int examId,
+    int? mediaId,
     @Default(QuestionType.essay) QuestionType type,
-    @Default('') String content,
-    @Default('') String answer,
+    @Default('') String question,
+    @Default([]) List<QuestionOptionModel> options,
   }) = _CreateQuestionParams;
 
   factory CreateQuestionParams.fromJson(Map<String, dynamic> json) =>

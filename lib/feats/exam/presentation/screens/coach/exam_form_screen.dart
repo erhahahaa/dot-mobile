@@ -66,7 +66,6 @@ class _ExamFormScreenState extends State<ExamFormScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<ExamCubit, ExamState>(
       listener: (context, state) {
-        log.f('ExamFormScreen listener State: $state');
         if (state.state == BaseState.success) {
           final exam = state.createdExam;
           if (exam != null && widget.exam == null) {
@@ -88,7 +87,9 @@ class _ExamFormScreenState extends State<ExamFormScreen> {
                   extra: {
                     'club': widget.club,
                     'exam': exam,
-                    'questions': qCub.state.questions,
+                    'questions': qCub.state.questions.isEmpty
+                        ? null
+                        : qCub.state.questions,
                   },
                 );
               },
@@ -237,6 +238,11 @@ class _ExamFormScreenState extends State<ExamFormScreen> {
                                     id: widget.exam!.id,
                                     clubId: widget.club.id,
                                     title: _titleCon.text,
+                                    image: state.image,
+                                    dueAt: _dueAt,
+                                    description: _descriptionCon.text.isNotEmpty
+                                        ? _descriptionCon.text
+                                        : null,
                                   ),
                                 );
                           } else {
@@ -244,6 +250,11 @@ class _ExamFormScreenState extends State<ExamFormScreen> {
                                   CreateExamParams(
                                     clubId: widget.club.id,
                                     title: _titleCon.text,
+                                    image: state.image,
+                                    dueAt: _dueAt,
+                                    description: _descriptionCon.text.isNotEmpty
+                                        ? _descriptionCon.text
+                                        : null,
                                   ),
                                 );
                           }

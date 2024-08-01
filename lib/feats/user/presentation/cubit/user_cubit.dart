@@ -156,8 +156,6 @@ class UserCubit extends Cubit<UserState> {
         themeMode: themeMode,
       ),
     );
-
-    log.e("USER CUBTI State: $state");
   }
 
   Future<void> updateProfile(UpdateUserParams params) async {

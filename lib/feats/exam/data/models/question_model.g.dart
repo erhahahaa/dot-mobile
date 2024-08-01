@@ -13,8 +13,13 @@ _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
       mediaId: (json['mediaId'] as num?)?.toInt(),
       type: $enumDecodeNullable(_$QuestionTypeEnumMap, json['type']) ??
           QuestionType.essay,
-      content: json['content'] as String? ?? 'Mention 5 basic Movement',
-      answer: json['answer'] as String?,
+      question: json['question'] as String? ?? 'Mention 5 basic Movement',
+      options: (json['options'] as List<dynamic>?)
+              ?.map((e) =>
+                  QuestionOptionModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      order: (json['order'] as num?)?.toInt() ?? 0,
       media: json['media'] == null
           ? null
           : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),
@@ -32,8 +37,9 @@ Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
       'examId': instance.examId,
       'mediaId': instance.mediaId,
       'type': _$QuestionTypeEnumMap[instance.type]!,
-      'content': instance.content,
-      'answer': instance.answer,
+      'question': instance.question,
+      'options': instance.options,
+      'order': instance.order,
       'media': instance.media,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
@@ -45,3 +51,17 @@ const _$QuestionTypeEnumMap = {
   QuestionType.shortAnswer: 'shortAnswer',
   QuestionType.essay: 'essay',
 };
+
+_$QuestionOptionModelImpl _$$QuestionOptionModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$QuestionOptionModelImpl(
+      order: (json['order'] as num?)?.toInt() ?? 0,
+      text: json['text'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$QuestionOptionModelImplToJson(
+        _$QuestionOptionModelImpl instance) =>
+    <String, dynamic>{
+      'order': instance.order,
+      'text': instance.text,
+    };

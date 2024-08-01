@@ -26,16 +26,16 @@ class StringsHi extends Strings {
   String get alert => 'चेतावनी';
 
   @override
-  String get alreadyHaveAnAccount => 'पहले से एक खाता है?';
+  String get alreadyHaveAnAccount => 'पहले से ही खाता है?';
 
   @override
   String get assets => 'संपत्तियाँ';
 
   @override
-  String get athlete => 'खिलाड़ी';
+  String get athlete => 'एथलीट';
 
   @override
-  String get athletes => 'खिलाड़ी';
+  String get athletes => 'एथलीट';
 
   @override
   String get back => 'वापस';
@@ -95,13 +95,13 @@ class StringsHi extends Strings {
   String get coaches => 'कोच';
 
   @override
-  String get create => 'बनाएं';
+  String get create => 'बनाएँ';
 
   @override
   String get createClub => 'क्लब बनाएं';
 
   @override
-  String get createExam => 'परीक्षा बनाएँ';
+  String get createExam => 'परीक्षा बनाएं';
 
   @override
   String get createProgram => 'कार्यक्रम बनाएं';
@@ -122,10 +122,10 @@ class StringsHi extends Strings {
   String get dontHaveAnAccount => 'खाता नहीं है?';
 
   @override
-  String get download => 'डाउनलोड करें';
+  String get download => 'डाउनलोड';
 
   @override
-  String get dueAt => 'में निर्धारित';
+  String get dueAt => 'समाप्ति तिथि';
 
   @override
   String get dueAtRequired => 'समाप्ति तिथि आवश्यक है';
@@ -149,13 +149,13 @@ class StringsHi extends Strings {
   String get email => 'ईमेल';
 
   @override
-  String get emailOrUsernameOrPhone => 'ईमेल / उपयोगकर्ता नाम / फोन';
+  String get emailOrUsernameOrPhone => 'ईमेल / उपयोगकर्ता नाम / फ़ोन';
 
   @override
   String get emailRequired => 'ईमेल आवश्यक है';
 
   @override
-  String get emailUsernamePhoneAlreadyRegistered => 'ईमेल / उपयोगकर्ता नाम / फोन पहले से पंजीकृत है';
+  String get emailUsernamePhoneAlreadyRegistered => 'ईमेल / उपयोगकर्ता नाम / फ़ोन पहले से पंजीकृत है';
 
   @override
   String get emptyExam => 'परीक्षा खाली है';
@@ -167,7 +167,7 @@ class StringsHi extends Strings {
   String get endDateRequired => 'समाप्ति तिथि आवश्यक है';
 
   @override
-  String get english => 'अंग्रेजी';
+  String get english => 'अंग्रेज़ी';
 
   @override
   String get enterClubDescription => 'क्लब विवरण दर्ज करें';
@@ -182,7 +182,7 @@ class StringsHi extends Strings {
   String get enterDueAt => 'समाप्ति तिथि दर्ज करें';
 
   @override
-  String get enterEmailOrUsernameOrPhone => 'ईमेल / उपयोगकर्ता नाम / फोन दर्ज करें';
+  String get enterEmailOrUsernameOrPhone => 'ईमेल / उपयोगकर्ता नाम / फ़ोन दर्ज करें';
 
   @override
   String get enterEndDate => 'समाप्ति तिथि दर्ज करें';
@@ -239,19 +239,28 @@ class StringsHi extends Strings {
   String get errorCreateExercise => 'व्यायाम बनाने में विफल';
 
   @override
-  String get establishedAt => 'स्थापित: ';
+  String get errorCreateQuestion => 'प्रश्न बनाने में विफल';
+
+  @override
+  String get errorUpdateExercise => 'व्यायाम अपडेट करने में त्रुटि';
+
+  @override
+  String get errorUpdateQuestion => 'प्रश्न अपडेट करने में विफल';
+
+  @override
+  String get establishedAt => 'स्थापित :';
 
   @override
   String get exam => 'परीक्षा';
 
   @override
-  String get examDescription => 'परीक्षा का विवरण';
+  String get examDescription => 'परीक्षा विवरण';
 
   @override
   String get exams => 'परीक्षाएँ';
 
   @override
-  String get examTitleRequired => 'परीक्षा का शीर्षक आवश्यक है';
+  String get examTitleRequired => 'परीक्षा शीर्षक आवश्यक है';
 
   @override
   String get exercise => 'व्यायाम';
@@ -263,7 +272,7 @@ class StringsHi extends Strings {
   String get expertiseRequired => 'विशेषज्ञता आवश्यक है';
 
   @override
-  String get expiredSession => 'समाप्त';
+  String get expiredSession => 'समय सीमा समाप्त';
 
   @override
   String get failedCreateClub => 'क्लब बनाने में विफल';
@@ -272,7 +281,7 @@ class StringsHi extends Strings {
   String get failedCreateExam => 'परीक्षा बनाने में विफल';
 
   @override
-  String get failedCreateExercises => 'अभ्यास बनाने में विफल';
+  String get failedCreateExercises => 'व्यायाम बनाने में विफल';
 
   @override
   String get failedCreateProgram => 'कार्यक्रम बनाने में विफल';
@@ -299,7 +308,7 @@ class StringsHi extends Strings {
   String get failedUpdateClub => 'क्लब अपडेट करने में विफल';
 
   @override
-  String get failedUpdateExercises => 'अभ्यास अपडेट करने में विफल';
+  String get failedUpdateExercises => 'व्यायाम अपडेट करने में विफल';
 
   @override
   String get failedUpdateProfile => 'प्रोफ़ाइल अपडेट करने में विफल';
@@ -320,7 +329,7 @@ class StringsHi extends Strings {
   String get handBall => 'हैंडबॉल';
 
   @override
-  String get hello => 'नमस्ते';
+  String get hello => 'नमस्ते,';
 
   @override
   String get history => 'इतिहास';
@@ -335,10 +344,10 @@ class StringsHi extends Strings {
   String get info => 'जानकारी';
 
   @override
-  String get invalidEmail => 'अवैध ईमेल';
+  String get invalidEmail => 'अमान्य ईमेल';
 
   @override
-  String get invalidPhoneNumber => 'अवैध फोन नंबर';
+  String get invalidPhoneNumber => 'अमान्य फोन नंबर';
 
   @override
   String get invite => 'आमंत्रित करें';
@@ -362,7 +371,7 @@ class StringsHi extends Strings {
   String get leaveClubConfirmation => 'क्या आप वाकई इस क्लब को छोड़ना चाहते हैं?';
 
   @override
-  String get leaveClubSuccess => 'क्लब सफलतापूर्वक छोड़ दिया';
+  String get leaveClubSuccess => 'क्लब छोड़ने में सफल';
 
   @override
   String get light => 'लाइट मोड';
@@ -380,7 +389,7 @@ class StringsHi extends Strings {
   String get myClub => 'मेरा क्लब';
 
   @override
-  String get myClubTraining => 'मेरे क्लब का प्रशिक्षण';
+  String get myClubTraining => 'मेरा क्लब';
 
   @override
   String get name => 'नाम';
@@ -389,7 +398,7 @@ class StringsHi extends Strings {
   String get nameRequired => 'नाम आवश्यक है';
 
   @override
-  String get newExam => 'New Exam';
+  String get newExam => 'नई परीक्षा';
 
   @override
   String get newProgram => 'नया कार्यक्रम';
@@ -407,7 +416,7 @@ class StringsHi extends Strings {
   String get noMembersFound => 'कोई सदस्य नहीं मिला';
 
   @override
-  String get noSpaceAllowed => 'कोई स्थान अनुमति नहीं है';
+  String get noSpaceAllowed => 'स्थान की अनुमति नहीं';
 
   @override
   String get noUsersFound => 'कोई उपयोगकर्ता नहीं मिला';
@@ -428,16 +437,16 @@ class StringsHi extends Strings {
   String get password => 'पासवर्ड';
 
   @override
-  String get phoneNumber => 'फोन नंबर';
+  String get phoneNumber => 'फ़ोन नंबर';
 
   @override
-  String get phoneNumberRequired => 'फोन नंबर आवश्यक है';
+  String get phoneNumberRequired => 'फ़ोन नंबर आवश्यक है';
 
   @override
   String get program => 'कार्यक्रम';
 
   @override
-  String get programDetail => 'कार्यक्रम का विवरण';
+  String get programDetail => 'कार्यक्रम विवरण';
 
   @override
   String get programNameRequired => 'कार्यक्रम का नाम आवश्यक है';
@@ -455,25 +464,25 @@ class StringsHi extends Strings {
   String get religionRequired => 'धर्म आवश्यक है';
 
   @override
-  String get search => 'खोजें';
+  String get search => 'खोज';
 
   @override
   String get session => 'सत्र';
 
   @override
-  String get settings => 'सेटिंग्स';
+  String get settings => 'समायोजन';
 
   @override
-  String get signIn => 'साइन इन करें';
+  String get signIn => 'साइन इन';
 
   @override
-  String get signUp => 'साइन अप करें';
+  String get signUp => 'साइन अप';
 
   @override
   String get soccer => 'फुटबॉल';
 
   @override
-  String get sport => 'खेल';
+  String get sport => 'खेल:';
 
   @override
   String get sportType => 'खेल प्रकार';
@@ -485,7 +494,7 @@ class StringsHi extends Strings {
   String get startDateRequired => 'प्रारंभ तिथि आवश्यक है';
 
   @override
-  String get succesEditProgram => 'कार्यक्रम सफलतापूर्वक संपादित किया गया';
+  String get succesEditProgram => 'कार्यक्रम सफलतापूर्वक संपादित';
 
   @override
   String get success => 'सफलता';
@@ -497,28 +506,34 @@ class StringsHi extends Strings {
   String get successCreateExercise => 'व्यायाम सफलतापूर्वक बनाया गया';
 
   @override
-  String get successCreateExercises => 'अभ्यास सफलतापूर्वक बनाए गए';
+  String get successCreateExercises => 'व्यायाम सफलतापूर्वक बनाए गए';
 
   @override
   String get successCreateProgram => 'कार्यक्रम सफलतापूर्वक बनाया गया';
 
   @override
+  String get successCreateQuestion => 'प्रश्न सफलतापूर्वक बनाया गया';
+
+  @override
   String get successLogout => 'सफलतापूर्वक लॉगआउट';
 
   @override
-  String get successSignIn => 'सफलतापूर्वक साइन इन किया गया';
+  String get successSignIn => 'सफलतापूर्वक साइन इन';
 
   @override
-  String get successSignUp => 'सफलतापूर्वक साइन अप किया गया';
+  String get successSignUp => 'सफलतापूर्वक साइन अप';
 
   @override
   String get successUpdateClub => 'क्लब सफलतापूर्वक अपडेट किया गया';
 
   @override
-  String get successUpdateExercises => 'व्यायाम सफलतापूर्वक अपडेट किया गया';
+  String get successUpdateExercises => 'व्यायाम सफलतापूर्वक अपडेट किए गए';
 
   @override
   String get successUpdateProfile => 'प्रोफ़ाइल सफलतापूर्वक अपडेट की गई';
+
+  @override
+  String get successUpdateQuestions => 'प्रश्न सफलतापूर्वक अपडेट किए गए';
 
   @override
   String get system => 'सिस्टम';

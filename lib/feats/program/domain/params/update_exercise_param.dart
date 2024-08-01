@@ -10,7 +10,7 @@ class UpdateProgramExerciseParams with _$UpdateProgramExerciseParams {
     @Default(0) int id,
     @Default(0) int order,
     @Default(0) int programId,
-    @Default(0) int mediaId,
+    int? mediaId,
     @Default('') String name,
     String? description,
     @Default(ProgramUnitValueModel()) ProgramUnitValueModel repetition,

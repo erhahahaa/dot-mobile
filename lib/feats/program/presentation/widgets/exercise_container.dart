@@ -20,12 +20,7 @@ class _ExerciseContainerState extends State<ExerciseContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8.w),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.r),
-        color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.1),
-      ),
+    return EightContainer(
       margin: EdgeInsets.only(bottom: 8.w),
       child: isExpanded ? _buildExpanded(context) : _buildTitle(),
     );

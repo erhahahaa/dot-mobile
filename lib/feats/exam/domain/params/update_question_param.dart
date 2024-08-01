@@ -8,10 +8,12 @@ part 'update_question_param.g.dart';
 class UpdateQuestionParams with _$UpdateQuestionParams {
   const factory UpdateQuestionParams({
     @Default(0) int id,
+    @Default(0) int order,
     @Default(0) int examId,
+    int? mediaId,
     @Default(QuestionType.essay) QuestionType type,
-    @Default('') String content,
-    @Default('') String answer,
+    @Default('') String question,
+    @Default([]) List<QuestionOptionModel> options,
   }) = _UpdateQuestionParams;
 
   factory UpdateQuestionParams.fromJson(Map<String, dynamic> json) =>

@@ -14,7 +14,7 @@ class StringsId extends Strings {
   String get add => 'Tambah';
 
   @override
-  String get addMember => 'Tambahkan Anggota';
+  String get addMember => 'Tambah Anggota';
 
   @override
   String get address => 'Alamat';
@@ -29,7 +29,7 @@ class StringsId extends Strings {
   String get alreadyHaveAnAccount => 'Sudah punya akun?';
 
   @override
-  String get assets => 'Asset';
+  String get assets => 'Aset';
 
   @override
   String get athlete => 'Atlet';
@@ -41,7 +41,7 @@ class StringsId extends Strings {
   String get back => 'Kembali';
 
   @override
-  String get basketBall => 'Basket';
+  String get basketBall => 'Bola Basket';
 
   @override
   String get bornDate => 'Tanggal Lahir';
@@ -71,10 +71,10 @@ class StringsId extends Strings {
   String get clubDescription => 'Deskripsi Klub';
 
   @override
-  String get clubDescriptionRequired => 'Deskripsi klub wajib diisi';
+  String get clubDescriptionRequired => 'Deskripsi klub diperlukan';
 
   @override
-  String get clubImageRequired => 'Gambar klub wajib diisi';
+  String get clubImageRequired => 'Gambar klub diperlukan';
 
   @override
   String get clubManagement => 'Manajemen Klub';
@@ -83,7 +83,7 @@ class StringsId extends Strings {
   String get clubName => 'Nama Klub';
 
   @override
-  String get clubNameRequired => 'Nama klub wajib diisi';
+  String get clubNameRequired => 'Nama klub diperlukan';
 
   @override
   String get clubs => 'Klub';
@@ -116,58 +116,58 @@ class StringsId extends Strings {
   String get description => 'Deskripsi';
 
   @override
-  String get detail => 'Rincian';
+  String get detail => 'Detail';
 
   @override
-  String get dontHaveAnAccount => 'Belum punya akun?';
+  String get dontHaveAnAccount => 'Tidak punya akun?';
 
   @override
   String get download => 'Unduh';
 
   @override
-  String get dueAt => 'Tenggat';
+  String get dueAt => 'Jatuh Tempo';
 
   @override
-  String get dueAtRequired => 'Tanggal jatuh tempo diperlukan';
+  String get dueAtRequired => 'Jatuh tempo diperlukan';
 
   @override
-  String get edit => 'Ubah';
+  String get edit => 'Edit';
 
   @override
-  String get editClub => 'Ubah Klub';
+  String get editClub => 'Edit Klub';
 
   @override
   String get editExam => 'Edit Ujian';
 
   @override
-  String get editProfile => 'Ubah Profil';
+  String get editProfile => 'Edit Profil';
 
   @override
-  String get editProgram => 'Ubah Program';
+  String get editProgram => 'Edit Program';
 
   @override
   String get email => 'Email';
 
   @override
-  String get emailOrUsernameOrPhone => 'Email / Nama pengguna / Telepon';
+  String get emailOrUsernameOrPhone => 'Email / Nama Pengguna / Telepon';
 
   @override
-  String get emailRequired => 'Email wajib diisi';
+  String get emailRequired => 'Email diperlukan';
 
   @override
-  String get emailUsernamePhoneAlreadyRegistered => 'Email / Nama pengguna / Telepon sudah terdaftar';
+  String get emailUsernamePhoneAlreadyRegistered => 'Email / Nama Pengguna / Telepon sudah terdaftar';
 
   @override
   String get emptyExam => 'Ujian kosong';
 
   @override
-  String get endDate => 'Tanggal Berakhir';
+  String get endDate => 'Tanggal Selesai';
 
   @override
-  String get endDateRequired => 'Tanggal berakhir wajib diisi';
+  String get endDateRequired => 'Tanggal selesai diperlukan';
 
   @override
-  String get english => 'Bahasa Inggris';
+  String get english => 'Inggris';
 
   @override
   String get enterClubDescription => 'Masukkan deskripsi klub';
@@ -179,13 +179,13 @@ class StringsId extends Strings {
   String get enterDescription => 'Masukkan deskripsi';
 
   @override
-  String get enterDueAt => 'Masukkan tanggal jatuh tempo';
+  String get enterDueAt => 'Masukkan jatuh tempo';
 
   @override
-  String get enterEmailOrUsernameOrPhone => 'Masukan email / nama pengguna / telepon';
+  String get enterEmailOrUsernameOrPhone => 'Masukkan email / nama pengguna / telepon';
 
   @override
-  String get enterEndDate => 'Masukkan tanggal berakhir';
+  String get enterEndDate => 'Masukkan tanggal selesai';
 
   @override
   String get enterExamDescription => 'Masukkan deskripsi ujian';
@@ -197,7 +197,7 @@ class StringsId extends Strings {
   String get enterProgramName => 'Masukkan nama program';
 
   @override
-  String get enterStartDate => 'Masukkan tanggal dimulai';
+  String get enterStartDate => 'Masukkan tanggal mulai';
 
   @override
   String get enterYourAddress => 'Masukkan alamat Anda';
@@ -209,46 +209,55 @@ class StringsId extends Strings {
   String get enterYourBornPlace => 'Masukkan tempat lahir Anda';
 
   @override
-  String get enterYourEmail => 'Masukkan email anda';
+  String get enterYourEmail => 'Masukkan email Anda';
 
   @override
   String get enterYourExpertise => 'Masukkan keahlian Anda';
 
   @override
-  String get enterYourGender => 'Pilih jenis kelamin anda';
+  String get enterYourGender => 'Masukkan jenis kelamin Anda';
 
   @override
-  String get enterYourName => 'Masukkan nama anda';
+  String get enterYourName => 'Masukkan nama Anda';
 
   @override
-  String get enterYourPass => 'Masukkan kata sandi anda';
+  String get enterYourPass => 'Masukkan kata sandi Anda';
 
   @override
-  String get enterYourPhoneNumber => 'Masukkan nomor telepon anda';
+  String get enterYourPhoneNumber => 'Masukkan nomor telepon Anda';
 
   @override
   String get enterYourReligion => 'Masukkan agama Anda';
 
   @override
-  String get enterYourUsername => 'Masukkan nama pengguna anda';
+  String get enterYourUsername => 'Masukkan nama pengguna Anda';
 
   @override
-  String get error => 'Gagal';
+  String get error => 'Kesalahan';
 
   @override
   String get errorCreateExercise => 'Gagal membuat latihan';
 
   @override
-  String get establishedAt => 'Didirikan pada :';
+  String get errorCreateQuestion => 'Gagal membuat pertanyaan';
 
   @override
-  String get exam => 'Tes';
+  String get errorUpdateExercise => 'Gagal memperbarui latihan';
+
+  @override
+  String get errorUpdateQuestion => 'Gagal memperbarui pertanyaan';
+
+  @override
+  String get establishedAt => 'Ditetapkan pada :';
+
+  @override
+  String get exam => 'Ujian';
 
   @override
   String get examDescription => 'Deskripsi Ujian';
 
   @override
-  String get exams => 'Tes';
+  String get exams => 'Ujian';
 
   @override
   String get examTitleRequired => 'Judul ujian diperlukan';
@@ -263,7 +272,7 @@ class StringsId extends Strings {
   String get expertiseRequired => 'Keahlian diperlukan';
 
   @override
-  String get expiredSession => 'Kadaluarsa';
+  String get expiredSession => 'Kedaluwarsa';
 
   @override
   String get failedCreateClub => 'Gagal membuat klub';
@@ -281,7 +290,7 @@ class StringsId extends Strings {
   String get failedEditExam => 'Gagal mengedit ujian';
 
   @override
-  String get failedEditProgram => 'Gagal mengubah program';
+  String get failedEditProgram => 'Gagal mengedit program';
 
   @override
   String get failedLeaveClub => 'Gagal meninggalkan klub';
@@ -293,7 +302,7 @@ class StringsId extends Strings {
   String get failedSignIn => 'Gagal masuk';
 
   @override
-  String get failedSignUp => 'Gagal daftar';
+  String get failedSignUp => 'Gagal mendaftar';
 
   @override
   String get failedUpdateClub => 'Gagal memperbarui klub';
@@ -311,7 +320,7 @@ class StringsId extends Strings {
   String get gender => 'Jenis Kelamin';
 
   @override
-  String get genderRequired => 'Jenis kelamin wajib diisi';
+  String get genderRequired => 'Jenis kelamin diperlukan';
 
   @override
   String get general => 'Umum';
@@ -323,16 +332,16 @@ class StringsId extends Strings {
   String get hello => 'Halo,';
 
   @override
-  String get history => 'Riwayat';
+  String get history => 'Sejarah';
 
   @override
-  String get identifierRequired => 'Identitas wajib diisi';
+  String get identifierRequired => 'Pengenal diperlukan';
 
   @override
-  String get indonesian => 'Bahasa Indonesia';
+  String get indonesian => 'Indonesia';
 
   @override
-  String get info => 'Informasi';
+  String get info => 'Info';
 
   @override
   String get invalidEmail => 'Email tidak valid';
@@ -344,10 +353,10 @@ class StringsId extends Strings {
   String get invite => 'Undang';
 
   @override
-  String get join => 'Gabung';
+  String get join => 'Bergabung';
 
   @override
-  String get kick => 'Hapus';
+  String get kick => 'Keluar';
 
   @override
   String get language => 'Bahasa';
@@ -356,7 +365,7 @@ class StringsId extends Strings {
   String get leave => 'Keluar';
 
   @override
-  String get leaveClub => 'Keluar dari klub';
+  String get leaveClub => 'Keluar Klub';
 
   @override
   String get leaveClubConfirmation => 'Apakah Anda yakin ingin meninggalkan klub ini?';
@@ -386,10 +395,10 @@ class StringsId extends Strings {
   String get name => 'Nama';
 
   @override
-  String get nameRequired => 'Nama wajib diisi';
+  String get nameRequired => 'Nama diperlukan';
 
   @override
-  String get newExam => 'Tes Baru';
+  String get newExam => 'Ujian Baru';
 
   @override
   String get newProgram => 'Program Baru';
@@ -398,31 +407,31 @@ class StringsId extends Strings {
   String get noClubsFound => 'Tidak ada klub yang ditemukan';
 
   @override
-  String get noEvents => 'Tidak ada kegiatan';
+  String get noEvents => 'Tidak ada acara';
 
   @override
-  String get noExpertise => 'Tidak memiliki keahlian';
+  String get noExpertise => 'Tidak ada keahlian';
 
   @override
-  String get noMembersFound => 'Anggota tidak ditemukan';
+  String get noMembersFound => 'Tidak ada anggota yang ditemukan';
 
   @override
-  String get noSpaceAllowed => 'Tidak diperbolehkan ada spasi';
+  String get noSpaceAllowed => 'Tidak ada ruang yang diperbolehkan';
 
   @override
-  String get noUsersFound => 'Pengguna tidak ditemukan';
+  String get noUsersFound => 'Tidak ada pengguna yang ditemukan';
 
   @override
   String get or => 'atau';
 
   @override
-  String get overview => 'Ringkasan';
+  String get overview => 'Ikhtisar';
 
   @override
   String get pageNotFound => 'Halaman tidak ditemukan';
 
   @override
-  String get passRequired => 'Kata sandi wajib diisi';
+  String get passRequired => 'Kata sandi diperlukan';
 
   @override
   String get password => 'Kata Sandi';
@@ -431,16 +440,16 @@ class StringsId extends Strings {
   String get phoneNumber => 'Nomor Telepon';
 
   @override
-  String get phoneNumberRequired => 'Nomor telepon wajib diisi';
+  String get phoneNumberRequired => 'Nomor telepon diperlukan';
 
   @override
   String get program => 'Program';
 
   @override
-  String get programDetail => 'Rincian Program';
+  String get programDetail => 'Detail Program';
 
   @override
-  String get programNameRequired => 'Nama program wajib diisi';
+  String get programNameRequired => 'Nama program diperlukan';
 
   @override
   String get programs => 'Program';
@@ -482,16 +491,16 @@ class StringsId extends Strings {
   String get startDate => 'Tanggal Mulai';
 
   @override
-  String get startDateRequired => 'Tanggal mulai wajib diisi';
+  String get startDateRequired => 'Tanggal mulai diperlukan';
 
   @override
-  String get succesEditProgram => 'Berhasil mengubah program';
+  String get succesEditProgram => 'Berhasil mengedit program';
 
   @override
   String get success => 'Berhasil';
 
   @override
-  String get successCreateClub => 'Berhasil membuat club';
+  String get successCreateClub => 'Berhasil membuat klub';
 
   @override
   String get successCreateExercise => 'Berhasil membuat latihan';
@@ -503,22 +512,28 @@ class StringsId extends Strings {
   String get successCreateProgram => 'Berhasil membuat program';
 
   @override
+  String get successCreateQuestion => 'Berhasil membuat pertanyaan';
+
+  @override
   String get successLogout => 'Berhasil keluar';
 
   @override
-  String get successSignIn => 'Berhasil masuk ';
+  String get successSignIn => 'Berhasil masuk';
 
   @override
-  String get successSignUp => 'Berhasil daftar';
+  String get successSignUp => 'Berhasil mendaftar';
 
   @override
   String get successUpdateClub => 'Berhasil memperbarui klub';
 
   @override
-  String get successUpdateExercises => 'Berhasil mengubah latihan';
+  String get successUpdateExercises => 'Berhasil memperbarui latihan';
 
   @override
   String get successUpdateProfile => 'Berhasil memperbarui profil';
+
+  @override
+  String get successUpdateQuestions => 'Berhasil memperbarui pertanyaan';
 
   @override
   String get system => 'Sistem';
@@ -533,7 +548,7 @@ class StringsId extends Strings {
   String get title => 'Judul';
 
   @override
-  String get updateClub => 'Perbarui Club';
+  String get updateClub => 'Perbarui Klub';
 
   @override
   String get updateProfile => 'Perbarui Profil';
@@ -545,19 +560,19 @@ class StringsId extends Strings {
   String get user => 'Pengguna';
 
   @override
-  String get username => 'Nama Penguna';
+  String get username => 'Nama Pengguna';
 
   @override
-  String get usernameCantContainUppercase => 'Nama pengguna tidak boleh mengandung huruf kapital';
+  String get usernameCantContainUppercase => 'Nama pengguna tidak boleh mengandung huruf besar';
 
   @override
   String get usernameNotAvailable => 'Nama pengguna tidak tersedia';
 
   @override
-  String get usernameRequired => 'Nama penguna wajib diisi';
+  String get usernameRequired => 'Nama pengguna diperlukan';
 
   @override
-  String get volleyBall => 'Voli';
+  String get volleyBall => 'Bola Voli';
 
   @override
   String get warning => 'Peringatan';

@@ -567,6 +567,24 @@ abstract class Strings {
   /// **'Failed to create exercise'**
   String get errorCreateExercise;
 
+  /// No description provided for @errorCreateQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create question'**
+  String get errorCreateQuestion;
+
+  /// No description provided for @errorUpdateExercise.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update exercise'**
+  String get errorUpdateExercise;
+
+  /// No description provided for @errorUpdateQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update question'**
+  String get errorUpdateQuestion;
+
   /// No description provided for @establishedAt.
   ///
   /// In en, this message translates to:
@@ -1095,6 +1113,12 @@ abstract class Strings {
   /// **'Successfully create program'**
   String get successCreateProgram;
 
+  /// No description provided for @successCreateQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully create question'**
+  String get successCreateQuestion;
+
   /// No description provided for @successLogout.
   ///
   /// In en, this message translates to:
@@ -1130,6 +1154,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Successfully update profile'**
   String get successUpdateProfile;
+
+  /// No description provided for @successUpdateQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully update questions'**
+  String get successUpdateQuestions;
 
   /// No description provided for @system.
   ///

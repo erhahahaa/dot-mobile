@@ -1,11 +1,7 @@
-import 'dart:ui';
-
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -38,7 +34,6 @@ class _ExerciseFormState extends State<ExerciseForm> {
   @override
   void initState() {
     _formKey = GlobalKey<FormState>();
-
     _scrollController = ScrollController();
 
     if (widget.exercises != null) {
@@ -98,24 +93,6 @@ class _ExerciseFormState extends State<ExerciseForm> {
 
   @override
   Widget build(BuildContext context) {
-    Widget proxyDecorator(
-        Widget child, int index, Animation<double> animation) {
-      return AnimatedBuilder(
-        animation: animation,
-        builder: (BuildContext context, Widget? child) {
-          final double animValue = Curves.easeInOut.transform(animation.value);
-          final double elevation = lerpDouble(0, 6, animValue)!;
-          return Material(
-            elevation: elevation,
-            color: context.theme.colorScheme.surface,
-            shadowColor: context.theme.colorScheme.surface,
-            child: child,
-          );
-        },
-        child: child,
-      );
-    }
-
     return BlocConsumer<ExerciseCubit, ExerciseState>(
       listener: (context, state) {
         if (state.state == BaseState.success) {
@@ -130,7 +107,9 @@ class _ExerciseFormState extends State<ExerciseForm> {
         }
         if (state.state == BaseState.failure) {
           ToastModel(
-            message: context.str?.errorCreateExercise,
+            message: widget.exercises == null
+                ? context.str?.errorCreateExercise
+                : context.str?.errorUpdateExercise,
             type: ToastType.error,
           ).fire(context);
           context.read<ExerciseCubit>().emitInitial();
@@ -147,22 +126,7 @@ class _ExerciseFormState extends State<ExerciseForm> {
                   });
                 }
               }
-              final Set<FormFieldState<Object?>>? err =
-                  _formKey.currentState?.validateGranularly();
-              if (err != null && err.isNotEmpty) {
-                final FormFieldState<Object?> firstError = err.first;
-                final RenderObject renderObject =
-                    firstError.context.findRenderObject() as RenderObject;
-                final RenderAbstractViewport viewport =
-                    RenderAbstractViewport.of(renderObject);
-                final RevealedOffset revealedOffset =
-                    viewport.getOffsetToReveal(renderObject, 0.0);
-                _scrollController.animateTo(
-                  revealedOffset.offset,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
-                );
-              }
+              _formKey.gotoError(_scrollController);
 
               for (ExerciseItem item in _items) {
                 if (item.media == null) {
@@ -186,7 +150,7 @@ class _ExerciseFormState extends State<ExerciseForm> {
                             ? item.descriptionCon.text
                             : null,
                         programId: widget.program.id,
-                        mediaId: item.media?.id ?? 0,
+                        mediaId: item.media?.id,
                         sets: ProgramUnitValueModel(
                           unit: item.setsUnit.value,
                           value: int.parse(item.setsCon.text),
@@ -211,7 +175,7 @@ class _ExerciseFormState extends State<ExerciseForm> {
                       ),
                     );
                   }
-                  context.read<ExerciseCubit>().create(exercises);
+                  context.read<ExerciseCubit>().createBulk(exercises);
                 } else {
                   final List<UpdateProgramExerciseParams> exercises = [];
                   for (ExerciseItem item in _items) {
@@ -223,7 +187,7 @@ class _ExerciseFormState extends State<ExerciseForm> {
                             ? item.descriptionCon.text
                             : null,
                         programId: widget.program.id,
-                        mediaId: item.media?.id ?? 0,
+                        mediaId: item.media?.id,
                         sets: ProgramUnitValueModel(
                           unit: item.setsUnit.value,
                           value: int.parse(item.setsCon.text),
@@ -264,81 +228,43 @@ class _ExerciseFormState extends State<ExerciseForm> {
             child: Form(
               key: _formKey,
               child: ReorderableListView(
-                proxyDecorator: proxyDecorator,
+                proxyDecorator: (child, index, animation) => ProxyDecorator(
+                  index: index,
+                  animation: animation,
+                  child: child,
+                ),
                 scrollController: _scrollController,
-                footer: Padding(
-                  padding: EdgeInsets.only(bottom: 512.h),
-                  child: InkWell(
-                    key: const Key('add_exercise'),
-                    onTap: () {
-                      setState(() {
-                        _items.add(ExerciseItem(
-                          exercise: const ProgramExerciseModel(),
-                          nameFN: FocusNode(),
-                          setsFN: FocusNode(),
-                          repsFN: FocusNode(),
-                          restFN: FocusNode(),
-                          tempoFN: FocusNode(),
-                          intensityFn: FocusNode(),
-                          descriptionFN: FocusNode(),
-                          nameCon: TextEditingController(),
-                          setsCon: TextEditingController(),
-                          repsCon: TextEditingController(),
-                          restCon: TextEditingController(),
-                          tempoCon: TextEditingController(),
-                          intensityCon: TextEditingController(),
-                          descriptionCon: TextEditingController(),
-                          order: _items.length,
-                        ));
-                      });
-                    },
-                    child: DottedBorder(
-                      borderType: BorderType.RRect,
-                      radius: Radius.circular(12.r),
-                      padding: EdgeInsets.all(6.w),
-                      strokeWidth: 2,
-                      color: Colors.blue,
-                      dashPattern: [12.w, 6.w],
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.r),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: Colors.blue,
-                              size: 24.sp,
-                            ),
-                            SizedBox(width: 8.w),
-                            Text(
-                              'Add exercise',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                footer: AddItemButton(
+                  text: 'Add exercise',
+                  onTap: () {
+                    setState(() {
+                      _items.add(ExerciseItem(
+                        exercise: const ProgramExerciseModel(),
+                        nameFN: FocusNode(),
+                        setsFN: FocusNode(),
+                        repsFN: FocusNode(),
+                        restFN: FocusNode(),
+                        tempoFN: FocusNode(),
+                        intensityFn: FocusNode(),
+                        descriptionFN: FocusNode(),
+                        nameCon: TextEditingController(),
+                        setsCon: TextEditingController(),
+                        repsCon: TextEditingController(),
+                        restCon: TextEditingController(),
+                        tempoCon: TextEditingController(),
+                        intensityCon: TextEditingController(),
+                        descriptionCon: TextEditingController(),
+                        order: _items.length,
+                      ));
+                    });
+                  },
                 ),
                 children: <Widget>[
-                  for (int index = 0; index < _items.length; index += 1)
-                    Container(
+                  for (int index = 0; index < _items.length; index++)
+                    EightContainer(
                       key: Key('exerciseItem_$index'),
                       padding: EdgeInsets.all(8.w),
                       margin: EdgeInsets.only(bottom: 16.h),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .primaryContainer
-                            .withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(16.r),
-                      ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -959,9 +885,7 @@ class _ExerciseFormState extends State<ExerciseForm> {
                     final ExerciseItem item = _items.removeAt(oldIndex);
                     _items.insert(newIndex, item);
 
-                    // update the order of the items
                     for (int i = 0; i < _items.length; i++) {
-                      log.f('item order: ${_items[i].order}');
                       _items[i].order = i;
                     }
                   });
@@ -979,21 +903,21 @@ class ExerciseItem {
   ProgramExerciseModel exercise;
   MediaModel? media;
 
-  FocusNode nameFN;
-  FocusNode setsFN;
-  FocusNode repsFN;
-  FocusNode restFN;
-  FocusNode tempoFN;
-  FocusNode intensityFn;
-  FocusNode descriptionFN;
+  final FocusNode nameFN;
+  final FocusNode setsFN;
+  final FocusNode repsFN;
+  final FocusNode restFN;
+  final FocusNode tempoFN;
+  final FocusNode intensityFn;
+  final FocusNode descriptionFN;
 
-  TextEditingController nameCon;
-  TextEditingController setsCon;
-  TextEditingController repsCon;
-  TextEditingController restCon;
-  TextEditingController tempoCon;
-  TextEditingController intensityCon;
-  TextEditingController descriptionCon;
+  final TextEditingController nameCon;
+  final TextEditingController setsCon;
+  final TextEditingController repsCon;
+  final TextEditingController restCon;
+  final TextEditingController tempoCon;
+  final TextEditingController intensityCon;
+  final TextEditingController descriptionCon;
 
   ProgramRepitionUnit repsUnit;
   ProgramSetsUnit setsUnit;

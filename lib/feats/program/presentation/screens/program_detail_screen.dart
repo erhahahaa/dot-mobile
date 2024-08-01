@@ -16,7 +16,9 @@ class ProgramDetailScreen extends StatefulWidget {
 class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
   @override
   void initState() {
-    context.read<ExerciseCubit>().getAll(const PaginationParams(), widget.program.id);
+    context
+        .read<ExerciseCubit>()
+        .getAll(const PaginationParams(), widget.program.id);
     super.initState();
   }
 
@@ -31,22 +33,22 @@ class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
             children: [
               H1Text(context.str?.programDetail ?? 'Program Detail'),
               SizedBox(height: 8.h),
-              Container(
-                padding: EdgeInsets.all(8.w),
+              EightContainer(
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  color: context.containerColor(0.1),
-                  borderRadius: BorderRadius.circular(8.r),
-                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     H2Text('Name : ${widget.program.name}'),
-                    H5Text(
-                        'Start date : ${widget.program.startDate!.toDayMonthYear()}'),
-                    H5Text(
-                      'End date : ${widget.program.endDate!.toDayMonthYear()}',
-                    ),
+                    if (widget.program.startDate != null) ...[
+                      H5Text(
+                        'Start date : ${widget.program.startDate!.toDayMonthYear()}',
+                      ),
+                    ],
+                    if (widget.program.endDate != null) ...[
+                      H5Text(
+                        'End date : ${widget.program.endDate!.toDayMonthYear()}',
+                      ),
+                    ]
                   ],
                 ),
               ),

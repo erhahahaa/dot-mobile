@@ -24,7 +24,7 @@ mixin _$ExamModel {
   int get clubId => throw _privateConstructorUsedError;
   int? get imageId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   DateTime? get dueAt => throw _privateConstructorUsedError;
   MediaEmbedModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $ExamModelCopyWith<$Res> {
       int clubId,
       int? imageId,
       String title,
-      String description,
+      String? description,
       DateTime? dueAt,
       MediaEmbedModel? media,
       DateTime? createdAt,
@@ -72,7 +72,7 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
     Object? clubId = null,
     Object? imageId = freezed,
     Object? title = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? dueAt = freezed,
     Object? media = freezed,
     Object? createdAt = freezed,
@@ -95,10 +95,10 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dueAt: freezed == dueAt
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
@@ -144,7 +144,7 @@ abstract class _$$ExamModelImplCopyWith<$Res>
       int clubId,
       int? imageId,
       String title,
-      String description,
+      String? description,
       DateTime? dueAt,
       MediaEmbedModel? media,
       DateTime? createdAt,
@@ -169,7 +169,7 @@ class __$$ExamModelImplCopyWithImpl<$Res>
     Object? clubId = null,
     Object? imageId = freezed,
     Object? title = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? dueAt = freezed,
     Object? media = freezed,
     Object? createdAt = freezed,
@@ -192,10 +192,10 @@ class __$$ExamModelImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dueAt: freezed == dueAt
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
@@ -223,8 +223,8 @@ class _$ExamModelImpl implements _ExamModel {
       {this.id = 0,
       this.clubId = 0,
       this.imageId,
-      this.title = 'DOT Summer Exams',
-      this.description = 'Description about exam',
+      this.title = 'Mid term exam',
+      this.description,
       this.dueAt,
       this.media,
       this.createdAt,
@@ -245,8 +245,7 @@ class _$ExamModelImpl implements _ExamModel {
   @JsonKey()
   final String title;
   @override
-  @JsonKey()
-  final String description;
+  final String? description;
   @override
   final DateTime? dueAt;
   @override
@@ -305,7 +304,7 @@ abstract class _ExamModel implements ExamModel {
       final int clubId,
       final int? imageId,
       final String title,
-      final String description,
+      final String? description,
       final DateTime? dueAt,
       final MediaEmbedModel? media,
       final DateTime? createdAt,
@@ -323,7 +322,7 @@ abstract class _ExamModel implements ExamModel {
   @override
   String get title;
   @override
-  String get description;
+  String? get description;
   @override
   DateTime? get dueAt;
   @override

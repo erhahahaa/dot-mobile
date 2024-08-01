@@ -17,45 +17,51 @@ const QuestionEntitySchema = CollectionSchema(
   name: r'QuestionEntity',
   id: -5718048655593194005,
   properties: {
-    r'answer': PropertySchema(
-      id: 0,
-      name: r'answer',
-      type: IsarType.string,
-    ),
-    r'content': PropertySchema(
-      id: 1,
-      name: r'content',
-      type: IsarType.string,
-    ),
     r'createdAt': PropertySchema(
-      id: 2,
+      id: 0,
       name: r'createdAt',
       type: IsarType.dateTime,
     ),
     r'examId': PropertySchema(
-      id: 3,
+      id: 1,
       name: r'examId',
       type: IsarType.long,
     ),
     r'media': PropertySchema(
-      id: 4,
+      id: 2,
       name: r'media',
       type: IsarType.object,
       target: r'MediaEmbedEntity',
     ),
     r'mediaId': PropertySchema(
-      id: 5,
+      id: 3,
       name: r'mediaId',
       type: IsarType.long,
     ),
-    r'type': PropertySchema(
+    r'options': PropertySchema(
+      id: 4,
+      name: r'options',
+      type: IsarType.objectList,
+      target: r'QuestionOptionEntity',
+    ),
+    r'order': PropertySchema(
+      id: 5,
+      name: r'order',
+      type: IsarType.long,
+    ),
+    r'question': PropertySchema(
       id: 6,
+      name: r'question',
+      type: IsarType.string,
+    ),
+    r'type': PropertySchema(
+      id: 7,
       name: r'type',
       type: IsarType.byte,
       enumMap: _QuestionEntitytypeEnumValueMap,
     ),
     r'updatedAt': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -74,7 +80,10 @@ const QuestionEntitySchema = CollectionSchema(
       single: true,
     )
   },
-  embeddedSchemas: {r'MediaEmbedEntity': MediaEmbedEntitySchema},
+  embeddedSchemas: {
+    r'QuestionOptionEntity': QuestionOptionEntitySchema,
+    r'MediaEmbedEntity': MediaEmbedEntitySchema
+  },
   getId: _questionEntityGetId,
   getLinks: _questionEntityGetLinks,
   attach: _questionEntityAttach,
@@ -88,13 +97,6 @@ int _questionEntityEstimateSize(
 ) {
   var bytesCount = offsets.last;
   {
-    final value = object.answer;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  bytesCount += 3 + object.content.length * 3;
-  {
     final value = object.media;
     if (value != null) {
       bytesCount += 3 +
@@ -102,6 +104,16 @@ int _questionEntityEstimateSize(
               value, allOffsets[MediaEmbedEntity]!, allOffsets);
     }
   }
+  bytesCount += 3 + object.options.length * 3;
+  {
+    final offsets = allOffsets[QuestionOptionEntity]!;
+    for (var i = 0; i < object.options.length; i++) {
+      final value = object.options[i];
+      bytesCount +=
+          QuestionOptionEntitySchema.estimateSize(value, offsets, allOffsets);
+    }
+  }
+  bytesCount += 3 + object.question.length * 3;
   return bytesCount;
 }
 
@@ -111,19 +123,25 @@ void _questionEntitySerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.answer);
-  writer.writeString(offsets[1], object.content);
-  writer.writeDateTime(offsets[2], object.createdAt);
-  writer.writeLong(offsets[3], object.examId);
+  writer.writeDateTime(offsets[0], object.createdAt);
+  writer.writeLong(offsets[1], object.examId);
   writer.writeObject<MediaEmbedEntity>(
-    offsets[4],
+    offsets[2],
     allOffsets,
     MediaEmbedEntitySchema.serialize,
     object.media,
   );
-  writer.writeLong(offsets[5], object.mediaId);
-  writer.writeByte(offsets[6], object.type.index);
-  writer.writeDateTime(offsets[7], object.updatedAt);
+  writer.writeLong(offsets[3], object.mediaId);
+  writer.writeObjectList<QuestionOptionEntity>(
+    offsets[4],
+    allOffsets,
+    QuestionOptionEntitySchema.serialize,
+    object.options,
+  );
+  writer.writeLong(offsets[5], object.order);
+  writer.writeString(offsets[6], object.question);
+  writer.writeByte(offsets[7], object.type.index);
+  writer.writeDateTime(offsets[8], object.updatedAt);
 }
 
 QuestionEntity _questionEntityDeserialize(
@@ -133,20 +151,27 @@ QuestionEntity _questionEntityDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = QuestionEntity(
-    answer: reader.readStringOrNull(offsets[0]),
-    content: reader.readStringOrNull(offsets[1]) ?? 'Mention 5 basic Movement',
-    createdAt: reader.readDateTimeOrNull(offsets[2]),
-    examId: reader.readLongOrNull(offsets[3]) ?? 0,
+    createdAt: reader.readDateTimeOrNull(offsets[0]),
+    examId: reader.readLongOrNull(offsets[1]) ?? 0,
     id: id,
     media: reader.readObjectOrNull<MediaEmbedEntity>(
-      offsets[4],
+      offsets[2],
       MediaEmbedEntitySchema.deserialize,
       allOffsets,
     ),
-    mediaId: reader.readLongOrNull(offsets[5]),
-    type: _QuestionEntitytypeValueEnumMap[reader.readByteOrNull(offsets[6])] ??
+    mediaId: reader.readLongOrNull(offsets[3]),
+    options: reader.readObjectList<QuestionOptionEntity>(
+          offsets[4],
+          QuestionOptionEntitySchema.deserialize,
+          allOffsets,
+          QuestionOptionEntity(),
+        ) ??
+        const [],
+    order: reader.readLongOrNull(offsets[5]) ?? 0,
+    question: reader.readStringOrNull(offsets[6]) ?? 'Mention 5 basic Movement',
+    type: _QuestionEntitytypeValueEnumMap[reader.readByteOrNull(offsets[7])] ??
         QuestionType.essay,
-    updatedAt: reader.readDateTimeOrNull(offsets[7]),
+    updatedAt: reader.readDateTimeOrNull(offsets[8]),
   );
   return object;
 }
@@ -159,26 +184,34 @@ P _questionEntityDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readStringOrNull(offset)) as P;
-    case 1:
-      return (reader.readStringOrNull(offset) ?? 'Mention 5 basic Movement')
-          as P;
-    case 2:
       return (reader.readDateTimeOrNull(offset)) as P;
-    case 3:
+    case 1:
       return (reader.readLongOrNull(offset) ?? 0) as P;
-    case 4:
+    case 2:
       return (reader.readObjectOrNull<MediaEmbedEntity>(
         offset,
         MediaEmbedEntitySchema.deserialize,
         allOffsets,
       )) as P;
-    case 5:
+    case 3:
       return (reader.readLongOrNull(offset)) as P;
+    case 4:
+      return (reader.readObjectList<QuestionOptionEntity>(
+            offset,
+            QuestionOptionEntitySchema.deserialize,
+            allOffsets,
+            QuestionOptionEntity(),
+          ) ??
+          const []) as P;
+    case 5:
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 6:
+      return (reader.readStringOrNull(offset) ?? 'Mention 5 basic Movement')
+          as P;
+    case 7:
       return (_QuestionEntitytypeValueEnumMap[reader.readByteOrNull(offset)] ??
           QuestionType.essay) as P;
-    case 7:
+    case 8:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -295,296 +328,6 @@ extension QuestionEntityQueryWhere
 
 extension QuestionEntityQueryFilter
     on QueryBuilder<QuestionEntity, QuestionEntity, QFilterCondition> {
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'answer',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'answer',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'answer',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerGreaterThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'answer',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerLessThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'answer',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerBetween(
-    String? lower,
-    String? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'answer',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'answer',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'answer',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'answer',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'answer',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'answer',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      answerIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'answer',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'content',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'content',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'content',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'content',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'content',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'content',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'content',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'content',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'content',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
-      contentIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'content',
-        value: '',
-      ));
-    });
-  }
-
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       createdAtIsNull() {
     return QueryBuilder.apply(this, (query) {
@@ -863,6 +606,287 @@ extension QuestionEntityQueryFilter
   }
 
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      optionsLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'options',
+        length,
+        true,
+        length,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      optionsIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'options',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      optionsIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'options',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      optionsLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'options',
+        0,
+        true,
+        length,
+        include,
+      );
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      optionsLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'options',
+        length,
+        include,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      optionsLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'options',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      orderEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'order',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      orderGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'order',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      orderLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'order',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      orderBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'order',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      questionEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'question',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      questionGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'question',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      questionLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'question',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      questionBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'question',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      questionStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'question',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      questionEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'question',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      questionContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'question',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      questionMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'question',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      questionIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'question',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      questionIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'question',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
       typeEqualTo(QuestionType value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1001,6 +1025,13 @@ extension QuestionEntityQueryObject
       return query.object(q, r'media');
     });
   }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterFilterCondition>
+      optionsElement(FilterQuery<QuestionOptionEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'options');
+    });
+  }
 }
 
 extension QuestionEntityQueryLinks
@@ -1022,32 +1053,6 @@ extension QuestionEntityQueryLinks
 
 extension QuestionEntityQuerySortBy
     on QueryBuilder<QuestionEntity, QuestionEntity, QSortBy> {
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> sortByAnswer() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'answer', Sort.asc);
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy>
-      sortByAnswerDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'answer', Sort.desc);
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> sortByContent() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'content', Sort.asc);
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy>
-      sortByContentDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'content', Sort.desc);
-    });
-  }
-
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> sortByCreatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'createdAt', Sort.asc);
@@ -1087,6 +1092,31 @@ extension QuestionEntityQuerySortBy
     });
   }
 
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> sortByOrder() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'order', Sort.asc);
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> sortByOrderDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'order', Sort.desc);
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> sortByQuestion() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'question', Sort.asc);
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy>
+      sortByQuestionDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'question', Sort.desc);
+    });
+  }
+
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> sortByType() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'type', Sort.asc);
@@ -1115,32 +1145,6 @@ extension QuestionEntityQuerySortBy
 
 extension QuestionEntityQuerySortThenBy
     on QueryBuilder<QuestionEntity, QuestionEntity, QSortThenBy> {
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> thenByAnswer() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'answer', Sort.asc);
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy>
-      thenByAnswerDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'answer', Sort.desc);
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> thenByContent() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'content', Sort.asc);
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy>
-      thenByContentDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'content', Sort.desc);
-    });
-  }
-
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> thenByCreatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'createdAt', Sort.asc);
@@ -1192,6 +1196,31 @@ extension QuestionEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> thenByOrder() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'order', Sort.asc);
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> thenByOrderDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'order', Sort.desc);
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> thenByQuestion() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'question', Sort.asc);
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy>
+      thenByQuestionDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'question', Sort.desc);
+    });
+  }
+
   QueryBuilder<QuestionEntity, QuestionEntity, QAfterSortBy> thenByType() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'type', Sort.asc);
@@ -1220,20 +1249,6 @@ extension QuestionEntityQuerySortThenBy
 
 extension QuestionEntityQueryWhereDistinct
     on QueryBuilder<QuestionEntity, QuestionEntity, QDistinct> {
-  QueryBuilder<QuestionEntity, QuestionEntity, QDistinct> distinctByAnswer(
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'answer', caseSensitive: caseSensitive);
-    });
-  }
-
-  QueryBuilder<QuestionEntity, QuestionEntity, QDistinct> distinctByContent(
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'content', caseSensitive: caseSensitive);
-    });
-  }
-
   QueryBuilder<QuestionEntity, QuestionEntity, QDistinct>
       distinctByCreatedAt() {
     return QueryBuilder.apply(this, (query) {
@@ -1250,6 +1265,19 @@ extension QuestionEntityQueryWhereDistinct
   QueryBuilder<QuestionEntity, QuestionEntity, QDistinct> distinctByMediaId() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'mediaId');
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QDistinct> distinctByOrder() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'order');
+    });
+  }
+
+  QueryBuilder<QuestionEntity, QuestionEntity, QDistinct> distinctByQuestion(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'question', caseSensitive: caseSensitive);
     });
   }
 
@@ -1272,18 +1300,6 @@ extension QuestionEntityQueryProperty
   QueryBuilder<QuestionEntity, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
-    });
-  }
-
-  QueryBuilder<QuestionEntity, String?, QQueryOperations> answerProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'answer');
-    });
-  }
-
-  QueryBuilder<QuestionEntity, String, QQueryOperations> contentProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'content');
     });
   }
 
@@ -1313,6 +1329,25 @@ extension QuestionEntityQueryProperty
     });
   }
 
+  QueryBuilder<QuestionEntity, List<QuestionOptionEntity>, QQueryOperations>
+      optionsProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'options');
+    });
+  }
+
+  QueryBuilder<QuestionEntity, int, QQueryOperations> orderProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'order');
+    });
+  }
+
+  QueryBuilder<QuestionEntity, String, QQueryOperations> questionProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'question');
+    });
+  }
+
   QueryBuilder<QuestionEntity, QuestionType, QQueryOperations> typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'type');
@@ -1326,3 +1361,280 @@ extension QuestionEntityQueryProperty
     });
   }
 }
+
+// **************************************************************************
+// IsarEmbeddedGenerator
+// **************************************************************************
+
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+
+const QuestionOptionEntitySchema = Schema(
+  name: r'QuestionOptionEntity',
+  id: 1779159353641436394,
+  properties: {
+    r'order': PropertySchema(
+      id: 0,
+      name: r'order',
+      type: IsarType.long,
+    ),
+    r'text': PropertySchema(
+      id: 1,
+      name: r'text',
+      type: IsarType.string,
+    )
+  },
+  estimateSize: _questionOptionEntityEstimateSize,
+  serialize: _questionOptionEntitySerialize,
+  deserialize: _questionOptionEntityDeserialize,
+  deserializeProp: _questionOptionEntityDeserializeProp,
+);
+
+int _questionOptionEntityEstimateSize(
+  QuestionOptionEntity object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  bytesCount += 3 + object.text.length * 3;
+  return bytesCount;
+}
+
+void _questionOptionEntitySerialize(
+  QuestionOptionEntity object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeLong(offsets[0], object.order);
+  writer.writeString(offsets[1], object.text);
+}
+
+QuestionOptionEntity _questionOptionEntityDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = QuestionOptionEntity(
+    order: reader.readLongOrNull(offsets[0]) ?? 0,
+    text: reader.readStringOrNull(offsets[1]) ?? 'Option 1',
+  );
+  return object;
+}
+
+P _questionOptionEntityDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readLongOrNull(offset) ?? 0) as P;
+    case 1:
+      return (reader.readStringOrNull(offset) ?? 'Option 1') as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
+  }
+}
+
+extension QuestionOptionEntityQueryFilter on QueryBuilder<QuestionOptionEntity,
+    QuestionOptionEntity, QFilterCondition> {
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> orderEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'order',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> orderGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'order',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> orderLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'order',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> orderBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'order',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> textEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'text',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> textGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'text',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> textLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'text',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> textBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'text',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> textStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'text',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> textEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'text',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+          QAfterFilterCondition>
+      textContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'text',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+          QAfterFilterCondition>
+      textMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'text',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> textIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'text',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<QuestionOptionEntity, QuestionOptionEntity,
+      QAfterFilterCondition> textIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'text',
+        value: '',
+      ));
+    });
+  }
+}
+
+extension QuestionOptionEntityQueryObject on QueryBuilder<QuestionOptionEntity,
+    QuestionOptionEntity, QFilterCondition> {}

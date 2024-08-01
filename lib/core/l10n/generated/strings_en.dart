@@ -239,6 +239,15 @@ class StringsEn extends Strings {
   String get errorCreateExercise => 'Failed to create exercise';
 
   @override
+  String get errorCreateQuestion => 'Failed to create question';
+
+  @override
+  String get errorUpdateExercise => 'Failed to update exercise';
+
+  @override
+  String get errorUpdateQuestion => 'Failed to update question';
+
+  @override
   String get establishedAt => 'Established at :';
 
   @override
@@ -503,6 +512,9 @@ class StringsEn extends Strings {
   String get successCreateProgram => 'Successfully create program';
 
   @override
+  String get successCreateQuestion => 'Successfully create question';
+
+  @override
   String get successLogout => 'Successfully logged out';
 
   @override
@@ -519,6 +531,9 @@ class StringsEn extends Strings {
 
   @override
   String get successUpdateProfile => 'Successfully update profile';
+
+  @override
+  String get successUpdateQuestions => 'Successfully update questions';
 
   @override
   String get system => 'System';

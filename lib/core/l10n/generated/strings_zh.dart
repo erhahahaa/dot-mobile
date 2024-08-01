@@ -8,7 +8,7 @@ class StringsZh extends Strings {
   String get about => '关于';
 
   @override
-  String get activeSession => '活动中';
+  String get activeSession => '活跃';
 
   @override
   String get add => '添加';
@@ -20,13 +20,13 @@ class StringsZh extends Strings {
   String get address => '地址';
 
   @override
-  String get addressRequired => '地址是必填项';
+  String get addressRequired => '地址是必需的';
 
   @override
   String get alert => '警报';
 
   @override
-  String get alreadyHaveAnAccount => '已有账号？';
+  String get alreadyHaveAnAccount => '已经有账户？';
 
   @override
   String get assets => '资产';
@@ -47,13 +47,13 @@ class StringsZh extends Strings {
   String get bornDate => '出生日期';
 
   @override
-  String get bornDateRequired => '出生日期是必填项';
+  String get bornDateRequired => '出生日期是必需的';
 
   @override
-  String get bornPlace => '出生地点';
+  String get bornPlace => '出生地';
 
   @override
-  String get bornPlaceRequired => '出生地点是必填项';
+  String get bornPlaceRequired => '出生地是必需的';
 
   @override
   String get calendar => '日历';
@@ -65,7 +65,7 @@ class StringsZh extends Strings {
   String get club => '俱乐部';
 
   @override
-  String get clubDashboard => '俱乐部仪表盘';
+  String get clubDashboard => '俱乐部仪表板';
 
   @override
   String get clubDescription => '俱乐部描述';
@@ -107,7 +107,7 @@ class StringsZh extends Strings {
   String get createProgram => '创建计划';
 
   @override
-  String get dark => '深色模式';
+  String get dark => '黑暗模式';
 
   @override
   String get delete => '删除';
@@ -116,19 +116,19 @@ class StringsZh extends Strings {
   String get description => '描述';
 
   @override
-  String get detail => '详情';
+  String get detail => '详细';
 
   @override
-  String get dontHaveAnAccount => '没有账号？';
+  String get dontHaveAnAccount => '没有账户？';
 
   @override
   String get download => '下载';
 
   @override
-  String get dueAt => '到期';
+  String get dueAt => '到期于';
 
   @override
-  String get dueAtRequired => '截止时间是必填项';
+  String get dueAtRequired => '到期日期是必需的';
 
   @override
   String get edit => '编辑';
@@ -140,22 +140,22 @@ class StringsZh extends Strings {
   String get editExam => '编辑考试';
 
   @override
-  String get editProfile => '编辑资料';
+  String get editProfile => '编辑个人资料';
 
   @override
   String get editProgram => '编辑计划';
 
   @override
-  String get email => '电子邮件 ';
+  String get email => '电子邮件';
 
   @override
-  String get emailOrUsernameOrPhone => '邮箱 / 用户名 / 电话';
+  String get emailOrUsernameOrPhone => '电子邮件 / 用户名 / 电话';
 
   @override
-  String get emailRequired => '邮箱是必需的';
+  String get emailRequired => '电子邮件是必需的';
 
   @override
-  String get emailUsernamePhoneAlreadyRegistered => '邮箱 / 用户名 / 电话已被注册';
+  String get emailUsernamePhoneAlreadyRegistered => '电子邮件 / 用户名 / 电话已注册';
 
   @override
   String get emptyExam => '考试为空';
@@ -179,10 +179,10 @@ class StringsZh extends Strings {
   String get enterDescription => '输入描述';
 
   @override
-  String get enterDueAt => '输入截止时间';
+  String get enterDueAt => '输入到期日期';
 
   @override
-  String get enterEmailOrUsernameOrPhone => '输入邮箱 / 用户名 / 电话';
+  String get enterEmailOrUsernameOrPhone => '输入电子邮件 / 用户名 / 电话';
 
   @override
   String get enterEndDate => '输入结束日期';
@@ -200,37 +200,37 @@ class StringsZh extends Strings {
   String get enterStartDate => '输入开始日期';
 
   @override
-  String get enterYourAddress => '请输入您的地址';
+  String get enterYourAddress => '输入你的地址';
 
   @override
-  String get enterYourBornDate => '请输入您的出生日期';
+  String get enterYourBornDate => '输入你的出生日期';
 
   @override
-  String get enterYourBornPlace => '请输入您的出生地点';
+  String get enterYourBornPlace => '输入你的出生地';
 
   @override
-  String get enterYourEmail => '输入您的邮箱';
+  String get enterYourEmail => '输入你的电子邮件';
 
   @override
-  String get enterYourExpertise => '请输入您的专长';
+  String get enterYourExpertise => '输入你的专长';
 
   @override
-  String get enterYourGender => '输入您的性别';
+  String get enterYourGender => '输入你的性别';
 
   @override
-  String get enterYourName => '输入您的姓名';
+  String get enterYourName => '输入你的名字';
 
   @override
-  String get enterYourPass => '输入您的密码';
+  String get enterYourPass => '输入你的密码';
 
   @override
-  String get enterYourPhoneNumber => '输入您的电话号码';
+  String get enterYourPhoneNumber => '输入你的电话号码';
 
   @override
-  String get enterYourReligion => '请输入您的宗教';
+  String get enterYourReligion => '输入你的宗教信仰';
 
   @override
-  String get enterYourUsername => '输入您的用户名';
+  String get enterYourUsername => '输入你的用户名';
 
   @override
   String get error => '错误';
@@ -239,7 +239,16 @@ class StringsZh extends Strings {
   String get errorCreateExercise => '创建练习失败';
 
   @override
-  String get establishedAt => '成立于：';
+  String get errorCreateQuestion => '创建问题失败';
+
+  @override
+  String get errorUpdateExercise => '更新练习失败';
+
+  @override
+  String get errorUpdateQuestion => '更新问题失败';
+
+  @override
+  String get establishedAt => '成立于:';
 
   @override
   String get exam => '考试';
@@ -251,7 +260,7 @@ class StringsZh extends Strings {
   String get exams => '考试';
 
   @override
-  String get examTitleRequired => '考试标题是必填项';
+  String get examTitleRequired => '考试标题是必需的';
 
   @override
   String get exercise => '练习';
@@ -260,10 +269,10 @@ class StringsZh extends Strings {
   String get expertise => '专长';
 
   @override
-  String get expertiseRequired => '专长是必填项';
+  String get expertiseRequired => '专长是必需的';
 
   @override
-  String get expiredSession => '已过期';
+  String get expiredSession => '过期';
 
   @override
   String get failedCreateClub => '创建俱乐部失败';
@@ -287,7 +296,7 @@ class StringsZh extends Strings {
   String get failedLeaveClub => '离开俱乐部失败';
 
   @override
-  String get failedLogout => '注销失败';
+  String get failedLogout => '登出失败';
 
   @override
   String get failedSignIn => '登录失败';
@@ -305,7 +314,7 @@ class StringsZh extends Strings {
   String get failedUpdateProfile => '更新个人资料失败';
 
   @override
-  String get futsal => '室内五人制足球';
+  String get futsal => '五人制足球';
 
   @override
   String get gender => '性别';
@@ -320,7 +329,7 @@ class StringsZh extends Strings {
   String get handBall => '手球';
 
   @override
-  String get hello => '你好';
+  String get hello => '你好,';
 
   @override
   String get history => '历史';
@@ -329,13 +338,13 @@ class StringsZh extends Strings {
   String get identifierRequired => '标识符是必需的';
 
   @override
-  String get indonesian => '印度尼西亚语';
+  String get indonesian => '印尼语';
 
   @override
   String get info => '信息';
 
   @override
-  String get invalidEmail => '无效的邮箱';
+  String get invalidEmail => '无效的电子邮件';
 
   @override
   String get invalidPhoneNumber => '无效的电话号码';
@@ -365,10 +374,10 @@ class StringsZh extends Strings {
   String get leaveClubSuccess => '成功离开俱乐部';
 
   @override
-  String get light => '浅色模式';
+  String get light => '明亮模式';
 
   @override
-  String get logout => '注销';
+  String get logout => '登出';
 
   @override
   String get management => '管理';
@@ -380,13 +389,13 @@ class StringsZh extends Strings {
   String get myClub => '我的俱乐部';
 
   @override
-  String get myClubTraining => '我的俱乐部训练';
+  String get myClubTraining => '我的俱乐部';
 
   @override
-  String get name => '姓名';
+  String get name => '名字';
 
   @override
-  String get nameRequired => '姓名是必需的';
+  String get nameRequired => '名字是必需的';
 
   @override
   String get newExam => '新考试';
@@ -395,22 +404,22 @@ class StringsZh extends Strings {
   String get newProgram => '新计划';
 
   @override
-  String get noClubsFound => '未找到俱乐部';
+  String get noClubsFound => '没有找到俱乐部';
 
   @override
-  String get noEvents => '无事件';
+  String get noEvents => '没有事件';
 
   @override
-  String get noExpertise => '无专长';
+  String get noExpertise => '没有专长';
 
   @override
-  String get noMembersFound => '未找到成员';
+  String get noMembersFound => '没有找到成员';
 
   @override
-  String get noSpaceAllowed => '不允许空格';
+  String get noSpaceAllowed => '不允许有空格';
 
   @override
-  String get noUsersFound => '未找到用户';
+  String get noUsersFound => '没有找到用户';
 
   @override
   String get or => '或';
@@ -452,7 +461,7 @@ class StringsZh extends Strings {
   String get religion => '宗教';
 
   @override
-  String get religionRequired => '宗教是必填项';
+  String get religionRequired => '宗教是必需的';
 
   @override
   String get search => '搜索';
@@ -473,7 +482,7 @@ class StringsZh extends Strings {
   String get soccer => '足球';
 
   @override
-  String get sport => '运动';
+  String get sport => '运动：';
 
   @override
   String get sportType => '运动类型';
@@ -485,40 +494,46 @@ class StringsZh extends Strings {
   String get startDateRequired => '开始日期是必需的';
 
   @override
-  String get succesEditProgram => '计划编辑成功';
+  String get succesEditProgram => '成功编辑计划';
 
   @override
   String get success => '成功';
 
   @override
-  String get successCreateClub => '俱乐部创建成功';
+  String get successCreateClub => '成功创建俱乐部';
 
   @override
-  String get successCreateExercise => '练习创建成功';
+  String get successCreateExercise => '成功创建练习';
 
   @override
   String get successCreateExercises => '成功创建练习';
 
   @override
-  String get successCreateProgram => '计划创建成功';
+  String get successCreateProgram => '成功创建计划';
 
   @override
-  String get successLogout => '注销成功';
+  String get successCreateQuestion => '成功创建问题';
 
   @override
-  String get successSignIn => '登录成功';
+  String get successLogout => '成功登出';
 
   @override
-  String get successSignUp => '注册成功';
+  String get successSignIn => '成功登录';
+
+  @override
+  String get successSignUp => '成功注册';
 
   @override
   String get successUpdateClub => '成功更新俱乐部';
 
   @override
-  String get successUpdateExercises => '练习更新成功';
+  String get successUpdateExercises => '成功更新练习';
 
   @override
   String get successUpdateProfile => '成功更新个人资料';
+
+  @override
+  String get successUpdateQuestions => '成功更新问题';
 
   @override
   String get system => '系统';
@@ -536,7 +551,7 @@ class StringsZh extends Strings {
   String get updateClub => '更新俱乐部';
 
   @override
-  String get updateProfile => '更新资料';
+  String get updateProfile => '更新个人资料';
 
   @override
   String get upload => '上传';

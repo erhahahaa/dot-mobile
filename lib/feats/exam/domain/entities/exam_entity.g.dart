@@ -92,7 +92,12 @@ int _examEntityEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.description.length * 3;
+  {
+    final value = object.description;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   {
     final value = object.media;
     if (value != null) {
@@ -135,8 +140,7 @@ ExamEntity _examEntityDeserialize(
   final object = ExamEntity(
     clubId: reader.readLongOrNull(offsets[0]) ?? 0,
     createdAt: reader.readDateTimeOrNull(offsets[1]),
-    description:
-        reader.readStringOrNull(offsets[2]) ?? 'DOT Exam 0 description',
+    description: reader.readStringOrNull(offsets[2]),
     dueAt: reader.readDateTimeOrNull(offsets[3]),
     id: id,
     imageId: reader.readLongOrNull(offsets[4]),
@@ -163,7 +167,7 @@ P _examEntityDeserializeProp<P>(
     case 1:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 2:
-      return (reader.readStringOrNull(offset) ?? 'DOT Exam 0 description') as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 3:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 4:
@@ -403,8 +407,26 @@ extension ExamEntityQueryFilter
   }
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
+      descriptionIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'description',
+      ));
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
+      descriptionIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'description',
+      ));
+    });
+  }
+
+  QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
       descriptionEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -418,7 +440,7 @@ extension ExamEntityQueryFilter
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
       descriptionGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -434,7 +456,7 @@ extension ExamEntityQueryFilter
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
       descriptionLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -450,8 +472,8 @@ extension ExamEntityQueryFilter
 
   QueryBuilder<ExamEntity, ExamEntity, QAfterFilterCondition>
       descriptionBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1291,7 +1313,7 @@ extension ExamEntityQueryProperty
     });
   }
 
-  QueryBuilder<ExamEntity, String, QQueryOperations> descriptionProperty() {
+  QueryBuilder<ExamEntity, String?, QQueryOperations> descriptionProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'description');
     });

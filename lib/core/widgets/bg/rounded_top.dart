@@ -69,7 +69,7 @@ class RoundedTopBackground extends StatelessWidget {
                   ],
                 ),
                 child: H1Text(
-                  title.maxChar(length: 18),
+                  title.maxChar(length: 15),
                   color: Colors.black,
                 ),
               )

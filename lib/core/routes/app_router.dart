@@ -256,7 +256,7 @@ class AppRouter {
                   ..clear()
                   ..init(clubId: club.id),
               ),
-              BlocProvider(create: (_) => sl<QuestionCubit>()..emitInitial()),
+              BlocProvider(create: (_) => sl<ExerciseCubit>()..emitInitial()),
               BlocProvider(
                 create: (_) => sl<MediaCubit>()..init(clubId: club.id),
               ),
@@ -309,10 +309,7 @@ class AppRouter {
               final program = extra['program'] as ProgramModel;
               final club = extra['club'] as ClubModel;
 
-              return ExerciseForm(
-                club: club,
-                program: program,
-              );
+              return ExerciseForm(club: club, program: program);
             },
           ),
           GoRoute(
@@ -322,7 +319,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final program = extra['program'] as ProgramModel;
               final exercises =
-                  extra['exercises'] as List<ProgramExerciseModel>;
+                  extra['exercises'] as List<ProgramExerciseModel>?;
               final club = extra['club'] as ClubModel;
 
               return ExerciseForm(
@@ -390,17 +387,6 @@ class AppRouter {
             },
           ),
           GoRoute(
-            path: AppRoutes.coachCreateExamQuestion.path,
-            name: AppRoutes.coachCreateExamQuestion.name,
-            builder: (c, state) {
-              final extra = state.extra as Map<String, dynamic>;
-              final exam = extra['exam'] as ExamModel;
-              final club = extra['club'] as ClubModel;
-
-              return QuestionFormScreen(exam: exam, club: club);
-            },
-          ),
-          GoRoute(
             path: AppRoutes.coachEditExam.path,
             name: AppRoutes.coachEditExam.name,
             builder: (c, state) {
@@ -412,11 +398,22 @@ class AppRouter {
             },
           ),
           GoRoute(
+            path: AppRoutes.coachCreateExamQuestion.path,
+            name: AppRoutes.coachCreateExamQuestion.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final exam = extra['exam'] as ExamModel;
+              final club = extra['club'] as ClubModel;
+
+              return QuestionFormScreen(exam: exam, club: club);
+            },
+          ),
+          GoRoute(
             path: AppRoutes.coachEditExamQuestion.path,
             name: AppRoutes.coachEditExamQuestion.name,
             builder: (c, state) {
               final extra = state.extra as Map<String, dynamic>;
-              final questions = extra['questions'] as List<QuestionModel>;
+              final questions = extra['questions'] as List<QuestionModel>?;
               final exam = extra['exam'] as ExamModel;
               final club = extra['club'] as ClubModel;
 

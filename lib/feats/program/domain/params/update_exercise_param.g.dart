@@ -12,7 +12,7 @@ _$UpdateProgramExerciseParamsImpl _$$UpdateProgramExerciseParamsImplFromJson(
       id: (json['id'] as num?)?.toInt() ?? 0,
       order: (json['order'] as num?)?.toInt() ?? 0,
       programId: (json['programId'] as num?)?.toInt() ?? 0,
-      mediaId: (json['mediaId'] as num?)?.toInt() ?? 0,
+      mediaId: (json['mediaId'] as num?)?.toInt(),
       name: json['name'] as String? ?? '',
       description: json['description'] as String?,
       repetition: json['repetition'] == null

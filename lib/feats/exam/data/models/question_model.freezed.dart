@@ -24,8 +24,9 @@ mixin _$QuestionModel {
   int get examId => throw _privateConstructorUsedError;
   int? get mediaId => throw _privateConstructorUsedError;
   QuestionType get type => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
-  String? get answer => throw _privateConstructorUsedError;
+  String get question => throw _privateConstructorUsedError;
+  List<QuestionOptionModel> get options => throw _privateConstructorUsedError;
+  int get order => throw _privateConstructorUsedError;
   MediaEmbedModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
@@ -47,8 +48,9 @@ abstract class $QuestionModelCopyWith<$Res> {
       int examId,
       int? mediaId,
       QuestionType type,
-      String content,
-      String? answer,
+      String question,
+      List<QuestionOptionModel> options,
+      int order,
       MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
@@ -73,8 +75,9 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
     Object? examId = null,
     Object? mediaId = freezed,
     Object? type = null,
-    Object? content = null,
-    Object? answer = freezed,
+    Object? question = null,
+    Object? options = null,
+    Object? order = null,
     Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -96,14 +99,18 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as QuestionType,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      question: null == question
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
               as String,
-      answer: freezed == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
+      options: null == options
+          ? _value.options
+          : options // ignore: cast_nullable_to_non_nullable
+              as List<QuestionOptionModel>,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -145,8 +152,9 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
       int examId,
       int? mediaId,
       QuestionType type,
-      String content,
-      String? answer,
+      String question,
+      List<QuestionOptionModel> options,
+      int order,
       MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
@@ -170,8 +178,9 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
     Object? examId = null,
     Object? mediaId = freezed,
     Object? type = null,
-    Object? content = null,
-    Object? answer = freezed,
+    Object? question = null,
+    Object? options = null,
+    Object? order = null,
     Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -193,14 +202,18 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as QuestionType,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      question: null == question
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
               as String,
-      answer: freezed == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
+      options: null == options
+          ? _value._options
+          : options // ignore: cast_nullable_to_non_nullable
+              as List<QuestionOptionModel>,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -225,11 +238,13 @@ class _$QuestionModelImpl implements _QuestionModel {
       this.examId = 0,
       this.mediaId,
       this.type = QuestionType.essay,
-      this.content = 'Mention 5 basic Movement',
-      this.answer,
+      this.question = 'Mention 5 basic Movement',
+      final List<QuestionOptionModel> options = const [],
+      this.order = 0,
       this.media,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt})
+      : _options = options;
 
   factory _$QuestionModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuestionModelImplFromJson(json);
@@ -247,9 +262,19 @@ class _$QuestionModelImpl implements _QuestionModel {
   final QuestionType type;
   @override
   @JsonKey()
-  final String content;
+  final String question;
+  final List<QuestionOptionModel> _options;
   @override
-  final String? answer;
+  @JsonKey()
+  List<QuestionOptionModel> get options {
+    if (_options is EqualUnmodifiableListView) return _options;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_options);
+  }
+
+  @override
+  @JsonKey()
+  final int order;
   @override
   final MediaEmbedModel? media;
   @override
@@ -259,7 +284,7 @@ class _$QuestionModelImpl implements _QuestionModel {
 
   @override
   String toString() {
-    return 'QuestionModel(id: $id, examId: $examId, mediaId: $mediaId, type: $type, content: $content, answer: $answer, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'QuestionModel(id: $id, examId: $examId, mediaId: $mediaId, type: $type, question: $question, options: $options, order: $order, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -271,8 +296,10 @@ class _$QuestionModelImpl implements _QuestionModel {
             (identical(other.examId, examId) || other.examId == examId) &&
             (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.content, content) || other.content == content) &&
-            (identical(other.answer, answer) || other.answer == answer) &&
+            (identical(other.question, question) ||
+                other.question == question) &&
+            const DeepCollectionEquality().equals(other._options, _options) &&
+            (identical(other.order, order) || other.order == order) &&
             (identical(other.media, media) || other.media == media) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
@@ -282,8 +309,18 @@ class _$QuestionModelImpl implements _QuestionModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, examId, mediaId, type,
-      content, answer, media, createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      examId,
+      mediaId,
+      type,
+      question,
+      const DeepCollectionEquality().hash(_options),
+      order,
+      media,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -305,8 +342,9 @@ abstract class _QuestionModel implements QuestionModel {
       final int examId,
       final int? mediaId,
       final QuestionType type,
-      final String content,
-      final String? answer,
+      final String question,
+      final List<QuestionOptionModel> options,
+      final int order,
       final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$QuestionModelImpl;
@@ -323,9 +361,11 @@ abstract class _QuestionModel implements QuestionModel {
   @override
   QuestionType get type;
   @override
-  String get content;
+  String get question;
   @override
-  String? get answer;
+  List<QuestionOptionModel> get options;
+  @override
+  int get order;
   @override
   MediaEmbedModel? get media;
   @override
@@ -335,5 +375,161 @@ abstract class _QuestionModel implements QuestionModel {
   @override
   @JsonKey(ignore: true)
   _$$QuestionModelImplCopyWith<_$QuestionModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+QuestionOptionModel _$QuestionOptionModelFromJson(Map<String, dynamic> json) {
+  return _QuestionOptionModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$QuestionOptionModel {
+  int get order => throw _privateConstructorUsedError;
+  String get text => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $QuestionOptionModelCopyWith<QuestionOptionModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $QuestionOptionModelCopyWith<$Res> {
+  factory $QuestionOptionModelCopyWith(
+          QuestionOptionModel value, $Res Function(QuestionOptionModel) then) =
+      _$QuestionOptionModelCopyWithImpl<$Res, QuestionOptionModel>;
+  @useResult
+  $Res call({int order, String text});
+}
+
+/// @nodoc
+class _$QuestionOptionModelCopyWithImpl<$Res, $Val extends QuestionOptionModel>
+    implements $QuestionOptionModelCopyWith<$Res> {
+  _$QuestionOptionModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? order = null,
+    Object? text = null,
+  }) {
+    return _then(_value.copyWith(
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$QuestionOptionModelImplCopyWith<$Res>
+    implements $QuestionOptionModelCopyWith<$Res> {
+  factory _$$QuestionOptionModelImplCopyWith(_$QuestionOptionModelImpl value,
+          $Res Function(_$QuestionOptionModelImpl) then) =
+      __$$QuestionOptionModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int order, String text});
+}
+
+/// @nodoc
+class __$$QuestionOptionModelImplCopyWithImpl<$Res>
+    extends _$QuestionOptionModelCopyWithImpl<$Res, _$QuestionOptionModelImpl>
+    implements _$$QuestionOptionModelImplCopyWith<$Res> {
+  __$$QuestionOptionModelImplCopyWithImpl(_$QuestionOptionModelImpl _value,
+      $Res Function(_$QuestionOptionModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? order = null,
+    Object? text = null,
+  }) {
+    return _then(_$QuestionOptionModelImpl(
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$QuestionOptionModelImpl implements _QuestionOptionModel {
+  const _$QuestionOptionModelImpl({this.order = 0, this.text = ''});
+
+  factory _$QuestionOptionModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$QuestionOptionModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int order;
+  @override
+  @JsonKey()
+  final String text;
+
+  @override
+  String toString() {
+    return 'QuestionOptionModel(order: $order, text: $text)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$QuestionOptionModelImpl &&
+            (identical(other.order, order) || other.order == order) &&
+            (identical(other.text, text) || other.text == text));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, order, text);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$QuestionOptionModelImplCopyWith<_$QuestionOptionModelImpl> get copyWith =>
+      __$$QuestionOptionModelImplCopyWithImpl<_$QuestionOptionModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$QuestionOptionModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _QuestionOptionModel implements QuestionOptionModel {
+  const factory _QuestionOptionModel({final int order, final String text}) =
+      _$QuestionOptionModelImpl;
+
+  factory _QuestionOptionModel.fromJson(Map<String, dynamic> json) =
+      _$QuestionOptionModelImpl.fromJson;
+
+  @override
+  int get order;
+  @override
+  String get text;
+  @override
+  @JsonKey(ignore: true)
+  _$$QuestionOptionModelImplCopyWith<_$QuestionOptionModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

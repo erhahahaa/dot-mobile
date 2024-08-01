@@ -56,7 +56,7 @@ class ToastModel {
   ToastModel({required this.message, required this.type});
 }
 
-extension ToastModelExt on ToastModel {
+extension ToastModelExt on ToastModel  {
   void fire(BuildContext context) {
     try {
       showToastWidget(
@@ -76,8 +76,6 @@ extension ToastModelExt on ToastModel {
         ),
         duration: const Duration(seconds: 3),
       );
-    } catch (e) {
-      log.e('ERROR [TOAST] ERR :\n$e');
-    }
+    } catch (e) {}
   }
 }

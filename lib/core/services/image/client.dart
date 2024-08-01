@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/utils/utils.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -71,7 +70,6 @@ class ImagePickerClient with FirebaseCrashLogger {
         source: ImageSource.gallery,
         imageQuality: 100,
       );
-      log.e('FILE PATH: ${res?.path}');
       if (res == null) return const Left(NoDataFailure('No image selected'));
       final crop = await cropImage(res, aspectRatio: aspectRatio);
       return crop.fold(

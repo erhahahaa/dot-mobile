@@ -22,7 +22,7 @@ CreateExamParams _$CreateExamParamsFromJson(Map<String, dynamic> json) {
 mixin _$CreateExamParams {
   int get clubId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   DateTime? get dueAt =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -43,7 +43,7 @@ abstract class $CreateExamParamsCopyWith<$Res> {
   $Res call(
       {int clubId,
       String title,
-      String description,
+      String? description,
       DateTime? dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
@@ -63,7 +63,7 @@ class _$CreateExamParamsCopyWithImpl<$Res, $Val extends CreateExamParams>
   $Res call({
     Object? clubId = null,
     Object? title = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? dueAt = freezed,
     Object? image = freezed,
   }) {
@@ -76,10 +76,10 @@ class _$CreateExamParamsCopyWithImpl<$Res, $Val extends CreateExamParams>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dueAt: freezed == dueAt
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
@@ -103,7 +103,7 @@ abstract class _$$CreateExamParamsImplCopyWith<$Res>
   $Res call(
       {int clubId,
       String title,
-      String description,
+      String? description,
       DateTime? dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
@@ -121,7 +121,7 @@ class __$$CreateExamParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? clubId = null,
     Object? title = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? dueAt = freezed,
     Object? image = freezed,
   }) {
@@ -134,10 +134,10 @@ class __$$CreateExamParamsImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dueAt: freezed == dueAt
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
@@ -156,7 +156,7 @@ class _$CreateExamParamsImpl extends _CreateExamParams {
   const _$CreateExamParamsImpl(
       {this.clubId = 0,
       this.title = '',
-      this.description = '',
+      this.description,
       this.dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false) this.image})
       : super._();
@@ -171,8 +171,7 @@ class _$CreateExamParamsImpl extends _CreateExamParams {
   @JsonKey()
   final String title;
   @override
-  @JsonKey()
-  final String description;
+  final String? description;
   @override
   final DateTime? dueAt;
 // ignore: invalid_annotation_target
@@ -222,7 +221,7 @@ abstract class _CreateExamParams extends CreateExamParams {
   const factory _CreateExamParams(
       {final int clubId,
       final String title,
-      final String description,
+      final String? description,
       final DateTime? dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false)
       final File? image}) = _$CreateExamParamsImpl;
@@ -236,7 +235,7 @@ abstract class _CreateExamParams extends CreateExamParams {
   @override
   String get title;
   @override
-  String get description;
+  String? get description;
   @override
   DateTime? get dueAt;
   @override // ignore: invalid_annotation_target

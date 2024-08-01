@@ -9,7 +9,7 @@ class ExamEntity {
   int clubId;
   int? imageId;
   String title;
-  String description;
+  String? description;
   DateTime? dueAt;
   MediaEmbedEntity? media;
   DateTime? createdAt;
@@ -25,7 +25,7 @@ class ExamEntity {
     this.clubId = 0,
     this.imageId,
     this.title = 'DOT Exam 0',
-    this.description = 'DOT Exam 0 description',
+    this.description,
     this.dueAt,
     this.media,
     this.createdAt,

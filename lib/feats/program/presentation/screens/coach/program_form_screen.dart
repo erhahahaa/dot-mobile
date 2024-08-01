@@ -90,7 +90,9 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                   extra: {
                     'club': widget.club,
                     'program': program,
-                    'exercises': eCub.state.exercises,
+                    'exercises': eCub.state.exercises.isEmpty
+                        ? null
+                        : eCub.state.exercises,
                   },
                 );
               },

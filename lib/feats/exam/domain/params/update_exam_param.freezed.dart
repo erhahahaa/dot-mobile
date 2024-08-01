@@ -23,7 +23,7 @@ mixin _$UpdateExamParams {
   int get id => throw _privateConstructorUsedError;
   int get clubId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   DateTime? get dueAt =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract class $UpdateExamParamsCopyWith<$Res> {
       {int id,
       int clubId,
       String title,
-      String description,
+      String? description,
       DateTime? dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
@@ -66,7 +66,7 @@ class _$UpdateExamParamsCopyWithImpl<$Res, $Val extends UpdateExamParams>
     Object? id = null,
     Object? clubId = null,
     Object? title = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? dueAt = freezed,
     Object? image = freezed,
   }) {
@@ -83,10 +83,10 @@ class _$UpdateExamParamsCopyWithImpl<$Res, $Val extends UpdateExamParams>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dueAt: freezed == dueAt
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
@@ -111,7 +111,7 @@ abstract class _$$UpdateExamParamsImplCopyWith<$Res>
       {int id,
       int clubId,
       String title,
-      String description,
+      String? description,
       DateTime? dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
@@ -130,7 +130,7 @@ class __$$UpdateExamParamsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? clubId = null,
     Object? title = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? dueAt = freezed,
     Object? image = freezed,
   }) {
@@ -147,10 +147,10 @@ class __$$UpdateExamParamsImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dueAt: freezed == dueAt
           ? _value.dueAt
           : dueAt // ignore: cast_nullable_to_non_nullable
@@ -170,7 +170,7 @@ class _$UpdateExamParamsImpl extends _UpdateExamParams {
       {this.id = 0,
       this.clubId = 0,
       this.title = '',
-      this.description = '',
+      this.description,
       this.dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false) this.image})
       : super._();
@@ -188,8 +188,7 @@ class _$UpdateExamParamsImpl extends _UpdateExamParams {
   @JsonKey()
   final String title;
   @override
-  @JsonKey()
-  final String description;
+  final String? description;
   @override
   final DateTime? dueAt;
 // ignore: invalid_annotation_target
@@ -241,7 +240,7 @@ abstract class _UpdateExamParams extends UpdateExamParams {
       {final int id,
       final int clubId,
       final String title,
-      final String description,
+      final String? description,
       final DateTime? dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false)
       final File? image}) = _$UpdateExamParamsImpl;
@@ -257,7 +256,7 @@ abstract class _UpdateExamParams extends UpdateExamParams {
   @override
   String get title;
   @override
-  String get description;
+  String? get description;
   @override
   DateTime? get dueAt;
   @override // ignore: invalid_annotation_target

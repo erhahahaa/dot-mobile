@@ -67,9 +67,9 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     }
   }
 
-  Future<void> create(List<CreateProgramExerciseParams> params) async {
+  Future<void> createBulk(List<CreateProgramExerciseParams> params) async {
     emitLoading();
-    final res = await _exerciseRepo.create(params);
+    final res = await _exerciseRepo.createBulk(params);
     res.fold((l) {
       safeEmit(
         isClosed: isClosed,
@@ -91,13 +91,9 @@ class ExerciseCubit extends Cubit<ExerciseState> {
   }
 
   Future<void> updateBulk(List<UpdateProgramExerciseParams> params) async {
-    for (final p in params) {
-      log.d('updateBulk: ${p.toJson()}');
-    }
     emitLoading();
     final res = await _exerciseRepo.updateBulk(params);
     res.fold((l) {
-      log.e('updateBulk error: ${l.message}');
       safeEmit(
         isClosed: isClosed,
         emit: emit,

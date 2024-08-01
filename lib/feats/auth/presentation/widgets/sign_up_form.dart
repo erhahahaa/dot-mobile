@@ -142,7 +142,6 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                     listener: (context, state) {
                       if (state.state == BaseState.failure ||
                           state.failure != null) {
-                        log.e(state.failure?.message);
                         if (state.failure?.message.startsWith(
                                 'Email, username, or phone already exists') ??
                             false) {

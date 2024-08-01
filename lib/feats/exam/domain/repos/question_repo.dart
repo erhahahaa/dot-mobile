@@ -10,11 +10,14 @@ abstract class QuestionRepo {
   Future<Either<Failure, QuestionModel>> getById(
     ByIdParams params,
   );
-  Future<Either<Failure, QuestionModel>> create(
-    CreateQuestionParams params,
-  );
   Future<Either<Failure, QuestionModel>> update(
     UpdateQuestionParams params,
+  );
+  Future<Either<Failure, List<QuestionModel>>> createBulk(
+    List<CreateQuestionParams> params,
+  );
+  Future<Either<Failure, List<QuestionModel>>> updateBulk(
+    List<UpdateQuestionParams> params,
   );
   Future<Either<Failure, QuestionModel>> delete(
     ByIdParams params,

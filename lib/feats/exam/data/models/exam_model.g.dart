@@ -11,8 +11,8 @@ _$ExamModelImpl _$$ExamModelImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num?)?.toInt() ?? 0,
       clubId: (json['clubId'] as num?)?.toInt() ?? 0,
       imageId: (json['imageId'] as num?)?.toInt(),
-      title: json['title'] as String? ?? 'DOT Summer Exams',
-      description: json['description'] as String? ?? 'Description about exam',
+      title: json['title'] as String? ?? 'Mid term exam',
+      description: json['description'] as String?,
       dueAt: json['dueAt'] == null
           ? null
           : DateTime.parse(json['dueAt'] as String),
