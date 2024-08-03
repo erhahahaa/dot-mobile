@@ -31,7 +31,7 @@ class TacticalAssetView extends StatelessWidget {
                       clubId,
                     );
               },
-              icon: Icon(Icons.upload),
+              icon: const Icon(Icons.upload),
               text: 'Upload',
               isDisabled: isLoading,
               isLoading: isLoading,

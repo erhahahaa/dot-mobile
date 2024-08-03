@@ -104,7 +104,7 @@ class _TacticalFormScreenState extends State<TacticalFormScreen> {
                       nextFocusNode: _descriptionFn,
                       controller: _nameCon,
                       textInputAction: TextInputAction.next,
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.title,
                         color: Colors.black,
                       ),
@@ -122,7 +122,7 @@ class _TacticalFormScreenState extends State<TacticalFormScreen> {
                       currFocusNode: _descriptionFn,
                       controller: _descriptionCon,
                       textInputAction: TextInputAction.done,
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.description,
                         color: Colors.black,
                       ),
@@ -133,7 +133,7 @@ class _TacticalFormScreenState extends State<TacticalFormScreen> {
                     SizedBox(height: 8.h),
                     Padding(
                       padding: EdgeInsets.only(left: 12.w),
-                      child: H5Text('Board'),
+                      child: const H5Text('Board'),
                     ),
                     SizedBox(height: 4.h),
                     InkWell(
@@ -209,7 +209,7 @@ class _TacticalFormScreenState extends State<TacticalFormScreen> {
                       nextFocusNode: _heightFn,
                       controller: _widthCon,
                       textInputAction: TextInputAction.next,
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.arrow_right,
                         color: Colors.black,
                       ),
@@ -228,7 +228,7 @@ class _TacticalFormScreenState extends State<TacticalFormScreen> {
                       currFocusNode: _heightFn,
                       controller: _heightCon,
                       textInputAction: TextInputAction.done,
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.arrow_downward,
                         color: Colors.black,
                       ),
@@ -245,7 +245,7 @@ class _TacticalFormScreenState extends State<TacticalFormScreen> {
                     SizedBox(height: 8.h),
                     Row(
                       children: [
-                        H4Text('Live'),
+                        const H4Text('Live'),
                         SizedBox(width: 8.w),
                         Switch(
                           value: isLive,

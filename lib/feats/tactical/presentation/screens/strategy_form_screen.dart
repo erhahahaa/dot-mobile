@@ -12,11 +12,11 @@ class StrategyFormScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Parent(
+    return const Parent(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const H1Text('Strategy Form'),
+          H1Text('Strategy Form'),
         ],
       ),
     );

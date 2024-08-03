@@ -38,7 +38,7 @@ class _TacticalScreenState extends State<TacticalScreen> {
               onRefresh: () =>
                   context.read<TacticalCubit>().init(clubId: widget.club.id),
               child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

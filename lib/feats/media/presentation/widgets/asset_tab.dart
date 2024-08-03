@@ -40,37 +40,37 @@ class _AssetTabState extends State<AssetTab> {
   void initState() {
     final state = context.read<MediaCubit>().state;
     if (state.showClub) {
-      _tabs.add(Tab(
+      _tabs.add(const Tab(
         text: 'Club',
         icon: Icon(Icons.group),
       ));
     }
     if (state.showProgram) {
-      _tabs.add(Tab(
+      _tabs.add(const Tab(
         text: 'Program',
         icon: Icon(Icons.book),
       ));
     }
     if (state.showExercise) {
-      _tabs.add(Tab(
+      _tabs.add(const Tab(
         text: 'Exercise',
         icon: Icon(Icons.fitness_center),
       ));
     }
     if (state.showExam) {
-      _tabs.add(Tab(
+      _tabs.add(const Tab(
         text: 'Exam',
         icon: Icon(Icons.assignment),
       ));
     }
     if (state.showQuestion) {
-      _tabs.add(Tab(
+      _tabs.add(const Tab(
         text: 'Question',
         icon: Icon(Icons.question_answer),
       ));
     }
     if (state.showTactical) {
-      _tabs.add(Tab(
+      _tabs.add(const Tab(
         text: 'Tactical',
         icon: Icon(Icons.sports_soccer),
       ));
