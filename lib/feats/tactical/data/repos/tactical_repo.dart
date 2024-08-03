@@ -50,9 +50,11 @@ class TacticalRepoImpl implements TacticalRepo {
   @override
   Future<Either<Failure, List<TacticalModel>>> getAll(
     PaginationParams params,
+    int clubId,
   ) async {
     final res = await _remote.getRequest(
       ListAPI.CLUB_TACTICAL,
+      queryParameters: params.toJson()..addAll({'clubId': clubId}),
       converter: (res) {
         final List<TacticalModel> tacticals = [];
         for (final item in res['data']) {

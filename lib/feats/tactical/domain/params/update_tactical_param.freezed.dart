@@ -22,9 +22,11 @@ UpdateTacticalParams _$UpdateTacticalParamsFromJson(Map<String, dynamic> json) {
 mixin _$UpdateTacticalParams {
   int get id => throw _privateConstructorUsedError;
   int get clubId => throw _privateConstructorUsedError;
-  String get sportType => throw _privateConstructorUsedError;
+  int? get mediaId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  TacticalBoardModel get board => throw _privateConstructorUsedError;
+  bool get isLive => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +41,15 @@ abstract class $UpdateTacticalParamsCopyWith<$Res> {
       _$UpdateTacticalParamsCopyWithImpl<$Res, UpdateTacticalParams>;
   @useResult
   $Res call(
-      {int id, int clubId, String sportType, String name, String description});
+      {int id,
+      int clubId,
+      int? mediaId,
+      String name,
+      String? description,
+      TacticalBoardModel board,
+      bool isLive});
+
+  $TacticalBoardModelCopyWith<$Res> get board;
 }
 
 /// @nodoc
@@ -58,9 +68,11 @@ class _$UpdateTacticalParamsCopyWithImpl<$Res,
   $Res call({
     Object? id = null,
     Object? clubId = null,
-    Object? sportType = null,
+    Object? mediaId = freezed,
     Object? name = null,
-    Object? description = null,
+    Object? description = freezed,
+    Object? board = null,
+    Object? isLive = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -71,19 +83,35 @@ class _$UpdateTacticalParamsCopyWithImpl<$Res,
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      sportType: null == sportType
-          ? _value.sportType
-          : sportType // ignore: cast_nullable_to_non_nullable
-              as String,
+      mediaId: freezed == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      board: null == board
+          ? _value.board
+          : board // ignore: cast_nullable_to_non_nullable
+              as TacticalBoardModel,
+      isLive: null == isLive
+          ? _value.isLive
+          : isLive // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TacticalBoardModelCopyWith<$Res> get board {
+    return $TacticalBoardModelCopyWith<$Res>(_value.board, (value) {
+      return _then(_value.copyWith(board: value) as $Val);
+    });
   }
 }
 
@@ -96,7 +124,16 @@ abstract class _$$UpdateTacticalParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, int clubId, String sportType, String name, String description});
+      {int id,
+      int clubId,
+      int? mediaId,
+      String name,
+      String? description,
+      TacticalBoardModel board,
+      bool isLive});
+
+  @override
+  $TacticalBoardModelCopyWith<$Res> get board;
 }
 
 /// @nodoc
@@ -112,9 +149,11 @@ class __$$UpdateTacticalParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? clubId = null,
-    Object? sportType = null,
+    Object? mediaId = freezed,
     Object? name = null,
-    Object? description = null,
+    Object? description = freezed,
+    Object? board = null,
+    Object? isLive = null,
   }) {
     return _then(_$UpdateTacticalParamsImpl(
       id: null == id
@@ -125,18 +164,26 @@ class __$$UpdateTacticalParamsImplCopyWithImpl<$Res>
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      sportType: null == sportType
-          ? _value.sportType
-          : sportType // ignore: cast_nullable_to_non_nullable
-              as String,
+      mediaId: freezed == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      board: null == board
+          ? _value.board
+          : board // ignore: cast_nullable_to_non_nullable
+              as TacticalBoardModel,
+      isLive: null == isLive
+          ? _value.isLive
+          : isLive // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -147,9 +194,11 @@ class _$UpdateTacticalParamsImpl implements _UpdateTacticalParams {
   const _$UpdateTacticalParamsImpl(
       {this.id = 0,
       this.clubId = 0,
-      this.sportType = '',
+      this.mediaId,
       this.name = '',
-      this.description = ''});
+      this.description,
+      this.board = const TacticalBoardModel(),
+      this.isLive = false});
 
   factory _$UpdateTacticalParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpdateTacticalParamsImplFromJson(json);
@@ -161,18 +210,22 @@ class _$UpdateTacticalParamsImpl implements _UpdateTacticalParams {
   @JsonKey()
   final int clubId;
   @override
-  @JsonKey()
-  final String sportType;
+  final int? mediaId;
   @override
   @JsonKey()
   final String name;
   @override
+  final String? description;
+  @override
   @JsonKey()
-  final String description;
+  final TacticalBoardModel board;
+  @override
+  @JsonKey()
+  final bool isLive;
 
   @override
   String toString() {
-    return 'UpdateTacticalParams(id: $id, clubId: $clubId, sportType: $sportType, name: $name, description: $description)';
+    return 'UpdateTacticalParams(id: $id, clubId: $clubId, mediaId: $mediaId, name: $name, description: $description, board: $board, isLive: $isLive)';
   }
 
   @override
@@ -182,17 +235,18 @@ class _$UpdateTacticalParamsImpl implements _UpdateTacticalParams {
             other is _$UpdateTacticalParamsImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.clubId, clubId) || other.clubId == clubId) &&
-            (identical(other.sportType, sportType) ||
-                other.sportType == sportType) &&
+            (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.board, board) || other.board == board) &&
+            (identical(other.isLive, isLive) || other.isLive == isLive));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, clubId, sportType, name, description);
+  int get hashCode => Object.hash(
+      runtimeType, id, clubId, mediaId, name, description, board, isLive);
 
   @JsonKey(ignore: true)
   @override
@@ -214,9 +268,11 @@ abstract class _UpdateTacticalParams implements UpdateTacticalParams {
   const factory _UpdateTacticalParams(
       {final int id,
       final int clubId,
-      final String sportType,
+      final int? mediaId,
       final String name,
-      final String description}) = _$UpdateTacticalParamsImpl;
+      final String? description,
+      final TacticalBoardModel board,
+      final bool isLive}) = _$UpdateTacticalParamsImpl;
 
   factory _UpdateTacticalParams.fromJson(Map<String, dynamic> json) =
       _$UpdateTacticalParamsImpl.fromJson;
@@ -226,11 +282,15 @@ abstract class _UpdateTacticalParams implements UpdateTacticalParams {
   @override
   int get clubId;
   @override
-  String get sportType;
+  int? get mediaId;
   @override
   String get name;
   @override
-  String get description;
+  String? get description;
+  @override
+  TacticalBoardModel get board;
+  @override
+  bool get isLive;
   @override
   @JsonKey(ignore: true)
   _$$UpdateTacticalParamsImplCopyWith<_$UpdateTacticalParamsImpl>

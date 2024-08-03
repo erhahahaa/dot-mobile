@@ -8,6 +8,7 @@ enum MediaParent {
   exercise,
   exam,
   question,
+  tactical,
   user,
 }
 
@@ -182,6 +183,8 @@ extension MediaParentX on MediaParent {
         return 'exam';
       case MediaParent.question:
         return 'question';
+      case MediaParent.tactical:
+        return 'tactical';
       case MediaParent.user:
         return 'user';
     }
@@ -201,6 +204,8 @@ extension MediaParentXString on String {
         return MediaParent.exam;
       case 'question':
         return MediaParent.question;
+      case 'tactical':
+        return MediaParent.tactical;
       case 'user':
         return MediaParent.user;
       default:

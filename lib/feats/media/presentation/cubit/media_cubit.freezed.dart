@@ -23,6 +23,13 @@ mixin _$MediaState {
   List<MediaModel> get exerciseMedias => throw _privateConstructorUsedError;
   List<MediaModel> get examMedias => throw _privateConstructorUsedError;
   List<MediaModel> get questionMedias => throw _privateConstructorUsedError;
+  List<MediaModel> get tacticalMedias => throw _privateConstructorUsedError;
+  bool get showClub => throw _privateConstructorUsedError;
+  bool get showProgram => throw _privateConstructorUsedError;
+  bool get showExercise => throw _privateConstructorUsedError;
+  bool get showExam => throw _privateConstructorUsedError;
+  bool get showQuestion => throw _privateConstructorUsedError;
+  bool get showTactical => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MediaStateCopyWith<MediaState> get copyWith =>
@@ -42,7 +49,14 @@ abstract class $MediaStateCopyWith<$Res> {
       List<MediaModel> programMedias,
       List<MediaModel> exerciseMedias,
       List<MediaModel> examMedias,
-      List<MediaModel> questionMedias});
+      List<MediaModel> questionMedias,
+      List<MediaModel> tacticalMedias,
+      bool showClub,
+      bool showProgram,
+      bool showExercise,
+      bool showExam,
+      bool showQuestion,
+      bool showTactical});
 }
 
 /// @nodoc
@@ -65,6 +79,13 @@ class _$MediaStateCopyWithImpl<$Res, $Val extends MediaState>
     Object? exerciseMedias = null,
     Object? examMedias = null,
     Object? questionMedias = null,
+    Object? tacticalMedias = null,
+    Object? showClub = null,
+    Object? showProgram = null,
+    Object? showExercise = null,
+    Object? showExam = null,
+    Object? showQuestion = null,
+    Object? showTactical = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -95,6 +116,34 @@ class _$MediaStateCopyWithImpl<$Res, $Val extends MediaState>
           ? _value.questionMedias
           : questionMedias // ignore: cast_nullable_to_non_nullable
               as List<MediaModel>,
+      tacticalMedias: null == tacticalMedias
+          ? _value.tacticalMedias
+          : tacticalMedias // ignore: cast_nullable_to_non_nullable
+              as List<MediaModel>,
+      showClub: null == showClub
+          ? _value.showClub
+          : showClub // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showProgram: null == showProgram
+          ? _value.showProgram
+          : showProgram // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showExercise: null == showExercise
+          ? _value.showExercise
+          : showExercise // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showExam: null == showExam
+          ? _value.showExam
+          : showExam // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showQuestion: null == showQuestion
+          ? _value.showQuestion
+          : showQuestion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showTactical: null == showTactical
+          ? _value.showTactical
+          : showTactical // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -114,7 +163,14 @@ abstract class _$$MediaStateImplCopyWith<$Res>
       List<MediaModel> programMedias,
       List<MediaModel> exerciseMedias,
       List<MediaModel> examMedias,
-      List<MediaModel> questionMedias});
+      List<MediaModel> questionMedias,
+      List<MediaModel> tacticalMedias,
+      bool showClub,
+      bool showProgram,
+      bool showExercise,
+      bool showExam,
+      bool showQuestion,
+      bool showTactical});
 }
 
 /// @nodoc
@@ -135,6 +191,13 @@ class __$$MediaStateImplCopyWithImpl<$Res>
     Object? exerciseMedias = null,
     Object? examMedias = null,
     Object? questionMedias = null,
+    Object? tacticalMedias = null,
+    Object? showClub = null,
+    Object? showProgram = null,
+    Object? showExercise = null,
+    Object? showExam = null,
+    Object? showQuestion = null,
+    Object? showTactical = null,
   }) {
     return _then(_$MediaStateImpl(
       state: null == state
@@ -165,6 +228,34 @@ class __$$MediaStateImplCopyWithImpl<$Res>
           ? _value._questionMedias
           : questionMedias // ignore: cast_nullable_to_non_nullable
               as List<MediaModel>,
+      tacticalMedias: null == tacticalMedias
+          ? _value._tacticalMedias
+          : tacticalMedias // ignore: cast_nullable_to_non_nullable
+              as List<MediaModel>,
+      showClub: null == showClub
+          ? _value.showClub
+          : showClub // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showProgram: null == showProgram
+          ? _value.showProgram
+          : showProgram // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showExercise: null == showExercise
+          ? _value.showExercise
+          : showExercise // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showExam: null == showExam
+          ? _value.showExam
+          : showExam // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showQuestion: null == showQuestion
+          ? _value.showQuestion
+          : showQuestion // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showTactical: null == showTactical
+          ? _value.showTactical
+          : showTactical // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -179,12 +270,20 @@ class _$MediaStateImpl implements _MediaState {
       final List<MediaModel> programMedias = const [],
       final List<MediaModel> exerciseMedias = const [],
       final List<MediaModel> examMedias = const [],
-      final List<MediaModel> questionMedias = const []})
+      final List<MediaModel> questionMedias = const [],
+      final List<MediaModel> tacticalMedias = const [],
+      this.showClub = false,
+      this.showProgram = false,
+      this.showExercise = false,
+      this.showExam = false,
+      this.showQuestion = false,
+      this.showTactical = false})
       : _clubMedias = clubMedias,
         _programMedias = programMedias,
         _exerciseMedias = exerciseMedias,
         _examMedias = examMedias,
-        _questionMedias = questionMedias;
+        _questionMedias = questionMedias,
+        _tacticalMedias = tacticalMedias;
 
   @override
   @JsonKey()
@@ -236,9 +335,37 @@ class _$MediaStateImpl implements _MediaState {
     return EqualUnmodifiableListView(_questionMedias);
   }
 
+  final List<MediaModel> _tacticalMedias;
+  @override
+  @JsonKey()
+  List<MediaModel> get tacticalMedias {
+    if (_tacticalMedias is EqualUnmodifiableListView) return _tacticalMedias;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tacticalMedias);
+  }
+
+  @override
+  @JsonKey()
+  final bool showClub;
+  @override
+  @JsonKey()
+  final bool showProgram;
+  @override
+  @JsonKey()
+  final bool showExercise;
+  @override
+  @JsonKey()
+  final bool showExam;
+  @override
+  @JsonKey()
+  final bool showQuestion;
+  @override
+  @JsonKey()
+  final bool showTactical;
+
   @override
   String toString() {
-    return 'MediaState(state: $state, failure: $failure, clubMedias: $clubMedias, programMedias: $programMedias, exerciseMedias: $exerciseMedias, examMedias: $examMedias, questionMedias: $questionMedias)';
+    return 'MediaState(state: $state, failure: $failure, clubMedias: $clubMedias, programMedias: $programMedias, exerciseMedias: $exerciseMedias, examMedias: $examMedias, questionMedias: $questionMedias, tacticalMedias: $tacticalMedias, showClub: $showClub, showProgram: $showProgram, showExercise: $showExercise, showExam: $showExam, showQuestion: $showQuestion, showTactical: $showTactical)';
   }
 
   @override
@@ -257,7 +384,21 @@ class _$MediaStateImpl implements _MediaState {
             const DeepCollectionEquality()
                 .equals(other._examMedias, _examMedias) &&
             const DeepCollectionEquality()
-                .equals(other._questionMedias, _questionMedias));
+                .equals(other._questionMedias, _questionMedias) &&
+            const DeepCollectionEquality()
+                .equals(other._tacticalMedias, _tacticalMedias) &&
+            (identical(other.showClub, showClub) ||
+                other.showClub == showClub) &&
+            (identical(other.showProgram, showProgram) ||
+                other.showProgram == showProgram) &&
+            (identical(other.showExercise, showExercise) ||
+                other.showExercise == showExercise) &&
+            (identical(other.showExam, showExam) ||
+                other.showExam == showExam) &&
+            (identical(other.showQuestion, showQuestion) ||
+                other.showQuestion == showQuestion) &&
+            (identical(other.showTactical, showTactical) ||
+                other.showTactical == showTactical));
   }
 
   @override
@@ -269,7 +410,14 @@ class _$MediaStateImpl implements _MediaState {
       const DeepCollectionEquality().hash(_programMedias),
       const DeepCollectionEquality().hash(_exerciseMedias),
       const DeepCollectionEquality().hash(_examMedias),
-      const DeepCollectionEquality().hash(_questionMedias));
+      const DeepCollectionEquality().hash(_questionMedias),
+      const DeepCollectionEquality().hash(_tacticalMedias),
+      showClub,
+      showProgram,
+      showExercise,
+      showExam,
+      showQuestion,
+      showTactical);
 
   @JsonKey(ignore: true)
   @override
@@ -286,7 +434,14 @@ abstract class _MediaState implements MediaState {
       final List<MediaModel> programMedias,
       final List<MediaModel> exerciseMedias,
       final List<MediaModel> examMedias,
-      final List<MediaModel> questionMedias}) = _$MediaStateImpl;
+      final List<MediaModel> questionMedias,
+      final List<MediaModel> tacticalMedias,
+      final bool showClub,
+      final bool showProgram,
+      final bool showExercise,
+      final bool showExam,
+      final bool showQuestion,
+      final bool showTactical}) = _$MediaStateImpl;
 
   @override
   BaseState get state;
@@ -302,6 +457,20 @@ abstract class _MediaState implements MediaState {
   List<MediaModel> get examMedias;
   @override
   List<MediaModel> get questionMedias;
+  @override
+  List<MediaModel> get tacticalMedias;
+  @override
+  bool get showClub;
+  @override
+  bool get showProgram;
+  @override
+  bool get showExercise;
+  @override
+  bool get showExam;
+  @override
+  bool get showQuestion;
+  @override
+  bool get showTactical;
   @override
   @JsonKey(ignore: true)
   _$$MediaStateImplCopyWith<_$MediaStateImpl> get copyWith =>

@@ -54,8 +54,10 @@ enum AppRoutes {
 
   // Coach Tactical
   coachTactical('/coach/tactical'),
-  coachCreateTactical('/coach/tactical/create/:clubId'),
   coachTacticalDetail('/coach/tactical/:id'),
+  coachCreateTactical('/coach/tactical/create'),
+  coachEditTactical('/coach/tactical/edit'),
+  coachStrategyForm('/coach/tactical/strategy'),
 
   // Coach History
   coachHistory('/coach/history'),

@@ -386,6 +386,8 @@ class _ExerciseFormState extends State<ExerciseForm> {
                                                   examMedias: state.examMedias,
                                                   questionMedias:
                                                       state.questionMedias,
+                                                  tacticalMedias:
+                                                      state.tacticalMedias,
                                                   onTap: (media) {
                                                     Navigator.of(context)
                                                         .pop(media);

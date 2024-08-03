@@ -106,10 +106,15 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.athleteTactical.path,
                 name: AppRoutes.athleteTactical.name,
-                builder: (_, __) => BlocProvider(
-                  create: (_) => sl<TacticalCubit>()..init(),
-                  child: const TacticalScreen(),
-                ),
+                builder: (_, state) {
+                  final extra = state.extra as Map<String, dynamic>;
+                  final club = extra['club'] as ClubModel;
+
+                  return BlocProvider(
+                    create: (_) => sl<TacticalCubit>()..init(clubId: club.id),
+                    child: TacticalScreen(club: club),
+                  );
+                },
               ),
             ],
           ),
@@ -258,7 +263,11 @@ class AppRouter {
               ),
               BlocProvider(create: (_) => sl<ExerciseCubit>()..emitInitial()),
               BlocProvider(
-                create: (_) => sl<MediaCubit>()..init(clubId: club.id),
+                create: (_) => sl<MediaCubit>()
+                  ..init(
+                    clubId: club.id,
+                    parents: [MediaParent.program],
+                  ),
               ),
             ],
             child: child,
@@ -359,7 +368,11 @@ class AppRouter {
               ),
               BlocProvider(create: (_) => sl<QuestionCubit>()..emitInitial()),
               BlocProvider(
-                create: (_) => sl<MediaCubit>()..init(clubId: club.id),
+                create: (_) => sl<MediaCubit>()
+                  ..init(
+                    clubId: club.id,
+                    parents: [MediaParent.question],
+                  ),
               ),
             ],
             child: child,
@@ -442,10 +455,24 @@ class AppRouter {
         navigatorKey: _coachTacticalShellKey,
         parentNavigatorKey: _rootKey,
         builder: (context, state, child) {
-          return BlocProvider(
-            create: (_) => sl<TacticalCubit>()
-              ..clear()
-              ..init(),
+          final extra = state.extra as Map<String, dynamic>;
+          final club = extra['club'];
+
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) => sl<TacticalCubit>()
+                  ..clear()
+                  ..init(clubId: club.id),
+              ),
+              BlocProvider(
+                create: (context) => sl<MediaCubit>()
+                  ..init(
+                    clubId: club.id,
+                    parents: [MediaParent.tactical],
+                  ),
+              ),
+            ],
             child: child,
           );
         },
@@ -453,7 +480,43 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.coachTactical.path,
             name: AppRoutes.coachTactical.name,
-            builder: (_, __) => const TacticalScreen(),
+            builder: (_, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final club = extra['club'];
+
+              return TacticalScreen(club: club);
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachCreateTactical.path,
+            name: AppRoutes.coachCreateTactical.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final club = extra['club'] as ClubModel;
+
+              return TacticalFormScreen(club: club);
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachEditTactical.path,
+            name: AppRoutes.coachEditTactical.name,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final tactical = extra['tactical'] as TacticalModel;
+              final club = extra['club'] as ClubModel;
+
+              return TacticalFormScreen(tactical: tactical, club: club);
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachStrategyForm.path,
+            name: AppRoutes.coachStrategyForm.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final tactical = extra['tactical'] as TacticalModel;
+
+              return StrategyFormScreen(tactical: tactical);
+            },
           ),
           GoRoute(
             path: AppRoutes.coachTacticalDetail.path,
@@ -477,7 +540,11 @@ class AppRouter {
           final club = extra['club'] as ClubModel;
 
           return BlocProvider(
-            create: (_) => sl<MediaCubit>()..init(clubId: club.id),
+            create: (_) => sl<MediaCubit>()
+              ..init(
+                clubId: club.id,
+                parents: MediaParent.values,
+              ),
             child: child,
           );
         },

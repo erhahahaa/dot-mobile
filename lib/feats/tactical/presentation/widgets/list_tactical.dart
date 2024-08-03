@@ -1,59 +1,57 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
-import 'package:dot_coaching/utils/exts/exts.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class ListExam extends StatelessWidget {
-  final List<ExamModel> exams;
-  final EdgeInsetsGeometry? padding;
-  final bool isCoach;
+class ListTactical extends StatelessWidget {
+  final List<TacticalModel> tacticals;
   final bool isLoading;
   final ClubModel club;
+  final bool isCoach;
 
-  const ListExam({
+  const ListTactical({
     super.key,
-    required this.exams,
-    this.padding,
-    this.isCoach = false,
+    required this.tacticals,
     required this.isLoading,
     required this.club,
+    this.isCoach = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return EightContainer(
-      child: _buildListExam(context),
+      child: _buildListTactical(context),
     );
   }
 
-  Widget _buildListExam(BuildContext context) {
+  Widget _buildListTactical(BuildContext context) {
     if (isLoading) {
-      final fakeExam = List.generate(9, (index) => ExamModel.fake()).toList();
+      final fakeTactical =
+          List.generate(9, (index) => TacticalModel.fake()).toList();
 
       return Skeletonizer(
         child: ListView.builder(
           physics: const AlwaysScrollableScrollPhysics(),
-          itemCount: fakeExam.length,
+          itemCount: fakeTactical.length,
           shrinkWrap: true,
           padding: EdgeInsets.zero,
           itemBuilder: (context, index) {
-            return ExamContainer(
-              exam: fakeExam[index],
-              isCoach: isCoach,
+            return TacticalContainer(
+              tactical: fakeTactical[index],
               club: club,
+              isCoach: isCoach,
             );
           },
         ),
       );
     }
 
-    if (exams.isEmpty) {
-      return EightContainer( 
+    if (tacticals.isEmpty) {
+      return EightContainer(
         child: Center(
           child: Text(
-            context.str?.emptyExam ?? 'Exam is empty',
+            'No tacticals found',
             style: context.theme.textTheme.bodyLarge,
           ),
         ),
@@ -62,14 +60,14 @@ class ListExam extends StatelessWidget {
 
     return ListView.builder(
       physics: const AlwaysScrollableScrollPhysics(),
-      itemCount: exams.length,
+      itemCount: tacticals.length,
       shrinkWrap: true,
       padding: EdgeInsets.zero,
       itemBuilder: (context, index) {
-        return ExamContainer(
-          exam: exams[index],
-          isCoach: isCoach,
+        return TacticalContainer(
+          tactical: tacticals[index],
           club: club,
+          isCoach: isCoach,
         );
       },
     );

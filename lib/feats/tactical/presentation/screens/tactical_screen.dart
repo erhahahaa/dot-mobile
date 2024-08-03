@@ -1,10 +1,14 @@
-import 'package:dot_coaching/core/widgets/parent.dart';
+import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class TacticalScreen extends StatefulWidget {
-  const TacticalScreen({super.key});
+  final ClubModel club;
+  const TacticalScreen({super.key, required this.club});
 
   @override
   State<TacticalScreen> createState() => _TacticalScreenState();
@@ -13,188 +17,46 @@ class TacticalScreen extends StatefulWidget {
 class _TacticalScreenState extends State<TacticalScreen> {
   @override
   Widget build(BuildContext context) {
-    return Parent(
-      body: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xFF5868F1), Color(0xFF83348E)],
-              ),
+    return BlocBuilder<TacticalCubit, TacticalState>(
+      builder: (context, state) {
+        return Parent(
+          floatingActionButton: FloatingButtonExtended(
+            onPressed: () => context.pushNamed(
+              AppRoutes.coachCreateTactical.name,
+              extra: {
+                'club': widget.club,
+              },
             ),
+            icon: const Icon(Icons.add),
+            text: 'New Tactics',
+            isDisabled: state.state == BaseState.loading,
+            isLoading: state.state == BaseState.loading,
           ),
-          Positioned(
-            top: 88,
-            child: SvgPicture.asset(
-              "assets/images/bg/F5F6FF-bg.svg",
-              width: 53.w,
-              height: 139.h,
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              width: 344.w,
-              height: 644.h,
-              decoration: const BoxDecoration(
-                  color: Color(0xFFF5F6FF),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50.0),
-                    topRight: Radius.circular(50.0),
-                    bottomLeft: Radius.circular(0.0),
-                    bottomRight: Radius.circular(0.0),
-                  )),
-            ),
-          ),
-          Positioned(
-            top: 40.h,
-            child: Container(
-              width: 345.w,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF5868F1), Color(0xFF83348E)],
-                ),
-                borderRadius: BorderRadius.circular(50.r),
-              ),
-              child: Container(
-                width: 308.w,
-                height: 46.h,
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.25),
-                      blurRadius: 8,
-                      spreadRadius: 0,
-                      offset: const Offset(4, 4),
+          body: ClippedLeftRoundedRightBackground(
+            title: widget.club.name,
+            child: RefreshIndicator(
+              onRefresh: () =>
+                  context.read<TacticalCubit>().init(clubId: widget.club.id),
+              child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const H1Text('Tactics'),
+                    SizedBox(height: 8.h),
+                    ListTactical(
+                      tacticals: state.filteredTacticals,
+                      isLoading: state.state == BaseState.loading,
+                      club: widget.club,
+                      isCoach: true,
                     ),
                   ],
                 ),
-                child: Text(
-                  "Novo Club",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
               ),
             ),
           ),
-          Positioned(
-            top: 130.h,
-            left: 22.w,
-            right: 22.w,
-            child: ListView.builder(
-              itemCount: 2,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  margin: const EdgeInsets.only(bottom: 24),
-                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        blurRadius: 8,
-                        spreadRadius: 0,
-                        offset: const Offset(4, 4),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.co_present_rounded,
-                                    color: Colors.black,
-                                    size: 16.sp,
-                                  ),
-                                  SizedBox(width: 8.w),
-                                  Text(
-                                    "Coach Coco Session",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16.sp,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 16.w,
-                              ),
-                              Container(
-                                padding:
-                                    const EdgeInsets.fromLTRB(16, 2, 16, 2),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF2EC12B),
-                                  borderRadius: BorderRadius.circular(50.r),
-                                ),
-                                child: Text(
-                                  "Active",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 8.h),
-                          Container(
-                            width: 255.w,
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(
-                                color: const Color(0xFFD7DEE9),
-                              ),
-                            ),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/tactical-board/01.png',
-                                      width: 235.w,
-                                      height: 168.h,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

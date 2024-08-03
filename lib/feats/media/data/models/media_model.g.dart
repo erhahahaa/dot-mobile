@@ -77,5 +77,6 @@ const _$MediaParentEnumMap = {
   MediaParent.exercise: 'exercise',
   MediaParent.exam: 'exam',
   MediaParent.question: 'question',
+  MediaParent.tactical: 'tactical',
   MediaParent.user: 'user',
 };

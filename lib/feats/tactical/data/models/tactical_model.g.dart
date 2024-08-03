@@ -10,19 +10,17 @@ _$TacticalModelImpl _$$TacticalModelImplFromJson(Map<String, dynamic> json) =>
     _$TacticalModelImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
       clubId: (json['clubId'] as num?)?.toInt() ?? 0,
-      imageId: (json['imageId'] as num?)?.toInt(),
+      mediaId: (json['mediaId'] as num?)?.toInt(),
       name: json['name'] as String? ?? 'SBY Tactical exhibition',
       description: json['description'] as String?,
       board: json['board'] == null
-          ? null
+          ? const TacticalBoardModel()
           : TacticalBoardModel.fromJson(json['board'] as Map<String, dynamic>),
-      team: json['team'] == null
-          ? null
-          : TacticalTeamModel.fromJson(json['team'] as Map<String, dynamic>),
       strategic: json['strategic'] == null
           ? null
           : TacticalStrategicModel.fromJson(
               json['strategic'] as Map<String, dynamic>),
+      isLive: json['isLive'] as bool? ?? false,
       media: json['media'] == null
           ? null
           : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),
@@ -38,12 +36,12 @@ Map<String, dynamic> _$$TacticalModelImplToJson(_$TacticalModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'clubId': instance.clubId,
-      'imageId': instance.imageId,
+      'mediaId': instance.mediaId,
       'name': instance.name,
       'description': instance.description,
       'board': instance.board,
-      'team': instance.team,
       'strategic': instance.strategic,
+      'isLive': instance.isLive,
       'media': instance.media,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
@@ -52,52 +50,15 @@ Map<String, dynamic> _$$TacticalModelImplToJson(_$TacticalModelImpl instance) =>
 _$TacticalBoardModelImpl _$$TacticalBoardModelImplFromJson(
         Map<String, dynamic> json) =>
     _$TacticalBoardModelImpl(
-      type: json['type'] as String?,
-      name: json['name'] as String?,
-      url: json['url'] as String?,
+      width: (json['width'] as num?)?.toDouble() ?? 0,
+      height: (json['height'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$TacticalBoardModelImplToJson(
         _$TacticalBoardModelImpl instance) =>
     <String, dynamic>{
-      'type': instance.type,
-      'name': instance.name,
-      'url': instance.url,
-    };
-
-_$TacticalTeamModelImpl _$$TacticalTeamModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TacticalTeamModelImpl(
-      name: json['name'] as String?,
-      color: json['color'] as String?,
-      totalMembers: (json['totalMembers'] as num?)?.toInt(),
-      members: (json['members'] as List<dynamic>?)
-          ?.map((e) =>
-              TacticalTeamMemberModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-
-Map<String, dynamic> _$$TacticalTeamModelImplToJson(
-        _$TacticalTeamModelImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'color': instance.color,
-      'totalMembers': instance.totalMembers,
-      'members': instance.members,
-    };
-
-_$TacticalTeamMemberModelImpl _$$TacticalTeamMemberModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TacticalTeamMemberModelImpl(
-      name: json['name'] as String?,
-      number: (json['number'] as num?)?.toInt(),
-    );
-
-Map<String, dynamic> _$$TacticalTeamMemberModelImplToJson(
-        _$TacticalTeamMemberModelImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'number': instance.number,
+      'width': instance.width,
+      'height': instance.height,
     };
 
 _$TacticalStrategicModelImpl _$$TacticalStrategicModelImplFromJson(

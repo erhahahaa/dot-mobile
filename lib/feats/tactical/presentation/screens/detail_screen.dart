@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class TacticalDetailScreen extends StatelessWidget {
   final TacticalModel tactical;
+
   const TacticalDetailScreen({
     super.key,
     required this.tactical,

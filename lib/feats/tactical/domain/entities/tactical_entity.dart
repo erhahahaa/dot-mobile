@@ -10,12 +10,13 @@ part 'tactical_entity.g.dart';
 class TacticalEntity {
   Id id = Isar.autoIncrement;
   int clubId;
-  int? imageId;
+  int? mediaId;
   String name;
   String? description;
-  TacticalBoardEntity? board;
-  TacticalTeamEntity? team;
+  TacticalBoardEntity board = TacticalBoardEntity();
+  // TacticalTeamEntity? team;
   TacticalStrategicEntity? strategic;
+  bool isLive;
   MediaEmbedEntity? media;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -26,12 +27,13 @@ class TacticalEntity {
   TacticalEntity({
     this.id = Isar.autoIncrement,
     this.clubId = 0,
-    this.imageId,
+    this.mediaId,
     this.name = 'SBY Tactical exhibition',
     this.description,
-    this.board,
-    this.team,
+    required this.board,
+    // this.team,
     this.strategic,
+    this.isLive = false,
     this.media,
     this.createdAt,
     this.updatedAt,
@@ -40,39 +42,38 @@ class TacticalEntity {
 
 @embedded
 class TacticalBoardEntity {
-  String? type, name, url;
+  double width, height;
 
   TacticalBoardEntity({
-    this.type,
-    this.name,
-    this.url,
+    this.width = 0,
+    this.height = 0,
   });
 }
 
-@embedded
-class TacticalTeamEntity {
-  String? name, color;
-  int? totalMembers;
-  List<TacticalTeamMemberEntity>? members;
+// @embedded
+// class TacticalTeamEntity {
+//   String? name, color;
+//   int? totalMembers;
+//   List<TacticalTeamMemberEntity>? members;
 
-  TacticalTeamEntity({
-    this.name,
-    this.color,
-    this.totalMembers,
-    this.members,
-  });
-}
+//   TacticalTeamEntity({
+//     this.name,
+//     this.color,
+//     this.totalMembers,
+//     this.members,
+//   });
+// }
 
-@embedded
-class TacticalTeamMemberEntity {
-  String? name;
-  int? number;
+// @embedded
+// class TacticalTeamMemberEntity {
+//   String? name;
+//   int? number;
 
-  TacticalTeamMemberEntity({
-    this.name,
-    this.number,
-  });
-}
+//   TacticalTeamMemberEntity({
+//     this.name,
+//     this.number,
+//   });
+// }
 
 @Embedded(inheritance: false)
 class TacticalStrategicEntity with MapMixin<String, dynamic> {

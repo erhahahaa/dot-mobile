@@ -1,6 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dot_coaching/core/routes/app_routes.dart';
-import 'package:dot_coaching/core/widgets/widgets.dart';
+import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class ExamContainer extends StatelessWidget {
-  final ExamModel exam;
+class TacticalContainer extends StatelessWidget {
+  final TacticalModel tactical;
   final ClubModel club;
   final bool isCoach;
 
-  const ExamContainer({
+  const TacticalContainer({
     super.key,
-    required this.exam,
+    required this.tactical,
     required this.club,
     this.isCoach = false,
   });
@@ -26,29 +24,13 @@ class ExamContainer extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 8.w),
       child: Row(
         children: [
-          CachedNetworkImage(
-            imageUrl: sportImage(exam.media?.url).sanitize(),
-            width: 48.w,
-            height: 48.w,
-            // make image rounded
-            imageBuilder: (context, imageProvider) => Container(
-              width: 48.w,
-              height: 48.w,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 8.w),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              H3Text(exam.title),
-              H6Text('${context.str?.dueAt} ${exam.dueAt?.toDayMonthYear()}'),
+              H3Text(tactical.name),
+              if (tactical.description != null) ...[
+                H6Text(tactical.description!),
+              ]
             ],
           ),
           const Spacer(),
@@ -72,12 +54,12 @@ class ExamContainer extends StatelessWidget {
                           ],
                         ),
                         onTap: () => context.pushNamed(
-                          AppRoutes.coachExamDetail.name,
+                          AppRoutes.coachTacticalDetail.name,
                           pathParameters: {
-                            'id': exam.id.toString(),
+                            'id': tactical.id.toString(),
                           },
                           extra: {
-                            'exam': exam,
+                            'tactical': tactical,
                             'club': club,
                           },
                         ),
@@ -93,9 +75,9 @@ class ExamContainer extends StatelessWidget {
                           ],
                         ),
                         onTap: () => context.pushNamed(
-                          AppRoutes.coachEditExam.name,
+                          AppRoutes.coachEditTactical.name,
                           extra: {
-                            'exam': exam,
+                            'tactical': tactical,
                             'club': club,
                           },
                         ),
@@ -111,8 +93,8 @@ class ExamContainer extends StatelessWidget {
                           ],
                         ),
                         onTap: () {
-                          context.read<ExamCubit>().delete(
-                                ByIdParams(id: exam.id.toString()),
+                          context.read<TacticalCubit>().delete(
+                                ByIdParams(id: tactical.id.toString()),
                               );
                         },
                       ),

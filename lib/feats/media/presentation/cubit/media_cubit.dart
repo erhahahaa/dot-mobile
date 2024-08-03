@@ -34,9 +34,41 @@ class MediaCubit extends Cubit<MediaState> {
         state: state.copyWith(state: BaseState.loading),
       );
 
-  Future<void> init({required clubId}) async {
+  void _emit(MediaState state) => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state,
+      );
+
+  Future<void> init({
+    required clubId,
+    required List<MediaParent> parents,
+  }) async {
     emitLoading();
-    for (final parent in MediaParent.values) {
+    for (final parent in parents) {
+      switch (parent) {
+        case MediaParent.club:
+          await getAll(parent: parent, clubId: clubId);
+          break;
+        case MediaParent.program:
+          _emit(state.copyWith(showProgram: true));
+          break;
+        case MediaParent.exercise:
+          _emit(state.copyWith(showExercise: true));
+          break;
+        case MediaParent.exam:
+          _emit(state.copyWith(showExam: true));
+          break;
+        case MediaParent.question:
+          _emit(state.copyWith(showQuestion: true));
+          break;
+        case MediaParent.tactical:
+          _emit(state.copyWith(showTactical: true));
+          break;
+        default:
+          continue;
+      }
+
       await getAll(parent: parent, clubId: clubId);
     }
   }
@@ -52,7 +84,7 @@ class MediaCubit extends Cubit<MediaState> {
     );
 
     res.fold(
-      (l) => null,
+      (l) => _emitFailureState(message: 'Failed to get media'),
       (r) => _updateMediaState(parent, r),
     );
   }
@@ -135,6 +167,9 @@ class MediaCubit extends Cubit<MediaState> {
       case MediaParent.question:
         _updateStateWithMediaList(questionMedias: mediaList);
         break;
+      case MediaParent.tactical:
+        _updateStateWithMediaList(tacticalMedias: mediaList);
+        break;
       case MediaParent.user:
         return;
     }
@@ -146,6 +181,7 @@ class MediaCubit extends Cubit<MediaState> {
     List<MediaModel>? exerciseMedias,
     List<MediaModel>? examMedias,
     List<MediaModel>? questionMedias,
+    List<MediaModel>? tacticalMedias,
   }) {
     safeEmit(
       isClosed: isClosed,
@@ -156,6 +192,7 @@ class MediaCubit extends Cubit<MediaState> {
         exerciseMedias: exerciseMedias ?? state.exerciseMedias,
         examMedias: examMedias ?? state.examMedias,
         questionMedias: questionMedias ?? state.questionMedias,
+        tacticalMedias: tacticalMedias ?? state.tacticalMedias,
         state: BaseState.success,
       ),
     );
@@ -187,6 +224,11 @@ class MediaCubit extends Cubit<MediaState> {
         final List<MediaModel> medias = List.from(state.questionMedias);
         medias.add(media);
         _updateStateWithMediaList(questionMedias: medias);
+        break;
+      case MediaParent.tactical:
+        final List<MediaModel> medias = List.from(state.tacticalMedias);
+        medias.add(media);
+        _updateStateWithMediaList(tacticalMedias: medias);
         break;
       case MediaParent.user:
         return;

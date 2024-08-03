@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 part 'tactical_model.freezed.dart';
 part 'tactical_model.g.dart';
@@ -11,12 +13,13 @@ class TacticalModel with _$TacticalModel {
   const factory TacticalModel({
     @Default(0) int id,
     @Default(0) int clubId,
-    int? imageId,
+    int? mediaId,
     @Default('SBY Tactical exhibition') String name,
     String? description,
-    TacticalBoardModel? board,
-    TacticalTeamModel? team,
+    @Default(TacticalBoardModel()) TacticalBoardModel board,
+    // TacticalTeamModel? team,
     TacticalStrategicModel? strategic,
+    @Default(false) bool isLive,
     MediaEmbedModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -29,23 +32,30 @@ class TacticalModel with _$TacticalModel {
     return TacticalModel(
       id: entity.id,
       clubId: entity.clubId,
-      imageId: entity.imageId,
+      mediaId: entity.mediaId,
       name: entity.name,
       description: entity.description,
-      board: entity.board != null
-          ? TacticalBoardModel.fromEntity(entity.board!)
-          : null,
-      team: entity.team != null
-          ? TacticalTeamModel.fromEntity(entity.team!)
-          : null,
+      board: TacticalBoardModel.fromEntity(entity.board),
+      // team: entity.team != null
+      //     ? TacticalTeamModel.fromEntity(entity.team!)
+      //     : null,
       strategic: entity.strategic != null
           ? TacticalStrategicModel.fromEntity(entity.strategic!)
           : null,
+      isLive: entity.isLive,
       media: entity.media != null
           ? MediaEmbedModel.fromEntity(entity.media!)
           : null,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
+    );
+  }
+
+  static TacticalModel fake() {
+    return TacticalModel(
+      id: Random().nextInt(100),
+      name: BoneMock.name,
+      description: BoneMock.subtitle,
     );
   }
 }
@@ -55,12 +65,13 @@ extension TacticalModelX on TacticalModel {
     return TacticalEntity(
       id: id,
       clubId: clubId,
-      imageId: imageId,
+      mediaId: mediaId,
       name: name,
       description: description,
-      board: board?.toEntity(),
-      team: team?.toEntity(),
+      board: board.toEntity(),
+      // team: team?.toEntity(),
       strategic: strategic?.toEntity(),
+      isLive: isLive,
       media: media?.toEntity(),
       createdAt: createdAt,
       updatedAt: updatedAt,
@@ -71,9 +82,8 @@ extension TacticalModelX on TacticalModel {
 @freezed
 class TacticalBoardModel with _$TacticalBoardModel {
   const factory TacticalBoardModel({
-    String? type,
-    String? name,
-    String? url,
+    @Default(0) double width,
+    @Default(0) double height,
   }) = _TacticalBoardModel;
 
   factory TacticalBoardModel.fromJson(Map<String, dynamic> json) =>
@@ -81,9 +91,8 @@ class TacticalBoardModel with _$TacticalBoardModel {
 
   static TacticalBoardModel fromEntity(TacticalBoardEntity entity) {
     return TacticalBoardModel(
-      type: entity.type,
-      name: entity.name,
-      url: entity.url,
+      width: entity.width,
+      height: entity.height,
     );
   }
 }
@@ -91,74 +100,73 @@ class TacticalBoardModel with _$TacticalBoardModel {
 extension TacticalBoardModelX on TacticalBoardModel {
   TacticalBoardEntity toEntity() {
     return TacticalBoardEntity(
-      type: type,
-      name: name,
-      url: url,
+      width: width,
+      height: height,
     );
   }
 }
 
-@freezed
-class TacticalTeamModel with _$TacticalTeamModel {
-  const factory TacticalTeamModel({
-    String? name,
-    String? color,
-    int? totalMembers,
-    List<TacticalTeamMemberModel>? members,
-  }) = _TacticalTeamModel;
+// @freezed
+// class TacticalTeamModel with _$TacticalTeamModel {
+//   const factory TacticalTeamModel({
+//     String? name,
+//     String? color,
+//     int? totalMembers,
+//     List<TacticalTeamMemberModel>? members,
+//   }) = _TacticalTeamModel;
 
-  factory TacticalTeamModel.fromJson(Map<String, dynamic> json) =>
-      _$TacticalTeamModelFromJson(json);
+//   factory TacticalTeamModel.fromJson(Map<String, dynamic> json) =>
+//       _$TacticalTeamModelFromJson(json);
 
-  static TacticalTeamModel fromEntity(TacticalTeamEntity entity) {
-    return TacticalTeamModel(
-      name: entity.name,
-      color: entity.color,
-      totalMembers: entity.totalMembers,
-      members: entity.members
-          ?.map((e) => TacticalTeamMemberModel.fromEntity(e))
-          .toList(),
-    );
-  }
-}
+//   static TacticalTeamModel fromEntity(TacticalTeamEntity entity) {
+//     return TacticalTeamModel(
+//       name: entity.name,
+//       color: entity.color,
+//       totalMembers: entity.totalMembers,
+//       members: entity.members
+//           ?.map((e) => TacticalTeamMemberModel.fromEntity(e))
+//           .toList(),
+//     );
+//   }
+// }
 
-extension TacticalTeamModelX on TacticalTeamModel {
-  TacticalTeamEntity toEntity() {
-    return TacticalTeamEntity(
-      name: name,
-      color: color,
-      totalMembers: totalMembers,
-      members: members?.map((e) => e.toEntity()).toList(),
-    );
-  }
-}
+// extension TacticalTeamModelX on TacticalTeamModel {
+//   TacticalTeamEntity toEntity() {
+//     return TacticalTeamEntity(
+//       name: name,
+//       color: color,
+//       totalMembers: totalMembers,
+//       members: members?.map((e) => e.toEntity()).toList(),
+//     );
+//   }
+// }
 
-@freezed
-class TacticalTeamMemberModel with _$TacticalTeamMemberModel {
-  const factory TacticalTeamMemberModel({
-    String? name,
-    int? number,
-  }) = _TacticalTeamMemberModel;
+// @freezed
+// class TacticalTeamMemberModel with _$TacticalTeamMemberModel {
+//   const factory TacticalTeamMemberModel({
+//     String? name,
+//     int? number,
+//   }) = _TacticalTeamMemberModel;
 
-  factory TacticalTeamMemberModel.fromJson(Map<String, dynamic> json) =>
-      _$TacticalTeamMemberModelFromJson(json);
+//   factory TacticalTeamMemberModel.fromJson(Map<String, dynamic> json) =>
+//       _$TacticalTeamMemberModelFromJson(json);
 
-  static TacticalTeamMemberModel fromEntity(TacticalTeamMemberEntity entity) {
-    return TacticalTeamMemberModel(
-      name: entity.name,
-      number: entity.number,
-    );
-  }
-}
+//   static TacticalTeamMemberModel fromEntity(TacticalTeamMemberEntity entity) {
+//     return TacticalTeamMemberModel(
+//       name: entity.name,
+//       number: entity.number,
+//     );
+//   }
+// }
 
-extension TacticalTeamMemberModelX on TacticalTeamMemberModel {
-  TacticalTeamMemberEntity toEntity() {
-    return TacticalTeamMemberEntity(
-      name: name,
-      number: number,
-    );
-  }
-}
+// extension TacticalTeamMemberModelX on TacticalTeamMemberModel {
+//   TacticalTeamMemberEntity toEntity() {
+//     return TacticalTeamMemberEntity(
+//       name: name,
+//       number: number,
+//     );
+//   }
+// }
 
 @freezed
 class TacticalStrategicModel with _$TacticalStrategicModel {

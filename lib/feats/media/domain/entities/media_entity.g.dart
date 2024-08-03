@@ -193,7 +193,8 @@ const _MediaEntityparentEnumValueMap = {
   'exercise': 2,
   'exam': 3,
   'question': 4,
-  'user': 5,
+  'tactical': 5,
+  'user': 6,
 };
 const _MediaEntityparentValueEnumMap = {
   0: MediaParent.club,
@@ -201,7 +202,8 @@ const _MediaEntityparentValueEnumMap = {
   2: MediaParent.exercise,
   3: MediaParent.exam,
   4: MediaParent.question,
-  5: MediaParent.user,
+  5: MediaParent.tactical,
+  6: MediaParent.user,
 };
 const _MediaEntitytypeEnumValueMap = {
   'imagePng': 0,

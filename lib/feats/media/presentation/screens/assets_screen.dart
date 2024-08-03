@@ -22,6 +22,7 @@ class AssetsScreen extends StatelessWidget {
               exerciseMedias: state.exerciseMedias,
               examMedias: state.examMedias,
               questionMedias: state.questionMedias,
+              tacticalMedias: state.tacticalMedias,
               isLoading: state.state == BaseState.loading,
             ),
           ),

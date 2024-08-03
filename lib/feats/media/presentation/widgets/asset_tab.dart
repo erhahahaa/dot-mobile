@@ -3,13 +3,14 @@ import 'package:dot_coaching/feats/feats.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AssetTab extends StatelessWidget {
+class AssetTab extends StatefulWidget {
   final int clubId;
   final List<MediaModel> clubMedias,
       programMedias,
       exerciseMedias,
       examMedias,
-      questionMedias;
+      questionMedias,
+      tacticalMedias;
   final bool showUploadButton;
   final Function(MediaModel)? onTap;
   final bool isLoading;
@@ -22,97 +23,142 @@ class AssetTab extends StatelessWidget {
     required this.exerciseMedias,
     required this.examMedias,
     required this.questionMedias,
+    required this.tacticalMedias,
     this.showUploadButton = true,
     this.onTap,
     required this.isLoading,
   });
 
-  final _tabs = const [
-    Tab(
-      text: 'Club',
-      icon: Icon(Icons.group),
-    ),
-    Tab(
-      text: 'Program',
-      icon: Icon(Icons.book),
-    ),
-    Tab(
-      text: 'Exercise',
-      icon: Icon(Icons.fitness_center),
-    ),
-    Tab(
-      text: 'Exam',
-      icon: Icon(Icons.assignment),
-    ),
-    Tab(
-      text: 'Question',
-      icon: Icon(Icons.question_answer),
-    ),
-  ];
+  @override
+  State<AssetTab> createState() => _AssetTabState();
+}
+
+class _AssetTabState extends State<AssetTab> {
+  final List<Tab> _tabs = [];
+
+  @override
+  void initState() {
+    final state = context.read<MediaCubit>().state;
+    if (state.showClub) {
+      _tabs.add(Tab(
+        text: 'Club',
+        icon: Icon(Icons.group),
+      ));
+    }
+    if (state.showProgram) {
+      _tabs.add(Tab(
+        text: 'Program',
+        icon: Icon(Icons.book),
+      ));
+    }
+    if (state.showExercise) {
+      _tabs.add(Tab(
+        text: 'Exercise',
+        icon: Icon(Icons.fitness_center),
+      ));
+    }
+    if (state.showExam) {
+      _tabs.add(Tab(
+        text: 'Exam',
+        icon: Icon(Icons.assignment),
+      ));
+    }
+    if (state.showQuestion) {
+      _tabs.add(Tab(
+        text: 'Question',
+        icon: Icon(Icons.question_answer),
+      ));
+    }
+    if (state.showTactical) {
+      _tabs.add(Tab(
+        text: 'Tactical',
+        icon: Icon(Icons.sports_soccer),
+      ));
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: _tabs.length,
-      child: Column(
-        children: [
-          ButtonsTabBar(
-            tabs: _tabs,
-            backgroundColor: Colors.blueAccent,
-            // borderWidth: 2,
-            // borderColor: Colors.red,
-            labelStyle: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-            unselectedLabelStyle: const TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-            onTap: (p0) => _handleTabChange(p0, context),
+    return BlocBuilder<MediaCubit, MediaState>(
+      builder: (context, state) {
+        return DefaultTabController(
+          length: _tabs.length,
+          child: Column(
+            children: [
+              ButtonsTabBar(
+                tabs: _tabs,
+                backgroundColor: Colors.blueAccent,
+                // borderWidth: 2,
+                // borderColor: Colors.red,
+                labelStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+                unselectedLabelStyle: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                onTap: (p0) => _handleTabChange(p0, context),
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    if (state.showClub)
+                      ClubAssetView(
+                        medias: widget.clubMedias,
+                        onTap: widget.onTap,
+                        isLoading: widget.isLoading,
+                        clubId: widget.clubId,
+                      ),
+                    if (state.showProgram)
+                      ProgramAssetView(
+                        medias: widget.programMedias,
+                        clubId: widget.clubId,
+                        showUploadButton: widget.showUploadButton,
+                        onTap: widget.onTap,
+                        isLoading: widget.isLoading,
+                      ),
+                    if (state.showExercise)
+                      ExerciseAssetView(
+                        medias: widget.exerciseMedias,
+                        clubId: widget.clubId,
+                        showUploadButton: widget.showUploadButton,
+                        onTap: widget.onTap,
+                        isLoading: widget.isLoading,
+                      ),
+                    if (state.showExam)
+                      ExamAssetView(
+                        medias: widget.examMedias,
+                        clubId: widget.clubId,
+                        showUploadButton: widget.showUploadButton,
+                        onTap: widget.onTap,
+                        isLoading: widget.isLoading,
+                      ),
+                    if (state.showQuestion)
+                      QuestionAssetView(
+                        medias: widget.questionMedias,
+                        clubId: widget.clubId,
+                        showUploadButton: widget.showUploadButton,
+                        onTap: widget.onTap,
+                        isLoading: widget.isLoading,
+                      ),
+                    if (state.showTactical)
+                      TacticalAssetView(
+                        medias: widget.tacticalMedias,
+                        clubId: widget.clubId,
+                        showUploadButton: widget.showUploadButton,
+                        onTap: widget.onTap,
+                        isLoading: widget.isLoading,
+                      ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: TabBarView(
-              children: [
-                ClubAssetView(
-                  medias: clubMedias,
-                  onTap: onTap,
-                  isLoading: isLoading,
-                  clubId: clubId,
-                ),
-                ProgramAssetView(
-                  medias: programMedias,
-                  clubId: clubId,
-                  showUploadButton: showUploadButton,
-                  onTap: onTap,
-                  isLoading: isLoading,
-                ),
-                ExerciseAssetView(
-                  medias: exerciseMedias,
-                  clubId: clubId,
-                  showUploadButton: showUploadButton,
-                  onTap: onTap,
-                  isLoading: isLoading,
-                ),
-                ExamAssetView(
-                  medias: examMedias,
-                  clubId: clubId,
-                  showUploadButton: showUploadButton,
-                  onTap: onTap,
-                  isLoading: isLoading,
-                ),
-                QuestionAssetView(
-                  medias: questionMedias,
-                  clubId: clubId,
-                  showUploadButton: showUploadButton,
-                  onTap: onTap,
-                  isLoading: isLoading,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -121,37 +167,37 @@ class AssetTab extends StatelessWidget {
       case 1:
         context.read<MediaCubit>().getAll(
               parent: MediaParent.club,
-              clubId: clubId,
+              clubId: widget.clubId,
             );
         break;
       case 2:
         context.read<MediaCubit>().getAll(
               parent: MediaParent.program,
-              clubId: clubId,
+              clubId: widget.clubId,
             );
         break;
       case 3:
         context.read<MediaCubit>().getAll(
               parent: MediaParent.exercise,
-              clubId: clubId,
+              clubId: widget.clubId,
             );
         break;
       case 4:
         context.read<MediaCubit>().getAll(
               parent: MediaParent.exam,
-              clubId: clubId,
+              clubId: widget.clubId,
             );
         break;
       case 5:
         context.read<MediaCubit>().getAll(
               parent: MediaParent.question,
-              clubId: clubId,
+              clubId: widget.clubId,
             );
         break;
       default:
         context.read<MediaCubit>().getAll(
               parent: MediaParent.club,
-              clubId: clubId,
+              clubId: widget.clubId,
             );
     }
   }

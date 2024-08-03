@@ -72,9 +72,7 @@ class _TextFState extends State<TextF> {
           Visibility(
             visible: widget.isHintVisible,
             child: Padding(
-              padding: EdgeInsets.only(
-                left: 12.w,
-              ),
+              padding: EdgeInsets.only(left: 12.w),
               child: Text(
                 widget.hint ?? '',
                 style: Theme.of(context).textTheme.bodyMedium,

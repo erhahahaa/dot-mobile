@@ -11,9 +11,13 @@ _$UpdateTacticalParamsImpl _$$UpdateTacticalParamsImplFromJson(
     _$UpdateTacticalParamsImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
       clubId: (json['clubId'] as num?)?.toInt() ?? 0,
-      sportType: json['sportType'] as String? ?? '',
+      mediaId: (json['mediaId'] as num?)?.toInt(),
       name: json['name'] as String? ?? '',
-      description: json['description'] as String? ?? '',
+      description: json['description'] as String?,
+      board: json['board'] == null
+          ? const TacticalBoardModel()
+          : TacticalBoardModel.fromJson(json['board'] as Map<String, dynamic>),
+      isLive: json['isLive'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$UpdateTacticalParamsImplToJson(
@@ -21,7 +25,9 @@ Map<String, dynamic> _$$UpdateTacticalParamsImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'clubId': instance.clubId,
-      'sportType': instance.sportType,
+      'mediaId': instance.mediaId,
       'name': instance.name,
       'description': instance.description,
+      'board': instance.board,
+      'isLive': instance.isLive,
     };
