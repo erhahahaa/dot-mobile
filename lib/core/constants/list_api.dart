@@ -3,7 +3,9 @@
 class ListAPI {
   ListAPI._();
 
-  static const String BASE_URL = 'http://192.168.38.169:3000';
+  static const String CLEAN_URL = '192.168.234.169:3000';
+
+  static const String BASE_URL = 'http://$CLEAN_URL';
   // static const String BASE_URL = 'https://dot-api.zenta.dev';
 
   static const String AUTH_SIGN_UP = '/auth/sign-up';
@@ -22,4 +24,7 @@ class ListAPI {
   static const String USER = '/user';
 
   static const String MEDIA = '/media';
+
+  static const String WEBSOCKET = 'ws://$CLEAN_URL';
+  static const String LIVE_TACTICAL = '${WEBSOCKET}/live/tactical';
 }

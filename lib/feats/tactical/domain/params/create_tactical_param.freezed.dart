@@ -25,6 +25,7 @@ mixin _$CreateTacticalParams {
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   TacticalBoardModel get board => throw _privateConstructorUsedError;
+  TacticalStrategicModel? get strategic => throw _privateConstructorUsedError;
   bool get isLive => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,9 +46,11 @@ abstract class $CreateTacticalParamsCopyWith<$Res> {
       String name,
       String? description,
       TacticalBoardModel board,
+      TacticalStrategicModel? strategic,
       bool isLive});
 
   $TacticalBoardModelCopyWith<$Res> get board;
+  $TacticalStrategicModelCopyWith<$Res>? get strategic;
 }
 
 /// @nodoc
@@ -69,6 +72,7 @@ class _$CreateTacticalParamsCopyWithImpl<$Res,
     Object? name = null,
     Object? description = freezed,
     Object? board = null,
+    Object? strategic = freezed,
     Object? isLive = null,
   }) {
     return _then(_value.copyWith(
@@ -92,6 +96,10 @@ class _$CreateTacticalParamsCopyWithImpl<$Res,
           ? _value.board
           : board // ignore: cast_nullable_to_non_nullable
               as TacticalBoardModel,
+      strategic: freezed == strategic
+          ? _value.strategic
+          : strategic // ignore: cast_nullable_to_non_nullable
+              as TacticalStrategicModel?,
       isLive: null == isLive
           ? _value.isLive
           : isLive // ignore: cast_nullable_to_non_nullable
@@ -104,6 +112,18 @@ class _$CreateTacticalParamsCopyWithImpl<$Res,
   $TacticalBoardModelCopyWith<$Res> get board {
     return $TacticalBoardModelCopyWith<$Res>(_value.board, (value) {
       return _then(_value.copyWith(board: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TacticalStrategicModelCopyWith<$Res>? get strategic {
+    if (_value.strategic == null) {
+      return null;
+    }
+
+    return $TacticalStrategicModelCopyWith<$Res>(_value.strategic!, (value) {
+      return _then(_value.copyWith(strategic: value) as $Val);
     });
   }
 }
@@ -122,10 +142,13 @@ abstract class _$$CreateTacticalParamsImplCopyWith<$Res>
       String name,
       String? description,
       TacticalBoardModel board,
+      TacticalStrategicModel? strategic,
       bool isLive});
 
   @override
   $TacticalBoardModelCopyWith<$Res> get board;
+  @override
+  $TacticalStrategicModelCopyWith<$Res>? get strategic;
 }
 
 /// @nodoc
@@ -144,6 +167,7 @@ class __$$CreateTacticalParamsImplCopyWithImpl<$Res>
     Object? name = null,
     Object? description = freezed,
     Object? board = null,
+    Object? strategic = freezed,
     Object? isLive = null,
   }) {
     return _then(_$CreateTacticalParamsImpl(
@@ -167,6 +191,10 @@ class __$$CreateTacticalParamsImplCopyWithImpl<$Res>
           ? _value.board
           : board // ignore: cast_nullable_to_non_nullable
               as TacticalBoardModel,
+      strategic: freezed == strategic
+          ? _value.strategic
+          : strategic // ignore: cast_nullable_to_non_nullable
+              as TacticalStrategicModel?,
       isLive: null == isLive
           ? _value.isLive
           : isLive // ignore: cast_nullable_to_non_nullable
@@ -184,6 +212,7 @@ class _$CreateTacticalParamsImpl implements _CreateTacticalParams {
       this.name = '',
       this.description,
       this.board = const TacticalBoardModel(),
+      this.strategic,
       this.isLive = false});
 
   factory _$CreateTacticalParamsImpl.fromJson(Map<String, dynamic> json) =>
@@ -203,12 +232,14 @@ class _$CreateTacticalParamsImpl implements _CreateTacticalParams {
   @JsonKey()
   final TacticalBoardModel board;
   @override
+  final TacticalStrategicModel? strategic;
+  @override
   @JsonKey()
   final bool isLive;
 
   @override
   String toString() {
-    return 'CreateTacticalParams(clubId: $clubId, mediaId: $mediaId, name: $name, description: $description, board: $board, isLive: $isLive)';
+    return 'CreateTacticalParams(clubId: $clubId, mediaId: $mediaId, name: $name, description: $description, board: $board, strategic: $strategic, isLive: $isLive)';
   }
 
   @override
@@ -222,13 +253,15 @@ class _$CreateTacticalParamsImpl implements _CreateTacticalParams {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.board, board) || other.board == board) &&
+            (identical(other.strategic, strategic) ||
+                other.strategic == strategic) &&
             (identical(other.isLive, isLive) || other.isLive == isLive));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, clubId, mediaId, name, description, board, isLive);
+  int get hashCode => Object.hash(runtimeType, clubId, mediaId, name,
+      description, board, strategic, isLive);
 
   @JsonKey(ignore: true)
   @override
@@ -253,6 +286,7 @@ abstract class _CreateTacticalParams implements CreateTacticalParams {
       final String name,
       final String? description,
       final TacticalBoardModel board,
+      final TacticalStrategicModel? strategic,
       final bool isLive}) = _$CreateTacticalParamsImpl;
 
   factory _CreateTacticalParams.fromJson(Map<String, dynamic> json) =
@@ -268,6 +302,8 @@ abstract class _CreateTacticalParams implements CreateTacticalParams {
   String? get description;
   @override
   TacticalBoardModel get board;
+  @override
+  TacticalStrategicModel? get strategic;
   @override
   bool get isLive;
   @override

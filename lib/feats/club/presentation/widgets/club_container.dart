@@ -27,6 +27,7 @@ class ClubContainer extends StatelessWidget {
               'id': club.id.toString(),
             },
             extra: {
+              'route': 'club',
               'club': club,
             },
           );
@@ -37,6 +38,7 @@ class ClubContainer extends StatelessWidget {
               'id': club.id.toString(),
             },
             extra: {
+              'route': 'club',
               'club': club,
             },
           );

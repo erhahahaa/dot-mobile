@@ -27,6 +27,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
             onPressed: () => context.pushNamed(
               AppRoutes.coachCreateProgram.name,
               extra: {
+                'route': 'program',
                 'club': widget.club,
               },
             ),
@@ -93,6 +94,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                                       'id': program.id.toString()
                                     },
                                     extra: {
+                                      'route': 'program',
                                       'program': program,
                                       'club': widget.club,
                                     },

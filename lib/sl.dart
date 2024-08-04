@@ -123,7 +123,7 @@ void _initCubits() {
 
   sl.registerFactory(
     () => ProgramCubit(
-      sl<ProgramRepo>(), 
+      sl<ProgramRepo>(),
       sl<ImagePickerClient>(),
     ),
   );
@@ -138,6 +138,7 @@ void _initCubits() {
   sl.registerFactory(
     () => TacticalCubit(
       sl<TacticalRepo>(),
+      sl<UserRepo>(),
     ),
   );
 

@@ -88,6 +88,8 @@ const TacticalEntitySchema = CollectionSchema(
   embeddedSchemas: {
     r'TacticalBoardEntity': TacticalBoardEntitySchema,
     r'TacticalStrategicEntity': TacticalStrategicEntitySchema,
+    r'PlayerEntity': PlayerEntitySchema,
+    r'ArrowEntity': ArrowEntitySchema,
     r'MediaEmbedEntity': MediaEmbedEntitySchema
   },
   getId: _tacticalEntityGetId,
@@ -1598,10 +1600,17 @@ const TacticalStrategicEntitySchema = Schema(
   name: r'TacticalStrategicEntity',
   id: -2655585784478095036,
   properties: {
-    r'json': PropertySchema(
+    r'arrows': PropertySchema(
       id: 0,
-      name: r'json',
-      type: IsarType.string,
+      name: r'arrows',
+      type: IsarType.objectList,
+      target: r'ArrowEntity',
+    ),
+    r'players': PropertySchema(
+      id: 1,
+      name: r'players',
+      type: IsarType.objectList,
+      target: r'PlayerEntity',
     )
   },
   estimateSize: _tacticalStrategicEntityEstimateSize,
@@ -1616,7 +1625,22 @@ int _tacticalStrategicEntityEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.json.length * 3;
+  bytesCount += 3 + object.arrows.length * 3;
+  {
+    final offsets = allOffsets[ArrowEntity]!;
+    for (var i = 0; i < object.arrows.length; i++) {
+      final value = object.arrows[i];
+      bytesCount += ArrowEntitySchema.estimateSize(value, offsets, allOffsets);
+    }
+  }
+  bytesCount += 3 + object.players.length * 3;
+  {
+    final offsets = allOffsets[PlayerEntity]!;
+    for (var i = 0; i < object.players.length; i++) {
+      final value = object.players[i];
+      bytesCount += PlayerEntitySchema.estimateSize(value, offsets, allOffsets);
+    }
+  }
   return bytesCount;
 }
 
@@ -1626,7 +1650,18 @@ void _tacticalStrategicEntitySerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.json);
+  writer.writeObjectList<ArrowEntity>(
+    offsets[0],
+    allOffsets,
+    ArrowEntitySchema.serialize,
+    object.arrows,
+  );
+  writer.writeObjectList<PlayerEntity>(
+    offsets[1],
+    allOffsets,
+    PlayerEntitySchema.serialize,
+    object.players,
+  );
 }
 
 TacticalStrategicEntity _tacticalStrategicEntityDeserialize(
@@ -1635,8 +1670,22 @@ TacticalStrategicEntity _tacticalStrategicEntityDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = TacticalStrategicEntity();
-  object.json = reader.readString(offsets[0]);
+  final object = TacticalStrategicEntity(
+    arrows: reader.readObjectList<ArrowEntity>(
+          offsets[0],
+          ArrowEntitySchema.deserialize,
+          allOffsets,
+          ArrowEntity(),
+        ) ??
+        const [],
+    players: reader.readObjectList<PlayerEntity>(
+          offsets[1],
+          PlayerEntitySchema.deserialize,
+          allOffsets,
+          PlayerEntity(),
+        ) ??
+        const [],
+  );
   return object;
 }
 
@@ -1648,7 +1697,21 @@ P _tacticalStrategicEntityDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readString(offset)) as P;
+      return (reader.readObjectList<ArrowEntity>(
+            offset,
+            ArrowEntitySchema.deserialize,
+            allOffsets,
+            ArrowEntity(),
+          ) ??
+          const []) as P;
+    case 1:
+      return (reader.readObjectList<PlayerEntity>(
+            offset,
+            PlayerEntitySchema.deserialize,
+            allOffsets,
+            PlayerEntity(),
+          ) ??
+          const []) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -1657,143 +1720,197 @@ P _tacticalStrategicEntityDeserializeProp<P>(
 extension TacticalStrategicEntityQueryFilter on QueryBuilder<
     TacticalStrategicEntity, TacticalStrategicEntity, QFilterCondition> {
   QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
-      QAfterFilterCondition> jsonEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+      QAfterFilterCondition> arrowsLengthEqualTo(int length) {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'json',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
+      return query.listLength(
+        r'arrows',
+        length,
+        true,
+        length,
+        true,
+      );
     });
   }
 
   QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
-      QAfterFilterCondition> jsonGreaterThan(
-    String value, {
+      QAfterFilterCondition> arrowsIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'arrows',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> arrowsIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'arrows',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> arrowsLengthLessThan(
+    int length, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'json',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
+      return query.listLength(
+        r'arrows',
+        0,
+        true,
+        length,
+        include,
+      );
     });
   }
 
   QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
-      QAfterFilterCondition> jsonLessThan(
-    String value, {
+      QAfterFilterCondition> arrowsLengthGreaterThan(
+    int length, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'json',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
+      return query.listLength(
+        r'arrows',
+        length,
+        include,
+        999999,
+        true,
+      );
     });
   }
 
   QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
-      QAfterFilterCondition> jsonBetween(
-    String lower,
-    String upper, {
+      QAfterFilterCondition> arrowsLengthBetween(
+    int lower,
+    int upper, {
     bool includeLower = true,
     bool includeUpper = true,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'json',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
+      return query.listLength(
+        r'arrows',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
     });
   }
 
   QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
-      QAfterFilterCondition> jsonStartsWith(
-    String value, {
-    bool caseSensitive = true,
+      QAfterFilterCondition> playersLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'players',
+        length,
+        true,
+        length,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> playersIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'players',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> playersIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'players',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> playersLengthLessThan(
+    int length, {
+    bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'json',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
+      return query.listLength(
+        r'players',
+        0,
+        true,
+        length,
+        include,
+      );
     });
   }
 
   QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
-      QAfterFilterCondition> jsonEndsWith(
-    String value, {
-    bool caseSensitive = true,
+      QAfterFilterCondition> playersLengthGreaterThan(
+    int length, {
+    bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'json',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
+      return query.listLength(
+        r'players',
+        length,
+        include,
+        999999,
+        true,
+      );
     });
   }
 
   QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
-          QAfterFilterCondition>
-      jsonContains(String value, {bool caseSensitive = true}) {
+      QAfterFilterCondition> playersLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'json',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
-          QAfterFilterCondition>
-      jsonMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'json',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
-      QAfterFilterCondition> jsonIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'json',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
-      QAfterFilterCondition> jsonIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'json',
-        value: '',
-      ));
+      return query.listLength(
+        r'players',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
     });
   }
 }
 
 extension TacticalStrategicEntityQueryObject on QueryBuilder<
-    TacticalStrategicEntity, TacticalStrategicEntity, QFilterCondition> {}
+    TacticalStrategicEntity, TacticalStrategicEntity, QFilterCondition> {
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> arrowsElement(FilterQuery<ArrowEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'arrows');
+    });
+  }
+
+  QueryBuilder<TacticalStrategicEntity, TacticalStrategicEntity,
+      QAfterFilterCondition> playersElement(FilterQuery<PlayerEntity> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'players');
+    });
+  }
+}

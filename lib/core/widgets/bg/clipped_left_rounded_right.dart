@@ -1,3 +1,4 @@
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,6 +31,7 @@ class ClippedLeftRoundedRightBackground extends StatelessWidget {
             "assets/images/bg/F5F6FF-bg.svg",
             width: 53.w,
             height: 139.h,
+            color: context.theme.colorScheme.surface,
           ),
         ),
         Positioned(
@@ -37,8 +39,8 @@ class ClippedLeftRoundedRightBackground extends StatelessWidget {
           child: Container(
             width: 344.w,
             height: 644.h,
-            decoration: const BoxDecoration(
-                color: Color(0xFFF5F6FF),
+            decoration: BoxDecoration(
+                color: context.theme.colorScheme.surface,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(50.0),
                   topRight: Radius.circular(50.0),

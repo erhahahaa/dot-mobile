@@ -19,6 +19,7 @@ class ExamScreen extends StatelessWidget {
             onPressed: () => context.pushNamed(
               AppRoutes.coachCreateExam.name,
               extra: {
+                'route': 'exam',
                 'club': club,
               },
             ),

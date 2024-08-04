@@ -72,6 +72,7 @@ class _ExamFormScreenState extends State<ExamFormScreen> {
             context.pushReplacementNamed(
               AppRoutes.coachCreateExamQuestion.name,
               extra: {
+                'route': 'exam',
                 'club': widget.club,
                 'exam': exam,
               },
@@ -85,6 +86,7 @@ class _ExamFormScreenState extends State<ExamFormScreen> {
                 context.pushReplacementNamed(
                   AppRoutes.coachEditExamQuestion.name,
                   extra: {
+                    'route': 'exam',
                     'club': widget.club,
                     'exam': exam,
                     'questions': qCub.state.questions.isEmpty

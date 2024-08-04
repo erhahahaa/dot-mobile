@@ -12,6 +12,7 @@ class CreateTacticalParams with _$CreateTacticalParams {
     @Default('') String name,
     String? description,
     @Default(TacticalBoardModel()) TacticalBoardModel board,
+    TacticalStrategicModel? strategic,
     @Default(false) bool isLive,
   }) = _CreateTacticalParams;
 

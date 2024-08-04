@@ -16,6 +16,10 @@ _$CreateTacticalParamsImpl _$$CreateTacticalParamsImplFromJson(
       board: json['board'] == null
           ? const TacticalBoardModel()
           : TacticalBoardModel.fromJson(json['board'] as Map<String, dynamic>),
+      strategic: json['strategic'] == null
+          ? null
+          : TacticalStrategicModel.fromJson(
+              json['strategic'] as Map<String, dynamic>),
       isLive: json['isLive'] as bool? ?? false,
     );
 
@@ -27,5 +31,6 @@ Map<String, dynamic> _$$CreateTacticalParamsImplToJson(
       'name': instance.name,
       'description': instance.description,
       'board': instance.board,
+      'strategic': instance.strategic,
       'isLive': instance.isLive,
     };

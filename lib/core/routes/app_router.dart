@@ -31,11 +31,12 @@ class AppRouter {
 
   static final GoRouter router = GoRouter(
     navigatorKey: _rootKey,
+    initialLocation: AppRoutes.root.path,
     routes: [
       GoRoute(
         path: AppRoutes.root.path,
         name: AppRoutes.root.name,
-        redirect: (_, __) => AppRoutes.athleteHome.path,
+        redirect: (_, __) => AppRoutes.splash.path,
       ),
       ShellRoute(
         navigatorKey: _authKey,
@@ -514,8 +515,15 @@ class AppRouter {
             builder: (c, state) {
               final extra = state.extra as Map<String, dynamic>;
               final tactical = extra['tactical'] as TacticalModel;
+              final screenWidth = extra['screenWidth'] as double;
+              final screenHeight = extra['screenHeight'] as double;
+              final aspectRatio = extra['aspectRatio'] as double;
 
-              return StrategyFormScreen(tactical: tactical);
+              return StrategyFormScreen(
+                tactical: tactical,
+                screenSize: Size(screenWidth, screenHeight),
+                aspectRatio: aspectRatio,
+              );
             },
           ),
           GoRoute(
@@ -562,7 +570,6 @@ class AppRouter {
         ],
       )
     ],
-    initialLocation: AppRoutes.athleteHome.path,
     routerNeglect: true,
     debugLogDiagnostics: kDebugMode,
     errorBuilder: (context, state) {
@@ -576,5 +583,6 @@ class AppRouter {
       );
     },
     refreshListenable: GoRouterRefreshStream(ctx.read<AuthCubit>().stream),
+    // extraCodec: const DotExtraCodec(),
   );
 }

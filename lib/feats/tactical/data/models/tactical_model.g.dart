@@ -64,11 +64,19 @@ Map<String, dynamic> _$$TacticalBoardModelImplToJson(
 _$TacticalStrategicModelImpl _$$TacticalStrategicModelImplFromJson(
         Map<String, dynamic> json) =>
     _$TacticalStrategicModelImpl(
-      value: json['value'] as Map<String, dynamic>?,
+      players: (json['players'] as List<dynamic>?)
+              ?.map((e) => PlayerModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      arrows: (json['arrows'] as List<dynamic>?)
+              ?.map((e) => ArrowModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$TacticalStrategicModelImplToJson(
         _$TacticalStrategicModelImpl instance) =>
     <String, dynamic>{
-      'value': instance.value,
+      'players': instance.players,
+      'arrows': instance.arrows,
     };

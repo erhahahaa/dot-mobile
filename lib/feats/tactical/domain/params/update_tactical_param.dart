@@ -13,6 +13,7 @@ class UpdateTacticalParams with _$UpdateTacticalParams {
     @Default('') String name,
     String? description,
     @Default(TacticalBoardModel()) TacticalBoardModel board,
+    TacticalStrategicModel? strategic,
     @Default(false) bool isLive,
   }) = _UpdateTacticalParams;
 

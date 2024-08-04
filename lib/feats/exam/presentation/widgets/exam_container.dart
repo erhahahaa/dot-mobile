@@ -77,6 +77,7 @@ class ExamContainer extends StatelessWidget {
                             'id': exam.id.toString(),
                           },
                           extra: {
+                            'route': 'exam',
                             'exam': exam,
                             'club': club,
                           },
@@ -95,6 +96,7 @@ class ExamContainer extends StatelessWidget {
                         onTap: () => context.pushNamed(
                           AppRoutes.coachEditExam.name,
                           extra: {
+                            'route': 'exam',
                             'exam': exam,
                             'club': club,
                           },

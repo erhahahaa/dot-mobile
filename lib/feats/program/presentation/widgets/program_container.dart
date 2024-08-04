@@ -95,6 +95,7 @@ class ProgramContainer extends StatelessWidget {
                             'id': program.id.toString(),
                           },
                           extra: {
+                            'route': 'program',
                             'program': program,
                             'club': club,
                           },
@@ -113,6 +114,7 @@ class ProgramContainer extends StatelessWidget {
                         onTap: () => context.pushNamed(
                           AppRoutes.coachEditProgram.name,
                           extra: {
+                            'route': 'program',
                             'program': program,
                             'club': club,
                           },

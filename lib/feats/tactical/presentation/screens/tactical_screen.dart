@@ -24,6 +24,7 @@ class _TacticalScreenState extends State<TacticalScreen> {
             onPressed: () => context.pushNamed(
               AppRoutes.coachCreateTactical.name,
               extra: {
+                'route': 'tactical',
                 'club': widget.club,
               },
             ),

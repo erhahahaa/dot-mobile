@@ -572,7 +572,8 @@ TacticalStrategicModel _$TacticalStrategicModelFromJson(
 
 /// @nodoc
 mixin _$TacticalStrategicModel {
-  Map<String, dynamic>? get value => throw _privateConstructorUsedError;
+  List<PlayerModel> get players => throw _privateConstructorUsedError;
+  List<ArrowModel> get arrows => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -586,7 +587,7 @@ abstract class $TacticalStrategicModelCopyWith<$Res> {
           $Res Function(TacticalStrategicModel) then) =
       _$TacticalStrategicModelCopyWithImpl<$Res, TacticalStrategicModel>;
   @useResult
-  $Res call({Map<String, dynamic>? value});
+  $Res call({List<PlayerModel> players, List<ArrowModel> arrows});
 }
 
 /// @nodoc
@@ -603,13 +604,18 @@ class _$TacticalStrategicModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? value = freezed,
+    Object? players = null,
+    Object? arrows = null,
   }) {
     return _then(_value.copyWith(
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+      players: null == players
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as List<PlayerModel>,
+      arrows: null == arrows
+          ? _value.arrows
+          : arrows // ignore: cast_nullable_to_non_nullable
+              as List<ArrowModel>,
     ) as $Val);
   }
 }
@@ -623,7 +629,7 @@ abstract class _$$TacticalStrategicModelImplCopyWith<$Res>
       __$$TacticalStrategicModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Map<String, dynamic>? value});
+  $Res call({List<PlayerModel> players, List<ArrowModel> arrows});
 }
 
 /// @nodoc
@@ -639,13 +645,18 @@ class __$$TacticalStrategicModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? value = freezed,
+    Object? players = null,
+    Object? arrows = null,
   }) {
     return _then(_$TacticalStrategicModelImpl(
-      value: freezed == value
-          ? _value._value
-          : value // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+      players: null == players
+          ? _value._players
+          : players // ignore: cast_nullable_to_non_nullable
+              as List<PlayerModel>,
+      arrows: null == arrows
+          ? _value._arrows
+          : arrows // ignore: cast_nullable_to_non_nullable
+              as List<ArrowModel>,
     ));
   }
 }
@@ -653,25 +664,36 @@ class __$$TacticalStrategicModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TacticalStrategicModelImpl implements _TacticalStrategicModel {
-  const _$TacticalStrategicModelImpl({final Map<String, dynamic>? value})
-      : _value = value;
+  const _$TacticalStrategicModelImpl(
+      {final List<PlayerModel> players = const [],
+      final List<ArrowModel> arrows = const []})
+      : _players = players,
+        _arrows = arrows;
 
   factory _$TacticalStrategicModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TacticalStrategicModelImplFromJson(json);
 
-  final Map<String, dynamic>? _value;
+  final List<PlayerModel> _players;
   @override
-  Map<String, dynamic>? get value {
-    final value = _value;
-    if (value == null) return null;
-    if (_value is EqualUnmodifiableMapView) return _value;
+  @JsonKey()
+  List<PlayerModel> get players {
+    if (_players is EqualUnmodifiableListView) return _players;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
+    return EqualUnmodifiableListView(_players);
+  }
+
+  final List<ArrowModel> _arrows;
+  @override
+  @JsonKey()
+  List<ArrowModel> get arrows {
+    if (_arrows is EqualUnmodifiableListView) return _arrows;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_arrows);
   }
 
   @override
   String toString() {
-    return 'TacticalStrategicModel(value: $value)';
+    return 'TacticalStrategicModel(players: $players, arrows: $arrows)';
   }
 
   @override
@@ -679,13 +701,16 @@ class _$TacticalStrategicModelImpl implements _TacticalStrategicModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TacticalStrategicModelImpl &&
-            const DeepCollectionEquality().equals(other._value, _value));
+            const DeepCollectionEquality().equals(other._players, _players) &&
+            const DeepCollectionEquality().equals(other._arrows, _arrows));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_value));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_players),
+      const DeepCollectionEquality().hash(_arrows));
 
   @JsonKey(ignore: true)
   @override
@@ -703,14 +728,17 @@ class _$TacticalStrategicModelImpl implements _TacticalStrategicModel {
 }
 
 abstract class _TacticalStrategicModel implements TacticalStrategicModel {
-  const factory _TacticalStrategicModel({final Map<String, dynamic>? value}) =
-      _$TacticalStrategicModelImpl;
+  const factory _TacticalStrategicModel(
+      {final List<PlayerModel> players,
+      final List<ArrowModel> arrows}) = _$TacticalStrategicModelImpl;
 
   factory _TacticalStrategicModel.fromJson(Map<String, dynamic> json) =
       _$TacticalStrategicModelImpl.fromJson;
 
   @override
-  Map<String, dynamic>? get value;
+  List<PlayerModel> get players;
+  @override
+  List<ArrowModel> get arrows;
   @override
   @JsonKey(ignore: true)
   _$$TacticalStrategicModelImplCopyWith<_$TacticalStrategicModelImpl>

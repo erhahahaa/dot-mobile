@@ -163,6 +163,14 @@ class $AssetsImagesBgGen {
   SvgGenImage get f5F6FFBg =>
       const SvgGenImage('assets/images/bg/F5F6FF-bg.svg');
 
+  /// File path: assets/images/bg/Football_field.svg
+  SvgGenImage get footballField =>
+      const SvgGenImage('assets/images/bg/Football_field.svg');
+
+  /// File path: assets/images/bg/Rugby_union_pitch.svg
+  SvgGenImage get rugbyUnionPitch =>
+      const SvgGenImage('assets/images/bg/Rugby_union_pitch.svg');
+
   /// File path: assets/images/bg/gradient-skewed-right.svg
   SvgGenImage get gradientSkewedRight =>
       const SvgGenImage('assets/images/bg/gradient-skewed-right.svg');
@@ -172,7 +180,13 @@ class $AssetsImagesBgGen {
       const SvgGenImage('assets/images/bg/home-athlete.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [f5F6FFBg, gradientSkewedRight, homeAthlete];
+  List<SvgGenImage> get values => [
+        f5F6FFBg,
+        footballField,
+        rugbyUnionPitch,
+        gradientSkewedRight,
+        homeAthlete
+      ];
 }
 
 class $AssetsImagesExamGen {

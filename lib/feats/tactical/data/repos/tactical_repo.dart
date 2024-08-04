@@ -18,13 +18,6 @@ class TacticalRepoImpl implements TacticalRepo {
       converter: (res) => TacticalModel.fromJson(res['data']),
     );
 
-    res.fold(
-      (l) => null,
-      (r) => _local.isar.writeTxn(
-        () async => _local.tacticals.put(r.toEntity()),
-      ),
-    );
-
     return res;
   }
 
@@ -64,16 +57,16 @@ class TacticalRepoImpl implements TacticalRepo {
       },
     );
 
-    res.fold(
-      (l) => null,
-      (r) => _local.isar.writeTxn(
-        () async {
-          for (final item in r) {
-            await _local.tacticals.put(item.toEntity());
-          }
-        },
-      ),
-    );
+    // res.fold(
+    //   (l) => null,
+    //   (r) => _local.isar.writeTxn(
+    //     () async {
+    //       for (final item in r) {
+    //         await _local.tacticals.put(item.toEntity());
+    //       }
+    //     },
+    //   ),
+    // );
 
     return res;
   }

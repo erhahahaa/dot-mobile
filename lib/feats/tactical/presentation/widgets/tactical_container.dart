@@ -59,6 +59,7 @@ class TacticalContainer extends StatelessWidget {
                             'id': tactical.id.toString(),
                           },
                           extra: {
+                            'route': 'tactical',
                             'tactical': tactical,
                             'club': club,
                           },
@@ -77,6 +78,7 @@ class TacticalContainer extends StatelessWidget {
                         onTap: () => context.pushNamed(
                           AppRoutes.coachEditTactical.name,
                           extra: {
+                            'route': 'tactical',
                             'tactical': tactical,
                             'club': club,
                           },

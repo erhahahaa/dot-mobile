@@ -8,7 +8,11 @@ class TacticalState with _$TacticalState {
     @Default([]) List<TacticalModel> tacticals,
     @Default([]) List<TacticalModel> filteredTacticals,
     @Default([]) List<MediaModel> medias,
+    @Default([]) List<UserModel> audiences,
+    @Default(UserModel()) UserModel user,
+    @Default(TacticalStrategicModel()) TacticalStrategicModel strategic,
     TacticalModel? createdTactical,
     File? image,
+    @Default(false) bool isConnected,
   }) = _TacticalState;
 }

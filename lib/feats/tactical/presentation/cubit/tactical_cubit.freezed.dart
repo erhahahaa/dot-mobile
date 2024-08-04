@@ -22,8 +22,12 @@ mixin _$TacticalState {
   List<TacticalModel> get filteredTacticals =>
       throw _privateConstructorUsedError;
   List<MediaModel> get medias => throw _privateConstructorUsedError;
+  List<UserModel> get audiences => throw _privateConstructorUsedError;
+  UserModel get user => throw _privateConstructorUsedError;
+  TacticalStrategicModel get strategic => throw _privateConstructorUsedError;
   TacticalModel? get createdTactical => throw _privateConstructorUsedError;
   File? get image => throw _privateConstructorUsedError;
+  bool get isConnected => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TacticalStateCopyWith<TacticalState> get copyWith =>
@@ -42,9 +46,15 @@ abstract class $TacticalStateCopyWith<$Res> {
       List<TacticalModel> tacticals,
       List<TacticalModel> filteredTacticals,
       List<MediaModel> medias,
+      List<UserModel> audiences,
+      UserModel user,
+      TacticalStrategicModel strategic,
       TacticalModel? createdTactical,
-      File? image});
+      File? image,
+      bool isConnected});
 
+  $UserModelCopyWith<$Res> get user;
+  $TacticalStrategicModelCopyWith<$Res> get strategic;
   $TacticalModelCopyWith<$Res>? get createdTactical;
 }
 
@@ -66,8 +76,12 @@ class _$TacticalStateCopyWithImpl<$Res, $Val extends TacticalState>
     Object? tacticals = null,
     Object? filteredTacticals = null,
     Object? medias = null,
+    Object? audiences = null,
+    Object? user = null,
+    Object? strategic = null,
     Object? createdTactical = freezed,
     Object? image = freezed,
+    Object? isConnected = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -90,6 +104,18 @@ class _$TacticalStateCopyWithImpl<$Res, $Val extends TacticalState>
           ? _value.medias
           : medias // ignore: cast_nullable_to_non_nullable
               as List<MediaModel>,
+      audiences: null == audiences
+          ? _value.audiences
+          : audiences // ignore: cast_nullable_to_non_nullable
+              as List<UserModel>,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+      strategic: null == strategic
+          ? _value.strategic
+          : strategic // ignore: cast_nullable_to_non_nullable
+              as TacticalStrategicModel,
       createdTactical: freezed == createdTactical
           ? _value.createdTactical
           : createdTactical // ignore: cast_nullable_to_non_nullable
@@ -98,7 +124,27 @@ class _$TacticalStateCopyWithImpl<$Res, $Val extends TacticalState>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as File?,
+      isConnected: null == isConnected
+          ? _value.isConnected
+          : isConnected // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TacticalStrategicModelCopyWith<$Res> get strategic {
+    return $TacticalStrategicModelCopyWith<$Res>(_value.strategic, (value) {
+      return _then(_value.copyWith(strategic: value) as $Val);
+    });
   }
 
   @override
@@ -128,9 +174,17 @@ abstract class _$$TacticalStateImplCopyWith<$Res>
       List<TacticalModel> tacticals,
       List<TacticalModel> filteredTacticals,
       List<MediaModel> medias,
+      List<UserModel> audiences,
+      UserModel user,
+      TacticalStrategicModel strategic,
       TacticalModel? createdTactical,
-      File? image});
+      File? image,
+      bool isConnected});
 
+  @override
+  $UserModelCopyWith<$Res> get user;
+  @override
+  $TacticalStrategicModelCopyWith<$Res> get strategic;
   @override
   $TacticalModelCopyWith<$Res>? get createdTactical;
 }
@@ -151,8 +205,12 @@ class __$$TacticalStateImplCopyWithImpl<$Res>
     Object? tacticals = null,
     Object? filteredTacticals = null,
     Object? medias = null,
+    Object? audiences = null,
+    Object? user = null,
+    Object? strategic = null,
     Object? createdTactical = freezed,
     Object? image = freezed,
+    Object? isConnected = null,
   }) {
     return _then(_$TacticalStateImpl(
       state: null == state
@@ -175,6 +233,18 @@ class __$$TacticalStateImplCopyWithImpl<$Res>
           ? _value._medias
           : medias // ignore: cast_nullable_to_non_nullable
               as List<MediaModel>,
+      audiences: null == audiences
+          ? _value._audiences
+          : audiences // ignore: cast_nullable_to_non_nullable
+              as List<UserModel>,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+      strategic: null == strategic
+          ? _value.strategic
+          : strategic // ignore: cast_nullable_to_non_nullable
+              as TacticalStrategicModel,
       createdTactical: freezed == createdTactical
           ? _value.createdTactical
           : createdTactical // ignore: cast_nullable_to_non_nullable
@@ -183,6 +253,10 @@ class __$$TacticalStateImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as File?,
+      isConnected: null == isConnected
+          ? _value.isConnected
+          : isConnected // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -196,11 +270,16 @@ class _$TacticalStateImpl implements _TacticalState {
       final List<TacticalModel> tacticals = const [],
       final List<TacticalModel> filteredTacticals = const [],
       final List<MediaModel> medias = const [],
+      final List<UserModel> audiences = const [],
+      this.user = const UserModel(),
+      this.strategic = const TacticalStrategicModel(),
       this.createdTactical,
-      this.image})
+      this.image,
+      this.isConnected = false})
       : _tacticals = tacticals,
         _filteredTacticals = filteredTacticals,
-        _medias = medias;
+        _medias = medias,
+        _audiences = audiences;
 
   @override
   @JsonKey()
@@ -235,14 +314,32 @@ class _$TacticalStateImpl implements _TacticalState {
     return EqualUnmodifiableListView(_medias);
   }
 
+  final List<UserModel> _audiences;
+  @override
+  @JsonKey()
+  List<UserModel> get audiences {
+    if (_audiences is EqualUnmodifiableListView) return _audiences;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_audiences);
+  }
+
+  @override
+  @JsonKey()
+  final UserModel user;
+  @override
+  @JsonKey()
+  final TacticalStrategicModel strategic;
   @override
   final TacticalModel? createdTactical;
   @override
   final File? image;
+  @override
+  @JsonKey()
+  final bool isConnected;
 
   @override
   String toString() {
-    return 'TacticalState(state: $state, failure: $failure, tacticals: $tacticals, filteredTacticals: $filteredTacticals, medias: $medias, createdTactical: $createdTactical, image: $image)';
+    return 'TacticalState(state: $state, failure: $failure, tacticals: $tacticals, filteredTacticals: $filteredTacticals, medias: $medias, audiences: $audiences, user: $user, strategic: $strategic, createdTactical: $createdTactical, image: $image, isConnected: $isConnected)';
   }
 
   @override
@@ -257,9 +354,16 @@ class _$TacticalStateImpl implements _TacticalState {
             const DeepCollectionEquality()
                 .equals(other._filteredTacticals, _filteredTacticals) &&
             const DeepCollectionEquality().equals(other._medias, _medias) &&
+            const DeepCollectionEquality()
+                .equals(other._audiences, _audiences) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.strategic, strategic) ||
+                other.strategic == strategic) &&
             (identical(other.createdTactical, createdTactical) ||
                 other.createdTactical == createdTactical) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.isConnected, isConnected) ||
+                other.isConnected == isConnected));
   }
 
   @override
@@ -270,8 +374,12 @@ class _$TacticalStateImpl implements _TacticalState {
       const DeepCollectionEquality().hash(_tacticals),
       const DeepCollectionEquality().hash(_filteredTacticals),
       const DeepCollectionEquality().hash(_medias),
+      const DeepCollectionEquality().hash(_audiences),
+      user,
+      strategic,
       createdTactical,
-      image);
+      image,
+      isConnected);
 
   @JsonKey(ignore: true)
   @override
@@ -287,8 +395,12 @@ abstract class _TacticalState implements TacticalState {
       final List<TacticalModel> tacticals,
       final List<TacticalModel> filteredTacticals,
       final List<MediaModel> medias,
+      final List<UserModel> audiences,
+      final UserModel user,
+      final TacticalStrategicModel strategic,
       final TacticalModel? createdTactical,
-      final File? image}) = _$TacticalStateImpl;
+      final File? image,
+      final bool isConnected}) = _$TacticalStateImpl;
 
   @override
   BaseState get state;
@@ -301,9 +413,17 @@ abstract class _TacticalState implements TacticalState {
   @override
   List<MediaModel> get medias;
   @override
+  List<UserModel> get audiences;
+  @override
+  UserModel get user;
+  @override
+  TacticalStrategicModel get strategic;
+  @override
   TacticalModel? get createdTactical;
   @override
   File? get image;
+  @override
+  bool get isConnected;
   @override
   @JsonKey(ignore: true)
   _$$TacticalStateImplCopyWith<_$TacticalStateImpl> get copyWith =>

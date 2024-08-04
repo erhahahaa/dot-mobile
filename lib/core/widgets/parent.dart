@@ -11,6 +11,8 @@ class Parent extends StatelessWidget {
   final bool resizeToAvoidBottomInset;
   final bool extendBodyBehindAppBar;
   final bool extendBody;
+  final Widget? endDrawer;
+
   const Parent({
     super.key,
     this.body,
@@ -23,6 +25,7 @@ class Parent extends StatelessWidget {
     this.resizeToAvoidBottomInset = true,
     this.extendBodyBehindAppBar = false,
     this.extendBody = true,
+    this.endDrawer,
   });
 
   @override
@@ -39,6 +42,7 @@ class Parent extends StatelessWidget {
         resizeToAvoidBottomInset: resizeToAvoidBottomInset,
         extendBodyBehindAppBar: extendBodyBehindAppBar,
         extendBody: extendBody,
+        endDrawer: endDrawer,
       ),
     );
   }

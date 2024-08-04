@@ -24,6 +24,9 @@ void main() {
       DeviceOrientation.portraitDown,
     ]).then((_) {
       runApp(const DotApp());
+      // runApp(MaterialApp(
+      //   home: StrategyFormScreen(tactical: TacticalModel.fake()),
+      // ));
     });
   }, (error, stackTrace) async {
     await FirebaseCrashlytics.instance.recordError(error, stackTrace);

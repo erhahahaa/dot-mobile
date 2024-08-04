@@ -55,6 +55,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                           onTap: () => context.pushNamed(
                             AppRoutes.coachProgram.name,
                             extra: {
+                              'route': 'club',
                               'club': _club,
                             },
                           ),
@@ -66,6 +67,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                             context.pushNamed(
                               AppRoutes.coachExam.name,
                               extra: {
+                                'route': 'exam',
                                 'club': _club,
                               },
                             );
@@ -78,6 +80,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                             context.pushNamed(
                               AppRoutes.coachTactical.name,
                               extra: {
+                                'route': 'tactical',
                                 'club': _club,
                               },
                             );
@@ -120,6 +123,7 @@ class _ClubDetailScreenState extends State<ClubDetailScreen> {
                             context.pushNamed(
                               AppRoutes.coachMedia.name,
                               extra: {
+                                'route': 'media',
                                 'club': _club,
                               },
                             );

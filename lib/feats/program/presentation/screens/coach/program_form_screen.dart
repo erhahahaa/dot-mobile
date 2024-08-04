@@ -75,6 +75,7 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
             context.pushReplacementNamed(
               AppRoutes.coachCreateProgramExercise.name,
               extra: {
+                'route': 'program',
                 'club': widget.club,
                 'program': program,
               },
@@ -88,6 +89,7 @@ class _ProgramFormScreenState extends State<ProgramFormScreen> {
                 context.pushReplacementNamed(
                   AppRoutes.coachEditProgramExercise.name,
                   extra: {
+                    'route': 'program',
                     'club': widget.club,
                     'program': program,
                     'exercises': eCub.state.exercises.isEmpty
