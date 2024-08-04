@@ -6,6 +6,6 @@ class AthleteTacticalScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Parent();
+    return const Parent();
   }
 }

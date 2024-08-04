@@ -105,7 +105,7 @@ class AppRouter {
                   // final extra = state.extra as Map<String, dynamic>;
                   // final club = extra['club'] as ClubModel;
 
-                  return AthleteClubDetailScreen();
+                  return const AthleteClubDetailScreen();
                 },
               ),
             ],
@@ -123,7 +123,7 @@ class AppRouter {
 
                   return BlocProvider(
                     create: (_) => sl<TacticalCubit>()..init(),
-                    child: AthleteTacticalScreen(),
+                    child: const AthleteTacticalScreen(),
                   );
                 },
               ),
