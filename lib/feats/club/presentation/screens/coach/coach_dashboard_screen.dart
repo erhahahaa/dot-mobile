@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+class CoachDashboardScreen extends StatelessWidget {
+  const CoachDashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

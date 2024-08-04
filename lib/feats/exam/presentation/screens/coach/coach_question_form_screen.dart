@@ -6,12 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class QuestionFormScreen extends StatefulWidget {
+class CoachQuestionFormScreen extends StatefulWidget {
   final ExamModel exam;
   final List<QuestionModel>? questions;
   final ClubModel club;
 
-  const QuestionFormScreen({
+  const CoachQuestionFormScreen({
     super.key,
     required this.exam,
     this.questions,
@@ -19,10 +19,11 @@ class QuestionFormScreen extends StatefulWidget {
   });
 
   @override
-  State<QuestionFormScreen> createState() => _QuestionFormScreenState();
+  State<CoachQuestionFormScreen> createState() =>
+      _CoachQuestionFormScreenState();
 }
 
-class _QuestionFormScreenState extends State<QuestionFormScreen> {
+class _CoachQuestionFormScreenState extends State<CoachQuestionFormScreen> {
   final List<QuestionItem> _questions = [];
 
   late GlobalKey<FormState> _formKey;
@@ -62,7 +63,6 @@ class _QuestionFormScreenState extends State<QuestionFormScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<QuestionCubit, QuestionState>(
       listener: (context, state) {
-        log.f('QuestionFormScreen listener state: $state');
         if (state.state == BaseState.success) {
           ToastModel(
             message: widget.questions == null

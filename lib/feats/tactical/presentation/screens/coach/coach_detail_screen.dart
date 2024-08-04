@@ -1,10 +1,10 @@
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:flutter/material.dart';
 
-class TacticalDetailScreen extends StatelessWidget {
+class CoachTacticalDetailScreen extends StatelessWidget {
   final TacticalModel tactical;
 
-  const TacticalDetailScreen({
+  const CoachTacticalDetailScreen({
     super.key,
     required this.tactical,
   });

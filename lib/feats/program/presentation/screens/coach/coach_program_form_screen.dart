@@ -6,20 +6,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class ProgramFormScreen extends StatefulWidget {
+class CoachProgramFormScreen extends StatefulWidget {
   final ProgramModel? program;
   final ClubModel club;
-  const ProgramFormScreen({
+  const CoachProgramFormScreen({
     super.key,
     this.program,
     required this.club,
   });
 
   @override
-  State<ProgramFormScreen> createState() => _ProgramFormScreenState();
+  State<CoachProgramFormScreen> createState() => _CoachProgramFormScreenState();
 }
 
-class _ProgramFormScreenState extends State<ProgramFormScreen> {
+class _CoachProgramFormScreenState extends State<CoachProgramFormScreen> {
   late TextEditingController _nameCon, _startDateCon, _endDateCon;
 
   late FocusNode _nameFn, _startDateFn, _endDateFn;

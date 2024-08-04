@@ -49,17 +49,14 @@ extension ToastTypeExt on ToastType {
 }
 
 class ToastModel {
-  // final String title;
   final String? message;
   final ToastType type;
 
   ToastModel({required this.message, required this.type});
 }
 
-extension ToastModelExt on ToastModel  {
-  void fire(BuildContext context) {
-    try {
-      showToastWidget(
+extension ToastModelExt on ToastModel {
+  void fire(BuildContext context) => showToastWidget(
         context: context,
         Toast(
           title: type.title(context),
@@ -76,6 +73,4 @@ extension ToastModelExt on ToastModel  {
         ),
         duration: const Duration(seconds: 3),
       );
-    } catch (e) {}
-  }
 }

@@ -8,12 +8,10 @@ part 'question_cubit.freezed.dart';
 part 'question_state.dart';
 
 class QuestionCubit extends Cubit<QuestionState> {
-  final QuestionRepo _questionRepo;
-  final ImagePickerClient _imagePickerClient;
+  final QuestionRepo _questionRepo; 
 
   QuestionCubit(
-    this._questionRepo,
-    this._imagePickerClient,
+    this._questionRepo, 
   ) : super(const QuestionState());
 
   void clear() {

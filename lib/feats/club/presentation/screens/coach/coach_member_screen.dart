@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MemberScreen extends StatefulWidget {
+class CoachMemberScreen extends StatefulWidget {
   final int clubId;
-  const MemberScreen({super.key, required this.clubId});
+  const CoachMemberScreen({super.key, required this.clubId});
 
   @override
-  State<MemberScreen> createState() => _MemberScreenState();
+  State<CoachMemberScreen> createState() => _CoachMemberScreenState();
 }
 
-class _MemberScreenState extends State<MemberScreen> {
+class _CoachMemberScreenState extends State<CoachMemberScreen> {
   String selectedRole = 'Athlete';
 
   @override

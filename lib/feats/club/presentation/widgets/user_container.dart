@@ -71,10 +71,7 @@ class UserContainer extends StatelessWidget {
                       curve: Easing.emphasizedDecelerate,
                       duration: const Duration(milliseconds: 500),
                     ),
-                    icon: const Icon(Icons.more_vert),
-                    onSelected: (value) {
-                      print(value);
-                    },
+                    icon: const Icon(Icons.more_vert), 
                     itemBuilder: (context) {
                       return [
                         PopupMenuItem(

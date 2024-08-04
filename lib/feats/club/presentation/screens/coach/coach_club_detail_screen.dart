@@ -7,15 +7,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class ClubDetailScreen extends StatefulWidget {
+class CoachClubDetailScreen extends StatefulWidget {
   final ClubModel club;
-  const ClubDetailScreen({super.key, required this.club});
+  const CoachClubDetailScreen({super.key, required this.club});
 
   @override
-  State<ClubDetailScreen> createState() => _ClubDetailScreenState();
+  State<CoachClubDetailScreen> createState() => _ClubDetailScreenState();
 }
 
-class _ClubDetailScreenState extends State<ClubDetailScreen> {
+class _ClubDetailScreenState extends State<CoachClubDetailScreen> {
   late ClubModel _club;
 
   @override

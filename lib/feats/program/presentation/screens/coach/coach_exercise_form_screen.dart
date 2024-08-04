@@ -6,14 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-export 'package:dot_coaching/feats/program/presentation/screens/coach/exercise_form_screen.dart';
-export 'package:dot_coaching/feats/program/presentation/screens/coach/program_form_screen.dart';
+export 'package:dot_coaching/feats/program/presentation/screens/coach/coach_exercise_form_screen.dart';
+export 'package:dot_coaching/feats/program/presentation/screens/coach/coach_program_form_screen.dart';
 
-class ExerciseForm extends StatefulWidget {
+class CoachExerciseForm extends StatefulWidget {
   final ProgramModel program;
   final List<ProgramExerciseModel>? exercises;
   final ClubModel club;
-  const ExerciseForm({
+  const CoachExerciseForm({
     super.key,
     required this.program,
     this.exercises,
@@ -21,10 +21,10 @@ class ExerciseForm extends StatefulWidget {
   });
 
   @override
-  State<ExerciseForm> createState() => _ExerciseFormState();
+  State<CoachExerciseForm> createState() => _CoachExerciseFormState();
 }
 
-class _ExerciseFormState extends State<ExerciseForm> {
+class _CoachExerciseFormState extends State<CoachExerciseForm> {
   final List<ExerciseItem> _items = [];
 
   late GlobalKey<FormState> _formKey;

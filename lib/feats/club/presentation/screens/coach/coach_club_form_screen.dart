@@ -6,18 +6,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class ClubFormScreen extends StatefulWidget {
+class CoachClubFormScreen extends StatefulWidget {
   final ClubModel? club;
-  const ClubFormScreen({
+  const CoachClubFormScreen({
     super.key,
     this.club,
   });
 
   @override
-  State<ClubFormScreen> createState() => _ClubFormScreenState();
+  State<CoachClubFormScreen> createState() => _CoachClubFormScreenState();
 }
 
-class _ClubFormScreenState extends State<ClubFormScreen> {
+class _CoachClubFormScreenState extends State<CoachClubFormScreen> {
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
 

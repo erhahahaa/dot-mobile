@@ -117,7 +117,6 @@ void _initCubits() {
   sl.registerFactory(
     () => QuestionCubit(
       sl<QuestionRepo>(),
-      sl<ImagePickerClient>(),
     ),
   );
 

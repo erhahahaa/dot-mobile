@@ -98,6 +98,16 @@ class AppRouter {
                   child: const HomeScreen(),
                 ),
               ),
+              GoRoute(
+                path: AppRoutes.athleteClubDetail.path,
+                name: AppRoutes.athleteClubDetail.name,
+                builder: (c, state) {
+                  // final extra = state.extra as Map<String, dynamic>;
+                  // final club = extra['club'] as ClubModel;
+
+                  return AthleteClubDetailScreen();
+                },
+              ),
             ],
           ),
           // Tactical
@@ -108,12 +118,12 @@ class AppRouter {
                 path: AppRoutes.athleteTactical.path,
                 name: AppRoutes.athleteTactical.name,
                 builder: (_, state) {
-                  final extra = state.extra as Map<String, dynamic>;
-                  final club = extra['club'] as ClubModel;
+                  // final extra = state.extra as Map<String, dynamic>;
+                  // final club = extra['club'] as ClubModel;
 
                   return BlocProvider(
-                    create: (_) => sl<TacticalCubit>()..init(clubId: club.id),
-                    child: TacticalScreen(club: club),
+                    create: (_) => sl<TacticalCubit>()..init(),
+                    child: AthleteTacticalScreen(),
                   );
                 },
               ),
@@ -175,13 +185,13 @@ class AppRouter {
             parentNavigatorKey: _coachClubKey,
             path: AppRoutes.coachDashboard.path,
             name: AppRoutes.coachDashboard.name,
-            builder: (_, __) => const DashboardScreen(),
+            builder: (_, __) => const CoachDashboardScreen(),
           ),
           GoRoute(
             parentNavigatorKey: _coachClubKey,
             path: AppRoutes.coachCreateClub.path,
             name: AppRoutes.coachCreateClub.name,
-            builder: (_, __) => const ClubFormScreen(),
+            builder: (_, __) => const CoachClubFormScreen(),
           ),
           GoRoute(
             path: AppRoutes.coachEditClub.path,
@@ -190,12 +200,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'] as ClubModel;
 
-              return ClubFormScreen(club: club);
-
-              // return BlocProvider.value(
-              //   value: c.read<ClubCubit>()..emitInitial(),
-              //   child: ClubFormScreen(club: club),
-              // );
+              return CoachClubFormScreen(club: club);
             },
           ),
           GoRoute(
@@ -205,12 +210,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'] as ClubModel;
 
-              return ClubDetailScreen(club: club);
-
-              // return BlocProvider.value(
-              //   value: c.read<ClubCubit>(),
-              //   child: ClubDetailScreen(club: club),
-              // );
+              return CoachClubDetailScreen(club: club);
             },
           ),
           GoRoute(
@@ -223,7 +223,7 @@ class AppRouter {
               return BlocProvider.value(
                 value: c.read<ClubCubit>()
                   ..getMembers(const PaginationParams(), clubId),
-                child: MemberScreen(
+                child: CoachMemberScreen(
                   clubId: clubId,
                 ),
               );
@@ -238,7 +238,7 @@ class AppRouter {
 
               return BlocProvider.value(
                 value: c.read<ClubCubit>()..searchUser(''),
-                child: AddMemberScreen(
+                child: CoachAddMemberScreen(
                   clubId: clubId,
                 ),
               );
@@ -282,7 +282,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'] as ClubModel;
 
-              return ProgramScreen(club: club);
+              return CoachProgramScreen(club: club);
             },
           ),
           GoRoute(
@@ -292,7 +292,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'] as ClubModel;
 
-              return ProgramFormScreen(
+              return CoachProgramFormScreen(
                 club: club,
               );
             },
@@ -305,7 +305,7 @@ class AppRouter {
               final program = extra['program'] as ProgramModel;
               final club = extra['club'] as ClubModel;
 
-              return ProgramFormScreen(
+              return CoachProgramFormScreen(
                 club: club,
                 program: program,
               );
@@ -319,7 +319,7 @@ class AppRouter {
               final program = extra['program'] as ProgramModel;
               final club = extra['club'] as ClubModel;
 
-              return ExerciseForm(club: club, program: program);
+              return CoachExerciseForm(club: club, program: program);
             },
           ),
           GoRoute(
@@ -332,7 +332,7 @@ class AppRouter {
                   extra['exercises'] as List<ProgramExerciseModel>?;
               final club = extra['club'] as ClubModel;
 
-              return ExerciseForm(
+              return CoachExerciseForm(
                 club: club,
                 program: program,
                 exercises: exercises,
@@ -346,7 +346,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final program = extra['program'] as ProgramModel;
 
-              return ProgramDetailScreen(program: program);
+              return CoachProgramDetailScreen(program: program);
             },
           ),
         ],
@@ -387,7 +387,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'] as ClubModel;
 
-              return ExamScreen(club: club);
+              return CoachExamScreen(club: club);
             },
           ),
           GoRoute(
@@ -397,7 +397,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'] as ClubModel;
 
-              return ExamFormScreen(club: club);
+              return CoachExamFormScreen(club: club);
             },
           ),
           GoRoute(
@@ -408,7 +408,7 @@ class AppRouter {
               final exam = extra['exam'] as ExamModel;
               final club = extra['club'] as ClubModel;
 
-              return ExamFormScreen(exam: exam, club: club);
+              return CoachExamFormScreen(exam: exam, club: club);
             },
           ),
           GoRoute(
@@ -419,7 +419,7 @@ class AppRouter {
               final exam = extra['exam'] as ExamModel;
               final club = extra['club'] as ClubModel;
 
-              return QuestionFormScreen(exam: exam, club: club);
+              return CoachQuestionFormScreen(exam: exam, club: club);
             },
           ),
           GoRoute(
@@ -431,7 +431,7 @@ class AppRouter {
               final exam = extra['exam'] as ExamModel;
               final club = extra['club'] as ClubModel;
 
-              return QuestionFormScreen(
+              return CoachQuestionFormScreen(
                 exam: exam,
                 questions: questions,
                 club: club,
@@ -445,7 +445,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final exam = extra['exam'] as ExamModel;
 
-              return ExamDetailScreen(exam: exam);
+              return CoachExamDetailScreen(exam: exam);
             },
           ),
         ],
@@ -485,7 +485,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'];
 
-              return TacticalScreen(club: club);
+              return CoachTacticalScreen(club: club);
             },
           ),
           GoRoute(
@@ -495,7 +495,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'] as ClubModel;
 
-              return TacticalFormScreen(club: club);
+              return CoachTacticalFormScreen(club: club);
             },
           ),
           GoRoute(
@@ -506,7 +506,7 @@ class AppRouter {
               final tactical = extra['tactical'] as TacticalModel;
               final club = extra['club'] as ClubModel;
 
-              return TacticalFormScreen(tactical: tactical, club: club);
+              return CoachTacticalFormScreen(tactical: tactical, club: club);
             },
           ),
           GoRoute(
@@ -519,7 +519,7 @@ class AppRouter {
               final screenHeight = extra['screenHeight'] as double;
               final aspectRatio = extra['aspectRatio'] as double;
 
-              return StrategyFormScreen(
+              return CoachStrategyFormScreen(
                 tactical: tactical,
                 screenSize: Size(screenWidth, screenHeight),
                 aspectRatio: aspectRatio,
@@ -533,7 +533,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final tactical = extra['tactical'] as TacticalModel;
 
-              return TacticalDetailScreen(tactical: tactical);
+              return CoachTacticalDetailScreen(tactical: tactical);
             },
           ),
         ],

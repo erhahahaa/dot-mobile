@@ -7,15 +7,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class ProgramScreen extends StatefulWidget {
+class CoachProgramScreen extends StatefulWidget {
   final ClubModel club;
-  const ProgramScreen({super.key, required this.club});
+  const CoachProgramScreen({super.key, required this.club});
 
   @override
-  State<ProgramScreen> createState() => _ProgramScreenState();
+  State<CoachProgramScreen> createState() => _CoachProgramScreenState();
 }
 
-class _ProgramScreenState extends State<ProgramScreen> {
+class _CoachProgramScreenState extends State<CoachProgramScreen> {
   bool hideCalendar = false, hideListProgram = false;
 
   @override

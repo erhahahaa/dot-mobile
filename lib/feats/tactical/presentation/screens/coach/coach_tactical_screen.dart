@@ -6,46 +6,50 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class ExamScreen extends StatelessWidget {
+class CoachTacticalScreen extends StatefulWidget {
   final ClubModel club;
-  const ExamScreen({super.key, required this.club});
+  const CoachTacticalScreen({super.key, required this.club});
 
   @override
+  State<CoachTacticalScreen> createState() => _CoachTacticalScreenState();
+}
+
+class _CoachTacticalScreenState extends State<CoachTacticalScreen> {
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ExamCubit, ExamState>(
+    return BlocBuilder<TacticalCubit, TacticalState>(
       builder: (context, state) {
         return Parent(
           floatingActionButton: FloatingButtonExtended(
             onPressed: () => context.pushNamed(
-              AppRoutes.coachCreateExam.name,
+              AppRoutes.coachCreateTactical.name,
               extra: {
-                'route': 'exam',
-                'club': club,
+                'route': 'tactical',
+                'club': widget.club,
               },
             ),
             icon: const Icon(Icons.add),
-            text: context.str?.newExam ?? 'New Exam',
+            text: 'New Tactics',
             isDisabled: state.state == BaseState.loading,
             isLoading: state.state == BaseState.loading,
           ),
-          body: RoundedTopBackground(
-            title: club.name,
+          body: ClippedLeftRoundedRightBackground(
+            title: widget.club.name,
             child: RefreshIndicator(
-              onRefresh: () => context.read<ExamCubit>().init(
-                    clubId: club.id,
-                  ),
+              onRefresh: () =>
+                  context.read<TacticalCubit>().init(clubId: widget.club.id),
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const H1Text('Exams'),
+                    const H1Text('Tactics'),
                     SizedBox(height: 8.h),
-                    ListExam(
-                      exams: state.filteredExams,
-                      isCoach: true,
+                    ListTactical(
+                      tacticals: state.filteredTacticals,
                       isLoading: state.state == BaseState.loading,
-                      club: club,
+                      club: widget.club,
+                      isCoach: true,
                     ),
                   ],
                 ),

@@ -137,12 +137,9 @@ class TacticalCubit extends Cubit<TacticalState> {
     );
   }
 
-  Future<void> init({required int clubId}) async {
+  Future<void> init({int? clubId}) async {
     await getUser();
-    await getAll(
-      const PaginationParams(),
-      clubId,
-    );
+    await getAll(const PaginationParams(), clubId ?? 0);
   }
 
   Future<void> getUser() async {

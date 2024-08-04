@@ -25,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 left: 18.w,
                 child: UserCard(
                   user: state.user,
-                  
                 ),
               ),
               Positioned(
@@ -52,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListClub(
                         clubs: state.filteredClubs,
                         padding: EdgeInsets.all(16.w),
+                        isCoach: false,
                         isLoading: state.state == BaseState.loading,
                       ),
                     ),

@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ExamDetailScreen extends StatefulWidget {
+class CoachExamDetailScreen extends StatefulWidget {
   final ExamModel exam;
-  const ExamDetailScreen({super.key, required this.exam});
+  const CoachExamDetailScreen({super.key, required this.exam});
 
   @override
-  State<ExamDetailScreen> createState() => _ExamDetailScreenState();
+  State<CoachExamDetailScreen> createState() => _CoachExamDetailScreenState();
 }
 
-class _ExamDetailScreenState extends State<ExamDetailScreen> {
+class _CoachExamDetailScreenState extends State<CoachExamDetailScreen> {
   @override
   void initState() {
     context

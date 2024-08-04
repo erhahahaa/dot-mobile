@@ -6,21 +6,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class TacticalFormScreen extends StatefulWidget {
+class CoachTacticalFormScreen extends StatefulWidget {
   final TacticalModel? tactical;
   final ClubModel club;
 
-  const TacticalFormScreen({
+  const CoachTacticalFormScreen({
     super.key,
     this.tactical,
     required this.club,
   });
 
   @override
-  State<TacticalFormScreen> createState() => _TacticalFormScreenState();
+  State<CoachTacticalFormScreen> createState() =>
+      _CoachTacticalFormScreenState();
 }
 
-class _TacticalFormScreenState extends State<TacticalFormScreen> {
+class _CoachTacticalFormScreenState extends State<CoachTacticalFormScreen> {
   late TextEditingController _nameCon,
       _descriptionCon,
       _widthCon,

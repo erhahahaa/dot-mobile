@@ -31,7 +31,10 @@ class ClippedLeftRoundedRightBackground extends StatelessWidget {
             "assets/images/bg/F5F6FF-bg.svg",
             width: 53.w,
             height: 139.h,
-            color: context.theme.colorScheme.surface,
+            colorFilter: ColorFilter.mode(
+              context.theme.colorScheme.surface,
+              BlendMode.srcIn,
+            ),
           ),
         ),
         Positioned(

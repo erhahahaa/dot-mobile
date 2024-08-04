@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class StrategyFormScreen extends StatefulWidget {
+class CoachStrategyFormScreen extends StatefulWidget {
   final TacticalModel tactical;
   final Size screenSize;
   final double aspectRatio;
 
-  const StrategyFormScreen({
+  const CoachStrategyFormScreen({
     super.key,
     required this.tactical,
     required this.screenSize,
@@ -21,10 +21,11 @@ class StrategyFormScreen extends StatefulWidget {
   });
 
   @override
-  State<StrategyFormScreen> createState() => _StrategyFormScreenState();
+  State<CoachStrategyFormScreen> createState() =>
+      _CoachStrategyFormScreenState();
 }
 
-class _StrategyFormScreenState extends State<StrategyFormScreen> {
+class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final TransformationController _transformationController =
@@ -34,7 +35,6 @@ class _StrategyFormScreenState extends State<StrategyFormScreen> {
   Offset? arrowEnd;
   bool isDrawingMode = false;
   bool isConnected = false;
- 
 
   @override
   Widget build(BuildContext context) {
