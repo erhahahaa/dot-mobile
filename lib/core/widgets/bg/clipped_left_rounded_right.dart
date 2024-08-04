@@ -41,7 +41,7 @@ class ClippedLeftRoundedRightBackground extends StatelessWidget {
             height: 644.h,
             decoration: BoxDecoration(
                 color: context.theme.colorScheme.surface,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(50.0),
                   topRight: Radius.circular(50.0),
                   bottomLeft: Radius.circular(0.0),

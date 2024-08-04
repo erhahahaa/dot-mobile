@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:math' show Random;
 
 import 'package:dot_coaching/feats/feats.dart';
@@ -56,7 +55,7 @@ class TacticalModel with _$TacticalModel {
       id: Random().nextInt(100),
       name: BoneMock.name,
       description: BoneMock.subtitle,
-      board: TacticalBoardModel(
+      board: const TacticalBoardModel(
         width: 1000,
         height: 1000,
       ),

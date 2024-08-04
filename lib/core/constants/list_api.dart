@@ -26,5 +26,5 @@ class ListAPI {
   static const String MEDIA = '/media';
 
   static const String WEBSOCKET = 'ws://$CLEAN_URL';
-  static const String LIVE_TACTICAL = '${WEBSOCKET}/live/tactical';
+  static const String LIVE_TACTICAL = '$WEBSOCKET/live/tactical';
 }

@@ -56,8 +56,8 @@ class _StrategyFormScreenState extends State<StrategyFormScreen> {
                       right: 0,
                       bottom: 0,
                       child: Container(
-                        padding: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
+                        padding: const EdgeInsets.all(4),
+                        decoration: const BoxDecoration(
                           color: Colors.red,
                           shape: BoxShape.circle,
                         ),
@@ -102,7 +102,7 @@ class _StrategyFormScreenState extends State<StrategyFormScreen> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          icon: Icon(Icons.close),
+                          icon: const Icon(Icons.close),
                         ),
                       ],
                     ),
@@ -255,7 +255,7 @@ class _StrategyFormScreenState extends State<StrategyFormScreen> {
                   children: [
                     IconButton(
                       onPressed: context.read<TacticalCubit>().resetPositions,
-                      icon: Icon(Icons.refresh),
+                      icon: const Icon(Icons.refresh),
                     ),
                     IconButton(
                       onPressed: () {

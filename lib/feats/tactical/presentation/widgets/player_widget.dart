@@ -10,7 +10,7 @@ class PlayerWidget extends StatelessWidget {
     return AnimatedContainer(
       width: player.isDragging ? 50 : 40,
       height: player.isDragging ? 50 : 40,
-      duration: Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 100),
       decoration: BoxDecoration(
         color: Color(player.hexColor),
         borderRadius: BorderRadius.circular(20),
@@ -18,7 +18,7 @@ class PlayerWidget extends StatelessWidget {
       child: Center(
         child: Text(
           player.number.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
