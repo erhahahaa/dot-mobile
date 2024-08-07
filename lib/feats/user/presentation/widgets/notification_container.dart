@@ -15,7 +15,7 @@ class NotificationContainer extends StatelessWidget {
     return EightContainer(
       child: Row(
         children: [
-          Icon(Icons.notifications),
+          const Icon(Icons.notifications),
           SizedBox(width: 8.w),
           Expanded(
             child: Column(
