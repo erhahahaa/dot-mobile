@@ -48,7 +48,7 @@ class _CoachMemberScreenState extends State<CoachMemberScreen> {
                           context.str?.members ?? 'Members',
                         ),
                         SizedBox(width: 8.w),
-                        ClubSearchBar(
+                        CustomSearchBar(
                           onSearch: context.read<ClubCubit>().searchMember,
                         ),
                       ],

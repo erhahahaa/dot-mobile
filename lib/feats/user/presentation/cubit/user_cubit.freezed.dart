@@ -22,6 +22,8 @@ mixin _$UserState {
   Locale get locale => throw _privateConstructorUsedError;
   ThemeMode get themeMode => throw _privateConstructorUsedError;
   List<String> get usernameSuggestions => throw _privateConstructorUsedError;
+  List<NotificationDataModel> get notifications =>
+      throw _privateConstructorUsedError;
   File? get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -41,6 +43,7 @@ abstract class $UserStateCopyWith<$Res> {
       Locale locale,
       ThemeMode themeMode,
       List<String> usernameSuggestions,
+      List<NotificationDataModel> notifications,
       File? image});
 
   $UserModelCopyWith<$Res> get user;
@@ -65,6 +68,7 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
     Object? locale = null,
     Object? themeMode = null,
     Object? usernameSuggestions = null,
+    Object? notifications = null,
     Object? image = freezed,
   }) {
     return _then(_value.copyWith(
@@ -92,6 +96,10 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.usernameSuggestions
           : usernameSuggestions // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      notifications: null == notifications
+          ? _value.notifications
+          : notifications // ignore: cast_nullable_to_non_nullable
+              as List<NotificationDataModel>,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -123,6 +131,7 @@ abstract class _$$UserStateImplCopyWith<$Res>
       Locale locale,
       ThemeMode themeMode,
       List<String> usernameSuggestions,
+      List<NotificationDataModel> notifications,
       File? image});
 
   @override
@@ -146,6 +155,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
     Object? locale = null,
     Object? themeMode = null,
     Object? usernameSuggestions = null,
+    Object? notifications = null,
     Object? image = freezed,
   }) {
     return _then(_$UserStateImpl(
@@ -173,6 +183,10 @@ class __$$UserStateImplCopyWithImpl<$Res>
           ? _value._usernameSuggestions
           : usernameSuggestions // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      notifications: null == notifications
+          ? _value._notifications
+          : notifications // ignore: cast_nullable_to_non_nullable
+              as List<NotificationDataModel>,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -191,8 +205,10 @@ class _$UserStateImpl implements _UserState {
       this.locale = const Locale('en', 'US'),
       this.themeMode = ThemeMode.system,
       final List<String> usernameSuggestions = const [],
+      final List<NotificationDataModel> notifications = const [],
       this.image})
-      : _usernameSuggestions = usernameSuggestions;
+      : _usernameSuggestions = usernameSuggestions,
+        _notifications = notifications;
 
   @override
   @JsonKey()
@@ -218,12 +234,21 @@ class _$UserStateImpl implements _UserState {
     return EqualUnmodifiableListView(_usernameSuggestions);
   }
 
+  final List<NotificationDataModel> _notifications;
+  @override
+  @JsonKey()
+  List<NotificationDataModel> get notifications {
+    if (_notifications is EqualUnmodifiableListView) return _notifications;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_notifications);
+  }
+
   @override
   final File? image;
 
   @override
   String toString() {
-    return 'UserState(state: $state, failure: $failure, user: $user, locale: $locale, themeMode: $themeMode, usernameSuggestions: $usernameSuggestions, image: $image)';
+    return 'UserState(state: $state, failure: $failure, user: $user, locale: $locale, themeMode: $themeMode, usernameSuggestions: $usernameSuggestions, notifications: $notifications, image: $image)';
   }
 
   @override
@@ -239,6 +264,8 @@ class _$UserStateImpl implements _UserState {
                 other.themeMode == themeMode) &&
             const DeepCollectionEquality()
                 .equals(other._usernameSuggestions, _usernameSuggestions) &&
+            const DeepCollectionEquality()
+                .equals(other._notifications, _notifications) &&
             (identical(other.image, image) || other.image == image));
   }
 
@@ -251,6 +278,7 @@ class _$UserStateImpl implements _UserState {
       locale,
       themeMode,
       const DeepCollectionEquality().hash(_usernameSuggestions),
+      const DeepCollectionEquality().hash(_notifications),
       image);
 
   @JsonKey(ignore: true)
@@ -268,6 +296,7 @@ abstract class _UserState implements UserState {
       final Locale locale,
       final ThemeMode themeMode,
       final List<String> usernameSuggestions,
+      final List<NotificationDataModel> notifications,
       final File? image}) = _$UserStateImpl;
 
   @override
@@ -282,6 +311,8 @@ abstract class _UserState implements UserState {
   ThemeMode get themeMode;
   @override
   List<String> get usernameSuggestions;
+  @override
+  List<NotificationDataModel> get notifications;
   @override
   File? get image;
   @override

@@ -5,7 +5,7 @@ import 'package:dot_coaching/feats/feats.dart';
 abstract class TacticalRepo {
   Future<Either<Failure, List<TacticalModel>>> getAll(
     PaginationParams params,
-    int clubId,
+    int? clubId,
   );
   Future<Either<Failure, TacticalModel>> getById(
     ByIdParams params,

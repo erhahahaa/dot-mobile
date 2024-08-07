@@ -14,6 +14,7 @@ class RegisterParams with _$RegisterParams {
     required int phone,
     required UserGender gender,
     required UserRole role,
+    required String? fcmToken,
   }) = _RegisterParams;
 
   factory RegisterParams.fromJson(Map<String, dynamic> json) =>

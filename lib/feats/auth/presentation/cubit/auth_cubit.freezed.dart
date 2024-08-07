@@ -23,6 +23,7 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   PasswordVisibility get confirmPasswordVisibility =>
       throw _privateConstructorUsedError;
+  String? get fcmToken => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -39,7 +40,8 @@ abstract class $AuthStateCopyWith<$Res> {
       AuthStatus status,
       Failure? failure,
       PasswordVisibility passwordVisibility,
-      PasswordVisibility confirmPasswordVisibility});
+      PasswordVisibility confirmPasswordVisibility,
+      String? fcmToken});
 }
 
 /// @nodoc
@@ -60,6 +62,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? failure = freezed,
     Object? passwordVisibility = null,
     Object? confirmPasswordVisibility = null,
+    Object? fcmToken = freezed,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -82,6 +85,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.confirmPasswordVisibility
           : confirmPasswordVisibility // ignore: cast_nullable_to_non_nullable
               as PasswordVisibility,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -99,7 +106,8 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       AuthStatus status,
       Failure? failure,
       PasswordVisibility passwordVisibility,
-      PasswordVisibility confirmPasswordVisibility});
+      PasswordVisibility confirmPasswordVisibility,
+      String? fcmToken});
 }
 
 /// @nodoc
@@ -118,6 +126,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
     Object? failure = freezed,
     Object? passwordVisibility = null,
     Object? confirmPasswordVisibility = null,
+    Object? fcmToken = freezed,
   }) {
     return _then(_$AuthStateImpl(
       state: null == state
@@ -140,6 +149,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.confirmPasswordVisibility
           : confirmPasswordVisibility // ignore: cast_nullable_to_non_nullable
               as PasswordVisibility,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -152,7 +165,8 @@ class _$AuthStateImpl implements _AuthState {
       this.status = AuthStatus.unknown,
       this.failure,
       this.passwordVisibility = PasswordVisibility.hidden,
-      this.confirmPasswordVisibility = PasswordVisibility.hidden});
+      this.confirmPasswordVisibility = PasswordVisibility.hidden,
+      this.fcmToken});
 
   @override
   @JsonKey()
@@ -168,10 +182,12 @@ class _$AuthStateImpl implements _AuthState {
   @override
   @JsonKey()
   final PasswordVisibility confirmPasswordVisibility;
+  @override
+  final String? fcmToken;
 
   @override
   String toString() {
-    return 'AuthState(state: $state, status: $status, failure: $failure, passwordVisibility: $passwordVisibility, confirmPasswordVisibility: $confirmPasswordVisibility)';
+    return 'AuthState(state: $state, status: $status, failure: $failure, passwordVisibility: $passwordVisibility, confirmPasswordVisibility: $confirmPasswordVisibility, fcmToken: $fcmToken)';
   }
 
   @override
@@ -186,12 +202,14 @@ class _$AuthStateImpl implements _AuthState {
                 other.passwordVisibility == passwordVisibility) &&
             (identical(other.confirmPasswordVisibility,
                     confirmPasswordVisibility) ||
-                other.confirmPasswordVisibility == confirmPasswordVisibility));
+                other.confirmPasswordVisibility == confirmPasswordVisibility) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, state, status, failure,
-      passwordVisibility, confirmPasswordVisibility);
+      passwordVisibility, confirmPasswordVisibility, fcmToken);
 
   @JsonKey(ignore: true)
   @override
@@ -206,7 +224,8 @@ abstract class _AuthState implements AuthState {
       final AuthStatus status,
       final Failure? failure,
       final PasswordVisibility passwordVisibility,
-      final PasswordVisibility confirmPasswordVisibility}) = _$AuthStateImpl;
+      final PasswordVisibility confirmPasswordVisibility,
+      final String? fcmToken}) = _$AuthStateImpl;
 
   @override
   BaseState get state;
@@ -218,6 +237,8 @@ abstract class _AuthState implements AuthState {
   PasswordVisibility get passwordVisibility;
   @override
   PasswordVisibility get confirmPasswordVisibility;
+  @override
+  String? get fcmToken;
   @override
   @JsonKey(ignore: true)
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>

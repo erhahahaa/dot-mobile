@@ -27,6 +27,7 @@ mixin _$RegisterParams {
   int get phone => throw _privateConstructorUsedError;
   UserGender get gender => throw _privateConstructorUsedError;
   UserRole get role => throw _privateConstructorUsedError;
+  String? get fcmToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +48,8 @@ abstract class $RegisterParamsCopyWith<$Res> {
       String username,
       int phone,
       UserGender gender,
-      UserRole role});
+      UserRole role,
+      String? fcmToken});
 }
 
 /// @nodoc
@@ -70,6 +72,7 @@ class _$RegisterParamsCopyWithImpl<$Res, $Val extends RegisterParams>
     Object? phone = null,
     Object? gender = null,
     Object? role = null,
+    Object? fcmToken = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -100,6 +103,10 @@ class _$RegisterParamsCopyWithImpl<$Res, $Val extends RegisterParams>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as UserRole,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -119,7 +126,8 @@ abstract class _$$RegisterParamsImplCopyWith<$Res>
       String username,
       int phone,
       UserGender gender,
-      UserRole role});
+      UserRole role,
+      String? fcmToken});
 }
 
 /// @nodoc
@@ -140,6 +148,7 @@ class __$$RegisterParamsImplCopyWithImpl<$Res>
     Object? phone = null,
     Object? gender = null,
     Object? role = null,
+    Object? fcmToken = freezed,
   }) {
     return _then(_$RegisterParamsImpl(
       email: null == email
@@ -170,6 +179,10 @@ class __$$RegisterParamsImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as UserRole,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -184,7 +197,8 @@ class _$RegisterParamsImpl implements _RegisterParams {
       required this.username,
       required this.phone,
       required this.gender,
-      required this.role});
+      required this.role,
+      required this.fcmToken});
 
   factory _$RegisterParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$RegisterParamsImplFromJson(json);
@@ -203,10 +217,12 @@ class _$RegisterParamsImpl implements _RegisterParams {
   final UserGender gender;
   @override
   final UserRole role;
+  @override
+  final String? fcmToken;
 
   @override
   String toString() {
-    return 'RegisterParams(email: $email, password: $password, name: $name, username: $username, phone: $phone, gender: $gender, role: $role)';
+    return 'RegisterParams(email: $email, password: $password, name: $name, username: $username, phone: $phone, gender: $gender, role: $role, fcmToken: $fcmToken)';
   }
 
   @override
@@ -222,13 +238,15 @@ class _$RegisterParamsImpl implements _RegisterParams {
                 other.username == username) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, password, name, username, phone, gender, role);
+  int get hashCode => Object.hash(runtimeType, email, password, name, username,
+      phone, gender, role, fcmToken);
 
   @JsonKey(ignore: true)
   @override
@@ -253,7 +271,8 @@ abstract class _RegisterParams implements RegisterParams {
       required final String username,
       required final int phone,
       required final UserGender gender,
-      required final UserRole role}) = _$RegisterParamsImpl;
+      required final UserRole role,
+      required final String? fcmToken}) = _$RegisterParamsImpl;
 
   factory _RegisterParams.fromJson(Map<String, dynamic> json) =
       _$RegisterParamsImpl.fromJson;
@@ -272,6 +291,8 @@ abstract class _RegisterParams implements RegisterParams {
   UserGender get gender;
   @override
   UserRole get role;
+  @override
+  String? get fcmToken;
   @override
   @JsonKey(ignore: true)
   _$$RegisterParamsImplCopyWith<_$RegisterParamsImpl> get copyWith =>

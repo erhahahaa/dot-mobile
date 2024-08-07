@@ -24,7 +24,7 @@ class CoachAddMemberScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ClubSearchBar(
+                  CustomSearchBar(
                     onSearch: context.read<ClubCubit>().searchUser,
                     debounceTime: 500,
                     height: 48.h,

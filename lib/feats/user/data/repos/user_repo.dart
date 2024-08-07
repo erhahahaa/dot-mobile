@@ -166,4 +166,64 @@ class UserRepoImpl implements UserRepo {
 
     return res;
   }
+
+  @override
+  Future<Either<Failure, UserModel>> updateFCMToken(
+    String fcmToken,
+  ) async {
+    final res = await _remote.putRequest(
+      '${ListAPI.USER}/update-fcm-token',
+      data: {
+        'fcmToken': fcmToken,
+      },
+      converter: (res) => UserModel.fromJson(res['data']),
+    );
+
+    return res;
+  }
+
+  @override
+  Future<Either<Failure, bool>> cacheNotification(
+    NotificationDataModel notification,
+  ) async {
+    final res = await _local.isar.writeTxn(() async {
+      return await _local.notifications
+          .put(notification.toEntity())
+          .then((value) {
+        return true;
+      }).catchError((e) {
+        return false;
+      });
+    });
+
+    return Right(res);
+  }
+
+  @override
+  Future<Either<Failure, bool>> clearNotifications() async {
+    final res = await _local.isar.writeTxn(() async {
+      return await _local.notifications.clear().then((value) {
+        return true;
+      }).catchError((e) {
+        return false;
+      });
+    });
+
+    return Right(res);
+  }
+
+  @override
+  Future<Either<Failure, List<NotificationDataModel>>>
+      getNotifications() async {
+    final res = await _local.isar.txn(() async {
+      return await _local.notifications.where().findAll();
+    });
+
+    List<NotificationDataModel> data = [];
+    for (var item in res) {
+      data.add(NotificationDataModel.fromEntity(item));
+    }
+
+    return Right(data);
+  }
 }

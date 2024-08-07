@@ -24,6 +24,9 @@ enum AppRoutes {
   athleteExam('/exam'),
   athleteExamDetail('/exam/:id'),
 
+  // Athlete Notification
+  athleteNotification('/notification'),
+
   // Athlete Profile
   athleteProfile('/profile'),
   athleteEditProfile('/profile/edit'),
@@ -78,6 +81,7 @@ class NavRoutes {
     DotNavigationBarItem(icon: const Icon(Icons.home)),
     DotNavigationBarItem(icon: const Icon(Icons.videogame_asset_rounded)),
     DotNavigationBarItem(icon: const Icon(Icons.directions_run_rounded)),
+    DotNavigationBarItem(icon: const Icon(Icons.notifications)),
     DotNavigationBarItem(icon: const Icon(Icons.person)),
   ];
 

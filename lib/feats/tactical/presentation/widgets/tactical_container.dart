@@ -8,13 +8,13 @@ import 'package:go_router/go_router.dart';
 
 class TacticalContainer extends StatelessWidget {
   final TacticalModel tactical;
-  final ClubModel club;
+  final ClubModel? club;
   final bool isCoach;
 
   const TacticalContainer({
     super.key,
     required this.tactical,
-    required this.club,
+    this.club,
     this.isCoach = false,
   });
 

@@ -56,7 +56,7 @@ class SignUpScreen extends StatelessWidget {
                     child: Container(
                       margin: EdgeInsets.symmetric(horizontal: 12.w),
                       height: 1,
-                      color: Theme.of(context).primaryColor,
+                      color: context.theme.colorScheme.primary,
                     ),
                   ),
                   Text(
@@ -66,7 +66,7 @@ class SignUpScreen extends StatelessWidget {
                     child: Container(
                       margin: EdgeInsets.symmetric(horizontal: 12.w),
                       height: 1,
-                      color: Theme.of(context).primaryColor,
+                      color: context.theme.colorScheme.primary,
                     ),
                   ),
                 ],
@@ -83,10 +83,10 @@ class SignUpScreen extends StatelessWidget {
                     onTap: () => context.pushNamed(AppRoutes.authSignIn.name),
                     child: Text(
                       msg?.signIn ?? 'Sign In',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.w600,
-                          ),
+                      style: context.theme.textTheme.bodyMedium?.copyWith(
+                        color: context.theme.colorScheme.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],

@@ -400,6 +400,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                                       phone: int.parse(_phoneController.text),
                                       gender: selectedUserGender,
                                       role: UserRole.athlete,
+                                      fcmToken: state.fcmToken,
                                     ),
                                   );
                             }

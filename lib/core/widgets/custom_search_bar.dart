@@ -3,11 +3,12 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ClubSearchBar extends StatefulWidget {
+class CustomSearchBar extends StatefulWidget {
   final Function(String) onSearch;
   final double? width, height;
   final int? debounceTime;
-  const ClubSearchBar({
+
+  const CustomSearchBar({
     super.key,
     required this.onSearch,
     this.width,
@@ -16,10 +17,10 @@ class ClubSearchBar extends StatefulWidget {
   });
 
   @override
-  State<ClubSearchBar> createState() => _ClubSearchBarState();
+  State<CustomSearchBar> createState() => _CustomSearchBarState();
 }
 
-class _ClubSearchBarState extends State<ClubSearchBar> {
+class _CustomSearchBarState extends State<CustomSearchBar> {
   late TextEditingController _controller;
   late FocusNode _focusNode;
 

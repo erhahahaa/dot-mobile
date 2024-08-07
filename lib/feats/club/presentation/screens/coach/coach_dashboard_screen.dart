@@ -59,7 +59,7 @@ class CoachDashboardScreen extends StatelessWidget {
                           context.str?.clubs ?? 'Clubs',
                         ),
                         SizedBox(width: 8.w),
-                        ClubSearchBar(
+                        CustomSearchBar(
                           onSearch: context.read<ClubCubit>().searchClub,
                         ),
                       ],

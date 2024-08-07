@@ -15,6 +15,7 @@ _$RegisterParamsImpl _$$RegisterParamsImplFromJson(Map<String, dynamic> json) =>
       phone: (json['phone'] as num).toInt(),
       gender: $enumDecode(_$UserGenderEnumMap, json['gender']),
       role: $enumDecode(_$UserRoleEnumMap, json['role']),
+      fcmToken: json['fcmToken'] as String?,
     );
 
 Map<String, dynamic> _$$RegisterParamsImplToJson(
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$RegisterParamsImplToJson(
       'phone': instance.phone,
       'gender': _$UserGenderEnumMap[instance.gender]!,
       'role': _$UserRoleEnumMap[instance.role]!,
+      'fcmToken': instance.fcmToken,
     };
 
 const _$UserGenderEnumMap = {

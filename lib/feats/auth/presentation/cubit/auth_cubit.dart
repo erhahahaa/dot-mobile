@@ -7,7 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
 
-class AuthCubit extends Cubit<AuthState> {
+class AuthCubit extends Cubit<AuthState> with FirebaseMessagingService {
   final AuthRepo _authRepo;
   final UserRepo _userRepo;
 
@@ -56,6 +56,19 @@ class AuthCubit extends Cubit<AuthState> {
         ),
       );
     }
+
+    await FirebaseMessagingService.init();
+    await _getFCMToken();
+  }
+
+  Future<void> _getFCMToken() async {
+    final fcmToken = await getFCMToken();
+    log.e('fcmToken: $fcmToken');
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: state.copyWith(fcmToken: fcmToken),
+    );
   }
 
   Future<bool> getLocalMe() async {

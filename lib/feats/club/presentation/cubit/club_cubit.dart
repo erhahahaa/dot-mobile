@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -69,14 +71,6 @@ class ClubCubit extends Cubit<ClubState> {
     final res = await _clubRepo.getAll(const PaginationParams());
 
     res.fold(
-      // (l) => safeEmit(
-      //   isClosed: isClosed,
-      //   emit: emit,
-      //   state: state.copyWith(
-      //     state: BaseState.failure,
-      //     failure: l,
-      //   ),
-      // ),
       (l) => emitInitial(),
       (r) {
         safeEmit(
@@ -88,8 +82,18 @@ class ClubCubit extends Cubit<ClubState> {
             filteredClubs: r,
           ),
         );
+
+        for (final club in r) {
+          _subToTopic(club.id);
+        }
       },
     );
+  }
+
+  void _subToTopic(int clubId) async {
+    final topic = 'club_$clubId';
+    await FirebaseMessaging.instance.subscribeToTopic(topic);
+    log.e('subscribed to $topic');
   }
 
   Future<void> create(

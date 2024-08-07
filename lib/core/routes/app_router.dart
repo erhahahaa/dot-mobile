@@ -16,6 +16,7 @@ class AppRouter {
   static final _athleteHomeKey = GlobalKey<NavigatorState>();
   static final _athleteTacticalShellKey = GlobalKey<NavigatorState>();
   static final _athleteHistoryShellKey = GlobalKey<NavigatorState>();
+  static final _athleteNotificationShellKey = GlobalKey<NavigatorState>();
   static final _athleteProfileShellKey = GlobalKey<NavigatorState>();
 
   /// [Coach] keys
@@ -77,6 +78,7 @@ class AppRouter {
           providers: [
             BlocProvider(create: (_) => sl<ClubCubit>()),
             BlocProvider(create: (_) => sl<TacticalCubit>()),
+            BlocProvider(create: (_) => sl<ExamCubit>()),
           ],
           child: BottomNavBar(
             navigationShell: navigationShell,
@@ -93,8 +95,8 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.athleteHome.path,
                 name: AppRoutes.athleteHome.name,
-                builder: (_, state) => BlocProvider.value(
-                  value: sl<ClubCubit>()..init(),
+                builder: (c, state) => BlocProvider.value(
+                  value: c.read<ClubCubit>()..init(),
                   child: const HomeScreen(),
                 ),
               ),
@@ -117,12 +119,12 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.athleteTactical.path,
                 name: AppRoutes.athleteTactical.name,
-                builder: (_, state) {
+                builder: (c, state) {
                   // final extra = state.extra as Map<String, dynamic>;
                   // final club = extra['club'] as ClubModel;
 
-                  return BlocProvider(
-                    create: (_) => sl<TacticalCubit>()..init(),
+                  return BlocProvider.value(
+                    value: c.read<TacticalCubit>()..init(),
                     child: const AthleteTacticalScreen(),
                   );
                 },
@@ -139,6 +141,20 @@ class AppRouter {
                 builder: (_, __) => BlocProvider(
                   create: (_) => sl<UserCubit>()..init(),
                   child: const AthleteExamScreen(),
+                ),
+              ),
+            ],
+          ),
+          // Notification
+          StatefulShellBranch(
+            navigatorKey: _athleteNotificationShellKey,
+            routes: [
+              GoRoute(
+                path: AppRoutes.athleteNotification.path,
+                name: AppRoutes.athleteNotification.name,
+                builder: (c, __) => BlocProvider.value(
+                  value: c.read<UserCubit>()..init(),
+                  child: const NotificationScreen(),
                 ),
               ),
             ],

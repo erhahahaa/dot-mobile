@@ -138,8 +138,9 @@ class TacticalCubit extends Cubit<TacticalState> {
   }
 
   Future<void> init({int? clubId}) async {
+    log.e('TacticalCubit init');
     await getUser();
-    await getAll(const PaginationParams(), clubId ?? 0);
+    await getAll(const PaginationParams(), clubId);
   }
 
   Future<void> getUser() async {
@@ -271,7 +272,7 @@ class TacticalCubit extends Cubit<TacticalState> {
     });
   }
 
-  Future<void> getAll(PaginationParams params, int clubId) async {
+  Future<void> getAll(PaginationParams params, int? clubId) async {
     emitLoading();
     final res = await _tacticalRepo.getAll(params, clubId);
     res.fold((l) {
@@ -293,5 +294,17 @@ class TacticalCubit extends Cubit<TacticalState> {
         ),
       );
     });
+  }
+
+  void search(String query) {
+    final List<TacticalModel> filteredTacticals = state.tacticals
+        .where((element) =>
+            element.name.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: state.copyWith(filteredTacticals: filteredTacticals),
+    );
   }
 }

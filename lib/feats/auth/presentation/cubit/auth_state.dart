@@ -9,5 +9,6 @@ class AuthState with _$AuthState {
     @Default(PasswordVisibility.hidden) PasswordVisibility passwordVisibility,
     @Default(PasswordVisibility.hidden)
     PasswordVisibility confirmPasswordVisibility,
+    String? fcmToken,
   }) = _AuthState;
 }

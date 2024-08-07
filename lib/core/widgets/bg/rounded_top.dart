@@ -7,10 +7,18 @@ import 'package:go_router/go_router.dart';
 class RoundedTopBackground extends StatelessWidget {
   final Widget child;
   final String title;
+  final Widget? suffix;
+  final bool showBackButton, centerTitle;
+  final MainAxisAlignment? mainAxisAlignment;
+
   const RoundedTopBackground({
     super.key,
     required this.child,
     this.title = 'Untitled',
+    this.showBackButton = true,
+    this.centerTitle = false,
+    this.suffix,
+    this.mainAxisAlignment,
   });
 
   @override
@@ -33,29 +41,30 @@ class RoundedTopBackground extends StatelessWidget {
           right: 8,
           child: Row(
             children: [
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  side: BorderSide(
-                    width: 2,
-                    color: theme.colorScheme.onPrimary,
+              if (showBackButton)
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    side: BorderSide(
+                      width: 2,
+                      color: theme.colorScheme.onPrimary,
+                    ),
+                  ),
+                  onPressed: () => context.pop(),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_back_rounded,
+                        color: theme.colorScheme.onPrimary,
+                        size: 14.sp,
+                      ),
+                    ],
                   ),
                 ),
-                onPressed: () => context.pop(),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_back_rounded,
-                      color: theme.colorScheme.onPrimary,
-                      size: 14.sp,
-                    ),
-                  ],
-                ),
-              ),
               SizedBox(width: 8.w),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                width: 248.w,
+                width: showBackButton ? 248.w : 312.w,
                 decoration: BoxDecoration(
                   color: theme.colorScheme.onPrimaryContainer,
                   borderRadius: BorderRadius.circular(64.r),
@@ -68,11 +77,22 @@ class RoundedTopBackground extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: H1Text(
-                  title.maxChar(length: 15),
-                  color: Colors.black,
+                child: Row(
+                  mainAxisAlignment: mainAxisAlignment != null
+                      ? mainAxisAlignment!
+                      : centerTitle
+                          ? MainAxisAlignment.center
+                          : MainAxisAlignment.start,
+                  children: [
+                    H1Text(
+                      title.maxChar(length: 15),
+                      color: Colors.black,
+                    ),
+                    if (suffix != null) suffix!,
+                  ],
                 ),
-              )
+              ),
+              SizedBox(width: 8.w),
             ],
           ),
         ),

@@ -7,20 +7,23 @@ import 'package:skeletonizer/skeletonizer.dart';
 class ListTactical extends StatelessWidget {
   final List<TacticalModel> tacticals;
   final bool isLoading;
-  final ClubModel club;
+  final ClubModel? club;
   final bool isCoach;
+  final EdgeInsetsGeometry? margin;
 
   const ListTactical({
     super.key,
     required this.tacticals,
     required this.isLoading,
-    required this.club,
+    this.club,
     this.isCoach = false,
+    this.margin,
   });
 
   @override
   Widget build(BuildContext context) {
     return EightContainer(
+      margin: margin,
       child: _buildListTactical(context),
     );
   }

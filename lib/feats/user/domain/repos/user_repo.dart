@@ -13,4 +13,9 @@ abstract class UserRepo {
   Future<Either<Failure, UserModel>> updateProfile(UpdateUserParams params);
   Future<Either<Failure, List<UserModel>>> search(String query);
   Future<bool> clear();
+  Future<Either<Failure, UserModel>> updateFCMToken(String fcmToken);
+  Future<Either<Failure, bool>> cacheNotification(
+      NotificationDataModel notification);
+  Future<Either<Failure, List<NotificationDataModel>>> getNotifications();
+  Future<Either<Failure, bool>> clearNotifications();
 }

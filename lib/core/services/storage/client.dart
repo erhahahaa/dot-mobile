@@ -22,15 +22,18 @@ class IsarClient {
   IsarCollection<EvaluationEntity> get evaluations => _isar.evaluationEntitys;
   IsarCollection<TacticalEntity> get tacticals => _isar.tacticalEntitys;
   IsarCollection<MediaEntity> get medias => _isar.mediaEntitys;
+  IsarCollection<NotificationDataEntity> get notifications =>
+      _isar.notificationDataEntitys;
 
   IsarClient();
 
-  Future<void> initIsar() async {
+  Future<Isar> initIsar() async {
     if (Isar.getInstance() == null) {
       _isar = await _createIsar();
     } else {
       _isar = Isar.getInstance()!;
     }
+    return _isar;
   }
 
   Future<Isar> _createIsar() async {
@@ -47,6 +50,7 @@ class IsarClient {
         EvaluationEntitySchema,
         TacticalEntitySchema,
         MediaEntitySchema,
+        NotificationDataEntitySchema,
       ],
       inspector: kDebugMode,
       directory: dir.path,

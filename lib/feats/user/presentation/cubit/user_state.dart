@@ -9,6 +9,7 @@ class UserState with _$UserState {
     @Default(Locale('en', 'US')) Locale locale,
     @Default(ThemeMode.system) ThemeMode themeMode,
     @Default([]) List<String> usernameSuggestions,
+    @Default([]) List<NotificationDataModel> notifications,
     File? image,
   }) = _UserState;
 }

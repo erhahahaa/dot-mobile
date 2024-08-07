@@ -13,3 +13,4 @@ export 'package:dot_coaching/core/widgets/text/text.dart';
 export 'package:dot_coaching/core/widgets/text_f.dart';
 export 'package:dot_coaching/core/widgets/toast.dart';
 export 'package:dot_coaching/core/widgets/add_item_button.dart';
+export 'package:dot_coaching/core/widgets/custom_search_bar.dart';
