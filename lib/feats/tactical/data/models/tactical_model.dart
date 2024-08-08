@@ -107,13 +107,13 @@ extension TacticalBoardModelX on TacticalBoardModel {
       height: height,
     );
   }
-} 
+}
 
 @freezed
 class TacticalStrategicModel with _$TacticalStrategicModel {
   const factory TacticalStrategicModel({
     @Default([]) List<PlayerModel> players,
-    @Default([])  List<ArrowModel> arrows,
+    @Default([]) List<ArrowModel> arrows,
   }) = _TacticalStrategicModel;
 
   factory TacticalStrategicModel.fromJson(Map<String, dynamic> json) =>
@@ -121,12 +121,8 @@ class TacticalStrategicModel with _$TacticalStrategicModel {
 
   static TacticalStrategicModel fromEntity(TacticalStrategicEntity entity) {
     return TacticalStrategicModel(
-      players: entity.players
-          .map((e) => PlayerModel.fromEntity(e))
-          .toList(),
-      arrows: entity.arrows
-          .map((e) => ArrowModel.fromEntity(e))
-          .toList(),
+      players: entity.players.map((e) => PlayerModel.fromEntity(e)).toList(),
+      arrows: entity.arrows.map((e) => ArrowModel.fromEntity(e)).toList(),
     );
   }
 }

@@ -52,6 +52,7 @@ class AuthCubit extends Cubit<AuthState> with FirebaseMessagingService {
         isClosed: isClosed,
         emit: emit,
         state: state.copyWith(
+          state: BaseState.success,
           status: AuthStatus.unauthenticated,
         ),
       );
@@ -63,7 +64,6 @@ class AuthCubit extends Cubit<AuthState> with FirebaseMessagingService {
 
   Future<void> _getFCMToken() async {
     final fcmToken = await getFCMToken();
-    log.e('fcmToken: $fcmToken');
     safeEmit(
       isClosed: isClosed,
       emit: emit,
@@ -108,6 +108,7 @@ class AuthCubit extends Cubit<AuthState> with FirebaseMessagingService {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
+            state: BaseState.success,
             status: AuthStatus.authenticated,
           ),
         );

@@ -103,21 +103,25 @@ class TacticalContainer extends StatelessWidget {
                     ];
                   },
                 )
-              : Row(
-                  children: [
-                    Text(
-                      context.str?.detail ?? 'Detail',
-                      style: context.theme.textTheme.bodyMedium
-                          ?.copyWith(color: context.theme.colorScheme.primary),
-                    ),
-                    SizedBox(width: 4.w),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 14.sp,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    SizedBox(width: 4.w),
-                  ],
+              : InkWell(
+                  onTap: () =>
+                      context.pushNamed(AppRoutes.athleteTacticalDetail.name),
+                  child: Row(
+                    children: [
+                      Text(
+                        context.str?.detail ?? 'Detail',
+                        style: context.theme.textTheme.bodyMedium?.copyWith(
+                            color: context.theme.colorScheme.primary),
+                      ),
+                      SizedBox(width: 4.w),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 14.sp,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      SizedBox(width: 4.w),
+                    ],
+                  ),
                 ),
         ],
       ),

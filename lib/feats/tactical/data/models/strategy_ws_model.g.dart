@@ -12,8 +12,10 @@ _$StrategyWSModelImpl _$$StrategyWSModelImplFromJson(
       event: $enumDecode(_$WebSocketEventEnumMap, json['event']),
       params:
           StrategyWsParamModel.fromJson(json['params'] as Map<String, dynamic>),
-      data:
-          TacticalStrategicModel.fromJson(json['data'] as Map<String, dynamic>),
+      data: json['data'] == null
+          ? null
+          : TacticalStrategicModel.fromJson(
+              json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$StrategyWSModelImplToJson(

@@ -21,10 +21,13 @@ class SignInScreen extends StatelessWidget {
           ).fire(context);
         }
         if (state.status == AuthStatus.authenticated) {
-          ToastModel(
-            message: context.str?.successSignIn,
-            type: ToastType.success,
-          ).fire(context);
+          context.read<UserCubit>().init().then(
+                (_) => ToastModel(
+                  message: context.str?.successSignIn,
+                  type: ToastType.success,
+                ).fire(context),
+              );
+
           context.pushReplacementNamed(AppRoutes.athleteHome.name);
         }
       },

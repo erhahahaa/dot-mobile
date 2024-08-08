@@ -1,5 +1,6 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/sl.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,8 +50,10 @@ class _CoachTacticalFormScreenState extends State<CoachTacticalFormScreen> {
         TextEditingController(text: widget.tactical?.board.width.toString());
     _heightCon =
         TextEditingController(text: widget.tactical?.board.height.toString());
+    final totalPlayers = widget.tactical?.strategic?.players.length;
     _totalPlayersCon = TextEditingController(
-        text: widget.tactical?.strategic?.players.length.toString());
+      text: totalPlayers != null ? (totalPlayers ~/ 2).toString() : null,
+    );
 
     _nameFn = FocusNode();
     _descriptionFn = FocusNode();
@@ -81,6 +84,8 @@ class _CoachTacticalFormScreenState extends State<CoachTacticalFormScreen> {
 
     _media = null;
     _imageError = null;
+
+    sl<TacticalCubit>().closeWebSocket();
   }
 
   @override
@@ -91,13 +96,10 @@ class _CoachTacticalFormScreenState extends State<CoachTacticalFormScreen> {
         if (state.state == BaseState.success) {
           final tactical = state.createdTactical;
           if (tactical == null) return;
-          if (isLive) {
-            context.read<TacticalCubit>().listenWebSocket(tactical);
-          }
           Future.delayed(
             const Duration(milliseconds: 500),
             () {
-              context.pushNamed(
+              context.pushReplacementNamed(
                 AppRoutes.coachStrategyForm.name,
                 extra: {
                   'route': 'tactical',
@@ -221,7 +223,12 @@ class _CoachTacticalFormScreenState extends State<CoachTacticalFormScreen> {
                                 width: 310.w,
                                 height: 310.h,
                               )
-                            : Assets.images.placeholder.placeholder.image(),
+                            : widget.tactical != null
+                                ? widget.tactical!.media?.determineLoader(
+                                    width: 310.w,
+                                    height: 310.h,
+                                  )
+                                : Assets.images.placeholder.placeholder.image(),
                       ),
                     ),
                     if (_imageError != null)
@@ -323,44 +330,41 @@ class _CoachTacticalFormScreenState extends State<CoachTacticalFormScreen> {
                             _imageError = null;
                           });
                         }
-
                         if (_formKey.currentState!.validate()) {
+                          final screenSize = MediaQuery.of(context).size;
+                          final fieldWidth = double.parse(_widthCon.text);
+                          final fieldHeight = double.parse(_heightCon.text);
+                          final aspectRatio = fieldWidth / fieldHeight;
+                          final totalPlayer = int.parse(_totalPlayersCon.text);
+
+                          final List<PlayerModel> players = List.generate(
+                            totalPlayer * 2,
+                            (index) {
+                              final team = index < totalPlayer ? 1 : 2;
+                              final color =
+                                  team == 1 ? Colors.blue : Colors.red;
+                              final position = Offset(
+                                (index % totalPlayer) *
+                                    (screenSize.width - 40) /
+                                    (totalPlayer - 1),
+                                team == 1
+                                    ? screenSize.width * aspectRatio / 28
+                                    : screenSize.width * aspectRatio + 47,
+                              );
+                              return PlayerModel(
+                                alias: 'Player $index',
+                                x: position.dx,
+                                y: position.dy,
+                                number: index + 1,
+                                team: team,
+                                hexColor: color.value,
+                              );
+                            },
+                          );
+
+                          final strategy = TacticalStrategicModel(
+                              players: players, arrows: []);
                           if (widget.tactical == null) {
-                            final screenSize = MediaQuery.of(context).size;
-                            final fieldWidth = double.parse(_widthCon.text);
-                            final fieldHeight = double.parse(_heightCon.text);
-                            final aspectRatio = fieldWidth / fieldHeight;
-                            final totalPlayer =
-                                int.parse(_totalPlayersCon.text);
-
-                            final List<PlayerModel> players = List.generate(
-                              totalPlayer * 2,
-                              (index) {
-                                final team = index < totalPlayer ? 1 : 2;
-                                final color =
-                                    team == 1 ? Colors.blue : Colors.red;
-                                final position = Offset(
-                                  (index % totalPlayer) *
-                                      (screenSize.width - 40) /
-                                      (totalPlayer - 1),
-                                  team == 1
-                                      ? screenSize.width * aspectRatio / 28
-                                      : screenSize.width * aspectRatio + 47,
-                                );
-                                return PlayerModel(
-                                  alias: 'Player $index',
-                                  x: position.dx,
-                                  y: position.dy,
-                                  number: index + 1,
-                                  team: team,
-                                  hexColor: color.value,
-                                );
-                              },
-                            );
-
-                            final strategy = TacticalStrategicModel(
-                                players: players, arrows: []);
-
                             context.read<TacticalCubit>().create(
                                   CreateTacticalParams(
                                     clubId: widget.club.id,
@@ -375,18 +379,6 @@ class _CoachTacticalFormScreenState extends State<CoachTacticalFormScreen> {
                                     strategic: strategy,
                                   ),
                                 );
-
-                            // final _state = context.read<TacticalCubit>().state;
-                            // final tactical = _state.createdTactical;
-                            // if (_state.state == BaseState.success &&
-                            //     tactical != null &&
-                            //     isLive) {
-                            //   if (isLive) {
-                            //     context
-                            //         .read<TacticalCubit>()
-                            //         .listenWebSocket(tactical);
-                            //   }
-                            // }
                           } else {
                             context.read<TacticalCubit>().update(
                                   UpdateTacticalParams(
@@ -394,13 +386,15 @@ class _CoachTacticalFormScreenState extends State<CoachTacticalFormScreen> {
                                     clubId: widget.club.id,
                                     name: _nameCon.text,
                                     description: _descriptionCon.text,
-                                    mediaId: _media?.id,
+                                    mediaId:
+                                        _media?.id ?? widget.tactical?.mediaId,
                                     board: TacticalBoardModel(
                                       width: double.parse(_widthCon.text),
                                       height: double.parse(_heightCon.text),
                                     ),
                                     isLive: isLive,
-                                    strategic: widget.tactical!.strategic,
+                                    strategic:
+                                        widget.tactical?.strategic ?? strategy,
                                   ),
                                 );
                           }

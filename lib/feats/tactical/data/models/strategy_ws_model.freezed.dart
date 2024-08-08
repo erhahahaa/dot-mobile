@@ -22,7 +22,7 @@ StrategyWSModel _$StrategyWSModelFromJson(Map<String, dynamic> json) {
 mixin _$StrategyWSModel {
   WebSocketEvent get event => throw _privateConstructorUsedError;
   StrategyWsParamModel get params => throw _privateConstructorUsedError;
-  TacticalStrategicModel get data => throw _privateConstructorUsedError;
+  TacticalStrategicModel? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,10 +39,10 @@ abstract class $StrategyWSModelCopyWith<$Res> {
   $Res call(
       {WebSocketEvent event,
       StrategyWsParamModel params,
-      TacticalStrategicModel data});
+      TacticalStrategicModel? data});
 
   $StrategyWsParamModelCopyWith<$Res> get params;
-  $TacticalStrategicModelCopyWith<$Res> get data;
+  $TacticalStrategicModelCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$StrategyWSModelCopyWithImpl<$Res, $Val extends StrategyWSModel>
   $Res call({
     Object? event = null,
     Object? params = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       event: null == event
@@ -71,10 +71,10 @@ class _$StrategyWSModelCopyWithImpl<$Res, $Val extends StrategyWSModel>
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
               as StrategyWsParamModel,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as TacticalStrategicModel,
+              as TacticalStrategicModel?,
     ) as $Val);
   }
 
@@ -88,8 +88,12 @@ class _$StrategyWSModelCopyWithImpl<$Res, $Val extends StrategyWSModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $TacticalStrategicModelCopyWith<$Res> get data {
-    return $TacticalStrategicModelCopyWith<$Res>(_value.data, (value) {
+  $TacticalStrategicModelCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $TacticalStrategicModelCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -106,12 +110,12 @@ abstract class _$$StrategyWSModelImplCopyWith<$Res>
   $Res call(
       {WebSocketEvent event,
       StrategyWsParamModel params,
-      TacticalStrategicModel data});
+      TacticalStrategicModel? data});
 
   @override
   $StrategyWsParamModelCopyWith<$Res> get params;
   @override
-  $TacticalStrategicModelCopyWith<$Res> get data;
+  $TacticalStrategicModelCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -127,7 +131,7 @@ class __$$StrategyWSModelImplCopyWithImpl<$Res>
   $Res call({
     Object? event = null,
     Object? params = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_$StrategyWSModelImpl(
       event: null == event
@@ -138,10 +142,10 @@ class __$$StrategyWSModelImplCopyWithImpl<$Res>
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
               as StrategyWsParamModel,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as TacticalStrategicModel,
+              as TacticalStrategicModel?,
     ));
   }
 }
@@ -150,7 +154,7 @@ class __$$StrategyWSModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StrategyWSModelImpl implements _StrategyWSModel {
   const _$StrategyWSModelImpl(
-      {required this.event, required this.params, required this.data});
+      {required this.event, required this.params, this.data});
 
   factory _$StrategyWSModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$StrategyWSModelImplFromJson(json);
@@ -160,7 +164,7 @@ class _$StrategyWSModelImpl implements _StrategyWSModel {
   @override
   final StrategyWsParamModel params;
   @override
-  final TacticalStrategicModel data;
+  final TacticalStrategicModel? data;
 
   @override
   String toString() {
@@ -200,7 +204,7 @@ abstract class _StrategyWSModel implements StrategyWSModel {
   const factory _StrategyWSModel(
       {required final WebSocketEvent event,
       required final StrategyWsParamModel params,
-      required final TacticalStrategicModel data}) = _$StrategyWSModelImpl;
+      final TacticalStrategicModel? data}) = _$StrategyWSModelImpl;
 
   factory _StrategyWSModel.fromJson(Map<String, dynamic> json) =
       _$StrategyWSModelImpl.fromJson;
@@ -210,7 +214,7 @@ abstract class _StrategyWSModel implements StrategyWSModel {
   @override
   StrategyWsParamModel get params;
   @override
-  TacticalStrategicModel get data;
+  TacticalStrategicModel? get data;
   @override
   @JsonKey(ignore: true)
   _$$StrategyWSModelImplCopyWith<_$StrategyWSModelImpl> get copyWith =>

@@ -13,7 +13,7 @@ part 'tactical_cubit.freezed.dart';
 part 'tactical_state.dart';
 
 class TacticalCubit extends Cubit<TacticalState> {
-  late WebSocketChannel socketChannel;
+  WebSocketChannel? socketChannel;
   final TacticalRepo _tacticalRepo;
   final UserRepo _userRepo;
 
@@ -44,6 +44,26 @@ class TacticalCubit extends Cubit<TacticalState> {
         state: state.copyWith(isConnected: status),
       );
 
+  // void emitStrategy(TacticalStrategicModel? strategy) => safeEmit(
+  //       isClosed: isClosed,
+  //       emit: emit,
+  //       state: state.copyWith(strategic: strategy ?? TacticalStrategicModel()),
+  //     );
+
+  void initInitialPositions({
+    List<PlayerModel>? players,
+  }) {
+    initialPositions.clear();
+    initialPositions.addAll(players ?? []);
+  }
+
+  Future<void> init({
+    int? clubId,
+  }) async {
+    await getUser();
+    await getAll(clubId: clubId);
+  }
+
   void listenWebSocket(TacticalModel tactical) {
     initialPositions.clear();
     initialPositions.addAll(tactical.strategic?.players ?? []);
@@ -53,14 +73,14 @@ class TacticalCubit extends Cubit<TacticalState> {
       state: state.copyWith(audiences: [], isConnected: false),
     );
     try {
-      socketChannel = IOWebSocketChannel.connect(
+      socketChannel ??= IOWebSocketChannel.connect(
         Uri.parse('${ListAPI.LIVE_TACTICAL}/${tactical.id}'),
         headers: {
           'Authorization': 'Bearer ${state.user.token}',
         },
       );
       emitIsConnected(true);
-      socketChannel.stream.listen(
+      socketChannel?.stream.listen(
         (message) {
           final Map<String, dynamic> json = jsonDecode(message);
           final data = StrategyWSModel.fromJson(json);
@@ -84,11 +104,14 @@ class TacticalCubit extends Cubit<TacticalState> {
             );
           }
           if (data.event == WebSocketEvent.message) {
-            safeEmit(
-              isClosed: isClosed,
-              emit: emit,
-              state: state.copyWith(strategic: data.data),
-            );
+            final innerData = data.data;
+            if (innerData != null) {
+              safeEmit(
+                isClosed: isClosed,
+                emit: emit,
+                state: state.copyWith(strategic: innerData),
+              );
+            }
           }
         },
         onDone: () {
@@ -107,12 +130,12 @@ class TacticalCubit extends Cubit<TacticalState> {
   }
 
   Future<void> closeWebSocket() async {
-    await socketChannel.sink.close();
+    await socketChannel?.sink.close();
     emitIsConnected(false);
   }
 
   Future<void> sendWebSocket(String message) async {
-    socketChannel.sink.add(message);
+    socketChannel?.sink.add(message);
   }
 
   void addArrow(ArrowModel arrow) {
@@ -127,20 +150,8 @@ class TacticalCubit extends Cubit<TacticalState> {
     );
   }
 
-  void resetPositions() {
-    safeEmit(
-      isClosed: isClosed,
-      emit: emit,
-      state: state.copyWith(
-        strategic: state.strategic.copyWith(players: initialPositions),
-      ),
-    );
-  }
-
-  Future<void> init({int? clubId}) async {
-    log.e('TacticalCubit init');
-    await getUser();
-    await getAll(const PaginationParams(), clubId);
+  List<PlayerModel> getInitialPosition() {
+    return initialPositions;
   }
 
   Future<void> getUser() async {
@@ -272,9 +283,13 @@ class TacticalCubit extends Cubit<TacticalState> {
     });
   }
 
-  Future<void> getAll(PaginationParams params, int? clubId) async {
+  Future<void> getAll({
+    PaginationParams? params,
+    int? clubId,
+  }) async {
     emitLoading();
-    final res = await _tacticalRepo.getAll(params, clubId);
+    final res =
+        await _tacticalRepo.getAll(params ?? PaginationParams(), clubId);
     res.fold((l) {
       safeEmit(
         isClosed: isClosed,

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:dot_coaching/app.dart';
 import 'package:dot_coaching/core/core.dart';
@@ -10,7 +11,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:isar/isar.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await FirebaseServices.init();

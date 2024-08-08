@@ -18,7 +18,7 @@ class StrategyWSModel with _$StrategyWSModel {
   const factory StrategyWSModel({
     required WebSocketEvent event,
     required StrategyWsParamModel params,
-    required TacticalStrategicModel data,
+    TacticalStrategicModel? data,
   }) = _StrategyWSModel;
 
   factory StrategyWSModel.fromJson(Map<String, dynamic> json) =>

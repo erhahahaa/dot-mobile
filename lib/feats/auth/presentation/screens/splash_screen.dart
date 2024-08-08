@@ -22,9 +22,11 @@ class SplashScreen extends StatelessWidget {
         }
         if (state.status == AuthStatus.unauthenticated) {
           context.goNamed(AppRoutes.authSignIn.name);
+          context.read<AuthCubit>().clear();
         }
         if (state.status == AuthStatus.authenticated) {
           context.goNamed(AppRoutes.athleteHome.name);
+          context.read<AuthCubit>().clear();
         }
       },
       child: Parent(

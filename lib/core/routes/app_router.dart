@@ -543,6 +543,10 @@ class AppRouter {
               final screenHeight = extra['screenHeight'] as double;
               final aspectRatio = extra['aspectRatio'] as double;
 
+              c
+                  .read<TacticalCubit>()
+                  .initInitialPositions(players: tactical.strategic?.players);
+
               return CoachStrategyFormScreen(
                 tactical: tactical,
                 screenSize: Size(screenWidth, screenHeight),

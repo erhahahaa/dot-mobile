@@ -49,13 +49,14 @@ extension MediaEmbedExt on MediaEmbedModel {
     MediaType.imageSvgXml,
   ];
 
-  Widget determineLoader({double? width, double? height}) {
+  Widget determineLoader(
+      {double? width, double? height, BoxFit fit = BoxFit.cover}) {
     if (MediaExt.imageType.contains(type)) {
       return CachedNetworkImage(
         imageUrl: url.sanitize(),
         width: width,
         height: height,
-        fit: BoxFit.cover,
+        fit: fit,
       );
     }
     if (MediaExt.bitmapType.contains(type)) {
@@ -63,7 +64,7 @@ extension MediaEmbedExt on MediaEmbedModel {
         url.sanitize(),
         width: width,
         height: height,
-        fit: BoxFit.cover,
+        fit: fit,
       );
     }
 
