@@ -94,8 +94,7 @@ class UserCubit extends Cubit<UserState> {
   }
 
   Future<void> getNotification() async {
-    final message = await FirebaseMessaging.instance.getInitialMessage();
-    log.f('INITIAL MESSAGE: ${message?.toMap()}');
+    final message = await FirebaseMessaging.instance.getInitialMessage(); 
     if (message != null) {
       final notification = NotificationDataModel.fromJson(message.data);
       final notifications =

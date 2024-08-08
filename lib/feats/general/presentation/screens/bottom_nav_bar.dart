@@ -23,11 +23,20 @@ class BottomNavBar extends StatelessWidget {
         // initialLocation: index == navigationShell.currentIndex,
       );
 
+  bool get isRootBar {
+    final split = routerState.uri.toString().split("/");
+    if (split.length >= 3) return false;
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Parent(
-      bottomNavigationBar:
-          showBottomNavBar ? _buildBottomNavBar(context.isDarkMode) : null,
+      bottomNavigationBar: showBottomNavBar
+          ? isRootBar
+              ? _buildBottomNavBar(context.isDarkMode)
+              : null
+          : null,
       body: navigationShell,
     );
   }

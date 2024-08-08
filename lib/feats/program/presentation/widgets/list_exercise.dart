@@ -21,7 +21,6 @@ class ListExercise extends StatelessWidget {
   Widget build(BuildContext context) {
     return EightContainer(
       padding: padding ?? EdgeInsets.all(8.w),
-      height: 600.h,
       margin: EdgeInsets.only(top: 8.w),
       child: _buildListExerises(context),
     );
@@ -33,16 +32,11 @@ class ListExercise extends StatelessWidget {
           List.generate(3, (index) => ProgramExerciseModel.fake()).toList();
 
       return Skeletonizer(
-          child: ListView.builder(
-        itemCount: fakeExercises.length,
-        shrinkWrap: true,
-        padding: EdgeInsets.zero,
-        itemBuilder: (context, index) {
-          return ExerciseContainer(
-            exercise: fakeExercises[index],
-          );
-        },
-      ));
+        child: Column(
+          children:
+              fakeExercises.map((e) => ExerciseContainer(exercise: e)).toList(),
+        ),
+      );
     }
 
     if (exercises.isEmpty) {
@@ -56,15 +50,9 @@ class ListExercise extends StatelessWidget {
       );
     }
 
-    return ListView.builder(
-      itemCount: exercises.length,
-      shrinkWrap: true,
-      padding: EdgeInsets.zero,
-      itemBuilder: (context, index) {
-        return ExerciseContainer(
-          exercise: exercises[index],
-        );
-      },
-    );
+    return Column(
+        children: exercises
+            .map<Widget>((e) => ExerciseContainer(exercise: e))
+            .toList());
   }
 }

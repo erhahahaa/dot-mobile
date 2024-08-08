@@ -93,7 +93,6 @@ class ClubCubit extends Cubit<ClubState> {
   void _subToTopic(int clubId) async {
     final topic = 'club_$clubId';
     await FirebaseMessaging.instance.subscribeToTopic(topic);
-    log.e('subscribed to $topic');
   }
 
   Future<void> create(

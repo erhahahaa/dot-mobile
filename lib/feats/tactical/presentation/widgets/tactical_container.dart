@@ -20,6 +20,7 @@ class TacticalContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return EightContainer(
       margin: EdgeInsets.only(bottom: 8.w),
       child: Row(
@@ -30,7 +31,22 @@ class TacticalContainer extends StatelessWidget {
               H3Text(tactical.name),
               if (tactical.description != null) ...[
                 H6Text(tactical.description!),
-              ]
+              ],
+              if (tactical.isLive) ...[
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    const Icon(Icons.circle, size: 12, color: Colors.green),
+                    const SizedBox(width: 4),
+                    Text(
+                      'Live',
+                      style: context.theme.textTheme.bodyMedium?.copyWith(
+                        color: Colors.green,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ],
           ),
           const Spacer(),
@@ -62,6 +78,10 @@ class TacticalContainer extends StatelessWidget {
                             'route': 'tactical',
                             'tactical': tactical,
                             'club': club,
+                            'screenWidth': size.width,
+                            'screenHeight': size.height,
+                            'aspectRatio':
+                                tactical.board.width / tactical.board.height
                           },
                         ),
                       ),
@@ -104,8 +124,21 @@ class TacticalContainer extends StatelessWidget {
                   },
                 )
               : InkWell(
-                  onTap: () =>
-                      context.pushNamed(AppRoutes.athleteTacticalDetail.name),
+                  onTap: () => context.pushNamed(
+                    AppRoutes.athleteTacticalDetail.name,
+                    pathParameters: {
+                      'id': tactical.id.toString(),
+                    },
+                    extra: {
+                      'route': 'tactical',
+                      'tactical': tactical,
+                      'club': club,
+                      'screenWidth': size.width,
+                      'screenHeight': size.height,
+                      'aspectRatio':
+                          tactical.board.width / tactical.board.height,
+                    },
+                  ),
                   child: Row(
                     children: [
                       Text(

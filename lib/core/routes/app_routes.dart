@@ -15,6 +15,8 @@ enum AppRoutes {
   // Athlete Club
   athleteClubDetail('/home/club/:id'),
   athleteClubMember('/home/club/member/:clubId'),
+  // Athlete Program
+  athleteProgramDetail('/home/program/:id'),
 
   // Athlete Tactical
   athleteTactical('/tactical'),

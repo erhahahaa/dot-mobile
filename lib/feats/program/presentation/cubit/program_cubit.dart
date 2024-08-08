@@ -241,6 +241,7 @@ class ProgramCubit extends Cubit<ProgramState> {
           state: state.copyWith(
             state: BaseState.success,
             programs: r,
+            
           ),
         );
       },

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
@@ -74,94 +73,20 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
       builder: (context, state) {
         return Parent(
           scaffoldKey: _scaffoldKey,
-          appBar: AppBar(
-            title: Text(widget.tactical.name),
-            actions: widget.tactical.isLive == true
-                ? [
-                    IconButton(
-                      onPressed: () {
-                        _scaffoldKey.currentState?.openEndDrawer();
-                      },
-                      icon: Stack(
-                        children: [
-                          Icon(Icons.group, size: 36.sp),
-                          Positioned(
-                            right: 0,
-                            bottom: 0,
-                            child: Container(
-                              padding: const EdgeInsets.all(4),
-                              decoration: const BoxDecoration(
-                                color: Colors.red,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Text(
-                                state.audiences.length.toString(),
-                                style:
-                                    context.theme.textTheme.bodySmall?.copyWith(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(width: 16.w),
-                    Container(
-                      width: 12.w,
-                      height: 12.w,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: state.isConnected ? Colors.green : Colors.red,
-                      ),
-                    ),
-                    SizedBox(width: 16.w),
-                  ]
-                : [],
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(60.h),
+            child: TacticalAppBar(
+              tactical: widget.tactical,
+              onEndDrawerTap: () {
+                _scaffoldKey.currentState?.openEndDrawer();
+              },
+              audiences: state.audiences,
+              isConnected: state.isConnected,
+            ),
           ),
           endDrawer: widget.tactical.isLive == true
-              ? Drawer(
-                  child: SafeArea(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.w),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 16.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Audiences',
-                                style: context.theme.textTheme.titleLarge,
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                icon: const Icon(Icons.close),
-                              ),
-                            ],
-                          ),
-                          ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: state.audiences.length,
-                            itemBuilder: (context, index) {
-                              final audience = state.audiences[index];
-                              return ListTile(
-                                leading: CircleAvatar(
-                                  backgroundImage: CachedNetworkImageProvider(
-                                      audience.image),
-                                ),
-                                title: Text(audience.name),
-                                subtitle: Text(audience.email),
-                              );
-                            },
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                )
+              ? TacticalDrawer(
+                  tactical: widget.tactical, audiences: state.audiences)
               : null,
           body: SafeArea(
             child: SingleChildScrollView(

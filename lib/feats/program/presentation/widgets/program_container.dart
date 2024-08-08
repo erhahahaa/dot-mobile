@@ -140,17 +140,29 @@ class ProgramContainer extends StatelessWidget {
                   },
                 )
               : GestureDetector(
-                  onTap: () => context.pushNamed(
-                    AppRoutes.coachProgramDetail.name,
-                    pathParameters: {
-                      'id': program.id.toString(),
-                    },
-                    extra: {
-                      'route': 'program',
-                      'program': program,
-                      'club': club,
-                    },
-                  ),
+                  onTap: () => isCoach
+                      ? context.pushNamed(
+                          AppRoutes.coachProgramDetail.name,
+                          pathParameters: {
+                            'id': program.id.toString(),
+                          },
+                          extra: {
+                            'route': 'program',
+                            'program': program,
+                            'club': club,
+                          },
+                        )
+                      : context.pushNamed(
+                          AppRoutes.athleteProgramDetail.name,
+                          pathParameters: {
+                            'id': program.id.toString(),
+                          },
+                          extra: {
+                            'route': 'program',
+                            'program': program,
+                            'club': club,
+                          },
+                        ),
                   child: Row(
                     children: [
                       Text(

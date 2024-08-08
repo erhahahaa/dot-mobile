@@ -77,7 +77,9 @@ class AppRouter {
         builder: (_, state, navigationShell) => MultiBlocProvider(
           providers: [
             BlocProvider(create: (_) => sl<ClubCubit>()),
+            BlocProvider(create: (_) => sl<ProgramCubit>()),
             BlocProvider(create: (_) => sl<TacticalCubit>()),
+            BlocProvider(create: (_) => sl<ExerciseCubit>()),
             BlocProvider(create: (_) => sl<ExamCubit>()),
           ],
           child: BottomNavBar(
@@ -107,15 +109,22 @@ class AppRouter {
                   final extra = state.extra as Map<String, dynamic>;
                   final club = extra['club'] as ClubModel;
 
-                  return BlocProvider(
-                    create: (_) => sl<ProgramCubit>()
-                      ..init(
-                        clubId: club.id,
-                      ),
+                  return BlocProvider.value(
+                    value: c.read<ProgramCubit>()..init(clubId: club.id),
                     child: AthleteClubDetailScreen(
                       club: club,
                     ),
                   );
+                },
+              ),
+              GoRoute(
+                path: AppRoutes.athleteProgramDetail.path,
+                name: AppRoutes.athleteProgramDetail.name,
+                builder: (c, state) {
+                  final extra = state.extra as Map<String, dynamic>;
+                  final program = extra['program'] as ProgramModel;
+
+                  return ProgramDetailScreen(program: program);
                 },
               ),
             ],
@@ -128,15 +137,32 @@ class AppRouter {
                 path: AppRoutes.athleteTactical.path,
                 name: AppRoutes.athleteTactical.name,
                 builder: (c, state) {
-                  // final extra = state.extra as Map<String, dynamic>;
-                  // final club = extra['club'] as ClubModel;
-
                   return BlocProvider.value(
                     value: c.read<TacticalCubit>()..init(),
                     child: const AthleteTacticalScreen(),
                   );
                 },
               ),
+              GoRoute(
+                path: AppRoutes.athleteTacticalDetail.path,
+                name: AppRoutes.athleteTacticalDetail.name,
+                builder: (c, state) {
+                  final extra = state.extra as Map<String, dynamic>;
+                  final tactical = extra['tactical'] as TacticalModel;
+                  final screenWidth = extra['screenWidth'] as double;
+                  final screenHeight = extra['screenHeight'] as double;
+                  final aspectRatio = extra['aspectRatio'] as double;
+
+                  return TacticalDetailScreen(
+                    tactical: tactical,
+                    aspectRatio: aspectRatio,
+                    screenSize: Size(
+                      screenWidth,
+                      screenHeight,
+                    ),
+                  );
+                },
+              )
             ],
           ),
           // History
@@ -370,7 +396,7 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final program = extra['program'] as ProgramModel;
 
-              return CoachProgramDetailScreen(program: program);
+              return ProgramDetailScreen(program: program);
             },
           ),
         ],
@@ -560,8 +586,18 @@ class AppRouter {
             builder: (c, state) {
               final extra = state.extra as Map<String, dynamic>;
               final tactical = extra['tactical'] as TacticalModel;
+              final screenWidth = extra['screenWidth'] as double;
+              final screenHeight = extra['screenHeight'] as double;
+              final aspectRatio = extra['aspectRatio'] as double;
 
-              return CoachTacticalDetailScreen(tactical: tactical);
+              return TacticalDetailScreen(
+                tactical: tactical,
+                aspectRatio: aspectRatio,
+                screenSize: Size(
+                  screenWidth,
+                  screenHeight,
+                ),
+              );
             },
           ),
         ],

@@ -36,7 +36,7 @@ class _AthleteClubDetailScreenState extends State<AthleteClubDetailScreen> {
                     width: double.infinity,
                     child: ListProgram(
                       programs: state.programs,
-                      isCoach: true,
+                      isCoach: false,
                       isLoading: state.state == BaseState.loading,
                       club: widget.club,
                     ),

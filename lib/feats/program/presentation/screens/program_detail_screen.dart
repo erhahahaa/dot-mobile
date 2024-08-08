@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CoachProgramDetailScreen extends StatefulWidget {
+class ProgramDetailScreen extends StatefulWidget {
   final ProgramModel program;
-  const CoachProgramDetailScreen({super.key, required this.program});
+  const ProgramDetailScreen({super.key, required this.program});
 
   @override
-  State<CoachProgramDetailScreen> createState() => _CoachProgramDetailScreenState();
+  State<ProgramDetailScreen> createState() => _ProgramDetailScreenState();
 }
 
-class _CoachProgramDetailScreenState extends State<CoachProgramDetailScreen> {
+class _ProgramDetailScreenState extends State<ProgramDetailScreen> {
   @override
   void initState() {
     context
@@ -63,6 +63,7 @@ class _CoachProgramDetailScreenState extends State<CoachProgramDetailScreen> {
                   );
                 },
               ),
+              SizedBox(height: 16.h),
             ],
           ),
         ),

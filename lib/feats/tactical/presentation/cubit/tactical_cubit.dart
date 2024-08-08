@@ -44,11 +44,11 @@ class TacticalCubit extends Cubit<TacticalState> {
         state: state.copyWith(isConnected: status),
       );
 
-  // void emitStrategy(TacticalStrategicModel? strategy) => safeEmit(
-  //       isClosed: isClosed,
-  //       emit: emit,
-  //       state: state.copyWith(strategic: strategy ?? TacticalStrategicModel()),
-  //     );
+  void emitStrategy(TacticalStrategicModel? strategy) => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(strategic: strategy ?? TacticalStrategicModel()),
+      );
 
   void initInitialPositions({
     List<PlayerModel>? players,

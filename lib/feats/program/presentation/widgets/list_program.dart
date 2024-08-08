@@ -24,7 +24,7 @@ class ListProgram extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: padding ?? EdgeInsets.all(8.w),
-      height: 380.h,
+      height: isCoach ? 380.h : null,
       margin: EdgeInsets.only(bottom: 96.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.r),
