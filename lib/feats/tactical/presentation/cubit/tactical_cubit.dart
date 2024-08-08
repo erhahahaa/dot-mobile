@@ -47,7 +47,7 @@ class TacticalCubit extends Cubit<TacticalState> {
   void emitStrategy(TacticalStrategicModel? strategy) => safeEmit(
         isClosed: isClosed,
         emit: emit,
-        state: state.copyWith(strategic: strategy ?? TacticalStrategicModel()),
+        state: state.copyWith(strategic: strategy ?? const TacticalStrategicModel()),
       );
 
   void initInitialPositions({
@@ -289,7 +289,7 @@ class TacticalCubit extends Cubit<TacticalState> {
   }) async {
     emitLoading();
     final res =
-        await _tacticalRepo.getAll(params ?? PaginationParams(), clubId);
+        await _tacticalRepo.getAll(params ?? const PaginationParams(), clubId);
     res.fold((l) {
       safeEmit(
         isClosed: isClosed,

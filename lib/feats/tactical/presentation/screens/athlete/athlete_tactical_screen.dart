@@ -22,7 +22,7 @@ class AthleteTacticalScreen extends StatelessWidget {
               onTap: () => context.read<TacticalCubit>().getAll(),
               child: Padding(
                 padding: EdgeInsets.only(right: 16.w),
-                child: Icon(Icons.refresh, color: Colors.black),
+                child: const Icon(Icons.refresh, color: Colors.black),
               ),
             ),
             child: RefreshIndicator(

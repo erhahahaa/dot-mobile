@@ -39,8 +39,8 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
   @override
   void initState() {
     super.initState();
-    strategic = widget.tactical.strategic ?? TacticalStrategicModel();
-    Future.delayed(Duration(seconds: 2), () {
+    strategic = widget.tactical.strategic ?? const TacticalStrategicModel();
+    Future.delayed(const Duration(seconds: 2), () {
       if (widget.tactical.isLive) {
         context.read<TacticalCubit>().listenWebSocket(widget.tactical);
       }

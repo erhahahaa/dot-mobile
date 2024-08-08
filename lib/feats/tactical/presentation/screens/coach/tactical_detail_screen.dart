@@ -29,7 +29,7 @@ class _TacticalDetailScreenState extends State<TacticalDetailScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       if (widget.tactical.isLive) {
         context.read<TacticalCubit>().listenWebSocket(widget.tactical);
       }
