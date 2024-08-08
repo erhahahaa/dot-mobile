@@ -8,11 +8,9 @@ class EvaluationEntity {
   Id id = Isar.autoIncrement;
   int examId;
   int clubId;
-  int questionId;
   int athleteId;
   int coachId;
-  String? answer;
-  int? score;
+  List<QuestionEvaluationEntity> questions;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -27,12 +25,23 @@ class EvaluationEntity {
     this.id = Isar.autoIncrement,
     this.examId = 0,
     this.clubId = 0,
-    this.questionId = 0,
     this.athleteId = 0,
     this.coachId = 0,
-    this.answer,
-    this.score,
+    this.questions = const [],
     this.createdAt,
     this.updatedAt,
+  });
+}
+
+@embedded
+class QuestionEvaluationEntity {
+  int questionId;
+  String? answer;
+  int? score;
+
+  QuestionEvaluationEntity({
+    this.questionId = 0,
+    this.answer,
+    this.score,
   });
 }

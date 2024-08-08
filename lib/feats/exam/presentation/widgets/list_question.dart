@@ -46,12 +46,10 @@ class ListQuestion extends StatelessWidget {
     }
 
     if (questions.isEmpty) {
-      return EightContainer(
-        child: Center(
-          child: Text(
-            'No questions found',
-            style: context.theme.textTheme.bodyLarge,
-          ),
+      return Center(
+        child: Text(
+          'No questions found',
+          style: context.theme.textTheme.bodyLarge,
         ),
       );
     }

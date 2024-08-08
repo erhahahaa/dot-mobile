@@ -10,6 +10,7 @@ class CreateEvaluationParams with _$CreateEvaluationParams {
     @Default(0) int clubId,
     @Default(0) int questionId,
     @Default(0) int coachId,
+    @Default(0) int athleteId,
     String? answer,
     int? score,
   }) = _CreateEvaluationParams;

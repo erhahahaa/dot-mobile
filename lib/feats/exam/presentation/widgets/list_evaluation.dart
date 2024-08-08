@@ -1,21 +1,21 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
-import 'package:dot_coaching/utils/exts/exts.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class ListExam extends StatelessWidget {
-  final List<ExamModel> exams;
+class ListEvaluation extends StatelessWidget {
+  final List<EvaluationModel> evaluations;
   final EdgeInsetsGeometry? padding;
   final bool isCoach;
   final bool isLoading;
   final ClubModel club;
 
-  const ListExam({
+  const ListEvaluation({
     super.key,
-    required this.exams,
+    required this.evaluations,
     this.padding,
-    this.isCoach = false,
+    required this.isCoach,
     required this.isLoading,
     required this.club,
   });
@@ -23,23 +23,24 @@ class ListExam extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EightContainer(
-      child: _buildListExam(context),
+      child: _buildListEvaluation(context),
     );
   }
 
-  Widget _buildListExam(BuildContext context) {
+  Widget _buildListEvaluation(BuildContext context) {
     if (isLoading) {
-      final fakeExam = List.generate(9, (index) => ExamModel.fake()).toList();
+      final fakeEvaluation =
+          List.generate(9, (index) => EvaluationModel.fake()).toList();
 
       return Skeletonizer(
         child: ListView.builder(
           physics: const AlwaysScrollableScrollPhysics(),
-          itemCount: fakeExam.length,
+          itemCount: fakeEvaluation.length,
           shrinkWrap: true,
           padding: EdgeInsets.zero,
           itemBuilder: (context, index) {
-            return ExamContainer(
-              exam: fakeExam[index],
+            return EvaluationContainer(
+              evaluation: fakeEvaluation[index],
               isCoach: isCoach,
               club: club,
             );
@@ -48,10 +49,10 @@ class ListExam extends StatelessWidget {
       );
     }
 
-    if (exams.isEmpty) {
+    if (evaluations.isEmpty) {
       return Center(
         child: Text(
-          context.str?.emptyExam ?? 'Exam is empty',
+          'Evaluation is empty',
           style: context.theme.textTheme.bodyLarge,
         ),
       );
@@ -59,12 +60,12 @@ class ListExam extends StatelessWidget {
 
     return ListView.builder(
       physics: const AlwaysScrollableScrollPhysics(),
-      itemCount: exams.length,
+      itemCount: evaluations.length,
       shrinkWrap: true,
-      padding: EdgeInsets.zero,
+      padding: padding,
       itemBuilder: (context, index) {
-        return ExamContainer(
-          exam: exams[index],
+        return EvaluationContainer(
+          evaluation: evaluations[index],
           isCoach: isCoach,
           club: club,
         );

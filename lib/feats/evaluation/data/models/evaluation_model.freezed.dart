@@ -23,11 +23,10 @@ mixin _$EvaluationModel {
   int get id => throw _privateConstructorUsedError;
   int get examId => throw _privateConstructorUsedError;
   int get clubId => throw _privateConstructorUsedError;
-  int get questionId => throw _privateConstructorUsedError;
   int get athleteId => throw _privateConstructorUsedError;
   int get coachId => throw _privateConstructorUsedError;
-  String? get answer => throw _privateConstructorUsedError;
-  int? get score => throw _privateConstructorUsedError;
+  List<QuestionEvaluationModel> get questions =>
+      throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -47,11 +46,9 @@ abstract class $EvaluationModelCopyWith<$Res> {
       {int id,
       int examId,
       int clubId,
-      int questionId,
       int athleteId,
       int coachId,
-      String? answer,
-      int? score,
+      List<QuestionEvaluationModel> questions,
       DateTime? createdAt,
       DateTime? updatedAt});
 }
@@ -72,11 +69,9 @@ class _$EvaluationModelCopyWithImpl<$Res, $Val extends EvaluationModel>
     Object? id = null,
     Object? examId = null,
     Object? clubId = null,
-    Object? questionId = null,
     Object? athleteId = null,
     Object? coachId = null,
-    Object? answer = freezed,
-    Object? score = freezed,
+    Object? questions = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -93,10 +88,6 @@ class _$EvaluationModelCopyWithImpl<$Res, $Val extends EvaluationModel>
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      questionId: null == questionId
-          ? _value.questionId
-          : questionId // ignore: cast_nullable_to_non_nullable
-              as int,
       athleteId: null == athleteId
           ? _value.athleteId
           : athleteId // ignore: cast_nullable_to_non_nullable
@@ -105,14 +96,10 @@ class _$EvaluationModelCopyWithImpl<$Res, $Val extends EvaluationModel>
           ? _value.coachId
           : coachId // ignore: cast_nullable_to_non_nullable
               as int,
-      answer: freezed == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      score: freezed == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as int?,
+      questions: null == questions
+          ? _value.questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<QuestionEvaluationModel>,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -137,11 +124,9 @@ abstract class _$$EvaluationModelImplCopyWith<$Res>
       {int id,
       int examId,
       int clubId,
-      int questionId,
       int athleteId,
       int coachId,
-      String? answer,
-      int? score,
+      List<QuestionEvaluationModel> questions,
       DateTime? createdAt,
       DateTime? updatedAt});
 }
@@ -160,11 +145,9 @@ class __$$EvaluationModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? examId = null,
     Object? clubId = null,
-    Object? questionId = null,
     Object? athleteId = null,
     Object? coachId = null,
-    Object? answer = freezed,
-    Object? score = freezed,
+    Object? questions = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -181,10 +164,6 @@ class __$$EvaluationModelImplCopyWithImpl<$Res>
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      questionId: null == questionId
-          ? _value.questionId
-          : questionId // ignore: cast_nullable_to_non_nullable
-              as int,
       athleteId: null == athleteId
           ? _value.athleteId
           : athleteId // ignore: cast_nullable_to_non_nullable
@@ -193,14 +172,10 @@ class __$$EvaluationModelImplCopyWithImpl<$Res>
           ? _value.coachId
           : coachId // ignore: cast_nullable_to_non_nullable
               as int,
-      answer: freezed == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      score: freezed == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as int?,
+      questions: null == questions
+          ? _value._questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<QuestionEvaluationModel>,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -220,13 +195,12 @@ class _$EvaluationModelImpl implements _EvaluationModel {
       {this.id = 0,
       this.examId = 0,
       this.clubId = 0,
-      this.questionId = 0,
       this.athleteId = 0,
       this.coachId = 0,
-      this.answer,
-      this.score,
+      final List<QuestionEvaluationModel> questions = const [],
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt})
+      : _questions = questions;
 
   factory _$EvaluationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$EvaluationModelImplFromJson(json);
@@ -242,17 +216,19 @@ class _$EvaluationModelImpl implements _EvaluationModel {
   final int clubId;
   @override
   @JsonKey()
-  final int questionId;
-  @override
-  @JsonKey()
   final int athleteId;
   @override
   @JsonKey()
   final int coachId;
+  final List<QuestionEvaluationModel> _questions;
   @override
-  final String? answer;
-  @override
-  final int? score;
+  @JsonKey()
+  List<QuestionEvaluationModel> get questions {
+    if (_questions is EqualUnmodifiableListView) return _questions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questions);
+  }
+
   @override
   final DateTime? createdAt;
   @override
@@ -260,7 +236,7 @@ class _$EvaluationModelImpl implements _EvaluationModel {
 
   @override
   String toString() {
-    return 'EvaluationModel(id: $id, examId: $examId, clubId: $clubId, questionId: $questionId, athleteId: $athleteId, coachId: $coachId, answer: $answer, score: $score, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'EvaluationModel(id: $id, examId: $examId, clubId: $clubId, athleteId: $athleteId, coachId: $coachId, questions: $questions, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -271,13 +247,11 @@ class _$EvaluationModelImpl implements _EvaluationModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.examId, examId) || other.examId == examId) &&
             (identical(other.clubId, clubId) || other.clubId == clubId) &&
-            (identical(other.questionId, questionId) ||
-                other.questionId == questionId) &&
             (identical(other.athleteId, athleteId) ||
                 other.athleteId == athleteId) &&
             (identical(other.coachId, coachId) || other.coachId == coachId) &&
-            (identical(other.answer, answer) || other.answer == answer) &&
-            (identical(other.score, score) || other.score == score) &&
+            const DeepCollectionEquality()
+                .equals(other._questions, _questions) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -286,8 +260,16 @@ class _$EvaluationModelImpl implements _EvaluationModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, examId, clubId, questionId,
-      athleteId, coachId, answer, score, createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      examId,
+      clubId,
+      athleteId,
+      coachId,
+      const DeepCollectionEquality().hash(_questions),
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -309,11 +291,9 @@ abstract class _EvaluationModel implements EvaluationModel {
       {final int id,
       final int examId,
       final int clubId,
-      final int questionId,
       final int athleteId,
       final int coachId,
-      final String? answer,
-      final int? score,
+      final List<QuestionEvaluationModel> questions,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$EvaluationModelImpl;
 
@@ -327,15 +307,11 @@ abstract class _EvaluationModel implements EvaluationModel {
   @override
   int get clubId;
   @override
-  int get questionId;
-  @override
   int get athleteId;
   @override
   int get coachId;
   @override
-  String? get answer;
-  @override
-  int? get score;
+  List<QuestionEvaluationModel> get questions;
   @override
   DateTime? get createdAt;
   @override
@@ -344,4 +320,184 @@ abstract class _EvaluationModel implements EvaluationModel {
   @JsonKey(ignore: true)
   _$$EvaluationModelImplCopyWith<_$EvaluationModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+QuestionEvaluationModel _$QuestionEvaluationModelFromJson(
+    Map<String, dynamic> json) {
+  return _QuestionEvaluationModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$QuestionEvaluationModel {
+  int get questionId => throw _privateConstructorUsedError;
+  String? get answer => throw _privateConstructorUsedError;
+  int? get score => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $QuestionEvaluationModelCopyWith<QuestionEvaluationModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $QuestionEvaluationModelCopyWith<$Res> {
+  factory $QuestionEvaluationModelCopyWith(QuestionEvaluationModel value,
+          $Res Function(QuestionEvaluationModel) then) =
+      _$QuestionEvaluationModelCopyWithImpl<$Res, QuestionEvaluationModel>;
+  @useResult
+  $Res call({int questionId, String? answer, int? score});
+}
+
+/// @nodoc
+class _$QuestionEvaluationModelCopyWithImpl<$Res,
+        $Val extends QuestionEvaluationModel>
+    implements $QuestionEvaluationModelCopyWith<$Res> {
+  _$QuestionEvaluationModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? questionId = null,
+    Object? answer = freezed,
+    Object? score = freezed,
+  }) {
+    return _then(_value.copyWith(
+      questionId: null == questionId
+          ? _value.questionId
+          : questionId // ignore: cast_nullable_to_non_nullable
+              as int,
+      answer: freezed == answer
+          ? _value.answer
+          : answer // ignore: cast_nullable_to_non_nullable
+              as String?,
+      score: freezed == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$QuestionEvaluationModelImplCopyWith<$Res>
+    implements $QuestionEvaluationModelCopyWith<$Res> {
+  factory _$$QuestionEvaluationModelImplCopyWith(
+          _$QuestionEvaluationModelImpl value,
+          $Res Function(_$QuestionEvaluationModelImpl) then) =
+      __$$QuestionEvaluationModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int questionId, String? answer, int? score});
+}
+
+/// @nodoc
+class __$$QuestionEvaluationModelImplCopyWithImpl<$Res>
+    extends _$QuestionEvaluationModelCopyWithImpl<$Res,
+        _$QuestionEvaluationModelImpl>
+    implements _$$QuestionEvaluationModelImplCopyWith<$Res> {
+  __$$QuestionEvaluationModelImplCopyWithImpl(
+      _$QuestionEvaluationModelImpl _value,
+      $Res Function(_$QuestionEvaluationModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? questionId = null,
+    Object? answer = freezed,
+    Object? score = freezed,
+  }) {
+    return _then(_$QuestionEvaluationModelImpl(
+      questionId: null == questionId
+          ? _value.questionId
+          : questionId // ignore: cast_nullable_to_non_nullable
+              as int,
+      answer: freezed == answer
+          ? _value.answer
+          : answer // ignore: cast_nullable_to_non_nullable
+              as String?,
+      score: freezed == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$QuestionEvaluationModelImpl implements _QuestionEvaluationModel {
+  const _$QuestionEvaluationModelImpl(
+      {this.questionId = 0, this.answer, this.score});
+
+  factory _$QuestionEvaluationModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$QuestionEvaluationModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int questionId;
+  @override
+  final String? answer;
+  @override
+  final int? score;
+
+  @override
+  String toString() {
+    return 'QuestionEvaluationModel(questionId: $questionId, answer: $answer, score: $score)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$QuestionEvaluationModelImpl &&
+            (identical(other.questionId, questionId) ||
+                other.questionId == questionId) &&
+            (identical(other.answer, answer) || other.answer == answer) &&
+            (identical(other.score, score) || other.score == score));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, questionId, answer, score);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$QuestionEvaluationModelImplCopyWith<_$QuestionEvaluationModelImpl>
+      get copyWith => __$$QuestionEvaluationModelImplCopyWithImpl<
+          _$QuestionEvaluationModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$QuestionEvaluationModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _QuestionEvaluationModel implements QuestionEvaluationModel {
+  const factory _QuestionEvaluationModel(
+      {final int questionId,
+      final String? answer,
+      final int? score}) = _$QuestionEvaluationModelImpl;
+
+  factory _QuestionEvaluationModel.fromJson(Map<String, dynamic> json) =
+      _$QuestionEvaluationModelImpl.fromJson;
+
+  @override
+  int get questionId;
+  @override
+  String? get answer;
+  @override
+  int? get score;
+  @override
+  @JsonKey(ignore: true)
+  _$$QuestionEvaluationModelImplCopyWith<_$QuestionEvaluationModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

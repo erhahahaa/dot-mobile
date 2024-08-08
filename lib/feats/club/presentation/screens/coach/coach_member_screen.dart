@@ -4,6 +4,7 @@ import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class CoachMemberScreen extends StatefulWidget {
   final int clubId;
@@ -21,6 +22,17 @@ class _CoachMemberScreenState extends State<CoachMemberScreen> {
     return BlocBuilder<ClubCubit, ClubState>(
       builder: (context, state) {
         return Parent(
+          floatingActionButton: FloatingButtonExtended(
+            onPressed: () => context.pushNamed(
+              AppRoutes.coachAddMember.name,
+              pathParameters: {
+                'clubId': widget.clubId.toString(),
+              },
+            ),
+            text: 'Add Member',
+            isDisabled: state.state == BaseState.loading,
+            isLoading: state.state == BaseState.loading,
+          ),
           body: RefreshIndicator(
             onRefresh: () => context
                 .read<ClubCubit>()

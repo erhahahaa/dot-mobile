@@ -23,6 +23,7 @@ class AppRouter {
   static final _coachClubKey = GlobalKey<NavigatorState>();
   static final _coachProgramShellKey = GlobalKey<NavigatorState>();
   static final _coachExamShellKey = GlobalKey<NavigatorState>();
+  static final _coachEvaluationShellKey = GlobalKey<NavigatorState>();
   static final _coachTacticalShellKey = GlobalKey<NavigatorState>();
   static final _coachAssetShellKey = GlobalKey<NavigatorState>();
 
@@ -496,6 +497,46 @@ class AppRouter {
               final exam = extra['exam'] as ExamModel;
 
               return CoachExamDetailScreen(exam: exam);
+            },
+          ),
+        ],
+      ),
+
+      /// [Coach Evaluation] routes
+      ShellRoute(
+        navigatorKey: _coachEvaluationShellKey,
+        parentNavigatorKey: _rootKey,
+        builder: (context, state, child) {
+          final extra = state.extra as Map<String, dynamic>;
+          final club = extra['club'] as ClubModel;
+
+          return BlocProvider(
+            create: (_) => sl<EvaluationCubit>()
+              ..clear()
+              ..init(clubId: club.id),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: AppRoutes.coachExamEvaluation.path,
+            name: AppRoutes.coachExamEvaluation.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final club = extra['club'] as ClubModel;
+
+              return CoachEvaluationScreen(club: club);
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachCreateExamEvaluation.path,
+            name: AppRoutes.coachCreateExamEvaluation.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final club = extra['club'] as ClubModel;
+              final exam = extra['exam'] as ExamModel;
+
+              return CoachEvaluationFormScreen(club: club, exam: exam);
             },
           ),
         ],

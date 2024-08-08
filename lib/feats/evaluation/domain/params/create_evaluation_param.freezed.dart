@@ -25,6 +25,7 @@ mixin _$CreateEvaluationParams {
   int get clubId => throw _privateConstructorUsedError;
   int get questionId => throw _privateConstructorUsedError;
   int get coachId => throw _privateConstructorUsedError;
+  int get athleteId => throw _privateConstructorUsedError;
   String? get answer => throw _privateConstructorUsedError;
   int? get score => throw _privateConstructorUsedError;
 
@@ -45,6 +46,7 @@ abstract class $CreateEvaluationParamsCopyWith<$Res> {
       int clubId,
       int questionId,
       int coachId,
+      int athleteId,
       String? answer,
       int? score});
 }
@@ -67,6 +69,7 @@ class _$CreateEvaluationParamsCopyWithImpl<$Res,
     Object? clubId = null,
     Object? questionId = null,
     Object? coachId = null,
+    Object? athleteId = null,
     Object? answer = freezed,
     Object? score = freezed,
   }) {
@@ -86,6 +89,10 @@ class _$CreateEvaluationParamsCopyWithImpl<$Res,
       coachId: null == coachId
           ? _value.coachId
           : coachId // ignore: cast_nullable_to_non_nullable
+              as int,
+      athleteId: null == athleteId
+          ? _value.athleteId
+          : athleteId // ignore: cast_nullable_to_non_nullable
               as int,
       answer: freezed == answer
           ? _value.answer
@@ -113,6 +120,7 @@ abstract class _$$CreateEvaluationParamsImplCopyWith<$Res>
       int clubId,
       int questionId,
       int coachId,
+      int athleteId,
       String? answer,
       int? score});
 }
@@ -134,6 +142,7 @@ class __$$CreateEvaluationParamsImplCopyWithImpl<$Res>
     Object? clubId = null,
     Object? questionId = null,
     Object? coachId = null,
+    Object? athleteId = null,
     Object? answer = freezed,
     Object? score = freezed,
   }) {
@@ -153,6 +162,10 @@ class __$$CreateEvaluationParamsImplCopyWithImpl<$Res>
       coachId: null == coachId
           ? _value.coachId
           : coachId // ignore: cast_nullable_to_non_nullable
+              as int,
+      athleteId: null == athleteId
+          ? _value.athleteId
+          : athleteId // ignore: cast_nullable_to_non_nullable
               as int,
       answer: freezed == answer
           ? _value.answer
@@ -174,6 +187,7 @@ class _$CreateEvaluationParamsImpl implements _CreateEvaluationParams {
       this.clubId = 0,
       this.questionId = 0,
       this.coachId = 0,
+      this.athleteId = 0,
       this.answer,
       this.score});
 
@@ -193,13 +207,16 @@ class _$CreateEvaluationParamsImpl implements _CreateEvaluationParams {
   @JsonKey()
   final int coachId;
   @override
+  @JsonKey()
+  final int athleteId;
+  @override
   final String? answer;
   @override
   final int? score;
 
   @override
   String toString() {
-    return 'CreateEvaluationParams(examId: $examId, clubId: $clubId, questionId: $questionId, coachId: $coachId, answer: $answer, score: $score)';
+    return 'CreateEvaluationParams(examId: $examId, clubId: $clubId, questionId: $questionId, coachId: $coachId, athleteId: $athleteId, answer: $answer, score: $score)';
   }
 
   @override
@@ -212,14 +229,16 @@ class _$CreateEvaluationParamsImpl implements _CreateEvaluationParams {
             (identical(other.questionId, questionId) ||
                 other.questionId == questionId) &&
             (identical(other.coachId, coachId) || other.coachId == coachId) &&
+            (identical(other.athleteId, athleteId) ||
+                other.athleteId == athleteId) &&
             (identical(other.answer, answer) || other.answer == answer) &&
             (identical(other.score, score) || other.score == score));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, examId, clubId, questionId, coachId, answer, score);
+  int get hashCode => Object.hash(runtimeType, examId, clubId, questionId,
+      coachId, athleteId, answer, score);
 
   @JsonKey(ignore: true)
   @override
@@ -242,6 +261,7 @@ abstract class _CreateEvaluationParams implements CreateEvaluationParams {
       final int clubId,
       final int questionId,
       final int coachId,
+      final int athleteId,
       final String? answer,
       final int? score}) = _$CreateEvaluationParamsImpl;
 
@@ -256,6 +276,8 @@ abstract class _CreateEvaluationParams implements CreateEvaluationParams {
   int get questionId;
   @override
   int get coachId;
+  @override
+  int get athleteId;
   @override
   String? get answer;
   @override

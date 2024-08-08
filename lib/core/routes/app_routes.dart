@@ -57,6 +57,12 @@ enum AppRoutes {
   coachCreateExamQuestion('/coach/exam/question/create'),
   coachEditExamQuestion('/coach/exam/question/edit'),
 
+  // Coach Exam Evaluation
+  coachExamEvaluation('/coach/evaluation'),
+  coachCreateExamEvaluation('/coach/exam/evaluation/create'),
+  coachEditExamEvaluation('/coach/exam/evaluation/edit'),
+  coachExamEvaluationDetail('/coach/evaluation/:id'),
+
   // Coach Tactical
   coachTactical('/coach/tactical'),
   coachTacticalDetail('/coach/tactical/:id'),

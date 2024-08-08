@@ -13,6 +13,7 @@ _$CreateEvaluationParamsImpl _$$CreateEvaluationParamsImplFromJson(
       clubId: (json['clubId'] as num?)?.toInt() ?? 0,
       questionId: (json['questionId'] as num?)?.toInt() ?? 0,
       coachId: (json['coachId'] as num?)?.toInt() ?? 0,
+      athleteId: (json['athleteId'] as num?)?.toInt() ?? 0,
       answer: json['answer'] as String?,
       score: (json['score'] as num?)?.toInt(),
     );
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$CreateEvaluationParamsImplToJson(
       'clubId': instance.clubId,
       'questionId': instance.questionId,
       'coachId': instance.coachId,
+      'athleteId': instance.athleteId,
       'answer': instance.answer,
       'score': instance.score,
     };

@@ -74,13 +74,13 @@ class _ClubDetailScreenState extends State<CoachClubDetailScreen> {
                           },
                         ),
                         ManageButton(
-                          icon: Assets.icons.tactical.svg(width: 32.w),
-                          text: context.str?.tactical ?? 'Tactical',
+                          icon: Assets.icons.exam.svg(width: 32.w),
+                          text: 'Evaluate',
                           onTap: () {
                             context.pushNamed(
-                              AppRoutes.coachTactical.name,
+                              AppRoutes.coachExamEvaluation.name,
                               extra: {
-                                'route': 'tactical',
+                                'route': 'exam',
                                 'club': _club,
                               },
                             );
@@ -93,13 +93,14 @@ class _ClubDetailScreenState extends State<CoachClubDetailScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ManageButton(
-                          icon: Assets.icons.invite.svg(width: 32.w),
-                          text: context.str?.invite ?? 'Invite',
+                          icon: Assets.icons.tactical.svg(width: 32.w),
+                          text: context.str?.tactical ?? 'Tactical',
                           onTap: () {
                             context.pushNamed(
-                              AppRoutes.coachAddMember.name,
-                              pathParameters: {
-                                'clubId': _club.id.toString(),
+                              AppRoutes.coachTactical.name,
+                              extra: {
+                                'route': 'tactical',
+                                'club': _club,
                               },
                             );
                           },

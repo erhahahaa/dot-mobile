@@ -12,11 +12,13 @@ _$EvaluationModelImpl _$$EvaluationModelImplFromJson(
       id: (json['id'] as num?)?.toInt() ?? 0,
       examId: (json['examId'] as num?)?.toInt() ?? 0,
       clubId: (json['clubId'] as num?)?.toInt() ?? 0,
-      questionId: (json['questionId'] as num?)?.toInt() ?? 0,
       athleteId: (json['athleteId'] as num?)?.toInt() ?? 0,
       coachId: (json['coachId'] as num?)?.toInt() ?? 0,
-      answer: json['answer'] as String?,
-      score: (json['score'] as num?)?.toInt(),
+      questions: (json['questions'] as List<dynamic>?)
+              ?.map((e) =>
+                  QuestionEvaluationModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -31,11 +33,25 @@ Map<String, dynamic> _$$EvaluationModelImplToJson(
       'id': instance.id,
       'examId': instance.examId,
       'clubId': instance.clubId,
-      'questionId': instance.questionId,
       'athleteId': instance.athleteId,
       'coachId': instance.coachId,
-      'answer': instance.answer,
-      'score': instance.score,
+      'questions': instance.questions,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
+    };
+
+_$QuestionEvaluationModelImpl _$$QuestionEvaluationModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$QuestionEvaluationModelImpl(
+      questionId: (json['questionId'] as num?)?.toInt() ?? 0,
+      answer: json['answer'] as String?,
+      score: (json['score'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$QuestionEvaluationModelImplToJson(
+        _$QuestionEvaluationModelImpl instance) =>
+    <String, dynamic>{
+      'questionId': instance.questionId,
+      'answer': instance.answer,
+      'score': instance.score,
     };
