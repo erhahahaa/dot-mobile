@@ -104,10 +104,18 @@ class AppRouter {
                 path: AppRoutes.athleteClubDetail.path,
                 name: AppRoutes.athleteClubDetail.name,
                 builder: (c, state) {
-                  // final extra = state.extra as Map<String, dynamic>;
-                  // final club = extra['club'] as ClubModel;
+                  final extra = state.extra as Map<String, dynamic>;
+                  final club = extra['club'] as ClubModel;
 
-                  return const AthleteClubDetailScreen();
+                  return BlocProvider(
+                    create: (_) => sl<ProgramCubit>()
+                      ..init(
+                        clubId: club.id,
+                      ),
+                    child: AthleteClubDetailScreen(
+                      club: club,
+                    ),
+                  );
                 },
               ),
             ],
