@@ -8,12 +8,12 @@ part 'evaluation_cubit.freezed.dart';
 part 'evaluation_state.dart';
 
 class EvaluationCubit extends Cubit<EvaluationState> {
-  EvaluationCubit() : super(EvaluationState());
+  EvaluationCubit() : super(const EvaluationState());
 
   void clear() => safeEmit(
         isClosed: isClosed,
         emit: emit,
-        state: EvaluationState(),
+        state: const EvaluationState(),
       );
 
   Future<void> init({int? clubId}) async {

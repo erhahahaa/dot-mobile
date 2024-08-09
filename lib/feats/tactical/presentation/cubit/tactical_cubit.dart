@@ -122,20 +122,20 @@ class TacticalCubit extends Cubit<TacticalState> {
         },
         onDone: () {
           closeWebSocket();
-          Future.delayed(Duration(seconds: 1), () {
+          Future.delayed(const Duration(seconds: 1), () {
             listenWebSocket(tactical);
           });
         },
         onError: (error) {
           closeWebSocket();
-          Future.delayed(Duration(seconds: 1), () {
+          Future.delayed(const Duration(seconds: 1), () {
             listenWebSocket(tactical);
           });
         },
       );
     } catch (e) {
       closeWebSocket();
-      Future.delayed(Duration(seconds: 1), () {
+      Future.delayed(const Duration(seconds: 1), () {
         listenWebSocket(tactical);
       });
     }

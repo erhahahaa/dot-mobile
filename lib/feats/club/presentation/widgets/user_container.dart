@@ -123,7 +123,7 @@ class _UserContainerState extends State<UserContainer> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: H2Text("Add new member"),
+          title: const H2Text("Add new member"),
           content: StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return Column(

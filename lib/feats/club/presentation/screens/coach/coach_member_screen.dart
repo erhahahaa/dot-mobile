@@ -44,7 +44,7 @@ class _CoachMemberScreenState extends State<CoachMemberScreen> {
             child: RoundedTopBackground(
               title: context.str?.members ?? 'Members',
               child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
