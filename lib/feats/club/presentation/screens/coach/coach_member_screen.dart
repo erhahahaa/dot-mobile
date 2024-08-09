@@ -21,6 +21,10 @@ class _CoachMemberScreenState extends State<CoachMemberScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<ClubCubit, ClubState>(
       builder: (context, state) {
+        final coach =
+            state.filteredMembers.where((e) => e.id == state.user.id).toList();
+        log.e('Coach: $coach');
+        log.e('Coach: ${state.user}');
         return Parent(
           floatingActionButton: FloatingButtonExtended(
             onPressed: () => context.pushNamed(
@@ -40,6 +44,7 @@ class _CoachMemberScreenState extends State<CoachMemberScreen> {
             child: RoundedTopBackground(
               title: context.str?.members ?? 'Members',
               child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -69,7 +74,7 @@ class _CoachMemberScreenState extends State<CoachMemberScreen> {
                     ListMember(
                       members: state.filteredMembers,
                       clubId: widget.clubId,
-                      isLoading: state.state == BaseState.loading,
+                      isLoading: state.state == BaseState.loading, 
                     ),
                   ],
                 ),
@@ -81,103 +86,6 @@ class _CoachMemberScreenState extends State<CoachMemberScreen> {
     );
   }
 
-  void _showEditDialog(BuildContext context) {
-    String currentSelectedRole = selectedRole;
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          title: Text(
-            "Edit Member Role",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20.sp,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              DropdownButton<String>(
-                value: currentSelectedRole,
-                dropdownColor: Colors.white,
-                onChanged: (String? newValue) {
-                  setState(
-                    () {
-                      currentSelectedRole = newValue!;
-                    },
-                  );
-                },
-                items:
-                    <String>['Coach', 'Athlete'].map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    );
-                  },
-                ).toList(),
-              ),
-            ],
-          ),
-          actions: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStateProperty.all<Color>(const Color(0xff2EC12B)),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      selectedRole = currentSelectedRole;
-                    });
-                    // Save the new role here, e.g., update the user's role in the database
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    "Save",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStateProperty.all<Color>(const Color(0xffF15858)),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    context.str?.cancel ?? 'Cancel',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   void _showDeleteDialog(BuildContext context) {
     showDialog(

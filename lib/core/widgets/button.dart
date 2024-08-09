@@ -28,7 +28,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: isFullWidth! ? double.infinity : null,
-      height: height ?? 48.h,
+      height: height ?? 36.h,
       child: ElevatedButton(
         style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
               backgroundColor: WidgetStateProperty.all<Color>(
@@ -37,7 +37,6 @@ class Button extends StatelessWidget {
                     ? Colors.grey
                     : backgroundColor ?? Theme.of(context).colorScheme.primary,
               ),
-              
             ),
         onPressed: isDisabled! || isLoading! ? null : onPressed,
         child: isLoading!

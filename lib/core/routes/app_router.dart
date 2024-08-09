@@ -261,7 +261,10 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'] as ClubModel;
 
-              return CoachClubDetailScreen(club: club);
+              return BlocProvider.value(
+                value: c.read<ClubCubit>(),
+                child: CoachClubDetailScreen(club: club),
+              );
             },
           ),
           GoRoute(
@@ -586,16 +589,20 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'] as ClubModel;
 
+              c.read<TacticalCubit>().clear();
+
               return CoachTacticalFormScreen(club: club);
             },
           ),
           GoRoute(
             path: AppRoutes.coachEditTactical.path,
             name: AppRoutes.coachEditTactical.name,
-            builder: (context, state) {
+            builder: (c, state) {
               final extra = state.extra as Map<String, dynamic>;
               final tactical = extra['tactical'] as TacticalModel;
               final club = extra['club'] as ClubModel;
+
+              c.read<TacticalCubit>().clear();
 
               return CoachTacticalFormScreen(tactical: tactical, club: club);
             },
@@ -610,6 +617,7 @@ class AppRouter {
               final screenHeight = extra['screenHeight'] as double;
               final aspectRatio = extra['aspectRatio'] as double;
 
+              c.read<TacticalCubit>().clear();
               c
                   .read<TacticalCubit>()
                   .initInitialPositions(players: tactical.strategic?.players);

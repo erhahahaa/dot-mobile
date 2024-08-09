@@ -150,9 +150,10 @@ class ClubRepoImpl implements ClubRepo {
   Future<Either<Failure, UserModel>> addUser(
     int clubId,
     int userId,
+    UserRole role,
   ) async {
     final res = await _remote.getRequest(
-      '${ListAPI.CLUB}/$clubId/add/$userId',
+      '${ListAPI.CLUB}/$clubId/add/$userId/${role.name}',
       converter: (res) => UserModel.fromJson(res['data']),
     );
 
@@ -160,12 +161,12 @@ class ClubRepoImpl implements ClubRepo {
   }
 
   @override
-  Future<Either<Failure, ClubModel>> leave(
+  Future<Either<Failure, String>> leave(
     int clubId,
   ) async {
     final res = await _remote.getRequest(
       '${ListAPI.CLUB}/$clubId/leave',
-      converter: (res) => ClubModel.fromJson(res['data']),
+      converter: (res) => res['data']['clubId'].toString(),
     );
 
     return res;

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -14,6 +15,7 @@ part 'tactical_state.dart';
 
 class TacticalCubit extends Cubit<TacticalState> {
   WebSocketChannel? socketChannel;
+  StreamSubscription? tacticalSocket;
   final TacticalRepo _tacticalRepo;
   final UserRepo _userRepo;
 
@@ -80,7 +82,7 @@ class TacticalCubit extends Cubit<TacticalState> {
         },
       );
       emitIsConnected(true);
-      socketChannel?.stream.listen(
+      tacticalSocket ??= socketChannel?.stream.listen(
         (message) {
           final Map<String, dynamic> json = jsonDecode(message);
           final data = StrategyWSModel.fromJson(json);
@@ -103,6 +105,7 @@ class TacticalCubit extends Cubit<TacticalState> {
               state: state.copyWith(audiences: audiences),
             );
           }
+
           if (data.event == WebSocketEvent.message) {
             final innerData = data.data;
             if (innerData != null) {
@@ -113,23 +116,33 @@ class TacticalCubit extends Cubit<TacticalState> {
               );
             }
           }
+          if (data.event == WebSocketEvent.destroy) {
+            closeWebSocket();
+          }
         },
         onDone: () {
           closeWebSocket();
-          listenWebSocket(tactical);
+          Future.delayed(Duration(seconds: 1), () {
+            listenWebSocket(tactical);
+          });
         },
         onError: (error) {
           closeWebSocket();
-          listenWebSocket(tactical);
+          Future.delayed(Duration(seconds: 1), () {
+            listenWebSocket(tactical);
+          });
         },
       );
     } catch (e) {
       closeWebSocket();
-      listenWebSocket(tactical);
+      Future.delayed(Duration(seconds: 1), () {
+        listenWebSocket(tactical);
+      });
     }
   }
 
   Future<void> closeWebSocket() async {
+    await tacticalSocket?.cancel();
     await socketChannel?.sink.close();
     emitIsConnected(false);
   }

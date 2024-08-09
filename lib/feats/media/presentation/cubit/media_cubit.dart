@@ -48,27 +48,23 @@ class MediaCubit extends Cubit<MediaState> {
     for (final parent in parents) {
       switch (parent) {
         case MediaParent.club:
-          await getAll(parent: parent, clubId: clubId);
-          break;
+          _emit(state.copyWith(showClub: true));
         case MediaParent.program:
           _emit(state.copyWith(showProgram: true));
-          break;
         case MediaParent.exercise:
           _emit(state.copyWith(showExercise: true));
-          break;
         case MediaParent.exam:
           _emit(state.copyWith(showExam: true));
-          break;
         case MediaParent.question:
           _emit(state.copyWith(showQuestion: true));
-          break;
         case MediaParent.tactical:
           _emit(state.copyWith(showTactical: true));
-          break;
         default:
           continue;
       }
+    }
 
+    for (final parent in parents) {
       await getAll(parent: parent, clubId: clubId);
     }
   }

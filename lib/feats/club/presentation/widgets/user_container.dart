@@ -1,15 +1,17 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/sl.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class UserContainer extends StatelessWidget {
+class UserContainer extends StatefulWidget {
   final UserModel user;
   final int clubId;
   final bool withPopUp;
   final bool showUsername;
+  final bool isCoach;
 
   const UserContainer({
     super.key,
@@ -17,8 +19,14 @@ class UserContainer extends StatelessWidget {
     required this.clubId,
     required this.withPopUp,
     this.showUsername = false,
+    required this.isCoach,
   });
 
+  @override
+  State<UserContainer> createState() => _UserContainerState();
+}
+
+class _UserContainerState extends State<UserContainer> {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
@@ -35,84 +43,175 @@ class UserContainer extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 24.r,
-              backgroundImage: NetworkImage(user.image.sanitize()),
+              backgroundImage: NetworkImage(widget.user.image.sanitize()),
             ),
             SizedBox(width: 8.w),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  user.name,
+                  widget.user.name,
                   style: theme.textTheme.bodyLarge,
                 ),
-                if (showUsername) ...[
+                if (widget.showUsername) ...[
                   Chirp(
-                    text: '@${user.username}',
+                    text: '@${widget.user.username}',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.surface,
                     ),
-                    color: user.role.color,
+                    color: widget.user.role.color,
                   )
                 ] else ...[
                   Chirp(
-                    text: user.role.name.capitalize,
+                    text: widget.user.role.name.capitalize,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.surface,
                     ),
-                    color: user.role.color,
+                    color: widget.user.role.color,
                   )
                 ]
               ],
             ),
             const Spacer(),
-            withPopUp
-                ? PopupMenuButton(
-                    popUpAnimationStyle: AnimationStyle(
-                      curve: Easing.emphasizedDecelerate,
-                      duration: const Duration(milliseconds: 500),
-                    ),
-                    icon: const Icon(Icons.more_vert), 
-                    itemBuilder: (context) {
-                      return [
-                        PopupMenuItem(
-                          child: Row(
-                            children: [
-                              const Icon(Icons.edit),
-                              const SizedBox(width: 8),
-                              Text(
-                                context.str?.edit ?? 'Edit',
-                              ),
-                            ],
-                          ),
+            widget.withPopUp
+                ? widget.isCoach
+                    ? Container()
+                    : PopupMenuButton(
+                        popUpAnimationStyle: AnimationStyle(
+                          curve: Easing.emphasizedDecelerate,
+                          duration: const Duration(milliseconds: 500),
                         ),
-                        PopupMenuItem(
-                          child: Row(
-                            children: [
-                              const Icon(Icons.delete),
-                              const SizedBox(width: 8),
-                              Text(
-                                context.str?.kick ?? 'Kick',
+                        icon: const Icon(Icons.more_vert),
+                        itemBuilder: (context) {
+                          return [
+                            PopupMenuItem(
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.delete),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    context.str?.kick ?? 'Kick',
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          onTap: () =>
-                              context.read<ClubCubit>().kick(clubId, user.id),
-                        ),
-                      ];
-                    },
-                  )
+                              onTap: () => context
+                                  .read<ClubCubit>()
+                                  .kick(widget.clubId, widget.user.id),
+                            ),
+                          ];
+                        },
+                      )
                 : ElevatedButton(
-                    onPressed: () =>
-                        context.read<ClubCubit>().addUser(clubId, user.id),
+                    onPressed: () => _showAddMemberDialog(context),
                     child: Text(
                       context.str?.add ?? 'Add',
-                      style: theme.textTheme.bodyMedium
-                          ?.copyWith(color: theme.colorScheme.surface),
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
           ],
         ),
       ),
+    );
+  }
+
+  void _showAddMemberDialog(BuildContext context) {
+    UserRole selectedRole = UserRole.athlete;
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: H2Text("Add new member"),
+          content: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  DropdownButton<UserRole>(
+                    value: selectedRole,
+                    onChanged: (UserRole? newValue) {
+                      if (newValue != null) {
+                        setState(() {
+                          selectedRole = newValue;
+                        });
+                      }
+                    },
+                    items: UserRole.values.map<DropdownMenuItem<UserRole>>(
+                      (UserRole value) {
+                        return DropdownMenuItem<UserRole>(
+                          value: value,
+                          child: H3Text(value.name.capitalize),
+                        );
+                      },
+                    ).toList(),
+                  ),
+                ],
+              );
+            },
+          ),
+          actions: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        WidgetStateProperty.all<Color>(const Color(0xff2EC12B)),
+                  ),
+                  onPressed: () {
+                    sl<ClubCubit>()
+                        .addUser(widget.clubId, widget.user.id, selectedRole)
+                        .then(
+                      (val) {
+                        if (val) {
+                          ToastModel(
+                                  message: 'Success add member',
+                                  type: ToastType.success)
+                              .fire(context);
+                          Navigator.of(context).pop();
+                        } else {
+                          ToastModel(
+                                  message: 'Failed add member',
+                                  type: ToastType.error)
+                              .fire(context);
+                          Navigator.of(context).pop();
+                        }
+                      },
+                    );
+                  },
+                  child: Text(
+                    "Confirm",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        WidgetStateProperty.all<Color>(const Color(0xffF15858)),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    context.str?.cancel ?? 'Cancel',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

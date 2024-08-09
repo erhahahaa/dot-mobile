@@ -28,12 +28,13 @@ abstract class ClubRepo {
     int userId,
   );
 
-  Future<Either<Failure, ClubModel>> leave(
+  Future<Either<Failure, String>> leave(
     int clubId,
   );
 
   Future<Either<Failure, UserModel>> addUser(
     int clubId,
     int userId,
+    UserRole role,
   );
 }

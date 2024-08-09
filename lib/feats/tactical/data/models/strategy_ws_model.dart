@@ -11,6 +11,8 @@ enum WebSocketEvent {
   leave,
   @JsonValue('message')
   message,
+  @JsonValue('destroy')
+  destroy,
 }
 
 @freezed

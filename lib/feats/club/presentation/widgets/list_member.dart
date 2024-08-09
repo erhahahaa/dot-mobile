@@ -38,6 +38,7 @@ class ListMember extends StatelessWidget {
                 user: fakeUser[index],
                 clubId: clubId,
                 withPopUp: false,
+                isCoach: fakeUser[index].role == UserRole.coach,
               );
             },
           ),
@@ -66,6 +67,7 @@ class ListMember extends StatelessWidget {
             user: user,
             clubId: clubId,
             withPopUp: true,
+            isCoach: members[index].role == UserRole.coach,
           );
         },
       ),

@@ -35,6 +35,9 @@ class CoachAddMemberScreen extends StatelessWidget {
                     clubId: clubId,
                     showUsername: true,
                     isLoading: state.state == BaseState.loading,
+                    isCoach: state.users
+                        .where((e) => e.id == state.user.id)
+                        .isNotEmpty,
                   ),
                 ],
               ),

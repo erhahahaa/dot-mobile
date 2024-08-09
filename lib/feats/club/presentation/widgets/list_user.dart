@@ -9,7 +9,7 @@ class ListUser extends StatelessWidget {
   final List<UserModel> users;
   final int clubId;
   final EdgeInsetsGeometry? padding;
-  final bool showUsername, isLoading;
+  final bool showUsername, isLoading, isCoach;
 
   const ListUser({
     super.key,
@@ -18,6 +18,7 @@ class ListUser extends StatelessWidget {
     this.padding,
     this.showUsername = false,
     required this.isLoading,
+    required this.isCoach,
   });
 
   @override
@@ -39,6 +40,7 @@ class ListUser extends StatelessWidget {
                 user: fakeUser[index],
                 clubId: clubId,
                 withPopUp: false,
+                isCoach: isCoach,
                 showUsername: showUsername,
               );
             },
@@ -70,6 +72,7 @@ class ListUser extends StatelessWidget {
             user: user,
             clubId: clubId,
             withPopUp: false,
+            isCoach: isCoach,
             showUsername: showUsername,
           );
         },

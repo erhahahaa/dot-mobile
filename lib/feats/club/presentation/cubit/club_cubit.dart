@@ -71,7 +71,17 @@ class ClubCubit extends Cubit<ClubState> {
     final res = await _clubRepo.getAll(const PaginationParams());
 
     res.fold(
-      (l) => emitInitial(),
+      (l) => safeEmit(
+        isClosed: isClosed,
+        emit: emit,
+        state: state.copyWith(
+          state: BaseState.initial,
+          image: null,
+          updatedClub: null,
+          clubs: [],
+          filteredClubs: [],
+        ),
+      ),
       (r) {
         safeEmit(
           isClosed: isClosed,
@@ -274,68 +284,90 @@ class ClubCubit extends Cubit<ClubState> {
           state: state.copyWith(
             state: BaseState.success,
             members: members,
+            filteredMembers: members,
           ),
         );
       },
     );
   }
 
-  Future<void> leave(
+  Future<bool> leave(
     int clubId,
   ) async {
     emitLoading();
     final res = await _clubRepo.leave(clubId);
 
-    res.fold(
-      (l) => safeEmit(
-        isClosed: isClosed,
-        emit: emit,
-        state: state.copyWith(
-          state: BaseState.failure,
-          failure: l,
-        ),
-      ),
-      (r) {
-        final List<ClubModel> clubs = List.from(state.clubs);
-        clubs.removeWhere((element) => element.id == r.id);
-
+    return res.fold(
+      (l) {
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            state: BaseState.success,
-            clubs: clubs,
-            filteredClubs: clubs,
+            state: BaseState.failure,
+            failure: l,
           ),
         );
+        return false;
+      },
+      (r) {
+        try {
+          final List<ClubModel> clubs = List.from(state.clubs);
+          clubs.removeWhere((element) => element.id == int.parse(r));
+
+          safeEmit(
+            isClosed: isClosed,
+            emit: emit,
+            state: state.copyWith(
+              state: BaseState.success,
+              clubs: clubs,
+              filteredClubs: clubs,
+            ),
+          );
+
+          return true;
+        } catch (e) {
+          return false;
+        }
       },
     );
   }
 
-  Future<void> addUser(
+  Future<bool> addUser(
     int clubId,
     int userId,
+    UserRole role,
   ) async {
     emitLoading();
-    final res = await _clubRepo.addUser(clubId, userId);
+    final res = await _clubRepo.addUser(clubId, userId, role);
 
-    res.fold(
-      (l) => safeEmit(
-        isClosed: isClosed,
-        emit: emit,
-        state: state.copyWith(
-          state: BaseState.failure,
-          failure: l,
-        ),
-      ),
+    return res.fold(
+      (l) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            state: BaseState.failure,
+            failure: l,
+          ),
+        );
+        return false;
+      },
       (r) {
+        final List<UserModel> members = List.from(state.members);
+        members.add(r);
+        final List<UserModel> users = List.from(state.users);
+        users.removeWhere((element) => element.id == r.id);
         safeEmit(
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
             state: BaseState.success,
+            members: members,
+            filteredMembers: members,
+            users: users,
           ),
         );
+        return true;
       },
     );
   }
@@ -356,6 +388,10 @@ class ClubCubit extends Cubit<ClubState> {
         ),
       ),
       (r) {
+        r.removeWhere((element) => element.id == state.user.id);
+        r.removeWhere((element) {
+          return state.members.where((e) => e.id == element.id).isNotEmpty;
+        });
         safeEmit(
           isClosed: isClosed,
           emit: emit,
