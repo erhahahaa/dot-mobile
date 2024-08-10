@@ -23,7 +23,7 @@ abstract class ClubRepo {
     int clubId,
   );
 
-  Future<Either<Failure, UserModel>> kick(
+  Future<Either<Failure, UserToClub>> kick(
     int clubId,
     int userId,
   );

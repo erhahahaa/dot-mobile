@@ -6,6 +6,36 @@ part of 'user_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$UserToClubImpl _$$UserToClubImplFromJson(Map<String, dynamic> json) =>
+    _$UserToClubImpl(
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      userId: (json['userId'] as num?)?.toInt() ?? 0,
+      clubId: (json['clubId'] as num?)?.toInt() ?? 0,
+      role: $enumDecodeNullable(_$UserRoleEnumMap, json['role']) ??
+          UserRole.athlete,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$$UserToClubImplToJson(_$UserToClubImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'userId': instance.userId,
+      'clubId': instance.clubId,
+      'role': _$UserRoleEnumMap[instance.role]!,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };
+
+const _$UserRoleEnumMap = {
+  UserRole.coach: 'coach',
+  UserRole.athlete: 'athlete',
+};
+
 _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
     _$UserModelImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
@@ -58,9 +88,4 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
 const _$UserGenderEnumMap = {
   UserGender.male: 'male',
   UserGender.female: 'female',
-};
-
-const _$UserRoleEnumMap = {
-  UserRole.coach: 'coach',
-  UserRole.athlete: 'athlete',
 };

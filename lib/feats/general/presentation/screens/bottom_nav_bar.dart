@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class BottomNavBar extends StatelessWidget {
+class BottomNavBar extends StatelessWidget with FirebaseCrashLogger {
   final StatefulNavigationShell navigationShell;
   final GoRouterState routerState;
   final bool showBottomNavBar;
@@ -18,10 +18,17 @@ class BottomNavBar extends StatelessWidget {
     this.showCoachNavBar = false,
   });
 
-  void _goBranch(int index) => navigationShell.goBranch(
+  void _goBranch(int index) {
+    try {
+      navigationShell.goBranch(
         index,
         initialLocation: index == navigationShell.currentIndex,
       );
+    } catch (error, stackTrace) {
+      nonFatalError(error: error, stackTrace: stackTrace);
+      navigationShell.goBranch(index);
+    }
+  }
 
   bool get isRootBar {
     final split = routerState.uri.toString().split("/");

@@ -134,13 +134,13 @@ class ClubRepoImpl implements ClubRepo {
   }
 
   @override
-  Future<Either<Failure, UserModel>> kick(
+  Future<Either<Failure, UserToClub>> kick(
     int clubId,
     int userId,
   ) async {
     final res = await _remote.getRequest(
       '${ListAPI.CLUB}/$clubId/kick/$userId',
-      converter: (res) => UserModel.fromJson(res['data']),
+      converter: (res) => UserToClub.fromJson(res['data']),
     );
 
     return res;

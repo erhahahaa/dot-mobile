@@ -76,6 +76,14 @@ class EvaluationCubit extends Cubit<EvaluationState> {
 
   Future<void> getEvaluations(List<int> examIds) async {
     emitLoading();
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: state.copyWith(
+        evaluations: [],
+        filteredEvaluations: [],
+      ),
+    );
     for (final id in examIds) {
       final res = await _evaluationRepo.getAll(const PaginationParams(), id);
       res.fold(
@@ -256,6 +264,12 @@ class EvaluationCubit extends Cubit<EvaluationState> {
           evaluations[index] = evaluations[index].copyWith(
             evaluations: params.evaluations,
           );
+          for (final e in evaluations) {
+            // remove that has null exam
+            if (e.exam == null) {
+              evaluations.remove(e);
+            }
+          }
         }
         safeEmit(
           isClosed: isClosed,

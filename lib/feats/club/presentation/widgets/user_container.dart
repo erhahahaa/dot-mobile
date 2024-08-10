@@ -1,6 +1,5 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
-import 'package:dot_coaching/sl.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -125,95 +124,101 @@ class _UserContainerState extends State<UserContainer> {
 
     showDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const H2Text("Add new member"),
-          content: StatefulBuilder(
-            builder: (BuildContext context, StateSetter setState) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  DropdownButton<UserRole>(
-                    value: selectedRole,
-                    onChanged: (UserRole? newValue) {
-                      if (newValue != null) {
-                        setState(() {
-                          selectedRole = newValue;
-                        });
-                      }
-                    },
-                    items: UserRole.values.map<DropdownMenuItem<UserRole>>(
-                      (UserRole value) {
-                        return DropdownMenuItem<UserRole>(
-                          value: value,
-                          child: H3Text(value.name.capitalize),
-                        );
-                      },
-                    ).toList(),
-                  ),
-                ],
-              );
+      builder: (c) {
+        return BlocProvider.value(
+          value: context.read<ClubCubit>(),
+          child: BlocListener<ClubCubit, ClubState>(
+            listener: (context, state) {
+              if (state.failure != null) {
+                ToastModel(
+                  message: state.failure?.message ?? 'An error occured',
+                  type: ToastType.error,
+                ).fire(context);
+              }
+              if (state.state == BaseState.success) {
+                ToastModel(
+                  message: 'Member added successfully',
+                  type: ToastType.success,
+                ).fire(context);
+                Navigator.of(c).pop();
+              }
             },
-          ),
-          actions: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStateProperty.all<Color>(const Color(0xff2EC12B)),
-                  ),
-                  onPressed: () {
-                    sl<ClubCubit>()
-                        .addUser(widget.clubId, widget.user.id, selectedRole)
-                        .then(
-                      (val) {
-                        if (val) {
-                          ToastModel(
-                                  message: 'Success add member',
-                                  type: ToastType.success)
-                              .fire(context);
-                          Navigator.of(context).pop();
-                        } else {
-                          ToastModel(
-                                  message: 'Failed add member',
-                                  type: ToastType.error)
-                              .fire(context);
-                          Navigator.of(context).pop();
-                        }
+            child: AlertDialog(
+              title: const H2Text("Add new member"),
+              content: StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      DropdownButton<UserRole>(
+                        value: selectedRole,
+                        onChanged: (UserRole? newValue) {
+                          if (newValue != null) {
+                            setState(() {
+                              selectedRole = newValue;
+                            });
+                          }
+                        },
+                        items: UserRole.values.map<DropdownMenuItem<UserRole>>(
+                          (UserRole value) {
+                            return DropdownMenuItem<UserRole>(
+                              value: value,
+                              child: H3Text(value.name.capitalize),
+                            );
+                          },
+                        ).toList(),
+                      ),
+                    ],
+                  );
+                },
+              ),
+              actions: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all<Color>(
+                            const Color(0xff2EC12B)),
+                      ),
+                      onPressed: () {
+                        context.read<ClubCubit>().addUser(
+                              widget.clubId,
+                              widget.user.id,
+                              selectedRole,
+                            );
                       },
-                    );
-                  },
-                  child: Text(
-                    "Confirm",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
+                      child: Text(
+                        "Confirm",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStateProperty.all<Color>(const Color(0xffF15858)),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    context.str?.cancel ?? 'Cancel',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all<Color>(
+                            const Color(0xffF15858)),
+                      ),
+                      onPressed: () {
+                        Navigator.of(c).pop();
+                      },
+                      child: Text(
+                        context.str?.cancel ?? 'Cancel',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         );
       },
     );

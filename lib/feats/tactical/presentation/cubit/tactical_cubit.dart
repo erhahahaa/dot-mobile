@@ -236,10 +236,8 @@ class TacticalCubit extends Cubit<TacticalState> {
         ),
       );
     }, (r) {
-      log.e("TacticalCubit.update $r");
       final List<TacticalModel> tacticals = List.from(state.tacticals);
       final index = tacticals.indexWhere((element) => element.id == r.id);
-      log.f('Index $index');
       if (index != -1) {
         tacticals[index] = r;
       } else {

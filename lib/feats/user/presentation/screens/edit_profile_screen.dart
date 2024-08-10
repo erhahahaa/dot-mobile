@@ -243,7 +243,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             listener: (context, state) {
                               if (state.state == BaseState.failure ||
                                   state.failure != null) {
-                                log.e(state.failure?.message);
                                 if (state.failure?.message.startsWith(
                                         'Email, username, or phone already exists') ??
                                     false) {

@@ -120,16 +120,16 @@ class _CoachExamFormScreenState extends State<CoachExamFormScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SportImageContainer(
-                      imageUrl: widget.exam?.media?.url,
-                      file: state.image,
-                      width: 344.w,
-                      height: 200.w,
-                      borderRadius: BorderRadius.circular(12.r),
-                      onPressed: () =>
-                          context.read<ExamCubit>().pickImageFromGallery(),
-                    ),
-                    SizedBox(height: 16.h),
+                    // SportImageContainer(
+                    //   imageUrl: widget.exam?.media?.url,
+                    //   file: state.image,
+                    //   width: 344.w,
+                    //   height: 200.w,
+                    //   borderRadius: BorderRadius.circular(12.r),
+                    //   onPressed: () =>
+                    //       context.read<ExamCubit>().pickImageFromGallery(),
+                    // ),
+                    // SizedBox(height: 16.h),
                     TextF(
                       key: const Key('createExamForm_titleField'),
                       currFocusNode: _titleFn,

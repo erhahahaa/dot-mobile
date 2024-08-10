@@ -8,6 +8,21 @@ part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
 @freezed
+class UserToClub with _$UserToClub {
+  const factory UserToClub({
+    @Default(0) int id,
+    @Default(0) int userId,
+    @Default(0) int clubId,
+    @Default(UserRole.athlete) UserRole role,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) = _UserToClub;
+
+  factory UserToClub.fromJson(Map<String, dynamic> json) =>
+      _$UserToClubFromJson(json);
+}
+
+@freezed
 class UserModel with _$UserModel {
   const factory UserModel({
     @Default(0) int id,

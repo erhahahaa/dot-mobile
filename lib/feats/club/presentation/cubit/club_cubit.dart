@@ -228,7 +228,7 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            state: BaseState.success,
+            state: BaseState.initial,
             clubs: clubs,
             filteredClubs: clubs,
           ),
@@ -251,7 +251,7 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            state: BaseState.success,
+            state: BaseState.initial,
             members: r,
             filteredMembers: r,
           ),
@@ -278,8 +278,7 @@ class ClubCubit extends Cubit<ClubState> {
       ),
       (r) {
         final List<UserModel> members = List.from(state.members);
-        members.removeWhere((element) => element.id == r.id);
-
+        members.removeWhere((element) => element.id == r.userId);
         safeEmit(
           isClosed: isClosed,
           emit: emit,
@@ -334,7 +333,7 @@ class ClubCubit extends Cubit<ClubState> {
     );
   }
 
-  Future<bool> addUser(
+  Future<void> addUser(
     int clubId,
     int userId,
     UserRole role,
@@ -352,13 +351,15 @@ class ClubCubit extends Cubit<ClubState> {
             failure: l,
           ),
         );
-        return false;
       },
       (r) {
         final List<UserModel> members = List.from(state.members);
         members.add(r);
         final List<UserModel> users = List.from(state.users);
+        log.f('users: $users');
         users.removeWhere((element) => element.id == r.id);
+        log.f('users: $users');
+        log.f('r: $r');
         safeEmit(
           isClosed: isClosed,
           emit: emit,
@@ -369,7 +370,7 @@ class ClubCubit extends Cubit<ClubState> {
             users: users,
           ),
         );
-        return true;
+        safeEmit(isClosed: isClosed, emit: emit, state: state);
       },
     );
   }
@@ -398,7 +399,7 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            state: BaseState.success,
+            state: BaseState.initial,
             users: r,
           ),
         );

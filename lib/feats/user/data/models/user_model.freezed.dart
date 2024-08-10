@@ -14,6 +14,253 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+UserToClub _$UserToClubFromJson(Map<String, dynamic> json) {
+  return _UserToClub.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UserToClub {
+  int get id => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
+  int get clubId => throw _privateConstructorUsedError;
+  UserRole get role => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserToClubCopyWith<UserToClub> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserToClubCopyWith<$Res> {
+  factory $UserToClubCopyWith(
+          UserToClub value, $Res Function(UserToClub) then) =
+      _$UserToClubCopyWithImpl<$Res, UserToClub>;
+  @useResult
+  $Res call(
+      {int id,
+      int userId,
+      int clubId,
+      UserRole role,
+      DateTime? createdAt,
+      DateTime? updatedAt});
+}
+
+/// @nodoc
+class _$UserToClubCopyWithImpl<$Res, $Val extends UserToClub>
+    implements $UserToClubCopyWith<$Res> {
+  _$UserToClubCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? userId = null,
+    Object? clubId = null,
+    Object? role = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      clubId: null == clubId
+          ? _value.clubId
+          : clubId // ignore: cast_nullable_to_non_nullable
+              as int,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as UserRole,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$UserToClubImplCopyWith<$Res>
+    implements $UserToClubCopyWith<$Res> {
+  factory _$$UserToClubImplCopyWith(
+          _$UserToClubImpl value, $Res Function(_$UserToClubImpl) then) =
+      __$$UserToClubImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      int userId,
+      int clubId,
+      UserRole role,
+      DateTime? createdAt,
+      DateTime? updatedAt});
+}
+
+/// @nodoc
+class __$$UserToClubImplCopyWithImpl<$Res>
+    extends _$UserToClubCopyWithImpl<$Res, _$UserToClubImpl>
+    implements _$$UserToClubImplCopyWith<$Res> {
+  __$$UserToClubImplCopyWithImpl(
+      _$UserToClubImpl _value, $Res Function(_$UserToClubImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? userId = null,
+    Object? clubId = null,
+    Object? role = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+  }) {
+    return _then(_$UserToClubImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      clubId: null == clubId
+          ? _value.clubId
+          : clubId // ignore: cast_nullable_to_non_nullable
+              as int,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as UserRole,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$UserToClubImpl implements _UserToClub {
+  const _$UserToClubImpl(
+      {this.id = 0,
+      this.userId = 0,
+      this.clubId = 0,
+      this.role = UserRole.athlete,
+      this.createdAt,
+      this.updatedAt});
+
+  factory _$UserToClubImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserToClubImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int id;
+  @override
+  @JsonKey()
+  final int userId;
+  @override
+  @JsonKey()
+  final int clubId;
+  @override
+  @JsonKey()
+  final UserRole role;
+  @override
+  final DateTime? createdAt;
+  @override
+  final DateTime? updatedAt;
+
+  @override
+  String toString() {
+    return 'UserToClub(id: $id, userId: $userId, clubId: $clubId, role: $role, createdAt: $createdAt, updatedAt: $updatedAt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserToClubImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.clubId, clubId) || other.clubId == clubId) &&
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, userId, clubId, role, createdAt, updatedAt);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserToClubImplCopyWith<_$UserToClubImpl> get copyWith =>
+      __$$UserToClubImplCopyWithImpl<_$UserToClubImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UserToClubImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UserToClub implements UserToClub {
+  const factory _UserToClub(
+      {final int id,
+      final int userId,
+      final int clubId,
+      final UserRole role,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$UserToClubImpl;
+
+  factory _UserToClub.fromJson(Map<String, dynamic> json) =
+      _$UserToClubImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  int get userId;
+  @override
+  int get clubId;
+  @override
+  UserRole get role;
+  @override
+  DateTime? get createdAt;
+  @override
+  DateTime? get updatedAt;
+  @override
+  @JsonKey(ignore: true)
+  _$$UserToClubImplCopyWith<_$UserToClubImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 UserModel _$UserModelFromJson(Map<String, dynamic> json) {
   return _UserModel.fromJson(json);
 }
