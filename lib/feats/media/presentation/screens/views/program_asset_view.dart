@@ -93,7 +93,7 @@ class _ProgramAssetViewState extends State<ProgramAssetView> {
                   );
                 },
                 text: 'Upload',
-                icon: Icon(Icons.upload),
+                icon: const Icon(Icons.upload),
                 isLoading: widget.isLoading,
                 isDisabled: widget.isLoading,
               )

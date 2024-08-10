@@ -49,7 +49,7 @@ class _ExamAssetViewState extends State<ExamAssetView> {
                 );
               },
               text: 'Upload',
-              icon: Icon(Icons.upload),
+              icon: const Icon(Icons.upload),
               isLoading: widget.isLoading,
               isDisabled: widget.isLoading,
             )
