@@ -212,7 +212,10 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.athleteProfile.path,
                 name: AppRoutes.athleteProfile.name,
-                builder: (_, __) => const ProfileScreen(),
+                builder: (c, __) => BlocProvider.value(
+                  value: c.read<UserCubit>()..init(),
+                  child: const ProfileScreen(),
+                ),
               ),
               GoRoute(
                 path: AppRoutes.athleteEditProfile.path,

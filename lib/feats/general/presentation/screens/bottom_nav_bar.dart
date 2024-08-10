@@ -20,7 +20,7 @@ class BottomNavBar extends StatelessWidget {
 
   void _goBranch(int index) => navigationShell.goBranch(
         index,
-        // initialLocation: index == navigationShell.currentIndex,
+        initialLocation: index == navigationShell.currentIndex,
       );
 
   bool get isRootBar {
@@ -50,7 +50,7 @@ class BottomNavBar extends StatelessWidget {
       unselectedItemColor: isDark ? Colors.grey[800] : Colors.grey[300],
       selectedItemColor: isDark ? Colors.white : Colors.black,
       currentIndex: navigationShell.currentIndex,
-      items: showCoachNavBar ? NavRoutes.coachRoutes : NavRoutes.athleteRoutes,
+      items: NavRoutes.athleteRoutes,
       dotIndicatorColor: isDark ? Colors.white : Colors.black,
       onTap: _goBranch,
     );
