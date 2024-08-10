@@ -21,13 +21,12 @@ CreateEvaluationParams _$CreateEvaluationParamsFromJson(
 
 /// @nodoc
 mixin _$CreateEvaluationParams {
-  int get examId => throw _privateConstructorUsedError;
   int get clubId => throw _privateConstructorUsedError;
-  int get questionId => throw _privateConstructorUsedError;
-  int get coachId => throw _privateConstructorUsedError;
+  int get examId => throw _privateConstructorUsedError;
   int get athleteId => throw _privateConstructorUsedError;
-  String? get answer => throw _privateConstructorUsedError;
-  int? get score => throw _privateConstructorUsedError;
+  int get coachId => throw _privateConstructorUsedError;
+  List<QuestionEvaluationModel> get evaluations =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,13 +41,11 @@ abstract class $CreateEvaluationParamsCopyWith<$Res> {
       _$CreateEvaluationParamsCopyWithImpl<$Res, CreateEvaluationParams>;
   @useResult
   $Res call(
-      {int examId,
-      int clubId,
-      int questionId,
-      int coachId,
+      {int clubId,
+      int examId,
       int athleteId,
-      String? answer,
-      int? score});
+      int coachId,
+      List<QuestionEvaluationModel> evaluations});
 }
 
 /// @nodoc
@@ -65,43 +62,33 @@ class _$CreateEvaluationParamsCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? examId = null,
     Object? clubId = null,
-    Object? questionId = null,
-    Object? coachId = null,
+    Object? examId = null,
     Object? athleteId = null,
-    Object? answer = freezed,
-    Object? score = freezed,
+    Object? coachId = null,
+    Object? evaluations = null,
   }) {
     return _then(_value.copyWith(
-      examId: null == examId
-          ? _value.examId
-          : examId // ignore: cast_nullable_to_non_nullable
-              as int,
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      questionId: null == questionId
-          ? _value.questionId
-          : questionId // ignore: cast_nullable_to_non_nullable
-              as int,
-      coachId: null == coachId
-          ? _value.coachId
-          : coachId // ignore: cast_nullable_to_non_nullable
+      examId: null == examId
+          ? _value.examId
+          : examId // ignore: cast_nullable_to_non_nullable
               as int,
       athleteId: null == athleteId
           ? _value.athleteId
           : athleteId // ignore: cast_nullable_to_non_nullable
               as int,
-      answer: freezed == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      score: freezed == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as int?,
+      coachId: null == coachId
+          ? _value.coachId
+          : coachId // ignore: cast_nullable_to_non_nullable
+              as int,
+      evaluations: null == evaluations
+          ? _value.evaluations
+          : evaluations // ignore: cast_nullable_to_non_nullable
+              as List<QuestionEvaluationModel>,
     ) as $Val);
   }
 }
@@ -116,13 +103,11 @@ abstract class _$$CreateEvaluationParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int examId,
-      int clubId,
-      int questionId,
-      int coachId,
+      {int clubId,
+      int examId,
       int athleteId,
-      String? answer,
-      int? score});
+      int coachId,
+      List<QuestionEvaluationModel> evaluations});
 }
 
 /// @nodoc
@@ -138,43 +123,33 @@ class __$$CreateEvaluationParamsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? examId = null,
     Object? clubId = null,
-    Object? questionId = null,
-    Object? coachId = null,
+    Object? examId = null,
     Object? athleteId = null,
-    Object? answer = freezed,
-    Object? score = freezed,
+    Object? coachId = null,
+    Object? evaluations = null,
   }) {
     return _then(_$CreateEvaluationParamsImpl(
-      examId: null == examId
-          ? _value.examId
-          : examId // ignore: cast_nullable_to_non_nullable
-              as int,
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      questionId: null == questionId
-          ? _value.questionId
-          : questionId // ignore: cast_nullable_to_non_nullable
-              as int,
-      coachId: null == coachId
-          ? _value.coachId
-          : coachId // ignore: cast_nullable_to_non_nullable
+      examId: null == examId
+          ? _value.examId
+          : examId // ignore: cast_nullable_to_non_nullable
               as int,
       athleteId: null == athleteId
           ? _value.athleteId
           : athleteId // ignore: cast_nullable_to_non_nullable
               as int,
-      answer: freezed == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      score: freezed == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as int?,
+      coachId: null == coachId
+          ? _value.coachId
+          : coachId // ignore: cast_nullable_to_non_nullable
+              as int,
+      evaluations: null == evaluations
+          ? _value._evaluations
+          : evaluations // ignore: cast_nullable_to_non_nullable
+              as List<QuestionEvaluationModel>,
     ));
   }
 }
@@ -183,40 +158,40 @@ class __$$CreateEvaluationParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CreateEvaluationParamsImpl implements _CreateEvaluationParams {
   const _$CreateEvaluationParamsImpl(
-      {this.examId = 0,
-      this.clubId = 0,
-      this.questionId = 0,
-      this.coachId = 0,
+      {this.clubId = 0,
+      this.examId = 0,
       this.athleteId = 0,
-      this.answer,
-      this.score});
+      this.coachId = 0,
+      final List<QuestionEvaluationModel> evaluations = const []})
+      : _evaluations = evaluations;
 
   factory _$CreateEvaluationParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateEvaluationParamsImplFromJson(json);
 
   @override
   @JsonKey()
-  final int examId;
-  @override
-  @JsonKey()
   final int clubId;
   @override
   @JsonKey()
-  final int questionId;
-  @override
-  @JsonKey()
-  final int coachId;
+  final int examId;
   @override
   @JsonKey()
   final int athleteId;
   @override
-  final String? answer;
+  @JsonKey()
+  final int coachId;
+  final List<QuestionEvaluationModel> _evaluations;
   @override
-  final int? score;
+  @JsonKey()
+  List<QuestionEvaluationModel> get evaluations {
+    if (_evaluations is EqualUnmodifiableListView) return _evaluations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_evaluations);
+  }
 
   @override
   String toString() {
-    return 'CreateEvaluationParams(examId: $examId, clubId: $clubId, questionId: $questionId, coachId: $coachId, athleteId: $athleteId, answer: $answer, score: $score)';
+    return 'CreateEvaluationParams(clubId: $clubId, examId: $examId, athleteId: $athleteId, coachId: $coachId, evaluations: $evaluations)';
   }
 
   @override
@@ -224,21 +199,19 @@ class _$CreateEvaluationParamsImpl implements _CreateEvaluationParams {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateEvaluationParamsImpl &&
-            (identical(other.examId, examId) || other.examId == examId) &&
             (identical(other.clubId, clubId) || other.clubId == clubId) &&
-            (identical(other.questionId, questionId) ||
-                other.questionId == questionId) &&
-            (identical(other.coachId, coachId) || other.coachId == coachId) &&
+            (identical(other.examId, examId) || other.examId == examId) &&
             (identical(other.athleteId, athleteId) ||
                 other.athleteId == athleteId) &&
-            (identical(other.answer, answer) || other.answer == answer) &&
-            (identical(other.score, score) || other.score == score));
+            (identical(other.coachId, coachId) || other.coachId == coachId) &&
+            const DeepCollectionEquality()
+                .equals(other._evaluations, _evaluations));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, examId, clubId, questionId,
-      coachId, athleteId, answer, score);
+  int get hashCode => Object.hash(runtimeType, clubId, examId, athleteId,
+      coachId, const DeepCollectionEquality().hash(_evaluations));
 
   @JsonKey(ignore: true)
   @override
@@ -257,31 +230,26 @@ class _$CreateEvaluationParamsImpl implements _CreateEvaluationParams {
 
 abstract class _CreateEvaluationParams implements CreateEvaluationParams {
   const factory _CreateEvaluationParams(
-      {final int examId,
-      final int clubId,
-      final int questionId,
-      final int coachId,
-      final int athleteId,
-      final String? answer,
-      final int? score}) = _$CreateEvaluationParamsImpl;
+          {final int clubId,
+          final int examId,
+          final int athleteId,
+          final int coachId,
+          final List<QuestionEvaluationModel> evaluations}) =
+      _$CreateEvaluationParamsImpl;
 
   factory _CreateEvaluationParams.fromJson(Map<String, dynamic> json) =
       _$CreateEvaluationParamsImpl.fromJson;
 
   @override
-  int get examId;
-  @override
   int get clubId;
   @override
-  int get questionId;
-  @override
-  int get coachId;
+  int get examId;
   @override
   int get athleteId;
   @override
-  String? get answer;
+  int get coachId;
   @override
-  int? get score;
+  List<QuestionEvaluationModel> get evaluations;
   @override
   @JsonKey(ignore: true)
   _$$CreateEvaluationParamsImplCopyWith<_$CreateEvaluationParamsImpl>

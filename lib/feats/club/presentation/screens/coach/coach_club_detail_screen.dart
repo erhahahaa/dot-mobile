@@ -74,7 +74,7 @@ class _ClubDetailScreenState extends State<CoachClubDetailScreen> {
                           },
                         ),
                         ManageButton(
-                          icon: Assets.icons.exam.svg(width: 32.w),
+                          icon: Assets.icons.evaluate.svg(width: 32.w),
                           text: 'Evaluate',
                           onTap: () {
                             context.pushNamed(

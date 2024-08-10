@@ -30,6 +30,7 @@ const _$WebSocketEventEnumMap = {
   WebSocketEvent.join: 'join',
   WebSocketEvent.leave: 'leave',
   WebSocketEvent.message: 'message',
+  WebSocketEvent.destroy: 'destroy',
 };
 
 _$StrategyWsParamModelImpl _$$StrategyWsParamModelImplFromJson(

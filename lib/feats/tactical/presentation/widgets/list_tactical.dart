@@ -51,12 +51,10 @@ class ListTactical extends StatelessWidget {
     }
 
     if (tacticals.isEmpty) {
-      return EightContainer(
-        child: Center(
-          child: Text(
-            'No tacticals found',
-            style: context.theme.textTheme.bodyLarge,
-          ),
+      return Center(
+        child: Text(
+          'No tacticals found',
+          style: context.theme.textTheme.bodyLarge,
         ),
       );
     }

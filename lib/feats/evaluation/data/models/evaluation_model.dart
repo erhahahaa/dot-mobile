@@ -14,7 +14,10 @@ class EvaluationModel with _$EvaluationModel {
     @Default(0) int clubId,
     @Default(0) int athleteId,
     @Default(0) int coachId,
-    @Default([]) List<QuestionEvaluationModel> questions,
+    @Default([]) List<QuestionEvaluationModel> evaluations,
+    ExamModel? exam,
+    UserModel? athlete,
+    UserModel? coach,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _EvaluationModel;
@@ -29,7 +32,7 @@ class EvaluationModel with _$EvaluationModel {
       clubId: entity.clubId,
       athleteId: entity.athleteId,
       coachId: entity.coachId,
-      questions: entity.questions
+      evaluations: entity.evaluations
           .map((e) => QuestionEvaluationModel.fromEntity(e))
           .toList(),
       createdAt: entity.createdAt,
@@ -44,7 +47,7 @@ class EvaluationModel with _$EvaluationModel {
       clubId: Random().nextInt(100),
       athleteId: Random().nextInt(100),
       coachId: Random().nextInt(100),
-      questions:
+      evaluations:
           List.generate(3, (index) => QuestionEvaluationModel.fake()).toList(),
     );
   }
@@ -58,7 +61,7 @@ extension EvaluationModelX on EvaluationModel {
       clubId: clubId,
       athleteId: athleteId,
       coachId: coachId,
-      questions: questions.map((e) => e.toEntity()).toList(),
+      evaluations: evaluations.map((e) => e.toEntity()).toList(),
       createdAt: createdAt,
       updatedAt: updatedAt,
     );
@@ -71,6 +74,7 @@ class QuestionEvaluationModel with _$QuestionEvaluationModel {
     @Default(0) int questionId,
     String? answer,
     int? score,
+    String? questionName,
   }) = _QuestionEvaluationModel;
 
   factory QuestionEvaluationModel.fromJson(Map<String, dynamic> json) =>
@@ -81,6 +85,7 @@ class QuestionEvaluationModel with _$QuestionEvaluationModel {
       questionId: Random().nextInt(100),
       answer: 'Answer',
       score: Random().nextInt(100),
+      questionName: 'Evaluation Name',
     );
   }
 
@@ -89,6 +94,7 @@ class QuestionEvaluationModel with _$QuestionEvaluationModel {
       questionId: entity.questionId,
       answer: entity.answer,
       score: entity.score,
+      questionName: entity.questionName,
     );
   }
 }

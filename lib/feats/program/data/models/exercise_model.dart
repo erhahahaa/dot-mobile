@@ -74,6 +74,7 @@ class ProgramExerciseModel with _$ProgramExerciseModel {
       intensity: ProgramUnitValueModel.fake(),
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
+      media: MediaEmbedModel.fake(),
     );
   }
 }

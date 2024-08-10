@@ -169,7 +169,7 @@ class _$CreateQuestionParamsImpl implements _CreateQuestionParams {
       {this.order = 0,
       this.examId = 0,
       this.mediaId,
-      this.type = QuestionType.essay,
+      this.type = QuestionType.text,
       this.question = '',
       final List<QuestionOptionModel> options = const []})
       : _options = options;

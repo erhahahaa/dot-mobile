@@ -189,4 +189,19 @@ class ExamCubit extends Cubit<ExamState> {
       },
     );
   }
+
+  void searchExam(String query) {
+    final List<ExamModel> exams = List.from(state.exams);
+    final List<ExamModel> filteredExams = exams
+        .where((element) => element.title.toLowerCase().contains(query))
+        .toList();
+
+    safeEmit(
+      isClosed: isClosed,
+      emit: emit,
+      state: state.copyWith(
+        filteredExams: filteredExams,
+      ),
+    );
+  }
 }

@@ -12,6 +12,7 @@ class UserContainer extends StatefulWidget {
   final bool withPopUp;
   final bool showUsername;
   final bool isCoach;
+  final Widget? evaluate;
 
   const UserContainer({
     super.key,
@@ -20,6 +21,7 @@ class UserContainer extends StatefulWidget {
     required this.withPopUp,
     this.showUsername = false,
     required this.isCoach,
+    this.evaluate,
   });
 
   @override
@@ -73,43 +75,45 @@ class _UserContainerState extends State<UserContainer> {
               ],
             ),
             const Spacer(),
-            widget.withPopUp
-                ? widget.isCoach
-                    ? Container()
-                    : PopupMenuButton(
-                        popUpAnimationStyle: AnimationStyle(
-                          curve: Easing.emphasizedDecelerate,
-                          duration: const Duration(milliseconds: 500),
-                        ),
-                        icon: const Icon(Icons.more_vert),
-                        itemBuilder: (context) {
-                          return [
-                            PopupMenuItem(
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.delete),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    context.str?.kick ?? 'Kick',
-                                  ),
-                                ],
-                              ),
-                              onTap: () => context
-                                  .read<ClubCubit>()
-                                  .kick(widget.clubId, widget.user.id),
+            widget.evaluate != null
+                ? widget.evaluate!
+                : widget.withPopUp
+                    ? widget.isCoach
+                        ? Container()
+                        : PopupMenuButton(
+                            popUpAnimationStyle: AnimationStyle(
+                              curve: Easing.emphasizedDecelerate,
+                              duration: const Duration(milliseconds: 500),
                             ),
-                          ];
-                        },
-                      )
-                : ElevatedButton(
-                    onPressed: () => _showAddMemberDialog(context),
-                    child: Text(
-                      context.str?.add ?? 'Add',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: Colors.white,
+                            icon: const Icon(Icons.more_vert),
+                            itemBuilder: (context) {
+                              return [
+                                PopupMenuItem(
+                                  child: Row(
+                                    children: [
+                                      const Icon(Icons.delete),
+                                      const SizedBox(width: 8),
+                                      Text(
+                                        context.str?.kick ?? 'Kick',
+                                      ),
+                                    ],
+                                  ),
+                                  onTap: () => context
+                                      .read<ClubCubit>()
+                                      .kick(widget.clubId, widget.user.id),
+                                ),
+                              ];
+                            },
+                          )
+                    : ElevatedButton(
+                        onPressed: () => _showAddMemberDialog(context),
+                        child: Text(
+                          context.str?.add ?? 'Add',
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
           ],
         ),
       ),

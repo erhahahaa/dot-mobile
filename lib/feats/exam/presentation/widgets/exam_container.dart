@@ -11,19 +11,26 @@ import 'package:go_router/go_router.dart';
 class ExamContainer extends StatelessWidget {
   final ExamModel exam;
   final ClubModel club;
-  final bool isCoach;
+  final bool isCoach, showBottomMargin;
+  final Widget? evaluate;
+  final EdgeInsetsGeometry? padding;
 
   const ExamContainer({
     super.key,
     required this.exam,
     required this.club,
     this.isCoach = false,
+    this.evaluate,
+    this.padding,
+    this.showBottomMargin = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return EightContainer(
-      margin: EdgeInsets.only(bottom: 8.w),
+      
+      margin: showBottomMargin ? EdgeInsets.only(bottom: 8.w) : EdgeInsets.zero,
+      padding: padding,
       child: Row(
         children: [
           CachedNetworkImage(
@@ -48,7 +55,9 @@ class ExamContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               H3Text(exam.title),
-              H6Text('${context.str?.dueAt} ${exam.dueAt?.toDayMonthYear()}'),
+              if (evaluate == null) ...[
+                H6Text('${context.str?.dueAt} ${exam.dueAt?.toDayMonthYear()}'),
+              ]
             ],
           ),
           const Spacer(),
@@ -121,22 +130,23 @@ class ExamContainer extends StatelessWidget {
                     ];
                   },
                 )
-              : Row(
-                  children: [
-                    Text(
-                      context.str?.detail ?? 'Detail',
-                      style: context.theme.textTheme.bodyMedium
-                          ?.copyWith(color: context.theme.colorScheme.primary),
-                    ),
-                    SizedBox(width: 4.w),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 14.sp,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    SizedBox(width: 4.w),
-                  ],
-                ),
+              : evaluate ??
+                  Row(
+                    children: [
+                      Text(
+                        context.str?.detail ?? 'Detail',
+                        style: context.theme.textTheme.bodyMedium?.copyWith(
+                            color: context.theme.colorScheme.primary),
+                      ),
+                      SizedBox(width: 4.w),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 14.sp,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      SizedBox(width: 4.w),
+                    ],
+                  ),
         ],
       ),
     );

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CoachDashboardScreen extends StatelessWidget {
   const CoachDashboardScreen({super.key});
@@ -45,11 +46,14 @@ class CoachDashboardScreen extends StatelessWidget {
                       context.str?.overview ?? 'Overview',
                     ),
                     SizedBox(height: 8.h),
-                    ClubOverviewCard(
-                      clubsCount: state.clubs.length,
-                      membersCount: state.clubs.sumTotalMembers(),
-                      programsCount: state.clubs.sumTotalPrograms(),
-                      examsCount: state.clubs.sumTotalExams(),
+                    Skeletonizer(
+                      enabled: state.state == BaseState.loading,
+                      child: ClubOverviewCard(
+                        clubsCount: state.clubs.length,
+                        membersCount: state.clubs.sumTotalMembers(),
+                        programsCount: state.clubs.sumTotalPrograms(),
+                        examsCount: state.clubs.sumTotalExams(),
+                      ),
                     ),
                     SizedBox(height: 16.h),
                     Row(

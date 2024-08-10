@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CoachMemberScreen extends StatefulWidget {
   final int clubId;
@@ -21,10 +22,6 @@ class _CoachMemberScreenState extends State<CoachMemberScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<ClubCubit, ClubState>(
       builder: (context, state) {
-        final coach =
-            state.filteredMembers.where((e) => e.id == state.user.id).toList();
-        log.e('Coach: $coach');
-        log.e('Coach: ${state.user}');
         return Parent(
           floatingActionButton: FloatingButtonExtended(
             onPressed: () => context.pushNamed(
@@ -52,10 +49,13 @@ class _CoachMemberScreenState extends State<CoachMemberScreen> {
                       context.str?.overview ?? 'Overview',
                     ),
                     SizedBox(height: 8.h),
-                    MemberOverviewCard(
-                      totalMembers: state.members.length,
-                      totalAthletes: state.members.sumTotalAthletes(),
-                      totalCoaches: state.members.sumTotalCoaches(),
+                    Skeletonizer(
+                      enabled: state.state == BaseState.loading,
+                      child: MemberOverviewCard(
+                        totalMembers: state.members.length,
+                        totalAthletes: state.members.sumTotalAthletes(),
+                        totalCoaches: state.members.sumTotalCoaches(),
+                      ),
                     ),
                     SizedBox(height: 16.h),
                     Row(
@@ -74,7 +74,7 @@ class _CoachMemberScreenState extends State<CoachMemberScreen> {
                     ListMember(
                       members: state.filteredMembers,
                       clubId: widget.clubId,
-                      isLoading: state.state == BaseState.loading, 
+                      isLoading: state.state == BaseState.loading,
                     ),
                   ],
                 ),
@@ -85,7 +85,6 @@ class _CoachMemberScreenState extends State<CoachMemberScreen> {
       },
     );
   }
-
 
   void _showDeleteDialog(BuildContext context) {
     showDialog(

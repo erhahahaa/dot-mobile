@@ -90,6 +90,13 @@ void _intiRepos() {
       sl<IsarClient>(),
     ),
   );
+
+  sl.registerLazySingleton<EvaluationRepo>(
+    () => EvaluationRepoImpl(
+      sl<DioClient>(),
+      sl<IsarClient>(),
+    ),
+  );
 }
 
 void _initCubits() {
@@ -152,6 +159,16 @@ void _initCubits() {
     () => UserCubit(
       sl<UserRepo>(),
       sl<ImagePickerClient>(),
+    ),
+  );
+
+  sl.registerFactory(
+    () => EvaluationCubit(
+      sl<EvaluationRepo>(),
+      sl<QuestionRepo>(),
+      sl<UserRepo>(),
+      sl<ClubRepo>(),
+      sl<ExamRepo>(),
     ),
   );
 }

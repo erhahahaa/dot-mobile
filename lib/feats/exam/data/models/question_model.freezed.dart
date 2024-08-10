@@ -237,7 +237,7 @@ class _$QuestionModelImpl implements _QuestionModel {
       {this.id = 0,
       this.examId = 0,
       this.mediaId,
-      this.type = QuestionType.essay,
+      this.type = QuestionType.text,
       this.question = 'Mention 5 basic Movement',
       final List<QuestionOptionModel> options = const [],
       this.order = 0,

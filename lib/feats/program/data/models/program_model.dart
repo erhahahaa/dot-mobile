@@ -45,6 +45,7 @@ class ProgramModel with _$ProgramModel {
       name: BoneMock.name,
       startDate: DateTime.now(),
       endDate: DateTime.now(),
+      media: MediaEmbedModel.fake(),
     );
   }
 }

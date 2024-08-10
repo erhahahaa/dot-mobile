@@ -69,6 +69,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/assets.svg
   SvgGenImage get assets => const SvgGenImage('assets/icons/assets.svg');
 
+  /// File path: assets/icons/evaluate.svg
+  SvgGenImage get evaluate => const SvgGenImage('assets/icons/evaluate.svg');
+
   /// File path: assets/icons/exam.svg
   SvgGenImage get exam => const SvgGenImage('assets/icons/exam.svg');
 
@@ -111,6 +114,7 @@ class $AssetsIconsGen {
   /// List of all assets
   List<dynamic> get values => [
         assets,
+        evaluate,
         exam,
         icBackground,
         icBlackWhite,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class CoachProgramScreen extends StatefulWidget {
@@ -68,39 +69,42 @@ class _CoachProgramScreenState extends State<CoachProgramScreen> {
                     ),
                     hideCalendar
                         ? Container()
-                        : SizedBox(
-                            height: 400.h,
-                            child: SfCalendar(
-                              view: CalendarView.month,
-                              monthViewSettings: const MonthViewSettings(
-                                showAgenda: true,
-                                agendaItemHeight: 70,
-                              ),
-                              dataSource: ProgramDataSource(state.programs),
-                              initialSelectedDate: DateTime.now(),
-                              onTap: (calendarTapDetails) {
-                                final len =
-                                    calendarTapDetails.appointments?.length ??
-                                        0;
+                        : Skeletonizer(
+                            enabled: state.state == BaseState.loading,
+                            child: SizedBox(
+                              height: 400.h,
+                              child: SfCalendar(
+                                view: CalendarView.month,
+                                monthViewSettings: const MonthViewSettings(
+                                  showAgenda: true,
+                                  agendaItemHeight: 70,
+                                ),
+                                dataSource: ProgramDataSource(state.programs),
+                                initialSelectedDate: DateTime.now(),
+                                onTap: (calendarTapDetails) {
+                                  final len =
+                                      calendarTapDetails.appointments?.length ??
+                                          0;
 
-                                final el = calendarTapDetails.targetElement;
-                                if (el == CalendarElement.appointment &&
-                                    len == 1) {
-                                  final program =
-                                      calendarTapDetails.appointments?.first;
-                                  context.pushNamed(
-                                    AppRoutes.coachProgramDetail.name,
-                                    pathParameters: {
-                                      'id': program.id.toString()
-                                    },
-                                    extra: {
-                                      'route': 'program',
-                                      'program': program,
-                                      'club': widget.club,
-                                    },
-                                  );
-                                }
-                              },
+                                  final el = calendarTapDetails.targetElement;
+                                  if (el == CalendarElement.appointment &&
+                                      len == 1) {
+                                    final program =
+                                        calendarTapDetails.appointments?.first;
+                                    context.pushNamed(
+                                      AppRoutes.coachProgramDetail.name,
+                                      pathParameters: {
+                                        'id': program.id.toString()
+                                      },
+                                      extra: {
+                                        'route': 'program',
+                                        'program': program,
+                                        'club': widget.club,
+                                      },
+                                    );
+                                  }
+                                },
+                              ),
                             ),
                           ),
                     SizedBox(height: 16.h),

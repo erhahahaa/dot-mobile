@@ -116,26 +116,28 @@ class _TextFState extends State<TextF> {
                           color: Theme.of(context).hintColor,
                         ),
                     suffixIcon: widget.suffixIcon,
-                    prefixIcon: SizedBox(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 16.w,
+                    prefixIcon: widget.prefixIcon != null
+                        ? SizedBox(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 16.w,
+                                  ),
+                                  child: widget.prefixIcon,
+                                ),
+                                // vertical line,
+                                Container(
+                                  width: 1,
+                                  height: 24.h,
+                                  color: Colors.grey,
+                                ),
+                                SizedBox(width: 16.w)
+                              ],
                             ),
-                            child: widget.prefixIcon,
-                          ),
-                          // vertical line,
-                          Container(
-                            width: 1,
-                            height: 24.h,
-                            color: Colors.grey,
-                          ),
-                          SizedBox(width: 16.w)
-                        ],
-                      ),
-                    ),
+                          )
+                        : null,
                     prefixIconConstraints: BoxConstraints(
                       minHeight: 24.h,
                       minWidth: 24.h,

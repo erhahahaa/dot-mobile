@@ -50,9 +50,13 @@ class EvaluationRepoImpl implements EvaluationRepo {
   @override
   Future<Either<Failure, List<EvaluationModel>>> getAll(
     PaginationParams params,
+    int examId,
   ) async {
     final res = await _remote.getRequest(
       ListAPI.CLUB_EXAM_EVALUATION,
+      queryParameters: {
+        'examId': examId,
+      },
       converter: (res) {
         final List<EvaluationModel> evaluations = [];
         for (final item in res['data']) {

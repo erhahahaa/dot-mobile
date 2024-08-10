@@ -81,6 +81,7 @@ class AppRouter {
             BlocProvider(create: (_) => sl<ProgramCubit>()),
             BlocProvider(create: (_) => sl<TacticalCubit>()),
             BlocProvider(create: (_) => sl<ExerciseCubit>()),
+            BlocProvider(create: (_) => sl<EvaluationCubit>()),
             BlocProvider(create: (_) => sl<ExamCubit>()),
           ],
           child: BottomNavBar(
@@ -174,10 +175,20 @@ class AppRouter {
                 path: AppRoutes.athleteExam.path,
                 name: AppRoutes.athleteExam.name,
                 builder: (_, __) => BlocProvider(
-                  create: (_) => sl<UserCubit>()..init(),
+                  create: (_) => sl<EvaluationCubit>()..geAthleteEvaluation(),
                   child: const AthleteExamScreen(),
                 ),
               ),
+              GoRoute(
+                path: AppRoutes.athleteExamDetail.path,
+                name: AppRoutes.athleteExamDetail.name,
+                builder: (c, state) {
+                  final extra = state.extra as Map<String, dynamic>;
+                  final evaluation = extra['evaluation'] as EvaluationModel;
+
+                  return EvaluationDetailScreen(evaluation: evaluation);
+                },
+              )
             ],
           ),
           // Notification
@@ -202,19 +213,11 @@ class AppRouter {
                 path: AppRoutes.athleteProfile.path,
                 name: AppRoutes.athleteProfile.name,
                 builder: (_, __) => const ProfileScreen(),
-                // builder: (_, __) => BlocProvider.value(
-                //   value: sl<UserCubit>()..init(),
-                //   child: const ProfileScreen(),
-                // ),
               ),
               GoRoute(
                 path: AppRoutes.athleteEditProfile.path,
                 name: AppRoutes.athleteEditProfile.name,
                 builder: (_, __) => const EditProfileScreen(),
-                // builder: (_, __) => BlocProvider.value(
-                //   value: sl<UserCubit>()..init(),
-                //   child: const EditProfileScreen(),
-                // ),
               ),
             ],
           ),
@@ -513,10 +516,32 @@ class AppRouter {
           final extra = state.extra as Map<String, dynamic>;
           final club = extra['club'] as ClubModel;
 
-          return BlocProvider(
-            create: (_) => sl<EvaluationCubit>()
-              ..clear()
-              ..init(clubId: club.id),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) => sl<ExamCubit>()
+                  ..clear()
+                  ..init(clubId: club.id),
+              ),
+              BlocProvider(
+                create: (context) => sl<ClubCubit>()
+                  ..getMembers(
+                    PaginationParams(),
+                    club.id,
+                  ),
+              ),
+              BlocProvider(
+                create: (c) => sl<EvaluationCubit>()
+                  ..clear()
+                  ..init()
+                  ..getEvaluations(c
+                      .read<ExamCubit>()
+                      .state
+                      .exams
+                      .map((e) => e.id)
+                      .toList()),
+              ),
+            ],
             child: child,
           );
         },
@@ -528,7 +553,12 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'] as ClubModel;
 
-              return CoachEvaluationScreen(club: club);
+              final examIds =
+                  c.read<ExamCubit>().state.exams.map((e) => e.id).toList();
+              return BlocProvider.value(
+                value: c.read<EvaluationCubit>()..getEvaluations(examIds),
+                child: CoachEvaluationScreen(club: club),
+              );
             },
           ),
           GoRoute(
@@ -537,11 +567,54 @@ class AppRouter {
             builder: (c, state) {
               final extra = state.extra as Map<String, dynamic>;
               final club = extra['club'] as ClubModel;
+              final user = extra['user'] as UserModel;
               final exam = extra['exam'] as ExamModel;
 
-              return CoachEvaluationFormScreen(club: club, exam: exam);
+              return BlocProvider.value(
+                value: c.read<EvaluationCubit>()
+                  ..clear()
+                  ..init(examId: exam.id),
+                child: CoachEvaluationFormScreen(
+                  club: club,
+                  user: user,
+                  exam: exam,
+                ),
+              );
             },
           ),
+          GoRoute(
+            path: AppRoutes.coachEditExamEvaluation.path,
+            name: AppRoutes.coachEditExamEvaluation.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final club = extra['club'] as ClubModel;
+              final user = extra['user'] as UserModel;
+              final exam = extra['exam'] as ExamModel;
+              final evaluation = extra['evaluation'] as EvaluationModel?;
+
+              return BlocProvider.value(
+                value: c.read<EvaluationCubit>()
+                  ..clear()
+                  ..init(examId: exam.id),
+                child: CoachEvaluationFormScreen(
+                  club: club,
+                  user: user,
+                  exam: exam,
+                  evaluation: evaluation,
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.coachExamEvaluationDetail.path,
+            name: AppRoutes.coachExamEvaluationDetail.name,
+            builder: (c, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              final evaluation = extra['evaluation'] as EvaluationModel;
+
+              return EvaluationDetailScreen(evaluation: evaluation);
+            },
+          )
         ],
       ),
 

@@ -45,6 +45,7 @@ class ExamModel with _$ExamModel {
       clubId: Random().nextInt(100),
       title: BoneMock.name,
       description: BoneMock.subtitle,
+      media: MediaEmbedModel.fake(),
     );
   }
 }

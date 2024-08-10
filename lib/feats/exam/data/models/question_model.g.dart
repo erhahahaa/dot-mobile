@@ -12,7 +12,7 @@ _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
       examId: (json['examId'] as num?)?.toInt() ?? 0,
       mediaId: (json['mediaId'] as num?)?.toInt(),
       type: $enumDecodeNullable(_$QuestionTypeEnumMap, json['type']) ??
-          QuestionType.essay,
+          QuestionType.text,
       question: json['question'] as String? ?? 'Mention 5 basic Movement',
       options: (json['options'] as List<dynamic>?)
               ?.map((e) =>
@@ -46,10 +46,8 @@ Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
     };
 
 const _$QuestionTypeEnumMap = {
-  QuestionType.multipleChoice: 'multipleChoice',
-  QuestionType.trueFalse: 'trueFalse',
-  QuestionType.shortAnswer: 'shortAnswer',
-  QuestionType.essay: 'essay',
+  QuestionType.text: 'text',
+  QuestionType.numeric: 'numeric',
 };
 
 _$QuestionOptionModelImpl _$$QuestionOptionModelImplFromJson(

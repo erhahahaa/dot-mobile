@@ -59,6 +59,7 @@ class UserModel with _$UserModel {
       email: BoneMock.email,
       username: BoneMock.subtitle,
       role: UserRole.athlete,
+      image: "https://api.dicebear.com/9.x/adventurer/png",
     );
   }
 }

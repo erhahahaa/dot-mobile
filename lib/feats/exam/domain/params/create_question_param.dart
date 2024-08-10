@@ -10,7 +10,7 @@ class CreateQuestionParams with _$CreateQuestionParams {
     @Default(0) int order,
     @Default(0) int examId,
     int? mediaId,
-    @Default(QuestionType.essay) QuestionType type,
+    @Default(QuestionType.text) QuestionType type,
     @Default('') String question,
     @Default([]) List<QuestionOptionModel> options,
   }) = _CreateQuestionParams;

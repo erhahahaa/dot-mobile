@@ -49,6 +49,7 @@ class ClubModel with _$ClubModel {
       description: BoneMock.subtitle,
       type: SportType.basketBall,
       createdAt: DateTime.now(),
+      media: MediaEmbedModel.fake(),
     );
   }
 }

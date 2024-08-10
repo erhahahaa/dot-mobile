@@ -5,6 +5,7 @@ import 'package:dot_coaching/feats/feats.dart';
 abstract class EvaluationRepo {
   Future<Either<Failure, List<EvaluationModel>>> getAll(
     PaginationParams params,
+    int clubId,
   );
   Future<Either<Failure, EvaluationModel>> getById(
     ByIdParams params,

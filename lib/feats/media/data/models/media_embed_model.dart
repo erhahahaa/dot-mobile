@@ -1,5 +1,9 @@
+import 'dart:math';
+
+import 'package:dot_coaching/core/constants/constants.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 part 'media_embed_model.freezed.dart';
 part 'media_embed_model.g.dart';
@@ -23,6 +27,15 @@ class MediaEmbedModel with _$MediaEmbedModel {
       fileSize: entity.fileSize ?? 0,
       url: entity.url ?? '',
       type: entity.type  ,
+    );
+  }
+
+  static MediaEmbedModel fake() {
+    return MediaEmbedModel(
+      name: BoneMock.name,
+      fileSize: Random().nextInt(100),
+      url: AppConstants.SPORT_IMAGE,
+      type: MediaType.applicationOctetStream,
     );
   }
 }

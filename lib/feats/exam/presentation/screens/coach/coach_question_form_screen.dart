@@ -148,7 +148,7 @@ class _CoachQuestionFormScreenState extends State<CoachQuestionFormScreen> {
                             question: QuestionModel(
                               examId: widget.exam.id,
                               question: '',
-                              type: QuestionType.essay,
+                              type: QuestionType.text,
                             ),
                             questionFN: FocusNode(),
                             questionCon: TextEditingController(),
@@ -229,6 +229,35 @@ class _CoachQuestionFormScreenState extends State<CoachQuestionFormScreen> {
                                 borderRadius: BorderRadius.circular(12.r),
                               ),
                               hintText: 'Enter question',
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 12.w,
+                                vertical: 8.h,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 8.h),
+                          DropDown<QuestionType>(
+                            key: Key('questionType_$index'),
+                            value: _questions[index].question.type,
+                            items: QuestionType.values.map((e) {
+                              return DropdownMenuItem(
+                                value: e,
+                                child: Text(e.name.capitalize),
+                              );
+                            }).toList(),
+                            onChanged: (QuestionType? value) {
+                              if (value == null) return;
+                              setState(() {
+                                _questions[index].question = _questions[index]
+                                    .question
+                                    .copyWith(type: value);
+                              });
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Type',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
                               contentPadding: EdgeInsets.symmetric(
                                 horizontal: 12.w,
                                 vertical: 8.h,

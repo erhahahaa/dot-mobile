@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dot_coaching/core/constants/constants.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -53,7 +54,7 @@ class MediaModel with _$MediaModel {
       description: BoneMock.subtitle,
       fileSize: Random().nextInt(100),
       path: BoneMock.subtitle,
-      url: BoneMock.subtitle,
+      url: AppConstants.SPORT_IMAGE,
     );
   }
 }

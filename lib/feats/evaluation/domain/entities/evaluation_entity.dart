@@ -10,7 +10,7 @@ class EvaluationEntity {
   int clubId;
   int athleteId;
   int coachId;
-  List<QuestionEvaluationEntity> questions;
+  List<QuestionEvaluationEntity> evaluations;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -27,7 +27,7 @@ class EvaluationEntity {
     this.clubId = 0,
     this.athleteId = 0,
     this.coachId = 0,
-    this.questions = const [],
+    this.evaluations = const [],
     this.createdAt,
     this.updatedAt,
   });
@@ -38,10 +38,12 @@ class QuestionEvaluationEntity {
   int questionId;
   String? answer;
   int? score;
+  String? questionName;
 
   QuestionEvaluationEntity({
     this.questionId = 0,
     this.answer,
     this.score,
+    this.questionName,
   });
 }

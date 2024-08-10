@@ -4,6 +4,7 @@ import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,8 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
               Positioned(
                 top: 60.h,
                 left: 18.w,
-                child: UserCard(
-                  user: state.user,
+                child: Skeletonizer(
+                  enabled: state.state == BaseState.loading,
+                  child: UserCard(
+                    user: state.user,
+                  ),
                 ),
               ),
               Positioned(

@@ -170,7 +170,7 @@ QuestionEntity _questionEntityDeserialize(
     order: reader.readLongOrNull(offsets[5]) ?? 0,
     question: reader.readStringOrNull(offsets[6]) ?? 'Mention 5 basic Movement',
     type: _QuestionEntitytypeValueEnumMap[reader.readByteOrNull(offsets[7])] ??
-        QuestionType.essay,
+        QuestionType.text,
     updatedAt: reader.readDateTimeOrNull(offsets[8]),
   );
   return object;
@@ -210,7 +210,7 @@ P _questionEntityDeserializeProp<P>(
           as P;
     case 7:
       return (_QuestionEntitytypeValueEnumMap[reader.readByteOrNull(offset)] ??
-          QuestionType.essay) as P;
+          QuestionType.text) as P;
     case 8:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
@@ -219,16 +219,12 @@ P _questionEntityDeserializeProp<P>(
 }
 
 const _QuestionEntitytypeEnumValueMap = {
-  'multipleChoice': 0,
-  'trueFalse': 1,
-  'shortAnswer': 2,
-  'essay': 3,
+  'text': 0,
+  'numeric': 1,
 };
 const _QuestionEntitytypeValueEnumMap = {
-  0: QuestionType.multipleChoice,
-  1: QuestionType.trueFalse,
-  2: QuestionType.shortAnswer,
-  3: QuestionType.essay,
+  0: QuestionType.text,
+  1: QuestionType.numeric,
 };
 
 Id _questionEntityGetId(QuestionEntity object) {

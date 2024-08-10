@@ -9,23 +9,23 @@ part of 'create_evaluation_param.dart';
 _$CreateEvaluationParamsImpl _$$CreateEvaluationParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateEvaluationParamsImpl(
-      examId: (json['examId'] as num?)?.toInt() ?? 0,
       clubId: (json['clubId'] as num?)?.toInt() ?? 0,
-      questionId: (json['questionId'] as num?)?.toInt() ?? 0,
-      coachId: (json['coachId'] as num?)?.toInt() ?? 0,
+      examId: (json['examId'] as num?)?.toInt() ?? 0,
       athleteId: (json['athleteId'] as num?)?.toInt() ?? 0,
-      answer: json['answer'] as String?,
-      score: (json['score'] as num?)?.toInt(),
+      coachId: (json['coachId'] as num?)?.toInt() ?? 0,
+      evaluations: (json['evaluations'] as List<dynamic>?)
+              ?.map((e) =>
+                  QuestionEvaluationModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$CreateEvaluationParamsImplToJson(
         _$CreateEvaluationParamsImpl instance) =>
     <String, dynamic>{
-      'examId': instance.examId,
       'clubId': instance.clubId,
-      'questionId': instance.questionId,
-      'coachId': instance.coachId,
+      'examId': instance.examId,
       'athleteId': instance.athleteId,
-      'answer': instance.answer,
-      'score': instance.score,
+      'coachId': instance.coachId,
+      'evaluations': instance.evaluations,
     };

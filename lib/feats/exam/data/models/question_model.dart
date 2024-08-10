@@ -12,7 +12,7 @@ class QuestionModel with _$QuestionModel {
     @Default(0) int id,
     @Default(0) int examId,
     int? mediaId,
-    @Default(QuestionType.essay) QuestionType type,
+    @Default(QuestionType.text) QuestionType type,
     @Default('Mention 5 basic Movement') String question,
     @Default([]) List<QuestionOptionModel> options,
     @Default(0) int order,
@@ -46,8 +46,9 @@ class QuestionModel with _$QuestionModel {
       id: Random().nextInt(100),
       examId: Random().nextInt(100),
       order: Random().nextInt(100),
-      type: QuestionType.essay,
+      type: QuestionType.text,
       question: 'Mention 5 basic Movement',
+      media: MediaEmbedModel.fake(),
     );
   }
 }
@@ -73,6 +74,7 @@ class QuestionOptionModel with _$QuestionOptionModel {
   const factory QuestionOptionModel({
     @Default(0) int order,
     @Default('') String text,
+    // @Default(QuestionOptionType.text) QuestionOptionType type,
   }) = _QuestionOptionModel;
 
   factory QuestionOptionModel.fromJson(Map<String, dynamic> json) =>
@@ -82,6 +84,7 @@ class QuestionOptionModel with _$QuestionOptionModel {
     return QuestionOptionModel(
       order: entity.order,
       text: entity.text,
+      // type: entity.type,
     );
   }
 }
@@ -91,6 +94,7 @@ extension QuestionOptionModelX on QuestionOptionModel {
     return QuestionOptionEntity(
       order: order,
       text: text,
+      // type: type,
     );
   }
 }

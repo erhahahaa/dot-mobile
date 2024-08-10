@@ -19,10 +19,22 @@ class UpdateClubParams with _$UpdateClubParams {
 
   const UpdateClubParams._();
 
-  FormData toFormData() => FormData.fromMap({
+  Map<String, dynamic> get determineBody {
+    if (image != null) {
+      return {
         'name': name,
         'description': description,
         'type': type.value,
-        'image': image != null ? MultipartFile.fromFileSync(image!.path) : null,
-      });
+        'image': MultipartFile.fromFileSync(image!.path),
+      };
+    } else {
+      return {
+        'name': name,
+        'description': description,
+        'type': type.value,
+      };
+    }
+  }
+
+  FormData toFormData() => FormData.fromMap(determineBody);
 }

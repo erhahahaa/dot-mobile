@@ -14,11 +14,20 @@ _$EvaluationModelImpl _$$EvaluationModelImplFromJson(
       clubId: (json['clubId'] as num?)?.toInt() ?? 0,
       athleteId: (json['athleteId'] as num?)?.toInt() ?? 0,
       coachId: (json['coachId'] as num?)?.toInt() ?? 0,
-      questions: (json['questions'] as List<dynamic>?)
+      evaluations: (json['evaluations'] as List<dynamic>?)
               ?.map((e) =>
                   QuestionEvaluationModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      exam: json['exam'] == null
+          ? null
+          : ExamModel.fromJson(json['exam'] as Map<String, dynamic>),
+      athlete: json['athlete'] == null
+          ? null
+          : UserModel.fromJson(json['athlete'] as Map<String, dynamic>),
+      coach: json['coach'] == null
+          ? null
+          : UserModel.fromJson(json['coach'] as Map<String, dynamic>),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -35,7 +44,10 @@ Map<String, dynamic> _$$EvaluationModelImplToJson(
       'clubId': instance.clubId,
       'athleteId': instance.athleteId,
       'coachId': instance.coachId,
-      'questions': instance.questions,
+      'evaluations': instance.evaluations,
+      'exam': instance.exam,
+      'athlete': instance.athlete,
+      'coach': instance.coach,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
@@ -46,6 +58,7 @@ _$QuestionEvaluationModelImpl _$$QuestionEvaluationModelImplFromJson(
       questionId: (json['questionId'] as num?)?.toInt() ?? 0,
       answer: json['answer'] as String?,
       score: (json['score'] as num?)?.toInt(),
+      questionName: json['questionName'] as String?,
     );
 
 Map<String, dynamic> _$$QuestionEvaluationModelImplToJson(
@@ -54,4 +67,5 @@ Map<String, dynamic> _$$QuestionEvaluationModelImplToJson(
       'questionId': instance.questionId,
       'answer': instance.answer,
       'score': instance.score,
+      'questionName': instance.questionName,
     };

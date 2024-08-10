@@ -3,10 +3,9 @@
 class ListAPI {
   ListAPI._();
 
-  static const String CLEAN_URL = 'dot-api.zenta.dev';
+  static const String CLEAN_URL = 'dpt-api.zenta.dev';
 
   static const String BASE_URL = 'https://$CLEAN_URL';
-  // static const String BASE_URL = 'https://dot-api.zenta.dev';
 
   static const String AUTH_SIGN_UP = '/auth/sign-up';
   static const String AUTH_SIGN_IN = '/auth/sign-in';

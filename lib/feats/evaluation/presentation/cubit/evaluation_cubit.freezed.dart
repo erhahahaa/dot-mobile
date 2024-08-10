@@ -21,6 +21,9 @@ mixin _$EvaluationState {
   List<EvaluationModel> get evaluations => throw _privateConstructorUsedError;
   List<EvaluationModel> get filteredEvaluations =>
       throw _privateConstructorUsedError;
+  List<QuestionModelWithController> get questions =>
+      throw _privateConstructorUsedError;
+  UserModel get coach => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EvaluationStateCopyWith<EvaluationState> get copyWith =>
@@ -37,7 +40,11 @@ abstract class $EvaluationStateCopyWith<$Res> {
       {BaseState state,
       Failure? failure,
       List<EvaluationModel> evaluations,
-      List<EvaluationModel> filteredEvaluations});
+      List<EvaluationModel> filteredEvaluations,
+      List<QuestionModelWithController> questions,
+      UserModel coach});
+
+  $UserModelCopyWith<$Res> get coach;
 }
 
 /// @nodoc
@@ -57,6 +64,8 @@ class _$EvaluationStateCopyWithImpl<$Res, $Val extends EvaluationState>
     Object? failure = freezed,
     Object? evaluations = null,
     Object? filteredEvaluations = null,
+    Object? questions = null,
+    Object? coach = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -75,7 +84,23 @@ class _$EvaluationStateCopyWithImpl<$Res, $Val extends EvaluationState>
           ? _value.filteredEvaluations
           : filteredEvaluations // ignore: cast_nullable_to_non_nullable
               as List<EvaluationModel>,
+      questions: null == questions
+          ? _value.questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<QuestionModelWithController>,
+      coach: null == coach
+          ? _value.coach
+          : coach // ignore: cast_nullable_to_non_nullable
+              as UserModel,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get coach {
+    return $UserModelCopyWith<$Res>(_value.coach, (value) {
+      return _then(_value.copyWith(coach: value) as $Val);
+    });
   }
 }
 
@@ -91,7 +116,12 @@ abstract class _$$EvaluationStateImplCopyWith<$Res>
       {BaseState state,
       Failure? failure,
       List<EvaluationModel> evaluations,
-      List<EvaluationModel> filteredEvaluations});
+      List<EvaluationModel> filteredEvaluations,
+      List<QuestionModelWithController> questions,
+      UserModel coach});
+
+  @override
+  $UserModelCopyWith<$Res> get coach;
 }
 
 /// @nodoc
@@ -109,6 +139,8 @@ class __$$EvaluationStateImplCopyWithImpl<$Res>
     Object? failure = freezed,
     Object? evaluations = null,
     Object? filteredEvaluations = null,
+    Object? questions = null,
+    Object? coach = null,
   }) {
     return _then(_$EvaluationStateImpl(
       state: null == state
@@ -127,6 +159,14 @@ class __$$EvaluationStateImplCopyWithImpl<$Res>
           ? _value._filteredEvaluations
           : filteredEvaluations // ignore: cast_nullable_to_non_nullable
               as List<EvaluationModel>,
+      questions: null == questions
+          ? _value._questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<QuestionModelWithController>,
+      coach: null == coach
+          ? _value.coach
+          : coach // ignore: cast_nullable_to_non_nullable
+              as UserModel,
     ));
   }
 }
@@ -138,9 +178,12 @@ class _$EvaluationStateImpl implements _EvaluationState {
       {this.state = BaseState.initial,
       this.failure,
       final List<EvaluationModel> evaluations = const [],
-      final List<EvaluationModel> filteredEvaluations = const []})
+      final List<EvaluationModel> filteredEvaluations = const [],
+      final List<QuestionModelWithController> questions = const [],
+      this.coach = const UserModel()})
       : _evaluations = evaluations,
-        _filteredEvaluations = filteredEvaluations;
+        _filteredEvaluations = filteredEvaluations,
+        _questions = questions;
 
   @override
   @JsonKey()
@@ -166,9 +209,22 @@ class _$EvaluationStateImpl implements _EvaluationState {
     return EqualUnmodifiableListView(_filteredEvaluations);
   }
 
+  final List<QuestionModelWithController> _questions;
+  @override
+  @JsonKey()
+  List<QuestionModelWithController> get questions {
+    if (_questions is EqualUnmodifiableListView) return _questions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questions);
+  }
+
+  @override
+  @JsonKey()
+  final UserModel coach;
+
   @override
   String toString() {
-    return 'EvaluationState(state: $state, failure: $failure, evaluations: $evaluations, filteredEvaluations: $filteredEvaluations)';
+    return 'EvaluationState(state: $state, failure: $failure, evaluations: $evaluations, filteredEvaluations: $filteredEvaluations, questions: $questions, coach: $coach)';
   }
 
   @override
@@ -181,7 +237,10 @@ class _$EvaluationStateImpl implements _EvaluationState {
             const DeepCollectionEquality()
                 .equals(other._evaluations, _evaluations) &&
             const DeepCollectionEquality()
-                .equals(other._filteredEvaluations, _filteredEvaluations));
+                .equals(other._filteredEvaluations, _filteredEvaluations) &&
+            const DeepCollectionEquality()
+                .equals(other._questions, _questions) &&
+            (identical(other.coach, coach) || other.coach == coach));
   }
 
   @override
@@ -190,7 +249,9 @@ class _$EvaluationStateImpl implements _EvaluationState {
       state,
       failure,
       const DeepCollectionEquality().hash(_evaluations),
-      const DeepCollectionEquality().hash(_filteredEvaluations));
+      const DeepCollectionEquality().hash(_filteredEvaluations),
+      const DeepCollectionEquality().hash(_questions),
+      coach);
 
   @JsonKey(ignore: true)
   @override
@@ -205,7 +266,9 @@ abstract class _EvaluationState implements EvaluationState {
       {final BaseState state,
       final Failure? failure,
       final List<EvaluationModel> evaluations,
-      final List<EvaluationModel> filteredEvaluations}) = _$EvaluationStateImpl;
+      final List<EvaluationModel> filteredEvaluations,
+      final List<QuestionModelWithController> questions,
+      final UserModel coach}) = _$EvaluationStateImpl;
 
   @override
   BaseState get state;
@@ -215,6 +278,10 @@ abstract class _EvaluationState implements EvaluationState {
   List<EvaluationModel> get evaluations;
   @override
   List<EvaluationModel> get filteredEvaluations;
+  @override
+  List<QuestionModelWithController> get questions;
+  @override
+  UserModel get coach;
   @override
   @JsonKey(ignore: true)
   _$$EvaluationStateImplCopyWith<_$EvaluationStateImpl> get copyWith =>

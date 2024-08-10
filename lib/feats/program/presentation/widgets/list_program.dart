@@ -1,3 +1,4 @@
+import 'package:dot_coaching/core/widgets/container/container.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/exts/exts.dart';
 import 'package:flutter/material.dart';
@@ -22,14 +23,9 @@ class ListProgram extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: padding ?? EdgeInsets.all(8.w),
+    return EightContainer(
       height: isCoach ? 380.h : null,
       margin: EdgeInsets.only(bottom: 96.h),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.r),
-        color: context.containerColor(0.05),
-      ),
       child: _buildListProgram(context),
     );
   }
@@ -55,17 +51,10 @@ class ListProgram extends StatelessWidget {
     }
 
     if (programs.isEmpty) {
-      return Container(
-        padding: padding ?? EdgeInsets.all(8.w),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.r),
-          color: context.containerColor(0.1),
-        ),
-        child: Center(
-          child: Text(
-            'No programs found',
-            style: context.theme.textTheme.bodyLarge,
-          ),
+      return Center(
+        child: Text(
+          'No programs found',
+          style: context.theme.textTheme.bodyLarge,
         ),
       );
     }

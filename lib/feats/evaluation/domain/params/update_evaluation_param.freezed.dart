@@ -22,12 +22,12 @@ UpdateEvaluationParams _$UpdateEvaluationParamsFromJson(
 /// @nodoc
 mixin _$UpdateEvaluationParams {
   int get id => throw _privateConstructorUsedError;
-  int get examId => throw _privateConstructorUsedError;
   int get clubId => throw _privateConstructorUsedError;
-  int get questionId => throw _privateConstructorUsedError;
+  int get examId => throw _privateConstructorUsedError;
+  int get athleteId => throw _privateConstructorUsedError;
   int get coachId => throw _privateConstructorUsedError;
-  String? get answer => throw _privateConstructorUsedError;
-  int? get score => throw _privateConstructorUsedError;
+  List<QuestionEvaluationModel> get evaluations =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,12 +43,11 @@ abstract class $UpdateEvaluationParamsCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      int examId,
       int clubId,
-      int questionId,
+      int examId,
+      int athleteId,
       int coachId,
-      String? answer,
-      int? score});
+      List<QuestionEvaluationModel> evaluations});
 }
 
 /// @nodoc
@@ -66,42 +65,37 @@ class _$UpdateEvaluationParamsCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = null,
-    Object? examId = null,
     Object? clubId = null,
-    Object? questionId = null,
+    Object? examId = null,
+    Object? athleteId = null,
     Object? coachId = null,
-    Object? answer = freezed,
-    Object? score = freezed,
+    Object? evaluations = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      examId: null == examId
-          ? _value.examId
-          : examId // ignore: cast_nullable_to_non_nullable
-              as int,
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      questionId: null == questionId
-          ? _value.questionId
-          : questionId // ignore: cast_nullable_to_non_nullable
+      examId: null == examId
+          ? _value.examId
+          : examId // ignore: cast_nullable_to_non_nullable
+              as int,
+      athleteId: null == athleteId
+          ? _value.athleteId
+          : athleteId // ignore: cast_nullable_to_non_nullable
               as int,
       coachId: null == coachId
           ? _value.coachId
           : coachId // ignore: cast_nullable_to_non_nullable
               as int,
-      answer: freezed == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      score: freezed == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as int?,
+      evaluations: null == evaluations
+          ? _value.evaluations
+          : evaluations // ignore: cast_nullable_to_non_nullable
+              as List<QuestionEvaluationModel>,
     ) as $Val);
   }
 }
@@ -117,12 +111,11 @@ abstract class _$$UpdateEvaluationParamsImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      int examId,
       int clubId,
-      int questionId,
+      int examId,
+      int athleteId,
       int coachId,
-      String? answer,
-      int? score});
+      List<QuestionEvaluationModel> evaluations});
 }
 
 /// @nodoc
@@ -139,42 +132,37 @@ class __$$UpdateEvaluationParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? examId = null,
     Object? clubId = null,
-    Object? questionId = null,
+    Object? examId = null,
+    Object? athleteId = null,
     Object? coachId = null,
-    Object? answer = freezed,
-    Object? score = freezed,
+    Object? evaluations = null,
   }) {
     return _then(_$UpdateEvaluationParamsImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      examId: null == examId
-          ? _value.examId
-          : examId // ignore: cast_nullable_to_non_nullable
-              as int,
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
-      questionId: null == questionId
-          ? _value.questionId
-          : questionId // ignore: cast_nullable_to_non_nullable
+      examId: null == examId
+          ? _value.examId
+          : examId // ignore: cast_nullable_to_non_nullable
+              as int,
+      athleteId: null == athleteId
+          ? _value.athleteId
+          : athleteId // ignore: cast_nullable_to_non_nullable
               as int,
       coachId: null == coachId
           ? _value.coachId
           : coachId // ignore: cast_nullable_to_non_nullable
               as int,
-      answer: freezed == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      score: freezed == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as int?,
+      evaluations: null == evaluations
+          ? _value._evaluations
+          : evaluations // ignore: cast_nullable_to_non_nullable
+              as List<QuestionEvaluationModel>,
     ));
   }
 }
@@ -184,12 +172,12 @@ class __$$UpdateEvaluationParamsImplCopyWithImpl<$Res>
 class _$UpdateEvaluationParamsImpl implements _UpdateEvaluationParams {
   const _$UpdateEvaluationParamsImpl(
       {this.id = 0,
-      this.examId = 0,
       this.clubId = 0,
-      this.questionId = 0,
+      this.examId = 0,
+      this.athleteId = 0,
       this.coachId = 0,
-      this.answer,
-      this.score});
+      final List<QuestionEvaluationModel> evaluations = const []})
+      : _evaluations = evaluations;
 
   factory _$UpdateEvaluationParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpdateEvaluationParamsImplFromJson(json);
@@ -199,24 +187,28 @@ class _$UpdateEvaluationParamsImpl implements _UpdateEvaluationParams {
   final int id;
   @override
   @JsonKey()
-  final int examId;
-  @override
-  @JsonKey()
   final int clubId;
   @override
   @JsonKey()
-  final int questionId;
+  final int examId;
+  @override
+  @JsonKey()
+  final int athleteId;
   @override
   @JsonKey()
   final int coachId;
+  final List<QuestionEvaluationModel> _evaluations;
   @override
-  final String? answer;
-  @override
-  final int? score;
+  @JsonKey()
+  List<QuestionEvaluationModel> get evaluations {
+    if (_evaluations is EqualUnmodifiableListView) return _evaluations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_evaluations);
+  }
 
   @override
   String toString() {
-    return 'UpdateEvaluationParams(id: $id, examId: $examId, clubId: $clubId, questionId: $questionId, coachId: $coachId, answer: $answer, score: $score)';
+    return 'UpdateEvaluationParams(id: $id, clubId: $clubId, examId: $examId, athleteId: $athleteId, coachId: $coachId, evaluations: $evaluations)';
   }
 
   @override
@@ -225,19 +217,19 @@ class _$UpdateEvaluationParamsImpl implements _UpdateEvaluationParams {
         (other.runtimeType == runtimeType &&
             other is _$UpdateEvaluationParamsImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.examId, examId) || other.examId == examId) &&
             (identical(other.clubId, clubId) || other.clubId == clubId) &&
-            (identical(other.questionId, questionId) ||
-                other.questionId == questionId) &&
+            (identical(other.examId, examId) || other.examId == examId) &&
+            (identical(other.athleteId, athleteId) ||
+                other.athleteId == athleteId) &&
             (identical(other.coachId, coachId) || other.coachId == coachId) &&
-            (identical(other.answer, answer) || other.answer == answer) &&
-            (identical(other.score, score) || other.score == score));
+            const DeepCollectionEquality()
+                .equals(other._evaluations, _evaluations));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, examId, clubId, questionId, coachId, answer, score);
+  int get hashCode => Object.hash(runtimeType, id, clubId, examId, athleteId,
+      coachId, const DeepCollectionEquality().hash(_evaluations));
 
   @JsonKey(ignore: true)
   @override
@@ -256,13 +248,13 @@ class _$UpdateEvaluationParamsImpl implements _UpdateEvaluationParams {
 
 abstract class _UpdateEvaluationParams implements UpdateEvaluationParams {
   const factory _UpdateEvaluationParams(
-      {final int id,
-      final int examId,
-      final int clubId,
-      final int questionId,
-      final int coachId,
-      final String? answer,
-      final int? score}) = _$UpdateEvaluationParamsImpl;
+          {final int id,
+          final int clubId,
+          final int examId,
+          final int athleteId,
+          final int coachId,
+          final List<QuestionEvaluationModel> evaluations}) =
+      _$UpdateEvaluationParamsImpl;
 
   factory _UpdateEvaluationParams.fromJson(Map<String, dynamic> json) =
       _$UpdateEvaluationParamsImpl.fromJson;
@@ -270,17 +262,15 @@ abstract class _UpdateEvaluationParams implements UpdateEvaluationParams {
   @override
   int get id;
   @override
-  int get examId;
-  @override
   int get clubId;
   @override
-  int get questionId;
+  int get examId;
+  @override
+  int get athleteId;
   @override
   int get coachId;
   @override
-  String? get answer;
-  @override
-  int? get score;
+  List<QuestionEvaluationModel> get evaluations;
   @override
   @JsonKey(ignore: true)
   _$$UpdateEvaluationParamsImplCopyWith<_$UpdateEvaluationParamsImpl>

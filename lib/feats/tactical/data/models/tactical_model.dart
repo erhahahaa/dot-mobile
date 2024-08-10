@@ -59,6 +59,7 @@ class TacticalModel with _$TacticalModel {
         width: 1000,
         height: 1000,
       ),
+      media: MediaEmbedModel.fake(),
     );
   }
 }

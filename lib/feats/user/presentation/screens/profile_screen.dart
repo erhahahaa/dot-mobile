@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -19,9 +20,12 @@ class ProfileScreen extends StatelessWidget {
               Positioned(
                 top: 60.h,
                 left: 18.w,
-                child: UserCard(
-                  user: state.user,
-                  isHome: false,
+                child: Skeletonizer(
+                  enabled: state.state == BaseState.loading,
+                  child: UserCard(
+                    user: state.user,
+                    isHome: false,
+                  ),
                 ),
               ),
               Positioned(
