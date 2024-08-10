@@ -52,7 +52,7 @@ class CoachEvaluationFormScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    H2Text('Athlete Detail'),
+                    const H2Text('Athlete Detail'),
                     SizedBox(height: 8.h),
                     Skeletonizer(
                       enabled: state.state == BaseState.loading,
@@ -86,7 +86,7 @@ class CoachEvaluationFormScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16.h),
-                    H2Text('Evaluation Form'),
+                    const H2Text('Evaluation Form'),
                     SizedBox(height: 8.h),
                     Column(
                       children: state.questions.map((e) {

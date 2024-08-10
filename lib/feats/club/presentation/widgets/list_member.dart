@@ -111,9 +111,9 @@ class ListMember extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          H1Text('Pick Exam'),
+                          const H1Text('Pick Exam'),
                           IconButton(
-                            icon: Icon(Icons.close),
+                            icon: const Icon(Icons.close),
                             onPressed: () => Navigator.of(context).pop(),
                           )
                         ],

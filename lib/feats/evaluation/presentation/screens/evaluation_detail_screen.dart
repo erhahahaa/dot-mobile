@@ -17,7 +17,7 @@ class EvaluationDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            H2Text("Athlete Information"),
+            const H2Text("Athlete Information"),
             SizedBox(height: 8.h),
             EightContainer(
               width: double.infinity,
@@ -32,7 +32,7 @@ class EvaluationDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.h),
-            H2Text("Coach Information"),
+            const H2Text("Coach Information"),
             SizedBox(height: 8.h),
             EightContainer(
               width: double.infinity,
@@ -47,7 +47,7 @@ class EvaluationDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.h),
-            H2Text("Evaluation Result"),
+            const H2Text("Evaluation Result"),
             SizedBox(height: 8.h),
             EightContainer(
               width: double.infinity,

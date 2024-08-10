@@ -35,9 +35,9 @@ class _CoachEvaluationScreenState extends State<CoachEvaluationScreen> {
               context.pop();
             },
           ),
-          title: Text('Evaluation'),
+          title: const Text('Evaluation'),
           bottom: TabBar(
-            tabs: [
+            tabs: const [
               Tab(text: 'Athlete'),
               Tab(text: 'History'),
             ],
@@ -56,7 +56,7 @@ class _CoachEvaluationScreenState extends State<CoachEvaluationScreen> {
           ),
         ),
         body: TabBarView(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             BlocBuilder<ClubCubit, ClubState>(
               builder: (context, state) {
@@ -65,7 +65,7 @@ class _CoachEvaluationScreenState extends State<CoachEvaluationScreen> {
                       .read<ClubCubit>()
                       .getMembers(const PaginationParams(), widget.club.id),
                   child: SingleChildScrollView(
-                    physics: AlwaysScrollableScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -106,7 +106,7 @@ class _CoachEvaluationScreenState extends State<CoachEvaluationScreen> {
                                 .toList(),
                           ),
                   child: SingleChildScrollView(
-                    physics: AlwaysScrollableScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

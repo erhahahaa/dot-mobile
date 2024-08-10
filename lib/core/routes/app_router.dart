@@ -526,7 +526,7 @@ class AppRouter {
               BlocProvider(
                 create: (context) => sl<ClubCubit>()
                   ..getMembers(
-                    PaginationParams(),
+                    const PaginationParams(),
                     club.id,
                   ),
               ),

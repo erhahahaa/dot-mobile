@@ -21,7 +21,7 @@ class EvaluationCubit extends Cubit<EvaluationState> {
     this._userRepo,
     this._clubRepo,
     this._examRepo,
-  ) : super(EvaluationState());
+  ) : super(const EvaluationState());
 
   void clear() => safeEmit(
         isClosed: isClosed,
@@ -77,7 +77,7 @@ class EvaluationCubit extends Cubit<EvaluationState> {
   Future<void> getEvaluations(List<int> examIds) async {
     emitLoading();
     for (final id in examIds) {
-      final res = await _evaluationRepo.getAll(PaginationParams(), id);
+      final res = await _evaluationRepo.getAll(const PaginationParams(), id);
       res.fold(
         (l) {
           safeEmit(
@@ -142,8 +142,8 @@ class EvaluationCubit extends Cubit<EvaluationState> {
   }
 
   Future<void> getQuestions({required int examId}) async {
-    final question = await _questionRepo.getAll(PaginationParams(), examId);
-    final evaluation = await _evaluationRepo.getAll(PaginationParams(), examId);
+    final question = await _questionRepo.getAll(const PaginationParams(), examId);
+    final evaluation = await _evaluationRepo.getAll(const PaginationParams(), examId);
 
     question.fold(
       (l) {
@@ -184,12 +184,12 @@ class EvaluationCubit extends Cubit<EvaluationState> {
   }
 
   Future<void> geAthleteEvaluation() async {
-    final res = await _clubRepo.getAll(PaginationParams());
+    final res = await _clubRepo.getAll(const PaginationParams());
 
     res.fold((_) => null, (clubs) async {
       List<int> examIds = [];
       for (final club in clubs) {
-        final exam = await _examRepo.getAll(PaginationParams(), club.id);
+        final exam = await _examRepo.getAll(const PaginationParams(), club.id);
         exam.fold((_) => null, (exams) {
           examIds.addAll(exams.map((e) => e.id));
         });
