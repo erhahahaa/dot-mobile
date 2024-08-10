@@ -21,6 +21,8 @@ class MediaModel with _$MediaModel {
     @Default(MediaType.applicationOctetStream) MediaType type,
     @Default(MediaParent.club) MediaParent parent,
     @Default('') String url,
+    String? thumbPath,
+    String? thumbUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _MediaModel;
@@ -40,6 +42,8 @@ class MediaModel with _$MediaModel {
       type: entity.type,
       parent: entity.parent,
       url: entity.url,
+      thumbPath: entity.thumbPath,
+      thumbUrl: entity.thumbUrl,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );
@@ -72,6 +76,8 @@ extension MediaModelX on MediaModel {
       type: type,
       parent: parent,
       url: url,
+      thumbPath: thumbPath,
+      thumbUrl: thumbUrl,
       createdAt: createdAt,
       updatedAt: updatedAt,
     );

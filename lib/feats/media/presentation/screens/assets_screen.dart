@@ -3,6 +3,7 @@ import 'package:dot_coaching/feats/feats.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AssetsScreen extends StatelessWidget {
   final int clubId;
@@ -24,6 +25,8 @@ class AssetsScreen extends StatelessWidget {
               questionMedias: state.questionMedias,
               tacticalMedias: state.tacticalMedias,
               isLoading: state.state == BaseState.loading,
+              width: double.infinity,
+              height: 150.w,
             ),
           ),
         );

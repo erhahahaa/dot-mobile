@@ -1,7 +1,10 @@
+export 'package:dot_coaching/core/widgets/add_item_button.dart';
 export 'package:dot_coaching/core/widgets/bg/bg.dart';
 export 'package:dot_coaching/core/widgets/button.dart';
 export 'package:dot_coaching/core/widgets/chirp.dart';
 export 'package:dot_coaching/core/widgets/container/container.dart';
+export 'package:dot_coaching/core/widgets/custom_search_bar.dart';
+export 'package:dot_coaching/core/widgets/dedicated_video_player.dart';
 export 'package:dot_coaching/core/widgets/drop_down.dart';
 export 'package:dot_coaching/core/widgets/floating_button_extended.dart';
 export 'package:dot_coaching/core/widgets/gapped_divider.dart';
@@ -12,5 +15,4 @@ export 'package:dot_coaching/core/widgets/sport_image_container.dart';
 export 'package:dot_coaching/core/widgets/text/text.dart';
 export 'package:dot_coaching/core/widgets/text_f.dart';
 export 'package:dot_coaching/core/widgets/toast.dart';
-export 'package:dot_coaching/core/widgets/add_item_button.dart';
-export 'package:dot_coaching/core/widgets/custom_search_bar.dart';
+export 'package:dot_coaching/core/widgets/video_player_dialog.dart';

@@ -10,11 +10,15 @@ class MediaEmbedEntity {
   @enumerated
   MediaType type;
   String? url;
+  String? thumbPath;
+  String? thumbUrl;
 
   MediaEmbedEntity({
     this.name,
     this.fileSize,
     this.url,
     this.type = MediaType.applicationOctetStream,
+    this.thumbPath,
+    this.thumbUrl,
   });
 }

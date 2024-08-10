@@ -220,11 +220,13 @@ class _CoachTacticalFormScreenState extends State<CoachTacticalFormScreen> {
                         ),
                         child: _media != null
                             ? _media!.determineLoader(
+                                context,
                                 width: 310.w,
                                 height: 310.h,
                               )
                             : widget.tactical != null
                                 ? widget.tactical!.media?.determineLoader(
+                                    context,
                                     width: 310.w,
                                     height: 310.h,
                                   )

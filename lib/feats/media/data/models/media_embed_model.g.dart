@@ -15,6 +15,8 @@ _$MediaEmbedModelImpl _$$MediaEmbedModelImplFromJson(
       url: json['url'] as String? ?? '',
       type: $enumDecodeNullable(_$MediaTypeEnumMap, json['type']) ??
           MediaType.applicationOctetStream,
+      thumbPath: json['thumbPath'] as String?,
+      thumbUrl: json['thumbUrl'] as String?,
     );
 
 Map<String, dynamic> _$$MediaEmbedModelImplToJson(
@@ -25,6 +27,8 @@ Map<String, dynamic> _$$MediaEmbedModelImplToJson(
       'fileSize': instance.fileSize,
       'url': instance.url,
       'type': _$MediaTypeEnumMap[instance.type]!,
+      'thumbPath': instance.thumbPath,
+      'thumbUrl': instance.thumbUrl,
     };
 
 const _$MediaTypeEnumMap = {

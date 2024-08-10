@@ -14,6 +14,7 @@ class AssetTab extends StatefulWidget {
   final bool showUploadButton;
   final Function(MediaModel)? onTap;
   final bool isLoading;
+  final double? width, height;
 
   const AssetTab({
     super.key,
@@ -27,6 +28,8 @@ class AssetTab extends StatefulWidget {
     this.showUploadButton = true,
     this.onTap,
     required this.isLoading,
+    this.width,
+    this.height,
   });
 
   @override
@@ -111,6 +114,8 @@ class _AssetTabState extends State<AssetTab> {
                         onTap: widget.onTap,
                         isLoading: widget.isLoading,
                         clubId: widget.clubId,
+                        width: widget.width,
+                        height: widget.height,
                       ),
                     if (state.showProgram)
                       ProgramAssetView(
@@ -119,6 +124,8 @@ class _AssetTabState extends State<AssetTab> {
                         showUploadButton: widget.showUploadButton,
                         onTap: widget.onTap,
                         isLoading: widget.isLoading,
+                        width: widget.width,
+                        height: widget.height,
                       ),
                     if (state.showExercise)
                       ExerciseAssetView(
@@ -127,6 +134,8 @@ class _AssetTabState extends State<AssetTab> {
                         showUploadButton: widget.showUploadButton,
                         onTap: widget.onTap,
                         isLoading: widget.isLoading,
+                        width: widget.width,
+                        height: widget.height,
                       ),
                     if (state.showExam)
                       ExamAssetView(
@@ -135,6 +144,8 @@ class _AssetTabState extends State<AssetTab> {
                         showUploadButton: widget.showUploadButton,
                         onTap: widget.onTap,
                         isLoading: widget.isLoading,
+                        width: widget.width,
+                        height: widget.height,
                       ),
                     if (state.showQuestion)
                       QuestionAssetView(
@@ -143,6 +154,8 @@ class _AssetTabState extends State<AssetTab> {
                         showUploadButton: widget.showUploadButton,
                         onTap: widget.onTap,
                         isLoading: widget.isLoading,
+                        width: widget.width,
+                        height: widget.height,
                       ),
                     if (state.showTactical)
                       TacticalAssetView(
@@ -151,6 +164,8 @@ class _AssetTabState extends State<AssetTab> {
                         showUploadButton: widget.showUploadButton,
                         onTap: widget.onTap,
                         isLoading: widget.isLoading,
+                        width: widget.width,
+                        height: widget.height,
                       ),
                   ],
                 ),

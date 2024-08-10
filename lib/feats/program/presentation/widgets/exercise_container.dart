@@ -67,8 +67,12 @@ class _ExerciseContainerState extends State<ExerciseContainer> {
             borderRadius: BorderRadius.circular(12.r),
           ),
           child: widget.exercise.media != null
-              ? widget.exercise.media!
-                  .determineLoader(width: 310.w, height: 310.h)
+              ? widget.exercise.media!.determineLoader(
+                  context,
+                  width: 310.w,
+                  height: 310.h,
+                  asDialog: false,
+                )
               : Container(),
         ),
         SizedBox(height: 8.h),

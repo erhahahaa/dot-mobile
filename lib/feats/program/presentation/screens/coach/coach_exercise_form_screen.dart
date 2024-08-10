@@ -355,72 +355,189 @@ class _CoachExerciseFormState extends State<CoachExerciseForm> {
                           ),
                           if (_items[index].isExpanded) ...[
                             SizedBox(height: 16.h),
-                            InkWell(
-                              onTap: () async {
-                                final picked =
-                                    await showAdaptiveDialog<MediaModel>(
-                                  context: context,
-                                  builder: (_) {
-                                    return Dialog(
-                                      child: Container(
-                                          padding: EdgeInsets.all(16.w),
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.75,
-                                          child: BlocProvider.value(
-                                            value: context.read<MediaCubit>(),
-                                            child: BlocBuilder<MediaCubit,
-                                                MediaState>(
-                                              builder: (context, state) {
-                                                return AssetTab(
-                                                  isLoading: state.state ==
-                                                      BaseState.loading,
-                                                  showUploadButton: true,
-                                                  clubId: widget.program.clubId,
-                                                  clubMedias: state.clubMedias,
-                                                  programMedias:
-                                                      state.programMedias,
-                                                  exerciseMedias:
-                                                      state.exerciseMedias,
-                                                  examMedias: state.examMedias,
-                                                  questionMedias:
-                                                      state.questionMedias,
-                                                  tacticalMedias:
-                                                      state.tacticalMedias,
-                                                  onTap: (media) {
-                                                    Navigator.of(context)
-                                                        .pop(media);
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          )),
-                                    );
-                                  },
-                                );
-
-                                if (picked != null) {
-                                  setState(() {
-                                    _items[index].media = picked;
-                                  });
-                                }
-                              },
-                              child: Container(
-                                width: 310.w,
-                                height: 210.h,
-                                padding: EdgeInsets.all(8.w),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12.r),
+                            Stack(
+                              children: [
+                                Container(
+                                  width: 310.w,
+                                  height: 210.h,
+                                  padding: EdgeInsets.all(8.w),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12.r),
+                                  ),
+                                  child: _items[index].media != null
+                                      ? _items[index].media!.determineLoader(
+                                            context,
+                                            width: 310.w,
+                                            height: 210.h,
+                                          )
+                                      : Assets.images.placeholder.placeholder
+                                          .image(
+                                          width: 310.w,
+                                          height: 210.h,
+                                        ),
                                 ),
-                                child: _items[index].media != null
-                                    ? _items[index].media!.determineLoader(
-                                        width: 310.w, height: 210.h)
-                                    : Assets.images.placeholder.placeholder
-                                        .image(),
-                              ),
+                                Positioned(
+                                  bottom: 8,
+                                  right: 8,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: context.theme.colorScheme.surface,
+                                      borderRadius:
+                                          BorderRadius.circular(666.r),
+                                    ),
+                                    child: IconButton(
+                                      onPressed: () async {
+                                        final picked = await showAdaptiveDialog<
+                                            MediaModel>(
+                                          context: context,
+                                          builder: (_) {
+                                            return Dialog(
+                                              child: Container(
+                                                  padding: EdgeInsets.all(16.w),
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.75,
+                                                  child: BlocProvider.value(
+                                                    value: context
+                                                        .read<MediaCubit>(),
+                                                    child: BlocBuilder<
+                                                        MediaCubit, MediaState>(
+                                                      builder:
+                                                          (context, state) {
+                                                        return AssetTab(
+                                                          isLoading: state
+                                                                  .state ==
+                                                              BaseState.loading,
+                                                          showUploadButton:
+                                                              true,
+                                                          clubId: widget
+                                                              .program.clubId,
+                                                          clubMedias:
+                                                              state.clubMedias,
+                                                          programMedias: state
+                                                              .programMedias,
+                                                          exerciseMedias: state
+                                                              .exerciseMedias,
+                                                          examMedias:
+                                                              state.examMedias,
+                                                          questionMedias: state
+                                                              .questionMedias,
+                                                          tacticalMedias: state
+                                                              .tacticalMedias,
+                                                          onTap: (media) {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop(media);
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
+                                                  )),
+                                            );
+                                          },
+                                        );
+
+                                        if (picked != null) {
+                                          setState(() {
+                                            _items[index].media = picked;
+                                          });
+                                        }
+                                      },
+                                      icon: Icon(Icons.edit),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
+                            // Stack(
+                            //   children: [
+                            //     Positioned.fill(
+                            //       child: Container(
+                            //         width: 310.w,
+                            //         height: 210.h,
+                            //         padding: EdgeInsets.all(8.w),
+                            //         decoration: BoxDecoration(
+                            //           color: Colors.white,
+                            //           borderRadius: BorderRadius.circular(12.r),
+                            //         ),
+                            //         child: _items[index].media != null
+                            //             ? _items[index].media!.determineLoader(
+                            //                   context,
+                            //                   width: 310.w,
+                            //                   height: 210.h,
+                            //                 )
+                            //             : Assets.images.placeholder.placeholder
+                            //                 .image(
+                            //                 width: 310.w,
+                            //                 height: 210.h,
+                            //               ),
+                            //       ),
+                            //     ),
+                            //     Positioned(
+                            //       right: 0,
+                            //       bottom: 0,
+                            //       child: InkWell(
+                            //         onTap: () async {
+                            //           final picked =
+                            //               await showAdaptiveDialog<MediaModel>(
+                            //             context: context,
+                            //             builder: (_) {
+                            //               return Dialog(
+                            //                 child: Container(
+                            //                     padding: EdgeInsets.all(16.w),
+                            //                     height: MediaQuery.of(context)
+                            //                             .size
+                            //                             .height *
+                            //                         0.75,
+                            //                     child: BlocProvider.value(
+                            //                       value: context
+                            //                           .read<MediaCubit>(),
+                            //                       child: BlocBuilder<MediaCubit,
+                            //                           MediaState>(
+                            //                         builder: (context, state) {
+                            //                           return AssetTab(
+                            //                             isLoading: state
+                            //                                     .state ==
+                            //                                 BaseState.loading,
+                            //                             showUploadButton: true,
+                            //                             clubId: widget
+                            //                                 .program.clubId,
+                            //                             clubMedias:
+                            //                                 state.clubMedias,
+                            //                             programMedias:
+                            //                                 state.programMedias,
+                            //                             exerciseMedias: state
+                            //                                 .exerciseMedias,
+                            //                             examMedias:
+                            //                                 state.examMedias,
+                            //                             questionMedias: state
+                            //                                 .questionMedias,
+                            //                             tacticalMedias: state
+                            //                                 .tacticalMedias,
+                            //                             onTap: (media) {
+                            //                               Navigator.of(context)
+                            //                                   .pop(media);
+                            //                             },
+                            //                           );
+                            //                         },
+                            //                       ),
+                            //                     )),
+                            //               );
+                            //             },
+                            //           );
+
+                            //           if (picked != null) {
+                            //             setState(() {
+                            //               _items[index].media = picked;
+                            //             });
+                            //           }
+                            //         },
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
                             SizedBox(height: 16.h),
                             Row(
                               children: [

@@ -330,7 +330,7 @@ class AppRouter {
                 create: (_) => sl<MediaCubit>()
                   ..init(
                     clubId: club.id,
-                    parents: [MediaParent.program],
+                    parents: [MediaParent.program, MediaParent.exercise],
                   ),
               ),
             ],
@@ -435,7 +435,7 @@ class AppRouter {
                 create: (_) => sl<MediaCubit>()
                   ..init(
                     clubId: club.id,
-                    parents: [MediaParent.question],
+                    parents: [],
                   ),
               ),
             ],
@@ -643,7 +643,7 @@ class AppRouter {
                 create: (context) => sl<MediaCubit>()
                   ..init(
                     clubId: club.id,
-                    parents: [MediaParent.tactical],
+                    parents: [],
                   ),
               ),
             ],
@@ -743,7 +743,11 @@ class AppRouter {
             create: (_) => sl<MediaCubit>()
               ..init(
                 clubId: club.id,
-                parents: MediaParent.values,
+                parents: [
+                  MediaParent.club,
+                  MediaParent.program,
+                  MediaParent.exercise
+                ],
               ),
             child: child,
           );

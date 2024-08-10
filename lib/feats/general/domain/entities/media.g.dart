@@ -23,14 +23,24 @@ const MediaEmbedEntitySchema = Schema(
       name: r'name',
       type: IsarType.string,
     ),
-    r'type': PropertySchema(
+    r'thumbPath': PropertySchema(
       id: 2,
+      name: r'thumbPath',
+      type: IsarType.string,
+    ),
+    r'thumbUrl': PropertySchema(
+      id: 3,
+      name: r'thumbUrl',
+      type: IsarType.string,
+    ),
+    r'type': PropertySchema(
+      id: 4,
       name: r'type',
       type: IsarType.byte,
       enumMap: _MediaEmbedEntitytypeEnumValueMap,
     ),
     r'url': PropertySchema(
-      id: 3,
+      id: 5,
       name: r'url',
       type: IsarType.string,
     )
@@ -54,6 +64,18 @@ int _mediaEmbedEntityEstimateSize(
     }
   }
   {
+    final value = object.thumbPath;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.thumbUrl;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
     final value = object.url;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
@@ -70,8 +92,10 @@ void _mediaEmbedEntitySerialize(
 ) {
   writer.writeLong(offsets[0], object.fileSize);
   writer.writeString(offsets[1], object.name);
-  writer.writeByte(offsets[2], object.type.index);
-  writer.writeString(offsets[3], object.url);
+  writer.writeString(offsets[2], object.thumbPath);
+  writer.writeString(offsets[3], object.thumbUrl);
+  writer.writeByte(offsets[4], object.type.index);
+  writer.writeString(offsets[5], object.url);
 }
 
 MediaEmbedEntity _mediaEmbedEntityDeserialize(
@@ -83,10 +107,12 @@ MediaEmbedEntity _mediaEmbedEntityDeserialize(
   final object = MediaEmbedEntity(
     fileSize: reader.readLongOrNull(offsets[0]),
     name: reader.readStringOrNull(offsets[1]),
+    thumbPath: reader.readStringOrNull(offsets[2]),
+    thumbUrl: reader.readStringOrNull(offsets[3]),
     type:
-        _MediaEmbedEntitytypeValueEnumMap[reader.readByteOrNull(offsets[2])] ??
+        _MediaEmbedEntitytypeValueEnumMap[reader.readByteOrNull(offsets[4])] ??
             MediaType.applicationOctetStream,
-    url: reader.readStringOrNull(offsets[3]),
+    url: reader.readStringOrNull(offsets[5]),
   );
   return object;
 }
@@ -103,10 +129,14 @@ P _mediaEmbedEntityDeserializeProp<P>(
     case 1:
       return (reader.readStringOrNull(offset)) as P;
     case 2:
+      return (reader.readStringOrNull(offset)) as P;
+    case 3:
+      return (reader.readStringOrNull(offset)) as P;
+    case 4:
       return (_MediaEmbedEntitytypeValueEnumMap[
               reader.readByteOrNull(offset)] ??
           MediaType.applicationOctetStream) as P;
-    case 3:
+    case 5:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -387,6 +417,314 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'thumbPath',
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'thumbPath',
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'thumbPath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'thumbPath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'thumbPath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'thumbPath',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'thumbPath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'thumbPath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'thumbPath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'thumbPath',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'thumbPath',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbPathIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'thumbPath',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'thumbUrl',
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'thumbUrl',
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'thumbUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'thumbUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'thumbUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'thumbUrl',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'thumbUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'thumbUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'thumbUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'thumbUrl',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'thumbUrl',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      thumbUrlIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'thumbUrl',
         value: '',
       ));
     });

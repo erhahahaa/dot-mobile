@@ -10,6 +10,7 @@ class ExerciseAssetView extends StatelessWidget {
   final bool showUploadButton;
   final Function(MediaModel media)? onTap;
   final bool isLoading;
+  final double? width, height;
 
   const ExerciseAssetView({
     super.key,
@@ -18,6 +19,8 @@ class ExerciseAssetView extends StatelessWidget {
     required this.showUploadButton,
     this.onTap,
     required this.isLoading,
+    this.width,
+    this.height,
   });
 
   @override
@@ -66,7 +69,12 @@ class ExerciseAssetView extends StatelessWidget {
           ),
           itemCount: fakeMedias.length,
           itemBuilder: (context, index) {
-            return AssetContainer(media: fakeMedias[index], onTap: onTap);
+            return AssetContainer(
+              media: fakeMedias[index],
+              onTap: onTap,
+              width: width,
+              height: height,
+            );
           },
         ),
       );
@@ -81,7 +89,12 @@ class ExerciseAssetView extends StatelessWidget {
       ),
       itemCount: medias.length,
       itemBuilder: (context, index) {
-        return AssetContainer(media: medias[index], onTap: onTap);
+        return AssetContainer(
+          media: medias[index],
+          onTap: onTap,
+          width: width,
+          height: height,
+        );
       },
     );
   }

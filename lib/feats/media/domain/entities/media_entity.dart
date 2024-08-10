@@ -17,6 +17,8 @@ class MediaEntity {
   @enumerated
   MediaParent parent;
   String url;
+  String? thumbPath;
+  String? thumbUrl;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -31,6 +33,8 @@ class MediaEntity {
     this.type = MediaType.applicationOctetStream,
     this.parent = MediaParent.club,
     this.url = '',
+    this.thumbPath,
+    this.thumbUrl,
     this.createdAt,
     this.updatedAt,
   });

@@ -25,6 +25,8 @@ mixin _$MediaEmbedModel {
   int get fileSize => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   MediaType get type => throw _privateConstructorUsedError;
+  String? get thumbPath => throw _privateConstructorUsedError;
+  String? get thumbUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +40,14 @@ abstract class $MediaEmbedModelCopyWith<$Res> {
           MediaEmbedModel value, $Res Function(MediaEmbedModel) then) =
       _$MediaEmbedModelCopyWithImpl<$Res, MediaEmbedModel>;
   @useResult
-  $Res call({int id, String name, int fileSize, String url, MediaType type});
+  $Res call(
+      {int id,
+      String name,
+      int fileSize,
+      String url,
+      MediaType type,
+      String? thumbPath,
+      String? thumbUrl});
 }
 
 /// @nodoc
@@ -59,6 +68,8 @@ class _$MediaEmbedModelCopyWithImpl<$Res, $Val extends MediaEmbedModel>
     Object? fileSize = null,
     Object? url = null,
     Object? type = null,
+    Object? thumbPath = freezed,
+    Object? thumbUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -81,6 +92,14 @@ class _$MediaEmbedModelCopyWithImpl<$Res, $Val extends MediaEmbedModel>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as MediaType,
+      thumbPath: freezed == thumbPath
+          ? _value.thumbPath
+          : thumbPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbUrl: freezed == thumbUrl
+          ? _value.thumbUrl
+          : thumbUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -93,7 +112,14 @@ abstract class _$$MediaEmbedModelImplCopyWith<$Res>
       __$$MediaEmbedModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, int fileSize, String url, MediaType type});
+  $Res call(
+      {int id,
+      String name,
+      int fileSize,
+      String url,
+      MediaType type,
+      String? thumbPath,
+      String? thumbUrl});
 }
 
 /// @nodoc
@@ -112,6 +138,8 @@ class __$$MediaEmbedModelImplCopyWithImpl<$Res>
     Object? fileSize = null,
     Object? url = null,
     Object? type = null,
+    Object? thumbPath = freezed,
+    Object? thumbUrl = freezed,
   }) {
     return _then(_$MediaEmbedModelImpl(
       id: null == id
@@ -134,6 +162,14 @@ class __$$MediaEmbedModelImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as MediaType,
+      thumbPath: freezed == thumbPath
+          ? _value.thumbPath
+          : thumbPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbUrl: freezed == thumbUrl
+          ? _value.thumbUrl
+          : thumbUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -146,7 +182,9 @@ class _$MediaEmbedModelImpl implements _MediaEmbedModel {
       this.name = '',
       this.fileSize = 0,
       this.url = '',
-      this.type = MediaType.applicationOctetStream});
+      this.type = MediaType.applicationOctetStream,
+      this.thumbPath,
+      this.thumbUrl});
 
   factory _$MediaEmbedModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MediaEmbedModelImplFromJson(json);
@@ -166,10 +204,14 @@ class _$MediaEmbedModelImpl implements _MediaEmbedModel {
   @override
   @JsonKey()
   final MediaType type;
+  @override
+  final String? thumbPath;
+  @override
+  final String? thumbUrl;
 
   @override
   String toString() {
-    return 'MediaEmbedModel(id: $id, name: $name, fileSize: $fileSize, url: $url, type: $type)';
+    return 'MediaEmbedModel(id: $id, name: $name, fileSize: $fileSize, url: $url, type: $type, thumbPath: $thumbPath, thumbUrl: $thumbUrl)';
   }
 
   @override
@@ -182,12 +224,17 @@ class _$MediaEmbedModelImpl implements _MediaEmbedModel {
             (identical(other.fileSize, fileSize) ||
                 other.fileSize == fileSize) &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.thumbPath, thumbPath) ||
+                other.thumbPath == thumbPath) &&
+            (identical(other.thumbUrl, thumbUrl) ||
+                other.thumbUrl == thumbUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, fileSize, url, type);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, fileSize, url, type, thumbPath, thumbUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -210,7 +257,9 @@ abstract class _MediaEmbedModel implements MediaEmbedModel {
       final String name,
       final int fileSize,
       final String url,
-      final MediaType type}) = _$MediaEmbedModelImpl;
+      final MediaType type,
+      final String? thumbPath,
+      final String? thumbUrl}) = _$MediaEmbedModelImpl;
 
   factory _MediaEmbedModel.fromJson(Map<String, dynamic> json) =
       _$MediaEmbedModelImpl.fromJson;
@@ -225,6 +274,10 @@ abstract class _MediaEmbedModel implements MediaEmbedModel {
   String get url;
   @override
   MediaType get type;
+  @override
+  String? get thumbPath;
+  @override
+  String? get thumbUrl;
   @override
   @JsonKey(ignore: true)
   _$$MediaEmbedModelImplCopyWith<_$MediaEmbedModelImpl> get copyWith =>

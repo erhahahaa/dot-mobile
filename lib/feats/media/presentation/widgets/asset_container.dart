@@ -7,7 +7,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AssetContainer extends StatelessWidget {
   final MediaModel media;
   final Function(MediaModel)? onTap;
-  const AssetContainer({super.key, required this.media, this.onTap});
+  final double? width, height;
+
+  const AssetContainer({
+    super.key,
+    required this.media,
+    this.onTap,
+    this.width,
+    this.height,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +29,12 @@ class AssetContainer extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InkWell(
-            onTap: () => onTap != null ? onTap!(media) : null,
-            child: ClipRRect(
-              child: SizedBox(
-                width: 104.w,
-                height: 104.w,
-                child: media.determineLoader(width: 104.w, height: 104.w),
-              ),
+          ClipRRect(
+            child: SizedBox(
+              width: width ?? 104.w,
+              height: height ?? 104.w,
+              child:
+                  media.determineLoader(context, width: 104.w, height: 104.w),
             ),
           ),
           const Divider(),
@@ -107,6 +113,15 @@ class AssetContainer extends StatelessWidget {
                   );
                 },
               ),
+              if (onTap != null) ...[
+                SizedBox(width: 16.w),
+                InkWell(
+                    child: Icon(
+                      Icons.check,
+                      size: 16.sp,
+                    ),
+                    onTap: () => onTap != null ? onTap!(media) : null),
+              ]
             ],
           )
         ],

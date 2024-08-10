@@ -9,6 +9,7 @@ class ClubAssetView extends StatelessWidget {
   final bool isLoading;
   final int clubId;
   final Function(MediaModel media)? onTap;
+  final double? width, height;
 
   const ClubAssetView({
     super.key,
@@ -16,6 +17,8 @@ class ClubAssetView extends StatelessWidget {
     this.onTap,
     required this.isLoading,
     required this.clubId,
+    this.width,
+    this.height,
   });
 
   @override
@@ -48,7 +51,12 @@ class ClubAssetView extends StatelessWidget {
           ),
           itemCount: fakeMedias.length,
           itemBuilder: (context, index) {
-            return AssetContainer(media: fakeMedias[index], onTap: onTap);
+            return AssetContainer(
+              media: fakeMedias[index],
+              onTap: onTap,
+              width: width,
+              height: height,
+            );
           },
         ),
       );
@@ -63,7 +71,12 @@ class ClubAssetView extends StatelessWidget {
       ),
       itemCount: medias.length,
       itemBuilder: (context, index) {
-        return AssetContainer(media: medias[index], onTap: onTap);
+        return AssetContainer(
+          media: medias[index],
+          onTap: onTap,
+          width: width,
+          height: height,
+        );
       },
     );
   }

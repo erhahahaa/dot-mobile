@@ -16,6 +16,8 @@ class MediaEmbedModel with _$MediaEmbedModel {
     @Default(0) int fileSize,
     @Default('') String url,
     @Default(MediaType.applicationOctetStream) MediaType type,
+    String? thumbPath,
+    String? thumbUrl,
   }) = _MediaEmbedModel;
 
   factory MediaEmbedModel.fromJson(Map<String, dynamic> json) =>
@@ -26,7 +28,9 @@ class MediaEmbedModel with _$MediaEmbedModel {
       name: entity.name ?? '',
       fileSize: entity.fileSize ?? 0,
       url: entity.url ?? '',
-      type: entity.type  ,
+      type: entity.type,
+      thumbPath: entity.thumbPath,
+      thumbUrl: entity.thumbUrl,
     );
   }
 
@@ -36,6 +40,8 @@ class MediaEmbedModel with _$MediaEmbedModel {
       fileSize: Random().nextInt(100),
       url: AppConstants.SPORT_IMAGE,
       type: MediaType.applicationOctetStream,
+      thumbPath: BoneMock.subtitle,
+      thumbUrl: AppConstants.SPORT_IMAGE,
     );
   }
 }
@@ -47,6 +53,8 @@ extension MediaEmbedModelX on MediaEmbedModel {
       fileSize: fileSize,
       url: url,
       type: type,
+      thumbPath: thumbPath,
+      thumbUrl: thumbUrl,
     );
   }
 }

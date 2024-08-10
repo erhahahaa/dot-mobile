@@ -164,20 +164,23 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
                           // ),
 
                           child: widget.tactical.media?.determineLoader(
-                              width: widget.screenSize.width, fit: BoxFit.fill),
+                            context,
+                            width: widget.screenSize.width,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                         for (int i = 0; i < strategic.players.length; i++)
                           Positioned(
                             left: strategic.players[i].x,
                             top: strategic.players[i].y - 40 / 2,
                             child: GestureDetector(
-                              // onPanStart: (details) {
-                              //   setState(() {
-                              //     state.strategic.players[i] = state
-                              //         .strategic.players[i]
-                              //         .copyWith(isDragging: true);
-                              //   });
-                              // },
+                              onPanStart: (details) {
+                                setState(() {
+                                  state.strategic.players[i] = state
+                                      .strategic.players[i]
+                                      .copyWith(isDragging: true);
+                                });
+                              },
                               onPanUpdate: (details) {
                                 final player = strategic.players[i].copyWith(
                                   x: strategic.players[i].x + details.delta.dx,
@@ -209,13 +212,13 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
                                       .sendWebSocket(jsonEncode(data));
                                 }
                               },
-                              // onPanEnd: (details) {
-                              //   setState(() {
-                              //     state.strategic.players[i] = state
-                              //         .strategic.players[i]
-                              //         .copyWith(isDragging: false);
-                              //   });
-                              // },
+                              onPanEnd: (details) {
+                                setState(() {
+                                  state.strategic.players[i] = state
+                                      .strategic.players[i]
+                                      .copyWith(isDragging: false);
+                                });
+                              },
                               child: PlayerWidget(player: strategic.players[i]),
                             ),
                           ),

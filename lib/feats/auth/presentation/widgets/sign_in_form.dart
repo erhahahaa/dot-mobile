@@ -24,11 +24,11 @@ class _SigInpFormWidgetState extends State<SignInFormWidget> {
   @override
   void initState() {
     _identifierController = TextEditingController(
-      text: 'john@gmail.com',
-    );
+        // text: 'john@gmail.com',
+        );
     _passwordController = TextEditingController(
-      text: 'password',
-    );
+        // text: 'password',
+        );
 
     _identifierFocusNode = FocusNode();
     _passwordFocusNode = FocusNode();

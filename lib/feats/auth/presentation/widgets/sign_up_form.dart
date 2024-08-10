@@ -35,11 +35,21 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: 'John Doe');
-    _emailController = TextEditingController(text: 'john@gmail.com');
-    _usernameController = TextEditingController(text: 'john');
-    _phoneController = TextEditingController(text: '81234567890');
-    _passwordController = TextEditingController(text: 'password');
+    _nameController = TextEditingController(
+        // text: 'John Doe',
+        );
+    _emailController = TextEditingController(
+        // text: 'john@gmail.com',
+        );
+    _usernameController = TextEditingController(
+        // text: 'john',
+        );
+    _phoneController = TextEditingController(
+        // text: '81234567890',
+        );
+    _passwordController = TextEditingController(
+        // text: 'password',
+        );
 
     _nameFocusNode = FocusNode();
     _emailFocusNode = FocusNode();

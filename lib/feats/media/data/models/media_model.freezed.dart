@@ -30,6 +30,8 @@ mixin _$MediaModel {
   MediaType get type => throw _privateConstructorUsedError;
   MediaParent get parent => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
+  String? get thumbPath => throw _privateConstructorUsedError;
+  String? get thumbUrl => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -56,6 +58,8 @@ abstract class $MediaModelCopyWith<$Res> {
       MediaType type,
       MediaParent parent,
       String url,
+      String? thumbPath,
+      String? thumbUrl,
       DateTime? createdAt,
       DateTime? updatedAt});
 }
@@ -83,6 +87,8 @@ class _$MediaModelCopyWithImpl<$Res, $Val extends MediaModel>
     Object? type = null,
     Object? parent = null,
     Object? url = null,
+    Object? thumbPath = freezed,
+    Object? thumbUrl = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -127,6 +133,14 @@ class _$MediaModelCopyWithImpl<$Res, $Val extends MediaModel>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      thumbPath: freezed == thumbPath
+          ? _value.thumbPath
+          : thumbPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbUrl: freezed == thumbUrl
+          ? _value.thumbUrl
+          : thumbUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -158,6 +172,8 @@ abstract class _$$MediaModelImplCopyWith<$Res>
       MediaType type,
       MediaParent parent,
       String url,
+      String? thumbPath,
+      String? thumbUrl,
       DateTime? createdAt,
       DateTime? updatedAt});
 }
@@ -183,6 +199,8 @@ class __$$MediaModelImplCopyWithImpl<$Res>
     Object? type = null,
     Object? parent = null,
     Object? url = null,
+    Object? thumbPath = freezed,
+    Object? thumbUrl = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -227,6 +245,14 @@ class __$$MediaModelImplCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      thumbPath: freezed == thumbPath
+          ? _value.thumbPath
+          : thumbPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbUrl: freezed == thumbUrl
+          ? _value.thumbUrl
+          : thumbUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -253,6 +279,8 @@ class _$MediaModelImpl implements _MediaModel {
       this.type = MediaType.applicationOctetStream,
       this.parent = MediaParent.club,
       this.url = '',
+      this.thumbPath,
+      this.thumbUrl,
       this.createdAt,
       this.updatedAt});
 
@@ -289,13 +317,17 @@ class _$MediaModelImpl implements _MediaModel {
   @JsonKey()
   final String url;
   @override
+  final String? thumbPath;
+  @override
+  final String? thumbUrl;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'MediaModel(id: $id, creatorId: $creatorId, clubId: $clubId, name: $name, description: $description, fileSize: $fileSize, path: $path, type: $type, parent: $parent, url: $url, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'MediaModel(id: $id, creatorId: $creatorId, clubId: $clubId, name: $name, description: $description, fileSize: $fileSize, path: $path, type: $type, parent: $parent, url: $url, thumbPath: $thumbPath, thumbUrl: $thumbUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -316,6 +348,10 @@ class _$MediaModelImpl implements _MediaModel {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.parent, parent) || other.parent == parent) &&
             (identical(other.url, url) || other.url == url) &&
+            (identical(other.thumbPath, thumbPath) ||
+                other.thumbPath == thumbPath) &&
+            (identical(other.thumbUrl, thumbUrl) ||
+                other.thumbUrl == thumbUrl) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -324,8 +360,22 @@ class _$MediaModelImpl implements _MediaModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, creatorId, clubId, name,
-      description, fileSize, path, type, parent, url, createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      creatorId,
+      clubId,
+      name,
+      description,
+      fileSize,
+      path,
+      type,
+      parent,
+      url,
+      thumbPath,
+      thumbUrl,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -353,6 +403,8 @@ abstract class _MediaModel implements MediaModel {
       final MediaType type,
       final MediaParent parent,
       final String url,
+      final String? thumbPath,
+      final String? thumbUrl,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$MediaModelImpl;
 
@@ -379,6 +431,10 @@ abstract class _MediaModel implements MediaModel {
   MediaParent get parent;
   @override
   String get url;
+  @override
+  String? get thumbPath;
+  @override
+  String? get thumbUrl;
   @override
   DateTime? get createdAt;
   @override

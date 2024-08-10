@@ -96,7 +96,10 @@ class _TacticalDetailScreenState extends State<TacticalDetailScreen> {
                             border: Border.all(color: Colors.black),
                           ),
                           child: widget.tactical.media?.determineLoader(
-                              width: widget.screenSize.width, fit: BoxFit.fill),
+                            context,
+                            width: widget.screenSize.width,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                         for (int i = 0; i < state.strategic.players.length; i++)
                           Positioned(

@@ -20,6 +20,8 @@ _$MediaModelImpl _$$MediaModelImplFromJson(Map<String, dynamic> json) =>
       parent: $enumDecodeNullable(_$MediaParentEnumMap, json['parent']) ??
           MediaParent.club,
       url: json['url'] as String? ?? '',
+      thumbPath: json['thumbPath'] as String?,
+      thumbUrl: json['thumbUrl'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -40,6 +42,8 @@ Map<String, dynamic> _$$MediaModelImplToJson(_$MediaModelImpl instance) =>
       'type': _$MediaTypeEnumMap[instance.type]!,
       'parent': _$MediaParentEnumMap[instance.parent]!,
       'url': instance.url,
+      'thumbPath': instance.thumbPath,
+      'thumbUrl': instance.thumbUrl,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
