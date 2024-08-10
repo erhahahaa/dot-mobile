@@ -445,7 +445,7 @@ class _CoachExerciseFormState extends State<CoachExerciseForm> {
                                           });
                                         }
                                       },
-                                      icon: Icon(Icons.edit),
+                                      icon: const Icon(Icons.edit),
                                     ),
                                   ),
                                 )

@@ -51,7 +51,7 @@ class _DedicatedVideoPlayerState extends State<DedicatedVideoPlayer> {
   @override
   Widget build(BuildContext context) {
     if (!_controller.value.isInitialized) {
-      return Center(child: CircularProgressIndicator());
+      return const Center(child: CircularProgressIndicator());
     }
 
     return Stack(

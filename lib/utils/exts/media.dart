@@ -65,7 +65,7 @@ extension MediaExt on MediaModel {
                   },
                 );
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.play_circle_fill,
                 size: 50,
                 color: Colors.white,
@@ -141,7 +141,7 @@ extension MediaEmbedExt on MediaEmbedModel {
                     },
                   );
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.play_circle_fill,
                   size: 50,
                   color: Colors.white,
