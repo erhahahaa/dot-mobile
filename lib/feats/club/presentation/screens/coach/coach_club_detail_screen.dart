@@ -177,80 +177,67 @@ class _ClubDetailScreenState extends State<CoachClubDetailScreen> {
                       onPressed: () {
                         showDialog<bool>(
                           context: context,
-                          builder: (_) {
+                          builder: (c) {
                             return BlocProvider.value(
                               value: context.read<ClubCubit>(),
-                              child: AlertDialog(
-                                title: H2Text(
-                                    context.str?.leaveClub ?? 'Leave Club'),
-                                content: H4Text(
-                                  context.str?.leaveClubConfirmation ??
-                                      'Are you sure you want to leave this club?',
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(context, false),
-                                    child:
-                                        Text(context.str?.cancel ?? 'Cancel'),
-                                  ),
-                                  BlocListener<ClubCubit, ClubState>(
-                                      listenWhen: (p, c) => p.state != c.state,
-                                      listener: (context, state) {
-                                        if (state.state == BaseState.success) {
-                                          ToastModel(
-                                            message:
-                                                context.str?.leaveClubSuccess,
-                                            type: ToastType.success,
-                                          ).fire(context);
-                                          Navigator.of(context).pop(true);
-                                        }
-                                        if (state.failure != null) {
-                                          ToastModel(
-                                            message:
-                                                context.str?.failedLeaveClub,
-                                            type: ToastType.error,
-                                          ).fire(context);
-                                          Navigator.of(context).pop(false);
-                                        }
-                                      },
-                                      child: TextButton(
-                                        onPressed: () {
-                                          context
-                                              .read<ClubCubit>()
-                                              .leave(widget.club.id);
-                                          //     .then((r) {
-                                          //   if (r) {
-                                          //     ToastModel(
-                                          //       message: context
-                                          //           .str?.leaveClubSuccess,
-                                          //       type: ToastType.success,
-                                          //     ).fire(context);
-                                          //   } else {
-                                          //     ToastModel(
-                                          //       message: context
-                                          //           .str?.failedLeaveClub,
-                                          //       type: ToastType.error,
-                                          //     ).fire(context);
-                                          //   }
-                                          //   Navigator.of(context).pop(r);
-                                          // });
-                                        },
+                              child: BlocConsumer<ClubCubit, ClubState>(
+                                listenWhen: (p, c) => p.state != c.state,
+                                listener: (context, state) {
+                                  if (state.state == BaseState.success) {
+                                    ToastModel(
+                                      message: context.str?.leaveClubSuccess,
+                                      type: ToastType.success,
+                                    ).fire(context);
+                                    Navigator.of(c).pop();
+                                    context.pop();
+                                  }
+                                  if (state.failure != null) {
+                                    ToastModel(
+                                      message: context.str?.failedLeaveClub,
+                                      type: ToastType.error,
+                                    ).fire(context);
+                                    Navigator.of(c).pop();
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return AlertDialog(
+                                    title: H2Text(
+                                        context.str?.leaveClub ?? 'Leave Club'),
+                                    content: H4Text(
+                                      context.str?.leaveClubConfirmation ??
+                                          'Are you sure you want to leave this club?',
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed:
+                                            state.state == BaseState.loading
+                                                ? null
+                                                : () {
+                                                    Navigator.of(c).pop();
+                                                  },
+                                        child: Text(
+                                          context.str?.cancel ?? 'Cancel',
+                                        ),
+                                      ),
+                                      TextButton(
+                                        onPressed:
+                                            state.state == BaseState.loading
+                                                ? null
+                                                : () {
+                                                    context
+                                                        .read<ClubCubit>()
+                                                        .leave(widget.club.id);
+                                                  },
                                         child:
                                             Text(context.str?.leave ?? 'Leave'),
-                                      )),
-                                ],
+                                      ),
+                                    ],
+                                  );
+                                },
                               ),
                             );
                           },
-                        ).then((r) {
-                          if (r != null) {
-                            if (r) {
-                              context.pushReplacementNamed(
-                                  AppRoutes.coachDashboard.name);
-                            }
-                          }
-                        });
+                        );
                       },
                     ),
                   ],

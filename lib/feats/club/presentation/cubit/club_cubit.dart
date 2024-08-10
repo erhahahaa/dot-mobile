@@ -87,7 +87,7 @@ class ClubCubit extends Cubit<ClubState> {
           isClosed: isClosed,
           emit: emit,
           state: state.copyWith(
-            state: BaseState.success,
+            state: BaseState.initial,
             clubs: r,
             filteredClubs: r,
           ),

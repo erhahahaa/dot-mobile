@@ -49,7 +49,8 @@ class TacticalCubit extends Cubit<TacticalState> {
   void emitStrategy(TacticalStrategicModel? strategy) => safeEmit(
         isClosed: isClosed,
         emit: emit,
-        state: state.copyWith(strategic: strategy ?? const TacticalStrategicModel()),
+        state: state.copyWith(
+            strategic: strategy ?? const TacticalStrategicModel()),
       );
 
   void initInitialPositions({
@@ -230,9 +231,15 @@ class TacticalCubit extends Cubit<TacticalState> {
         ),
       );
     }, (r) {
+      log.e("TacticalCubit.update $r");
       final List<TacticalModel> tacticals = List.from(state.tacticals);
       final index = tacticals.indexWhere((element) => element.id == r.id);
-      tacticals[index] = r;
+      log.f('Index $index');
+      if (index != -1) {
+        tacticals[index] = r;
+      } else {
+        tacticals.add(r);
+      }
 
       safeEmit(
         isClosed: isClosed,

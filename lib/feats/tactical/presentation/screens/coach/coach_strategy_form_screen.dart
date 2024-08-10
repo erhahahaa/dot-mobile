@@ -84,6 +84,26 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
               isConnected: state.isConnected,
             ),
           ),
+          floatingActionButton: FloatingButtonExtended(
+            text: 'End Session',
+            onPressed: () {
+              context.read<TacticalCubit>().update(
+                    UpdateTacticalParams(
+                      id: widget.tactical.id,
+                      clubId: widget.tactical.clubId,
+                      mediaId: widget.tactical.mediaId,
+                      name: widget.tactical.name,
+                      description: widget.tactical.description,
+                      board: widget.tactical.board,
+                      strategic: strategic,
+                      isLive: false,
+                    ),
+                  );
+            },
+            isDisabled: state.state == BaseState.loading,
+            isLoading: state.state == BaseState.loading,
+            icon: Icon(Icons.stop),
+          ),
           endDrawer: widget.tactical.isLive == true
               ? TacticalDrawer(
                   tactical: widget.tactical, audiences: state.audiences)
@@ -219,8 +239,8 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
                   ),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    SizedBox(width: 8.w),
                     IconButton(
                       onPressed: () {
                         final initial =
@@ -231,6 +251,7 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
                       },
                       icon: const Icon(Icons.refresh),
                     ),
+                    SizedBox(width: 8.w),
                     IconButton(
                       onPressed: () {
                         setState(() {
@@ -241,29 +262,6 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Button(
-                    onPressed: () {
-                      context.read<TacticalCubit>().update(
-                            UpdateTacticalParams(
-                              id: widget.tactical.id,
-                              clubId: widget.tactical.clubId,
-                              mediaId: widget.tactical.mediaId,
-                              name: widget.tactical.name,
-                              description: widget.tactical.description,
-                              board: widget.tactical.board,
-                              strategic: strategic,
-                              isLive: false,
-                            ),
-                          );
-                    },
-                    text: 'End Session',
-                    isLoading: state.state == BaseState.loading,
-                    isDisabled: state.state == BaseState.loading,
-                  ),
-                ),
-                SizedBox(height: 8.h),
               ],
             ),
           ),

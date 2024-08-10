@@ -101,7 +101,10 @@ class AppRouter {
                 name: AppRoutes.athleteHome.name,
                 builder: (c, state) => BlocProvider.value(
                   value: c.read<ClubCubit>()..init(),
-                  child: const HomeScreen(),
+                  child: BlocProvider.value(
+                    value: c.read<UserCubit>()..init(),
+                    child: const HomeScreen(),
+                  ),
                 ),
               ),
               GoRoute(

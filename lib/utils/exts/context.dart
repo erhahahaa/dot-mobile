@@ -23,7 +23,7 @@ extension ContextExtensions on BuildContext {
         padding: EdgeInsets.all(8.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
-          color: theme.colorScheme.onPrimary,
+          color: containerColor(0.1),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
