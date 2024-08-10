@@ -102,7 +102,7 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
             },
             isDisabled: state.state == BaseState.loading,
             isLoading: state.state == BaseState.loading,
-            icon: Icon(Icons.stop),
+            icon: const Icon(Icons.stop),
           ),
           endDrawer: widget.tactical.isLive == true
               ? TacticalDrawer(
