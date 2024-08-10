@@ -94,16 +94,22 @@ class MediaCubit extends Cubit<MediaState> {
     );
   }
 
-  Future<FilePickerResult?> _pick() async {
+  Future<FilePickerResult?> _pick({List<String>? exts}) async {
     return _filePickerClient.picker.pickFiles(
       dialogTitle: 'Pick file',
       type: FileType.custom,
-      allowedExtensions: ['jpg', 'jpeg', 'png', 'mp4', 'pdf'],
+      allowedExtensions: exts ?? ['jpg', 'jpeg', 'png'],
     );
   }
 
-  Future<void> upload(MediaParent parent, int clubId) async {
-    final file = await _pick();
+  Future<void> upload(
+    MediaParent parent,
+    int clubId, {
+    Function(int, int)? onSendProgress,
+    Function(int, int)? onReceiveProgress,
+    List<String>? exts,
+  }) async {
+    final file = await _pick(exts: exts);
 
     if (file == null || file.files.isEmpty || file.files.last.path == null) {
       _emitFailureState(message: 'No file selected');
@@ -111,6 +117,7 @@ class MediaCubit extends Cubit<MediaState> {
     }
 
     final lastFile = file.files.last;
+
     emitLoading();
     final uploadResult = await _mediaRepo.upload(
       UpsertMediaParams(
@@ -119,6 +126,16 @@ class MediaCubit extends Cubit<MediaState> {
         parent: parent,
         clubId: clubId,
       ),
+      onSendProgress: (count, total) {
+        safeEmit(
+          isClosed: isClosed,
+          emit: emit,
+          state: state.copyWith(
+            count: count,
+            total: total,
+          ),
+        );
+      },
     );
 
     uploadResult.fold(

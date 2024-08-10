@@ -68,14 +68,18 @@ class MediaRepoImpl implements MediaRepo {
 
   @override
   Future<Either<Failure, MediaModel>> upload(
-    UpsertMediaParams params,
-  ) async {
+    UpsertMediaParams params, {
+    Function(int, int)? onSendProgress,
+    Function(int, int)? onReceiveProgress,
+  }) async {
     final res = await _remote.postRequest(
       '${ListAPI.MEDIA}/${params.parent.value}',
       formData: params.toFormData(),
       queryParameters: {
         'clubId': params.clubId,
       },
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
       converter: (res) => MediaModel.fromJson(res['data']),
     );
 

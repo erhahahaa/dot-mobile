@@ -190,6 +190,8 @@ class _ClubDetailScreenState extends State<CoachClubDetailScreen> {
                                     ).fire(context);
                                     Navigator.of(c).pop();
                                     context.pop();
+                                    context.read<ClubCubit>().clear();
+                                    context.read<ClubCubit>().getAll();
                                   }
                                   if (state.failure != null) {
                                     ToastModel(

@@ -40,11 +40,14 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
   void initState() {
     super.initState();
     strategic = widget.tactical.strategic ?? const TacticalStrategicModel();
-    Future.delayed(const Duration(seconds: 2), () {
-      if (widget.tactical.isLive) {
-        context.read<TacticalCubit>().listenWebSocket(widget.tactical);
-      }
-    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.tactical.isLive) {
+      context.read<TacticalCubit>().listenWebSocket(widget.tactical);
+    }
   }
 
   @override
@@ -87,18 +90,23 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
           floatingActionButton: FloatingButtonExtended(
             text: 'End Session',
             onPressed: () {
-              context.read<TacticalCubit>().update(
-                    UpdateTacticalParams(
-                      id: widget.tactical.id,
-                      clubId: widget.tactical.clubId,
-                      mediaId: widget.tactical.mediaId,
-                      name: widget.tactical.name,
-                      description: widget.tactical.description,
-                      board: widget.tactical.board,
-                      strategic: strategic,
-                      isLive: false,
-                    ),
-                  );
+              try {
+                context.read<TacticalCubit>().update(
+                      UpdateTacticalParams(
+                        id: widget.tactical.id,
+                        clubId: widget.tactical.clubId,
+                        mediaId: widget.tactical.mediaId,
+                        name: widget.tactical.name,
+                        description: widget.tactical.description,
+                        board: widget.tactical.board,
+                        strategic: strategic,
+                        isLive: false,
+                      ),
+                    );
+                if (widget.tactical.isLive) {
+                  context.read<TacticalCubit>().closeWebSocket();
+                }
+              } catch (e) {}
             },
             isDisabled: state.state == BaseState.loading,
             isLoading: state.state == BaseState.loading,
@@ -175,10 +183,15 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
                             top: strategic.players[i].y - 40 / 2,
                             child: GestureDetector(
                               onPanStart: (details) {
+                                final player = strategic.players[i].copyWith(
+                                  isDragging: true,
+                                );
+                                final players =
+                                    List<PlayerModel>.from(strategic.players);
+                                players[i] = player;
                                 setState(() {
-                                  state.strategic.players[i] = state
-                                      .strategic.players[i]
-                                      .copyWith(isDragging: true);
+                                  strategic =
+                                      strategic.copyWith(players: players);
                                 });
                               },
                               onPanUpdate: (details) {
@@ -213,10 +226,15 @@ class _CoachStrategyFormScreenState extends State<CoachStrategyFormScreen> {
                                 }
                               },
                               onPanEnd: (details) {
+                                final player = strategic.players[i].copyWith(
+                                  isDragging: false,
+                                );
+                                final players =
+                                    List<PlayerModel>.from(strategic.players);
+                                players[i] = player;
                                 setState(() {
-                                  state.strategic.players[i] = state
-                                      .strategic.players[i]
-                                      .copyWith(isDragging: false);
+                                  strategic =
+                                      strategic.copyWith(players: players);
                                 });
                               },
                               child: PlayerWidget(player: strategic.players[i]),

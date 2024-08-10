@@ -6,6 +6,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:isar/isar.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -244,6 +245,16 @@ class DioClient with FirebaseCrashLogger {
       return Left(
         ServerFailure(
           message: 'Connection Timeout',
+          exception: e,
+        ),
+      );
+    }
+
+    if (e.response?.data is String) {
+      log.e('Error: ${e.response?.data}');
+      return Left(
+        ServerFailure(
+          message: e.response?.data as String,
           exception: e,
         ),
       );

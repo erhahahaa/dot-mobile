@@ -52,12 +52,12 @@ class _UserContainerState extends State<UserContainer> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.user.name,
+                  widget.user.name.maxChar(length: 12),
                   style: theme.textTheme.bodyLarge,
                 ),
                 if (widget.showUsername) ...[
                   Chirp(
-                    text: '@${widget.user.username}',
+                    text: '@${widget.user.username}'.maxChar(length: 12),
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.surface,
                     ),
@@ -65,7 +65,7 @@ class _UserContainerState extends State<UserContainer> {
                   )
                 ] else ...[
                   Chirp(
-                    text: widget.user.role.name.capitalize,
+                    text: widget.user.role.name.maxChar(length: 20).capitalize,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.surface,
                     ),

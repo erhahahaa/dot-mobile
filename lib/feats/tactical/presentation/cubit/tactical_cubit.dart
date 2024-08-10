@@ -67,7 +67,8 @@ class TacticalCubit extends Cubit<TacticalState> {
     await getAll(clubId: clubId);
   }
 
-  void listenWebSocket(TacticalModel tactical) {
+  Future<void> listenWebSocket(TacticalModel tactical) async {
+    await getUser();
     initialPositions.clear();
     initialPositions.addAll(tactical.strategic?.players ?? []);
     safeEmit(
@@ -149,7 +150,11 @@ class TacticalCubit extends Cubit<TacticalState> {
   }
 
   Future<void> sendWebSocket(String message) async {
-    socketChannel?.sink.add(message);
+    try {
+      socketChannel?.sink.add(message);
+    } catch (e) {
+      closeWebSocket();
+    }
   }
 
   void addArrow(ArrowModel arrow) {
@@ -183,7 +188,7 @@ class TacticalCubit extends Cubit<TacticalState> {
         isClosed: isClosed,
         emit: emit,
         state: state.copyWith(
-          state: BaseState.success,
+          state: BaseState.initial,
           user: UserModel.fromEntity(r),
         ),
       );

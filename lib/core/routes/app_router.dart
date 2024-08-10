@@ -643,7 +643,7 @@ class AppRouter {
                 create: (context) => sl<MediaCubit>()
                   ..init(
                     clubId: club.id,
-                    parents: [],
+                    parents: [MediaParent.tactical],
                   ),
               ),
             ],
@@ -746,7 +746,8 @@ class AppRouter {
                 parents: [
                   MediaParent.club,
                   MediaParent.program,
-                  MediaParent.exercise
+                  MediaParent.exercise,
+                  MediaParent.tactical,
                 ],
               ),
             child: child,

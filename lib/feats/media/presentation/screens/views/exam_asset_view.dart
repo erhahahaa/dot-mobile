@@ -2,9 +2,10 @@ import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class ExamAssetView extends StatelessWidget {
+class ExamAssetView extends StatefulWidget {
   final List<MediaModel> medias;
   final int clubId;
   final bool showUploadButton;
@@ -24,29 +25,40 @@ class ExamAssetView extends StatelessWidget {
   });
 
   @override
+  State<ExamAssetView> createState() => _ExamAssetViewState();
+}
+
+class _ExamAssetViewState extends State<ExamAssetView> {
+  @override
   Widget build(BuildContext context) {
     return Parent(
-      floatingActionButton: showUploadButton == true
-          ? FloatingActionButton.extended(
+      floatingActionButton: widget.showUploadButton == true
+          ? FloatingButtonExtended(
               onPressed: () {
                 context.read<MediaCubit>().upload(
-                      MediaParent.exam,
-                      clubId,
-                    );
+                  MediaParent.exam,
+                  widget.clubId,
+                  onSendProgress: (p0, p1) {
+                    if (p0 == p1) {
+                      showToast(
+                        'Upload success',
+                        position: ToastPosition.bottom,
+                      );
+                    }
+                  },
+                );
               },
-              label: const Row(
-                children: [
-                  Icon(Icons.upload),
-                  Text('Upload'),
-                ],
-              ),
+              text: 'Upload',
+              icon: Icon(Icons.upload),
+              isLoading: widget.isLoading,
+              isDisabled: widget.isLoading,
             )
           : null,
       body: RefreshIndicator(
         onRefresh: () {
           return context.read<MediaCubit>().getAll(
                 parent: MediaParent.exam,
-                clubId: clubId,
+                clubId: widget.clubId,
               );
         },
         child: _buildGridMedias(context),
@@ -55,7 +67,7 @@ class ExamAssetView extends StatelessWidget {
   }
 
   Widget _buildGridMedias(BuildContext context) {
-    if (isLoading) {
+    if (widget.isLoading) {
       final fakeMedias =
           List.generate(6, (index) => MediaModel.fake()).toList();
 
@@ -71,9 +83,9 @@ class ExamAssetView extends StatelessWidget {
           itemBuilder: (context, index) {
             return AssetContainer(
               media: fakeMedias[index],
-              onTap: onTap,
-              width: width,
-              height: height,
+              onTap: widget.onTap,
+              width: widget.width,
+              height: widget.height,
             );
           },
         ),
@@ -87,13 +99,13 @@ class ExamAssetView extends StatelessWidget {
         mainAxisSpacing: 8,
         childAspectRatio: (1 / 1.5),
       ),
-      itemCount: medias.length,
+      itemCount: widget.medias.length,
       itemBuilder: (context, index) {
         return AssetContainer(
-          media: medias[index],
-          onTap: onTap,
-          width: width,
-          height: height,
+          media: widget.medias[index],
+          onTap: widget.onTap,
+          width: widget.width,
+          height: widget.height,
         );
       },
     );

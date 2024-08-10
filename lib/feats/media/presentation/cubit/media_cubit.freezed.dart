@@ -30,6 +30,8 @@ mixin _$MediaState {
   bool get showExam => throw _privateConstructorUsedError;
   bool get showQuestion => throw _privateConstructorUsedError;
   bool get showTactical => throw _privateConstructorUsedError;
+  int? get count => throw _privateConstructorUsedError;
+  int? get total => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MediaStateCopyWith<MediaState> get copyWith =>
@@ -56,7 +58,9 @@ abstract class $MediaStateCopyWith<$Res> {
       bool showExercise,
       bool showExam,
       bool showQuestion,
-      bool showTactical});
+      bool showTactical,
+      int? count,
+      int? total});
 }
 
 /// @nodoc
@@ -86,6 +90,8 @@ class _$MediaStateCopyWithImpl<$Res, $Val extends MediaState>
     Object? showExam = null,
     Object? showQuestion = null,
     Object? showTactical = null,
+    Object? count = freezed,
+    Object? total = freezed,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -144,6 +150,14 @@ class _$MediaStateCopyWithImpl<$Res, $Val extends MediaState>
           ? _value.showTactical
           : showTactical // ignore: cast_nullable_to_non_nullable
               as bool,
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int?,
+      total: freezed == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -170,7 +184,9 @@ abstract class _$$MediaStateImplCopyWith<$Res>
       bool showExercise,
       bool showExam,
       bool showQuestion,
-      bool showTactical});
+      bool showTactical,
+      int? count,
+      int? total});
 }
 
 /// @nodoc
@@ -198,6 +214,8 @@ class __$$MediaStateImplCopyWithImpl<$Res>
     Object? showExam = null,
     Object? showQuestion = null,
     Object? showTactical = null,
+    Object? count = freezed,
+    Object? total = freezed,
   }) {
     return _then(_$MediaStateImpl(
       state: null == state
@@ -256,6 +274,14 @@ class __$$MediaStateImplCopyWithImpl<$Res>
           ? _value.showTactical
           : showTactical // ignore: cast_nullable_to_non_nullable
               as bool,
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int?,
+      total: freezed == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -277,7 +303,9 @@ class _$MediaStateImpl implements _MediaState {
       this.showExercise = false,
       this.showExam = false,
       this.showQuestion = false,
-      this.showTactical = false})
+      this.showTactical = false,
+      this.count,
+      this.total})
       : _clubMedias = clubMedias,
         _programMedias = programMedias,
         _exerciseMedias = exerciseMedias,
@@ -362,10 +390,14 @@ class _$MediaStateImpl implements _MediaState {
   @override
   @JsonKey()
   final bool showTactical;
+  @override
+  final int? count;
+  @override
+  final int? total;
 
   @override
   String toString() {
-    return 'MediaState(state: $state, failure: $failure, clubMedias: $clubMedias, programMedias: $programMedias, exerciseMedias: $exerciseMedias, examMedias: $examMedias, questionMedias: $questionMedias, tacticalMedias: $tacticalMedias, showClub: $showClub, showProgram: $showProgram, showExercise: $showExercise, showExam: $showExam, showQuestion: $showQuestion, showTactical: $showTactical)';
+    return 'MediaState(state: $state, failure: $failure, clubMedias: $clubMedias, programMedias: $programMedias, exerciseMedias: $exerciseMedias, examMedias: $examMedias, questionMedias: $questionMedias, tacticalMedias: $tacticalMedias, showClub: $showClub, showProgram: $showProgram, showExercise: $showExercise, showExam: $showExam, showQuestion: $showQuestion, showTactical: $showTactical, count: $count, total: $total)';
   }
 
   @override
@@ -398,7 +430,9 @@ class _$MediaStateImpl implements _MediaState {
             (identical(other.showQuestion, showQuestion) ||
                 other.showQuestion == showQuestion) &&
             (identical(other.showTactical, showTactical) ||
-                other.showTactical == showTactical));
+                other.showTactical == showTactical) &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.total, total) || other.total == total));
   }
 
   @override
@@ -417,7 +451,9 @@ class _$MediaStateImpl implements _MediaState {
       showExercise,
       showExam,
       showQuestion,
-      showTactical);
+      showTactical,
+      count,
+      total);
 
   @JsonKey(ignore: true)
   @override
@@ -441,7 +477,9 @@ abstract class _MediaState implements MediaState {
       final bool showExercise,
       final bool showExam,
       final bool showQuestion,
-      final bool showTactical}) = _$MediaStateImpl;
+      final bool showTactical,
+      final int? count,
+      final int? total}) = _$MediaStateImpl;
 
   @override
   BaseState get state;
@@ -471,6 +509,10 @@ abstract class _MediaState implements MediaState {
   bool get showQuestion;
   @override
   bool get showTactical;
+  @override
+  int? get count;
+  @override
+  int? get total;
   @override
   @JsonKey(ignore: true)
   _$$MediaStateImplCopyWith<_$MediaStateImpl> get copyWith =>

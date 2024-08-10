@@ -382,6 +382,40 @@ class _CoachTacticalFormScreenState extends State<CoachTacticalFormScreen> {
                                   ),
                                 );
                           } else {
+                            List<PlayerModel> player = [];
+                            if (widget.tactical?.strategic?.players !=
+                                int.parse(_totalPlayersCon.text)) {
+                              player = List.generate(
+                                totalPlayer * 2,
+                                (index) {
+                                  final team = index < totalPlayer ? 1 : 2;
+                                  final color =
+                                      team == 1 ? Colors.blue : Colors.red;
+                                  final position = Offset(
+                                    (index % totalPlayer) *
+                                        (screenSize.width - 40) /
+                                        (totalPlayer - 1),
+                                    team == 1
+                                        ? screenSize.width * aspectRatio / 28
+                                        : screenSize.width * aspectRatio + 47,
+                                  );
+                                  return PlayerModel(
+                                    alias: 'Player $index',
+                                    x: position.dx,
+                                    y: position.dy,
+                                    number: index + 1,
+                                    team: team,
+                                    hexColor: color.value,
+                                  );
+                                },
+                              );
+                            } else {
+                              player =
+                                  widget.tactical?.strategic?.players ?? [];
+                            }
+                            final updateStrategy = TacticalStrategicModel(
+                                players: player, arrows: []);
+
                             context.read<TacticalCubit>().update(
                                   UpdateTacticalParams(
                                     id: widget.tactical!.id,
@@ -395,8 +429,7 @@ class _CoachTacticalFormScreenState extends State<CoachTacticalFormScreen> {
                                       height: double.parse(_heightCon.text),
                                     ),
                                     isLive: isLive,
-                                    strategic:
-                                        widget.tactical?.strategic ?? strategy,
+                                    strategic: updateStrategy,
                                   ),
                                 );
                           }

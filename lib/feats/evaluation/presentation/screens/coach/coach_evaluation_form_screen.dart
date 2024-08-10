@@ -74,9 +74,12 @@ class CoachEvaluationFormScreen extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                H5Text('Name: ${user.name}'),
+                                H5Text(
+                                  'Name: ${user.name.maxChar(length: 20)}',
+                                ),
                                 SizedBox(height: 2.h),
-                                H5Text('Email: ${user.email}'),
+                                H5Text(
+                                    'Email: ${user.email.maxChar(length: 20)}'),
                                 SizedBox(height: 2.h),
                                 H5Text('Age: ${user.bornDate.toAge()}'),
                               ],

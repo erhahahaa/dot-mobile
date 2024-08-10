@@ -17,5 +17,7 @@ class MediaState with _$MediaState {
     @Default(false) bool showExam,
     @Default(false) bool showQuestion,
     @Default(false) bool showTactical,
+    int? count,
+    int? total,
   }) = _MediaState;
 }

@@ -142,8 +142,10 @@ class EvaluationCubit extends Cubit<EvaluationState> {
   }
 
   Future<void> getQuestions({required int examId}) async {
-    final question = await _questionRepo.getAll(const PaginationParams(), examId);
-    final evaluation = await _evaluationRepo.getAll(const PaginationParams(), examId);
+    final question =
+        await _questionRepo.getAll(const PaginationParams(), examId);
+    final evaluation =
+        await _evaluationRepo.getAll(const PaginationParams(), examId);
 
     question.fold(
       (l) {
@@ -214,6 +216,10 @@ class EvaluationCubit extends Cubit<EvaluationState> {
       },
       (r) {
         final evaluations = List<EvaluationModel>.from(state.evaluations);
+        final find = evaluations.where((element) => element.id == r.id);
+        if (find.isNotEmpty) {
+          evaluations.removeWhere((element) => element.id == r.id);
+        }
         evaluations.add(r);
 
         safeEmit(
@@ -246,9 +252,11 @@ class EvaluationCubit extends Cubit<EvaluationState> {
         final evaluations = List<EvaluationModel>.from(state.evaluations);
         final index =
             evaluations.indexWhere((element) => element.id == params.id);
-        evaluations[index] = evaluations[index].copyWith(
-          evaluations: params.evaluations,
-        );
+        if (index != -1) {
+          evaluations[index] = evaluations[index].copyWith(
+            evaluations: params.evaluations,
+          );
+        }
         safeEmit(
           isClosed: isClosed,
           emit: emit,

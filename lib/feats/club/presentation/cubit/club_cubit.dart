@@ -155,7 +155,9 @@ class ClubCubit extends Cubit<ClubState> {
       (r) {
         final List<ClubModel> clubs = List.from(state.clubs);
         final index = clubs.indexWhere((element) => element.id == r.id);
-        clubs[index] = r;
+        if (index != -1) {
+          clubs[index] = r;
+        }
 
         safeEmit(
           isClosed: isClosed,

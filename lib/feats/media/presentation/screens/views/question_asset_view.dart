@@ -2,9 +2,10 @@ import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class QuestionAssetView extends StatelessWidget {
+class QuestionAssetView extends StatefulWidget {
   final List<MediaModel> medias;
   final int clubId;
   final bool showUploadButton;
@@ -24,29 +25,40 @@ class QuestionAssetView extends StatelessWidget {
   });
 
   @override
+  State<QuestionAssetView> createState() => _QuestionAssetViewState();
+}
+
+class _QuestionAssetViewState extends State<QuestionAssetView> {
+  @override
   Widget build(BuildContext context) {
     return Parent(
-      floatingActionButton: showUploadButton == true
-          ? FloatingActionButton.extended(
+      floatingActionButton: widget.showUploadButton == true
+          ? FloatingButtonExtended(
               onPressed: () {
                 context.read<MediaCubit>().upload(
-                      MediaParent.question,
-                      clubId,
-                    );
+                  MediaParent.question,
+                  widget.clubId,
+                  onSendProgress: (p0, p1) {
+                    if (p0 == p1) {
+                      showToast(
+                        'Upload success',
+                        position: ToastPosition.bottom,
+                      );
+                    }
+                  },
+                );
               },
-              label: const Row(
-                children: [
-                  Icon(Icons.upload),
-                  Text('Upload'),
-                ],
-              ),
+              text: 'Upload',
+              icon: Icon(Icons.upload),
+              isLoading: widget.isLoading,
+              isDisabled: widget.isLoading,
             )
           : null,
       body: RefreshIndicator(
         onRefresh: () {
           return context.read<MediaCubit>().getAll(
                 parent: MediaParent.question,
-                clubId: clubId,
+                clubId: widget.clubId,
               );
         },
         child: _buildGridMedias(context),
@@ -55,7 +67,7 @@ class QuestionAssetView extends StatelessWidget {
   }
 
   Widget _buildGridMedias(BuildContext context) {
-    if (isLoading) {
+    if (widget.isLoading) {
       final fakeMedias =
           List.generate(6, (index) => MediaModel.fake()).toList();
 
@@ -71,9 +83,9 @@ class QuestionAssetView extends StatelessWidget {
           itemBuilder: (context, index) {
             return AssetContainer(
               media: fakeMedias[index],
-              onTap: onTap,
-              width: width,
-              height: height,
+              onTap: widget.onTap,
+              width: widget.width,
+              height: widget.height,
             );
           },
         ),
@@ -87,13 +99,13 @@ class QuestionAssetView extends StatelessWidget {
         mainAxisSpacing: 8,
         childAspectRatio: (1 / 1.5),
       ),
-      itemCount: medias.length,
+      itemCount: widget.medias.length,
       itemBuilder: (context, index) {
         return AssetContainer(
-          media: medias[index],
-          onTap: onTap,
-          width: width,
-          height: height,
+          media: widget.medias[index],
+          onTap: widget.onTap,
+          width: widget.width,
+          height: widget.height,
         );
       },
     );

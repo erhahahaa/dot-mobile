@@ -1,10 +1,12 @@
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class ExerciseAssetView extends StatelessWidget {
+class ExerciseAssetView extends StatefulWidget {
   final List<MediaModel> medias;
   final int clubId;
   final bool showUploadButton;
@@ -24,38 +26,95 @@ class ExerciseAssetView extends StatelessWidget {
   });
 
   @override
+  State<ExerciseAssetView> createState() => _ExerciseAssetViewState();
+}
+
+class _ExerciseAssetViewState extends State<ExerciseAssetView> {
+  BuildContext? dialogContext;
+
+  @override
   Widget build(BuildContext context) {
-    return Parent(
-      floatingActionButton: showUploadButton == true
-          ? FloatingActionButton.extended(
-              onPressed: () {
-                context.read<MediaCubit>().upload(
-                      MediaParent.exercise,
-                      clubId,
-                    );
+    return BlocListener<MediaCubit, MediaState>(
+      listener: (context, state) {
+        if (state.state == BaseState.loading) {
+          if (dialogContext == null) {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (ctx) {
+                dialogContext = ctx;
+                return BlocProvider.value(
+                  value: context.read<MediaCubit>(),
+                  child: BlocBuilder<MediaCubit, MediaState>(
+                    builder: (context, state) {
+                      return AlertDialog(
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            LinearProgressIndicator(
+                              value: (state.count ?? 0) / (state.total ?? 1),
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              'Uploading: ${((state.count ?? 0) / (state.total ?? 1) * 100).toStringAsFixed(2)}%',
+                              style: context.theme.textTheme.bodyLarge,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                );
               },
-              label: const Row(
-                children: [
-                  Icon(Icons.upload),
-                  Text('Upload'),
-                ],
-              ),
-            )
-          : null,
-      body: RefreshIndicator(
-        onRefresh: () {
-          return context.read<MediaCubit>().getAll(
-                parent: MediaParent.exercise,
-                clubId: clubId,
-              );
-        },
-        child: _buildGridMedias(context),
+            );
+          }
+        } else if (state.state == BaseState.success ||
+            state.state == BaseState.failure) {
+          if (dialogContext != null) {
+            Navigator.of(dialogContext!).pop();
+            dialogContext = null;
+          }
+        }
+      },
+      child: Parent(
+        floatingActionButton: widget.showUploadButton == true
+            ? FloatingButtonExtended(
+                onPressed: () {
+                  context.read<MediaCubit>().upload(
+                    MediaParent.exercise,
+                    widget.clubId,
+                    onSendProgress: (p0, p1) {
+                      if (p0 == p1) {
+                        showToast(
+                          'Upload success',
+                          position: ToastPosition.bottom,
+                        );
+                      }
+                    },
+                    exts: ['jpg', 'jpeg', 'png', 'mp4'],
+                  );
+                },
+                text: 'Upload',
+                icon: Icon(Icons.upload),
+                isLoading: widget.isLoading,
+                isDisabled: widget.isLoading,
+              )
+            : null,
+        body: RefreshIndicator(
+          onRefresh: () {
+            return context.read<MediaCubit>().getAll(
+                  parent: MediaParent.exercise,
+                  clubId: widget.clubId,
+                );
+          },
+          child: _buildGridMedias(context),
+        ),
       ),
     );
   }
 
   Widget _buildGridMedias(BuildContext context) {
-    if (isLoading) {
+    if (widget.isLoading) {
       final fakeMedias =
           List.generate(6, (index) => MediaModel.fake()).toList();
 
@@ -71,9 +130,9 @@ class ExerciseAssetView extends StatelessWidget {
           itemBuilder: (context, index) {
             return AssetContainer(
               media: fakeMedias[index],
-              onTap: onTap,
-              width: width,
-              height: height,
+              onTap: widget.onTap,
+              width: widget.width,
+              height: widget.height,
             );
           },
         ),
@@ -87,13 +146,13 @@ class ExerciseAssetView extends StatelessWidget {
         mainAxisSpacing: 8,
         childAspectRatio: (1 / 1.5),
       ),
-      itemCount: medias.length,
+      itemCount: widget.medias.length,
       itemBuilder: (context, index) {
         return AssetContainer(
-          media: medias[index],
-          onTap: onTap,
-          width: width,
-          height: height,
+          media: widget.medias[index],
+          onTap: widget.onTap,
+          width: widget.width,
+          height: widget.height,
         );
       },
     );

@@ -11,8 +11,10 @@ abstract class MediaRepo {
     int clubId,
   );
   Future<Either<Failure, MediaModel>> upload(
-    UpsertMediaParams params,
-  );
+    UpsertMediaParams params, {
+    Function(int, int)? onSendProgress,
+    Function(int, int)? onReceiveProgress,
+  });
   Future<Either<Failure, MediaModel>> update(
     UpsertMediaParams params,
   );
