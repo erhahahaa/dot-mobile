@@ -62,7 +62,8 @@ class AuthCubit extends Cubit<AuthState> with FirebaseMessagingService {
     await _getFCMToken();
   }
 
-  Future<void> _getFCMToken() async {
+  Future<void> 
+  _getFCMToken() async {
     final fcmToken = await getFCMToken();
     safeEmit(
       isClosed: isClosed,
