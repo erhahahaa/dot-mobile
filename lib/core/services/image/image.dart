@@ -1,1 +1,1 @@
-export 'package:dot_coaching/core/services/image/client.dart';
+export 'image_picker_service.dart';

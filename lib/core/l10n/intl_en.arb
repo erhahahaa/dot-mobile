@@ -38,7 +38,7 @@
   "delete": "Delete",
   "description": "Description",
   "detail": "Detail",
-  "dontHaveAnAccount": "Don\t have an account?",
+  "dontHaveAnAccount": "Don't have an account?",
   "download": "Download",
   "dueAt": "Due at",
   "dueAtRequired": "Due at is required",
@@ -190,5 +190,6 @@
   "usernameNotAvailable": "Username is not available",
   "usernameRequired": "Username is required",
   "volleyBall": "Volleyball",
-  "warning": "Warning"
+  "warning": "Warning",
+  "welcomeBack": "Welcome back"
 }

@@ -1,32 +1,32 @@
 import 'package:dartz/dartz.dart';
-import 'package:dot_coaching/core/errors/errors.dart';
+import 'package:dot_coaching/core/core.dart';
 
 // FPUC = Future Params Use Case
-abstract class FPUC<Type, Params> {
-  Future<Either<Failure, Type>> call(Params params);
+abstract class FPUC<T, P> {
+  Future<Either<Failure, T>> call(P params);
 }
 
 // FNPUC = Future No Params Use Case
-abstract class FNPUC<Type> {
-  Future<Either<Failure, Type>> call();
+abstract class FNPUC<T> {
+  Future<Either<Failure, T>> call();
 }
 
 // SUC = Stream Use Case
-abstract class SUC<Type, Params> {
-  Stream<Either<Failure, Type>> call(Params params);
+abstract class SUC<T, P> {
+  Stream<Either<Failure, T>> call(P params);
 }
 
 // SNPC = Stream No Params Use Case
-abstract class SNPC<Type> {
-  Stream<Either<Failure, Type>> call();
+abstract class SNPC<T> {
+  Stream<Either<Failure, T>> call();
 }
 
 // EPUC = Either Params Use Case
-abstract class EPUC<Type, Params> {
-  Either<Failure, Type> call(Params params);
+abstract class EPUC<T, P> {
+  Either<Failure, T> call(P params);
 }
 
 // ENPUC = Either No Params Use Case
-abstract class ENPUC<Type> {
-  Either<Failure, Type> call();
+abstract class ENPUC<T> {
+  Either<Failure, T> call();
 }

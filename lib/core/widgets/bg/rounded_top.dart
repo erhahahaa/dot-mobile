@@ -1,8 +1,8 @@
-import 'package:dot_coaching/core/core.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:dot_coaching/core/widgets/widgets.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class RoundedTopBackground extends StatelessWidget {
   final Widget child;
@@ -50,7 +50,7 @@ class RoundedTopBackground extends StatelessWidget {
                       color: theme.colorScheme.onPrimary,
                     ),
                   ),
-                  onPressed: () => context.pop(),
+                  onPressed: () => context.router.back(),
                   child: Row(
                     children: [
                       Icon(
@@ -84,10 +84,7 @@ class RoundedTopBackground extends StatelessWidget {
                           ? MainAxisAlignment.center
                           : MainAxisAlignment.start,
                   children: [
-                    H1Text(
-                      title.maxChar(length: 15),
-                      color: Colors.black,
-                    ),
+                    TitleLarge(title.maxChar(15)),
                     if (suffix != null) suffix!,
                   ],
                 ),

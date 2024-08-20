@@ -1,0 +1,1 @@
+export 'notification_data_model.dart';

@@ -1,7 +1,6 @@
 import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/feats/feats.dart';
+import 'package:dot_coaching/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Parent extends StatefulWidget {
   final Widget? body;
@@ -36,18 +35,14 @@ class Parent extends StatefulWidget {
 }
 
 class _ParentState extends State<Parent>
-    with WidgetsBindingObserver, FirebaseCrashLogger {
+    with WidgetsBindingObserver, FirebaseCrashLoggerService {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    try {
-      if (state == AppLifecycleState.resumed ||
-          state == AppLifecycleState.inactive) {
-        FocusManager.instance.primaryFocus?.unfocus();
-        context.read<UserCubit>().getNotification();
-      }
-    } catch (error, stackTrace) {
-      nonFatalError(error: error, stackTrace: stackTrace);
+    if (state == AppLifecycleState.resumed ||
+        state == AppLifecycleState.inactive) {
+      FocusManager.instance.primaryFocus?.unfocus();
+      FocusScope.of(context).unfocus();
     }
   }
 
@@ -61,7 +56,8 @@ class _ParentState extends State<Parent>
         body: widget.body,
         floatingActionButton: widget.floatingActionButton,
         bottomNavigationBar: widget.bottomNavigationBar,
-        backgroundColor: widget.backgroundColor,
+        backgroundColor:
+            widget.backgroundColor ?? context.theme.colorScheme.surface,
         resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
         extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
         extendBody: widget.extendBody,

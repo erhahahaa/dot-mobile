@@ -1,0 +1,11 @@
+export 'auth/auth.dart';
+export 'club/club.dart';
+export 'evaluation/evaluation.dart';
+export 'exam/exam.dart';
+export 'exercise/exercise.dart';
+export 'general/general.dart';
+export 'media/media.dart';
+export 'program/program.dart';
+export 'question/question.dart';
+export 'tactical/tactical.dart';
+export 'user/user.dart';

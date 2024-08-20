@@ -1,8 +1,10 @@
 import 'strings.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for English (`en`).
 class StringsEn extends Strings {
-  StringsEn([super.locale = 'en']);
+  StringsEn([String locale = 'en']) : super(locale);
 
   @override
   String get about => 'About';
@@ -119,7 +121,7 @@ class StringsEn extends Strings {
   String get detail => 'Detail';
 
   @override
-  String get dontHaveAnAccount => 'Don\t have an account?';
+  String get dontHaveAnAccount => 'Don\'t have an account?';
 
   @override
   String get download => 'Download';
@@ -576,4 +578,7 @@ class StringsEn extends Strings {
 
   @override
   String get warning => 'Warning';
+
+  @override
+  String get welcomeBack => 'Welcome back';
 }

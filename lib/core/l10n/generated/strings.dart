@@ -6,10 +6,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'strings_en.dart';
-import 'strings_es.dart';
-import 'strings_hi.dart';
 import 'strings_id.dart';
-import 'strings_zh.dart';
+
+// ignore_for_file: type=lint
 
 /// Callers can lookup localized strings with an instance of Strings
 /// returned by `Strings.of(context)`.
@@ -93,10 +92,7 @@ abstract class Strings {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('es'),
-    Locale('hi'),
-    Locale('id'),
-    Locale('zh')
+    Locale('id')
   ];
 
   /// No description provided for @about.
@@ -330,7 +326,7 @@ abstract class Strings {
   /// No description provided for @dontHaveAnAccount.
   ///
   /// In en, this message translates to:
-  /// **'Don\t have an account?'**
+  /// **'Don\'t have an account?'**
   String get dontHaveAnAccount;
 
   /// No description provided for @download.
@@ -1244,6 +1240,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Warning'**
   String get warning;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get welcomeBack;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {
@@ -1255,7 +1257,7 @@ class _StringsDelegate extends LocalizationsDelegate<Strings> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es', 'hi', 'id', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'id'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_StringsDelegate old) => false;
@@ -1267,10 +1269,7 @@ Strings lookupStrings(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return StringsEn();
-    case 'es': return StringsEs();
-    case 'hi': return StringsHi();
     case 'id': return StringsId();
-    case 'zh': return StringsZh();
   }
 
   throw FlutterError(

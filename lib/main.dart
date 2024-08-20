@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:dot_coaching/app.dart';
+import 'package:dot_coaching/app/app.dart';
+import 'package:dot_coaching/app/di.dart';
 import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/feats/feats.dart';
-import 'package:dot_coaching/sl.dart';
+import 'package:dot_coaching/features/feature.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -22,19 +22,19 @@ class MyHttpOverrides extends HttpOverrides {
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
+  // Bloc.observer = GlobalBlocObserver();
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
-    await FirebaseServices.init();
-    await FirebaseMessagingService.init();
+    await FirebaseService.init();
+    await Isar.initialize();
+    await configureDependencies();
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    await Isar.initializeIsarCore();
-    await initDependencies();
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]).then((_) {
-      runApp(const DotApp());
+      runApp(DotApp());
     });
   }, (error, stackTrace) async {
     await FirebaseCrashlytics.instance.recordError(error, stackTrace);
@@ -43,12 +43,14 @@ void main() {
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await FirebaseServices.init();
+  await FirebaseService.init();
   try {
-    final IsarClient local = IsarClient();
+    final IsarService local = IsarService();
     local.initIsar();
-    final DioClient remote = DioClient(local);
-    final userRepo = UserRepoImpl(remote, local);
+    final DioService remote = DioService(local);
+    final FirebaseMessagingService fcm = FirebaseMessagingService();
+    final userRepo = UserRepositoryImpl(
+        UserRemoteDataSourceImpl(remote), UserLocalDataSourceImpl(local, fcm));
 
     final notifications = await userRepo.getNotifications();
     notifications.fold(
@@ -58,8 +60,11 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
           return;
         }
         r.add(NotificationDataModel.fromJson(message.data));
-        userRepo
-            .cacheNotification(NotificationDataModel.fromJson(message.data));
+        userRepo.cacheNotification(
+          CacheNotificationsParams(
+            notification: NotificationDataModel.fromJson(message.data),
+          ),
+        );
       },
     );
   } catch (error, stackTrace) {

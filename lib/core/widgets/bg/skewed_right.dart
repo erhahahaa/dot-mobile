@@ -18,7 +18,7 @@ class SkewedRightBackground extends StatelessWidget {
           height: double.infinity,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Palette.bgLeft, Palette.bgRight],
+              colors: [Palette.BG_LEFT, Palette.BG_RIGHT],
             ),
           ),
         ),
@@ -36,7 +36,7 @@ class SkewedRightBackground extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 170.h,
+          top: 180.h,
           bottom: 0,
           child: Container(
             width: 344.w,

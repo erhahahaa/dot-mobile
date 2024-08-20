@@ -1,4 +1,4 @@
-import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

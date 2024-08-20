@@ -1,8 +1,10 @@
 import 'strings.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for Indonesian (`id`).
 class StringsId extends Strings {
-  StringsId([super.locale = 'id']);
+  StringsId([String locale = 'id']) : super(locale);
 
   @override
   String get about => 'Tentang';
@@ -576,4 +578,7 @@ class StringsId extends Strings {
 
   @override
   String get warning => 'Peringatan';
+
+  @override
+  String get welcomeBack => 'Selamat datang kembali';
 }

@@ -16,14 +16,14 @@ icons_launcher:
       enable: true
       image_path: "assets/icons/ic_logo_rectangle.png"
     web:
-      enable: false
+      enable: true
       image_path: "assets/icons/ic_logo_radius.png"
       favicon_path: "assets/icons/ic_logo_round.png"
     macos:
       enable: false
       image_path: "assets/icons/ic_logo_radius.png"
     windows:
-      enable: false
+      enable: true
       image_path: "assets/icons/ic_logo_radius.png"
     linux:
       enable: false

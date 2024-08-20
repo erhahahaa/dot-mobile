@@ -14,12 +14,19 @@ class ListAPI {
   static const String AUTH_LOGOUT = '/auth/logout';
 
   static const String CLUB = '/club';
-  static const String CLUB_PROGRAM = '/club/program';
-  static const String CLUB_PROGRAM_EXERCISE = '/club/program/exercise';
-  static const String CLUB_EXAM = '/club/exam';
-  static const String CLUB_EXAM_QUESTION = '/club/exam/question';
-  static const String CLUB_EXAM_EVALUATION = '/club/exam/evaluation';
-  static const String CLUB_TACTICAL = '/club/tactical';
+  // static const String CLUB_PROGRAM = '/club/program';
+  // static const String CLUB_PROGRAM_EXERCISE = '/club/program/exercise';
+  // static const String CLUB_EXAM = '/club/exam';
+  // static const String CLUB_EXAM_QUESTION = '/club/exam/question';
+  // static const String CLUB_EXAM_EVALUATION = '/club/exam/evaluation';
+  // static const String CLUB_TACTICAL = '/club/tactical';
+
+  static const String PROGRAM = '/club/program';
+  static const String EXERCISE = '/club/program/exercise';
+  static const String EXAM = '/club/exam';
+  static const String QUESTION = '/club/exam/question';
+  static const String EVALUATION = '/club/exam/evaluation';
+  static const String TACTICAL = '/club/tactical';
 
   static const String USER = '/user';
 
