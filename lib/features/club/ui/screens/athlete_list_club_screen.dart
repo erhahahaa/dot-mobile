@@ -143,7 +143,6 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
           children: [
             TitleLarge(
               context.str?.myClub,
-              fontWeight: FontWeight.w500,
             ),
             MySearchBar(
               width: 180.w,

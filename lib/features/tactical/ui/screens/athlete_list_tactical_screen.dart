@@ -30,21 +30,22 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
     _scrollController = ScrollController();
     _searchController = TextEditingController();
     _scrollController.addListener(_scrollListener);
-    context.read<AthleteClubBloc>().add(
-          const AthleteClubEvent.getClubs(),
+
+    final params = GetAllTacticalParams(clubId: 1);
+
+    context.read<AthleteTacticalBloc>().add(
+          AthleteTacticalEvent.getTacticals(params),
         );
   }
 
   void _scrollListener() {
     final height = MediaQuery.of(context).size.height;
-    if (_scrollController.offset > (height / 3) && !showScrollToTopButton) {
+    final offset = _scrollController.offset;
+    final shouldShowButton = offset > (height / 3);
+
+    if (showScrollToTopButton != shouldShowButton) {
       setState(() {
-        showScrollToTopButton = true;
-      });
-    } else if (_scrollController.offset <= (height / 3) &&
-        showScrollToTopButton) {
-      setState(() {
-        showScrollToTopButton = false;
+        showScrollToTopButton = shouldShowButton;
       });
     }
   }
@@ -63,8 +64,7 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
-          _buildTopBackground(),
-          // _buildAppBar(),
+          _buildTopBackground(context),
           _buildTitle(context),
           _buildListTactical(context),
           SliverToBoxAdapter(child: Gap(64.h)),
@@ -92,15 +92,19 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
     );
   }
 
-  Widget _buildTopBackground() {
-    final theme = context.theme;
+  Widget _buildTopBackground(BuildContext context) {
+    final theme = Theme.of(context);
     return SliverToBoxAdapter(
       child: Container(
         width: double.infinity,
         height: 120.h,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF5767ED), Color(0xFF32ADBE)],
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Palette.BG_LEFT2, Palette.BG_RIGHT2],
+          ),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20.r),
+            bottomRight: Radius.circular(20.r),
           ),
         ),
         child: Padding(
@@ -113,7 +117,7 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
                 width: 312.w,
                 height: 50.h,
                 decoration: BoxDecoration(
-                  color: theme.colorScheme.onPrimaryContainer,
+                  color: theme.cardColor,
                   borderRadius: BorderRadius.circular(64.r),
                   boxShadow: [
                     BoxShadow(
@@ -126,7 +130,7 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     TitleLarge(
                       'Tactical',
                     ),
@@ -160,18 +164,17 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
               hintText:
                   '${context.str?.search} ${context.str?.tactical.toLowerCase()} ...',
               onChanged: (value) {
-                if (value == null) return;
                 context.read<AthleteTacticalBloc>().add(
-                      AthleteTacticalEvent.filterTacticals(value),
+                      AthleteTacticalEvent.filterTacticals(value ?? ''),
                     );
               },
               trailing: MoonButton.icon(
                 buttonSize: MoonButtonSize.xs,
-                icon: Icon(MoonIcons.controls_close_24_light),
+                icon: const Icon(MoonIcons.controls_close_24_light),
                 onTap: () {
                   _searchController.clear();
                   context.read<AthleteTacticalBloc>().add(
-                        AthleteTacticalEvent.filterTacticals(''),
+                        const AthleteTacticalEvent.filterTacticals(''),
                       );
                 },
               ),
@@ -190,25 +193,25 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
             final fakeTacticals = List.generate(
               5,
               (index) => TacticalModel.fake(),
-            ).toList();
+            );
             return SliverToBoxAdapter(
-              child: ContainerWrapper(
-                child: ColumnList<TacticalModel>(
-                  items: fakeTacticals,
-                  itemBuilder: (tactical) => Skeletonizer(
-                    child: ColumnListTile(
-                      hashCode: tactical.hashCode,
-                      titleText: tactical.name,
-                      subtitleText: tactical.description,
-                      leading: Icon(Icons.circle, size: 36.h),
-                      trailing: MoonChip(
-                        chipSize: MoonChipSize.sm,
-                        borderRadius: BorderRadius.circular(84.r),
-                        backgroundColor:
-                            context.moonColors?.frieza.withOpacity(0.2),
-                        label: BodyMedium('View'),
-                        trailing: Icon(MoonIcons.arrows_right_24_light),
-                      ),
+              child: ColumnList<TacticalModel>(
+                items: fakeTacticals,
+                itemBuilder: (tactical) => Skeletonizer(
+                  child: ColumnListTile(
+                    hashCode: tactical.hashCode,
+                    titleText: tactical.name,
+                    subtitleText: tactical.description,
+                    leading: Icon(Icons.circle, size: 36.h),
+                    trailing: MoonChip(
+                      chipSize: MoonChipSize.sm,
+                      borderRadius: BorderRadius.circular(84.r),
+                      backgroundColor: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.2),
+                      label: const BodyMedium('View'),
+                      trailing: const Icon(MoonIcons.arrows_right_24_light),
                     ),
                   ),
                 ),
@@ -227,10 +230,12 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
                   trailing: MoonChip(
                     chipSize: MoonChipSize.sm,
                     borderRadius: BorderRadius.circular(84.r),
-                    backgroundColor:
-                        context.moonColors?.frieza.withOpacity(0.2),
-                    label: BodyMedium('View'),
-                    trailing: Icon(MoonIcons.arrows_right_24_light),
+                    backgroundColor: Theme.of(context)
+                        .colorScheme
+                        .secondary
+                        .withOpacity(0.2),
+                    label: const BodyMedium('View'),
+                    trailing: const Icon(MoonIcons.arrows_right_24_light),
                   ),
                   onTap: () => context.router.push(
                     AthleteDetailTacticalRoute(id: tactical.id),
@@ -250,7 +255,7 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
                 constraints: BoxConstraints(
                   minHeight: 500.h,
                 ),
-                child: Center(
+                child: const Center(
                   child: BodyLarge('No tacticals available'),
                 ),
               ),

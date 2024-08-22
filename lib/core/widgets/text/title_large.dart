@@ -22,7 +22,7 @@ class TitleLarge extends StatelessWidget {
       text ?? 'Unassigned',
       style: style ??
           context.theme.textTheme.titleLarge?.copyWith(
-            color: Colors.black,
+            color: context.theme.colorScheme.onSurface,
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,
           ),

@@ -60,7 +60,8 @@ class TacticalRemoteDatasourceImpl implements TacticalRemoteDatasource {
       ListAPI.TACTICAL,
       queryParameters: params.toJson(),
       converter: (res) {
-        final data = res['data'] as List;
+        // Provide a default empty list if 'data' is null
+        final data = res['data'] as List? ?? [];
         return data.map((e) => TacticalModel.fromJson(e)).toList();
       },
     );
