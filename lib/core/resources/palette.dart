@@ -8,4 +8,7 @@ final class Palette {
 
   static const Color BG_LEFT = Color(0xFF5868F1);
   static const Color BG_RIGHT = Color(0xFF333C8B);
+
+  static const Color BG_LEFT2 = Color(0xFF5767ED);
+  static const Color BG_RIGHT2 = Color(0xFF32ADBE);
 }
