@@ -1,5 +1,6 @@
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TitleLarge extends StatelessWidget {
   final String? text;
@@ -21,8 +22,9 @@ class TitleLarge extends StatelessWidget {
       text ?? 'Unassigned',
       style: style ??
           context.theme.textTheme.titleLarge?.copyWith(
-            color: color,
-            fontWeight: fontWeight,
+            color: Colors.black,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w600,
           ),
     );
   }

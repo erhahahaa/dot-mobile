@@ -265,7 +265,7 @@ class AthleteDetailQuestionRoute extends _i44.PageRouteInfo<void> {
 /// generated route for
 /// [_i8.AthleteDetailTacticalScreen]
 class AthleteDetailTacticalRoute extends _i44.PageRouteInfo<void> {
-  const AthleteDetailTacticalRoute({List<_i44.PageRouteInfo>? children})
+  const AthleteDetailTacticalRoute({List<_i44.PageRouteInfo>? children, required int id})
       : super(
           AthleteDetailTacticalRoute.name,
           initialChildren: children,

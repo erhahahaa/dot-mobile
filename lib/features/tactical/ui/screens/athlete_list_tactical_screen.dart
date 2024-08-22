@@ -60,16 +60,15 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Parent(
-        body: CustomScrollView(
-          controller: _scrollController,
-          slivers: [
-            _buildAppBar(),
-            _buildTitle(context),
-            _buildListClub(context),
-            SliverToBoxAdapter(child: Gap(64.h)),
-          ],
-        ),
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          _buildTopBackground(),
+          // _buildAppBar(),
+          _buildTitle(context),
+          _buildListTactical(context),
+          SliverToBoxAdapter(child: Gap(64.h)),
+        ],
       ),
       floatingActionButton: showScrollToTopButton
           ? Column(
@@ -93,37 +92,49 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
     );
   }
 
-  Widget _buildAppBar() {
-    return SliverAppBar(
-      expandedHeight: 170.h,
-      collapsedHeight: 80.h,
-      flexibleSpace: Container(
+  Widget _buildTopBackground() {
+    final theme = context.theme;
+    return SliverToBoxAdapter(
+      child: Container(
         width: double.infinity,
-        height: 210.h,
-        decoration: BoxDecoration(
+        height: 120.h,
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Palette.BG_LEFT2, Palette.BG_RIGHT2],
-          ),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20.r),
-            bottomRight: Radius.circular(20.r),
+            colors: [Color(0xFF5767ED), Color(0xFF32ADBE)],
           ),
         ),
-        child: SafeArea(
-          child: Center(
-            child: BlocBuilder<UserBloc, UserState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  loading: () => const Skeletonizer(
-                    child: UserCard(user: UserModel()),
-                  ),
-                  success: (user, fcmToken) {
-                    return UserCard(user: user);
-                  },
-                  orElse: () => BodyLarge('Something went wrong'),
-                );
-              },
-            ),
+        child: Padding(
+          padding: EdgeInsets.only(top: 44.h, left: 8, right: 8, bottom: 16.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                width: 312.w,
+                height: 50.h,
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.onPrimaryContainer,
+                  borderRadius: BorderRadius.circular(64.r),
+                  boxShadow: [
+                    BoxShadow(
+                      color: theme.colorScheme.primary.withOpacity(0.25),
+                      blurRadius: 8,
+                      spreadRadius: 0,
+                      offset: const Offset(4, 4),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TitleLarge(
+                      'Tactical',
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 8.w),
+            ],
           ),
         ),
       ),
@@ -147,11 +158,11 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
               height: 36.h,
               controller: _searchController,
               hintText:
-                  '${context.str?.search} ${context.str?.club.toLowerCase()} ...',
+                  '${context.str?.search} ${context.str?.tactical.toLowerCase()} ...',
               onChanged: (value) {
                 if (value == null) return;
-                context.read<AthleteClubBloc>().add(
-                      AthleteClubEvent.filterClubs(value),
+                context.read<AthleteTacticalBloc>().add(
+                      AthleteTacticalEvent.filterTacticals(value),
                     );
               },
               trailing: MoonButton.icon(
@@ -159,8 +170,8 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
                 icon: Icon(MoonIcons.controls_close_24_light),
                 onTap: () {
                   _searchController.clear();
-                  context.read<AthleteClubBloc>().add(
-                        AthleteClubEvent.filterClubs(''),
+                  context.read<AthleteTacticalBloc>().add(
+                        AthleteTacticalEvent.filterTacticals(''),
                       );
                 },
               ),
@@ -171,24 +182,24 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
     );
   }
 
-  Widget _buildListClub(BuildContext context) {
-    return BlocBuilder<AthleteClubBloc, AthleteClubState>(
+  Widget _buildListTactical(BuildContext context) {
+    return BlocBuilder<AthleteTacticalBloc, AthleteTacticalState>(
       builder: (context, state) {
         return state.maybeWhen(
           loading: () {
-            final fakeClubs = List.generate(
+            final fakeTacticals = List.generate(
               5,
-              (index) => ClubModel.fake(),
+              (index) => TacticalModel.fake(),
             ).toList();
             return SliverToBoxAdapter(
               child: ContainerWrapper(
-                child: ColumnList<ClubModel>(
-                  items: fakeClubs,
-                  itemBuilder: (club) => Skeletonizer(
+                child: ColumnList<TacticalModel>(
+                  items: fakeTacticals,
+                  itemBuilder: (tactical) => Skeletonizer(
                     child: ColumnListTile(
-                      hashCode: club.hashCode,
-                      titleText: club.name,
-                      subtitleText: club.description,
+                      hashCode: tactical.hashCode,
+                      titleText: tactical.name,
+                      subtitleText: tactical.description,
                       leading: Icon(Icons.circle, size: 36.h),
                       trailing: MoonChip(
                         chipSize: MoonChipSize.sm,
@@ -206,13 +217,13 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
           },
           loaded: (data) {
             return SliverToBoxAdapter(
-              child: ColumnList<ClubModel>(
-                items: data.filteredClubs,
-                itemBuilder: (club) => ColumnListTile(
-                  hashCode: club.hashCode,
-                  titleText: club.name,
-                  subtitleText: club.description,
-                  imageUrl: club.media?.url,
+              child: ColumnList<TacticalModel>(
+                items: data.filteredTacticals,
+                itemBuilder: (tactical) => ColumnListTile(
+                  hashCode: tactical.hashCode,
+                  titleText: tactical.name,
+                  subtitleText: tactical.description,
+                  imageUrl: tactical.media?.url,
                   trailing: MoonChip(
                     chipSize: MoonChipSize.sm,
                     borderRadius: BorderRadius.circular(84.r),
@@ -222,7 +233,7 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
                     trailing: Icon(MoonIcons.arrows_right_24_light),
                   ),
                   onTap: () => context.router.push(
-                    AthleteDetailClubRoute(id: club.id),
+                    AthleteDetailTacticalRoute(id: tactical.id),
                   ),
                 ),
               ),
@@ -235,7 +246,14 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
           },
           orElse: () {
             return SliverToBoxAdapter(
-              child: BodyLarge('An error occured'),
+              child: Container(
+                constraints: BoxConstraints(
+                  minHeight: 500.h,
+                ),
+                child: Center(
+                  child: BodyLarge('No tacticals available'),
+                ),
+              ),
             );
           },
         );
