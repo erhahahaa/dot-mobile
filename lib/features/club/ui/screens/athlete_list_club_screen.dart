@@ -188,7 +188,6 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
                   items: fakeClubs,
                   itemBuilder: (club) => Skeletonizer(
                     child: ColumnListTile(
-                      hashCode: club.hashCode,
                       titleText: club.name,
                       subtitleText: club.description,
                       leading: Icon(Icons.circle, size: 36.h),
@@ -211,7 +210,6 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
               child: ColumnList<ClubModel>(
                 items: data.filteredClubs,
                 itemBuilder: (club) => ColumnListTile(
-                  hashCode: club.hashCode,
                   titleText: club.name,
                   subtitleText: club.description,
                   imageUrl: club.media?.url,
@@ -222,10 +220,17 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
                         context.moonColors?.frieza.withOpacity(0.2),
                     label: BodyMedium('View'),
                     trailing: Icon(MoonIcons.arrows_right_24_light),
+                    onTap: () {
+                      // context.router.push(
+                      //   AthleteDetailClubRoute(id: club.id),
+                      // );
+                    },
                   ),
-                  onTap: () => context.router.push(
-                    AthleteDetailClubRoute(id: club.id),
-                  ),
+                  onTap: () {
+                    context.router.push(
+                      AthleteListProgramRoute(clubId: club.id),
+                    );
+                  },
                 ),
               ),
             );

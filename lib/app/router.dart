@@ -24,26 +24,46 @@ class AppRouter extends RootStackRouter {
           page: SignUpRoute.page,
         ),
         AutoRoute(
-          path: '/home',
+          path: '/athlete',
           page: AthleteDashboardRoute.page,
           children: [
             AutoRoute(
-              path: '',
-              page: AthleteListClubRoute.page,
+              path: 'club',
+              page: AthleteClubShellRoute.page,
               children: [
                 AutoRoute(
-                  path: ':id',
-                  page: AthleteDetailClubRoute.page,
+                  path: '',
+                  page: AthleteListClubRoute.page,
+                ),
+                AutoRoute(
+                  path: ':id/program',
+                  page: AthleteListProgramRoute.page,
+                ),
+                RedirectRoute(
+                  path: '*',
+                  redirectTo: '',
                 ),
               ],
             ),
             AutoRoute(
               path: 'tactical',
-              page: AthleteListTacticalRoute.page,
+              page: AthleteTacticalShellRoute.page,
+              children: [
+                AutoRoute(
+                  path: '',
+                  page: AthleteListTacticalRoute.page,
+                ),
+              ],
             ),
             AutoRoute(
               path: 'evaluation',
-              page: AthleteListEvaluationRoute.page,
+              page: AthleteEvaluationShellRoute.page,
+              children: [
+                AutoRoute(
+                  path: '',
+                  page: AthleteListEvaluationRoute.page,
+                ),
+              ],
             ),
             AutoRoute(
               path: 'profile',

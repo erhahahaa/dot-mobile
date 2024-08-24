@@ -29,8 +29,7 @@ class ColumnListTile extends StatelessWidget {
   final EdgeInsetsGeometry? padding, margin;
   final String? titleText, subtitleText, imageUrl;
   final Widget? trailing, leading;
-  final void Function()? onTap;
-  final int hashCode;
+  final void Function()? onTap; 
 
   const ColumnListTile({
     super.key,
@@ -41,8 +40,7 @@ class ColumnListTile extends StatelessWidget {
     this.imageUrl,
     this.trailing,
     this.leading,
-    this.onTap,
-    required this.hashCode,
+    this.onTap, 
   });
 
   @override

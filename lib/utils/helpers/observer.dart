@@ -5,7 +5,7 @@ class GlobalBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    Log.d('''
+    Log.info('''
     Event: $event on Bloc: ${bloc.runtimeType}
     ''');
     // Add your custom logic here
@@ -14,7 +14,7 @@ class GlobalBlocObserver extends BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    Log.d('''
+    Log.info('''
     State change:
       Old: ${change.currentState}
       New: ${change.nextState}
@@ -25,7 +25,7 @@ class GlobalBlocObserver extends BlocObserver {
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
-    Log.e('''
+    Log.error('''
     Error: $error on Bloc: ${bloc.runtimeType}
     StackTrace: $stackTrace
     ''');
@@ -34,7 +34,7 @@ class GlobalBlocObserver extends BlocObserver {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    Log.d('''
+    Log.info('''
     Transition:
       Event: ${transition.event}
       Current state: ${transition.currentState}
