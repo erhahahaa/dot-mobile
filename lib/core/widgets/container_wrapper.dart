@@ -25,7 +25,7 @@ class ContainerWrapper extends StatelessWidget {
     return Container(
       padding: padding ?? EdgeInsets.all(8.w),
       margin: margin ?? EdgeInsets.all(8.w),
-      width: width ?? double.infinity,
+      width: width,
       height: height,
       decoration: BoxDecoration(
         borderRadius: borderRadius ?? BorderRadius.circular(8.r),

@@ -1,5 +1,5 @@
-import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:moon_design/moon_design.dart';
 
 class BodySmall extends StatelessWidget {
   final String? text;
@@ -20,7 +20,7 @@ class BodySmall extends StatelessWidget {
     return Text(
       text ?? 'Unassigned',
       style: style ??
-          context.theme.textTheme.bodySmall?.copyWith(
+          context.moonTypography?.body.text12.copyWith(
             color: color,
             fontWeight: fontWeight,
           ),
