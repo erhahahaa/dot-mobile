@@ -59,31 +59,28 @@ class ListViewBuilderTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: hashCode,
-      child: GestureDetector(
-        onTap: onTap,
-        child: ContainerWrapper(
-          padding: padding ?? EdgeInsets.zero,
-          margin: margin ?? EdgeInsets.all(4.w),
-          color: context.moonColors?.frieza.withOpacity(0.2),
-          child: ListTile(
-            enabled: enabled,
-            leading: leading ??
-                CachedNetworkImage(
-                  imageUrl: imageUrl ?? AppConstants.SPORT_IMAGE,
-                  width: 36.h,
-                  height: 36.h,
-                  imageBuilder: (context, imageProvider) {
-                    return CircleAvatar(
-                      backgroundImage: imageProvider,
-                    );
-                  },
-                ),
-            title: title ?? TitleSmall(titleText),
-            subtitle: subtitle ?? BodySmall(subtitleText),
-            trailing: trailing,
-          ),
+    return GestureDetector(
+      onTap: onTap,
+      child: ContainerWrapper(
+        padding: padding ?? EdgeInsets.zero,
+        margin: margin ?? EdgeInsets.all(4.w),
+        color: context.moonColors?.frieza.withOpacity(0.2),
+        child: ListTile(
+          enabled: enabled,
+          leading: leading ??
+              CachedNetworkImage(
+                imageUrl: imageUrl ?? AppConstants.SPORT_IMAGE,
+                width: 36.h,
+                height: 36.h,
+                imageBuilder: (context, imageProvider) {
+                  return CircleAvatar(
+                    backgroundImage: imageProvider,
+                  );
+                },
+              ),
+          title: title ?? TitleSmall(titleText),
+          subtitle: subtitle ?? BodySmall(subtitleText),
+          trailing: trailing,
         ),
       ),
     );

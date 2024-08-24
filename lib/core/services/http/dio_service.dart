@@ -27,7 +27,7 @@ class HttpCallback {
 @lazySingleton
 class DioService with FirebaseCrashLoggerService {
   String? _auth;
-  late Dio _dio;
+  late Dio? _dio;
   final IsarService _local;
 
   DioService(this._local) {
@@ -39,13 +39,14 @@ class DioService with FirebaseCrashLoggerService {
         }
       }
       _dio = _createDio();
-      // _dio.interceptors.add(DioInterceptor());
+      _dio?.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
   }
 
   Dio get dio {
+    if (_dio != null && _auth != null) return _dio!;
     try {
       final token = _local.isar?.users.where().tokenIsNotNull().findAll();
       if (token != null) {
@@ -54,11 +55,17 @@ class DioService with FirebaseCrashLoggerService {
         }
       }
       _dio = _createDio();
-      // _dio.interceptors.add(DioInterceptor());
+      _dio?.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
-    return _dio;
+    return _dio!;
+  }
+
+  void clearAuth() {
+    _auth = null;
+    _dio = _createDio();
+    _dio?.interceptors.add(DioInterceptor());
   }
 
   Dio _createDio() => Dio(
@@ -81,7 +88,8 @@ class DioService with FirebaseCrashLoggerService {
 
   @disposeMethod
   void dispose() {
-    _dio.close();
+    _dio?.close();
+    _dio = null;
   }
 
   Future<Either<Failure, T>> getRequest<T>(
