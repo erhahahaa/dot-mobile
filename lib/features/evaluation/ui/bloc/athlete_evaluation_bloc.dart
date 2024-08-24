@@ -18,6 +18,7 @@ class AthleteEvaluationBloc
     on<AthleteEvaluationEventClear>(_onClear);
     on<AthleteEvaluationEventGetEvaluations>(_onGetEvaluations);
     on<AthleteEvaluationEventFilterEvaluations>(_onFilterEvaluations);
+    on<AthleteEvaluationEventSelectEvaluation>(_onSelectEvaluation);
   }
 
   void _onClear(
@@ -50,7 +51,7 @@ class AthleteEvaluationBloc
   ) {
     emit(const AthleteEvaluationStateLoading());
     state.maybeWhen(
-      loaded: (evaluations, _) {
+      loaded: (evaluations, _, __) {
         final finds = evaluations
             .where(
               (evaluation) =>
@@ -77,6 +78,26 @@ class AthleteEvaluationBloc
             ),
           );
         }
+      },
+      orElse: () => emit(
+        const AthleteEvaluationStateFailure('Evaluation was empty'),
+      ),
+    );
+  }
+
+  void _onSelectEvaluation(
+    AthleteEvaluationEventSelectEvaluation event,
+    Emitter<AthleteEvaluationState> emit,
+  ) {
+    state.maybeWhen(
+      loaded: (evaluations, filteredEvaluations, _) {
+        emit(
+          AthleteEvaluationStateLoaded(
+            evaluations: evaluations,
+            filteredEvaluations: filteredEvaluations,
+            selectedEvaluation: event.evaluation,
+          ),
+        );
       },
       orElse: () => emit(
         const AthleteEvaluationStateFailure('Evaluation was empty'),

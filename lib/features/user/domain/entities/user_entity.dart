@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 
 part 'user_entity.g.dart';
 
-enum UserRole { coach, athlete }
+enum UserRole { coach, athlete, admin }
 
 enum UserGender {
   male,

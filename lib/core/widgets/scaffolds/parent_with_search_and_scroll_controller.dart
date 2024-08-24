@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ParentWithSearchAndScrollController extends StatefulWidget {
-  final void Function(SearchController, ScrollController)? onInit;
+  final void Function(SearchController search, ScrollController scroll)? onInit;
   final VoidCallback? initState;
   final Widget Function(
     BuildContext child,
@@ -9,6 +9,7 @@ class ParentWithSearchAndScrollController extends StatefulWidget {
     ScrollController scroll,
     bool showScrollToTopButton,
   ) builder;
+
   const ParentWithSearchAndScrollController({
     super.key,
     this.onInit,
@@ -23,8 +24,8 @@ class ParentWithSearchAndScrollController extends StatefulWidget {
 
 class _ParentWithSearchAndScrollControllerState
     extends State<ParentWithSearchAndScrollController> {
-  late ScrollController _scrollController;
-  late SearchController _searchController;
+  late final ScrollController _scrollController;
+  late final SearchController _searchController;
   bool showScrollToTopButton = false;
 
   @override

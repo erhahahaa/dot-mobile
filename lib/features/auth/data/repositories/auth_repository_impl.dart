@@ -12,7 +12,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, bool>> signOut() async {
-    _local.clearSignedInUser();
+    await _local.clearSignedInUser();
     return const Right(true);
   }
 

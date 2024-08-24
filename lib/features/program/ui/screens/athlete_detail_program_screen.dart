@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class AthleteDetailProgramScreen extends StatelessWidget {
-  const AthleteDetailProgramScreen({super.key});
+  final int programId;
+  const AthleteDetailProgramScreen({
+    super.key,
+    required this.programId,
+  });
 
   @override
   Widget build(BuildContext context) {

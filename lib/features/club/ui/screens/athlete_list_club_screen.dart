@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dot_coaching/app/router.gr.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
 import 'package:dot_coaching/utils/utils.dart';
@@ -15,155 +16,164 @@ class AthleteListClubScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userBloc = context.watch<UserBloc>();
+    final user = userBloc.state.maybeWhen(
+      success: (user, _) => user,
+      orElse: () => UserModel(),
+    );
     return ParentWithSearchAndScrollController(
-      onInit: (search, scroll) {
-        context.read<AthleteClubBloc>().add(
-              const AthleteClubEvent.getClubs(),
-            );
-      },
+      onInit: (search, scroll) => context.read<AthleteClubBloc>().add(
+            const AthleteClubEvent.selectClub(null),
+          ),
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
-          floatingActionButton: showScrollToTopButton
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    FloatingActionButton(
-                      onPressed: () {
-                        scroll.animateTo(
-                          0,
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                        );
+          appBar: AppBar(
+            leading: Row(
+              children: [
+                Builder(builder: (context) {
+                  return MoonButton.icon(
+                    icon: const Icon(MoonIcons.generic_menu_24_light),
+                    onTap: context.openDrawer,
+                  );
+                }),
+              ],
+            ),
+            centerTitle: true,
+            title: TitleMedium(AppConstants.APP_NAME),
+            actions: [
+              MoonButton.icon(
+                icon: const Icon(MoonIcons.notifications_bell_24_light),
+                onTap: () {},
+              ),
+            ],
+          ),
+          drawer: MoonDrawer(
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: SafeArea(
+              child: Column(
+                children: [
+                  Row(children: [
+                    Spacer(),
+                    MoonButton.icon(
+                      icon: const Icon(MoonIcons.controls_close_24_light),
+                      onTap: () {
+                        Navigator.of(context).pop();
                       },
-                      child: const Icon(Icons.arrow_upward),
                     ),
-                    Gap(64.h),
-                  ],
+                  ]),
+                  Gap(16.h),
+                  CircleAvatar(
+                    radius: 40.r,
+                    backgroundImage: NetworkImage(user.image),
+                  ),
+                  Gap(8.h),
+                  TitleMedium(user.name),
+                  Gap(8.h),
+                  BodySmall(user.email),
+                  Gap(16.h),
+                  MoonFilledButton(
+                    label: BodySmall(context.str?.logout),
+                    onTap: () {
+                      context.read<AuthBloc>().add(const AuthEvent.signOut());
+                      context.router.replace(const SplashRoute());
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          floatingActionButton: showScrollToTopButton
+              ? FloatingActionButton(
+                  onPressed: () {
+                    scroll.animateTo(
+                      0,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                  child: const Icon(Icons.arrow_upward),
                 )
               : null,
-          body: CustomScrollView(
-            controller: scroll,
-            slivers: [
-              _buildAppBar(),
-              _buildTitle(context, search),
-              _buildListClub(context),
-              SliverToBoxAdapter(child: Gap(64.h)),
-            ],
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w),
+            child: Column(
+              children: [
+                Gap(8.h),
+                _buildHeader(context, search),
+                Gap(16.h),
+                _buildListClub(context, scroll),
+              ],
+            ),
           ),
         );
       },
     );
   }
 
-  Widget _buildAppBar() {
-    return SliverAppBar(
-      expandedHeight: 170.h,
-      collapsedHeight: 80.h,
-      flexibleSpace: Container(
-        width: double.infinity,
-        height: 210.h,
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Palette.BG_LEFT, Palette.BG_RIGHT],
-          ),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20.r),
-            bottomRight: Radius.circular(20.r),
-          ),
-        ),
-        child: SafeArea(
-          child: Center(
-            child: BlocBuilder<UserBloc, UserState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  loading: () => const Skeletonizer(
-                    child: UserCard(user: UserModel()),
-                  ),
-                  success: (user, fcmToken) {
-                    return UserCard(user: user);
-                  },
-                  orElse: () => const BodyLarge('Something went wrong'),
+  Widget _buildHeader(BuildContext context, SearchController search) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        TitleSmall(context.str?.myClub),
+        MySearchBar(
+          width: 180.w,
+          height: 32.h,
+          controller: search,
+          hintText:
+              '${context.str?.search} ${context.str?.club.toLowerCase()} ...',
+          onChanged: (value) {
+            if (value == null) return;
+            context.read<AthleteClubBloc>().add(
+                  AthleteClubEvent.filterClubs(value),
                 );
-              },
-            ),
+          },
+          trailing: MoonButton.icon(
+            buttonSize: MoonButtonSize.xs,
+            icon: const Icon(MoonIcons.controls_close_24_light),
+            onTap: () {
+              search.clear();
+              context.read<AthleteClubBloc>().add(
+                    const AthleteClubEvent.filterClubs(''),
+                  );
+            },
           ),
         ),
-      ),
+      ],
     );
   }
 
-  Widget _buildTitle(BuildContext context, SearchController search) {
-    return SliverToBoxAdapter(
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: 16.w,
-          top: 24.h,
-          bottom: 8.h,
-          right: 16.w,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TitleLarge(context.str?.myClub),
-            MySearchBar(
-              width: 180.w,
-              height: 36.h,
-              controller: search,
-              hintText:
-                  '${context.str?.search} ${context.str?.club.toLowerCase()} ...',
-              onChanged: (value) {
-                if (value == null) return;
-                context.read<AthleteClubBloc>().add(
-                      AthleteClubEvent.filterClubs(value),
-                    );
-              },
-              trailing: MoonButton.icon(
-                buttonSize: MoonButtonSize.xs,
-                icon: const Icon(MoonIcons.controls_close_24_light),
-                onTap: () {
-                  search.clear();
-                  context.read<AthleteClubBloc>().add(
-                        const AthleteClubEvent.filterClubs(''),
-                      );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildListClub(BuildContext context) {
+  Widget _buildListClub(
+    BuildContext context,
+    ScrollController scrollController,
+  ) {
     return BlocBuilder<AthleteClubBloc, AthleteClubState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loaded: (_, filteredClubs) {
-            return SliverToBoxAdapter(
-              child: ColumnList<ClubModel>(
-                items: filteredClubs,
-                itemBuilder: _buildClubListTile,
+          loaded: (_, filteredClubs, __) {
+            return ListViewBuilder<ClubModel>(
+              items: filteredClubs,
+              scrollController: scrollController,
+              height: 0.8.sh,
+              itemBuilder: (context, club) => _buildClubItem(
+                context,
+                club,
+                club == filteredClubs.last,
               ),
             );
           },
-          failure: (message) {
-            return SliverToBoxAdapter(
-              child: BodyLarge(message),
-            );
-          },
+          failure: (message) => BodyLarge(message),
           orElse: () {
-            final fakeClubs = List.generate(
-              5,
-              (index) => ClubModel.fake(),
-            ).toList();
-            return SliverToBoxAdapter(
-              child: ContainerWrapper(
-                child: ColumnList<ClubModel>(
-                  items: fakeClubs,
-                  itemBuilder: (context, club) => Skeletonizer(
-                    child: _buildClubListTile(context, club),
-                  ),
+            final fakeClubs =
+                List.generate(5, (index) => ClubModel.fake()).toList();
+            return ListViewBuilder<ClubModel>(
+              scrollController: scrollController,
+              height: 0.8.sh,
+              items: fakeClubs,
+              itemBuilder: (context, club) => Skeletonizer(
+                child: _buildClubItem(
+                  context,
+                  club,
+                  club == fakeClubs.last,
                 ),
               ),
             );
@@ -173,12 +183,31 @@ class AthleteListClubScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildClubListTile(BuildContext context, ClubModel club) {
-    return ColumnListTile(
+  Widget _buildClubItem(
+    BuildContext context,
+    ClubModel club,
+    bool isLast,
+  ) {
+    void onTap() {
+      context.read<AthleteClubBloc>().add(
+            AthleteClubEvent.selectClub(club),
+          );
+      context.router.push(
+        AthleteClubShellRoute(id: club.id),
+      );
+    }
+
+    return ListViewBuilderTile(
       titleText: club.name,
       subtitleText: club.type.name,
       imageUrl: club.media?.url,
-      trailing: const Icon(MoonIcons.controls_chevron_right_24_light),
+      margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
+      onTap: onTap,
+      trailing: MoonButton.icon(
+        buttonSize: MoonButtonSize.xs,
+        icon: const Icon(MoonIcons.controls_chevron_right_24_light),
+        onTap: onTap,
+      ),
     );
   }
 }

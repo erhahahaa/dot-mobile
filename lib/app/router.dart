@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 @Injectable()
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
+  final _adminShell = EmptyShellRoute('AdminShellRoute');
   @override
   RouteType get defaultRouteType => const RouteType.material();
 
@@ -29,47 +30,63 @@ class AppRouter extends RootStackRouter {
           children: [
             AutoRoute(
               path: 'club',
+              page: AthleteListClubRoute.page,
+            ),
+            AutoRoute(
+              path: ':id',
               page: AthleteClubShellRoute.page,
               children: [
                 AutoRoute(
-                  path: '',
-                  page: AthleteListClubRoute.page,
-                ),
-                AutoRoute(
-                  path: ':id/program',
+                  path: 'program',
                   page: AthleteListProgramRoute.page,
                 ),
-                RedirectRoute(
-                  path: '*',
-                  redirectTo: '',
-                ),
-              ],
-            ),
-            AutoRoute(
-              path: 'tactical',
-              page: AthleteTacticalShellRoute.page,
-              children: [
                 AutoRoute(
-                  path: '',
+                  path: 'tactical',
                   page: AthleteListTacticalRoute.page,
                 ),
-              ],
-            ),
-            AutoRoute(
-              path: 'evaluation',
-              page: AthleteEvaluationShellRoute.page,
-              children: [
                 AutoRoute(
-                  path: '',
+                  path: 'exam',
+                  page: AthleteListExamRoute.page,
+                ),
+                AutoRoute(
+                  path: 'evaluation',
                   page: AthleteListEvaluationRoute.page,
                 ),
               ],
             ),
-            AutoRoute(
-              path: 'profile',
-              page: ProfileRoute.page,
-            )
           ],
-        )
+        ),
+        AutoRoute(
+          path: '/coach',
+          page: CoachDashboardRoute.page,
+          children: [
+            AutoRoute(
+              path: 'club',
+              page: CoachListClubRoute.page,
+            ),
+            AutoRoute(
+              path: ':id',
+              page: CoachClubShellRoute.page,
+              children: [
+                AutoRoute(
+                  path: 'program',
+                  page: CoachListProgramRoute.page,
+                ),
+                AutoRoute(
+                  path: 'tactical',
+                  page: CoachListTacticalRoute.page,
+                ),
+                AutoRoute(
+                  path: 'exam',
+                  page: CoachListExamRoute.page,
+                ),
+                AutoRoute(
+                  path: 'evaluation',
+                  page: CoachListEvaluationRoute.page,
+                ),
+              ],
+            ),
+          ],
+        ),
       ];
 }

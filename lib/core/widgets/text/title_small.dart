@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moon_design/moon_design.dart';
 
 class TitleSmall extends StatelessWidget {
@@ -6,6 +7,7 @@ class TitleSmall extends StatelessWidget {
   final TextStyle? style;
   final Color? color;
   final FontWeight? fontWeight;
+  final double? fontSize;
 
   const TitleSmall(
     this.text, {
@@ -13,6 +15,7 @@ class TitleSmall extends StatelessWidget {
     this.style,
     this.color,
     this.fontWeight,
+    this.fontSize,
   });
 
   @override
@@ -22,7 +25,9 @@ class TitleSmall extends StatelessWidget {
       style: style ??
           context.moonTypography?.heading.text14.copyWith(
             color: color,
-            fontWeight: fontWeight,
+            fontWeight: fontWeight ?? FontWeight.w500,
+            fontSize: fontSize ?? 14.sp,
+            letterSpacing: 0.1.sp,
           ),
     );
   }

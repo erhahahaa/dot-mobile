@@ -17,6 +17,7 @@ class AthleteClubBloc extends Bloc<AthleteClubEvent, AthleteClubState> {
     on<AthleteClubEventClear>(_onClear);
     on<AthleteClubEventGetClubs>(_onGetClubs);
     on<AthleteClubEventFilterClubs>(_onFilterClubs);
+    on<AthleteClubEventSelectClub>(_onSelectClub);
   }
 
   void _onClear(
@@ -47,7 +48,7 @@ class AthleteClubBloc extends Bloc<AthleteClubEvent, AthleteClubState> {
     Emitter<AthleteClubState> emit,
   ) {
     state.maybeWhen(
-      loaded: (clubs, _) {
+      loaded: (clubs, _, __) {
         final finds = clubs
             .where(
               (club) => club.name.toLowerCase().contains(
@@ -60,6 +61,24 @@ class AthleteClubBloc extends Bloc<AthleteClubEvent, AthleteClubState> {
           AthleteClubStateLoaded(
             clubs: clubs,
             filteredClubs: finds,
+          ),
+        );
+      },
+      orElse: () => null,
+    );
+  }
+
+  void _onSelectClub(
+    AthleteClubEventSelectClub event,
+    Emitter<AthleteClubState> emit,
+  ) {
+    state.maybeWhen(
+      loaded: (clubs, filteredClubs, _) {
+        emit(
+          AthleteClubStateLoaded(
+            clubs: clubs,
+            filteredClubs: filteredClubs,
+            selectedClub: event.club,
           ),
         );
       },

@@ -38,9 +38,12 @@ class DotApp extends StatelessWidget {
             ),
         ),
         BlocProvider(
-          create: (context) => sl<AuthBloc>()
+          create: (context) => sl<AuthBloc>(),
+        ),
+        BlocProvider<AthleteClubBloc>(
+          create: (_) => sl<AthleteClubBloc>()
             ..add(
-              const AuthEvent.checkSession(),
+              const AthleteClubEvent.getClubs(),
             ),
         ),
       ],

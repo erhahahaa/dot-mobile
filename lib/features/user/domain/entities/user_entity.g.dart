@@ -48,7 +48,7 @@ const UserEntitySchema = IsarGeneratedSchema(
       IsarPropertySchema(
         name: 'role',
         type: IsarType.byte,
-        enumMap: {"coach": 0, "athlete": 1},
+        enumMap: {"coach": 0, "athlete": 1, "admin": 2},
       ),
       IsarPropertySchema(
         name: 'bornPlace',
@@ -621,6 +621,7 @@ const _userEntityGender = {
 const _userEntityRole = {
   0: UserRole.coach,
   1: UserRole.athlete,
+  2: UserRole.admin,
 };
 
 extension UserEntityQueryFilter

@@ -125,10 +125,19 @@ import 'package:flutter/material.dart' as _i58;
 
 /// generated route for
 /// [_i1.AthleteClubShellScreen]
-class AthleteClubShellRoute extends _i57.PageRouteInfo<void> {
-  const AthleteClubShellRoute({List<_i57.PageRouteInfo>? children})
-      : super(
+class AthleteClubShellRoute
+    extends _i57.PageRouteInfo<AthleteClubShellRouteArgs> {
+  AthleteClubShellRoute({
+    _i58.Key? key,
+    required int id,
+    List<_i57.PageRouteInfo>? children,
+  }) : super(
           AthleteClubShellRoute.name,
+          args: AthleteClubShellRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -137,9 +146,32 @@ class AthleteClubShellRoute extends _i57.PageRouteInfo<void> {
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i1.AthleteClubShellScreen();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<AthleteClubShellRouteArgs>(
+          orElse: () => AthleteClubShellRouteArgs(id: pathParams.getInt('id')));
+      return _i57.WrappedRoute(
+          child: _i1.AthleteClubShellScreen(
+        key: args.key,
+        id: args.id,
+      ));
     },
   );
+}
+
+class AthleteClubShellRouteArgs {
+  const AthleteClubShellRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i58.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'AthleteClubShellRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
@@ -167,15 +199,15 @@ class AthleteDetailClubRoute
     extends _i57.PageRouteInfo<AthleteDetailClubRouteArgs> {
   AthleteDetailClubRoute({
     _i58.Key? key,
-    required int id,
+    required int clubId,
     List<_i57.PageRouteInfo>? children,
   }) : super(
           AthleteDetailClubRoute.name,
           args: AthleteDetailClubRouteArgs(
             key: key,
-            id: id,
+            clubId: clubId,
           ),
-          rawPathParams: {'id': id},
+          rawPathParams: {'clubId': clubId},
           initialChildren: children,
         );
 
@@ -187,10 +219,10 @@ class AthleteDetailClubRoute
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<AthleteDetailClubRouteArgs>(
           orElse: () =>
-              AthleteDetailClubRouteArgs(id: pathParams.getInt('id')));
+              AthleteDetailClubRouteArgs(clubId: pathParams.getInt('clubId')));
       return _i3.AthleteDetailClubScreen(
         key: args.key,
-        id: args.id,
+        clubId: args.clubId,
       );
     },
   );
@@ -199,25 +231,33 @@ class AthleteDetailClubRoute
 class AthleteDetailClubRouteArgs {
   const AthleteDetailClubRouteArgs({
     this.key,
-    required this.id,
+    required this.clubId,
   });
 
   final _i58.Key? key;
 
-  final int id;
+  final int clubId;
 
   @override
   String toString() {
-    return 'AthleteDetailClubRouteArgs{key: $key, id: $id}';
+    return 'AthleteDetailClubRouteArgs{key: $key, clubId: $clubId}';
   }
 }
 
 /// generated route for
 /// [_i4.AthleteDetailEvaluationScreen]
-class AthleteDetailEvaluationRoute extends _i57.PageRouteInfo<void> {
-  const AthleteDetailEvaluationRoute({List<_i57.PageRouteInfo>? children})
-      : super(
+class AthleteDetailEvaluationRoute
+    extends _i57.PageRouteInfo<AthleteDetailEvaluationRouteArgs> {
+  AthleteDetailEvaluationRoute({
+    _i58.Key? key,
+    required int evaluationId,
+    List<_i57.PageRouteInfo>? children,
+  }) : super(
           AthleteDetailEvaluationRoute.name,
+          args: AthleteDetailEvaluationRouteArgs(
+            key: key,
+            evaluationId: evaluationId,
+          ),
           initialChildren: children,
         );
 
@@ -226,9 +266,29 @@ class AthleteDetailEvaluationRoute extends _i57.PageRouteInfo<void> {
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i4.AthleteDetailEvaluationScreen();
+      final args = data.argsAs<AthleteDetailEvaluationRouteArgs>();
+      return _i4.AthleteDetailEvaluationScreen(
+        key: args.key,
+        evaluationId: args.evaluationId,
+      );
     },
   );
+}
+
+class AthleteDetailEvaluationRouteArgs {
+  const AthleteDetailEvaluationRouteArgs({
+    this.key,
+    required this.evaluationId,
+  });
+
+  final _i58.Key? key;
+
+  final int evaluationId;
+
+  @override
+  String toString() {
+    return 'AthleteDetailEvaluationRouteArgs{key: $key, evaluationId: $evaluationId}';
+  }
 }
 
 /// generated route for
@@ -271,10 +331,18 @@ class AthleteDetailExerciseRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.AthleteDetailProgramScreen]
-class AthleteDetailProgramRoute extends _i57.PageRouteInfo<void> {
-  const AthleteDetailProgramRoute({List<_i57.PageRouteInfo>? children})
-      : super(
+class AthleteDetailProgramRoute
+    extends _i57.PageRouteInfo<AthleteDetailProgramRouteArgs> {
+  AthleteDetailProgramRoute({
+    _i58.Key? key,
+    required int programId,
+    List<_i57.PageRouteInfo>? children,
+  }) : super(
           AthleteDetailProgramRoute.name,
+          args: AthleteDetailProgramRouteArgs(
+            key: key,
+            programId: programId,
+          ),
           initialChildren: children,
         );
 
@@ -283,9 +351,29 @@ class AthleteDetailProgramRoute extends _i57.PageRouteInfo<void> {
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i7.AthleteDetailProgramScreen();
+      final args = data.argsAs<AthleteDetailProgramRouteArgs>();
+      return _i7.AthleteDetailProgramScreen(
+        key: args.key,
+        programId: args.programId,
+      );
     },
   );
+}
+
+class AthleteDetailProgramRouteArgs {
+  const AthleteDetailProgramRouteArgs({
+    this.key,
+    required this.programId,
+  });
+
+  final _i58.Key? key;
+
+  final int programId;
+
+  @override
+  String toString() {
+    return 'AthleteDetailProgramRouteArgs{key: $key, programId: $programId}';
+  }
 }
 
 /// generated route for
@@ -474,19 +562,10 @@ class AthleteListExerciseRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i16.AthleteListProgramScreen]
-class AthleteListProgramRoute
-    extends _i57.PageRouteInfo<AthleteListProgramRouteArgs> {
-  AthleteListProgramRoute({
-    _i58.Key? key,
-    required int clubId,
-    List<_i57.PageRouteInfo>? children,
-  }) : super(
+class AthleteListProgramRoute extends _i57.PageRouteInfo<void> {
+  const AthleteListProgramRoute({List<_i57.PageRouteInfo>? children})
+      : super(
           AthleteListProgramRoute.name,
-          args: AthleteListProgramRouteArgs(
-            key: key,
-            clubId: clubId,
-          ),
-          rawPathParams: {'clubId': clubId},
           initialChildren: children,
         );
 
@@ -495,32 +574,9 @@ class AthleteListProgramRoute
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<AthleteListProgramRouteArgs>(
-          orElse: () =>
-              AthleteListProgramRouteArgs(clubId: pathParams.getInt('clubId')));
-      return _i16.AthleteListProgramScreen(
-        key: args.key,
-        clubId: args.clubId,
-      );
+      return const _i16.AthleteListProgramScreen();
     },
   );
-}
-
-class AthleteListProgramRouteArgs {
-  const AthleteListProgramRouteArgs({
-    this.key,
-    required this.clubId,
-  });
-
-  final _i58.Key? key;
-
-  final int clubId;
-
-  @override
-  String toString() {
-    return 'AthleteListProgramRouteArgs{key: $key, clubId: $clubId}';
-  }
 }
 
 /// generated route for
@@ -1259,7 +1315,7 @@ class SplashRoute extends _i57.PageRouteInfo<void> {
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i55.SplashScreen();
+      return _i57.WrappedRoute(child: const _i55.SplashScreen());
     },
   );
 }

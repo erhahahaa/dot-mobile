@@ -10,6 +10,8 @@ extension BuildContextX on BuildContext {
 
   Strings? get str => Strings.of(this);
 
+  void openDrawer() => Scaffold.of(this).openDrawer();
+
   void changeFocus(FocusNode currentFocus, FocusNode? nextFocus) {
     currentFocus.unfocus();
     if (nextFocus != null) {

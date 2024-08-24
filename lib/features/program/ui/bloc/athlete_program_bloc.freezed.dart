@@ -20,6 +20,7 @@ mixin _$AthleteProgramEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
     required TResult Function(String query) filterPrograms,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +28,7 @@ mixin _$AthleteProgramEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
     TResult? Function(String query)? filterPrograms,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +36,7 @@ mixin _$AthleteProgramEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
     TResult Function(String query)? filterPrograms,
     required TResult orElse(),
   }) =>
@@ -42,6 +45,8 @@ mixin _$AthleteProgramEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AthleteProgramEventClear value) clear,
     required TResult Function(AthleteProgramEventGetPrograms value) getPrograms,
+    required TResult Function(AthleteProgramEventSelectProgram value)
+        selectProgram,
     required TResult Function(AthleteProgramEventFilterPrograms value)
         filterPrograms,
   }) =>
@@ -50,6 +55,7 @@ mixin _$AthleteProgramEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AthleteProgramEventClear value)? clear,
     TResult? Function(AthleteProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(AthleteProgramEventSelectProgram value)? selectProgram,
     TResult? Function(AthleteProgramEventFilterPrograms value)? filterPrograms,
   }) =>
       throw _privateConstructorUsedError;
@@ -57,6 +63,7 @@ mixin _$AthleteProgramEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AthleteProgramEventClear value)? clear,
     TResult Function(AthleteProgramEventGetPrograms value)? getPrograms,
+    TResult Function(AthleteProgramEventSelectProgram value)? selectProgram,
     TResult Function(AthleteProgramEventFilterPrograms value)? filterPrograms,
     required TResult orElse(),
   }) =>
@@ -131,6 +138,7 @@ class _$AthleteProgramEventClearImpl implements AthleteProgramEventClear {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
     required TResult Function(String query) filterPrograms,
   }) {
     return clear();
@@ -141,6 +149,7 @@ class _$AthleteProgramEventClearImpl implements AthleteProgramEventClear {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
     TResult? Function(String query)? filterPrograms,
   }) {
     return clear?.call();
@@ -151,6 +160,7 @@ class _$AthleteProgramEventClearImpl implements AthleteProgramEventClear {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
     TResult Function(String query)? filterPrograms,
     required TResult orElse(),
   }) {
@@ -165,6 +175,8 @@ class _$AthleteProgramEventClearImpl implements AthleteProgramEventClear {
   TResult map<TResult extends Object?>({
     required TResult Function(AthleteProgramEventClear value) clear,
     required TResult Function(AthleteProgramEventGetPrograms value) getPrograms,
+    required TResult Function(AthleteProgramEventSelectProgram value)
+        selectProgram,
     required TResult Function(AthleteProgramEventFilterPrograms value)
         filterPrograms,
   }) {
@@ -176,6 +188,7 @@ class _$AthleteProgramEventClearImpl implements AthleteProgramEventClear {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AthleteProgramEventClear value)? clear,
     TResult? Function(AthleteProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(AthleteProgramEventSelectProgram value)? selectProgram,
     TResult? Function(AthleteProgramEventFilterPrograms value)? filterPrograms,
   }) {
     return clear?.call(this);
@@ -186,6 +199,7 @@ class _$AthleteProgramEventClearImpl implements AthleteProgramEventClear {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AthleteProgramEventClear value)? clear,
     TResult Function(AthleteProgramEventGetPrograms value)? getPrograms,
+    TResult Function(AthleteProgramEventSelectProgram value)? selectProgram,
     TResult Function(AthleteProgramEventFilterPrograms value)? filterPrograms,
     required TResult orElse(),
   }) {
@@ -288,6 +302,7 @@ class _$AthleteProgramEventGetProgramsImpl
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
     required TResult Function(String query) filterPrograms,
   }) {
     return getPrograms(params);
@@ -298,6 +313,7 @@ class _$AthleteProgramEventGetProgramsImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
     TResult? Function(String query)? filterPrograms,
   }) {
     return getPrograms?.call(params);
@@ -308,6 +324,7 @@ class _$AthleteProgramEventGetProgramsImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
     TResult Function(String query)? filterPrograms,
     required TResult orElse(),
   }) {
@@ -322,6 +339,8 @@ class _$AthleteProgramEventGetProgramsImpl
   TResult map<TResult extends Object?>({
     required TResult Function(AthleteProgramEventClear value) clear,
     required TResult Function(AthleteProgramEventGetPrograms value) getPrograms,
+    required TResult Function(AthleteProgramEventSelectProgram value)
+        selectProgram,
     required TResult Function(AthleteProgramEventFilterPrograms value)
         filterPrograms,
   }) {
@@ -333,6 +352,7 @@ class _$AthleteProgramEventGetProgramsImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AthleteProgramEventClear value)? clear,
     TResult? Function(AthleteProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(AthleteProgramEventSelectProgram value)? selectProgram,
     TResult? Function(AthleteProgramEventFilterPrograms value)? filterPrograms,
   }) {
     return getPrograms?.call(this);
@@ -343,6 +363,7 @@ class _$AthleteProgramEventGetProgramsImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AthleteProgramEventClear value)? clear,
     TResult Function(AthleteProgramEventGetPrograms value)? getPrograms,
+    TResult Function(AthleteProgramEventSelectProgram value)? selectProgram,
     TResult Function(AthleteProgramEventFilterPrograms value)? filterPrograms,
     required TResult orElse(),
   }) {
@@ -364,6 +385,180 @@ abstract class AthleteProgramEventGetPrograms implements AthleteProgramEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AthleteProgramEventGetProgramsImplCopyWith<
           _$AthleteProgramEventGetProgramsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AthleteProgramEventSelectProgramImplCopyWith<$Res> {
+  factory _$$AthleteProgramEventSelectProgramImplCopyWith(
+          _$AthleteProgramEventSelectProgramImpl value,
+          $Res Function(_$AthleteProgramEventSelectProgramImpl) then) =
+      __$$AthleteProgramEventSelectProgramImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ProgramModel program});
+
+  $ProgramModelCopyWith<$Res> get program;
+}
+
+/// @nodoc
+class __$$AthleteProgramEventSelectProgramImplCopyWithImpl<$Res>
+    extends _$AthleteProgramEventCopyWithImpl<$Res,
+        _$AthleteProgramEventSelectProgramImpl>
+    implements _$$AthleteProgramEventSelectProgramImplCopyWith<$Res> {
+  __$$AthleteProgramEventSelectProgramImplCopyWithImpl(
+      _$AthleteProgramEventSelectProgramImpl _value,
+      $Res Function(_$AthleteProgramEventSelectProgramImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AthleteProgramEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? program = null,
+  }) {
+    return _then(_$AthleteProgramEventSelectProgramImpl(
+      null == program
+          ? _value.program
+          : program // ignore: cast_nullable_to_non_nullable
+              as ProgramModel,
+    ));
+  }
+
+  /// Create a copy of AthleteProgramEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProgramModelCopyWith<$Res> get program {
+    return $ProgramModelCopyWith<$Res>(_value.program, (value) {
+      return _then(_value.copyWith(program: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$AthleteProgramEventSelectProgramImpl
+    implements AthleteProgramEventSelectProgram {
+  const _$AthleteProgramEventSelectProgramImpl(this.program);
+
+  @override
+  final ProgramModel program;
+
+  @override
+  String toString() {
+    return 'AthleteProgramEvent.selectProgram(program: $program)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AthleteProgramEventSelectProgramImpl &&
+            (identical(other.program, program) || other.program == program));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, program);
+
+  /// Create a copy of AthleteProgramEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AthleteProgramEventSelectProgramImplCopyWith<
+          _$AthleteProgramEventSelectProgramImpl>
+      get copyWith => __$$AthleteProgramEventSelectProgramImplCopyWithImpl<
+          _$AthleteProgramEventSelectProgramImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clear,
+    required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
+    required TResult Function(String query) filterPrograms,
+  }) {
+    return selectProgram(program);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
+    TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
+    TResult? Function(String query)? filterPrograms,
+  }) {
+    return selectProgram?.call(program);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
+    TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
+    TResult Function(String query)? filterPrograms,
+    required TResult orElse(),
+  }) {
+    if (selectProgram != null) {
+      return selectProgram(program);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AthleteProgramEventClear value) clear,
+    required TResult Function(AthleteProgramEventGetPrograms value) getPrograms,
+    required TResult Function(AthleteProgramEventSelectProgram value)
+        selectProgram,
+    required TResult Function(AthleteProgramEventFilterPrograms value)
+        filterPrograms,
+  }) {
+    return selectProgram(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AthleteProgramEventClear value)? clear,
+    TResult? Function(AthleteProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(AthleteProgramEventSelectProgram value)? selectProgram,
+    TResult? Function(AthleteProgramEventFilterPrograms value)? filterPrograms,
+  }) {
+    return selectProgram?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AthleteProgramEventClear value)? clear,
+    TResult Function(AthleteProgramEventGetPrograms value)? getPrograms,
+    TResult Function(AthleteProgramEventSelectProgram value)? selectProgram,
+    TResult Function(AthleteProgramEventFilterPrograms value)? filterPrograms,
+    required TResult orElse(),
+  }) {
+    if (selectProgram != null) {
+      return selectProgram(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AthleteProgramEventSelectProgram implements AthleteProgramEvent {
+  const factory AthleteProgramEventSelectProgram(final ProgramModel program) =
+      _$AthleteProgramEventSelectProgramImpl;
+
+  ProgramModel get program;
+
+  /// Create a copy of AthleteProgramEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AthleteProgramEventSelectProgramImplCopyWith<
+          _$AthleteProgramEventSelectProgramImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -443,6 +638,7 @@ class _$AthleteProgramEventFilterProgramsImpl
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
     required TResult Function(String query) filterPrograms,
   }) {
     return filterPrograms(query);
@@ -453,6 +649,7 @@ class _$AthleteProgramEventFilterProgramsImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
     TResult? Function(String query)? filterPrograms,
   }) {
     return filterPrograms?.call(query);
@@ -463,6 +660,7 @@ class _$AthleteProgramEventFilterProgramsImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
     TResult Function(String query)? filterPrograms,
     required TResult orElse(),
   }) {
@@ -477,6 +675,8 @@ class _$AthleteProgramEventFilterProgramsImpl
   TResult map<TResult extends Object?>({
     required TResult Function(AthleteProgramEventClear value) clear,
     required TResult Function(AthleteProgramEventGetPrograms value) getPrograms,
+    required TResult Function(AthleteProgramEventSelectProgram value)
+        selectProgram,
     required TResult Function(AthleteProgramEventFilterPrograms value)
         filterPrograms,
   }) {
@@ -488,6 +688,7 @@ class _$AthleteProgramEventFilterProgramsImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AthleteProgramEventClear value)? clear,
     TResult? Function(AthleteProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(AthleteProgramEventSelectProgram value)? selectProgram,
     TResult? Function(AthleteProgramEventFilterPrograms value)? filterPrograms,
   }) {
     return filterPrograms?.call(this);
@@ -498,6 +699,7 @@ class _$AthleteProgramEventFilterProgramsImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AthleteProgramEventClear value)? clear,
     TResult Function(AthleteProgramEventGetPrograms value)? getPrograms,
+    TResult Function(AthleteProgramEventSelectProgram value)? selectProgram,
     TResult Function(AthleteProgramEventFilterPrograms value)? filterPrograms,
     required TResult orElse(),
   }) {
@@ -529,8 +731,8 @@ mixin _$AthleteProgramState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
   }) =>
@@ -539,8 +741,8 @@ mixin _$AthleteProgramState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
   }) =>
@@ -549,8 +751,8 @@ mixin _$AthleteProgramState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -651,8 +853,8 @@ class _$AthleteProgramStateInitialImpl implements AthleteProgramStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
   }) {
@@ -664,8 +866,8 @@ class _$AthleteProgramStateInitialImpl implements AthleteProgramStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
   }) {
@@ -677,8 +879,8 @@ class _$AthleteProgramStateInitialImpl implements AthleteProgramStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -778,8 +980,8 @@ class _$AthleteProgramStateLoadingImpl implements AthleteProgramStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
   }) {
@@ -791,8 +993,8 @@ class _$AthleteProgramStateLoadingImpl implements AthleteProgramStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
   }) {
@@ -804,8 +1006,8 @@ class _$AthleteProgramStateLoadingImpl implements AthleteProgramStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -865,7 +1067,12 @@ abstract class _$$AthleteProgramStateLoadedImplCopyWith<$Res> {
           $Res Function(_$AthleteProgramStateLoadedImpl) then) =
       __$$AthleteProgramStateLoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ProgramModel> programs, List<ProgramModel> filteredPrograms});
+  $Res call(
+      {List<ProgramModel> programs,
+      List<ProgramModel> filteredPrograms,
+      ProgramModel? selectedProgram});
+
+  $ProgramModelCopyWith<$Res>? get selectedProgram;
 }
 
 /// @nodoc
@@ -885,6 +1092,7 @@ class __$$AthleteProgramStateLoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? programs = null,
     Object? filteredPrograms = null,
+    Object? selectedProgram = freezed,
   }) {
     return _then(_$AthleteProgramStateLoadedImpl(
       programs: null == programs
@@ -895,7 +1103,25 @@ class __$$AthleteProgramStateLoadedImplCopyWithImpl<$Res>
           ? _value._filteredPrograms
           : filteredPrograms // ignore: cast_nullable_to_non_nullable
               as List<ProgramModel>,
+      selectedProgram: freezed == selectedProgram
+          ? _value.selectedProgram
+          : selectedProgram // ignore: cast_nullable_to_non_nullable
+              as ProgramModel?,
     ));
+  }
+
+  /// Create a copy of AthleteProgramState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProgramModelCopyWith<$Res>? get selectedProgram {
+    if (_value.selectedProgram == null) {
+      return null;
+    }
+
+    return $ProgramModelCopyWith<$Res>(_value.selectedProgram!, (value) {
+      return _then(_value.copyWith(selectedProgram: value));
+    });
   }
 }
 
@@ -904,7 +1130,8 @@ class __$$AthleteProgramStateLoadedImplCopyWithImpl<$Res>
 class _$AthleteProgramStateLoadedImpl implements AthleteProgramStateLoaded {
   const _$AthleteProgramStateLoadedImpl(
       {required final List<ProgramModel> programs,
-      required final List<ProgramModel> filteredPrograms})
+      required final List<ProgramModel> filteredPrograms,
+      this.selectedProgram})
       : _programs = programs,
         _filteredPrograms = filteredPrograms;
 
@@ -926,8 +1153,11 @@ class _$AthleteProgramStateLoadedImpl implements AthleteProgramStateLoaded {
   }
 
   @override
+  final ProgramModel? selectedProgram;
+
+  @override
   String toString() {
-    return 'AthleteProgramState.loaded(programs: $programs, filteredPrograms: $filteredPrograms)';
+    return 'AthleteProgramState.loaded(programs: $programs, filteredPrograms: $filteredPrograms, selectedProgram: $selectedProgram)';
   }
 
   @override
@@ -937,14 +1167,17 @@ class _$AthleteProgramStateLoadedImpl implements AthleteProgramStateLoaded {
             other is _$AthleteProgramStateLoadedImpl &&
             const DeepCollectionEquality().equals(other._programs, _programs) &&
             const DeepCollectionEquality()
-                .equals(other._filteredPrograms, _filteredPrograms));
+                .equals(other._filteredPrograms, _filteredPrograms) &&
+            (identical(other.selectedProgram, selectedProgram) ||
+                other.selectedProgram == selectedProgram));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_programs),
-      const DeepCollectionEquality().hash(_filteredPrograms));
+      const DeepCollectionEquality().hash(_filteredPrograms),
+      selectedProgram);
 
   /// Create a copy of AthleteProgramState
   /// with the given fields replaced by the non-null parameter values.
@@ -960,12 +1193,12 @@ class _$AthleteProgramStateLoadedImpl implements AthleteProgramStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
   }) {
-    return loaded(programs, filteredPrograms);
+    return loaded(programs, filteredPrograms, selectedProgram);
   }
 
   @override
@@ -973,12 +1206,12 @@ class _$AthleteProgramStateLoadedImpl implements AthleteProgramStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
   }) {
-    return loaded?.call(programs, filteredPrograms);
+    return loaded?.call(programs, filteredPrograms, selectedProgram);
   }
 
   @override
@@ -986,14 +1219,14 @@ class _$AthleteProgramStateLoadedImpl implements AthleteProgramStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(programs, filteredPrograms);
+      return loaded(programs, filteredPrograms, selectedProgram);
     }
     return orElse();
   }
@@ -1038,12 +1271,13 @@ class _$AthleteProgramStateLoadedImpl implements AthleteProgramStateLoaded {
 
 abstract class AthleteProgramStateLoaded implements AthleteProgramState {
   const factory AthleteProgramStateLoaded(
-          {required final List<ProgramModel> programs,
-          required final List<ProgramModel> filteredPrograms}) =
-      _$AthleteProgramStateLoadedImpl;
+      {required final List<ProgramModel> programs,
+      required final List<ProgramModel> filteredPrograms,
+      final ProgramModel? selectedProgram}) = _$AthleteProgramStateLoadedImpl;
 
   List<ProgramModel> get programs;
   List<ProgramModel> get filteredPrograms;
+  ProgramModel? get selectedProgram;
 
   /// Create a copy of AthleteProgramState
   /// with the given fields replaced by the non-null parameter values.
@@ -1126,8 +1360,8 @@ class _$AthleteProgramStateFailureImpl implements AthleteProgramStateFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
   }) {
@@ -1139,8 +1373,8 @@ class _$AthleteProgramStateFailureImpl implements AthleteProgramStateFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
   }) {
@@ -1152,8 +1386,8 @@ class _$AthleteProgramStateFailureImpl implements AthleteProgramStateFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),

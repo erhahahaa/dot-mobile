@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moon_design/moon_design.dart';
 
 class BodyLarge extends StatelessWidget {
@@ -6,6 +7,7 @@ class BodyLarge extends StatelessWidget {
   final TextStyle? style;
   final Color? color;
   final FontWeight? fontWeight;
+  final double? fontSize;
 
   const BodyLarge(
     this.text, {
@@ -13,6 +15,7 @@ class BodyLarge extends StatelessWidget {
     this.style,
     this.color,
     this.fontWeight,
+    this.fontSize,
   });
 
   @override
@@ -22,7 +25,9 @@ class BodyLarge extends StatelessWidget {
       style: style ??
           context.moonTypography?.body.text16.copyWith(
             color: color,
-            fontWeight: fontWeight,
+            fontWeight: fontWeight ?? FontWeight.w400,
+            fontSize: fontSize ?? 16.sp,
+            letterSpacing: 0.15.sp,
           ),
     );
   }

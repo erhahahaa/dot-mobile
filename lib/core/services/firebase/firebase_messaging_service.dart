@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 mixin class FirebaseMessagingService {
   @PostConstruct(preResolve: true)
   Future<void> init() async {
-    if (kIsWeb) return;
+    if (kIsWeb || kIsWasm) return;
 
     await FirebaseMessaging.instance.requestPermission(
       alert: true,
@@ -27,7 +27,7 @@ mixin class FirebaseMessagingService {
   }
 
   Future<String?> getFCMToken() async {
-    if (kIsWeb) {
+    if (kIsWeb || kIsWasm) {
       return await FirebaseMessaging.instance.getToken(
           vapidKey:
               "BHx3YiGqjbawXXjOF_KKqzS8pqydPWhjH5PlpJB3vzD2ragXEhjsmg96njAjvJxfXozVdQhni5LJzfwKOY2r1DA");

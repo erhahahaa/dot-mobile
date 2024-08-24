@@ -5,8 +5,10 @@ import 'package:dot_coaching/app/app.dart';
 import 'package:dot_coaching/app/di.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:isar/isar.dart';
@@ -22,11 +24,10 @@ class MyHttpOverrides extends HttpOverrides {
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
-  // Bloc.observer = GlobalBlocObserver();
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await FirebaseService.init();
-    await Isar.initialize();
+    if (!kIsWasm || !kIsWeb) await Isar.initialize();
     await configureDependencies();
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
@@ -37,7 +38,14 @@ void main() {
       runApp(DotApp());
     });
   }, (error, stackTrace) async {
-    await FirebaseCrashlytics.instance.recordError(error, stackTrace);
+    if (!kIsWeb || !kIsWasm) {
+      await FirebaseCrashlytics.instance.recordError(error, stackTrace);
+    } else {
+      if (kDebugMode) {
+        Log.error(error.toString());
+        Log.trace(stackTrace.toString());
+      }
+    }
   });
 }
 
@@ -45,6 +53,7 @@ void main() {
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await FirebaseService.init();
   try {
+    if (kIsWasm || kIsWeb) return;
     final IsarService local = IsarService();
     local.initIsar();
     final DioService remote = DioService(local);
