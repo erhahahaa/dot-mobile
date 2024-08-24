@@ -48,7 +48,7 @@ import '../features/club/domain/usecases/leave_club/leave_club_usecase.dart'
 import '../features/club/domain/usecases/update_club/update_club_usecase.dart'
     as _i373;
 import '../features/club/ui/bloc/athlete_club_bloc.dart' as _i998;
-import '../features/club/ui/bloc/coach_club_bloc.dart' as _i872;
+import '../features/club/ui/bloc/club_bloc.dart' as _i872;
 import '../features/evaluation/data/datasources/evaluation_remote_datasource.dart'
     as _i973;
 import '../features/evaluation/data/repositories/evaluation_repository_impl.dart'
@@ -64,7 +64,7 @@ import '../features/evaluation/domain/usecases/get_evaluation_by_id/get_evaluati
 import '../features/evaluation/domain/usecases/update_evaluation/update_evaluation_usecase.dart'
     as _i1066;
 import '../features/evaluation/ui/bloc/athlete_evaluation_bloc.dart' as _i97;
-import '../features/evaluation/ui/bloc/coach_evaluation_bloc.dart' as _i853;
+import '../features/evaluation/ui/bloc/evaluation_bloc.dart' as _i853;
 import '../features/exam/data/datasources/exam_remote_datasource.dart' as _i750;
 import '../features/exam/data/repositories/exam_repository_impl.dart' as _i249;
 import '../features/exam/domain/usecases/create_exam_usecase.dart' as _i171;
@@ -73,7 +73,7 @@ import '../features/exam/domain/usecases/get_all_exam_usecase.dart' as _i423;
 import '../features/exam/domain/usecases/get_exam_by_id_usecase.dart' as _i897;
 import '../features/exam/domain/usecases/update_exam_usecase.dart' as _i939;
 import '../features/exam/ui/bloc/athlete_exam_bloc.dart' as _i461;
-import '../features/exam/ui/bloc/coach_exam_bloc.dart' as _i997;
+import '../features/exam/ui/bloc/exam_bloc.dart' as _i997;
 import '../features/exercise/data/datasources/exercise_remote_datasource.dart'
     as _i746;
 import '../features/exercise/data/repositories/exercise_repository_impl.dart'
@@ -89,7 +89,7 @@ import '../features/exercise/domain/usecases/get_exercise_by_id/get_exercise_by_
 import '../features/exercise/domain/usecases/update_exercise/update_exercise_batch_usecase.dart'
     as _i538;
 import '../features/exercise/ui/bloc/athlete_exercise_bloc.dart' as _i481;
-import '../features/exercise/ui/bloc/coach_exercise_bloc.dart' as _i305;
+import '../features/exercise/ui/bloc/exercise_bloc.dart' as _i305;
 import '../features/feature.dart' as _i561;
 import '../features/media/data/datasources/media_remote_datasource.dart'
     as _i991;
@@ -104,7 +104,7 @@ import '../features/media/domain/usecases/update_media/update_media_usecase.dart
 import '../features/media/domain/usecases/upload_media/upload_media_usecase.dart'
     as _i252;
 import '../features/media/ui/bloc/athlete_media_bloc.dart' as _i323;
-import '../features/media/ui/bloc/coach_media_bloc.dart' as _i433;
+import '../features/media/ui/bloc/media_bloc.dart' as _i433;
 import '../features/program/data/datasources/program_remote_datasource.dart'
     as _i802;
 import '../features/program/data/repositories/program_repository_impl.dart'
@@ -120,7 +120,7 @@ import '../features/program/domain/usecases/get_program_by_id/get_program_by_id_
 import '../features/program/domain/usecases/update_program/update_program_usecase.dart'
     as _i93;
 import '../features/program/ui/bloc/athlete_program_bloc.dart' as _i463;
-import '../features/program/ui/bloc/coach_program_bloc.dart' as _i302;
+import '../features/program/ui/bloc/program_bloc.dart' as _i302;
 import '../features/question/data/datasources/question_remote_datasource.dart'
     as _i162;
 import '../features/question/data/repositories/question_repository_impl.dart'
@@ -136,7 +136,7 @@ import '../features/question/domain/usecases/get_question_by_id/get_question_by_
 import '../features/question/domain/usecases/update_question/update_question_batch_usecase.dart'
     as _i950;
 import '../features/question/ui/bloc/athlete_question_bloc.dart' as _i387;
-import '../features/question/ui/bloc/coach_question_bloc.dart' as _i507;
+import '../features/question/ui/bloc/question_bloc.dart' as _i507;
 import '../features/tactical/data/datasources/tactical_remote_datasource.dart'
     as _i239;
 import '../features/tactical/data/repositories/tactical_repository_impl.dart'
@@ -152,7 +152,7 @@ import '../features/tactical/domain/usecases/get_tactical_by_id/get_tactical_by_
 import '../features/tactical/domain/usecases/update_tactical/update_tactical_usecase.dart'
     as _i567;
 import '../features/tactical/ui/bloc/athlete_tactical_bloc.dart' as _i810;
-import '../features/tactical/ui/bloc/coach_tactical_bloc.dart' as _i329;
+import '../features/tactical/ui/bloc/tactical_bloc.dart' as _i329;
 import '../features/user/data/datasources/user_local_data_source.dart' as _i959;
 import '../features/user/data/datasources/user_remote_data_source.dart'
     as _i593;
@@ -220,7 +220,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i963.ImagePickerService(),
       dispose: (i) => i.dispose(),
     );
-    gh.lazySingleton<_i433.CoachMediaBloc>(() => _i433.CoachMediaBloc());
+    gh.lazySingleton<_i433.MediaBloc>(() => _i433.MediaBloc());
     gh.lazySingleton<_i323.AthleteMediaBloc>(() => _i323.AthleteMediaBloc());
     gh.lazySingleton<_i322.DioService>(
       () => _i322.DioService(gh<_i156.IsarService>()),
@@ -383,7 +383,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i639.CreateEvaluationUsecase(gh<_i561.EvaluationRepository>()));
     gh.lazySingleton<_i1066.UpdateEvaluationUsecase>(
         () => _i1066.UpdateEvaluationUsecase(gh<_i561.EvaluationRepository>()));
-    gh.lazySingleton<_i507.CoachQuestionBloc>(() => _i507.CoachQuestionBloc(
+    gh.lazySingleton<_i507.QuestionBloc>(() => _i507.QuestionBloc(
           gh<_i561.GetAllQuestionUsecase>(),
           gh<_i561.CreateQuestionBatchUsecase>(),
           gh<_i561.UpdateQuestionBatchUsecase>(),
@@ -411,13 +411,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i810.GetProgramByIdUsecase(gh<_i561.ProgramRepository>()));
     gh.lazySingleton<_i1022.GetAllProgramUsecase>(
         () => _i1022.GetAllProgramUsecase(gh<_i561.ProgramRepository>()));
-    gh.lazySingleton<_i329.CoachTacticalBloc>(() => _i329.CoachTacticalBloc(
+    gh.lazySingleton<_i329.TacticalBloc>(() => _i329.TacticalBloc(
           gh<_i561.GetAllTacticalUsecase>(),
           gh<_i561.CreateTacticalUsecase>(),
           gh<_i561.UpdateTacticalUsecase>(),
           gh<_i561.DeleteTacticalUsecase>(),
         ));
-    gh.lazySingleton<_i872.CoachClubBloc>(() => _i872.CoachClubBloc(
+    gh.lazySingleton<_i872.ClubBloc>(() => _i872.ClubBloc(
           gh<_i561.GetAllClubUsecase>(),
           gh<_i561.CreateClubUsecase>(),
           gh<_i561.UpdateClubUsecase>(),
@@ -425,7 +425,7 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i97.AthleteEvaluationBloc>(
         () => _i97.AthleteEvaluationBloc(gh<_i561.GetAllEvaluationUsecase>()));
-    gh.lazySingleton<_i305.CoachExerciseBloc>(() => _i305.CoachExerciseBloc(
+    gh.lazySingleton<_i305.ExerciseBloc>(() => _i305.ExerciseBloc(
           gh<_i561.GetAllExerciseUsecase>(),
           gh<_i561.CreateExerciseBatchUsecase>(),
           gh<_i561.UpdateExerciseBatchUsecase>(),
@@ -435,19 +435,19 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i481.AthleteExerciseBloc(gh<_i561.GetAllExerciseUsecase>()));
     gh.lazySingleton<_i387.AthleteQuestionBloc>(
         () => _i387.AthleteQuestionBloc(gh<_i561.GetAllQuestionUsecase>()));
-    gh.lazySingleton<_i853.CoachEvaluationBloc>(() => _i853.CoachEvaluationBloc(
+    gh.lazySingleton<_i853.EvaluationBloc>(() => _i853.EvaluationBloc(
           gh<_i561.GetAllEvaluationUsecase>(),
           gh<_i561.CreateEvaluationUsecase>(),
           gh<_i561.UpdateEvaluationUsecase>(),
           gh<_i561.DeleteEvaluationUsecase>(),
         ));
-    gh.lazySingleton<_i302.CoachProgramBloc>(() => _i302.CoachProgramBloc(
+    gh.lazySingleton<_i302.ProgramBloc>(() => _i302.ProgramBloc(
           gh<_i561.GetAllProgramUsecase>(),
           gh<_i561.CreateProgramUsecase>(),
           gh<_i561.UpdateProgramUsecase>(),
           gh<_i561.DeleteProgramUsecase>(),
         ));
-    gh.lazySingleton<_i997.CoachExamBloc>(() => _i997.CoachExamBloc(
+    gh.lazySingleton<_i997.ExamBloc>(() => _i997.ExamBloc(
           gh<_i561.GetAllExamUsecase>(),
           gh<_i561.CreateExamUsecase>(),
           gh<_i561.UpdateExamUsecase>(),

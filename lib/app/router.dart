@@ -58,31 +58,31 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           path: '/coach',
-          page: CoachDashboardRoute.page,
+          page: DashboardRoute.page,
           children: [
             AutoRoute(
               path: 'club',
-              page: CoachListClubRoute.page,
+              page: ListClubRoute.page,
             ),
             AutoRoute(
               path: ':id',
-              page: CoachClubShellRoute.page,
+              page: ClubShellRoute.page,
               children: [
                 AutoRoute(
                   path: 'program',
-                  page: CoachListProgramRoute.page,
+                  page: ListProgramRoute.page,
                 ),
                 AutoRoute(
                   path: 'tactical',
-                  page: CoachListTacticalRoute.page,
+                  page: ListTacticalRoute.page,
                 ),
                 AutoRoute(
                   path: 'exam',
-                  page: CoachListExamRoute.page,
+                  page: ListExamRoute.page,
                 ),
                 AutoRoute(
                   path: 'evaluation',
-                  page: CoachListEvaluationRoute.page,
+                  page: ListEvaluationRoute.page,
                 ),
               ],
             ),

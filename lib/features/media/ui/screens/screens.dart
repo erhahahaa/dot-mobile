@@ -1,1 +1,1 @@
-export 'coach_list_media_screen.dart';
+export 'list_media_screen.dart';

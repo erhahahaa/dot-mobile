@@ -91,10 +91,10 @@ class StringsEn extends Strings {
   String get clubs => 'Clubs';
 
   @override
-  String get coach => 'Coach';
+  String get coach => '';
 
   @override
-  String get coaches => 'Coaches';
+  String get coaches => 'es';
 
   @override
   String get create => 'Create';
@@ -157,7 +157,8 @@ class StringsEn extends Strings {
   String get emailRequired => 'Email is required';
 
   @override
-  String get emailUsernamePhoneAlreadyRegistered => 'Email / Username / Phone already registered';
+  String get emailUsernamePhoneAlreadyRegistered =>
+      'Email / Username / Phone already registered';
 
   @override
   String get emptyExam => 'Exam is empty';
@@ -370,7 +371,8 @@ class StringsEn extends Strings {
   String get leaveClub => 'Leave Club';
 
   @override
-  String get leaveClubConfirmation => 'Are you sure you want to leave this club?';
+  String get leaveClubConfirmation =>
+      'Are you sure you want to leave this club?';
 
   @override
   String get leaveClubSuccess => 'Successfully leave club';
@@ -565,7 +567,8 @@ class StringsEn extends Strings {
   String get username => 'Username';
 
   @override
-  String get usernameCantContainUppercase => 'Username cannot contain capital letters';
+  String get usernameCantContainUppercase =>
+      'Username cannot contain capital letters';
 
   @override
   String get usernameNotAvailable => 'Username is not available';

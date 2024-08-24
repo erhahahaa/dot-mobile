@@ -67,7 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '362661479175',
     projectId: 'dot-coaching',
     storageBucket: 'dot-coaching.appspot.com',
-    iosBundleId: 'dev.zenta.dotCoaching',
+    iosBundleId: 'dev.zenta.doting',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
