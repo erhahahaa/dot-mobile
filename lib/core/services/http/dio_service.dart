@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
 import 'package:dot_coaching/utils/utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:isar/isar.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -38,7 +39,7 @@ class DioService with FirebaseCrashLoggerService {
         }
       }
       _dio = _createDio();
-      _dio.interceptors.add(DioInterceptor());
+      // _dio.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
@@ -53,7 +54,7 @@ class DioService with FirebaseCrashLoggerService {
         }
       }
       _dio = _createDio();
-      _dio.interceptors.add(DioInterceptor());
+      // _dio.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
@@ -98,9 +99,6 @@ class DioService with FirebaseCrashLoggerService {
         cancelToken: cancelToken,
       );
 
-      if (response.statusCode == 204) {
-        return const Left(NoContentFailure('No Content'));
-      }
       if (response.statusCode == 400) {
         return const Left(BadRequestFailure('Bad Request'));
       }
@@ -112,6 +110,7 @@ class DioService with FirebaseCrashLoggerService {
           response: response,
         );
       }
+      if (kIsWeb || kIsWasm) return Right(converter!(response.data));
       if (converter == null) {
         return Right(response.data as T);
       } else {
@@ -148,9 +147,6 @@ class DioService with FirebaseCrashLoggerService {
         cancelToken: cancelToken,
       );
 
-      if (response.statusCode == 204) {
-        return const Left(NoContentFailure('No Content'));
-      }
       if (response.statusCode == 400) {
         return const Left(BadRequestFailure('Bad Request'));
       }
@@ -162,6 +158,7 @@ class DioService with FirebaseCrashLoggerService {
           response: response,
         );
       }
+      if (kIsWeb || kIsWasm) return Right(converter!(response.data));
       if (converter == null) {
         return Right(response.data as T);
       } else {
@@ -197,9 +194,6 @@ class DioService with FirebaseCrashLoggerService {
         cancelToken: cancelToken,
       );
 
-      if (response.statusCode == 204) {
-        return const Left(NoContentFailure('No Content'));
-      }
       if (response.statusCode == 400) {
         return const Left(BadRequestFailure('Bad Request'));
       }
@@ -211,6 +205,7 @@ class DioService with FirebaseCrashLoggerService {
           response: response,
         );
       }
+      if (kIsWeb || kIsWasm) return Right(converter!(response.data));
 
       if (converter == null) {
         return Right(response.data as T);
@@ -240,9 +235,6 @@ class DioService with FirebaseCrashLoggerService {
         cancelToken: cancelToken,
       );
 
-      if (response.statusCode == 204) {
-        return const Left(NoContentFailure('No Content'));
-      }
       if (response.statusCode == 400) {
         return const Left(BadRequestFailure('Bad Request'));
       }
@@ -254,6 +246,7 @@ class DioService with FirebaseCrashLoggerService {
           response: response,
         );
       }
+      if (kIsWeb || kIsWasm) return Right(converter!(response.data));
       if (converter == null) {
         return Right(response.data as T);
       } else {
@@ -290,9 +283,6 @@ class DioService with FirebaseCrashLoggerService {
         cancelToken: cancelToken,
       );
 
-      if (response.statusCode == 204) {
-        return const Left(NoContentFailure('No Content'));
-      }
       if (response.statusCode == 400) {
         return const Left(BadRequestFailure('Bad Request'));
       }

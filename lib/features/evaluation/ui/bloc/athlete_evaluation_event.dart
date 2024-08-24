@@ -6,6 +6,9 @@ class AthleteEvaluationEvent with _$AthleteEvaluationEvent {
   const factory AthleteEvaluationEvent.getEvaluations(
     GetAllEvaluationParams params,
   ) = AthleteEvaluationEventGetEvaluations;
+  const factory AthleteEvaluationEvent.selectEvaluation(
+    EvaluationModel? evaluation,
+  ) = AthleteEvaluationEventSelectEvaluation;
   const factory AthleteEvaluationEvent.filterEvaluations(
     String query,
   ) = AthleteEvaluationEventFilterEvaluations;

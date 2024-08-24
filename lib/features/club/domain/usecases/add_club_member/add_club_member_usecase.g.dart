@@ -25,4 +25,5 @@ Map<String, dynamic> _$$AddClubMemberParamsImplToJson(
 const _$UserRoleEnumMap = {
   UserRole.coach: 'coach',
   UserRole.athlete: 'athlete',
+  UserRole.admin: 'admin',
 };

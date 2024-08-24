@@ -7,6 +7,7 @@ class AthleteClubState with _$AthleteClubState {
   const factory AthleteClubState.loaded({
     required List<ClubModel> clubs,
     required List<ClubModel> filteredClubs,
+    ClubModel? selectedClub,
   }) = AthleteClubStateLoaded;
   const factory AthleteClubState.failure(
     String message,

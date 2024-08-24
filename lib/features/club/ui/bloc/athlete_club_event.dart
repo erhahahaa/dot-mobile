@@ -4,6 +4,9 @@ part of 'athlete_club_bloc.dart';
 class AthleteClubEvent with _$AthleteClubEvent {
   const factory AthleteClubEvent.clear() = AthleteClubEventClear;
   const factory AthleteClubEvent.getClubs() = AthleteClubEventGetClubs;
+  const factory AthleteClubEvent.selectClub(
+    ClubModel? club,
+  ) = AthleteClubEventSelectClub;
   const factory AthleteClubEvent.filterClubs(
     String query,
   ) = AthleteClubEventFilterClubs;

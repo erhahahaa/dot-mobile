@@ -6,6 +6,9 @@ class AthleteProgramEvent with _$AthleteProgramEvent {
   const factory AthleteProgramEvent.getPrograms(
     GetAllProgramParams params,
   ) = AthleteProgramEventGetPrograms;
+  const factory AthleteProgramEvent.selectProgram(
+    ProgramModel program,
+  ) = AthleteProgramEventSelectProgram;
   const factory AthleteProgramEvent.filterPrograms(
     String query,
   ) = AthleteProgramEventFilterPrograms;

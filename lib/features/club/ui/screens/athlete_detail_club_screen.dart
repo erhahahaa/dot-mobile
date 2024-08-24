@@ -4,14 +4,18 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class AthleteDetailClubScreen extends StatelessWidget {
-  final int id;
+  final int clubId;
   const AthleteDetailClubScreen({
     super.key,
-    @PathParam('id') required this.id,
+    @pathParam required this.clubId,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const Parent();
+    return Parent(
+      appBar: AppBar(
+        title: Text('Club Detail'),
+      ),
+    );
   }
 }

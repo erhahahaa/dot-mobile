@@ -18,6 +18,7 @@ class AthleteProgramBloc
     on<AthleteProgramEventClear>(_onClear);
     on<AthleteProgramEventGetPrograms>(_onGetPrograms);
     on<AthleteProgramEventFilterPrograms>(_onFilterPrograms);
+    on<AthleteProgramEventSelectProgram>(_onSelectProgram);
   }
 
   void _onClear(
@@ -50,7 +51,7 @@ class AthleteProgramBloc
   ) {
     emit(const AthleteProgramStateLoading());
     state.maybeWhen(
-      loaded: (programs, _) {
+      loaded: (programs, _, __) {
         final finds = programs
             .where(
               (program) => program.name.toLowerCase().contains(
@@ -73,6 +74,24 @@ class AthleteProgramBloc
       },
       orElse: () =>
           emit(const AthleteProgramStateFailure('Programs was empty')),
+    );
+  }
+
+  void _onSelectProgram(
+    AthleteProgramEventSelectProgram event,
+    Emitter<AthleteProgramState> emit,
+  ) {
+    state.maybeWhen(
+      loaded: (programs, filteredPrograms, _) {
+        emit(
+          AthleteProgramStateLoaded(
+            programs: programs,
+            filteredPrograms: filteredPrograms,
+            selectedProgram: event.program,
+          ),
+        );
+      },
+      orElse: () => emit(const AthleteProgramStateFailure('Programs was empty')),
     );
   }
 }

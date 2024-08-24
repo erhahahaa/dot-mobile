@@ -7,16 +7,36 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatelessWidget implements AutoRouteWrapper {
   const SplashScreen({super.key});
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider.value(
+      value: context.read<AuthBloc>()
+        ..add(
+          const AuthEvent.checkSession(),
+        ),
+      child: this,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         state.maybeWhen(
-          authenticated: (_) {
-            context.router.replace(const AthleteListClubRoute());
+          authenticated: (user) {
+            final role = user.role;
+            if (role == UserRole.athlete) {
+              context.router.replace(
+                const AthleteListClubRoute(),
+              );
+            } else {
+              context.router.replace(
+                const CoachListClubRoute(),
+              );
+            }
           },
           unauthenticated: (_) {
             context.router.replace(const SignInRoute());

@@ -6,7 +6,7 @@ mixin class FirebaseCrashLoggerService {
     required dynamic error,
     required StackTrace stackTrace,
   }) async {
-    if (!kIsWeb && !kDebugMode) {
+    if (!kIsWeb && !kDebugMode && !kIsWasm) {
       await FirebaseCrashlytics.instance.recordError(error, stackTrace);
     }
   }

@@ -20,6 +20,7 @@ mixin _$AthleteEvaluationEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
     required TResult Function(String query) filterEvaluations,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +28,7 @@ mixin _$AthleteEvaluationEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
     TResult? Function(String query)? filterEvaluations,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +36,7 @@ mixin _$AthleteEvaluationEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
     TResult Function(String query)? filterEvaluations,
     required TResult orElse(),
   }) =>
@@ -43,6 +46,8 @@ mixin _$AthleteEvaluationEvent {
     required TResult Function(AthleteEvaluationEventClear value) clear,
     required TResult Function(AthleteEvaluationEventGetEvaluations value)
         getEvaluations,
+    required TResult Function(AthleteEvaluationEventSelectEvaluation value)
+        selectEvaluation,
     required TResult Function(AthleteEvaluationEventFilterEvaluations value)
         filterEvaluations,
   }) =>
@@ -52,6 +57,8 @@ mixin _$AthleteEvaluationEvent {
     TResult? Function(AthleteEvaluationEventClear value)? clear,
     TResult? Function(AthleteEvaluationEventGetEvaluations value)?
         getEvaluations,
+    TResult? Function(AthleteEvaluationEventSelectEvaluation value)?
+        selectEvaluation,
     TResult? Function(AthleteEvaluationEventFilterEvaluations value)?
         filterEvaluations,
   }) =>
@@ -61,6 +68,8 @@ mixin _$AthleteEvaluationEvent {
     TResult Function(AthleteEvaluationEventClear value)? clear,
     TResult Function(AthleteEvaluationEventGetEvaluations value)?
         getEvaluations,
+    TResult Function(AthleteEvaluationEventSelectEvaluation value)?
+        selectEvaluation,
     TResult Function(AthleteEvaluationEventFilterEvaluations value)?
         filterEvaluations,
     required TResult orElse(),
@@ -137,6 +146,7 @@ class _$AthleteEvaluationEventClearImpl implements AthleteEvaluationEventClear {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
     required TResult Function(String query) filterEvaluations,
   }) {
     return clear();
@@ -147,6 +157,7 @@ class _$AthleteEvaluationEventClearImpl implements AthleteEvaluationEventClear {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
     TResult? Function(String query)? filterEvaluations,
   }) {
     return clear?.call();
@@ -157,6 +168,7 @@ class _$AthleteEvaluationEventClearImpl implements AthleteEvaluationEventClear {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
     TResult Function(String query)? filterEvaluations,
     required TResult orElse(),
   }) {
@@ -172,6 +184,8 @@ class _$AthleteEvaluationEventClearImpl implements AthleteEvaluationEventClear {
     required TResult Function(AthleteEvaluationEventClear value) clear,
     required TResult Function(AthleteEvaluationEventGetEvaluations value)
         getEvaluations,
+    required TResult Function(AthleteEvaluationEventSelectEvaluation value)
+        selectEvaluation,
     required TResult Function(AthleteEvaluationEventFilterEvaluations value)
         filterEvaluations,
   }) {
@@ -184,6 +198,8 @@ class _$AthleteEvaluationEventClearImpl implements AthleteEvaluationEventClear {
     TResult? Function(AthleteEvaluationEventClear value)? clear,
     TResult? Function(AthleteEvaluationEventGetEvaluations value)?
         getEvaluations,
+    TResult? Function(AthleteEvaluationEventSelectEvaluation value)?
+        selectEvaluation,
     TResult? Function(AthleteEvaluationEventFilterEvaluations value)?
         filterEvaluations,
   }) {
@@ -196,6 +212,8 @@ class _$AthleteEvaluationEventClearImpl implements AthleteEvaluationEventClear {
     TResult Function(AthleteEvaluationEventClear value)? clear,
     TResult Function(AthleteEvaluationEventGetEvaluations value)?
         getEvaluations,
+    TResult Function(AthleteEvaluationEventSelectEvaluation value)?
+        selectEvaluation,
     TResult Function(AthleteEvaluationEventFilterEvaluations value)?
         filterEvaluations,
     required TResult orElse(),
@@ -300,6 +318,7 @@ class _$AthleteEvaluationEventGetEvaluationsImpl
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
     required TResult Function(String query) filterEvaluations,
   }) {
     return getEvaluations(params);
@@ -310,6 +329,7 @@ class _$AthleteEvaluationEventGetEvaluationsImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
     TResult? Function(String query)? filterEvaluations,
   }) {
     return getEvaluations?.call(params);
@@ -320,6 +340,7 @@ class _$AthleteEvaluationEventGetEvaluationsImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
     TResult Function(String query)? filterEvaluations,
     required TResult orElse(),
   }) {
@@ -335,6 +356,8 @@ class _$AthleteEvaluationEventGetEvaluationsImpl
     required TResult Function(AthleteEvaluationEventClear value) clear,
     required TResult Function(AthleteEvaluationEventGetEvaluations value)
         getEvaluations,
+    required TResult Function(AthleteEvaluationEventSelectEvaluation value)
+        selectEvaluation,
     required TResult Function(AthleteEvaluationEventFilterEvaluations value)
         filterEvaluations,
   }) {
@@ -347,6 +370,8 @@ class _$AthleteEvaluationEventGetEvaluationsImpl
     TResult? Function(AthleteEvaluationEventClear value)? clear,
     TResult? Function(AthleteEvaluationEventGetEvaluations value)?
         getEvaluations,
+    TResult? Function(AthleteEvaluationEventSelectEvaluation value)?
+        selectEvaluation,
     TResult? Function(AthleteEvaluationEventFilterEvaluations value)?
         filterEvaluations,
   }) {
@@ -359,6 +384,8 @@ class _$AthleteEvaluationEventGetEvaluationsImpl
     TResult Function(AthleteEvaluationEventClear value)? clear,
     TResult Function(AthleteEvaluationEventGetEvaluations value)?
         getEvaluations,
+    TResult Function(AthleteEvaluationEventSelectEvaluation value)?
+        selectEvaluation,
     TResult Function(AthleteEvaluationEventFilterEvaluations value)?
         filterEvaluations,
     required TResult orElse(),
@@ -383,6 +410,195 @@ abstract class AthleteEvaluationEventGetEvaluations
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AthleteEvaluationEventGetEvaluationsImplCopyWith<
           _$AthleteEvaluationEventGetEvaluationsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AthleteEvaluationEventSelectEvaluationImplCopyWith<$Res> {
+  factory _$$AthleteEvaluationEventSelectEvaluationImplCopyWith(
+          _$AthleteEvaluationEventSelectEvaluationImpl value,
+          $Res Function(_$AthleteEvaluationEventSelectEvaluationImpl) then) =
+      __$$AthleteEvaluationEventSelectEvaluationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({EvaluationModel? evaluation});
+
+  $EvaluationModelCopyWith<$Res>? get evaluation;
+}
+
+/// @nodoc
+class __$$AthleteEvaluationEventSelectEvaluationImplCopyWithImpl<$Res>
+    extends _$AthleteEvaluationEventCopyWithImpl<$Res,
+        _$AthleteEvaluationEventSelectEvaluationImpl>
+    implements _$$AthleteEvaluationEventSelectEvaluationImplCopyWith<$Res> {
+  __$$AthleteEvaluationEventSelectEvaluationImplCopyWithImpl(
+      _$AthleteEvaluationEventSelectEvaluationImpl _value,
+      $Res Function(_$AthleteEvaluationEventSelectEvaluationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AthleteEvaluationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? evaluation = freezed,
+  }) {
+    return _then(_$AthleteEvaluationEventSelectEvaluationImpl(
+      freezed == evaluation
+          ? _value.evaluation
+          : evaluation // ignore: cast_nullable_to_non_nullable
+              as EvaluationModel?,
+    ));
+  }
+
+  /// Create a copy of AthleteEvaluationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EvaluationModelCopyWith<$Res>? get evaluation {
+    if (_value.evaluation == null) {
+      return null;
+    }
+
+    return $EvaluationModelCopyWith<$Res>(_value.evaluation!, (value) {
+      return _then(_value.copyWith(evaluation: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$AthleteEvaluationEventSelectEvaluationImpl
+    implements AthleteEvaluationEventSelectEvaluation {
+  const _$AthleteEvaluationEventSelectEvaluationImpl(this.evaluation);
+
+  @override
+  final EvaluationModel? evaluation;
+
+  @override
+  String toString() {
+    return 'AthleteEvaluationEvent.selectEvaluation(evaluation: $evaluation)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AthleteEvaluationEventSelectEvaluationImpl &&
+            (identical(other.evaluation, evaluation) ||
+                other.evaluation == evaluation));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, evaluation);
+
+  /// Create a copy of AthleteEvaluationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AthleteEvaluationEventSelectEvaluationImplCopyWith<
+          _$AthleteEvaluationEventSelectEvaluationImpl>
+      get copyWith =>
+          __$$AthleteEvaluationEventSelectEvaluationImplCopyWithImpl<
+              _$AthleteEvaluationEventSelectEvaluationImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clear,
+    required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
+    required TResult Function(String query) filterEvaluations,
+  }) {
+    return selectEvaluation(evaluation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
+    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult? Function(String query)? filterEvaluations,
+  }) {
+    return selectEvaluation?.call(evaluation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
+    TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult Function(String query)? filterEvaluations,
+    required TResult orElse(),
+  }) {
+    if (selectEvaluation != null) {
+      return selectEvaluation(evaluation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AthleteEvaluationEventClear value) clear,
+    required TResult Function(AthleteEvaluationEventGetEvaluations value)
+        getEvaluations,
+    required TResult Function(AthleteEvaluationEventSelectEvaluation value)
+        selectEvaluation,
+    required TResult Function(AthleteEvaluationEventFilterEvaluations value)
+        filterEvaluations,
+  }) {
+    return selectEvaluation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AthleteEvaluationEventClear value)? clear,
+    TResult? Function(AthleteEvaluationEventGetEvaluations value)?
+        getEvaluations,
+    TResult? Function(AthleteEvaluationEventSelectEvaluation value)?
+        selectEvaluation,
+    TResult? Function(AthleteEvaluationEventFilterEvaluations value)?
+        filterEvaluations,
+  }) {
+    return selectEvaluation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AthleteEvaluationEventClear value)? clear,
+    TResult Function(AthleteEvaluationEventGetEvaluations value)?
+        getEvaluations,
+    TResult Function(AthleteEvaluationEventSelectEvaluation value)?
+        selectEvaluation,
+    TResult Function(AthleteEvaluationEventFilterEvaluations value)?
+        filterEvaluations,
+    required TResult orElse(),
+  }) {
+    if (selectEvaluation != null) {
+      return selectEvaluation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AthleteEvaluationEventSelectEvaluation
+    implements AthleteEvaluationEvent {
+  const factory AthleteEvaluationEventSelectEvaluation(
+          final EvaluationModel? evaluation) =
+      _$AthleteEvaluationEventSelectEvaluationImpl;
+
+  EvaluationModel? get evaluation;
+
+  /// Create a copy of AthleteEvaluationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AthleteEvaluationEventSelectEvaluationImplCopyWith<
+          _$AthleteEvaluationEventSelectEvaluationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -463,6 +679,7 @@ class _$AthleteEvaluationEventFilterEvaluationsImpl
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
     required TResult Function(String query) filterEvaluations,
   }) {
     return filterEvaluations(query);
@@ -473,6 +690,7 @@ class _$AthleteEvaluationEventFilterEvaluationsImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
     TResult? Function(String query)? filterEvaluations,
   }) {
     return filterEvaluations?.call(query);
@@ -483,6 +701,7 @@ class _$AthleteEvaluationEventFilterEvaluationsImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
     TResult Function(String query)? filterEvaluations,
     required TResult orElse(),
   }) {
@@ -498,6 +717,8 @@ class _$AthleteEvaluationEventFilterEvaluationsImpl
     required TResult Function(AthleteEvaluationEventClear value) clear,
     required TResult Function(AthleteEvaluationEventGetEvaluations value)
         getEvaluations,
+    required TResult Function(AthleteEvaluationEventSelectEvaluation value)
+        selectEvaluation,
     required TResult Function(AthleteEvaluationEventFilterEvaluations value)
         filterEvaluations,
   }) {
@@ -510,6 +731,8 @@ class _$AthleteEvaluationEventFilterEvaluationsImpl
     TResult? Function(AthleteEvaluationEventClear value)? clear,
     TResult? Function(AthleteEvaluationEventGetEvaluations value)?
         getEvaluations,
+    TResult? Function(AthleteEvaluationEventSelectEvaluation value)?
+        selectEvaluation,
     TResult? Function(AthleteEvaluationEventFilterEvaluations value)?
         filterEvaluations,
   }) {
@@ -522,6 +745,8 @@ class _$AthleteEvaluationEventFilterEvaluationsImpl
     TResult Function(AthleteEvaluationEventClear value)? clear,
     TResult Function(AthleteEvaluationEventGetEvaluations value)?
         getEvaluations,
+    TResult Function(AthleteEvaluationEventSelectEvaluation value)?
+        selectEvaluation,
     TResult Function(AthleteEvaluationEventFilterEvaluations value)?
         filterEvaluations,
     required TResult orElse(),
@@ -554,8 +779,10 @@ mixin _$AthleteEvaluationState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
   }) =>
@@ -564,8 +791,10 @@ mixin _$AthleteEvaluationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
   }) =>
@@ -574,8 +803,10 @@ mixin _$AthleteEvaluationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -678,8 +909,10 @@ class _$AthleteEvaluationStateInitialImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
   }) {
@@ -691,8 +924,10 @@ class _$AthleteEvaluationStateInitialImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
   }) {
@@ -704,8 +939,10 @@ class _$AthleteEvaluationStateInitialImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -807,8 +1044,10 @@ class _$AthleteEvaluationStateLoadingImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
   }) {
@@ -820,8 +1059,10 @@ class _$AthleteEvaluationStateLoadingImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
   }) {
@@ -833,8 +1074,10 @@ class _$AthleteEvaluationStateLoadingImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -897,7 +1140,10 @@ abstract class _$$AthleteEvaluationStateLoadedImplCopyWith<$Res> {
   @useResult
   $Res call(
       {List<EvaluationModel> evaluations,
-      List<EvaluationModel> filteredEvaluations});
+      List<EvaluationModel> filteredEvaluations,
+      EvaluationModel? selectedEvaluation});
+
+  $EvaluationModelCopyWith<$Res>? get selectedEvaluation;
 }
 
 /// @nodoc
@@ -917,6 +1163,7 @@ class __$$AthleteEvaluationStateLoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? evaluations = null,
     Object? filteredEvaluations = null,
+    Object? selectedEvaluation = freezed,
   }) {
     return _then(_$AthleteEvaluationStateLoadedImpl(
       evaluations: null == evaluations
@@ -927,7 +1174,25 @@ class __$$AthleteEvaluationStateLoadedImplCopyWithImpl<$Res>
           ? _value._filteredEvaluations
           : filteredEvaluations // ignore: cast_nullable_to_non_nullable
               as List<EvaluationModel>,
+      selectedEvaluation: freezed == selectedEvaluation
+          ? _value.selectedEvaluation
+          : selectedEvaluation // ignore: cast_nullable_to_non_nullable
+              as EvaluationModel?,
     ));
+  }
+
+  /// Create a copy of AthleteEvaluationState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EvaluationModelCopyWith<$Res>? get selectedEvaluation {
+    if (_value.selectedEvaluation == null) {
+      return null;
+    }
+
+    return $EvaluationModelCopyWith<$Res>(_value.selectedEvaluation!, (value) {
+      return _then(_value.copyWith(selectedEvaluation: value));
+    });
   }
 }
 
@@ -937,7 +1202,8 @@ class _$AthleteEvaluationStateLoadedImpl
     implements AthleteEvaluationStateLoaded {
   const _$AthleteEvaluationStateLoadedImpl(
       {required final List<EvaluationModel> evaluations,
-      required final List<EvaluationModel> filteredEvaluations})
+      required final List<EvaluationModel> filteredEvaluations,
+      this.selectedEvaluation})
       : _evaluations = evaluations,
         _filteredEvaluations = filteredEvaluations;
 
@@ -959,8 +1225,11 @@ class _$AthleteEvaluationStateLoadedImpl
   }
 
   @override
+  final EvaluationModel? selectedEvaluation;
+
+  @override
   String toString() {
-    return 'AthleteEvaluationState.loaded(evaluations: $evaluations, filteredEvaluations: $filteredEvaluations)';
+    return 'AthleteEvaluationState.loaded(evaluations: $evaluations, filteredEvaluations: $filteredEvaluations, selectedEvaluation: $selectedEvaluation)';
   }
 
   @override
@@ -971,14 +1240,17 @@ class _$AthleteEvaluationStateLoadedImpl
             const DeepCollectionEquality()
                 .equals(other._evaluations, _evaluations) &&
             const DeepCollectionEquality()
-                .equals(other._filteredEvaluations, _filteredEvaluations));
+                .equals(other._filteredEvaluations, _filteredEvaluations) &&
+            (identical(other.selectedEvaluation, selectedEvaluation) ||
+                other.selectedEvaluation == selectedEvaluation));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_evaluations),
-      const DeepCollectionEquality().hash(_filteredEvaluations));
+      const DeepCollectionEquality().hash(_filteredEvaluations),
+      selectedEvaluation);
 
   /// Create a copy of AthleteEvaluationState
   /// with the given fields replaced by the non-null parameter values.
@@ -995,12 +1267,14 @@ class _$AthleteEvaluationStateLoadedImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
   }) {
-    return loaded(evaluations, filteredEvaluations);
+    return loaded(evaluations, filteredEvaluations, selectedEvaluation);
   }
 
   @override
@@ -1008,12 +1282,14 @@ class _$AthleteEvaluationStateLoadedImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
   }) {
-    return loaded?.call(evaluations, filteredEvaluations);
+    return loaded?.call(evaluations, filteredEvaluations, selectedEvaluation);
   }
 
   @override
@@ -1021,14 +1297,16 @@ class _$AthleteEvaluationStateLoadedImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(evaluations, filteredEvaluations);
+      return loaded(evaluations, filteredEvaluations, selectedEvaluation);
     }
     return orElse();
   }
@@ -1074,11 +1352,13 @@ class _$AthleteEvaluationStateLoadedImpl
 abstract class AthleteEvaluationStateLoaded implements AthleteEvaluationState {
   const factory AthleteEvaluationStateLoaded(
           {required final List<EvaluationModel> evaluations,
-          required final List<EvaluationModel> filteredEvaluations}) =
+          required final List<EvaluationModel> filteredEvaluations,
+          final EvaluationModel? selectedEvaluation}) =
       _$AthleteEvaluationStateLoadedImpl;
 
   List<EvaluationModel> get evaluations;
   List<EvaluationModel> get filteredEvaluations;
+  EvaluationModel? get selectedEvaluation;
 
   /// Create a copy of AthleteEvaluationState
   /// with the given fields replaced by the non-null parameter values.
@@ -1164,8 +1444,10 @@ class _$AthleteEvaluationStateFailureImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
   }) {
@@ -1177,8 +1459,10 @@ class _$AthleteEvaluationStateFailureImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
   }) {
@@ -1190,8 +1474,10 @@ class _$AthleteEvaluationStateFailureImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),

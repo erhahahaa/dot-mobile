@@ -7,6 +7,7 @@ class AthleteProgramState with _$AthleteProgramState {
   const factory AthleteProgramState.loaded({
     required List<ProgramModel> programs,
     required List<ProgramModel> filteredPrograms,
+    ProgramModel? selectedProgram,
   }) = AthleteProgramStateLoaded;
   const factory AthleteProgramState.failure(
     String message,

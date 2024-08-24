@@ -5,8 +5,8 @@ import 'package:isar/isar.dart';
 
 abstract class AuthLocalDataSource {
   Future<UserModel> getSignedInUser();
-  void cacheSignedInUser(UserModel user);
-  void clearSignedInUser();
+  Future<void> cacheSignedInUser(UserModel user);
+  Future<void> clearSignedInUser();
 }
 
 @LazySingleton(as: AuthLocalDataSource)
@@ -16,19 +16,19 @@ class AuthLocalDatasourceImpl implements AuthLocalDataSource {
   AuthLocalDatasourceImpl(this._isar);
 
   @override
-  void cacheSignedInUser(
+  Future<void> cacheSignedInUser(
     UserModel user,
-  ) {
-    _isar.isar?.write((isar) {
-      _isar.isar?.users.clear();
-      _isar.isar?.users.put(user.toEntity());
+  ) async {
+    await _isar.isar?.writeAsync((isar) {
+      isar.users.clear();
+      isar.users.put(user.toEntity());
     });
   }
 
   @override
-  void clearSignedInUser() {
-    _isar.isar?.write((isar) {
-      _isar.isar?.users.clear();
+  Future<void> clearSignedInUser() async {
+    await _isar.isar?.writeAsync((isar) {
+      isar.users.clear();
     });
   }
 

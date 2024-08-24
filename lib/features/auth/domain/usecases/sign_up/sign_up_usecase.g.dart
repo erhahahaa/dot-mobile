@@ -38,4 +38,5 @@ const _$UserGenderEnumMap = {
 const _$UserRoleEnumMap = {
   UserRole.coach: 'coach',
   UserRole.athlete: 'athlete',
+  UserRole.admin: 'admin',
 };

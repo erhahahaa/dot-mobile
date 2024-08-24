@@ -13,7 +13,7 @@ class Parent extends StatefulWidget {
   final bool resizeToAvoidBottomInset;
   final bool extendBodyBehindAppBar;
   final bool extendBody;
-  final Widget? endDrawer;
+  final Widget? endDrawer, drawer;
 
   const Parent({
     super.key,
@@ -28,6 +28,7 @@ class Parent extends StatefulWidget {
     this.extendBodyBehindAppBar = false,
     this.extendBody = true,
     this.endDrawer,
+    this.drawer,
   });
 
   @override
@@ -62,6 +63,7 @@ class _ParentState extends State<Parent>
         extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
         extendBody: widget.extendBody,
         endDrawer: widget.endDrawer,
+        drawer: widget.drawer,
       ),
     );
   }

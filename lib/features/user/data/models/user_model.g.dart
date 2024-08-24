@@ -34,6 +34,7 @@ Map<String, dynamic> _$$UserToClubImplToJson(_$UserToClubImpl instance) =>
 const _$UserRoleEnumMap = {
   UserRole.coach: 'coach',
   UserRole.athlete: 'athlete',
+  UserRole.admin: 'admin',
 };
 
 _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>

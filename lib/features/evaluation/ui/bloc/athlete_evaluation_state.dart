@@ -9,6 +9,7 @@ class AthleteEvaluationState with _$AthleteEvaluationState {
   const factory AthleteEvaluationState.loaded({
     required List<EvaluationModel> evaluations,
     required List<EvaluationModel> filteredEvaluations,
+    EvaluationModel? selectedEvaluation,
   }) = AthleteEvaluationStateLoaded;
   const factory AthleteEvaluationState.failure(
     String message,
