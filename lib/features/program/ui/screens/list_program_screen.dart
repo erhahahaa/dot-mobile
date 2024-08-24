@@ -20,7 +20,7 @@ class ListProgramScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
-      loaded: (_, __, selectedClub) => selectedClub,
+      success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
     return ParentWithSearchAndScrollController(
@@ -101,13 +101,13 @@ class ListProgramScreen extends StatelessWidget {
   ) {
     final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
-      loaded: (_, __, selectedClub) => selectedClub,
+      success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
     return BlocBuilder<ProgramBloc, ProgramState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loaded: (_, filteredPrograms, __) {
+          success: (_, filteredPrograms, __) {
             if (filteredPrograms.isEmpty) {
               return Expanded(
                 child: Column(

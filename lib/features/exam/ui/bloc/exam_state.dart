@@ -4,10 +4,10 @@ part of 'exam_bloc.dart';
 class ExamState with _$ExamState {
   const factory ExamState.initial() = ExamStateInitial;
   const factory ExamState.loading() = ExamStateLoading;
-  const factory ExamState.loaded({
+  const factory ExamState.success({
     required List<ExamModel> exams,
     required List<ExamModel> filteredExams,
-  }) = ExamStateLoaded;
+  }) = ExamStateSuccess;
   const factory ExamState.failure(
     String message,
   ) = ExamStateFailure;

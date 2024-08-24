@@ -4,11 +4,11 @@ part of 'program_bloc.dart';
 class ProgramState with _$ProgramState {
   const factory ProgramState.initial() = ProgramStateInitial;
   const factory ProgramState.loading() = ProgramStateLoading;
-  const factory ProgramState.loaded({
+  const factory ProgramState.success({
     required List<ProgramModel> programs,
     required List<ProgramModel> filteredPrograms,
     ProgramModel? selectedProgram,
-  }) = ProgramStateLoaded;
+  }) = ProgramStateSuccess;
   const factory ProgramState.failure(
     String message,
   ) = ProgramStateFailure;

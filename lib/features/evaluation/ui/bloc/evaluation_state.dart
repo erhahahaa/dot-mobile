@@ -4,11 +4,11 @@ part of 'evaluation_bloc.dart';
 class EvaluationState with _$EvaluationState {
   const factory EvaluationState.initial() = EvaluationStateInitial;
   const factory EvaluationState.loading() = EvaluationStateLoading;
-  const factory EvaluationState.loaded({
+  const factory EvaluationState.success({
     required List<EvaluationModel> evaluations,
     required List<EvaluationModel> filteredEvaluations,
     EvaluationModel? selectedEvaluation,
-  }) = EvaluationStateLoaded;
+  }) = EvaluationStateSuccess;
   const factory EvaluationState.failure(
     String message,
   ) = EvaluationStateFailure;

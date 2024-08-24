@@ -1131,7 +1131,7 @@ mixin _$TacticalState {
     required TResult Function() loading,
     required TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -1144,7 +1144,7 @@ mixin _$TacticalState {
     TResult? Function()? loading,
     TResult? Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -1157,7 +1157,7 @@ mixin _$TacticalState {
     TResult Function()? loading,
     TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -1169,7 +1169,7 @@ mixin _$TacticalState {
   TResult map<TResult extends Object?>({
     required TResult Function(TacticalStateInitial value) initial,
     required TResult Function(TacticalStateLoading value) loading,
-    required TResult Function(TacticalStateLoaded value) loaded,
+    required TResult Function(TacticalStateSuccess value) success,
     required TResult Function(TacticalStateFailure value) failure,
     required TResult Function(TacticalStateCreated value) created,
     required TResult Function(TacticalStateUpdated value) updated,
@@ -1180,7 +1180,7 @@ mixin _$TacticalState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TacticalStateInitial value)? initial,
     TResult? Function(TacticalStateLoading value)? loading,
-    TResult? Function(TacticalStateLoaded value)? loaded,
+    TResult? Function(TacticalStateSuccess value)? success,
     TResult? Function(TacticalStateFailure value)? failure,
     TResult? Function(TacticalStateCreated value)? created,
     TResult? Function(TacticalStateUpdated value)? updated,
@@ -1191,7 +1191,7 @@ mixin _$TacticalState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TacticalStateInitial value)? initial,
     TResult Function(TacticalStateLoading value)? loading,
-    TResult Function(TacticalStateLoaded value)? loaded,
+    TResult Function(TacticalStateSuccess value)? success,
     TResult Function(TacticalStateFailure value)? failure,
     TResult Function(TacticalStateCreated value)? created,
     TResult Function(TacticalStateUpdated value)? updated,
@@ -1268,7 +1268,7 @@ class _$TacticalStateInitialImpl implements TacticalStateInitial {
     required TResult Function() loading,
     required TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -1284,7 +1284,7 @@ class _$TacticalStateInitialImpl implements TacticalStateInitial {
     TResult? Function()? loading,
     TResult? Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -1300,7 +1300,7 @@ class _$TacticalStateInitialImpl implements TacticalStateInitial {
     TResult Function()? loading,
     TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -1318,7 +1318,7 @@ class _$TacticalStateInitialImpl implements TacticalStateInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(TacticalStateInitial value) initial,
     required TResult Function(TacticalStateLoading value) loading,
-    required TResult Function(TacticalStateLoaded value) loaded,
+    required TResult Function(TacticalStateSuccess value) success,
     required TResult Function(TacticalStateFailure value) failure,
     required TResult Function(TacticalStateCreated value) created,
     required TResult Function(TacticalStateUpdated value) updated,
@@ -1332,7 +1332,7 @@ class _$TacticalStateInitialImpl implements TacticalStateInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TacticalStateInitial value)? initial,
     TResult? Function(TacticalStateLoading value)? loading,
-    TResult? Function(TacticalStateLoaded value)? loaded,
+    TResult? Function(TacticalStateSuccess value)? success,
     TResult? Function(TacticalStateFailure value)? failure,
     TResult? Function(TacticalStateCreated value)? created,
     TResult? Function(TacticalStateUpdated value)? updated,
@@ -1346,7 +1346,7 @@ class _$TacticalStateInitialImpl implements TacticalStateInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TacticalStateInitial value)? initial,
     TResult Function(TacticalStateLoading value)? loading,
-    TResult Function(TacticalStateLoaded value)? loaded,
+    TResult Function(TacticalStateSuccess value)? success,
     TResult Function(TacticalStateFailure value)? failure,
     TResult Function(TacticalStateCreated value)? created,
     TResult Function(TacticalStateUpdated value)? updated,
@@ -1410,7 +1410,7 @@ class _$TacticalStateLoadingImpl implements TacticalStateLoading {
     required TResult Function() loading,
     required TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -1426,7 +1426,7 @@ class _$TacticalStateLoadingImpl implements TacticalStateLoading {
     TResult? Function()? loading,
     TResult? Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -1442,7 +1442,7 @@ class _$TacticalStateLoadingImpl implements TacticalStateLoading {
     TResult Function()? loading,
     TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -1460,7 +1460,7 @@ class _$TacticalStateLoadingImpl implements TacticalStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(TacticalStateInitial value) initial,
     required TResult Function(TacticalStateLoading value) loading,
-    required TResult Function(TacticalStateLoaded value) loaded,
+    required TResult Function(TacticalStateSuccess value) success,
     required TResult Function(TacticalStateFailure value) failure,
     required TResult Function(TacticalStateCreated value) created,
     required TResult Function(TacticalStateUpdated value) updated,
@@ -1474,7 +1474,7 @@ class _$TacticalStateLoadingImpl implements TacticalStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TacticalStateInitial value)? initial,
     TResult? Function(TacticalStateLoading value)? loading,
-    TResult? Function(TacticalStateLoaded value)? loaded,
+    TResult? Function(TacticalStateSuccess value)? success,
     TResult? Function(TacticalStateFailure value)? failure,
     TResult? Function(TacticalStateCreated value)? created,
     TResult? Function(TacticalStateUpdated value)? updated,
@@ -1488,7 +1488,7 @@ class _$TacticalStateLoadingImpl implements TacticalStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TacticalStateInitial value)? initial,
     TResult Function(TacticalStateLoading value)? loading,
-    TResult Function(TacticalStateLoaded value)? loaded,
+    TResult Function(TacticalStateSuccess value)? success,
     TResult Function(TacticalStateFailure value)? failure,
     TResult Function(TacticalStateCreated value)? created,
     TResult Function(TacticalStateUpdated value)? updated,
@@ -1507,21 +1507,21 @@ abstract class TacticalStateLoading implements TacticalState {
 }
 
 /// @nodoc
-abstract class _$$TacticalStateLoadedImplCopyWith<$Res> {
-  factory _$$TacticalStateLoadedImplCopyWith(_$TacticalStateLoadedImpl value,
-          $Res Function(_$TacticalStateLoadedImpl) then) =
-      __$$TacticalStateLoadedImplCopyWithImpl<$Res>;
+abstract class _$$TacticalStateSuccessImplCopyWith<$Res> {
+  factory _$$TacticalStateSuccessImplCopyWith(_$TacticalStateSuccessImpl value,
+          $Res Function(_$TacticalStateSuccessImpl) then) =
+      __$$TacticalStateSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<TacticalModel> tacticals, List<TacticalModel> filteredTacticals});
 }
 
 /// @nodoc
-class __$$TacticalStateLoadedImplCopyWithImpl<$Res>
-    extends _$TacticalStateCopyWithImpl<$Res, _$TacticalStateLoadedImpl>
-    implements _$$TacticalStateLoadedImplCopyWith<$Res> {
-  __$$TacticalStateLoadedImplCopyWithImpl(_$TacticalStateLoadedImpl _value,
-      $Res Function(_$TacticalStateLoadedImpl) _then)
+class __$$TacticalStateSuccessImplCopyWithImpl<$Res>
+    extends _$TacticalStateCopyWithImpl<$Res, _$TacticalStateSuccessImpl>
+    implements _$$TacticalStateSuccessImplCopyWith<$Res> {
+  __$$TacticalStateSuccessImplCopyWithImpl(_$TacticalStateSuccessImpl _value,
+      $Res Function(_$TacticalStateSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of TacticalState
@@ -1532,7 +1532,7 @@ class __$$TacticalStateLoadedImplCopyWithImpl<$Res>
     Object? tacticals = null,
     Object? filteredTacticals = null,
   }) {
-    return _then(_$TacticalStateLoadedImpl(
+    return _then(_$TacticalStateSuccessImpl(
       tacticals: null == tacticals
           ? _value._tacticals
           : tacticals // ignore: cast_nullable_to_non_nullable
@@ -1547,8 +1547,8 @@ class __$$TacticalStateLoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TacticalStateLoadedImpl implements TacticalStateLoaded {
-  const _$TacticalStateLoadedImpl(
+class _$TacticalStateSuccessImpl implements TacticalStateSuccess {
+  const _$TacticalStateSuccessImpl(
       {required final List<TacticalModel> tacticals,
       required final List<TacticalModel> filteredTacticals})
       : _tacticals = tacticals,
@@ -1573,14 +1573,14 @@ class _$TacticalStateLoadedImpl implements TacticalStateLoaded {
 
   @override
   String toString() {
-    return 'TacticalState.loaded(tacticals: $tacticals, filteredTacticals: $filteredTacticals)';
+    return 'TacticalState.success(tacticals: $tacticals, filteredTacticals: $filteredTacticals)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TacticalStateLoadedImpl &&
+            other is _$TacticalStateSuccessImpl &&
             const DeepCollectionEquality()
                 .equals(other._tacticals, _tacticals) &&
             const DeepCollectionEquality()
@@ -1598,9 +1598,10 @@ class _$TacticalStateLoadedImpl implements TacticalStateLoaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$TacticalStateLoadedImplCopyWith<_$TacticalStateLoadedImpl> get copyWith =>
-      __$$TacticalStateLoadedImplCopyWithImpl<_$TacticalStateLoadedImpl>(
-          this, _$identity);
+  _$$TacticalStateSuccessImplCopyWith<_$TacticalStateSuccessImpl>
+      get copyWith =>
+          __$$TacticalStateSuccessImplCopyWithImpl<_$TacticalStateSuccessImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1609,13 +1610,13 @@ class _$TacticalStateLoadedImpl implements TacticalStateLoaded {
     required TResult Function() loading,
     required TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
     required TResult Function(TacticalModel tactical) deleted,
   }) {
-    return loaded(tacticals, filteredTacticals);
+    return success(tacticals, filteredTacticals);
   }
 
   @override
@@ -1625,13 +1626,13 @@ class _$TacticalStateLoadedImpl implements TacticalStateLoaded {
     TResult? Function()? loading,
     TResult? Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
     TResult? Function(TacticalModel tactical)? deleted,
   }) {
-    return loaded?.call(tacticals, filteredTacticals);
+    return success?.call(tacticals, filteredTacticals);
   }
 
   @override
@@ -1641,15 +1642,15 @@ class _$TacticalStateLoadedImpl implements TacticalStateLoaded {
     TResult Function()? loading,
     TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
     TResult Function(TacticalModel tactical)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(tacticals, filteredTacticals);
+    if (success != null) {
+      return success(tacticals, filteredTacticals);
     }
     return orElse();
   }
@@ -1659,13 +1660,13 @@ class _$TacticalStateLoadedImpl implements TacticalStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(TacticalStateInitial value) initial,
     required TResult Function(TacticalStateLoading value) loading,
-    required TResult Function(TacticalStateLoaded value) loaded,
+    required TResult Function(TacticalStateSuccess value) success,
     required TResult Function(TacticalStateFailure value) failure,
     required TResult Function(TacticalStateCreated value) created,
     required TResult Function(TacticalStateUpdated value) updated,
     required TResult Function(TacticalStateDeleted value) deleted,
   }) {
-    return loaded(this);
+    return success(this);
   }
 
   @override
@@ -1673,13 +1674,13 @@ class _$TacticalStateLoadedImpl implements TacticalStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TacticalStateInitial value)? initial,
     TResult? Function(TacticalStateLoading value)? loading,
-    TResult? Function(TacticalStateLoaded value)? loaded,
+    TResult? Function(TacticalStateSuccess value)? success,
     TResult? Function(TacticalStateFailure value)? failure,
     TResult? Function(TacticalStateCreated value)? created,
     TResult? Function(TacticalStateUpdated value)? updated,
     TResult? Function(TacticalStateDeleted value)? deleted,
   }) {
-    return loaded?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -1687,25 +1688,25 @@ class _$TacticalStateLoadedImpl implements TacticalStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TacticalStateInitial value)? initial,
     TResult Function(TacticalStateLoading value)? loading,
-    TResult Function(TacticalStateLoaded value)? loaded,
+    TResult Function(TacticalStateSuccess value)? success,
     TResult Function(TacticalStateFailure value)? failure,
     TResult Function(TacticalStateCreated value)? created,
     TResult Function(TacticalStateUpdated value)? updated,
     TResult Function(TacticalStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class TacticalStateLoaded implements TacticalState {
-  const factory TacticalStateLoaded(
+abstract class TacticalStateSuccess implements TacticalState {
+  const factory TacticalStateSuccess(
           {required final List<TacticalModel> tacticals,
           required final List<TacticalModel> filteredTacticals}) =
-      _$TacticalStateLoadedImpl;
+      _$TacticalStateSuccessImpl;
 
   List<TacticalModel> get tacticals;
   List<TacticalModel> get filteredTacticals;
@@ -1713,8 +1714,8 @@ abstract class TacticalStateLoaded implements TacticalState {
   /// Create a copy of TacticalState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TacticalStateLoadedImplCopyWith<_$TacticalStateLoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$TacticalStateSuccessImplCopyWith<_$TacticalStateSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1791,7 +1792,7 @@ class _$TacticalStateFailureImpl implements TacticalStateFailure {
     required TResult Function() loading,
     required TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -1807,7 +1808,7 @@ class _$TacticalStateFailureImpl implements TacticalStateFailure {
     TResult? Function()? loading,
     TResult? Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -1823,7 +1824,7 @@ class _$TacticalStateFailureImpl implements TacticalStateFailure {
     TResult Function()? loading,
     TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -1841,7 +1842,7 @@ class _$TacticalStateFailureImpl implements TacticalStateFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(TacticalStateInitial value) initial,
     required TResult Function(TacticalStateLoading value) loading,
-    required TResult Function(TacticalStateLoaded value) loaded,
+    required TResult Function(TacticalStateSuccess value) success,
     required TResult Function(TacticalStateFailure value) failure,
     required TResult Function(TacticalStateCreated value) created,
     required TResult Function(TacticalStateUpdated value) updated,
@@ -1855,7 +1856,7 @@ class _$TacticalStateFailureImpl implements TacticalStateFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TacticalStateInitial value)? initial,
     TResult? Function(TacticalStateLoading value)? loading,
-    TResult? Function(TacticalStateLoaded value)? loaded,
+    TResult? Function(TacticalStateSuccess value)? success,
     TResult? Function(TacticalStateFailure value)? failure,
     TResult? Function(TacticalStateCreated value)? created,
     TResult? Function(TacticalStateUpdated value)? updated,
@@ -1869,7 +1870,7 @@ class _$TacticalStateFailureImpl implements TacticalStateFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TacticalStateInitial value)? initial,
     TResult Function(TacticalStateLoading value)? loading,
-    TResult Function(TacticalStateLoaded value)? loaded,
+    TResult Function(TacticalStateSuccess value)? success,
     TResult Function(TacticalStateFailure value)? failure,
     TResult Function(TacticalStateCreated value)? created,
     TResult Function(TacticalStateUpdated value)? updated,
@@ -1983,7 +1984,7 @@ class _$TacticalStateCreatedImpl implements TacticalStateCreated {
     required TResult Function() loading,
     required TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -1999,7 +2000,7 @@ class _$TacticalStateCreatedImpl implements TacticalStateCreated {
     TResult? Function()? loading,
     TResult? Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -2015,7 +2016,7 @@ class _$TacticalStateCreatedImpl implements TacticalStateCreated {
     TResult Function()? loading,
     TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -2033,7 +2034,7 @@ class _$TacticalStateCreatedImpl implements TacticalStateCreated {
   TResult map<TResult extends Object?>({
     required TResult Function(TacticalStateInitial value) initial,
     required TResult Function(TacticalStateLoading value) loading,
-    required TResult Function(TacticalStateLoaded value) loaded,
+    required TResult Function(TacticalStateSuccess value) success,
     required TResult Function(TacticalStateFailure value) failure,
     required TResult Function(TacticalStateCreated value) created,
     required TResult Function(TacticalStateUpdated value) updated,
@@ -2047,7 +2048,7 @@ class _$TacticalStateCreatedImpl implements TacticalStateCreated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TacticalStateInitial value)? initial,
     TResult? Function(TacticalStateLoading value)? loading,
-    TResult? Function(TacticalStateLoaded value)? loaded,
+    TResult? Function(TacticalStateSuccess value)? success,
     TResult? Function(TacticalStateFailure value)? failure,
     TResult? Function(TacticalStateCreated value)? created,
     TResult? Function(TacticalStateUpdated value)? updated,
@@ -2061,7 +2062,7 @@ class _$TacticalStateCreatedImpl implements TacticalStateCreated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TacticalStateInitial value)? initial,
     TResult Function(TacticalStateLoading value)? loading,
-    TResult Function(TacticalStateLoaded value)? loaded,
+    TResult Function(TacticalStateSuccess value)? success,
     TResult Function(TacticalStateFailure value)? failure,
     TResult Function(TacticalStateCreated value)? created,
     TResult Function(TacticalStateUpdated value)? updated,
@@ -2175,7 +2176,7 @@ class _$TacticalStateUpdatedImpl implements TacticalStateUpdated {
     required TResult Function() loading,
     required TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -2191,7 +2192,7 @@ class _$TacticalStateUpdatedImpl implements TacticalStateUpdated {
     TResult? Function()? loading,
     TResult? Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -2207,7 +2208,7 @@ class _$TacticalStateUpdatedImpl implements TacticalStateUpdated {
     TResult Function()? loading,
     TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -2225,7 +2226,7 @@ class _$TacticalStateUpdatedImpl implements TacticalStateUpdated {
   TResult map<TResult extends Object?>({
     required TResult Function(TacticalStateInitial value) initial,
     required TResult Function(TacticalStateLoading value) loading,
-    required TResult Function(TacticalStateLoaded value) loaded,
+    required TResult Function(TacticalStateSuccess value) success,
     required TResult Function(TacticalStateFailure value) failure,
     required TResult Function(TacticalStateCreated value) created,
     required TResult Function(TacticalStateUpdated value) updated,
@@ -2239,7 +2240,7 @@ class _$TacticalStateUpdatedImpl implements TacticalStateUpdated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TacticalStateInitial value)? initial,
     TResult? Function(TacticalStateLoading value)? loading,
-    TResult? Function(TacticalStateLoaded value)? loaded,
+    TResult? Function(TacticalStateSuccess value)? success,
     TResult? Function(TacticalStateFailure value)? failure,
     TResult? Function(TacticalStateCreated value)? created,
     TResult? Function(TacticalStateUpdated value)? updated,
@@ -2253,7 +2254,7 @@ class _$TacticalStateUpdatedImpl implements TacticalStateUpdated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TacticalStateInitial value)? initial,
     TResult Function(TacticalStateLoading value)? loading,
-    TResult Function(TacticalStateLoaded value)? loaded,
+    TResult Function(TacticalStateSuccess value)? success,
     TResult Function(TacticalStateFailure value)? failure,
     TResult Function(TacticalStateCreated value)? created,
     TResult Function(TacticalStateUpdated value)? updated,
@@ -2367,7 +2368,7 @@ class _$TacticalStateDeletedImpl implements TacticalStateDeleted {
     required TResult Function() loading,
     required TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -2383,7 +2384,7 @@ class _$TacticalStateDeletedImpl implements TacticalStateDeleted {
     TResult? Function()? loading,
     TResult? Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -2399,7 +2400,7 @@ class _$TacticalStateDeletedImpl implements TacticalStateDeleted {
     TResult Function()? loading,
     TResult Function(List<TacticalModel> tacticals,
             List<TacticalModel> filteredTacticals)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -2417,7 +2418,7 @@ class _$TacticalStateDeletedImpl implements TacticalStateDeleted {
   TResult map<TResult extends Object?>({
     required TResult Function(TacticalStateInitial value) initial,
     required TResult Function(TacticalStateLoading value) loading,
-    required TResult Function(TacticalStateLoaded value) loaded,
+    required TResult Function(TacticalStateSuccess value) success,
     required TResult Function(TacticalStateFailure value) failure,
     required TResult Function(TacticalStateCreated value) created,
     required TResult Function(TacticalStateUpdated value) updated,
@@ -2431,7 +2432,7 @@ class _$TacticalStateDeletedImpl implements TacticalStateDeleted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TacticalStateInitial value)? initial,
     TResult? Function(TacticalStateLoading value)? loading,
-    TResult? Function(TacticalStateLoaded value)? loaded,
+    TResult? Function(TacticalStateSuccess value)? success,
     TResult? Function(TacticalStateFailure value)? failure,
     TResult? Function(TacticalStateCreated value)? created,
     TResult? Function(TacticalStateUpdated value)? updated,
@@ -2445,7 +2446,7 @@ class _$TacticalStateDeletedImpl implements TacticalStateDeleted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TacticalStateInitial value)? initial,
     TResult Function(TacticalStateLoading value)? loading,
-    TResult Function(TacticalStateLoaded value)? loaded,
+    TResult Function(TacticalStateSuccess value)? success,
     TResult Function(TacticalStateFailure value)? failure,
     TResult Function(TacticalStateCreated value)? created,
     TResult Function(TacticalStateUpdated value)? updated,

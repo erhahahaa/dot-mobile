@@ -1125,7 +1125,7 @@ mixin _$ExerciseState {
     required TResult Function() loading,
     required TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<ExerciseModel> exercises) createdBatch,
     required TResult Function(List<ExerciseModel> exercises) updatedBatch,
@@ -1138,7 +1138,7 @@ mixin _$ExerciseState {
     TResult? Function()? loading,
     TResult? Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<ExerciseModel> exercises)? createdBatch,
     TResult? Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -1151,7 +1151,7 @@ mixin _$ExerciseState {
     TResult Function()? loading,
     TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<ExerciseModel> exercises)? createdBatch,
     TResult Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -1163,7 +1163,7 @@ mixin _$ExerciseState {
   TResult map<TResult extends Object?>({
     required TResult Function(ExerciseStateInitial value) initial,
     required TResult Function(ExerciseStateLoading value) loading,
-    required TResult Function(ExerciseStateLoaded value) loaded,
+    required TResult Function(ExerciseStateSuccess value) success,
     required TResult Function(ExerciseStateFailure value) failure,
     required TResult Function(ExerciseStateCreatedBatch value) createdBatch,
     required TResult Function(ExerciseStateUpdatedBatch value) updatedBatch,
@@ -1174,7 +1174,7 @@ mixin _$ExerciseState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExerciseStateInitial value)? initial,
     TResult? Function(ExerciseStateLoading value)? loading,
-    TResult? Function(ExerciseStateLoaded value)? loaded,
+    TResult? Function(ExerciseStateSuccess value)? success,
     TResult? Function(ExerciseStateFailure value)? failure,
     TResult? Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult? Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -1185,7 +1185,7 @@ mixin _$ExerciseState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExerciseStateInitial value)? initial,
     TResult Function(ExerciseStateLoading value)? loading,
-    TResult Function(ExerciseStateLoaded value)? loaded,
+    TResult Function(ExerciseStateSuccess value)? success,
     TResult Function(ExerciseStateFailure value)? failure,
     TResult Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -1262,7 +1262,7 @@ class _$ExerciseStateInitialImpl implements ExerciseStateInitial {
     required TResult Function() loading,
     required TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<ExerciseModel> exercises) createdBatch,
     required TResult Function(List<ExerciseModel> exercises) updatedBatch,
@@ -1278,7 +1278,7 @@ class _$ExerciseStateInitialImpl implements ExerciseStateInitial {
     TResult? Function()? loading,
     TResult? Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<ExerciseModel> exercises)? createdBatch,
     TResult? Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -1294,7 +1294,7 @@ class _$ExerciseStateInitialImpl implements ExerciseStateInitial {
     TResult Function()? loading,
     TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<ExerciseModel> exercises)? createdBatch,
     TResult Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -1312,7 +1312,7 @@ class _$ExerciseStateInitialImpl implements ExerciseStateInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(ExerciseStateInitial value) initial,
     required TResult Function(ExerciseStateLoading value) loading,
-    required TResult Function(ExerciseStateLoaded value) loaded,
+    required TResult Function(ExerciseStateSuccess value) success,
     required TResult Function(ExerciseStateFailure value) failure,
     required TResult Function(ExerciseStateCreatedBatch value) createdBatch,
     required TResult Function(ExerciseStateUpdatedBatch value) updatedBatch,
@@ -1326,7 +1326,7 @@ class _$ExerciseStateInitialImpl implements ExerciseStateInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExerciseStateInitial value)? initial,
     TResult? Function(ExerciseStateLoading value)? loading,
-    TResult? Function(ExerciseStateLoaded value)? loaded,
+    TResult? Function(ExerciseStateSuccess value)? success,
     TResult? Function(ExerciseStateFailure value)? failure,
     TResult? Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult? Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -1340,7 +1340,7 @@ class _$ExerciseStateInitialImpl implements ExerciseStateInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExerciseStateInitial value)? initial,
     TResult Function(ExerciseStateLoading value)? loading,
-    TResult Function(ExerciseStateLoaded value)? loaded,
+    TResult Function(ExerciseStateSuccess value)? success,
     TResult Function(ExerciseStateFailure value)? failure,
     TResult Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -1404,7 +1404,7 @@ class _$ExerciseStateLoadingImpl implements ExerciseStateLoading {
     required TResult Function() loading,
     required TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<ExerciseModel> exercises) createdBatch,
     required TResult Function(List<ExerciseModel> exercises) updatedBatch,
@@ -1420,7 +1420,7 @@ class _$ExerciseStateLoadingImpl implements ExerciseStateLoading {
     TResult? Function()? loading,
     TResult? Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<ExerciseModel> exercises)? createdBatch,
     TResult? Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -1436,7 +1436,7 @@ class _$ExerciseStateLoadingImpl implements ExerciseStateLoading {
     TResult Function()? loading,
     TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<ExerciseModel> exercises)? createdBatch,
     TResult Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -1454,7 +1454,7 @@ class _$ExerciseStateLoadingImpl implements ExerciseStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(ExerciseStateInitial value) initial,
     required TResult Function(ExerciseStateLoading value) loading,
-    required TResult Function(ExerciseStateLoaded value) loaded,
+    required TResult Function(ExerciseStateSuccess value) success,
     required TResult Function(ExerciseStateFailure value) failure,
     required TResult Function(ExerciseStateCreatedBatch value) createdBatch,
     required TResult Function(ExerciseStateUpdatedBatch value) updatedBatch,
@@ -1468,7 +1468,7 @@ class _$ExerciseStateLoadingImpl implements ExerciseStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExerciseStateInitial value)? initial,
     TResult? Function(ExerciseStateLoading value)? loading,
-    TResult? Function(ExerciseStateLoaded value)? loaded,
+    TResult? Function(ExerciseStateSuccess value)? success,
     TResult? Function(ExerciseStateFailure value)? failure,
     TResult? Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult? Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -1482,7 +1482,7 @@ class _$ExerciseStateLoadingImpl implements ExerciseStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExerciseStateInitial value)? initial,
     TResult Function(ExerciseStateLoading value)? loading,
-    TResult Function(ExerciseStateLoaded value)? loaded,
+    TResult Function(ExerciseStateSuccess value)? success,
     TResult Function(ExerciseStateFailure value)? failure,
     TResult Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -1501,21 +1501,21 @@ abstract class ExerciseStateLoading implements ExerciseState {
 }
 
 /// @nodoc
-abstract class _$$ExerciseStateLoadedImplCopyWith<$Res> {
-  factory _$$ExerciseStateLoadedImplCopyWith(_$ExerciseStateLoadedImpl value,
-          $Res Function(_$ExerciseStateLoadedImpl) then) =
-      __$$ExerciseStateLoadedImplCopyWithImpl<$Res>;
+abstract class _$$ExerciseStateSuccessImplCopyWith<$Res> {
+  factory _$$ExerciseStateSuccessImplCopyWith(_$ExerciseStateSuccessImpl value,
+          $Res Function(_$ExerciseStateSuccessImpl) then) =
+      __$$ExerciseStateSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<ExerciseModel> exercises, List<ExerciseModel> filteredExercises});
 }
 
 /// @nodoc
-class __$$ExerciseStateLoadedImplCopyWithImpl<$Res>
-    extends _$ExerciseStateCopyWithImpl<$Res, _$ExerciseStateLoadedImpl>
-    implements _$$ExerciseStateLoadedImplCopyWith<$Res> {
-  __$$ExerciseStateLoadedImplCopyWithImpl(_$ExerciseStateLoadedImpl _value,
-      $Res Function(_$ExerciseStateLoadedImpl) _then)
+class __$$ExerciseStateSuccessImplCopyWithImpl<$Res>
+    extends _$ExerciseStateCopyWithImpl<$Res, _$ExerciseStateSuccessImpl>
+    implements _$$ExerciseStateSuccessImplCopyWith<$Res> {
+  __$$ExerciseStateSuccessImplCopyWithImpl(_$ExerciseStateSuccessImpl _value,
+      $Res Function(_$ExerciseStateSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ExerciseState
@@ -1526,7 +1526,7 @@ class __$$ExerciseStateLoadedImplCopyWithImpl<$Res>
     Object? exercises = null,
     Object? filteredExercises = null,
   }) {
-    return _then(_$ExerciseStateLoadedImpl(
+    return _then(_$ExerciseStateSuccessImpl(
       exercises: null == exercises
           ? _value._exercises
           : exercises // ignore: cast_nullable_to_non_nullable
@@ -1541,8 +1541,8 @@ class __$$ExerciseStateLoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ExerciseStateLoadedImpl implements ExerciseStateLoaded {
-  const _$ExerciseStateLoadedImpl(
+class _$ExerciseStateSuccessImpl implements ExerciseStateSuccess {
+  const _$ExerciseStateSuccessImpl(
       {required final List<ExerciseModel> exercises,
       required final List<ExerciseModel> filteredExercises})
       : _exercises = exercises,
@@ -1567,14 +1567,14 @@ class _$ExerciseStateLoadedImpl implements ExerciseStateLoaded {
 
   @override
   String toString() {
-    return 'ExerciseState.loaded(exercises: $exercises, filteredExercises: $filteredExercises)';
+    return 'ExerciseState.success(exercises: $exercises, filteredExercises: $filteredExercises)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ExerciseStateLoadedImpl &&
+            other is _$ExerciseStateSuccessImpl &&
             const DeepCollectionEquality()
                 .equals(other._exercises, _exercises) &&
             const DeepCollectionEquality()
@@ -1592,9 +1592,10 @@ class _$ExerciseStateLoadedImpl implements ExerciseStateLoaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ExerciseStateLoadedImplCopyWith<_$ExerciseStateLoadedImpl> get copyWith =>
-      __$$ExerciseStateLoadedImplCopyWithImpl<_$ExerciseStateLoadedImpl>(
-          this, _$identity);
+  _$$ExerciseStateSuccessImplCopyWith<_$ExerciseStateSuccessImpl>
+      get copyWith =>
+          __$$ExerciseStateSuccessImplCopyWithImpl<_$ExerciseStateSuccessImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1603,13 +1604,13 @@ class _$ExerciseStateLoadedImpl implements ExerciseStateLoaded {
     required TResult Function() loading,
     required TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<ExerciseModel> exercises) createdBatch,
     required TResult Function(List<ExerciseModel> exercises) updatedBatch,
     required TResult Function(ExerciseModel exercise) deleted,
   }) {
-    return loaded(exercises, filteredExercises);
+    return success(exercises, filteredExercises);
   }
 
   @override
@@ -1619,13 +1620,13 @@ class _$ExerciseStateLoadedImpl implements ExerciseStateLoaded {
     TResult? Function()? loading,
     TResult? Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<ExerciseModel> exercises)? createdBatch,
     TResult? Function(List<ExerciseModel> exercises)? updatedBatch,
     TResult? Function(ExerciseModel exercise)? deleted,
   }) {
-    return loaded?.call(exercises, filteredExercises);
+    return success?.call(exercises, filteredExercises);
   }
 
   @override
@@ -1635,15 +1636,15 @@ class _$ExerciseStateLoadedImpl implements ExerciseStateLoaded {
     TResult Function()? loading,
     TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<ExerciseModel> exercises)? createdBatch,
     TResult Function(List<ExerciseModel> exercises)? updatedBatch,
     TResult Function(ExerciseModel exercise)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(exercises, filteredExercises);
+    if (success != null) {
+      return success(exercises, filteredExercises);
     }
     return orElse();
   }
@@ -1653,13 +1654,13 @@ class _$ExerciseStateLoadedImpl implements ExerciseStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(ExerciseStateInitial value) initial,
     required TResult Function(ExerciseStateLoading value) loading,
-    required TResult Function(ExerciseStateLoaded value) loaded,
+    required TResult Function(ExerciseStateSuccess value) success,
     required TResult Function(ExerciseStateFailure value) failure,
     required TResult Function(ExerciseStateCreatedBatch value) createdBatch,
     required TResult Function(ExerciseStateUpdatedBatch value) updatedBatch,
     required TResult Function(ExerciseStateDeleted value) deleted,
   }) {
-    return loaded(this);
+    return success(this);
   }
 
   @override
@@ -1667,13 +1668,13 @@ class _$ExerciseStateLoadedImpl implements ExerciseStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExerciseStateInitial value)? initial,
     TResult? Function(ExerciseStateLoading value)? loading,
-    TResult? Function(ExerciseStateLoaded value)? loaded,
+    TResult? Function(ExerciseStateSuccess value)? success,
     TResult? Function(ExerciseStateFailure value)? failure,
     TResult? Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult? Function(ExerciseStateUpdatedBatch value)? updatedBatch,
     TResult? Function(ExerciseStateDeleted value)? deleted,
   }) {
-    return loaded?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -1681,25 +1682,25 @@ class _$ExerciseStateLoadedImpl implements ExerciseStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExerciseStateInitial value)? initial,
     TResult Function(ExerciseStateLoading value)? loading,
-    TResult Function(ExerciseStateLoaded value)? loaded,
+    TResult Function(ExerciseStateSuccess value)? success,
     TResult Function(ExerciseStateFailure value)? failure,
     TResult Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult Function(ExerciseStateUpdatedBatch value)? updatedBatch,
     TResult Function(ExerciseStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class ExerciseStateLoaded implements ExerciseState {
-  const factory ExerciseStateLoaded(
+abstract class ExerciseStateSuccess implements ExerciseState {
+  const factory ExerciseStateSuccess(
           {required final List<ExerciseModel> exercises,
           required final List<ExerciseModel> filteredExercises}) =
-      _$ExerciseStateLoadedImpl;
+      _$ExerciseStateSuccessImpl;
 
   List<ExerciseModel> get exercises;
   List<ExerciseModel> get filteredExercises;
@@ -1707,8 +1708,8 @@ abstract class ExerciseStateLoaded implements ExerciseState {
   /// Create a copy of ExerciseState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ExerciseStateLoadedImplCopyWith<_$ExerciseStateLoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ExerciseStateSuccessImplCopyWith<_$ExerciseStateSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1785,7 +1786,7 @@ class _$ExerciseStateFailureImpl implements ExerciseStateFailure {
     required TResult Function() loading,
     required TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<ExerciseModel> exercises) createdBatch,
     required TResult Function(List<ExerciseModel> exercises) updatedBatch,
@@ -1801,7 +1802,7 @@ class _$ExerciseStateFailureImpl implements ExerciseStateFailure {
     TResult? Function()? loading,
     TResult? Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<ExerciseModel> exercises)? createdBatch,
     TResult? Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -1817,7 +1818,7 @@ class _$ExerciseStateFailureImpl implements ExerciseStateFailure {
     TResult Function()? loading,
     TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<ExerciseModel> exercises)? createdBatch,
     TResult Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -1835,7 +1836,7 @@ class _$ExerciseStateFailureImpl implements ExerciseStateFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(ExerciseStateInitial value) initial,
     required TResult Function(ExerciseStateLoading value) loading,
-    required TResult Function(ExerciseStateLoaded value) loaded,
+    required TResult Function(ExerciseStateSuccess value) success,
     required TResult Function(ExerciseStateFailure value) failure,
     required TResult Function(ExerciseStateCreatedBatch value) createdBatch,
     required TResult Function(ExerciseStateUpdatedBatch value) updatedBatch,
@@ -1849,7 +1850,7 @@ class _$ExerciseStateFailureImpl implements ExerciseStateFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExerciseStateInitial value)? initial,
     TResult? Function(ExerciseStateLoading value)? loading,
-    TResult? Function(ExerciseStateLoaded value)? loaded,
+    TResult? Function(ExerciseStateSuccess value)? success,
     TResult? Function(ExerciseStateFailure value)? failure,
     TResult? Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult? Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -1863,7 +1864,7 @@ class _$ExerciseStateFailureImpl implements ExerciseStateFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExerciseStateInitial value)? initial,
     TResult Function(ExerciseStateLoading value)? loading,
-    TResult Function(ExerciseStateLoaded value)? loaded,
+    TResult Function(ExerciseStateSuccess value)? success,
     TResult Function(ExerciseStateFailure value)? failure,
     TResult Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -1973,7 +1974,7 @@ class _$ExerciseStateCreatedBatchImpl implements ExerciseStateCreatedBatch {
     required TResult Function() loading,
     required TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<ExerciseModel> exercises) createdBatch,
     required TResult Function(List<ExerciseModel> exercises) updatedBatch,
@@ -1989,7 +1990,7 @@ class _$ExerciseStateCreatedBatchImpl implements ExerciseStateCreatedBatch {
     TResult? Function()? loading,
     TResult? Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<ExerciseModel> exercises)? createdBatch,
     TResult? Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -2005,7 +2006,7 @@ class _$ExerciseStateCreatedBatchImpl implements ExerciseStateCreatedBatch {
     TResult Function()? loading,
     TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<ExerciseModel> exercises)? createdBatch,
     TResult Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -2023,7 +2024,7 @@ class _$ExerciseStateCreatedBatchImpl implements ExerciseStateCreatedBatch {
   TResult map<TResult extends Object?>({
     required TResult Function(ExerciseStateInitial value) initial,
     required TResult Function(ExerciseStateLoading value) loading,
-    required TResult Function(ExerciseStateLoaded value) loaded,
+    required TResult Function(ExerciseStateSuccess value) success,
     required TResult Function(ExerciseStateFailure value) failure,
     required TResult Function(ExerciseStateCreatedBatch value) createdBatch,
     required TResult Function(ExerciseStateUpdatedBatch value) updatedBatch,
@@ -2037,7 +2038,7 @@ class _$ExerciseStateCreatedBatchImpl implements ExerciseStateCreatedBatch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExerciseStateInitial value)? initial,
     TResult? Function(ExerciseStateLoading value)? loading,
-    TResult? Function(ExerciseStateLoaded value)? loaded,
+    TResult? Function(ExerciseStateSuccess value)? success,
     TResult? Function(ExerciseStateFailure value)? failure,
     TResult? Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult? Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -2051,7 +2052,7 @@ class _$ExerciseStateCreatedBatchImpl implements ExerciseStateCreatedBatch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExerciseStateInitial value)? initial,
     TResult Function(ExerciseStateLoading value)? loading,
-    TResult Function(ExerciseStateLoaded value)? loaded,
+    TResult Function(ExerciseStateSuccess value)? success,
     TResult Function(ExerciseStateFailure value)? failure,
     TResult Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -2161,7 +2162,7 @@ class _$ExerciseStateUpdatedBatchImpl implements ExerciseStateUpdatedBatch {
     required TResult Function() loading,
     required TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<ExerciseModel> exercises) createdBatch,
     required TResult Function(List<ExerciseModel> exercises) updatedBatch,
@@ -2177,7 +2178,7 @@ class _$ExerciseStateUpdatedBatchImpl implements ExerciseStateUpdatedBatch {
     TResult? Function()? loading,
     TResult? Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<ExerciseModel> exercises)? createdBatch,
     TResult? Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -2193,7 +2194,7 @@ class _$ExerciseStateUpdatedBatchImpl implements ExerciseStateUpdatedBatch {
     TResult Function()? loading,
     TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<ExerciseModel> exercises)? createdBatch,
     TResult Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -2211,7 +2212,7 @@ class _$ExerciseStateUpdatedBatchImpl implements ExerciseStateUpdatedBatch {
   TResult map<TResult extends Object?>({
     required TResult Function(ExerciseStateInitial value) initial,
     required TResult Function(ExerciseStateLoading value) loading,
-    required TResult Function(ExerciseStateLoaded value) loaded,
+    required TResult Function(ExerciseStateSuccess value) success,
     required TResult Function(ExerciseStateFailure value) failure,
     required TResult Function(ExerciseStateCreatedBatch value) createdBatch,
     required TResult Function(ExerciseStateUpdatedBatch value) updatedBatch,
@@ -2225,7 +2226,7 @@ class _$ExerciseStateUpdatedBatchImpl implements ExerciseStateUpdatedBatch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExerciseStateInitial value)? initial,
     TResult? Function(ExerciseStateLoading value)? loading,
-    TResult? Function(ExerciseStateLoaded value)? loaded,
+    TResult? Function(ExerciseStateSuccess value)? success,
     TResult? Function(ExerciseStateFailure value)? failure,
     TResult? Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult? Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -2239,7 +2240,7 @@ class _$ExerciseStateUpdatedBatchImpl implements ExerciseStateUpdatedBatch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExerciseStateInitial value)? initial,
     TResult Function(ExerciseStateLoading value)? loading,
-    TResult Function(ExerciseStateLoaded value)? loaded,
+    TResult Function(ExerciseStateSuccess value)? success,
     TResult Function(ExerciseStateFailure value)? failure,
     TResult Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -2353,7 +2354,7 @@ class _$ExerciseStateDeletedImpl implements ExerciseStateDeleted {
     required TResult Function() loading,
     required TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<ExerciseModel> exercises) createdBatch,
     required TResult Function(List<ExerciseModel> exercises) updatedBatch,
@@ -2369,7 +2370,7 @@ class _$ExerciseStateDeletedImpl implements ExerciseStateDeleted {
     TResult? Function()? loading,
     TResult? Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<ExerciseModel> exercises)? createdBatch,
     TResult? Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -2385,7 +2386,7 @@ class _$ExerciseStateDeletedImpl implements ExerciseStateDeleted {
     TResult Function()? loading,
     TResult Function(List<ExerciseModel> exercises,
             List<ExerciseModel> filteredExercises)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<ExerciseModel> exercises)? createdBatch,
     TResult Function(List<ExerciseModel> exercises)? updatedBatch,
@@ -2403,7 +2404,7 @@ class _$ExerciseStateDeletedImpl implements ExerciseStateDeleted {
   TResult map<TResult extends Object?>({
     required TResult Function(ExerciseStateInitial value) initial,
     required TResult Function(ExerciseStateLoading value) loading,
-    required TResult Function(ExerciseStateLoaded value) loaded,
+    required TResult Function(ExerciseStateSuccess value) success,
     required TResult Function(ExerciseStateFailure value) failure,
     required TResult Function(ExerciseStateCreatedBatch value) createdBatch,
     required TResult Function(ExerciseStateUpdatedBatch value) updatedBatch,
@@ -2417,7 +2418,7 @@ class _$ExerciseStateDeletedImpl implements ExerciseStateDeleted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExerciseStateInitial value)? initial,
     TResult? Function(ExerciseStateLoading value)? loading,
-    TResult? Function(ExerciseStateLoaded value)? loaded,
+    TResult? Function(ExerciseStateSuccess value)? success,
     TResult? Function(ExerciseStateFailure value)? failure,
     TResult? Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult? Function(ExerciseStateUpdatedBatch value)? updatedBatch,
@@ -2431,7 +2432,7 @@ class _$ExerciseStateDeletedImpl implements ExerciseStateDeleted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExerciseStateInitial value)? initial,
     TResult Function(ExerciseStateLoading value)? loading,
-    TResult Function(ExerciseStateLoaded value)? loaded,
+    TResult Function(ExerciseStateSuccess value)? success,
     TResult Function(ExerciseStateFailure value)? failure,
     TResult Function(ExerciseStateCreatedBatch value)? createdBatch,
     TResult Function(ExerciseStateUpdatedBatch value)? updatedBatch,

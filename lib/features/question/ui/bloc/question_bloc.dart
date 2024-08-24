@@ -44,7 +44,7 @@ class QuestionBloc extends Bloc<QuestionEvent, QuestionState> {
     res.fold(
       (failure) => emit(QuestionStateFailure(failure.message)),
       (success) => emit(
-        QuestionStateLoaded(
+        QuestionStateSuccess(
           questions: success,
           filteredQuestions: success,
         ),
@@ -58,7 +58,7 @@ class QuestionBloc extends Bloc<QuestionEvent, QuestionState> {
   ) {
     emit(const QuestionStateLoading());
     state.maybeWhen(
-      loaded: (questions, _) {
+      success: (questions, _) {
         final finds = questions
             .where(
               (question) => question.question.toLowerCase().contains(
@@ -71,7 +71,7 @@ class QuestionBloc extends Bloc<QuestionEvent, QuestionState> {
           emit(QuestionStateFailure(
               'Question with title ${event.query} not found'));
         } else {
-          emit(QuestionStateLoaded(
+          emit(QuestionStateSuccess(
             questions: questions,
             filteredQuestions: finds,
           ));

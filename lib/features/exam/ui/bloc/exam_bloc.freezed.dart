@@ -1116,7 +1116,7 @@ mixin _$ExamState {
     required TResult Function() loading,
     required TResult Function(
             List<ExamModel> exams, List<ExamModel> filteredExams)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ExamModel exam) created,
     required TResult Function(ExamModel exam) updated,
@@ -1128,7 +1128,7 @@ mixin _$ExamState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ExamModel exam)? created,
     TResult? Function(ExamModel exam)? updated,
@@ -1140,7 +1140,7 @@ mixin _$ExamState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ExamModel exam)? created,
     TResult Function(ExamModel exam)? updated,
@@ -1152,7 +1152,7 @@ mixin _$ExamState {
   TResult map<TResult extends Object?>({
     required TResult Function(ExamStateInitial value) initial,
     required TResult Function(ExamStateLoading value) loading,
-    required TResult Function(ExamStateLoaded value) loaded,
+    required TResult Function(ExamStateSuccess value) success,
     required TResult Function(ExamStateFailure value) failure,
     required TResult Function(ExamStateCreated value) created,
     required TResult Function(ExamStateUpdated value) updated,
@@ -1163,7 +1163,7 @@ mixin _$ExamState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExamStateInitial value)? initial,
     TResult? Function(ExamStateLoading value)? loading,
-    TResult? Function(ExamStateLoaded value)? loaded,
+    TResult? Function(ExamStateSuccess value)? success,
     TResult? Function(ExamStateFailure value)? failure,
     TResult? Function(ExamStateCreated value)? created,
     TResult? Function(ExamStateUpdated value)? updated,
@@ -1174,7 +1174,7 @@ mixin _$ExamState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExamStateInitial value)? initial,
     TResult Function(ExamStateLoading value)? loading,
-    TResult Function(ExamStateLoaded value)? loaded,
+    TResult Function(ExamStateSuccess value)? success,
     TResult Function(ExamStateFailure value)? failure,
     TResult Function(ExamStateCreated value)? created,
     TResult Function(ExamStateUpdated value)? updated,
@@ -1249,7 +1249,7 @@ class _$ExamStateInitialImpl implements ExamStateInitial {
     required TResult Function() loading,
     required TResult Function(
             List<ExamModel> exams, List<ExamModel> filteredExams)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ExamModel exam) created,
     required TResult Function(ExamModel exam) updated,
@@ -1264,7 +1264,7 @@ class _$ExamStateInitialImpl implements ExamStateInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ExamModel exam)? created,
     TResult? Function(ExamModel exam)? updated,
@@ -1279,7 +1279,7 @@ class _$ExamStateInitialImpl implements ExamStateInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ExamModel exam)? created,
     TResult Function(ExamModel exam)? updated,
@@ -1297,7 +1297,7 @@ class _$ExamStateInitialImpl implements ExamStateInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(ExamStateInitial value) initial,
     required TResult Function(ExamStateLoading value) loading,
-    required TResult Function(ExamStateLoaded value) loaded,
+    required TResult Function(ExamStateSuccess value) success,
     required TResult Function(ExamStateFailure value) failure,
     required TResult Function(ExamStateCreated value) created,
     required TResult Function(ExamStateUpdated value) updated,
@@ -1311,7 +1311,7 @@ class _$ExamStateInitialImpl implements ExamStateInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExamStateInitial value)? initial,
     TResult? Function(ExamStateLoading value)? loading,
-    TResult? Function(ExamStateLoaded value)? loaded,
+    TResult? Function(ExamStateSuccess value)? success,
     TResult? Function(ExamStateFailure value)? failure,
     TResult? Function(ExamStateCreated value)? created,
     TResult? Function(ExamStateUpdated value)? updated,
@@ -1325,7 +1325,7 @@ class _$ExamStateInitialImpl implements ExamStateInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExamStateInitial value)? initial,
     TResult Function(ExamStateLoading value)? loading,
-    TResult Function(ExamStateLoaded value)? loaded,
+    TResult Function(ExamStateSuccess value)? success,
     TResult Function(ExamStateFailure value)? failure,
     TResult Function(ExamStateCreated value)? created,
     TResult Function(ExamStateUpdated value)? updated,
@@ -1388,7 +1388,7 @@ class _$ExamStateLoadingImpl implements ExamStateLoading {
     required TResult Function() loading,
     required TResult Function(
             List<ExamModel> exams, List<ExamModel> filteredExams)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ExamModel exam) created,
     required TResult Function(ExamModel exam) updated,
@@ -1403,7 +1403,7 @@ class _$ExamStateLoadingImpl implements ExamStateLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ExamModel exam)? created,
     TResult? Function(ExamModel exam)? updated,
@@ -1418,7 +1418,7 @@ class _$ExamStateLoadingImpl implements ExamStateLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ExamModel exam)? created,
     TResult Function(ExamModel exam)? updated,
@@ -1436,7 +1436,7 @@ class _$ExamStateLoadingImpl implements ExamStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(ExamStateInitial value) initial,
     required TResult Function(ExamStateLoading value) loading,
-    required TResult Function(ExamStateLoaded value) loaded,
+    required TResult Function(ExamStateSuccess value) success,
     required TResult Function(ExamStateFailure value) failure,
     required TResult Function(ExamStateCreated value) created,
     required TResult Function(ExamStateUpdated value) updated,
@@ -1450,7 +1450,7 @@ class _$ExamStateLoadingImpl implements ExamStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExamStateInitial value)? initial,
     TResult? Function(ExamStateLoading value)? loading,
-    TResult? Function(ExamStateLoaded value)? loaded,
+    TResult? Function(ExamStateSuccess value)? success,
     TResult? Function(ExamStateFailure value)? failure,
     TResult? Function(ExamStateCreated value)? created,
     TResult? Function(ExamStateUpdated value)? updated,
@@ -1464,7 +1464,7 @@ class _$ExamStateLoadingImpl implements ExamStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExamStateInitial value)? initial,
     TResult Function(ExamStateLoading value)? loading,
-    TResult Function(ExamStateLoaded value)? loaded,
+    TResult Function(ExamStateSuccess value)? success,
     TResult Function(ExamStateFailure value)? failure,
     TResult Function(ExamStateCreated value)? created,
     TResult Function(ExamStateUpdated value)? updated,
@@ -1483,20 +1483,20 @@ abstract class ExamStateLoading implements ExamState {
 }
 
 /// @nodoc
-abstract class _$$ExamStateLoadedImplCopyWith<$Res> {
-  factory _$$ExamStateLoadedImplCopyWith(_$ExamStateLoadedImpl value,
-          $Res Function(_$ExamStateLoadedImpl) then) =
-      __$$ExamStateLoadedImplCopyWithImpl<$Res>;
+abstract class _$$ExamStateSuccessImplCopyWith<$Res> {
+  factory _$$ExamStateSuccessImplCopyWith(_$ExamStateSuccessImpl value,
+          $Res Function(_$ExamStateSuccessImpl) then) =
+      __$$ExamStateSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<ExamModel> exams, List<ExamModel> filteredExams});
 }
 
 /// @nodoc
-class __$$ExamStateLoadedImplCopyWithImpl<$Res>
-    extends _$ExamStateCopyWithImpl<$Res, _$ExamStateLoadedImpl>
-    implements _$$ExamStateLoadedImplCopyWith<$Res> {
-  __$$ExamStateLoadedImplCopyWithImpl(
-      _$ExamStateLoadedImpl _value, $Res Function(_$ExamStateLoadedImpl) _then)
+class __$$ExamStateSuccessImplCopyWithImpl<$Res>
+    extends _$ExamStateCopyWithImpl<$Res, _$ExamStateSuccessImpl>
+    implements _$$ExamStateSuccessImplCopyWith<$Res> {
+  __$$ExamStateSuccessImplCopyWithImpl(_$ExamStateSuccessImpl _value,
+      $Res Function(_$ExamStateSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ExamState
@@ -1507,7 +1507,7 @@ class __$$ExamStateLoadedImplCopyWithImpl<$Res>
     Object? exams = null,
     Object? filteredExams = null,
   }) {
-    return _then(_$ExamStateLoadedImpl(
+    return _then(_$ExamStateSuccessImpl(
       exams: null == exams
           ? _value._exams
           : exams // ignore: cast_nullable_to_non_nullable
@@ -1522,8 +1522,8 @@ class __$$ExamStateLoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ExamStateLoadedImpl implements ExamStateLoaded {
-  const _$ExamStateLoadedImpl(
+class _$ExamStateSuccessImpl implements ExamStateSuccess {
+  const _$ExamStateSuccessImpl(
       {required final List<ExamModel> exams,
       required final List<ExamModel> filteredExams})
       : _exams = exams,
@@ -1547,14 +1547,14 @@ class _$ExamStateLoadedImpl implements ExamStateLoaded {
 
   @override
   String toString() {
-    return 'ExamState.loaded(exams: $exams, filteredExams: $filteredExams)';
+    return 'ExamState.success(exams: $exams, filteredExams: $filteredExams)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ExamStateLoadedImpl &&
+            other is _$ExamStateSuccessImpl &&
             const DeepCollectionEquality().equals(other._exams, _exams) &&
             const DeepCollectionEquality()
                 .equals(other._filteredExams, _filteredExams));
@@ -1571,8 +1571,8 @@ class _$ExamStateLoadedImpl implements ExamStateLoaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ExamStateLoadedImplCopyWith<_$ExamStateLoadedImpl> get copyWith =>
-      __$$ExamStateLoadedImplCopyWithImpl<_$ExamStateLoadedImpl>(
+  _$$ExamStateSuccessImplCopyWith<_$ExamStateSuccessImpl> get copyWith =>
+      __$$ExamStateSuccessImplCopyWithImpl<_$ExamStateSuccessImpl>(
           this, _$identity);
 
   @override
@@ -1582,13 +1582,13 @@ class _$ExamStateLoadedImpl implements ExamStateLoaded {
     required TResult Function() loading,
     required TResult Function(
             List<ExamModel> exams, List<ExamModel> filteredExams)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ExamModel exam) created,
     required TResult Function(ExamModel exam) updated,
     required TResult Function(ExamModel exam) deleted,
   }) {
-    return loaded(exams, filteredExams);
+    return success(exams, filteredExams);
   }
 
   @override
@@ -1597,13 +1597,13 @@ class _$ExamStateLoadedImpl implements ExamStateLoaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ExamModel exam)? created,
     TResult? Function(ExamModel exam)? updated,
     TResult? Function(ExamModel exam)? deleted,
   }) {
-    return loaded?.call(exams, filteredExams);
+    return success?.call(exams, filteredExams);
   }
 
   @override
@@ -1612,15 +1612,15 @@ class _$ExamStateLoadedImpl implements ExamStateLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ExamModel exam)? created,
     TResult Function(ExamModel exam)? updated,
     TResult Function(ExamModel exam)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(exams, filteredExams);
+    if (success != null) {
+      return success(exams, filteredExams);
     }
     return orElse();
   }
@@ -1630,13 +1630,13 @@ class _$ExamStateLoadedImpl implements ExamStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(ExamStateInitial value) initial,
     required TResult Function(ExamStateLoading value) loading,
-    required TResult Function(ExamStateLoaded value) loaded,
+    required TResult Function(ExamStateSuccess value) success,
     required TResult Function(ExamStateFailure value) failure,
     required TResult Function(ExamStateCreated value) created,
     required TResult Function(ExamStateUpdated value) updated,
     required TResult Function(ExamStateDeleted value) deleted,
   }) {
-    return loaded(this);
+    return success(this);
   }
 
   @override
@@ -1644,13 +1644,13 @@ class _$ExamStateLoadedImpl implements ExamStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExamStateInitial value)? initial,
     TResult? Function(ExamStateLoading value)? loading,
-    TResult? Function(ExamStateLoaded value)? loaded,
+    TResult? Function(ExamStateSuccess value)? success,
     TResult? Function(ExamStateFailure value)? failure,
     TResult? Function(ExamStateCreated value)? created,
     TResult? Function(ExamStateUpdated value)? updated,
     TResult? Function(ExamStateDeleted value)? deleted,
   }) {
-    return loaded?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -1658,24 +1658,24 @@ class _$ExamStateLoadedImpl implements ExamStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExamStateInitial value)? initial,
     TResult Function(ExamStateLoading value)? loading,
-    TResult Function(ExamStateLoaded value)? loaded,
+    TResult Function(ExamStateSuccess value)? success,
     TResult Function(ExamStateFailure value)? failure,
     TResult Function(ExamStateCreated value)? created,
     TResult Function(ExamStateUpdated value)? updated,
     TResult Function(ExamStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class ExamStateLoaded implements ExamState {
-  const factory ExamStateLoaded(
+abstract class ExamStateSuccess implements ExamState {
+  const factory ExamStateSuccess(
       {required final List<ExamModel> exams,
-      required final List<ExamModel> filteredExams}) = _$ExamStateLoadedImpl;
+      required final List<ExamModel> filteredExams}) = _$ExamStateSuccessImpl;
 
   List<ExamModel> get exams;
   List<ExamModel> get filteredExams;
@@ -1683,7 +1683,7 @@ abstract class ExamStateLoaded implements ExamState {
   /// Create a copy of ExamState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ExamStateLoadedImplCopyWith<_$ExamStateLoadedImpl> get copyWith =>
+  _$$ExamStateSuccessImplCopyWith<_$ExamStateSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1760,7 +1760,7 @@ class _$ExamStateFailureImpl implements ExamStateFailure {
     required TResult Function() loading,
     required TResult Function(
             List<ExamModel> exams, List<ExamModel> filteredExams)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ExamModel exam) created,
     required TResult Function(ExamModel exam) updated,
@@ -1775,7 +1775,7 @@ class _$ExamStateFailureImpl implements ExamStateFailure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ExamModel exam)? created,
     TResult? Function(ExamModel exam)? updated,
@@ -1790,7 +1790,7 @@ class _$ExamStateFailureImpl implements ExamStateFailure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ExamModel exam)? created,
     TResult Function(ExamModel exam)? updated,
@@ -1808,7 +1808,7 @@ class _$ExamStateFailureImpl implements ExamStateFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(ExamStateInitial value) initial,
     required TResult Function(ExamStateLoading value) loading,
-    required TResult Function(ExamStateLoaded value) loaded,
+    required TResult Function(ExamStateSuccess value) success,
     required TResult Function(ExamStateFailure value) failure,
     required TResult Function(ExamStateCreated value) created,
     required TResult Function(ExamStateUpdated value) updated,
@@ -1822,7 +1822,7 @@ class _$ExamStateFailureImpl implements ExamStateFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExamStateInitial value)? initial,
     TResult? Function(ExamStateLoading value)? loading,
-    TResult? Function(ExamStateLoaded value)? loaded,
+    TResult? Function(ExamStateSuccess value)? success,
     TResult? Function(ExamStateFailure value)? failure,
     TResult? Function(ExamStateCreated value)? created,
     TResult? Function(ExamStateUpdated value)? updated,
@@ -1836,7 +1836,7 @@ class _$ExamStateFailureImpl implements ExamStateFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExamStateInitial value)? initial,
     TResult Function(ExamStateLoading value)? loading,
-    TResult Function(ExamStateLoaded value)? loaded,
+    TResult Function(ExamStateSuccess value)? success,
     TResult Function(ExamStateFailure value)? failure,
     TResult Function(ExamStateCreated value)? created,
     TResult Function(ExamStateUpdated value)? updated,
@@ -1947,7 +1947,7 @@ class _$ExamStateCreatedImpl implements ExamStateCreated {
     required TResult Function() loading,
     required TResult Function(
             List<ExamModel> exams, List<ExamModel> filteredExams)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ExamModel exam) created,
     required TResult Function(ExamModel exam) updated,
@@ -1962,7 +1962,7 @@ class _$ExamStateCreatedImpl implements ExamStateCreated {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ExamModel exam)? created,
     TResult? Function(ExamModel exam)? updated,
@@ -1977,7 +1977,7 @@ class _$ExamStateCreatedImpl implements ExamStateCreated {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ExamModel exam)? created,
     TResult Function(ExamModel exam)? updated,
@@ -1995,7 +1995,7 @@ class _$ExamStateCreatedImpl implements ExamStateCreated {
   TResult map<TResult extends Object?>({
     required TResult Function(ExamStateInitial value) initial,
     required TResult Function(ExamStateLoading value) loading,
-    required TResult Function(ExamStateLoaded value) loaded,
+    required TResult Function(ExamStateSuccess value) success,
     required TResult Function(ExamStateFailure value) failure,
     required TResult Function(ExamStateCreated value) created,
     required TResult Function(ExamStateUpdated value) updated,
@@ -2009,7 +2009,7 @@ class _$ExamStateCreatedImpl implements ExamStateCreated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExamStateInitial value)? initial,
     TResult? Function(ExamStateLoading value)? loading,
-    TResult? Function(ExamStateLoaded value)? loaded,
+    TResult? Function(ExamStateSuccess value)? success,
     TResult? Function(ExamStateFailure value)? failure,
     TResult? Function(ExamStateCreated value)? created,
     TResult? Function(ExamStateUpdated value)? updated,
@@ -2023,7 +2023,7 @@ class _$ExamStateCreatedImpl implements ExamStateCreated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExamStateInitial value)? initial,
     TResult Function(ExamStateLoading value)? loading,
-    TResult Function(ExamStateLoaded value)? loaded,
+    TResult Function(ExamStateSuccess value)? success,
     TResult Function(ExamStateFailure value)? failure,
     TResult Function(ExamStateCreated value)? created,
     TResult Function(ExamStateUpdated value)? updated,
@@ -2134,7 +2134,7 @@ class _$ExamStateUpdatedImpl implements ExamStateUpdated {
     required TResult Function() loading,
     required TResult Function(
             List<ExamModel> exams, List<ExamModel> filteredExams)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ExamModel exam) created,
     required TResult Function(ExamModel exam) updated,
@@ -2149,7 +2149,7 @@ class _$ExamStateUpdatedImpl implements ExamStateUpdated {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ExamModel exam)? created,
     TResult? Function(ExamModel exam)? updated,
@@ -2164,7 +2164,7 @@ class _$ExamStateUpdatedImpl implements ExamStateUpdated {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ExamModel exam)? created,
     TResult Function(ExamModel exam)? updated,
@@ -2182,7 +2182,7 @@ class _$ExamStateUpdatedImpl implements ExamStateUpdated {
   TResult map<TResult extends Object?>({
     required TResult Function(ExamStateInitial value) initial,
     required TResult Function(ExamStateLoading value) loading,
-    required TResult Function(ExamStateLoaded value) loaded,
+    required TResult Function(ExamStateSuccess value) success,
     required TResult Function(ExamStateFailure value) failure,
     required TResult Function(ExamStateCreated value) created,
     required TResult Function(ExamStateUpdated value) updated,
@@ -2196,7 +2196,7 @@ class _$ExamStateUpdatedImpl implements ExamStateUpdated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExamStateInitial value)? initial,
     TResult? Function(ExamStateLoading value)? loading,
-    TResult? Function(ExamStateLoaded value)? loaded,
+    TResult? Function(ExamStateSuccess value)? success,
     TResult? Function(ExamStateFailure value)? failure,
     TResult? Function(ExamStateCreated value)? created,
     TResult? Function(ExamStateUpdated value)? updated,
@@ -2210,7 +2210,7 @@ class _$ExamStateUpdatedImpl implements ExamStateUpdated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExamStateInitial value)? initial,
     TResult Function(ExamStateLoading value)? loading,
-    TResult Function(ExamStateLoaded value)? loaded,
+    TResult Function(ExamStateSuccess value)? success,
     TResult Function(ExamStateFailure value)? failure,
     TResult Function(ExamStateCreated value)? created,
     TResult Function(ExamStateUpdated value)? updated,
@@ -2321,7 +2321,7 @@ class _$ExamStateDeletedImpl implements ExamStateDeleted {
     required TResult Function() loading,
     required TResult Function(
             List<ExamModel> exams, List<ExamModel> filteredExams)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ExamModel exam) created,
     required TResult Function(ExamModel exam) updated,
@@ -2336,7 +2336,7 @@ class _$ExamStateDeletedImpl implements ExamStateDeleted {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ExamModel exam)? created,
     TResult? Function(ExamModel exam)? updated,
@@ -2351,7 +2351,7 @@ class _$ExamStateDeletedImpl implements ExamStateDeleted {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ExamModel exam)? created,
     TResult Function(ExamModel exam)? updated,
@@ -2369,7 +2369,7 @@ class _$ExamStateDeletedImpl implements ExamStateDeleted {
   TResult map<TResult extends Object?>({
     required TResult Function(ExamStateInitial value) initial,
     required TResult Function(ExamStateLoading value) loading,
-    required TResult Function(ExamStateLoaded value) loaded,
+    required TResult Function(ExamStateSuccess value) success,
     required TResult Function(ExamStateFailure value) failure,
     required TResult Function(ExamStateCreated value) created,
     required TResult Function(ExamStateUpdated value) updated,
@@ -2383,7 +2383,7 @@ class _$ExamStateDeletedImpl implements ExamStateDeleted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ExamStateInitial value)? initial,
     TResult? Function(ExamStateLoading value)? loading,
-    TResult? Function(ExamStateLoaded value)? loaded,
+    TResult? Function(ExamStateSuccess value)? success,
     TResult? Function(ExamStateFailure value)? failure,
     TResult? Function(ExamStateCreated value)? created,
     TResult? Function(ExamStateUpdated value)? updated,
@@ -2397,7 +2397,7 @@ class _$ExamStateDeletedImpl implements ExamStateDeleted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExamStateInitial value)? initial,
     TResult Function(ExamStateLoading value)? loading,
-    TResult Function(ExamStateLoaded value)? loaded,
+    TResult Function(ExamStateSuccess value)? success,
     TResult Function(ExamStateFailure value)? failure,
     TResult Function(ExamStateCreated value)? created,
     TResult Function(ExamStateUpdated value)? updated,

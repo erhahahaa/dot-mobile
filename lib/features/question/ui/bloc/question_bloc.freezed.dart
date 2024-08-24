@@ -1125,7 +1125,7 @@ mixin _$QuestionState {
     required TResult Function() loading,
     required TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<QuestionModel> question) createdBatch,
     required TResult Function(List<QuestionModel> question) updatedBatch,
@@ -1138,7 +1138,7 @@ mixin _$QuestionState {
     TResult? Function()? loading,
     TResult? Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<QuestionModel> question)? createdBatch,
     TResult? Function(List<QuestionModel> question)? updatedBatch,
@@ -1151,7 +1151,7 @@ mixin _$QuestionState {
     TResult Function()? loading,
     TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<QuestionModel> question)? createdBatch,
     TResult Function(List<QuestionModel> question)? updatedBatch,
@@ -1163,7 +1163,7 @@ mixin _$QuestionState {
   TResult map<TResult extends Object?>({
     required TResult Function(QuestionStateInitial value) initial,
     required TResult Function(QuestionStateLoading value) loading,
-    required TResult Function(QuestionStateLoaded value) loaded,
+    required TResult Function(QuestionStateSuccess value) success,
     required TResult Function(QuestionStateFailure value) failure,
     required TResult Function(QuestionStateCreatedBatch value) createdBatch,
     required TResult Function(QuestionStateUpdatedBatch value) updatedBatch,
@@ -1174,7 +1174,7 @@ mixin _$QuestionState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuestionStateInitial value)? initial,
     TResult? Function(QuestionStateLoading value)? loading,
-    TResult? Function(QuestionStateLoaded value)? loaded,
+    TResult? Function(QuestionStateSuccess value)? success,
     TResult? Function(QuestionStateFailure value)? failure,
     TResult? Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult? Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -1185,7 +1185,7 @@ mixin _$QuestionState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuestionStateInitial value)? initial,
     TResult Function(QuestionStateLoading value)? loading,
-    TResult Function(QuestionStateLoaded value)? loaded,
+    TResult Function(QuestionStateSuccess value)? success,
     TResult Function(QuestionStateFailure value)? failure,
     TResult Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -1262,7 +1262,7 @@ class _$QuestionStateInitialImpl implements QuestionStateInitial {
     required TResult Function() loading,
     required TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<QuestionModel> question) createdBatch,
     required TResult Function(List<QuestionModel> question) updatedBatch,
@@ -1278,7 +1278,7 @@ class _$QuestionStateInitialImpl implements QuestionStateInitial {
     TResult? Function()? loading,
     TResult? Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<QuestionModel> question)? createdBatch,
     TResult? Function(List<QuestionModel> question)? updatedBatch,
@@ -1294,7 +1294,7 @@ class _$QuestionStateInitialImpl implements QuestionStateInitial {
     TResult Function()? loading,
     TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<QuestionModel> question)? createdBatch,
     TResult Function(List<QuestionModel> question)? updatedBatch,
@@ -1312,7 +1312,7 @@ class _$QuestionStateInitialImpl implements QuestionStateInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(QuestionStateInitial value) initial,
     required TResult Function(QuestionStateLoading value) loading,
-    required TResult Function(QuestionStateLoaded value) loaded,
+    required TResult Function(QuestionStateSuccess value) success,
     required TResult Function(QuestionStateFailure value) failure,
     required TResult Function(QuestionStateCreatedBatch value) createdBatch,
     required TResult Function(QuestionStateUpdatedBatch value) updatedBatch,
@@ -1326,7 +1326,7 @@ class _$QuestionStateInitialImpl implements QuestionStateInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuestionStateInitial value)? initial,
     TResult? Function(QuestionStateLoading value)? loading,
-    TResult? Function(QuestionStateLoaded value)? loaded,
+    TResult? Function(QuestionStateSuccess value)? success,
     TResult? Function(QuestionStateFailure value)? failure,
     TResult? Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult? Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -1340,7 +1340,7 @@ class _$QuestionStateInitialImpl implements QuestionStateInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuestionStateInitial value)? initial,
     TResult Function(QuestionStateLoading value)? loading,
-    TResult Function(QuestionStateLoaded value)? loaded,
+    TResult Function(QuestionStateSuccess value)? success,
     TResult Function(QuestionStateFailure value)? failure,
     TResult Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -1404,7 +1404,7 @@ class _$QuestionStateLoadingImpl implements QuestionStateLoading {
     required TResult Function() loading,
     required TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<QuestionModel> question) createdBatch,
     required TResult Function(List<QuestionModel> question) updatedBatch,
@@ -1420,7 +1420,7 @@ class _$QuestionStateLoadingImpl implements QuestionStateLoading {
     TResult? Function()? loading,
     TResult? Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<QuestionModel> question)? createdBatch,
     TResult? Function(List<QuestionModel> question)? updatedBatch,
@@ -1436,7 +1436,7 @@ class _$QuestionStateLoadingImpl implements QuestionStateLoading {
     TResult Function()? loading,
     TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<QuestionModel> question)? createdBatch,
     TResult Function(List<QuestionModel> question)? updatedBatch,
@@ -1454,7 +1454,7 @@ class _$QuestionStateLoadingImpl implements QuestionStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(QuestionStateInitial value) initial,
     required TResult Function(QuestionStateLoading value) loading,
-    required TResult Function(QuestionStateLoaded value) loaded,
+    required TResult Function(QuestionStateSuccess value) success,
     required TResult Function(QuestionStateFailure value) failure,
     required TResult Function(QuestionStateCreatedBatch value) createdBatch,
     required TResult Function(QuestionStateUpdatedBatch value) updatedBatch,
@@ -1468,7 +1468,7 @@ class _$QuestionStateLoadingImpl implements QuestionStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuestionStateInitial value)? initial,
     TResult? Function(QuestionStateLoading value)? loading,
-    TResult? Function(QuestionStateLoaded value)? loaded,
+    TResult? Function(QuestionStateSuccess value)? success,
     TResult? Function(QuestionStateFailure value)? failure,
     TResult? Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult? Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -1482,7 +1482,7 @@ class _$QuestionStateLoadingImpl implements QuestionStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuestionStateInitial value)? initial,
     TResult Function(QuestionStateLoading value)? loading,
-    TResult Function(QuestionStateLoaded value)? loaded,
+    TResult Function(QuestionStateSuccess value)? success,
     TResult Function(QuestionStateFailure value)? failure,
     TResult Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -1501,21 +1501,21 @@ abstract class QuestionStateLoading implements QuestionState {
 }
 
 /// @nodoc
-abstract class _$$QuestionStateLoadedImplCopyWith<$Res> {
-  factory _$$QuestionStateLoadedImplCopyWith(_$QuestionStateLoadedImpl value,
-          $Res Function(_$QuestionStateLoadedImpl) then) =
-      __$$QuestionStateLoadedImplCopyWithImpl<$Res>;
+abstract class _$$QuestionStateSuccessImplCopyWith<$Res> {
+  factory _$$QuestionStateSuccessImplCopyWith(_$QuestionStateSuccessImpl value,
+          $Res Function(_$QuestionStateSuccessImpl) then) =
+      __$$QuestionStateSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<QuestionModel> questions, List<QuestionModel> filteredQuestions});
 }
 
 /// @nodoc
-class __$$QuestionStateLoadedImplCopyWithImpl<$Res>
-    extends _$QuestionStateCopyWithImpl<$Res, _$QuestionStateLoadedImpl>
-    implements _$$QuestionStateLoadedImplCopyWith<$Res> {
-  __$$QuestionStateLoadedImplCopyWithImpl(_$QuestionStateLoadedImpl _value,
-      $Res Function(_$QuestionStateLoadedImpl) _then)
+class __$$QuestionStateSuccessImplCopyWithImpl<$Res>
+    extends _$QuestionStateCopyWithImpl<$Res, _$QuestionStateSuccessImpl>
+    implements _$$QuestionStateSuccessImplCopyWith<$Res> {
+  __$$QuestionStateSuccessImplCopyWithImpl(_$QuestionStateSuccessImpl _value,
+      $Res Function(_$QuestionStateSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of QuestionState
@@ -1526,7 +1526,7 @@ class __$$QuestionStateLoadedImplCopyWithImpl<$Res>
     Object? questions = null,
     Object? filteredQuestions = null,
   }) {
-    return _then(_$QuestionStateLoadedImpl(
+    return _then(_$QuestionStateSuccessImpl(
       questions: null == questions
           ? _value._questions
           : questions // ignore: cast_nullable_to_non_nullable
@@ -1541,8 +1541,8 @@ class __$$QuestionStateLoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$QuestionStateLoadedImpl implements QuestionStateLoaded {
-  const _$QuestionStateLoadedImpl(
+class _$QuestionStateSuccessImpl implements QuestionStateSuccess {
+  const _$QuestionStateSuccessImpl(
       {required final List<QuestionModel> questions,
       required final List<QuestionModel> filteredQuestions})
       : _questions = questions,
@@ -1567,14 +1567,14 @@ class _$QuestionStateLoadedImpl implements QuestionStateLoaded {
 
   @override
   String toString() {
-    return 'QuestionState.loaded(questions: $questions, filteredQuestions: $filteredQuestions)';
+    return 'QuestionState.success(questions: $questions, filteredQuestions: $filteredQuestions)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$QuestionStateLoadedImpl &&
+            other is _$QuestionStateSuccessImpl &&
             const DeepCollectionEquality()
                 .equals(other._questions, _questions) &&
             const DeepCollectionEquality()
@@ -1592,9 +1592,10 @@ class _$QuestionStateLoadedImpl implements QuestionStateLoaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$QuestionStateLoadedImplCopyWith<_$QuestionStateLoadedImpl> get copyWith =>
-      __$$QuestionStateLoadedImplCopyWithImpl<_$QuestionStateLoadedImpl>(
-          this, _$identity);
+  _$$QuestionStateSuccessImplCopyWith<_$QuestionStateSuccessImpl>
+      get copyWith =>
+          __$$QuestionStateSuccessImplCopyWithImpl<_$QuestionStateSuccessImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1603,13 +1604,13 @@ class _$QuestionStateLoadedImpl implements QuestionStateLoaded {
     required TResult Function() loading,
     required TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<QuestionModel> question) createdBatch,
     required TResult Function(List<QuestionModel> question) updatedBatch,
     required TResult Function(QuestionModel question) deleted,
   }) {
-    return loaded(questions, filteredQuestions);
+    return success(questions, filteredQuestions);
   }
 
   @override
@@ -1619,13 +1620,13 @@ class _$QuestionStateLoadedImpl implements QuestionStateLoaded {
     TResult? Function()? loading,
     TResult? Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<QuestionModel> question)? createdBatch,
     TResult? Function(List<QuestionModel> question)? updatedBatch,
     TResult? Function(QuestionModel question)? deleted,
   }) {
-    return loaded?.call(questions, filteredQuestions);
+    return success?.call(questions, filteredQuestions);
   }
 
   @override
@@ -1635,15 +1636,15 @@ class _$QuestionStateLoadedImpl implements QuestionStateLoaded {
     TResult Function()? loading,
     TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<QuestionModel> question)? createdBatch,
     TResult Function(List<QuestionModel> question)? updatedBatch,
     TResult Function(QuestionModel question)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(questions, filteredQuestions);
+    if (success != null) {
+      return success(questions, filteredQuestions);
     }
     return orElse();
   }
@@ -1653,13 +1654,13 @@ class _$QuestionStateLoadedImpl implements QuestionStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(QuestionStateInitial value) initial,
     required TResult Function(QuestionStateLoading value) loading,
-    required TResult Function(QuestionStateLoaded value) loaded,
+    required TResult Function(QuestionStateSuccess value) success,
     required TResult Function(QuestionStateFailure value) failure,
     required TResult Function(QuestionStateCreatedBatch value) createdBatch,
     required TResult Function(QuestionStateUpdatedBatch value) updatedBatch,
     required TResult Function(QuestionStateDeleted value) deleted,
   }) {
-    return loaded(this);
+    return success(this);
   }
 
   @override
@@ -1667,13 +1668,13 @@ class _$QuestionStateLoadedImpl implements QuestionStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuestionStateInitial value)? initial,
     TResult? Function(QuestionStateLoading value)? loading,
-    TResult? Function(QuestionStateLoaded value)? loaded,
+    TResult? Function(QuestionStateSuccess value)? success,
     TResult? Function(QuestionStateFailure value)? failure,
     TResult? Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult? Function(QuestionStateUpdatedBatch value)? updatedBatch,
     TResult? Function(QuestionStateDeleted value)? deleted,
   }) {
-    return loaded?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -1681,25 +1682,25 @@ class _$QuestionStateLoadedImpl implements QuestionStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuestionStateInitial value)? initial,
     TResult Function(QuestionStateLoading value)? loading,
-    TResult Function(QuestionStateLoaded value)? loaded,
+    TResult Function(QuestionStateSuccess value)? success,
     TResult Function(QuestionStateFailure value)? failure,
     TResult Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult Function(QuestionStateUpdatedBatch value)? updatedBatch,
     TResult Function(QuestionStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class QuestionStateLoaded implements QuestionState {
-  const factory QuestionStateLoaded(
+abstract class QuestionStateSuccess implements QuestionState {
+  const factory QuestionStateSuccess(
           {required final List<QuestionModel> questions,
           required final List<QuestionModel> filteredQuestions}) =
-      _$QuestionStateLoadedImpl;
+      _$QuestionStateSuccessImpl;
 
   List<QuestionModel> get questions;
   List<QuestionModel> get filteredQuestions;
@@ -1707,8 +1708,8 @@ abstract class QuestionStateLoaded implements QuestionState {
   /// Create a copy of QuestionState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$QuestionStateLoadedImplCopyWith<_$QuestionStateLoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$QuestionStateSuccessImplCopyWith<_$QuestionStateSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1785,7 +1786,7 @@ class _$QuestionStateFailureImpl implements QuestionStateFailure {
     required TResult Function() loading,
     required TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<QuestionModel> question) createdBatch,
     required TResult Function(List<QuestionModel> question) updatedBatch,
@@ -1801,7 +1802,7 @@ class _$QuestionStateFailureImpl implements QuestionStateFailure {
     TResult? Function()? loading,
     TResult? Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<QuestionModel> question)? createdBatch,
     TResult? Function(List<QuestionModel> question)? updatedBatch,
@@ -1817,7 +1818,7 @@ class _$QuestionStateFailureImpl implements QuestionStateFailure {
     TResult Function()? loading,
     TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<QuestionModel> question)? createdBatch,
     TResult Function(List<QuestionModel> question)? updatedBatch,
@@ -1835,7 +1836,7 @@ class _$QuestionStateFailureImpl implements QuestionStateFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(QuestionStateInitial value) initial,
     required TResult Function(QuestionStateLoading value) loading,
-    required TResult Function(QuestionStateLoaded value) loaded,
+    required TResult Function(QuestionStateSuccess value) success,
     required TResult Function(QuestionStateFailure value) failure,
     required TResult Function(QuestionStateCreatedBatch value) createdBatch,
     required TResult Function(QuestionStateUpdatedBatch value) updatedBatch,
@@ -1849,7 +1850,7 @@ class _$QuestionStateFailureImpl implements QuestionStateFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuestionStateInitial value)? initial,
     TResult? Function(QuestionStateLoading value)? loading,
-    TResult? Function(QuestionStateLoaded value)? loaded,
+    TResult? Function(QuestionStateSuccess value)? success,
     TResult? Function(QuestionStateFailure value)? failure,
     TResult? Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult? Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -1863,7 +1864,7 @@ class _$QuestionStateFailureImpl implements QuestionStateFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuestionStateInitial value)? initial,
     TResult Function(QuestionStateLoading value)? loading,
-    TResult Function(QuestionStateLoaded value)? loaded,
+    TResult Function(QuestionStateSuccess value)? success,
     TResult Function(QuestionStateFailure value)? failure,
     TResult Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -1972,7 +1973,7 @@ class _$QuestionStateCreatedBatchImpl implements QuestionStateCreatedBatch {
     required TResult Function() loading,
     required TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<QuestionModel> question) createdBatch,
     required TResult Function(List<QuestionModel> question) updatedBatch,
@@ -1988,7 +1989,7 @@ class _$QuestionStateCreatedBatchImpl implements QuestionStateCreatedBatch {
     TResult? Function()? loading,
     TResult? Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<QuestionModel> question)? createdBatch,
     TResult? Function(List<QuestionModel> question)? updatedBatch,
@@ -2004,7 +2005,7 @@ class _$QuestionStateCreatedBatchImpl implements QuestionStateCreatedBatch {
     TResult Function()? loading,
     TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<QuestionModel> question)? createdBatch,
     TResult Function(List<QuestionModel> question)? updatedBatch,
@@ -2022,7 +2023,7 @@ class _$QuestionStateCreatedBatchImpl implements QuestionStateCreatedBatch {
   TResult map<TResult extends Object?>({
     required TResult Function(QuestionStateInitial value) initial,
     required TResult Function(QuestionStateLoading value) loading,
-    required TResult Function(QuestionStateLoaded value) loaded,
+    required TResult Function(QuestionStateSuccess value) success,
     required TResult Function(QuestionStateFailure value) failure,
     required TResult Function(QuestionStateCreatedBatch value) createdBatch,
     required TResult Function(QuestionStateUpdatedBatch value) updatedBatch,
@@ -2036,7 +2037,7 @@ class _$QuestionStateCreatedBatchImpl implements QuestionStateCreatedBatch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuestionStateInitial value)? initial,
     TResult? Function(QuestionStateLoading value)? loading,
-    TResult? Function(QuestionStateLoaded value)? loaded,
+    TResult? Function(QuestionStateSuccess value)? success,
     TResult? Function(QuestionStateFailure value)? failure,
     TResult? Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult? Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -2050,7 +2051,7 @@ class _$QuestionStateCreatedBatchImpl implements QuestionStateCreatedBatch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuestionStateInitial value)? initial,
     TResult Function(QuestionStateLoading value)? loading,
-    TResult Function(QuestionStateLoaded value)? loaded,
+    TResult Function(QuestionStateSuccess value)? success,
     TResult Function(QuestionStateFailure value)? failure,
     TResult Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -2159,7 +2160,7 @@ class _$QuestionStateUpdatedBatchImpl implements QuestionStateUpdatedBatch {
     required TResult Function() loading,
     required TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<QuestionModel> question) createdBatch,
     required TResult Function(List<QuestionModel> question) updatedBatch,
@@ -2175,7 +2176,7 @@ class _$QuestionStateUpdatedBatchImpl implements QuestionStateUpdatedBatch {
     TResult? Function()? loading,
     TResult? Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<QuestionModel> question)? createdBatch,
     TResult? Function(List<QuestionModel> question)? updatedBatch,
@@ -2191,7 +2192,7 @@ class _$QuestionStateUpdatedBatchImpl implements QuestionStateUpdatedBatch {
     TResult Function()? loading,
     TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<QuestionModel> question)? createdBatch,
     TResult Function(List<QuestionModel> question)? updatedBatch,
@@ -2209,7 +2210,7 @@ class _$QuestionStateUpdatedBatchImpl implements QuestionStateUpdatedBatch {
   TResult map<TResult extends Object?>({
     required TResult Function(QuestionStateInitial value) initial,
     required TResult Function(QuestionStateLoading value) loading,
-    required TResult Function(QuestionStateLoaded value) loaded,
+    required TResult Function(QuestionStateSuccess value) success,
     required TResult Function(QuestionStateFailure value) failure,
     required TResult Function(QuestionStateCreatedBatch value) createdBatch,
     required TResult Function(QuestionStateUpdatedBatch value) updatedBatch,
@@ -2223,7 +2224,7 @@ class _$QuestionStateUpdatedBatchImpl implements QuestionStateUpdatedBatch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuestionStateInitial value)? initial,
     TResult? Function(QuestionStateLoading value)? loading,
-    TResult? Function(QuestionStateLoaded value)? loaded,
+    TResult? Function(QuestionStateSuccess value)? success,
     TResult? Function(QuestionStateFailure value)? failure,
     TResult? Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult? Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -2237,7 +2238,7 @@ class _$QuestionStateUpdatedBatchImpl implements QuestionStateUpdatedBatch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuestionStateInitial value)? initial,
     TResult Function(QuestionStateLoading value)? loading,
-    TResult Function(QuestionStateLoaded value)? loaded,
+    TResult Function(QuestionStateSuccess value)? success,
     TResult Function(QuestionStateFailure value)? failure,
     TResult Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -2351,7 +2352,7 @@ class _$QuestionStateDeletedImpl implements QuestionStateDeleted {
     required TResult Function() loading,
     required TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(List<QuestionModel> question) createdBatch,
     required TResult Function(List<QuestionModel> question) updatedBatch,
@@ -2367,7 +2368,7 @@ class _$QuestionStateDeletedImpl implements QuestionStateDeleted {
     TResult? Function()? loading,
     TResult? Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(List<QuestionModel> question)? createdBatch,
     TResult? Function(List<QuestionModel> question)? updatedBatch,
@@ -2383,7 +2384,7 @@ class _$QuestionStateDeletedImpl implements QuestionStateDeleted {
     TResult Function()? loading,
     TResult Function(List<QuestionModel> questions,
             List<QuestionModel> filteredQuestions)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(List<QuestionModel> question)? createdBatch,
     TResult Function(List<QuestionModel> question)? updatedBatch,
@@ -2401,7 +2402,7 @@ class _$QuestionStateDeletedImpl implements QuestionStateDeleted {
   TResult map<TResult extends Object?>({
     required TResult Function(QuestionStateInitial value) initial,
     required TResult Function(QuestionStateLoading value) loading,
-    required TResult Function(QuestionStateLoaded value) loaded,
+    required TResult Function(QuestionStateSuccess value) success,
     required TResult Function(QuestionStateFailure value) failure,
     required TResult Function(QuestionStateCreatedBatch value) createdBatch,
     required TResult Function(QuestionStateUpdatedBatch value) updatedBatch,
@@ -2415,7 +2416,7 @@ class _$QuestionStateDeletedImpl implements QuestionStateDeleted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuestionStateInitial value)? initial,
     TResult? Function(QuestionStateLoading value)? loading,
-    TResult? Function(QuestionStateLoaded value)? loaded,
+    TResult? Function(QuestionStateSuccess value)? success,
     TResult? Function(QuestionStateFailure value)? failure,
     TResult? Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult? Function(QuestionStateUpdatedBatch value)? updatedBatch,
@@ -2429,7 +2430,7 @@ class _$QuestionStateDeletedImpl implements QuestionStateDeleted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuestionStateInitial value)? initial,
     TResult Function(QuestionStateLoading value)? loading,
-    TResult Function(QuestionStateLoaded value)? loaded,
+    TResult Function(QuestionStateSuccess value)? success,
     TResult Function(QuestionStateFailure value)? failure,
     TResult Function(QuestionStateCreatedBatch value)? createdBatch,
     TResult Function(QuestionStateUpdatedBatch value)? updatedBatch,

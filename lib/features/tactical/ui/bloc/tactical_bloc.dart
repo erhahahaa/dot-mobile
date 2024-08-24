@@ -44,7 +44,7 @@ class TacticalBloc extends Bloc<TacticalEvent, TacticalState> {
     res.fold(
       (failure) => emit(TacticalStateFailure(failure.message)),
       (success) => emit(
-        TacticalStateLoaded(
+        TacticalStateSuccess(
           tacticals: success,
           filteredTacticals: success,
         ),
@@ -58,7 +58,7 @@ class TacticalBloc extends Bloc<TacticalEvent, TacticalState> {
   ) {
     emit(const TacticalStateLoading());
     state.maybeWhen(
-      loaded: (tacticals, _) {
+      success: (tacticals, _) {
         final finds = tacticals
             .where(
               (tactical) => tactical.name.toLowerCase().contains(
@@ -71,7 +71,7 @@ class TacticalBloc extends Bloc<TacticalEvent, TacticalState> {
               'Tactical with name ${event.query} not found'));
         } else {
           emit(
-            TacticalStateLoaded(
+            TacticalStateSuccess(
               tacticals: tacticals,
               filteredTacticals: finds,
             ),
