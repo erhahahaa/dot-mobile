@@ -44,6 +44,6 @@ class CoachDashboardScreen extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return Parent();
+    return const Parent();
   }
 }

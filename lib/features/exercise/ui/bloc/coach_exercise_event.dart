@@ -4,20 +4,20 @@ part of 'coach_exercise_bloc.dart';
 class CoachExerciseEvent with _$CoachExerciseEvent {
   const factory CoachExerciseEvent.getExercises(
     GetAllExerciseParams params,
-  ) = _GetExercises;
+  ) = CoachExerciseEventGetExercises;
   const factory CoachExerciseEvent.filterExercises(
     String query,
-  ) = _FilterExercises;
-  const factory CoachExerciseEvent.clear() = _Clear;
+  ) = CoachExerciseEventFilterExercises;
+  const factory CoachExerciseEvent.clear() = CoachExerciseEventClear;
 
   // Actions
   const factory CoachExerciseEvent.createBatch(
     List<CreateExerciseParams> params,
-  ) = _CreateBatch;
+  ) = CoachExerciseEventCreateBatch;
   const factory CoachExerciseEvent.update(
     List<UpdateExerciseParams> params,
-  ) = _UpdateBatch;
+  ) = CoachExerciseEventUpdateBatch;
   const factory CoachExerciseEvent.delete(
     DeleteExerciseParams params,
-  ) = _Delete;
+  ) = CoachExerciseEventDelete;
 }

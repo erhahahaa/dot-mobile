@@ -4,20 +4,20 @@ part of 'coach_question_bloc.dart';
 class CoachQuestionEvent with _$CoachQuestionEvent {
   const factory CoachQuestionEvent.getQuestions(
     GetAllQuestionParams params,
-  ) = _GetQuestions;
+  ) = CoachQuestionEventGetQuestions;
   const factory CoachQuestionEvent.filterQuestions(
     String query,
-  ) = _FilterQuestions;
-  const factory CoachQuestionEvent.clear() = _Clear;
+  ) = CoachQuestionEventFilterQuestions;
+  const factory CoachQuestionEvent.clear() = CoachQuestionEventClear;
 
   // Actions
   const factory CoachQuestionEvent.createBatch(
     List<CreateQuestionParams> params,
-  ) = _CreateBatch;
+  ) = CoachQuestionEventCreateBatch;
   const factory CoachQuestionEvent.updateBatch(
     List<UpdateQuestionParams> params,
-  ) = _UpdateBatch;
+  ) = CoachQuestionEventUpdateBatch;
   const factory CoachQuestionEvent.delete(
     DeleteQuestionParams params,
-  ) = _Delete;
+  ) = CoachQuestionEventDelete;
 }

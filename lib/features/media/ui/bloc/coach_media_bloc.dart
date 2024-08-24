@@ -8,7 +8,7 @@ part 'coach_media_state.dart';
 
 @lazySingleton
 class CoachMediaBloc extends Bloc<CoachMediaEvent, CoachMediaState> {
-  CoachMediaBloc() : super(_Initial()) {
+  CoachMediaBloc() : super(const _Initial()) {
     on<CoachMediaEvent>((event, emit) {
       // TODO: implement event handler
     });

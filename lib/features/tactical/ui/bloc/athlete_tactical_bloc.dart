@@ -14,29 +14,29 @@ class AthleteTacticalBloc
 
   AthleteTacticalBloc(
     this._getAllTacticalUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetTacticals>(_onGetTacticals);
-    on<_FilterTacticals>(_onFilterTacticals);
+  ) : super(const AthleteTacticalStateInitial()) {
+    on<AthleteTacticalEventClear>(_onClear);
+    on<AthleteTacticalEventGetTacticals>(_onGetTacticals);
+    on<AthleteTacticalEventFilterTacticals>(_onFilterTacticals);
   }
 
   void _onClear(
-    _Clear event,
+    AthleteTacticalEventClear event,
     Emitter<AthleteTacticalState> emit,
   ) =>
-      emit(_Initial());
+      emit(const AthleteTacticalStateInitial());
 
   void _onGetTacticals(
-    _GetTacticals event,
+    AthleteTacticalEventGetTacticals event,
     Emitter<AthleteTacticalState> emit,
   ) async {
-    emit(_Loading());
+    emit(const AthleteTacticalStateLoading());
     final res = await _getAllTacticalUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(AthleteTacticalStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        AthleteTacticalStateLoaded(
           tacticals: success,
           filteredTacticals: success,
         ),
@@ -45,10 +45,10 @@ class AthleteTacticalBloc
   }
 
   void _onFilterTacticals(
-    _FilterTacticals event,
+    AthleteTacticalEventFilterTacticals event,
     Emitter<AthleteTacticalState> emit,
   ) {
-    emit(_Loading());
+    emit(const AthleteTacticalStateLoading());
     state.maybeWhen(
       loaded: (tacticals, _) {
         final finds = tacticals
@@ -59,17 +59,19 @@ class AthleteTacticalBloc
             )
             .toList();
         if (finds.isEmpty) {
-          emit(_Failure('Tactical with name ${event.query} not found'));
+          emit(AthleteTacticalStateFailure(
+              'Tactical with name ${event.query} not found'));
         } else {
           emit(
-            _Loaded(
+            AthleteTacticalStateLoaded(
               tacticals: tacticals,
               filteredTacticals: finds,
             ),
           );
         }
       },
-      orElse: () => emit(_Failure('Tactical was empty')),
+      orElse: () =>
+          emit(const AthleteTacticalStateFailure('Tactical was empty')),
     );
   }
 }

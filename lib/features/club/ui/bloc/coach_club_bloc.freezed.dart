@@ -49,32 +49,32 @@ mixin _$CoachClubEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetClubs value) getClubs,
-    required TResult Function(_FilterClubs value) filterClubs,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachClubEventGetClubs value) getClubs,
+    required TResult Function(CoachClubEventFilterClubs value) filterClubs,
+    required TResult Function(CoachClubEventClear value) clear,
+    required TResult Function(CoachClubEventCreate value) create,
+    required TResult Function(CoachClubEventUpdate value) update,
+    required TResult Function(CoachClubEventDelete value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetClubs value)? getClubs,
-    TResult? Function(_FilterClubs value)? filterClubs,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachClubEventGetClubs value)? getClubs,
+    TResult? Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult? Function(CoachClubEventClear value)? clear,
+    TResult? Function(CoachClubEventCreate value)? create,
+    TResult? Function(CoachClubEventUpdate value)? update,
+    TResult? Function(CoachClubEventDelete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetClubs value)? getClubs,
-    TResult Function(_FilterClubs value)? filterClubs,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachClubEventGetClubs value)? getClubs,
+    TResult Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult Function(CoachClubEventClear value)? clear,
+    TResult Function(CoachClubEventCreate value)? create,
+    TResult Function(CoachClubEventUpdate value)? update,
+    TResult Function(CoachClubEventDelete value)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -102,18 +102,20 @@ class _$CoachClubEventCopyWithImpl<$Res, $Val extends CoachClubEvent>
 }
 
 /// @nodoc
-abstract class _$$GetClubsImplCopyWith<$Res> {
-  factory _$$GetClubsImplCopyWith(
-          _$GetClubsImpl value, $Res Function(_$GetClubsImpl) then) =
-      __$$GetClubsImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubEventGetClubsImplCopyWith<$Res> {
+  factory _$$CoachClubEventGetClubsImplCopyWith(
+          _$CoachClubEventGetClubsImpl value,
+          $Res Function(_$CoachClubEventGetClubsImpl) then) =
+      __$$CoachClubEventGetClubsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GetClubsImplCopyWithImpl<$Res>
-    extends _$CoachClubEventCopyWithImpl<$Res, _$GetClubsImpl>
-    implements _$$GetClubsImplCopyWith<$Res> {
-  __$$GetClubsImplCopyWithImpl(
-      _$GetClubsImpl _value, $Res Function(_$GetClubsImpl) _then)
+class __$$CoachClubEventGetClubsImplCopyWithImpl<$Res>
+    extends _$CoachClubEventCopyWithImpl<$Res, _$CoachClubEventGetClubsImpl>
+    implements _$$CoachClubEventGetClubsImplCopyWith<$Res> {
+  __$$CoachClubEventGetClubsImplCopyWithImpl(
+      _$CoachClubEventGetClubsImpl _value,
+      $Res Function(_$CoachClubEventGetClubsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubEvent
@@ -122,8 +124,8 @@ class __$$GetClubsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetClubsImpl implements _GetClubs {
-  const _$GetClubsImpl();
+class _$CoachClubEventGetClubsImpl implements CoachClubEventGetClubs {
+  const _$CoachClubEventGetClubsImpl();
 
   @override
   String toString() {
@@ -133,7 +135,8 @@ class _$GetClubsImpl implements _GetClubs {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetClubsImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CoachClubEventGetClubsImpl);
   }
 
   @override
@@ -185,12 +188,12 @@ class _$GetClubsImpl implements _GetClubs {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetClubs value) getClubs,
-    required TResult Function(_FilterClubs value) filterClubs,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachClubEventGetClubs value) getClubs,
+    required TResult Function(CoachClubEventFilterClubs value) filterClubs,
+    required TResult Function(CoachClubEventClear value) clear,
+    required TResult Function(CoachClubEventCreate value) create,
+    required TResult Function(CoachClubEventUpdate value) update,
+    required TResult Function(CoachClubEventDelete value) delete,
   }) {
     return getClubs(this);
   }
@@ -198,12 +201,12 @@ class _$GetClubsImpl implements _GetClubs {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetClubs value)? getClubs,
-    TResult? Function(_FilterClubs value)? filterClubs,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachClubEventGetClubs value)? getClubs,
+    TResult? Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult? Function(CoachClubEventClear value)? clear,
+    TResult? Function(CoachClubEventCreate value)? create,
+    TResult? Function(CoachClubEventUpdate value)? update,
+    TResult? Function(CoachClubEventDelete value)? delete,
   }) {
     return getClubs?.call(this);
   }
@@ -211,12 +214,12 @@ class _$GetClubsImpl implements _GetClubs {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetClubs value)? getClubs,
-    TResult Function(_FilterClubs value)? filterClubs,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachClubEventGetClubs value)? getClubs,
+    TResult Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult Function(CoachClubEventClear value)? clear,
+    TResult Function(CoachClubEventCreate value)? create,
+    TResult Function(CoachClubEventUpdate value)? update,
+    TResult Function(CoachClubEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (getClubs != null) {
@@ -226,25 +229,27 @@ class _$GetClubsImpl implements _GetClubs {
   }
 }
 
-abstract class _GetClubs implements CoachClubEvent {
-  const factory _GetClubs() = _$GetClubsImpl;
+abstract class CoachClubEventGetClubs implements CoachClubEvent {
+  const factory CoachClubEventGetClubs() = _$CoachClubEventGetClubsImpl;
 }
 
 /// @nodoc
-abstract class _$$FilterClubsImplCopyWith<$Res> {
-  factory _$$FilterClubsImplCopyWith(
-          _$FilterClubsImpl value, $Res Function(_$FilterClubsImpl) then) =
-      __$$FilterClubsImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubEventFilterClubsImplCopyWith<$Res> {
+  factory _$$CoachClubEventFilterClubsImplCopyWith(
+          _$CoachClubEventFilterClubsImpl value,
+          $Res Function(_$CoachClubEventFilterClubsImpl) then) =
+      __$$CoachClubEventFilterClubsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String query});
 }
 
 /// @nodoc
-class __$$FilterClubsImplCopyWithImpl<$Res>
-    extends _$CoachClubEventCopyWithImpl<$Res, _$FilterClubsImpl>
-    implements _$$FilterClubsImplCopyWith<$Res> {
-  __$$FilterClubsImplCopyWithImpl(
-      _$FilterClubsImpl _value, $Res Function(_$FilterClubsImpl) _then)
+class __$$CoachClubEventFilterClubsImplCopyWithImpl<$Res>
+    extends _$CoachClubEventCopyWithImpl<$Res, _$CoachClubEventFilterClubsImpl>
+    implements _$$CoachClubEventFilterClubsImplCopyWith<$Res> {
+  __$$CoachClubEventFilterClubsImplCopyWithImpl(
+      _$CoachClubEventFilterClubsImpl _value,
+      $Res Function(_$CoachClubEventFilterClubsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubEvent
@@ -254,7 +259,7 @@ class __$$FilterClubsImplCopyWithImpl<$Res>
   $Res call({
     Object? query = null,
   }) {
-    return _then(_$FilterClubsImpl(
+    return _then(_$CoachClubEventFilterClubsImpl(
       null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
@@ -265,8 +270,8 @@ class __$$FilterClubsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FilterClubsImpl implements _FilterClubs {
-  const _$FilterClubsImpl(this.query);
+class _$CoachClubEventFilterClubsImpl implements CoachClubEventFilterClubs {
+  const _$CoachClubEventFilterClubsImpl(this.query);
 
   @override
   final String query;
@@ -280,7 +285,7 @@ class _$FilterClubsImpl implements _FilterClubs {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FilterClubsImpl &&
+            other is _$CoachClubEventFilterClubsImpl &&
             (identical(other.query, query) || other.query == query));
   }
 
@@ -292,8 +297,9 @@ class _$FilterClubsImpl implements _FilterClubs {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FilterClubsImplCopyWith<_$FilterClubsImpl> get copyWith =>
-      __$$FilterClubsImplCopyWithImpl<_$FilterClubsImpl>(this, _$identity);
+  _$$CoachClubEventFilterClubsImplCopyWith<_$CoachClubEventFilterClubsImpl>
+      get copyWith => __$$CoachClubEventFilterClubsImplCopyWithImpl<
+          _$CoachClubEventFilterClubsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -341,12 +347,12 @@ class _$FilterClubsImpl implements _FilterClubs {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetClubs value) getClubs,
-    required TResult Function(_FilterClubs value) filterClubs,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachClubEventGetClubs value) getClubs,
+    required TResult Function(CoachClubEventFilterClubs value) filterClubs,
+    required TResult Function(CoachClubEventClear value) clear,
+    required TResult Function(CoachClubEventCreate value) create,
+    required TResult Function(CoachClubEventUpdate value) update,
+    required TResult Function(CoachClubEventDelete value) delete,
   }) {
     return filterClubs(this);
   }
@@ -354,12 +360,12 @@ class _$FilterClubsImpl implements _FilterClubs {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetClubs value)? getClubs,
-    TResult? Function(_FilterClubs value)? filterClubs,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachClubEventGetClubs value)? getClubs,
+    TResult? Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult? Function(CoachClubEventClear value)? clear,
+    TResult? Function(CoachClubEventCreate value)? create,
+    TResult? Function(CoachClubEventUpdate value)? update,
+    TResult? Function(CoachClubEventDelete value)? delete,
   }) {
     return filterClubs?.call(this);
   }
@@ -367,12 +373,12 @@ class _$FilterClubsImpl implements _FilterClubs {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetClubs value)? getClubs,
-    TResult Function(_FilterClubs value)? filterClubs,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachClubEventGetClubs value)? getClubs,
+    TResult Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult Function(CoachClubEventClear value)? clear,
+    TResult Function(CoachClubEventCreate value)? create,
+    TResult Function(CoachClubEventUpdate value)? update,
+    TResult Function(CoachClubEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (filterClubs != null) {
@@ -382,31 +388,32 @@ class _$FilterClubsImpl implements _FilterClubs {
   }
 }
 
-abstract class _FilterClubs implements CoachClubEvent {
-  const factory _FilterClubs(final String query) = _$FilterClubsImpl;
+abstract class CoachClubEventFilterClubs implements CoachClubEvent {
+  const factory CoachClubEventFilterClubs(final String query) =
+      _$CoachClubEventFilterClubsImpl;
 
   String get query;
 
   /// Create a copy of CoachClubEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FilterClubsImplCopyWith<_$FilterClubsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachClubEventFilterClubsImplCopyWith<_$CoachClubEventFilterClubsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ClearImplCopyWith<$Res> {
-  factory _$$ClearImplCopyWith(
-          _$ClearImpl value, $Res Function(_$ClearImpl) then) =
-      __$$ClearImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubEventClearImplCopyWith<$Res> {
+  factory _$$CoachClubEventClearImplCopyWith(_$CoachClubEventClearImpl value,
+          $Res Function(_$CoachClubEventClearImpl) then) =
+      __$$CoachClubEventClearImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearImplCopyWithImpl<$Res>
-    extends _$CoachClubEventCopyWithImpl<$Res, _$ClearImpl>
-    implements _$$ClearImplCopyWith<$Res> {
-  __$$ClearImplCopyWithImpl(
-      _$ClearImpl _value, $Res Function(_$ClearImpl) _then)
+class __$$CoachClubEventClearImplCopyWithImpl<$Res>
+    extends _$CoachClubEventCopyWithImpl<$Res, _$CoachClubEventClearImpl>
+    implements _$$CoachClubEventClearImplCopyWith<$Res> {
+  __$$CoachClubEventClearImplCopyWithImpl(_$CoachClubEventClearImpl _value,
+      $Res Function(_$CoachClubEventClearImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubEvent
@@ -415,8 +422,8 @@ class __$$ClearImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ClearImpl implements _Clear {
-  const _$ClearImpl();
+class _$CoachClubEventClearImpl implements CoachClubEventClear {
+  const _$CoachClubEventClearImpl();
 
   @override
   String toString() {
@@ -426,7 +433,8 @@ class _$ClearImpl implements _Clear {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CoachClubEventClearImpl);
   }
 
   @override
@@ -478,12 +486,12 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetClubs value) getClubs,
-    required TResult Function(_FilterClubs value) filterClubs,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachClubEventGetClubs value) getClubs,
+    required TResult Function(CoachClubEventFilterClubs value) filterClubs,
+    required TResult Function(CoachClubEventClear value) clear,
+    required TResult Function(CoachClubEventCreate value) create,
+    required TResult Function(CoachClubEventUpdate value) update,
+    required TResult Function(CoachClubEventDelete value) delete,
   }) {
     return clear(this);
   }
@@ -491,12 +499,12 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetClubs value)? getClubs,
-    TResult? Function(_FilterClubs value)? filterClubs,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachClubEventGetClubs value)? getClubs,
+    TResult? Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult? Function(CoachClubEventClear value)? clear,
+    TResult? Function(CoachClubEventCreate value)? create,
+    TResult? Function(CoachClubEventUpdate value)? update,
+    TResult? Function(CoachClubEventDelete value)? delete,
   }) {
     return clear?.call(this);
   }
@@ -504,12 +512,12 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetClubs value)? getClubs,
-    TResult Function(_FilterClubs value)? filterClubs,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachClubEventGetClubs value)? getClubs,
+    TResult Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult Function(CoachClubEventClear value)? clear,
+    TResult Function(CoachClubEventCreate value)? create,
+    TResult Function(CoachClubEventUpdate value)? update,
+    TResult Function(CoachClubEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (clear != null) {
@@ -519,15 +527,15 @@ class _$ClearImpl implements _Clear {
   }
 }
 
-abstract class _Clear implements CoachClubEvent {
-  const factory _Clear() = _$ClearImpl;
+abstract class CoachClubEventClear implements CoachClubEvent {
+  const factory CoachClubEventClear() = _$CoachClubEventClearImpl;
 }
 
 /// @nodoc
-abstract class _$$CreateImplCopyWith<$Res> {
-  factory _$$CreateImplCopyWith(
-          _$CreateImpl value, $Res Function(_$CreateImpl) then) =
-      __$$CreateImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubEventCreateImplCopyWith<$Res> {
+  factory _$$CoachClubEventCreateImplCopyWith(_$CoachClubEventCreateImpl value,
+          $Res Function(_$CoachClubEventCreateImpl) then) =
+      __$$CoachClubEventCreateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({CreateClubParams params});
 
@@ -535,11 +543,11 @@ abstract class _$$CreateImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CreateImplCopyWithImpl<$Res>
-    extends _$CoachClubEventCopyWithImpl<$Res, _$CreateImpl>
-    implements _$$CreateImplCopyWith<$Res> {
-  __$$CreateImplCopyWithImpl(
-      _$CreateImpl _value, $Res Function(_$CreateImpl) _then)
+class __$$CoachClubEventCreateImplCopyWithImpl<$Res>
+    extends _$CoachClubEventCopyWithImpl<$Res, _$CoachClubEventCreateImpl>
+    implements _$$CoachClubEventCreateImplCopyWith<$Res> {
+  __$$CoachClubEventCreateImplCopyWithImpl(_$CoachClubEventCreateImpl _value,
+      $Res Function(_$CoachClubEventCreateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubEvent
@@ -549,7 +557,7 @@ class __$$CreateImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$CreateImpl(
+    return _then(_$CoachClubEventCreateImpl(
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -570,8 +578,8 @@ class __$$CreateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreateImpl implements _Create {
-  const _$CreateImpl(this.params);
+class _$CoachClubEventCreateImpl implements CoachClubEventCreate {
+  const _$CoachClubEventCreateImpl(this.params);
 
   @override
   final CreateClubParams params;
@@ -585,7 +593,7 @@ class _$CreateImpl implements _Create {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateImpl &&
+            other is _$CoachClubEventCreateImpl &&
             (identical(other.params, params) || other.params == params));
   }
 
@@ -597,8 +605,10 @@ class _$CreateImpl implements _Create {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateImplCopyWith<_$CreateImpl> get copyWith =>
-      __$$CreateImplCopyWithImpl<_$CreateImpl>(this, _$identity);
+  _$$CoachClubEventCreateImplCopyWith<_$CoachClubEventCreateImpl>
+      get copyWith =>
+          __$$CoachClubEventCreateImplCopyWithImpl<_$CoachClubEventCreateImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -646,12 +656,12 @@ class _$CreateImpl implements _Create {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetClubs value) getClubs,
-    required TResult Function(_FilterClubs value) filterClubs,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachClubEventGetClubs value) getClubs,
+    required TResult Function(CoachClubEventFilterClubs value) filterClubs,
+    required TResult Function(CoachClubEventClear value) clear,
+    required TResult Function(CoachClubEventCreate value) create,
+    required TResult Function(CoachClubEventUpdate value) update,
+    required TResult Function(CoachClubEventDelete value) delete,
   }) {
     return create(this);
   }
@@ -659,12 +669,12 @@ class _$CreateImpl implements _Create {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetClubs value)? getClubs,
-    TResult? Function(_FilterClubs value)? filterClubs,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachClubEventGetClubs value)? getClubs,
+    TResult? Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult? Function(CoachClubEventClear value)? clear,
+    TResult? Function(CoachClubEventCreate value)? create,
+    TResult? Function(CoachClubEventUpdate value)? update,
+    TResult? Function(CoachClubEventDelete value)? delete,
   }) {
     return create?.call(this);
   }
@@ -672,12 +682,12 @@ class _$CreateImpl implements _Create {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetClubs value)? getClubs,
-    TResult Function(_FilterClubs value)? filterClubs,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachClubEventGetClubs value)? getClubs,
+    TResult Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult Function(CoachClubEventClear value)? clear,
+    TResult Function(CoachClubEventCreate value)? create,
+    TResult Function(CoachClubEventUpdate value)? update,
+    TResult Function(CoachClubEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (create != null) {
@@ -687,23 +697,24 @@ class _$CreateImpl implements _Create {
   }
 }
 
-abstract class _Create implements CoachClubEvent {
-  const factory _Create(final CreateClubParams params) = _$CreateImpl;
+abstract class CoachClubEventCreate implements CoachClubEvent {
+  const factory CoachClubEventCreate(final CreateClubParams params) =
+      _$CoachClubEventCreateImpl;
 
   CreateClubParams get params;
 
   /// Create a copy of CoachClubEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateImplCopyWith<_$CreateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachClubEventCreateImplCopyWith<_$CoachClubEventCreateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdateImplCopyWith<$Res> {
-  factory _$$UpdateImplCopyWith(
-          _$UpdateImpl value, $Res Function(_$UpdateImpl) then) =
-      __$$UpdateImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubEventUpdateImplCopyWith<$Res> {
+  factory _$$CoachClubEventUpdateImplCopyWith(_$CoachClubEventUpdateImpl value,
+          $Res Function(_$CoachClubEventUpdateImpl) then) =
+      __$$CoachClubEventUpdateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UpdateClubParams params});
 
@@ -711,11 +722,11 @@ abstract class _$$UpdateImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$UpdateImplCopyWithImpl<$Res>
-    extends _$CoachClubEventCopyWithImpl<$Res, _$UpdateImpl>
-    implements _$$UpdateImplCopyWith<$Res> {
-  __$$UpdateImplCopyWithImpl(
-      _$UpdateImpl _value, $Res Function(_$UpdateImpl) _then)
+class __$$CoachClubEventUpdateImplCopyWithImpl<$Res>
+    extends _$CoachClubEventCopyWithImpl<$Res, _$CoachClubEventUpdateImpl>
+    implements _$$CoachClubEventUpdateImplCopyWith<$Res> {
+  __$$CoachClubEventUpdateImplCopyWithImpl(_$CoachClubEventUpdateImpl _value,
+      $Res Function(_$CoachClubEventUpdateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubEvent
@@ -725,7 +736,7 @@ class __$$UpdateImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$UpdateImpl(
+    return _then(_$CoachClubEventUpdateImpl(
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -746,8 +757,8 @@ class __$$UpdateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateImpl implements _Update {
-  const _$UpdateImpl(this.params);
+class _$CoachClubEventUpdateImpl implements CoachClubEventUpdate {
+  const _$CoachClubEventUpdateImpl(this.params);
 
   @override
   final UpdateClubParams params;
@@ -761,7 +772,7 @@ class _$UpdateImpl implements _Update {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateImpl &&
+            other is _$CoachClubEventUpdateImpl &&
             (identical(other.params, params) || other.params == params));
   }
 
@@ -773,8 +784,10 @@ class _$UpdateImpl implements _Update {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateImplCopyWith<_$UpdateImpl> get copyWith =>
-      __$$UpdateImplCopyWithImpl<_$UpdateImpl>(this, _$identity);
+  _$$CoachClubEventUpdateImplCopyWith<_$CoachClubEventUpdateImpl>
+      get copyWith =>
+          __$$CoachClubEventUpdateImplCopyWithImpl<_$CoachClubEventUpdateImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -822,12 +835,12 @@ class _$UpdateImpl implements _Update {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetClubs value) getClubs,
-    required TResult Function(_FilterClubs value) filterClubs,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachClubEventGetClubs value) getClubs,
+    required TResult Function(CoachClubEventFilterClubs value) filterClubs,
+    required TResult Function(CoachClubEventClear value) clear,
+    required TResult Function(CoachClubEventCreate value) create,
+    required TResult Function(CoachClubEventUpdate value) update,
+    required TResult Function(CoachClubEventDelete value) delete,
   }) {
     return update(this);
   }
@@ -835,12 +848,12 @@ class _$UpdateImpl implements _Update {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetClubs value)? getClubs,
-    TResult? Function(_FilterClubs value)? filterClubs,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachClubEventGetClubs value)? getClubs,
+    TResult? Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult? Function(CoachClubEventClear value)? clear,
+    TResult? Function(CoachClubEventCreate value)? create,
+    TResult? Function(CoachClubEventUpdate value)? update,
+    TResult? Function(CoachClubEventDelete value)? delete,
   }) {
     return update?.call(this);
   }
@@ -848,12 +861,12 @@ class _$UpdateImpl implements _Update {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetClubs value)? getClubs,
-    TResult Function(_FilterClubs value)? filterClubs,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachClubEventGetClubs value)? getClubs,
+    TResult Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult Function(CoachClubEventClear value)? clear,
+    TResult Function(CoachClubEventCreate value)? create,
+    TResult Function(CoachClubEventUpdate value)? update,
+    TResult Function(CoachClubEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -863,23 +876,24 @@ class _$UpdateImpl implements _Update {
   }
 }
 
-abstract class _Update implements CoachClubEvent {
-  const factory _Update(final UpdateClubParams params) = _$UpdateImpl;
+abstract class CoachClubEventUpdate implements CoachClubEvent {
+  const factory CoachClubEventUpdate(final UpdateClubParams params) =
+      _$CoachClubEventUpdateImpl;
 
   UpdateClubParams get params;
 
   /// Create a copy of CoachClubEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateImplCopyWith<_$UpdateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachClubEventUpdateImplCopyWith<_$CoachClubEventUpdateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeleteImplCopyWith<$Res> {
-  factory _$$DeleteImplCopyWith(
-          _$DeleteImpl value, $Res Function(_$DeleteImpl) then) =
-      __$$DeleteImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubEventDeleteImplCopyWith<$Res> {
+  factory _$$CoachClubEventDeleteImplCopyWith(_$CoachClubEventDeleteImpl value,
+          $Res Function(_$CoachClubEventDeleteImpl) then) =
+      __$$CoachClubEventDeleteImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DeleteClubParams params});
 
@@ -887,11 +901,11 @@ abstract class _$$DeleteImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DeleteImplCopyWithImpl<$Res>
-    extends _$CoachClubEventCopyWithImpl<$Res, _$DeleteImpl>
-    implements _$$DeleteImplCopyWith<$Res> {
-  __$$DeleteImplCopyWithImpl(
-      _$DeleteImpl _value, $Res Function(_$DeleteImpl) _then)
+class __$$CoachClubEventDeleteImplCopyWithImpl<$Res>
+    extends _$CoachClubEventCopyWithImpl<$Res, _$CoachClubEventDeleteImpl>
+    implements _$$CoachClubEventDeleteImplCopyWith<$Res> {
+  __$$CoachClubEventDeleteImplCopyWithImpl(_$CoachClubEventDeleteImpl _value,
+      $Res Function(_$CoachClubEventDeleteImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubEvent
@@ -901,7 +915,7 @@ class __$$DeleteImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$DeleteImpl(
+    return _then(_$CoachClubEventDeleteImpl(
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -922,8 +936,8 @@ class __$$DeleteImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeleteImpl implements _Delete {
-  const _$DeleteImpl(this.params);
+class _$CoachClubEventDeleteImpl implements CoachClubEventDelete {
+  const _$CoachClubEventDeleteImpl(this.params);
 
   @override
   final DeleteClubParams params;
@@ -937,7 +951,7 @@ class _$DeleteImpl implements _Delete {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeleteImpl &&
+            other is _$CoachClubEventDeleteImpl &&
             (identical(other.params, params) || other.params == params));
   }
 
@@ -949,8 +963,10 @@ class _$DeleteImpl implements _Delete {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
-      __$$DeleteImplCopyWithImpl<_$DeleteImpl>(this, _$identity);
+  _$$CoachClubEventDeleteImplCopyWith<_$CoachClubEventDeleteImpl>
+      get copyWith =>
+          __$$CoachClubEventDeleteImplCopyWithImpl<_$CoachClubEventDeleteImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -998,12 +1014,12 @@ class _$DeleteImpl implements _Delete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetClubs value) getClubs,
-    required TResult Function(_FilterClubs value) filterClubs,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachClubEventGetClubs value) getClubs,
+    required TResult Function(CoachClubEventFilterClubs value) filterClubs,
+    required TResult Function(CoachClubEventClear value) clear,
+    required TResult Function(CoachClubEventCreate value) create,
+    required TResult Function(CoachClubEventUpdate value) update,
+    required TResult Function(CoachClubEventDelete value) delete,
   }) {
     return delete(this);
   }
@@ -1011,12 +1027,12 @@ class _$DeleteImpl implements _Delete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetClubs value)? getClubs,
-    TResult? Function(_FilterClubs value)? filterClubs,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachClubEventGetClubs value)? getClubs,
+    TResult? Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult? Function(CoachClubEventClear value)? clear,
+    TResult? Function(CoachClubEventCreate value)? create,
+    TResult? Function(CoachClubEventUpdate value)? update,
+    TResult? Function(CoachClubEventDelete value)? delete,
   }) {
     return delete?.call(this);
   }
@@ -1024,12 +1040,12 @@ class _$DeleteImpl implements _Delete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetClubs value)? getClubs,
-    TResult Function(_FilterClubs value)? filterClubs,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachClubEventGetClubs value)? getClubs,
+    TResult Function(CoachClubEventFilterClubs value)? filterClubs,
+    TResult Function(CoachClubEventClear value)? clear,
+    TResult Function(CoachClubEventCreate value)? create,
+    TResult Function(CoachClubEventUpdate value)? update,
+    TResult Function(CoachClubEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -1039,16 +1055,17 @@ class _$DeleteImpl implements _Delete {
   }
 }
 
-abstract class _Delete implements CoachClubEvent {
-  const factory _Delete(final DeleteClubParams params) = _$DeleteImpl;
+abstract class CoachClubEventDelete implements CoachClubEvent {
+  const factory CoachClubEventDelete(final DeleteClubParams params) =
+      _$CoachClubEventDeleteImpl;
 
   DeleteClubParams get params;
 
   /// Create a copy of CoachClubEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachClubEventDeleteImplCopyWith<_$CoachClubEventDeleteImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1093,35 +1110,35 @@ mixin _$CoachClubState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachClubStateInitial value) initial,
+    required TResult Function(CoachClubStateLoading value) loading,
+    required TResult Function(CoachClubStateLoaded value) loaded,
+    required TResult Function(CoachClubStateFailure value) failure,
+    required TResult Function(CoachClubStateCreated value) created,
+    required TResult Function(CoachClubStateUpdated value) updated,
+    required TResult Function(CoachClubStateDeleted value) deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachClubStateInitial value)? initial,
+    TResult? Function(CoachClubStateLoading value)? loading,
+    TResult? Function(CoachClubStateLoaded value)? loaded,
+    TResult? Function(CoachClubStateFailure value)? failure,
+    TResult? Function(CoachClubStateCreated value)? created,
+    TResult? Function(CoachClubStateUpdated value)? updated,
+    TResult? Function(CoachClubStateDeleted value)? deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachClubStateInitial value)? initial,
+    TResult Function(CoachClubStateLoading value)? loading,
+    TResult Function(CoachClubStateLoaded value)? loaded,
+    TResult Function(CoachClubStateFailure value)? failure,
+    TResult Function(CoachClubStateCreated value)? created,
+    TResult Function(CoachClubStateUpdated value)? updated,
+    TResult Function(CoachClubStateDeleted value)? deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1149,18 +1166,19 @@ class _$CoachClubStateCopyWithImpl<$Res, $Val extends CoachClubState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubStateInitialImplCopyWith<$Res> {
+  factory _$$CoachClubStateInitialImplCopyWith(
+          _$CoachClubStateInitialImpl value,
+          $Res Function(_$CoachClubStateInitialImpl) then) =
+      __$$CoachClubStateInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$CoachClubStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$CoachClubStateInitialImplCopyWithImpl<$Res>
+    extends _$CoachClubStateCopyWithImpl<$Res, _$CoachClubStateInitialImpl>
+    implements _$$CoachClubStateInitialImplCopyWith<$Res> {
+  __$$CoachClubStateInitialImplCopyWithImpl(_$CoachClubStateInitialImpl _value,
+      $Res Function(_$CoachClubStateInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubState
@@ -1169,8 +1187,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$CoachClubStateInitialImpl implements CoachClubStateInitial {
+  const _$CoachClubStateInitialImpl();
 
   @override
   String toString() {
@@ -1180,7 +1198,8 @@ class _$InitialImpl implements _Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CoachClubStateInitialImpl);
   }
 
   @override
@@ -1239,13 +1258,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachClubStateInitial value) initial,
+    required TResult Function(CoachClubStateLoading value) loading,
+    required TResult Function(CoachClubStateLoaded value) loaded,
+    required TResult Function(CoachClubStateFailure value) failure,
+    required TResult Function(CoachClubStateCreated value) created,
+    required TResult Function(CoachClubStateUpdated value) updated,
+    required TResult Function(CoachClubStateDeleted value) deleted,
   }) {
     return initial(this);
   }
@@ -1253,13 +1272,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachClubStateInitial value)? initial,
+    TResult? Function(CoachClubStateLoading value)? loading,
+    TResult? Function(CoachClubStateLoaded value)? loaded,
+    TResult? Function(CoachClubStateFailure value)? failure,
+    TResult? Function(CoachClubStateCreated value)? created,
+    TResult? Function(CoachClubStateUpdated value)? updated,
+    TResult? Function(CoachClubStateDeleted value)? deleted,
   }) {
     return initial?.call(this);
   }
@@ -1267,13 +1286,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachClubStateInitial value)? initial,
+    TResult Function(CoachClubStateLoading value)? loading,
+    TResult Function(CoachClubStateLoaded value)? loaded,
+    TResult Function(CoachClubStateFailure value)? failure,
+    TResult Function(CoachClubStateCreated value)? created,
+    TResult Function(CoachClubStateUpdated value)? updated,
+    TResult Function(CoachClubStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1283,23 +1302,24 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements CoachClubState {
-  const factory _Initial() = _$InitialImpl;
+abstract class CoachClubStateInitial implements CoachClubState {
+  const factory CoachClubStateInitial() = _$CoachClubStateInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubStateLoadingImplCopyWith<$Res> {
+  factory _$$CoachClubStateLoadingImplCopyWith(
+          _$CoachClubStateLoadingImpl value,
+          $Res Function(_$CoachClubStateLoadingImpl) then) =
+      __$$CoachClubStateLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$CoachClubStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$CoachClubStateLoadingImplCopyWithImpl<$Res>
+    extends _$CoachClubStateCopyWithImpl<$Res, _$CoachClubStateLoadingImpl>
+    implements _$$CoachClubStateLoadingImplCopyWith<$Res> {
+  __$$CoachClubStateLoadingImplCopyWithImpl(_$CoachClubStateLoadingImpl _value,
+      $Res Function(_$CoachClubStateLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubState
@@ -1308,8 +1328,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$CoachClubStateLoadingImpl implements CoachClubStateLoading {
+  const _$CoachClubStateLoadingImpl();
 
   @override
   String toString() {
@@ -1319,7 +1339,8 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CoachClubStateLoadingImpl);
   }
 
   @override
@@ -1378,13 +1399,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachClubStateInitial value) initial,
+    required TResult Function(CoachClubStateLoading value) loading,
+    required TResult Function(CoachClubStateLoaded value) loaded,
+    required TResult Function(CoachClubStateFailure value) failure,
+    required TResult Function(CoachClubStateCreated value) created,
+    required TResult Function(CoachClubStateUpdated value) updated,
+    required TResult Function(CoachClubStateDeleted value) deleted,
   }) {
     return loading(this);
   }
@@ -1392,13 +1413,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachClubStateInitial value)? initial,
+    TResult? Function(CoachClubStateLoading value)? loading,
+    TResult? Function(CoachClubStateLoaded value)? loaded,
+    TResult? Function(CoachClubStateFailure value)? failure,
+    TResult? Function(CoachClubStateCreated value)? created,
+    TResult? Function(CoachClubStateUpdated value)? updated,
+    TResult? Function(CoachClubStateDeleted value)? deleted,
   }) {
     return loading?.call(this);
   }
@@ -1406,13 +1427,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachClubStateInitial value)? initial,
+    TResult Function(CoachClubStateLoading value)? loading,
+    TResult Function(CoachClubStateLoaded value)? loaded,
+    TResult Function(CoachClubStateFailure value)? failure,
+    TResult Function(CoachClubStateCreated value)? created,
+    TResult Function(CoachClubStateUpdated value)? updated,
+    TResult Function(CoachClubStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1422,25 +1443,25 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements CoachClubState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class CoachClubStateLoading implements CoachClubState {
+  const factory CoachClubStateLoading() = _$CoachClubStateLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubStateLoadedImplCopyWith<$Res> {
+  factory _$$CoachClubStateLoadedImplCopyWith(_$CoachClubStateLoadedImpl value,
+          $Res Function(_$CoachClubStateLoadedImpl) then) =
+      __$$CoachClubStateLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<ClubModel> clubs, List<ClubModel> filteredClubs});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$CoachClubStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$CoachClubStateLoadedImplCopyWithImpl<$Res>
+    extends _$CoachClubStateCopyWithImpl<$Res, _$CoachClubStateLoadedImpl>
+    implements _$$CoachClubStateLoadedImplCopyWith<$Res> {
+  __$$CoachClubStateLoadedImplCopyWithImpl(_$CoachClubStateLoadedImpl _value,
+      $Res Function(_$CoachClubStateLoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubState
@@ -1451,7 +1472,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
     Object? clubs = null,
     Object? filteredClubs = null,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_$CoachClubStateLoadedImpl(
       clubs: null == clubs
           ? _value._clubs
           : clubs // ignore: cast_nullable_to_non_nullable
@@ -1466,8 +1487,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(
+class _$CoachClubStateLoadedImpl implements CoachClubStateLoaded {
+  const _$CoachClubStateLoadedImpl(
       {required final List<ClubModel> clubs,
       required final List<ClubModel> filteredClubs})
       : _clubs = clubs,
@@ -1498,7 +1519,7 @@ class _$LoadedImpl implements _Loaded {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
+            other is _$CoachClubStateLoadedImpl &&
             const DeepCollectionEquality().equals(other._clubs, _clubs) &&
             const DeepCollectionEquality()
                 .equals(other._filteredClubs, _filteredClubs));
@@ -1515,8 +1536,10 @@ class _$LoadedImpl implements _Loaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$CoachClubStateLoadedImplCopyWith<_$CoachClubStateLoadedImpl>
+      get copyWith =>
+          __$$CoachClubStateLoadedImplCopyWithImpl<_$CoachClubStateLoadedImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1571,13 +1594,13 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachClubStateInitial value) initial,
+    required TResult Function(CoachClubStateLoading value) loading,
+    required TResult Function(CoachClubStateLoaded value) loaded,
+    required TResult Function(CoachClubStateFailure value) failure,
+    required TResult Function(CoachClubStateCreated value) created,
+    required TResult Function(CoachClubStateUpdated value) updated,
+    required TResult Function(CoachClubStateDeleted value) deleted,
   }) {
     return loaded(this);
   }
@@ -1585,13 +1608,13 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachClubStateInitial value)? initial,
+    TResult? Function(CoachClubStateLoading value)? loading,
+    TResult? Function(CoachClubStateLoaded value)? loaded,
+    TResult? Function(CoachClubStateFailure value)? failure,
+    TResult? Function(CoachClubStateCreated value)? created,
+    TResult? Function(CoachClubStateUpdated value)? updated,
+    TResult? Function(CoachClubStateDeleted value)? deleted,
   }) {
     return loaded?.call(this);
   }
@@ -1599,13 +1622,13 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachClubStateInitial value)? initial,
+    TResult Function(CoachClubStateLoading value)? loading,
+    TResult Function(CoachClubStateLoaded value)? loaded,
+    TResult Function(CoachClubStateFailure value)? failure,
+    TResult Function(CoachClubStateCreated value)? created,
+    TResult Function(CoachClubStateUpdated value)? updated,
+    TResult Function(CoachClubStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -1615,10 +1638,11 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements CoachClubState {
-  const factory _Loaded(
-      {required final List<ClubModel> clubs,
-      required final List<ClubModel> filteredClubs}) = _$LoadedImpl;
+abstract class CoachClubStateLoaded implements CoachClubState {
+  const factory CoachClubStateLoaded(
+          {required final List<ClubModel> clubs,
+          required final List<ClubModel> filteredClubs}) =
+      _$CoachClubStateLoadedImpl;
 
   List<ClubModel> get clubs;
   List<ClubModel> get filteredClubs;
@@ -1626,25 +1650,26 @@ abstract class _Loaded implements CoachClubState {
   /// Create a copy of CoachClubState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachClubStateLoadedImplCopyWith<_$CoachClubStateLoadedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubStateFailureImplCopyWith<$Res> {
+  factory _$$CoachClubStateFailureImplCopyWith(
+          _$CoachClubStateFailureImpl value,
+          $Res Function(_$CoachClubStateFailureImpl) then) =
+      __$$CoachClubStateFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$CoachClubStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
+class __$$CoachClubStateFailureImplCopyWithImpl<$Res>
+    extends _$CoachClubStateCopyWithImpl<$Res, _$CoachClubStateFailureImpl>
+    implements _$$CoachClubStateFailureImplCopyWith<$Res> {
+  __$$CoachClubStateFailureImplCopyWithImpl(_$CoachClubStateFailureImpl _value,
+      $Res Function(_$CoachClubStateFailureImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubState
@@ -1654,7 +1679,7 @@ class __$$FailureImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$FailureImpl(
+    return _then(_$CoachClubStateFailureImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1665,8 +1690,8 @@ class __$$FailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl(this.message);
+class _$CoachClubStateFailureImpl implements CoachClubStateFailure {
+  const _$CoachClubStateFailureImpl(this.message);
 
   @override
   final String message;
@@ -1680,7 +1705,7 @@ class _$FailureImpl implements _Failure {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
+            other is _$CoachClubStateFailureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -1692,8 +1717,9 @@ class _$FailureImpl implements _Failure {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
+  _$$CoachClubStateFailureImplCopyWith<_$CoachClubStateFailureImpl>
+      get copyWith => __$$CoachClubStateFailureImplCopyWithImpl<
+          _$CoachClubStateFailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1748,13 +1774,13 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachClubStateInitial value) initial,
+    required TResult Function(CoachClubStateLoading value) loading,
+    required TResult Function(CoachClubStateLoaded value) loaded,
+    required TResult Function(CoachClubStateFailure value) failure,
+    required TResult Function(CoachClubStateCreated value) created,
+    required TResult Function(CoachClubStateUpdated value) updated,
+    required TResult Function(CoachClubStateDeleted value) deleted,
   }) {
     return failure(this);
   }
@@ -1762,13 +1788,13 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachClubStateInitial value)? initial,
+    TResult? Function(CoachClubStateLoading value)? loading,
+    TResult? Function(CoachClubStateLoaded value)? loaded,
+    TResult? Function(CoachClubStateFailure value)? failure,
+    TResult? Function(CoachClubStateCreated value)? created,
+    TResult? Function(CoachClubStateUpdated value)? updated,
+    TResult? Function(CoachClubStateDeleted value)? deleted,
   }) {
     return failure?.call(this);
   }
@@ -1776,13 +1802,13 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachClubStateInitial value)? initial,
+    TResult Function(CoachClubStateLoading value)? loading,
+    TResult Function(CoachClubStateLoaded value)? loaded,
+    TResult Function(CoachClubStateFailure value)? failure,
+    TResult Function(CoachClubStateCreated value)? created,
+    TResult Function(CoachClubStateUpdated value)? updated,
+    TResult Function(CoachClubStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1792,23 +1818,25 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements CoachClubState {
-  const factory _Failure(final String message) = _$FailureImpl;
+abstract class CoachClubStateFailure implements CoachClubState {
+  const factory CoachClubStateFailure(final String message) =
+      _$CoachClubStateFailureImpl;
 
   String get message;
 
   /// Create a copy of CoachClubState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachClubStateFailureImplCopyWith<_$CoachClubStateFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CreatedImplCopyWith<$Res> {
-  factory _$$CreatedImplCopyWith(
-          _$CreatedImpl value, $Res Function(_$CreatedImpl) then) =
-      __$$CreatedImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubStateCreatedImplCopyWith<$Res> {
+  factory _$$CoachClubStateCreatedImplCopyWith(
+          _$CoachClubStateCreatedImpl value,
+          $Res Function(_$CoachClubStateCreatedImpl) then) =
+      __$$CoachClubStateCreatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ClubModel club});
 
@@ -1816,11 +1844,11 @@ abstract class _$$CreatedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CreatedImplCopyWithImpl<$Res>
-    extends _$CoachClubStateCopyWithImpl<$Res, _$CreatedImpl>
-    implements _$$CreatedImplCopyWith<$Res> {
-  __$$CreatedImplCopyWithImpl(
-      _$CreatedImpl _value, $Res Function(_$CreatedImpl) _then)
+class __$$CoachClubStateCreatedImplCopyWithImpl<$Res>
+    extends _$CoachClubStateCopyWithImpl<$Res, _$CoachClubStateCreatedImpl>
+    implements _$$CoachClubStateCreatedImplCopyWith<$Res> {
+  __$$CoachClubStateCreatedImplCopyWithImpl(_$CoachClubStateCreatedImpl _value,
+      $Res Function(_$CoachClubStateCreatedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubState
@@ -1830,7 +1858,7 @@ class __$$CreatedImplCopyWithImpl<$Res>
   $Res call({
     Object? club = null,
   }) {
-    return _then(_$CreatedImpl(
+    return _then(_$CoachClubStateCreatedImpl(
       null == club
           ? _value.club
           : club // ignore: cast_nullable_to_non_nullable
@@ -1851,8 +1879,8 @@ class __$$CreatedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreatedImpl implements _Created {
-  const _$CreatedImpl(this.club);
+class _$CoachClubStateCreatedImpl implements CoachClubStateCreated {
+  const _$CoachClubStateCreatedImpl(this.club);
 
   @override
   final ClubModel club;
@@ -1866,7 +1894,7 @@ class _$CreatedImpl implements _Created {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreatedImpl &&
+            other is _$CoachClubStateCreatedImpl &&
             (identical(other.club, club) || other.club == club));
   }
 
@@ -1878,8 +1906,9 @@ class _$CreatedImpl implements _Created {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreatedImplCopyWith<_$CreatedImpl> get copyWith =>
-      __$$CreatedImplCopyWithImpl<_$CreatedImpl>(this, _$identity);
+  _$$CoachClubStateCreatedImplCopyWith<_$CoachClubStateCreatedImpl>
+      get copyWith => __$$CoachClubStateCreatedImplCopyWithImpl<
+          _$CoachClubStateCreatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1934,13 +1963,13 @@ class _$CreatedImpl implements _Created {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachClubStateInitial value) initial,
+    required TResult Function(CoachClubStateLoading value) loading,
+    required TResult Function(CoachClubStateLoaded value) loaded,
+    required TResult Function(CoachClubStateFailure value) failure,
+    required TResult Function(CoachClubStateCreated value) created,
+    required TResult Function(CoachClubStateUpdated value) updated,
+    required TResult Function(CoachClubStateDeleted value) deleted,
   }) {
     return created(this);
   }
@@ -1948,13 +1977,13 @@ class _$CreatedImpl implements _Created {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachClubStateInitial value)? initial,
+    TResult? Function(CoachClubStateLoading value)? loading,
+    TResult? Function(CoachClubStateLoaded value)? loaded,
+    TResult? Function(CoachClubStateFailure value)? failure,
+    TResult? Function(CoachClubStateCreated value)? created,
+    TResult? Function(CoachClubStateUpdated value)? updated,
+    TResult? Function(CoachClubStateDeleted value)? deleted,
   }) {
     return created?.call(this);
   }
@@ -1962,13 +1991,13 @@ class _$CreatedImpl implements _Created {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachClubStateInitial value)? initial,
+    TResult Function(CoachClubStateLoading value)? loading,
+    TResult Function(CoachClubStateLoaded value)? loaded,
+    TResult Function(CoachClubStateFailure value)? failure,
+    TResult Function(CoachClubStateCreated value)? created,
+    TResult Function(CoachClubStateUpdated value)? updated,
+    TResult Function(CoachClubStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (created != null) {
@@ -1978,23 +2007,25 @@ class _$CreatedImpl implements _Created {
   }
 }
 
-abstract class _Created implements CoachClubState {
-  const factory _Created(final ClubModel club) = _$CreatedImpl;
+abstract class CoachClubStateCreated implements CoachClubState {
+  const factory CoachClubStateCreated(final ClubModel club) =
+      _$CoachClubStateCreatedImpl;
 
   ClubModel get club;
 
   /// Create a copy of CoachClubState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreatedImplCopyWith<_$CreatedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachClubStateCreatedImplCopyWith<_$CoachClubStateCreatedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdatedImplCopyWith<$Res> {
-  factory _$$UpdatedImplCopyWith(
-          _$UpdatedImpl value, $Res Function(_$UpdatedImpl) then) =
-      __$$UpdatedImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubStateUpdatedImplCopyWith<$Res> {
+  factory _$$CoachClubStateUpdatedImplCopyWith(
+          _$CoachClubStateUpdatedImpl value,
+          $Res Function(_$CoachClubStateUpdatedImpl) then) =
+      __$$CoachClubStateUpdatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ClubModel club});
 
@@ -2002,11 +2033,11 @@ abstract class _$$UpdatedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$UpdatedImplCopyWithImpl<$Res>
-    extends _$CoachClubStateCopyWithImpl<$Res, _$UpdatedImpl>
-    implements _$$UpdatedImplCopyWith<$Res> {
-  __$$UpdatedImplCopyWithImpl(
-      _$UpdatedImpl _value, $Res Function(_$UpdatedImpl) _then)
+class __$$CoachClubStateUpdatedImplCopyWithImpl<$Res>
+    extends _$CoachClubStateCopyWithImpl<$Res, _$CoachClubStateUpdatedImpl>
+    implements _$$CoachClubStateUpdatedImplCopyWith<$Res> {
+  __$$CoachClubStateUpdatedImplCopyWithImpl(_$CoachClubStateUpdatedImpl _value,
+      $Res Function(_$CoachClubStateUpdatedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubState
@@ -2016,7 +2047,7 @@ class __$$UpdatedImplCopyWithImpl<$Res>
   $Res call({
     Object? club = null,
   }) {
-    return _then(_$UpdatedImpl(
+    return _then(_$CoachClubStateUpdatedImpl(
       null == club
           ? _value.club
           : club // ignore: cast_nullable_to_non_nullable
@@ -2037,8 +2068,8 @@ class __$$UpdatedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdatedImpl implements _Updated {
-  const _$UpdatedImpl(this.club);
+class _$CoachClubStateUpdatedImpl implements CoachClubStateUpdated {
+  const _$CoachClubStateUpdatedImpl(this.club);
 
   @override
   final ClubModel club;
@@ -2052,7 +2083,7 @@ class _$UpdatedImpl implements _Updated {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdatedImpl &&
+            other is _$CoachClubStateUpdatedImpl &&
             (identical(other.club, club) || other.club == club));
   }
 
@@ -2064,8 +2095,9 @@ class _$UpdatedImpl implements _Updated {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdatedImplCopyWith<_$UpdatedImpl> get copyWith =>
-      __$$UpdatedImplCopyWithImpl<_$UpdatedImpl>(this, _$identity);
+  _$$CoachClubStateUpdatedImplCopyWith<_$CoachClubStateUpdatedImpl>
+      get copyWith => __$$CoachClubStateUpdatedImplCopyWithImpl<
+          _$CoachClubStateUpdatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2120,13 +2152,13 @@ class _$UpdatedImpl implements _Updated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachClubStateInitial value) initial,
+    required TResult Function(CoachClubStateLoading value) loading,
+    required TResult Function(CoachClubStateLoaded value) loaded,
+    required TResult Function(CoachClubStateFailure value) failure,
+    required TResult Function(CoachClubStateCreated value) created,
+    required TResult Function(CoachClubStateUpdated value) updated,
+    required TResult Function(CoachClubStateDeleted value) deleted,
   }) {
     return updated(this);
   }
@@ -2134,13 +2166,13 @@ class _$UpdatedImpl implements _Updated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachClubStateInitial value)? initial,
+    TResult? Function(CoachClubStateLoading value)? loading,
+    TResult? Function(CoachClubStateLoaded value)? loaded,
+    TResult? Function(CoachClubStateFailure value)? failure,
+    TResult? Function(CoachClubStateCreated value)? created,
+    TResult? Function(CoachClubStateUpdated value)? updated,
+    TResult? Function(CoachClubStateDeleted value)? deleted,
   }) {
     return updated?.call(this);
   }
@@ -2148,13 +2180,13 @@ class _$UpdatedImpl implements _Updated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachClubStateInitial value)? initial,
+    TResult Function(CoachClubStateLoading value)? loading,
+    TResult Function(CoachClubStateLoaded value)? loaded,
+    TResult Function(CoachClubStateFailure value)? failure,
+    TResult Function(CoachClubStateCreated value)? created,
+    TResult Function(CoachClubStateUpdated value)? updated,
+    TResult Function(CoachClubStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (updated != null) {
@@ -2164,23 +2196,25 @@ class _$UpdatedImpl implements _Updated {
   }
 }
 
-abstract class _Updated implements CoachClubState {
-  const factory _Updated(final ClubModel club) = _$UpdatedImpl;
+abstract class CoachClubStateUpdated implements CoachClubState {
+  const factory CoachClubStateUpdated(final ClubModel club) =
+      _$CoachClubStateUpdatedImpl;
 
   ClubModel get club;
 
   /// Create a copy of CoachClubState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdatedImplCopyWith<_$UpdatedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachClubStateUpdatedImplCopyWith<_$CoachClubStateUpdatedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeletedImplCopyWith<$Res> {
-  factory _$$DeletedImplCopyWith(
-          _$DeletedImpl value, $Res Function(_$DeletedImpl) then) =
-      __$$DeletedImplCopyWithImpl<$Res>;
+abstract class _$$CoachClubStateDeletedImplCopyWith<$Res> {
+  factory _$$CoachClubStateDeletedImplCopyWith(
+          _$CoachClubStateDeletedImpl value,
+          $Res Function(_$CoachClubStateDeletedImpl) then) =
+      __$$CoachClubStateDeletedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ClubModel club});
 
@@ -2188,11 +2222,11 @@ abstract class _$$DeletedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DeletedImplCopyWithImpl<$Res>
-    extends _$CoachClubStateCopyWithImpl<$Res, _$DeletedImpl>
-    implements _$$DeletedImplCopyWith<$Res> {
-  __$$DeletedImplCopyWithImpl(
-      _$DeletedImpl _value, $Res Function(_$DeletedImpl) _then)
+class __$$CoachClubStateDeletedImplCopyWithImpl<$Res>
+    extends _$CoachClubStateCopyWithImpl<$Res, _$CoachClubStateDeletedImpl>
+    implements _$$CoachClubStateDeletedImplCopyWith<$Res> {
+  __$$CoachClubStateDeletedImplCopyWithImpl(_$CoachClubStateDeletedImpl _value,
+      $Res Function(_$CoachClubStateDeletedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachClubState
@@ -2202,7 +2236,7 @@ class __$$DeletedImplCopyWithImpl<$Res>
   $Res call({
     Object? club = null,
   }) {
-    return _then(_$DeletedImpl(
+    return _then(_$CoachClubStateDeletedImpl(
       null == club
           ? _value.club
           : club // ignore: cast_nullable_to_non_nullable
@@ -2223,8 +2257,8 @@ class __$$DeletedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeletedImpl implements _Deleted {
-  const _$DeletedImpl(this.club);
+class _$CoachClubStateDeletedImpl implements CoachClubStateDeleted {
+  const _$CoachClubStateDeletedImpl(this.club);
 
   @override
   final ClubModel club;
@@ -2238,7 +2272,7 @@ class _$DeletedImpl implements _Deleted {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeletedImpl &&
+            other is _$CoachClubStateDeletedImpl &&
             (identical(other.club, club) || other.club == club));
   }
 
@@ -2250,8 +2284,9 @@ class _$DeletedImpl implements _Deleted {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeletedImplCopyWith<_$DeletedImpl> get copyWith =>
-      __$$DeletedImplCopyWithImpl<_$DeletedImpl>(this, _$identity);
+  _$$CoachClubStateDeletedImplCopyWith<_$CoachClubStateDeletedImpl>
+      get copyWith => __$$CoachClubStateDeletedImplCopyWithImpl<
+          _$CoachClubStateDeletedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2306,13 +2341,13 @@ class _$DeletedImpl implements _Deleted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachClubStateInitial value) initial,
+    required TResult Function(CoachClubStateLoading value) loading,
+    required TResult Function(CoachClubStateLoaded value) loaded,
+    required TResult Function(CoachClubStateFailure value) failure,
+    required TResult Function(CoachClubStateCreated value) created,
+    required TResult Function(CoachClubStateUpdated value) updated,
+    required TResult Function(CoachClubStateDeleted value) deleted,
   }) {
     return deleted(this);
   }
@@ -2320,13 +2355,13 @@ class _$DeletedImpl implements _Deleted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachClubStateInitial value)? initial,
+    TResult? Function(CoachClubStateLoading value)? loading,
+    TResult? Function(CoachClubStateLoaded value)? loaded,
+    TResult? Function(CoachClubStateFailure value)? failure,
+    TResult? Function(CoachClubStateCreated value)? created,
+    TResult? Function(CoachClubStateUpdated value)? updated,
+    TResult? Function(CoachClubStateDeleted value)? deleted,
   }) {
     return deleted?.call(this);
   }
@@ -2334,13 +2369,13 @@ class _$DeletedImpl implements _Deleted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachClubStateInitial value)? initial,
+    TResult Function(CoachClubStateLoading value)? loading,
+    TResult Function(CoachClubStateLoaded value)? loaded,
+    TResult Function(CoachClubStateFailure value)? failure,
+    TResult Function(CoachClubStateCreated value)? created,
+    TResult Function(CoachClubStateUpdated value)? updated,
+    TResult Function(CoachClubStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (deleted != null) {
@@ -2350,14 +2385,15 @@ class _$DeletedImpl implements _Deleted {
   }
 }
 
-abstract class _Deleted implements CoachClubState {
-  const factory _Deleted(final ClubModel club) = _$DeletedImpl;
+abstract class CoachClubStateDeleted implements CoachClubState {
+  const factory CoachClubStateDeleted(final ClubModel club) =
+      _$CoachClubStateDeletedImpl;
 
   ClubModel get club;
 
   /// Create a copy of CoachClubState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeletedImplCopyWith<_$DeletedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachClubStateDeletedImplCopyWith<_$CoachClubStateDeletedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

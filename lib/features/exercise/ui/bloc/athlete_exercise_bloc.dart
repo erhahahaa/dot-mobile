@@ -14,29 +14,29 @@ class AthleteExerciseBloc
 
   AthleteExerciseBloc(
     this._getAllExerciseUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetExercises>(_onGetExercises);
-    on<_FilterExercises>(_onFilterExercises);
+  ) : super(const AthleteExerciseStateInitial()) {
+    on<AthleteExerciseEventClear>(_onClear);
+    on<AthleteExerciseEventGetExercises>(_onGetExercises);
+    on<AthleteExerciseEventFilterExercises>(_onFilterExercises);
   }
 
   void _onClear(
-    _Clear event,
+    AthleteExerciseEventClear event,
     Emitter<AthleteExerciseState> emit,
   ) =>
-      emit(_Initial());
+      emit(const AthleteExerciseStateInitial());
 
   void _onGetExercises(
-    _GetExercises event,
+    AthleteExerciseEventGetExercises event,
     Emitter<AthleteExerciseState> emit,
   ) async {
-    emit(_Loading());
+    emit(const AthleteExerciseStateLoading());
     final res = await _getAllExerciseUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(AthleteExerciseStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        AthleteExerciseStateLoaded(
           exercises: success,
           filteredExercises: success,
         ),
@@ -45,10 +45,10 @@ class AthleteExerciseBloc
   }
 
   void _onFilterExercises(
-    _FilterExercises event,
+    AthleteExerciseEventFilterExercises event,
     Emitter<AthleteExerciseState> emit,
   ) {
-    emit(_Loading());
+    emit(const AthleteExerciseStateLoading());
 
     state.maybeWhen(
       loaded: (exercises, _) {
@@ -61,17 +61,19 @@ class AthleteExerciseBloc
             .toList();
 
         if (finds.isEmpty) {
-          emit(_Failure('Exercise with name ${event.query} not found'));
+          emit(AthleteExerciseStateFailure(
+              'Exercise with name ${event.query} not found'));
         } else {
           emit(
-            _Loaded(
+            AthleteExerciseStateLoaded(
               exercises: exercises,
               filteredExercises: finds,
             ),
           );
         }
       },
-      orElse: () => emit(_Failure('Exercise was empty')),
+      orElse: () =>
+          emit(const AthleteExerciseStateFailure('Exercise was empty')),
     );
   }
 }

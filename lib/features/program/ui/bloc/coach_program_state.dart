@@ -2,22 +2,23 @@ part of 'coach_program_bloc.dart';
 
 @freezed
 class CoachProgramState with _$CoachProgramState {
-  const factory CoachProgramState.initial() = _Initial;
-  const factory CoachProgramState.loading() = _Loading;
+  const factory CoachProgramState.initial() = CoachProgramStateInitial;
+  const factory CoachProgramState.loading() = CoachProgramStateLoading;
   const factory CoachProgramState.loaded({
     required List<ProgramModel> programs,
     required List<ProgramModel> filteredPrograms,
-  }) = _Loaded;
-  const factory CoachProgramState.failure(String message) = _Failure;
+  }) = CoachProgramStateLoaded;
+  const factory CoachProgramState.failure(String message) =
+      CoachProgramStateFailure;
 
   // Actions
   const factory CoachProgramState.created(
     ProgramModel program,
-  ) = _Created;
+  ) = CoachProgramStateCreated;
   const factory CoachProgramState.updated(
     ProgramModel program,
-  ) = _Updated;
+  ) = CoachProgramStateUpdated;
   const factory CoachProgramState.deleted(
     ProgramModel program,
-  ) = _Deleted;
+  ) = CoachProgramStateDeleted;
 }

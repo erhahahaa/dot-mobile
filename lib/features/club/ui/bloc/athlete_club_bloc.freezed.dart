@@ -40,23 +40,23 @@ mixin _$AthleteClubEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_GetClubs value) getClubs,
-    required TResult Function(_FilterClubs value) filterClubs,
+    required TResult Function(AthleteClubEventClear value) clear,
+    required TResult Function(AthleteClubEventGetClubs value) getClubs,
+    required TResult Function(AthleteClubEventFilterClubs value) filterClubs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_GetClubs value)? getClubs,
-    TResult? Function(_FilterClubs value)? filterClubs,
+    TResult? Function(AthleteClubEventClear value)? clear,
+    TResult? Function(AthleteClubEventGetClubs value)? getClubs,
+    TResult? Function(AthleteClubEventFilterClubs value)? filterClubs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Clear value)? clear,
-    TResult Function(_GetClubs value)? getClubs,
-    TResult Function(_FilterClubs value)? filterClubs,
+    TResult Function(AthleteClubEventClear value)? clear,
+    TResult Function(AthleteClubEventGetClubs value)? getClubs,
+    TResult Function(AthleteClubEventFilterClubs value)? filterClubs,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -84,18 +84,19 @@ class _$AthleteClubEventCopyWithImpl<$Res, $Val extends AthleteClubEvent>
 }
 
 /// @nodoc
-abstract class _$$ClearImplCopyWith<$Res> {
-  factory _$$ClearImplCopyWith(
-          _$ClearImpl value, $Res Function(_$ClearImpl) then) =
-      __$$ClearImplCopyWithImpl<$Res>;
+abstract class _$$AthleteClubEventClearImplCopyWith<$Res> {
+  factory _$$AthleteClubEventClearImplCopyWith(
+          _$AthleteClubEventClearImpl value,
+          $Res Function(_$AthleteClubEventClearImpl) then) =
+      __$$AthleteClubEventClearImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearImplCopyWithImpl<$Res>
-    extends _$AthleteClubEventCopyWithImpl<$Res, _$ClearImpl>
-    implements _$$ClearImplCopyWith<$Res> {
-  __$$ClearImplCopyWithImpl(
-      _$ClearImpl _value, $Res Function(_$ClearImpl) _then)
+class __$$AthleteClubEventClearImplCopyWithImpl<$Res>
+    extends _$AthleteClubEventCopyWithImpl<$Res, _$AthleteClubEventClearImpl>
+    implements _$$AthleteClubEventClearImplCopyWith<$Res> {
+  __$$AthleteClubEventClearImplCopyWithImpl(_$AthleteClubEventClearImpl _value,
+      $Res Function(_$AthleteClubEventClearImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteClubEvent
@@ -104,8 +105,8 @@ class __$$ClearImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ClearImpl implements _Clear {
-  const _$ClearImpl();
+class _$AthleteClubEventClearImpl implements AthleteClubEventClear {
+  const _$AthleteClubEventClearImpl();
 
   @override
   String toString() {
@@ -115,7 +116,8 @@ class _$ClearImpl implements _Clear {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AthleteClubEventClearImpl);
   }
 
   @override
@@ -158,9 +160,9 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_GetClubs value) getClubs,
-    required TResult Function(_FilterClubs value) filterClubs,
+    required TResult Function(AthleteClubEventClear value) clear,
+    required TResult Function(AthleteClubEventGetClubs value) getClubs,
+    required TResult Function(AthleteClubEventFilterClubs value) filterClubs,
   }) {
     return clear(this);
   }
@@ -168,9 +170,9 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_GetClubs value)? getClubs,
-    TResult? Function(_FilterClubs value)? filterClubs,
+    TResult? Function(AthleteClubEventClear value)? clear,
+    TResult? Function(AthleteClubEventGetClubs value)? getClubs,
+    TResult? Function(AthleteClubEventFilterClubs value)? filterClubs,
   }) {
     return clear?.call(this);
   }
@@ -178,9 +180,9 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Clear value)? clear,
-    TResult Function(_GetClubs value)? getClubs,
-    TResult Function(_FilterClubs value)? filterClubs,
+    TResult Function(AthleteClubEventClear value)? clear,
+    TResult Function(AthleteClubEventGetClubs value)? getClubs,
+    TResult Function(AthleteClubEventFilterClubs value)? filterClubs,
     required TResult orElse(),
   }) {
     if (clear != null) {
@@ -190,23 +192,25 @@ class _$ClearImpl implements _Clear {
   }
 }
 
-abstract class _Clear implements AthleteClubEvent {
-  const factory _Clear() = _$ClearImpl;
+abstract class AthleteClubEventClear implements AthleteClubEvent {
+  const factory AthleteClubEventClear() = _$AthleteClubEventClearImpl;
 }
 
 /// @nodoc
-abstract class _$$GetClubsImplCopyWith<$Res> {
-  factory _$$GetClubsImplCopyWith(
-          _$GetClubsImpl value, $Res Function(_$GetClubsImpl) then) =
-      __$$GetClubsImplCopyWithImpl<$Res>;
+abstract class _$$AthleteClubEventGetClubsImplCopyWith<$Res> {
+  factory _$$AthleteClubEventGetClubsImplCopyWith(
+          _$AthleteClubEventGetClubsImpl value,
+          $Res Function(_$AthleteClubEventGetClubsImpl) then) =
+      __$$AthleteClubEventGetClubsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GetClubsImplCopyWithImpl<$Res>
-    extends _$AthleteClubEventCopyWithImpl<$Res, _$GetClubsImpl>
-    implements _$$GetClubsImplCopyWith<$Res> {
-  __$$GetClubsImplCopyWithImpl(
-      _$GetClubsImpl _value, $Res Function(_$GetClubsImpl) _then)
+class __$$AthleteClubEventGetClubsImplCopyWithImpl<$Res>
+    extends _$AthleteClubEventCopyWithImpl<$Res, _$AthleteClubEventGetClubsImpl>
+    implements _$$AthleteClubEventGetClubsImplCopyWith<$Res> {
+  __$$AthleteClubEventGetClubsImplCopyWithImpl(
+      _$AthleteClubEventGetClubsImpl _value,
+      $Res Function(_$AthleteClubEventGetClubsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteClubEvent
@@ -215,8 +219,8 @@ class __$$GetClubsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetClubsImpl implements _GetClubs {
-  const _$GetClubsImpl();
+class _$AthleteClubEventGetClubsImpl implements AthleteClubEventGetClubs {
+  const _$AthleteClubEventGetClubsImpl();
 
   @override
   String toString() {
@@ -226,7 +230,8 @@ class _$GetClubsImpl implements _GetClubs {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetClubsImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AthleteClubEventGetClubsImpl);
   }
 
   @override
@@ -269,9 +274,9 @@ class _$GetClubsImpl implements _GetClubs {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_GetClubs value) getClubs,
-    required TResult Function(_FilterClubs value) filterClubs,
+    required TResult Function(AthleteClubEventClear value) clear,
+    required TResult Function(AthleteClubEventGetClubs value) getClubs,
+    required TResult Function(AthleteClubEventFilterClubs value) filterClubs,
   }) {
     return getClubs(this);
   }
@@ -279,9 +284,9 @@ class _$GetClubsImpl implements _GetClubs {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_GetClubs value)? getClubs,
-    TResult? Function(_FilterClubs value)? filterClubs,
+    TResult? Function(AthleteClubEventClear value)? clear,
+    TResult? Function(AthleteClubEventGetClubs value)? getClubs,
+    TResult? Function(AthleteClubEventFilterClubs value)? filterClubs,
   }) {
     return getClubs?.call(this);
   }
@@ -289,9 +294,9 @@ class _$GetClubsImpl implements _GetClubs {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Clear value)? clear,
-    TResult Function(_GetClubs value)? getClubs,
-    TResult Function(_FilterClubs value)? filterClubs,
+    TResult Function(AthleteClubEventClear value)? clear,
+    TResult Function(AthleteClubEventGetClubs value)? getClubs,
+    TResult Function(AthleteClubEventFilterClubs value)? filterClubs,
     required TResult orElse(),
   }) {
     if (getClubs != null) {
@@ -301,25 +306,28 @@ class _$GetClubsImpl implements _GetClubs {
   }
 }
 
-abstract class _GetClubs implements AthleteClubEvent {
-  const factory _GetClubs() = _$GetClubsImpl;
+abstract class AthleteClubEventGetClubs implements AthleteClubEvent {
+  const factory AthleteClubEventGetClubs() = _$AthleteClubEventGetClubsImpl;
 }
 
 /// @nodoc
-abstract class _$$FilterClubsImplCopyWith<$Res> {
-  factory _$$FilterClubsImplCopyWith(
-          _$FilterClubsImpl value, $Res Function(_$FilterClubsImpl) then) =
-      __$$FilterClubsImplCopyWithImpl<$Res>;
+abstract class _$$AthleteClubEventFilterClubsImplCopyWith<$Res> {
+  factory _$$AthleteClubEventFilterClubsImplCopyWith(
+          _$AthleteClubEventFilterClubsImpl value,
+          $Res Function(_$AthleteClubEventFilterClubsImpl) then) =
+      __$$AthleteClubEventFilterClubsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String query});
 }
 
 /// @nodoc
-class __$$FilterClubsImplCopyWithImpl<$Res>
-    extends _$AthleteClubEventCopyWithImpl<$Res, _$FilterClubsImpl>
-    implements _$$FilterClubsImplCopyWith<$Res> {
-  __$$FilterClubsImplCopyWithImpl(
-      _$FilterClubsImpl _value, $Res Function(_$FilterClubsImpl) _then)
+class __$$AthleteClubEventFilterClubsImplCopyWithImpl<$Res>
+    extends _$AthleteClubEventCopyWithImpl<$Res,
+        _$AthleteClubEventFilterClubsImpl>
+    implements _$$AthleteClubEventFilterClubsImplCopyWith<$Res> {
+  __$$AthleteClubEventFilterClubsImplCopyWithImpl(
+      _$AthleteClubEventFilterClubsImpl _value,
+      $Res Function(_$AthleteClubEventFilterClubsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteClubEvent
@@ -329,7 +337,7 @@ class __$$FilterClubsImplCopyWithImpl<$Res>
   $Res call({
     Object? query = null,
   }) {
-    return _then(_$FilterClubsImpl(
+    return _then(_$AthleteClubEventFilterClubsImpl(
       null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
@@ -340,8 +348,8 @@ class __$$FilterClubsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FilterClubsImpl implements _FilterClubs {
-  const _$FilterClubsImpl(this.query);
+class _$AthleteClubEventFilterClubsImpl implements AthleteClubEventFilterClubs {
+  const _$AthleteClubEventFilterClubsImpl(this.query);
 
   @override
   final String query;
@@ -355,7 +363,7 @@ class _$FilterClubsImpl implements _FilterClubs {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FilterClubsImpl &&
+            other is _$AthleteClubEventFilterClubsImpl &&
             (identical(other.query, query) || other.query == query));
   }
 
@@ -367,8 +375,9 @@ class _$FilterClubsImpl implements _FilterClubs {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FilterClubsImplCopyWith<_$FilterClubsImpl> get copyWith =>
-      __$$FilterClubsImplCopyWithImpl<_$FilterClubsImpl>(this, _$identity);
+  _$$AthleteClubEventFilterClubsImplCopyWith<_$AthleteClubEventFilterClubsImpl>
+      get copyWith => __$$AthleteClubEventFilterClubsImplCopyWithImpl<
+          _$AthleteClubEventFilterClubsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -407,9 +416,9 @@ class _$FilterClubsImpl implements _FilterClubs {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_GetClubs value) getClubs,
-    required TResult Function(_FilterClubs value) filterClubs,
+    required TResult Function(AthleteClubEventClear value) clear,
+    required TResult Function(AthleteClubEventGetClubs value) getClubs,
+    required TResult Function(AthleteClubEventFilterClubs value) filterClubs,
   }) {
     return filterClubs(this);
   }
@@ -417,9 +426,9 @@ class _$FilterClubsImpl implements _FilterClubs {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_GetClubs value)? getClubs,
-    TResult? Function(_FilterClubs value)? filterClubs,
+    TResult? Function(AthleteClubEventClear value)? clear,
+    TResult? Function(AthleteClubEventGetClubs value)? getClubs,
+    TResult? Function(AthleteClubEventFilterClubs value)? filterClubs,
   }) {
     return filterClubs?.call(this);
   }
@@ -427,9 +436,9 @@ class _$FilterClubsImpl implements _FilterClubs {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Clear value)? clear,
-    TResult Function(_GetClubs value)? getClubs,
-    TResult Function(_FilterClubs value)? filterClubs,
+    TResult Function(AthleteClubEventClear value)? clear,
+    TResult Function(AthleteClubEventGetClubs value)? getClubs,
+    TResult Function(AthleteClubEventFilterClubs value)? filterClubs,
     required TResult orElse(),
   }) {
     if (filterClubs != null) {
@@ -439,16 +448,17 @@ class _$FilterClubsImpl implements _FilterClubs {
   }
 }
 
-abstract class _FilterClubs implements AthleteClubEvent {
-  const factory _FilterClubs(final String query) = _$FilterClubsImpl;
+abstract class AthleteClubEventFilterClubs implements AthleteClubEvent {
+  const factory AthleteClubEventFilterClubs(final String query) =
+      _$AthleteClubEventFilterClubsImpl;
 
   String get query;
 
   /// Create a copy of AthleteClubEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FilterClubsImplCopyWith<_$FilterClubsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AthleteClubEventFilterClubsImplCopyWith<_$AthleteClubEventFilterClubsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -484,26 +494,26 @@ mixin _$AthleteClubState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(AthleteClubStateInitial value) initial,
+    required TResult Function(AthleteClubStateLoading value) loading,
+    required TResult Function(AthleteClubStateLoaded value) loaded,
+    required TResult Function(AthleteClubStateFailure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(AthleteClubStateInitial value)? initial,
+    TResult? Function(AthleteClubStateLoading value)? loading,
+    TResult? Function(AthleteClubStateLoaded value)? loaded,
+    TResult? Function(AthleteClubStateFailure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
+    TResult Function(AthleteClubStateInitial value)? initial,
+    TResult Function(AthleteClubStateLoading value)? loading,
+    TResult Function(AthleteClubStateLoaded value)? loaded,
+    TResult Function(AthleteClubStateFailure value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -531,18 +541,20 @@ class _$AthleteClubStateCopyWithImpl<$Res, $Val extends AthleteClubState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$AthleteClubStateInitialImplCopyWith<$Res> {
+  factory _$$AthleteClubStateInitialImplCopyWith(
+          _$AthleteClubStateInitialImpl value,
+          $Res Function(_$AthleteClubStateInitialImpl) then) =
+      __$$AthleteClubStateInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$AthleteClubStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$AthleteClubStateInitialImplCopyWithImpl<$Res>
+    extends _$AthleteClubStateCopyWithImpl<$Res, _$AthleteClubStateInitialImpl>
+    implements _$$AthleteClubStateInitialImplCopyWith<$Res> {
+  __$$AthleteClubStateInitialImplCopyWithImpl(
+      _$AthleteClubStateInitialImpl _value,
+      $Res Function(_$AthleteClubStateInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteClubState
@@ -551,8 +563,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$AthleteClubStateInitialImpl implements AthleteClubStateInitial {
+  const _$AthleteClubStateInitialImpl();
 
   @override
   String toString() {
@@ -562,7 +574,8 @@ class _$InitialImpl implements _Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AthleteClubStateInitialImpl);
   }
 
   @override
@@ -612,10 +625,10 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(AthleteClubStateInitial value) initial,
+    required TResult Function(AthleteClubStateLoading value) loading,
+    required TResult Function(AthleteClubStateLoaded value) loaded,
+    required TResult Function(AthleteClubStateFailure value) failure,
   }) {
     return initial(this);
   }
@@ -623,10 +636,10 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(AthleteClubStateInitial value)? initial,
+    TResult? Function(AthleteClubStateLoading value)? loading,
+    TResult? Function(AthleteClubStateLoaded value)? loaded,
+    TResult? Function(AthleteClubStateFailure value)? failure,
   }) {
     return initial?.call(this);
   }
@@ -634,10 +647,10 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
+    TResult Function(AthleteClubStateInitial value)? initial,
+    TResult Function(AthleteClubStateLoading value)? loading,
+    TResult Function(AthleteClubStateLoaded value)? loaded,
+    TResult Function(AthleteClubStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -647,23 +660,25 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements AthleteClubState {
-  const factory _Initial() = _$InitialImpl;
+abstract class AthleteClubStateInitial implements AthleteClubState {
+  const factory AthleteClubStateInitial() = _$AthleteClubStateInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$AthleteClubStateLoadingImplCopyWith<$Res> {
+  factory _$$AthleteClubStateLoadingImplCopyWith(
+          _$AthleteClubStateLoadingImpl value,
+          $Res Function(_$AthleteClubStateLoadingImpl) then) =
+      __$$AthleteClubStateLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$AthleteClubStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$AthleteClubStateLoadingImplCopyWithImpl<$Res>
+    extends _$AthleteClubStateCopyWithImpl<$Res, _$AthleteClubStateLoadingImpl>
+    implements _$$AthleteClubStateLoadingImplCopyWith<$Res> {
+  __$$AthleteClubStateLoadingImplCopyWithImpl(
+      _$AthleteClubStateLoadingImpl _value,
+      $Res Function(_$AthleteClubStateLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteClubState
@@ -672,8 +687,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$AthleteClubStateLoadingImpl implements AthleteClubStateLoading {
+  const _$AthleteClubStateLoadingImpl();
 
   @override
   String toString() {
@@ -683,7 +698,8 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AthleteClubStateLoadingImpl);
   }
 
   @override
@@ -733,10 +749,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(AthleteClubStateInitial value) initial,
+    required TResult Function(AthleteClubStateLoading value) loading,
+    required TResult Function(AthleteClubStateLoaded value) loaded,
+    required TResult Function(AthleteClubStateFailure value) failure,
   }) {
     return loading(this);
   }
@@ -744,10 +760,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(AthleteClubStateInitial value)? initial,
+    TResult? Function(AthleteClubStateLoading value)? loading,
+    TResult? Function(AthleteClubStateLoaded value)? loaded,
+    TResult? Function(AthleteClubStateFailure value)? failure,
   }) {
     return loading?.call(this);
   }
@@ -755,10 +771,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
+    TResult Function(AthleteClubStateInitial value)? initial,
+    TResult Function(AthleteClubStateLoading value)? loading,
+    TResult Function(AthleteClubStateLoaded value)? loaded,
+    TResult Function(AthleteClubStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -768,25 +784,27 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements AthleteClubState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class AthleteClubStateLoading implements AthleteClubState {
+  const factory AthleteClubStateLoading() = _$AthleteClubStateLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$AthleteClubStateLoadedImplCopyWith<$Res> {
+  factory _$$AthleteClubStateLoadedImplCopyWith(
+          _$AthleteClubStateLoadedImpl value,
+          $Res Function(_$AthleteClubStateLoadedImpl) then) =
+      __$$AthleteClubStateLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<ClubModel> clubs, List<ClubModel> filteredClubs});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$AthleteClubStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$AthleteClubStateLoadedImplCopyWithImpl<$Res>
+    extends _$AthleteClubStateCopyWithImpl<$Res, _$AthleteClubStateLoadedImpl>
+    implements _$$AthleteClubStateLoadedImplCopyWith<$Res> {
+  __$$AthleteClubStateLoadedImplCopyWithImpl(
+      _$AthleteClubStateLoadedImpl _value,
+      $Res Function(_$AthleteClubStateLoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteClubState
@@ -797,7 +815,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
     Object? clubs = null,
     Object? filteredClubs = null,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_$AthleteClubStateLoadedImpl(
       clubs: null == clubs
           ? _value._clubs
           : clubs // ignore: cast_nullable_to_non_nullable
@@ -812,8 +830,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(
+class _$AthleteClubStateLoadedImpl implements AthleteClubStateLoaded {
+  const _$AthleteClubStateLoadedImpl(
       {required final List<ClubModel> clubs,
       required final List<ClubModel> filteredClubs})
       : _clubs = clubs,
@@ -844,7 +862,7 @@ class _$LoadedImpl implements _Loaded {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
+            other is _$AthleteClubStateLoadedImpl &&
             const DeepCollectionEquality().equals(other._clubs, _clubs) &&
             const DeepCollectionEquality()
                 .equals(other._filteredClubs, _filteredClubs));
@@ -861,8 +879,9 @@ class _$LoadedImpl implements _Loaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$AthleteClubStateLoadedImplCopyWith<_$AthleteClubStateLoadedImpl>
+      get copyWith => __$$AthleteClubStateLoadedImplCopyWithImpl<
+          _$AthleteClubStateLoadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -908,10 +927,10 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(AthleteClubStateInitial value) initial,
+    required TResult Function(AthleteClubStateLoading value) loading,
+    required TResult Function(AthleteClubStateLoaded value) loaded,
+    required TResult Function(AthleteClubStateFailure value) failure,
   }) {
     return loaded(this);
   }
@@ -919,10 +938,10 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(AthleteClubStateInitial value)? initial,
+    TResult? Function(AthleteClubStateLoading value)? loading,
+    TResult? Function(AthleteClubStateLoaded value)? loaded,
+    TResult? Function(AthleteClubStateFailure value)? failure,
   }) {
     return loaded?.call(this);
   }
@@ -930,10 +949,10 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
+    TResult Function(AthleteClubStateInitial value)? initial,
+    TResult Function(AthleteClubStateLoading value)? loading,
+    TResult Function(AthleteClubStateLoaded value)? loaded,
+    TResult Function(AthleteClubStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -943,10 +962,11 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements AthleteClubState {
-  const factory _Loaded(
-      {required final List<ClubModel> clubs,
-      required final List<ClubModel> filteredClubs}) = _$LoadedImpl;
+abstract class AthleteClubStateLoaded implements AthleteClubState {
+  const factory AthleteClubStateLoaded(
+          {required final List<ClubModel> clubs,
+          required final List<ClubModel> filteredClubs}) =
+      _$AthleteClubStateLoadedImpl;
 
   List<ClubModel> get clubs;
   List<ClubModel> get filteredClubs;
@@ -954,25 +974,27 @@ abstract class _Loaded implements AthleteClubState {
   /// Create a copy of AthleteClubState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AthleteClubStateLoadedImplCopyWith<_$AthleteClubStateLoadedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
+abstract class _$$AthleteClubStateFailureImplCopyWith<$Res> {
+  factory _$$AthleteClubStateFailureImplCopyWith(
+          _$AthleteClubStateFailureImpl value,
+          $Res Function(_$AthleteClubStateFailureImpl) then) =
+      __$$AthleteClubStateFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$AthleteClubStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
+class __$$AthleteClubStateFailureImplCopyWithImpl<$Res>
+    extends _$AthleteClubStateCopyWithImpl<$Res, _$AthleteClubStateFailureImpl>
+    implements _$$AthleteClubStateFailureImplCopyWith<$Res> {
+  __$$AthleteClubStateFailureImplCopyWithImpl(
+      _$AthleteClubStateFailureImpl _value,
+      $Res Function(_$AthleteClubStateFailureImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteClubState
@@ -982,7 +1004,7 @@ class __$$FailureImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$FailureImpl(
+    return _then(_$AthleteClubStateFailureImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -993,8 +1015,8 @@ class __$$FailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl(this.message);
+class _$AthleteClubStateFailureImpl implements AthleteClubStateFailure {
+  const _$AthleteClubStateFailureImpl(this.message);
 
   @override
   final String message;
@@ -1008,7 +1030,7 @@ class _$FailureImpl implements _Failure {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
+            other is _$AthleteClubStateFailureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -1020,8 +1042,9 @@ class _$FailureImpl implements _Failure {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
+  _$$AthleteClubStateFailureImplCopyWith<_$AthleteClubStateFailureImpl>
+      get copyWith => __$$AthleteClubStateFailureImplCopyWithImpl<
+          _$AthleteClubStateFailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1067,10 +1090,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(AthleteClubStateInitial value) initial,
+    required TResult Function(AthleteClubStateLoading value) loading,
+    required TResult Function(AthleteClubStateLoaded value) loaded,
+    required TResult Function(AthleteClubStateFailure value) failure,
   }) {
     return failure(this);
   }
@@ -1078,10 +1101,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(AthleteClubStateInitial value)? initial,
+    TResult? Function(AthleteClubStateLoading value)? loading,
+    TResult? Function(AthleteClubStateLoaded value)? loaded,
+    TResult? Function(AthleteClubStateFailure value)? failure,
   }) {
     return failure?.call(this);
   }
@@ -1089,10 +1112,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
+    TResult Function(AthleteClubStateInitial value)? initial,
+    TResult Function(AthleteClubStateLoading value)? loading,
+    TResult Function(AthleteClubStateLoaded value)? loaded,
+    TResult Function(AthleteClubStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1102,14 +1125,15 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements AthleteClubState {
-  const factory _Failure(final String message) = _$FailureImpl;
+abstract class AthleteClubStateFailure implements AthleteClubState {
+  const factory AthleteClubStateFailure(final String message) =
+      _$AthleteClubStateFailureImpl;
 
   String get message;
 
   /// Create a copy of AthleteClubState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AthleteClubStateFailureImplCopyWith<_$AthleteClubStateFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

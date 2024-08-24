@@ -19,31 +19,31 @@ class CoachExerciseBloc extends Bloc<CoachExerciseEvent, CoachExerciseState> {
     this._createExerciseBatchUsecase,
     this._updateExerciseBatchUsecase,
     this._deleteExerciseUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetExercises>(_onGetExercises);
-    on<_FilterExercises>(_onFilterExercises);
-    on<_CreateBatch>(_onCreateBatch);
-    on<_UpdateBatch>(_onUpdateBatch);
-    on<_Delete>(_onDelete);
+  ) : super(const CoachExerciseStateInitial()) {
+    on<CoachExerciseEventClear>(_onClear);
+    on<CoachExerciseEventGetExercises>(_onGetExercises);
+    on<CoachExerciseEventFilterExercises>(_onFilterExercises);
+    on<CoachExerciseEventCreateBatch>(_onCreateBatch);
+    on<CoachExerciseEventUpdateBatch>(_onUpdateBatch);
+    on<CoachExerciseEventDelete>(_onDelete);
   }
   void _onClear(
-    _Clear event,
+    CoachExerciseEventClear event,
     Emitter<CoachExerciseState> emit,
   ) =>
-      emit(_Initial());
+      emit(const CoachExerciseStateInitial());
 
   void _onGetExercises(
-    _GetExercises event,
+    CoachExerciseEventGetExercises event,
     Emitter<CoachExerciseState> emit,
   ) async {
-    emit(_Loading());
+    emit(const CoachExerciseStateLoading());
     final res = await _getAllExerciseUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(CoachExerciseStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        CoachExerciseStateLoaded(
           exercises: success,
           filteredExercises: success,
         ),
@@ -52,10 +52,10 @@ class CoachExerciseBloc extends Bloc<CoachExerciseEvent, CoachExerciseState> {
   }
 
   void _onFilterExercises(
-    _FilterExercises event,
+    CoachExerciseEventFilterExercises event,
     Emitter<CoachExerciseState> emit,
   ) {
-    emit(_Loading());
+    emit(const CoachExerciseStateLoading());
 
     state.maybeWhen(
       loaded: (exercises, _) {
@@ -68,53 +68,54 @@ class CoachExerciseBloc extends Bloc<CoachExerciseEvent, CoachExerciseState> {
             .toList();
 
         if (finds.isEmpty) {
-          emit(_Failure('Exercise with name ${event.query} not found'));
+          emit(CoachExerciseStateFailure(
+              'Exercise with name ${event.query} not found'));
         } else {
           emit(
-            _Loaded(
+            CoachExerciseStateLoaded(
               exercises: exercises,
               filteredExercises: finds,
             ),
           );
         }
       },
-      orElse: () => emit(_Failure('Exercise was empty')),
+      orElse: () => emit(const CoachExerciseStateFailure('Exercise was empty')),
     );
   }
 
   void _onCreateBatch(
-    _CreateBatch event,
+    CoachExerciseEventCreateBatch event,
     Emitter<CoachExerciseState> emit,
   ) async {
     final res = await _createExerciseBatchUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_CreatedBatch(success)),
+      (failure) => emit(CoachExerciseStateFailure(failure.message)),
+      (success) => emit(CoachExerciseStateCreatedBatch(success)),
     );
   }
 
   void _onUpdateBatch(
-    _UpdateBatch event,
+    CoachExerciseEventUpdateBatch event,
     Emitter<CoachExerciseState> emit,
   ) async {
     final res = await _updateExerciseBatchUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_UpdatedBatch(success)),
+      (failure) => emit(CoachExerciseStateFailure(failure.message)),
+      (success) => emit(CoachExerciseStateUpdatedBatch(success)),
     );
   }
 
   void _onDelete(
-    _Delete event,
+    CoachExerciseEventDelete event,
     Emitter<CoachExerciseState> emit,
   ) async {
     final res = await _deleteExerciseUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Deleted(success)),
+      (failure) => emit(CoachExerciseStateFailure(failure.message)),
+      (success) => emit(CoachExerciseStateDeleted(success)),
     );
   }
 }

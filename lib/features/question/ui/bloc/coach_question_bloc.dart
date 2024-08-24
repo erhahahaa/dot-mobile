@@ -19,32 +19,32 @@ class CoachQuestionBloc extends Bloc<CoachQuestionEvent, CoachQuestionState> {
     this._createQuestionBatchUsecase,
     this._updateQuestionBatchUsecase,
     this._deleteQuestionUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetQuestions>(_onGetQuestions);
-    on<_FilterQuestions>(_onFilterQuestions);
-    on<_CreateBatch>(_onCreateBatch);
-    on<_UpdateBatch>(_onUpdateBatch);
-    on<_Delete>(_onDelete);
+  ) : super(const CoachQuestionStateInitial()) {
+    on<CoachQuestionEventClear>(_onClear);
+    on<CoachQuestionEventGetQuestions>(_onGetQuestions);
+    on<CoachQuestionEventFilterQuestions>(_onFilterQuestions);
+    on<CoachQuestionEventCreateBatch>(_onCreateBatch);
+    on<CoachQuestionEventUpdateBatch>(_onUpdateBatch);
+    on<CoachQuestionEventDelete>(_onDelete);
   }
 
   void _onClear(
-    _Clear event,
+    CoachQuestionEventClear event,
     Emitter<CoachQuestionState> emit,
   ) =>
-      emit(_Initial());
+      emit(const CoachQuestionStateInitial());
 
   void _onGetQuestions(
-    _GetQuestions event,
+    CoachQuestionEventGetQuestions event,
     Emitter<CoachQuestionState> emit,
   ) async {
-    emit(_Loading());
+    emit(const CoachQuestionStateLoading());
     final res = await _getAllQuestionUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(CoachQuestionStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        CoachQuestionStateLoaded(
           questions: success,
           filteredQuestions: success,
         ),
@@ -53,10 +53,10 @@ class CoachQuestionBloc extends Bloc<CoachQuestionEvent, CoachQuestionState> {
   }
 
   void _onFilterQuestions(
-    _FilterQuestions event,
+    CoachQuestionEventFilterQuestions event,
     Emitter<CoachQuestionState> emit,
   ) {
-    emit(_Loading());
+    emit(const CoachQuestionStateLoading());
     state.maybeWhen(
       loaded: (questions, _) {
         final finds = questions
@@ -68,51 +68,52 @@ class CoachQuestionBloc extends Bloc<CoachQuestionEvent, CoachQuestionState> {
             .toList();
 
         if (finds.isEmpty) {
-          emit(_Failure('Question with title ${event.query} not found'));
+          emit(CoachQuestionStateFailure(
+              'Question with title ${event.query} not found'));
         } else {
-          emit(_Loaded(
+          emit(CoachQuestionStateLoaded(
             questions: questions,
             filteredQuestions: finds,
           ));
         }
       },
-      orElse: () => emit(_Failure('Question not found')),
+      orElse: () => emit(const CoachQuestionStateFailure('Question not found')),
     );
   }
 
   void _onCreateBatch(
-    _CreateBatch event,
+    CoachQuestionEventCreateBatch event,
     Emitter<CoachQuestionState> emit,
   ) async {
     final res = await _createQuestionBatchUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_CreatedBatch(success)),
+      (failure) => emit(CoachQuestionStateFailure(failure.message)),
+      (success) => emit(CoachQuestionStateCreatedBatch(success)),
     );
   }
 
   void _onUpdateBatch(
-    _UpdateBatch event,
+    CoachQuestionEventUpdateBatch event,
     Emitter<CoachQuestionState> emit,
   ) async {
     final res = await _updateQuestionBatchUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_UpdatedBatch(success)),
+      (failure) => emit(CoachQuestionStateFailure(failure.message)),
+      (success) => emit(CoachQuestionStateUpdatedBatch(success)),
     );
   }
 
   void _onDelete(
-    _Delete event,
+    CoachQuestionEventDelete event,
     Emitter<CoachQuestionState> emit,
   ) async {
     final res = await _deleteQuestionUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Deleted(success)),
+      (failure) => emit(CoachQuestionStateFailure(failure.message)),
+      (success) => emit(CoachQuestionStateDeleted(success)),
     );
   }
 }

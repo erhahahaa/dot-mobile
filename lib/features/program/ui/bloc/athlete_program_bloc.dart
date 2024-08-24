@@ -14,29 +14,29 @@ class AthleteProgramBloc
 
   AthleteProgramBloc(
     this._getAllProgramUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetPrograms>(_onGetPrograms);
-    on<_FilterPrograms>(_onFilterPrograms);
+  ) : super(const AthleteProgramStateInitial()) {
+    on<AthleteProgramEventClear>(_onClear);
+    on<AthleteProgramEventGetPrograms>(_onGetPrograms);
+    on<AthleteProgramEventFilterPrograms>(_onFilterPrograms);
   }
 
   void _onClear(
-    _Clear event,
+    AthleteProgramEventClear event,
     Emitter<AthleteProgramState> emit,
   ) =>
-      emit(_Initial());
+      emit(const AthleteProgramStateInitial());
 
   void _onGetPrograms(
-    _GetPrograms event,
+    AthleteProgramEventGetPrograms event,
     Emitter<AthleteProgramState> emit,
   ) async {
-    emit(_Loading());
+    emit(const AthleteProgramStateLoading());
     final res = await _getAllProgramUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(AthleteProgramStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        AthleteProgramStateLoaded(
           programs: success,
           filteredPrograms: success,
         ),
@@ -45,10 +45,10 @@ class AthleteProgramBloc
   }
 
   void _onFilterPrograms(
-    _FilterPrograms event,
+    AthleteProgramEventFilterPrograms event,
     Emitter<AthleteProgramState> emit,
   ) {
-    emit(_Loading());
+    emit(const AthleteProgramStateLoading());
     state.maybeWhen(
       loaded: (programs, _) {
         final finds = programs
@@ -60,17 +60,19 @@ class AthleteProgramBloc
             .toList();
 
         if (finds.isEmpty) {
-          emit(_Failure('Program with name ${event.query} not foundl'));
+          emit(AthleteProgramStateFailure(
+              'Program with name ${event.query} not foundl'));
         } else {
           emit(
-            _Loaded(
+            AthleteProgramStateLoaded(
               programs: programs,
               filteredPrograms: finds,
             ),
           );
         }
       },
-      orElse: () => emit(_Failure('Programs was empty')),
+      orElse: () =>
+          emit(const AthleteProgramStateFailure('Programs was empty')),
     );
   }
 }

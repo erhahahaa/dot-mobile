@@ -19,32 +19,32 @@ class CoachTacticalBloc extends Bloc<CoachTacticalEvent, CoachTacticalState> {
     this._createTacticalUsecase,
     this._updateTacticalUsecase,
     this._deleteTacticalUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetTacticals>(_onGetTacticals);
-    on<_FilterTacticals>(_onFilterTacticals);
-    on<_Create>(_onCreate);
-    on<_Update>(_onUpdate);
-    on<_Delete>(_onDelete);
+  ) : super(const CoachTacticalStateInitial()) {
+    on<CoachTacticalEventClear>(_onClear);
+    on<CoachTacticalEventGetTacticals>(_onGetTacticals);
+    on<CoachTacticalEventFilterTacticals>(_onFilterTacticals);
+    on<CoachTacticalEventCreate>(_onCreate);
+    on<CoachTacticalEventUpdate>(_onUpdate);
+    on<CoachTacticalEventDelete>(_onDelete);
   }
 
   void _onClear(
-    _Clear event,
+    CoachTacticalEventClear event,
     Emitter<CoachTacticalState> emit,
   ) =>
-      emit(_Initial());
+      emit(const CoachTacticalStateInitial());
 
   void _onGetTacticals(
-    _GetTacticals event,
+    CoachTacticalEventGetTacticals event,
     Emitter<CoachTacticalState> emit,
   ) async {
-    emit(_Loading());
+    emit(const CoachTacticalStateLoading());
     final res = await _getAllTacticalUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(CoachTacticalStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        CoachTacticalStateLoaded(
           tacticals: success,
           filteredTacticals: success,
         ),
@@ -53,10 +53,10 @@ class CoachTacticalBloc extends Bloc<CoachTacticalEvent, CoachTacticalState> {
   }
 
   void _onFilterTacticals(
-    _FilterTacticals event,
+    CoachTacticalEventFilterTacticals event,
     Emitter<CoachTacticalState> emit,
   ) {
-    emit(_Loading());
+    emit(const CoachTacticalStateLoading());
     state.maybeWhen(
       loaded: (tacticals, _) {
         final finds = tacticals
@@ -67,53 +67,54 @@ class CoachTacticalBloc extends Bloc<CoachTacticalEvent, CoachTacticalState> {
             )
             .toList();
         if (finds.isEmpty) {
-          emit(_Failure('Tactical with name ${event.query} not found'));
+          emit(CoachTacticalStateFailure(
+              'Tactical with name ${event.query} not found'));
         } else {
           emit(
-            _Loaded(
+            CoachTacticalStateLoaded(
               tacticals: tacticals,
               filteredTacticals: finds,
             ),
           );
         }
       },
-      orElse: () => emit(_Failure('Tactical was empty')),
+      orElse: () => emit(const CoachTacticalStateFailure('Tactical was empty')),
     );
   }
 
   void _onCreate(
-    _Create event,
+    CoachTacticalEventCreate event,
     Emitter<CoachTacticalState> emit,
   ) async {
     final res = await _createTacticalUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Created(success)),
+      (failure) => emit(CoachTacticalStateFailure(failure.message)),
+      (success) => emit(CoachTacticalStateCreated(success)),
     );
   }
 
   void _onUpdate(
-    _Update event,
+    CoachTacticalEventUpdate event,
     Emitter<CoachTacticalState> emit,
   ) async {
     final res = await _updateTacticalUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Updated(success)),
+      (failure) => emit(CoachTacticalStateFailure(failure.message)),
+      (success) => emit(CoachTacticalStateUpdated(success)),
     );
   }
 
   void _onDelete(
-    _Delete event,
+    CoachTacticalEventDelete event,
     Emitter<CoachTacticalState> emit,
   ) async {
     final res = await _deleteTacticalUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Deleted(success)),
+      (failure) => emit(CoachTacticalStateFailure(failure.message)),
+      (success) => emit(CoachTacticalStateDeleted(success)),
     );
   }
 }

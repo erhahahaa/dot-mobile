@@ -54,7 +54,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         if (fcmToken is! String) return;
         final success = state.maybeWhen(
           success: (user, fcmToken) => _Success(user: user, fcmToken: fcmToken),
-          orElse: () => _Success(user: UserModel(), fcmToken: fcmToken),
+          orElse: () => _Success(user: const UserModel(), fcmToken: fcmToken),
         );
         emit(success);
       },

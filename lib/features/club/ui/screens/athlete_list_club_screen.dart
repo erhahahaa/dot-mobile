@@ -100,7 +100,7 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
         width: double.infinity,
         height: 210.h,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             colors: [Palette.BG_LEFT, Palette.BG_RIGHT],
           ),
           borderRadius: BorderRadius.only(
@@ -119,7 +119,7 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
                   success: (user, fcmToken) {
                     return UserCard(user: user);
                   },
-                  orElse: () => BodyLarge('Something went wrong'),
+                  orElse: () => const BodyLarge('Something went wrong'),
                 );
               },
             ),
@@ -158,11 +158,11 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
               },
               trailing: MoonButton.icon(
                 buttonSize: MoonButtonSize.xs,
-                icon: Icon(MoonIcons.controls_close_24_light),
+                icon: const Icon(MoonIcons.controls_close_24_light),
                 onTap: () {
                   _searchController.clear();
                   context.read<AthleteClubBloc>().add(
-                        AthleteClubEvent.filterClubs(''),
+                        const AthleteClubEvent.filterClubs(''),
                       );
                 },
               ),
@@ -196,8 +196,8 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
                         borderRadius: BorderRadius.circular(84.r),
                         backgroundColor:
                             context.moonColors?.frieza.withOpacity(0.2),
-                        label: BodyMedium('View'),
-                        trailing: Icon(MoonIcons.arrows_right_24_light),
+                        label: const BodyMedium('View'),
+                        trailing: const Icon(MoonIcons.arrows_right_24_light),
                       ),
                     ),
                   ),
@@ -218,8 +218,8 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
                     borderRadius: BorderRadius.circular(84.r),
                     backgroundColor:
                         context.moonColors?.frieza.withOpacity(0.2),
-                    label: BodyMedium('View'),
-                    trailing: Icon(MoonIcons.arrows_right_24_light),
+                    label: const BodyMedium('View'),
+                    trailing: const Icon(MoonIcons.arrows_right_24_light),
                     onTap: () {
                       // context.router.push(
                       //   AthleteDetailClubRoute(id: club.id),
@@ -241,7 +241,7 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
             );
           },
           orElse: () {
-            return SliverToBoxAdapter(
+            return const SliverToBoxAdapter(
               child: BodyLarge('An error occured'),
             );
           },

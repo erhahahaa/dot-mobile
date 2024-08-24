@@ -4,20 +4,20 @@ part of 'coach_tactical_bloc.dart';
 class CoachTacticalEvent with _$CoachTacticalEvent {
   const factory CoachTacticalEvent.getTacticals(
     GetAllTacticalParams params,
-  ) = _GetTacticals;
+  ) = CoachTacticalEventGetTacticals;
   const factory CoachTacticalEvent.filterTacticals(
     String query,
-  ) = _FilterTacticals;
-  const factory CoachTacticalEvent.clear() = _Clear;
+  ) = CoachTacticalEventFilterTacticals;
+  const factory CoachTacticalEvent.clear() = CoachTacticalEventClear;
 
   // Actions
   const factory CoachTacticalEvent.create(
     CreateTacticalParams params,
-  ) = _Create;
+  ) = CoachTacticalEventCreate;
   const factory CoachTacticalEvent.update(
     UpdateTacticalParams params,
-  ) = _Update;
+  ) = CoachTacticalEventUpdate;
   const factory CoachTacticalEvent.delete(
     DeleteTacticalParams params,
-  ) = _Delete;
+  ) = CoachTacticalEventDelete;
 }

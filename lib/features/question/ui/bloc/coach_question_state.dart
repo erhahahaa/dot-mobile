@@ -2,22 +2,24 @@ part of 'coach_question_bloc.dart';
 
 @freezed
 class CoachQuestionState with _$CoachQuestionState {
-  const factory CoachQuestionState.initial() = _Initial;
-  const factory CoachQuestionState.loading() = _Loading;
+  const factory CoachQuestionState.initial() = CoachQuestionStateInitial;
+  const factory CoachQuestionState.loading() = CoachQuestionStateLoading;
   const factory CoachQuestionState.loaded({
     required List<QuestionModel> questions,
     required List<QuestionModel> filteredQuestions,
-  }) = _Loaded;
-  const factory CoachQuestionState.failure(String message) = _Failure;
+  }) = CoachQuestionStateLoaded;
+  const factory CoachQuestionState.failure(
+    String message,
+  ) = CoachQuestionStateFailure;
 
   // Actions
   const factory CoachQuestionState.createdBatch(
     List<QuestionModel> question,
-  ) = _CreatedBatch;
+  ) = CoachQuestionStateCreatedBatch;
   const factory CoachQuestionState.updatedBatch(
     List<QuestionModel> question,
-  ) = _UpdatedBatch;
+  ) = CoachQuestionStateUpdatedBatch;
   const factory CoachQuestionState.deleted(
     QuestionModel question,
-  ) = _Deleted;
+  ) = CoachQuestionStateDeleted;
 }

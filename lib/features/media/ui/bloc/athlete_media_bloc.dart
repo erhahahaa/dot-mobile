@@ -8,7 +8,7 @@ part 'athlete_media_state.dart';
 
 @lazySingleton
 class AthleteMediaBloc extends Bloc<AthleteMediaEvent, AthleteMediaState> {
-  AthleteMediaBloc() : super(_Initial()) {
+  AthleteMediaBloc() : super(const _Initial()) {
     on<AthleteMediaEvent>((event, emit) {
       // TODO: implement event handler
     });

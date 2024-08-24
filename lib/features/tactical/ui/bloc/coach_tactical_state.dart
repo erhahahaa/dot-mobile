@@ -2,22 +2,22 @@ part of 'coach_tactical_bloc.dart';
 
 @freezed
 class CoachTacticalState with _$CoachTacticalState {
-  const factory CoachTacticalState.initial() = _Initial;
-  const factory CoachTacticalState.loading() = _Loading;
+  const factory CoachTacticalState.initial() = CoachTacticalStateInitial;
+  const factory CoachTacticalState.loading() = CoachTacticalStateLoading;
   const factory CoachTacticalState.loaded({
     required List<TacticalModel> tacticals,
     required List<TacticalModel> filteredTacticals,
-  }) = _Loaded;
-  const factory CoachTacticalState.failure(String message) = _Failure;
+  }) = CoachTacticalStateLoaded;
+  const factory CoachTacticalState.failure(String message) = CoachTacticalStateFailure;
 
   // Actions
   const factory CoachTacticalState.created(
     TacticalModel tactical,
-  ) = _Created;
+  ) = CoachTacticalStateCreated;
   const factory CoachTacticalState.updated(
     TacticalModel tactical,
-  ) = _Updated;
+  ) = CoachTacticalStateUpdated;
   const factory CoachTacticalState.deleted(
     TacticalModel tactical,
-  ) = _Deleted;
+  ) = CoachTacticalStateDeleted;
 }

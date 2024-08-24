@@ -4,20 +4,20 @@ part of 'coach_evaluation_bloc.dart';
 class CoachEvaluationEvent with _$CoachEvaluationEvent {
   const factory CoachEvaluationEvent.getEvaluations(
     GetAllEvaluationParams params,
-  ) = _GetEvaluations;
+  ) = CoachEvaluationEventGetEvaluations;
   const factory CoachEvaluationEvent.filterEvaluations(
     String query,
-  ) = _FilterEvaluations;
-  const factory CoachEvaluationEvent.clear() = _Clear;
+  ) = CoachEvaluationEventFilterEvaluations;
+  const factory CoachEvaluationEvent.clear() = CoachEvaluationEventClear;
 
   // Actions
   const factory CoachEvaluationEvent.create(
     CreateEvaluationParams params,
-  ) = _Create;
+  ) = CoachEvaluationEventCreate;
   const factory CoachEvaluationEvent.update(
     UpdateEvaluationParams params,
-  ) = _Update;
+  ) = CoachEvaluationEventUpdate;
   const factory CoachEvaluationEvent.delete(
     DeleteEvaluationParams params,
-  ) = _Delete;
+  ) = CoachEvaluationEventDelete;
 }

@@ -4,20 +4,20 @@ part of 'coach_program_bloc.dart';
 class CoachProgramEvent with _$CoachProgramEvent {
   const factory CoachProgramEvent.getPrograms(
     GetAllProgramParams params,
-  ) = _GetPrograms;
+  ) = CoachProgramEventGetPrograms;
   const factory CoachProgramEvent.filterPrograms(
     String query,
-  ) = _FilterPrograms;
-  const factory CoachProgramEvent.clear() = _Clear;
+  ) = CoachProgramEventFilterPrograms;
+  const factory CoachProgramEvent.clear() = CoachProgramEventClear;
 
   // Actions
   const factory CoachProgramEvent.create(
     CreateProgramParams params,
-  ) = _Create;
+  ) = CoachProgramEventCreate;
   const factory CoachProgramEvent.update(
     UpdateProgramParams params,
-  ) = _Update;
+  ) = CoachProgramEventUpdate;
   const factory CoachProgramEvent.delete(
     DeleteProgramParams params,
-  ) = _Delete;
+  ) = CoachProgramEventDelete;
 }

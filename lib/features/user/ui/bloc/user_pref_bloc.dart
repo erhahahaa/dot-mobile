@@ -13,7 +13,7 @@ class UserPrefBloc extends Bloc<UserPrefEvent, UserPreferencesModel> {
 
   UserPrefBloc(
     this._getUserPreferences,
-  ) : super(UserPreferencesModel()) {
+  ) : super(const UserPreferencesModel()) {
     on<_Started>(_onStarted);
     on<_ChangeLocale>(_onChangeLocale);
     on<_ChangeThemeMode>(_onChangeThemeMode);
@@ -25,7 +25,7 @@ class UserPrefBloc extends Bloc<UserPrefEvent, UserPreferencesModel> {
   ) async {
     final pref = await _getUserPreferences.call();
     pref.fold(
-      (failure) => emit(UserPreferencesModel()),
+      (failure) => emit(const UserPreferencesModel()),
       (success) => emit(success),
     );
   }

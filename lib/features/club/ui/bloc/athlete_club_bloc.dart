@@ -13,28 +13,28 @@ class AthleteClubBloc extends Bloc<AthleteClubEvent, AthleteClubState> {
 
   AthleteClubBloc(
     this._getAllClubUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetClubs>(_onGetClubs);
-    on<_FilterClubs>(_onFilterClubs);
+  ) : super(const AthleteClubStateInitial()) {
+    on<AthleteClubEventClear>(_onClear);
+    on<AthleteClubEventGetClubs>(_onGetClubs);
+    on<AthleteClubEventFilterClubs>(_onFilterClubs);
   }
 
   void _onClear(
-    _Clear event,
+    AthleteClubEventClear event,
     Emitter<AthleteClubState> emit,
   ) =>
-      emit(_Initial());
+      emit(const AthleteClubStateInitial());
 
   void _onGetClubs(
-    _GetClubs event,
+    AthleteClubEventGetClubs event,
     Emitter<AthleteClubState> emit,
   ) async {
-    emit(_Loading());
+    emit(const AthleteClubStateLoading());
     final res = await _getAllClubUsecase.call();
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(AthleteClubStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        AthleteClubStateLoaded(
           clubs: success,
           filteredClubs: success,
         ),
@@ -43,7 +43,7 @@ class AthleteClubBloc extends Bloc<AthleteClubEvent, AthleteClubState> {
   }
 
   void _onFilterClubs(
-    _FilterClubs event,
+    AthleteClubEventFilterClubs event,
     Emitter<AthleteClubState> emit,
   ) {
     state.maybeWhen(
@@ -57,7 +57,7 @@ class AthleteClubBloc extends Bloc<AthleteClubEvent, AthleteClubState> {
             .toList();
 
         emit(
-          _Loaded(
+          AthleteClubStateLoaded(
             clubs: clubs,
             filteredClubs: finds,
           ),

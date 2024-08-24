@@ -14,29 +14,29 @@ class AthleteEvaluationBloc
 
   AthleteEvaluationBloc(
     this._getAllEvaluationUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetEvaluations>(_onGetEvaluations);
-    on<_FilterEvaluations>(_onFilterEvaluations);
+  ) : super(const AthleteEvaluationStateInitial()) {
+    on<AthleteEvaluationEventClear>(_onClear);
+    on<AthleteEvaluationEventGetEvaluations>(_onGetEvaluations);
+    on<AthleteEvaluationEventFilterEvaluations>(_onFilterEvaluations);
   }
 
   void _onClear(
-    _Clear event,
+    AthleteEvaluationEventClear event,
     Emitter<AthleteEvaluationState> emit,
   ) =>
-      emit(_Initial());
+      emit(const AthleteEvaluationStateInitial());
 
   void _onGetEvaluations(
-    _GetEvaluations event,
+    AthleteEvaluationEventGetEvaluations event,
     Emitter<AthleteEvaluationState> emit,
   ) async {
-    emit(_Loading());
+    emit(const AthleteEvaluationStateLoading());
     final res = await _getAllEvaluationUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(AthleteEvaluationStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        AthleteEvaluationStateLoaded(
           evaluations: success,
           filteredEvaluations: success,
         ),
@@ -45,10 +45,10 @@ class AthleteEvaluationBloc
   }
 
   void _onFilterEvaluations(
-    _FilterEvaluations event,
+    AthleteEvaluationEventFilterEvaluations event,
     Emitter<AthleteEvaluationState> emit,
   ) {
-    emit(_Loading());
+    emit(const AthleteEvaluationStateLoading());
     state.maybeWhen(
       loaded: (evaluations, _) {
         final finds = evaluations
@@ -67,17 +67,20 @@ class AthleteEvaluationBloc
             )
             .toList();
         if (finds.isEmpty) {
-          emit(_Failure('Question with ${event.query} not found'));
+          emit(AthleteEvaluationStateFailure(
+              'Question with ${event.query} not found'));
         } else {
           emit(
-            _Loaded(
+            AthleteEvaluationStateLoaded(
               evaluations: evaluations,
               filteredEvaluations: finds,
             ),
           );
         }
       },
-      orElse: () => emit(_Failure('Evaluation was empty')),
+      orElse: () => emit(
+        const AthleteEvaluationStateFailure('Evaluation was empty'),
+      ),
     );
   }
 }
