@@ -47,7 +47,7 @@ class AthleteClubBloc extends Bloc<AthleteClubEvent, AthleteClubState> {
     Emitter<AthleteClubState> emit,
   ) {
     state.maybeWhen(
-      loaded: (clubs, filteredClubs) {
+      loaded: (clubs, _) {
         final finds = clubs
             .where(
               (club) => club.name.toLowerCase().contains(

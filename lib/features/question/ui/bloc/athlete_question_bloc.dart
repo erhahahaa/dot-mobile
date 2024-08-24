@@ -37,10 +37,8 @@ class AthleteQuestionBloc
       (failure) => emit(_Failure(failure.message)),
       (success) => emit(
         _Loaded(
-          AthleteQuestionLoadedEvent(
-            questions: success,
-            filteredQuestions: success,
-          ),
+          questions: success,
+          filteredQuestions: success,
         ),
       ),
     );
@@ -52,8 +50,8 @@ class AthleteQuestionBloc
   ) {
     emit(_Loading());
     state.maybeWhen(
-      loaded: (data) {
-        final finds = data.questions
+      loaded: (questions, _) {
+        final finds = questions
             .where(
               (question) => question.question.toLowerCase().contains(
                     event.query.toLowerCase(),
@@ -65,10 +63,8 @@ class AthleteQuestionBloc
           emit(_Failure('Question with title ${event.query} not found'));
         } else {
           emit(_Loaded(
-            AthleteQuestionLoadedEvent(
-              questions: data.questions,
-              filteredQuestions: finds,
-            ),
+            questions: questions,
+            filteredQuestions: finds,
           ));
         }
       },

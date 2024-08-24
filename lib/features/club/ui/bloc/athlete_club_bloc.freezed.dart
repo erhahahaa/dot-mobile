@@ -814,14 +814,13 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
-      {required final List<ClubModel> clubs = const [],
-      required final List<ClubModel> filteredClubs = const []})
+      {required final List<ClubModel> clubs,
+      required final List<ClubModel> filteredClubs})
       : _clubs = clubs,
         _filteredClubs = filteredClubs;
 
   final List<ClubModel> _clubs;
   @override
-  @JsonKey()
   List<ClubModel> get clubs {
     if (_clubs is EqualUnmodifiableListView) return _clubs;
     // ignore: implicit_dynamic_type
@@ -830,7 +829,6 @@ class _$LoadedImpl implements _Loaded {
 
   final List<ClubModel> _filteredClubs;
   @override
-  @JsonKey()
   List<ClubModel> get filteredClubs {
     if (_filteredClubs is EqualUnmodifiableListView) return _filteredClubs;
     // ignore: implicit_dynamic_type

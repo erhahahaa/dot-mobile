@@ -37,10 +37,8 @@ class AthleteExerciseBloc
       (failure) => emit(_Failure(failure.message)),
       (success) => emit(
         _Loaded(
-          AthleteExerciseLoadedEvent(
-            exercises: success,
-            filteredExercises: success,
-          ),
+          exercises: success,
+          filteredExercises: success,
         ),
       ),
     );
@@ -53,8 +51,8 @@ class AthleteExerciseBloc
     emit(_Loading());
 
     state.maybeWhen(
-      loaded: (data) {
-        final finds = data.exercises
+      loaded: (exercises, _) {
+        final finds = exercises
             .where(
               (exercise) => exercise.name.toLowerCase().contains(
                     event.query.toLowerCase(),
@@ -67,10 +65,8 @@ class AthleteExerciseBloc
         } else {
           emit(
             _Loaded(
-              AthleteExerciseLoadedEvent(
-                exercises: data.exercises,
-                filteredExercises: finds,
-              ),
+              exercises: exercises,
+              filteredExercises: finds,
             ),
           );
         }

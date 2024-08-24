@@ -45,10 +45,8 @@ class CoachQuestionBloc extends Bloc<CoachQuestionEvent, CoachQuestionState> {
       (failure) => emit(_Failure(failure.message)),
       (success) => emit(
         _Loaded(
-          CoachQuestionLoadedEvent(
-            questions: success,
-            filteredQuestions: success,
-          ),
+          questions: success,
+          filteredQuestions: success,
         ),
       ),
     );
@@ -60,8 +58,8 @@ class CoachQuestionBloc extends Bloc<CoachQuestionEvent, CoachQuestionState> {
   ) {
     emit(_Loading());
     state.maybeWhen(
-      loaded: (data) {
-        final finds = data.questions
+      loaded: (questions, _) {
+        final finds = questions
             .where(
               (question) => question.question.toLowerCase().contains(
                     event.query.toLowerCase(),
@@ -73,10 +71,8 @@ class CoachQuestionBloc extends Bloc<CoachQuestionEvent, CoachQuestionState> {
           emit(_Failure('Question with title ${event.query} not found'));
         } else {
           emit(_Loaded(
-            CoachQuestionLoadedEvent(
-              questions: data.questions,
-              filteredQuestions: finds,
-            ),
+            questions: questions,
+            filteredQuestions: finds,
           ));
         }
       },

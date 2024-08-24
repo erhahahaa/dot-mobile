@@ -1057,7 +1057,9 @@ mixin _$CoachClubState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachClubLoadedEvent data) loaded,
+    required TResult Function(
+            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -1068,7 +1070,8 @@ mixin _$CoachClubState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachClubLoadedEvent data)? loaded,
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -1079,7 +1082,8 @@ mixin _$CoachClubState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachClubLoadedEvent data)? loaded,
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -1187,7 +1191,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachClubLoadedEvent data) loaded,
+    required TResult Function(
+            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -1201,7 +1207,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachClubLoadedEvent data)? loaded,
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -1215,7 +1222,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachClubLoadedEvent data)? loaded,
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -1322,7 +1330,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachClubLoadedEvent data) loaded,
+    required TResult Function(
+            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -1336,7 +1346,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachClubLoadedEvent data)? loaded,
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -1350,7 +1361,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachClubLoadedEvent data)? loaded,
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -1420,9 +1432,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({CoachClubLoadedEvent data});
-
-  $CoachClubLoadedEventCopyWith<$Res> get data;
+  $Res call({List<ClubModel> clubs, List<ClubModel> filteredClubs});
 }
 
 /// @nodoc
@@ -1438,38 +1448,50 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? clubs = null,
+    Object? filteredClubs = null,
   }) {
     return _then(_$LoadedImpl(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as CoachClubLoadedEvent,
+      clubs: null == clubs
+          ? _value._clubs
+          : clubs // ignore: cast_nullable_to_non_nullable
+              as List<ClubModel>,
+      filteredClubs: null == filteredClubs
+          ? _value._filteredClubs
+          : filteredClubs // ignore: cast_nullable_to_non_nullable
+              as List<ClubModel>,
     ));
-  }
-
-  /// Create a copy of CoachClubState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CoachClubLoadedEventCopyWith<$Res> get data {
-    return $CoachClubLoadedEventCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.data);
+  const _$LoadedImpl(
+      {required final List<ClubModel> clubs,
+      required final List<ClubModel> filteredClubs})
+      : _clubs = clubs,
+        _filteredClubs = filteredClubs;
 
+  final List<ClubModel> _clubs;
   @override
-  final CoachClubLoadedEvent data;
+  List<ClubModel> get clubs {
+    if (_clubs is EqualUnmodifiableListView) return _clubs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_clubs);
+  }
+
+  final List<ClubModel> _filteredClubs;
+  @override
+  List<ClubModel> get filteredClubs {
+    if (_filteredClubs is EqualUnmodifiableListView) return _filteredClubs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredClubs);
+  }
 
   @override
   String toString() {
-    return 'CoachClubState.loaded(data: $data)';
+    return 'CoachClubState.loaded(clubs: $clubs, filteredClubs: $filteredClubs)';
   }
 
   @override
@@ -1477,11 +1499,16 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality().equals(other._clubs, _clubs) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredClubs, _filteredClubs));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_clubs),
+      const DeepCollectionEquality().hash(_filteredClubs));
 
   /// Create a copy of CoachClubState
   /// with the given fields replaced by the non-null parameter values.
@@ -1496,13 +1523,15 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachClubLoadedEvent data) loaded,
+    required TResult Function(
+            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
     required TResult Function(ClubModel club) deleted,
   }) {
-    return loaded(data);
+    return loaded(clubs, filteredClubs);
   }
 
   @override
@@ -1510,13 +1539,14 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachClubLoadedEvent data)? loaded,
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
     TResult? Function(ClubModel club)? deleted,
   }) {
-    return loaded?.call(data);
+    return loaded?.call(clubs, filteredClubs);
   }
 
   @override
@@ -1524,7 +1554,8 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachClubLoadedEvent data)? loaded,
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -1532,7 +1563,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(data);
+      return loaded(clubs, filteredClubs);
     }
     return orElse();
   }
@@ -1585,9 +1616,12 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements CoachClubState {
-  const factory _Loaded(final CoachClubLoadedEvent data) = _$LoadedImpl;
+  const factory _Loaded(
+      {required final List<ClubModel> clubs,
+      required final List<ClubModel> filteredClubs}) = _$LoadedImpl;
 
-  CoachClubLoadedEvent get data;
+  List<ClubModel> get clubs;
+  List<ClubModel> get filteredClubs;
 
   /// Create a copy of CoachClubState
   /// with the given fields replaced by the non-null parameter values.
@@ -1666,7 +1700,9 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachClubLoadedEvent data) loaded,
+    required TResult Function(
+            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -1680,7 +1716,8 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachClubLoadedEvent data)? loaded,
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -1694,7 +1731,8 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachClubLoadedEvent data)? loaded,
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -1848,7 +1886,9 @@ class _$CreatedImpl implements _Created {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachClubLoadedEvent data) loaded,
+    required TResult Function(
+            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -1862,7 +1902,8 @@ class _$CreatedImpl implements _Created {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachClubLoadedEvent data)? loaded,
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -1876,7 +1917,8 @@ class _$CreatedImpl implements _Created {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachClubLoadedEvent data)? loaded,
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -2030,7 +2072,9 @@ class _$UpdatedImpl implements _Updated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachClubLoadedEvent data) loaded,
+    required TResult Function(
+            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -2044,7 +2088,8 @@ class _$UpdatedImpl implements _Updated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachClubLoadedEvent data)? loaded,
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -2058,7 +2103,8 @@ class _$UpdatedImpl implements _Updated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachClubLoadedEvent data)? loaded,
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -2212,7 +2258,9 @@ class _$DeletedImpl implements _Deleted {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachClubLoadedEvent data) loaded,
+    required TResult Function(
+            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -2226,7 +2274,8 @@ class _$DeletedImpl implements _Deleted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachClubLoadedEvent data)? loaded,
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -2240,7 +2289,8 @@ class _$DeletedImpl implements _Deleted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachClubLoadedEvent data)? loaded,
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -2310,174 +2360,4 @@ abstract class _Deleted implements CoachClubState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeletedImplCopyWith<_$DeletedImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$CoachClubLoadedEvent {
-  List<ClubModel> get clubs => throw _privateConstructorUsedError;
-  List<ClubModel> get filteredClubs => throw _privateConstructorUsedError;
-
-  /// Create a copy of CoachClubLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CoachClubLoadedEventCopyWith<CoachClubLoadedEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CoachClubLoadedEventCopyWith<$Res> {
-  factory $CoachClubLoadedEventCopyWith(CoachClubLoadedEvent value,
-          $Res Function(CoachClubLoadedEvent) then) =
-      _$CoachClubLoadedEventCopyWithImpl<$Res, CoachClubLoadedEvent>;
-  @useResult
-  $Res call({List<ClubModel> clubs, List<ClubModel> filteredClubs});
-}
-
-/// @nodoc
-class _$CoachClubLoadedEventCopyWithImpl<$Res,
-        $Val extends CoachClubLoadedEvent>
-    implements $CoachClubLoadedEventCopyWith<$Res> {
-  _$CoachClubLoadedEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of CoachClubLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? clubs = null,
-    Object? filteredClubs = null,
-  }) {
-    return _then(_value.copyWith(
-      clubs: null == clubs
-          ? _value.clubs
-          : clubs // ignore: cast_nullable_to_non_nullable
-              as List<ClubModel>,
-      filteredClubs: null == filteredClubs
-          ? _value.filteredClubs
-          : filteredClubs // ignore: cast_nullable_to_non_nullable
-              as List<ClubModel>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$CoachClubLoadedEventImplCopyWith<$Res>
-    implements $CoachClubLoadedEventCopyWith<$Res> {
-  factory _$$CoachClubLoadedEventImplCopyWith(_$CoachClubLoadedEventImpl value,
-          $Res Function(_$CoachClubLoadedEventImpl) then) =
-      __$$CoachClubLoadedEventImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<ClubModel> clubs, List<ClubModel> filteredClubs});
-}
-
-/// @nodoc
-class __$$CoachClubLoadedEventImplCopyWithImpl<$Res>
-    extends _$CoachClubLoadedEventCopyWithImpl<$Res, _$CoachClubLoadedEventImpl>
-    implements _$$CoachClubLoadedEventImplCopyWith<$Res> {
-  __$$CoachClubLoadedEventImplCopyWithImpl(_$CoachClubLoadedEventImpl _value,
-      $Res Function(_$CoachClubLoadedEventImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CoachClubLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? clubs = null,
-    Object? filteredClubs = null,
-  }) {
-    return _then(_$CoachClubLoadedEventImpl(
-      clubs: null == clubs
-          ? _value._clubs
-          : clubs // ignore: cast_nullable_to_non_nullable
-              as List<ClubModel>,
-      filteredClubs: null == filteredClubs
-          ? _value._filteredClubs
-          : filteredClubs // ignore: cast_nullable_to_non_nullable
-              as List<ClubModel>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CoachClubLoadedEventImpl implements _CoachClubLoadedEvent {
-  const _$CoachClubLoadedEventImpl(
-      {final List<ClubModel> clubs = const [],
-      final List<ClubModel> filteredClubs = const []})
-      : _clubs = clubs,
-        _filteredClubs = filteredClubs;
-
-  final List<ClubModel> _clubs;
-  @override
-  @JsonKey()
-  List<ClubModel> get clubs {
-    if (_clubs is EqualUnmodifiableListView) return _clubs;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_clubs);
-  }
-
-  final List<ClubModel> _filteredClubs;
-  @override
-  @JsonKey()
-  List<ClubModel> get filteredClubs {
-    if (_filteredClubs is EqualUnmodifiableListView) return _filteredClubs;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_filteredClubs);
-  }
-
-  @override
-  String toString() {
-    return 'CoachClubLoadedEvent(clubs: $clubs, filteredClubs: $filteredClubs)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CoachClubLoadedEventImpl &&
-            const DeepCollectionEquality().equals(other._clubs, _clubs) &&
-            const DeepCollectionEquality()
-                .equals(other._filteredClubs, _filteredClubs));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_clubs),
-      const DeepCollectionEquality().hash(_filteredClubs));
-
-  /// Create a copy of CoachClubLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CoachClubLoadedEventImplCopyWith<_$CoachClubLoadedEventImpl>
-      get copyWith =>
-          __$$CoachClubLoadedEventImplCopyWithImpl<_$CoachClubLoadedEventImpl>(
-              this, _$identity);
-}
-
-abstract class _CoachClubLoadedEvent implements CoachClubLoadedEvent {
-  const factory _CoachClubLoadedEvent(
-      {final List<ClubModel> clubs,
-      final List<ClubModel> filteredClubs}) = _$CoachClubLoadedEventImpl;
-
-  @override
-  List<ClubModel> get clubs;
-  @override
-  List<ClubModel> get filteredClubs;
-
-  /// Create a copy of CoachClubLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CoachClubLoadedEventImplCopyWith<_$CoachClubLoadedEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }

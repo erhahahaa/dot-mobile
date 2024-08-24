@@ -44,10 +44,8 @@ class CoachProgramBloc extends Bloc<CoachProgramEvent, CoachProgramState> {
       (failure) => emit(_Failure(failure.message)),
       (success) => emit(
         _Loaded(
-          CoachProgramLoadedEvent(
-            programs: success,
-            filteredPrograms: success,
-          ),
+          programs: success,
+          filteredPrograms: success,
         ),
       ),
     );
@@ -59,8 +57,8 @@ class CoachProgramBloc extends Bloc<CoachProgramEvent, CoachProgramState> {
   ) {
     emit(_Loading());
     state.maybeWhen(
-      loaded: (data) {
-        final finds = data.programs
+      loaded: (programs, _) {
+        final finds = programs
             .where(
               (program) => program.name.toLowerCase().contains(
                     event.query.toLowerCase(),
@@ -73,8 +71,8 @@ class CoachProgramBloc extends Bloc<CoachProgramEvent, CoachProgramState> {
         } else {
           emit(
             _Loaded(
-              CoachProgramLoadedEvent(
-                  programs: data.programs, filteredPrograms: finds),
+              programs: programs,
+              filteredPrograms: finds,
             ),
           );
         }

@@ -4,9 +4,10 @@ part of 'coach_tactical_bloc.dart';
 class CoachTacticalState with _$CoachTacticalState {
   const factory CoachTacticalState.initial() = _Initial;
   const factory CoachTacticalState.loading() = _Loading;
-  const factory CoachTacticalState.loaded(
-    CoachTacticalLoadedEvent data,
-  ) = _Loaded;
+  const factory CoachTacticalState.loaded({
+    required List<TacticalModel> tacticals,
+    required List<TacticalModel> filteredTacticals,
+  }) = _Loaded;
   const factory CoachTacticalState.failure(String message) = _Failure;
 
   // Actions
@@ -19,12 +20,4 @@ class CoachTacticalState with _$CoachTacticalState {
   const factory CoachTacticalState.deleted(
     TacticalModel tactical,
   ) = _Deleted;
-}
-
-@freezed
-class CoachTacticalLoadedEvent with _$CoachTacticalLoadedEvent {
-  const factory CoachTacticalLoadedEvent({
-    @Default([]) List<TacticalModel> tacticals,
-    @Default([]) List<TacticalModel> filteredTacticals,
-  }) = _CoachTacticalLoadedEvent;
 }

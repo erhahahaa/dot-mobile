@@ -205,10 +205,10 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
               ),
             );
           },
-          loaded: (data) {
+          loaded: (_, filteredClubs) {
             return SliverToBoxAdapter(
               child: ColumnList<ClubModel>(
-                items: data.filteredClubs,
+                items: filteredClubs,
                 itemBuilder: (club) => ColumnListTile(
                   titleText: club.name,
                   subtitleText: club.description,

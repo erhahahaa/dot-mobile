@@ -507,7 +507,9 @@ mixin _$AthleteQuestionState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteQuestionLoadedEvent data) loaded,
+    required TResult Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)
+        loaded,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -515,7 +517,9 @@ mixin _$AthleteQuestionState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteQuestionLoadedEvent data)? loaded,
+    TResult? Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)?
+        loaded,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -523,7 +527,9 @@ mixin _$AthleteQuestionState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteQuestionLoadedEvent data)? loaded,
+    TResult Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -620,7 +626,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteQuestionLoadedEvent data) loaded,
+    required TResult Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)
+        loaded,
     required TResult Function(String message) failure,
   }) {
     return initial();
@@ -631,7 +639,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteQuestionLoadedEvent data)? loaded,
+    TResult? Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
     return initial?.call();
@@ -642,7 +652,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteQuestionLoadedEvent data)? loaded,
+    TResult Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -737,7 +749,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteQuestionLoadedEvent data) loaded,
+    required TResult Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)
+        loaded,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -748,7 +762,9 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteQuestionLoadedEvent data)? loaded,
+    TResult? Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -759,7 +775,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteQuestionLoadedEvent data)? loaded,
+    TResult Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -817,9 +835,8 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AthleteQuestionLoadedEvent data});
-
-  $AthleteQuestionLoadedEventCopyWith<$Res> get data;
+  $Res call(
+      {List<QuestionModel> questions, List<QuestionModel> filteredQuestions});
 }
 
 /// @nodoc
@@ -835,38 +852,51 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? questions = null,
+    Object? filteredQuestions = null,
   }) {
     return _then(_$LoadedImpl(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as AthleteQuestionLoadedEvent,
+      questions: null == questions
+          ? _value._questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<QuestionModel>,
+      filteredQuestions: null == filteredQuestions
+          ? _value._filteredQuestions
+          : filteredQuestions // ignore: cast_nullable_to_non_nullable
+              as List<QuestionModel>,
     ));
-  }
-
-  /// Create a copy of AthleteQuestionState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AthleteQuestionLoadedEventCopyWith<$Res> get data {
-    return $AthleteQuestionLoadedEventCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.data);
+  const _$LoadedImpl(
+      {required final List<QuestionModel> questions,
+      required final List<QuestionModel> filteredQuestions})
+      : _questions = questions,
+        _filteredQuestions = filteredQuestions;
 
+  final List<QuestionModel> _questions;
   @override
-  final AthleteQuestionLoadedEvent data;
+  List<QuestionModel> get questions {
+    if (_questions is EqualUnmodifiableListView) return _questions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questions);
+  }
+
+  final List<QuestionModel> _filteredQuestions;
+  @override
+  List<QuestionModel> get filteredQuestions {
+    if (_filteredQuestions is EqualUnmodifiableListView)
+      return _filteredQuestions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredQuestions);
+  }
 
   @override
   String toString() {
-    return 'AthleteQuestionState.loaded(data: $data)';
+    return 'AthleteQuestionState.loaded(questions: $questions, filteredQuestions: $filteredQuestions)';
   }
 
   @override
@@ -874,11 +904,17 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality()
+                .equals(other._questions, _questions) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredQuestions, _filteredQuestions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_questions),
+      const DeepCollectionEquality().hash(_filteredQuestions));
 
   /// Create a copy of AthleteQuestionState
   /// with the given fields replaced by the non-null parameter values.
@@ -893,10 +929,12 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteQuestionLoadedEvent data) loaded,
+    required TResult Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)
+        loaded,
     required TResult Function(String message) failure,
   }) {
-    return loaded(data);
+    return loaded(questions, filteredQuestions);
   }
 
   @override
@@ -904,10 +942,12 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteQuestionLoadedEvent data)? loaded,
+    TResult? Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
-    return loaded?.call(data);
+    return loaded?.call(questions, filteredQuestions);
   }
 
   @override
@@ -915,12 +955,14 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteQuestionLoadedEvent data)? loaded,
+    TResult Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(data);
+      return loaded(questions, filteredQuestions);
     }
     return orElse();
   }
@@ -964,9 +1006,12 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements AthleteQuestionState {
-  const factory _Loaded(final AthleteQuestionLoadedEvent data) = _$LoadedImpl;
+  const factory _Loaded(
+      {required final List<QuestionModel> questions,
+      required final List<QuestionModel> filteredQuestions}) = _$LoadedImpl;
 
-  AthleteQuestionLoadedEvent get data;
+  List<QuestionModel> get questions;
+  List<QuestionModel> get filteredQuestions;
 
   /// Create a copy of AthleteQuestionState
   /// with the given fields replaced by the non-null parameter values.
@@ -1045,7 +1090,9 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteQuestionLoadedEvent data) loaded,
+    required TResult Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)
+        loaded,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -1056,7 +1103,9 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteQuestionLoadedEvent data)? loaded,
+    TResult? Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -1067,7 +1116,9 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteQuestionLoadedEvent data)? loaded,
+    TResult Function(List<QuestionModel> questions,
+            List<QuestionModel> filteredQuestions)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -1125,184 +1176,4 @@ abstract class _Failure implements AthleteQuestionState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$AthleteQuestionLoadedEvent {
-  List<QuestionModel> get questions => throw _privateConstructorUsedError;
-  List<QuestionModel> get filteredQuestions =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of AthleteQuestionLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $AthleteQuestionLoadedEventCopyWith<AthleteQuestionLoadedEvent>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AthleteQuestionLoadedEventCopyWith<$Res> {
-  factory $AthleteQuestionLoadedEventCopyWith(AthleteQuestionLoadedEvent value,
-          $Res Function(AthleteQuestionLoadedEvent) then) =
-      _$AthleteQuestionLoadedEventCopyWithImpl<$Res,
-          AthleteQuestionLoadedEvent>;
-  @useResult
-  $Res call(
-      {List<QuestionModel> questions, List<QuestionModel> filteredQuestions});
-}
-
-/// @nodoc
-class _$AthleteQuestionLoadedEventCopyWithImpl<$Res,
-        $Val extends AthleteQuestionLoadedEvent>
-    implements $AthleteQuestionLoadedEventCopyWith<$Res> {
-  _$AthleteQuestionLoadedEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of AthleteQuestionLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? questions = null,
-    Object? filteredQuestions = null,
-  }) {
-    return _then(_value.copyWith(
-      questions: null == questions
-          ? _value.questions
-          : questions // ignore: cast_nullable_to_non_nullable
-              as List<QuestionModel>,
-      filteredQuestions: null == filteredQuestions
-          ? _value.filteredQuestions
-          : filteredQuestions // ignore: cast_nullable_to_non_nullable
-              as List<QuestionModel>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$AthleteQuestionLoadedEventImplCopyWith<$Res>
-    implements $AthleteQuestionLoadedEventCopyWith<$Res> {
-  factory _$$AthleteQuestionLoadedEventImplCopyWith(
-          _$AthleteQuestionLoadedEventImpl value,
-          $Res Function(_$AthleteQuestionLoadedEventImpl) then) =
-      __$$AthleteQuestionLoadedEventImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {List<QuestionModel> questions, List<QuestionModel> filteredQuestions});
-}
-
-/// @nodoc
-class __$$AthleteQuestionLoadedEventImplCopyWithImpl<$Res>
-    extends _$AthleteQuestionLoadedEventCopyWithImpl<$Res,
-        _$AthleteQuestionLoadedEventImpl>
-    implements _$$AthleteQuestionLoadedEventImplCopyWith<$Res> {
-  __$$AthleteQuestionLoadedEventImplCopyWithImpl(
-      _$AthleteQuestionLoadedEventImpl _value,
-      $Res Function(_$AthleteQuestionLoadedEventImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AthleteQuestionLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? questions = null,
-    Object? filteredQuestions = null,
-  }) {
-    return _then(_$AthleteQuestionLoadedEventImpl(
-      questions: null == questions
-          ? _value._questions
-          : questions // ignore: cast_nullable_to_non_nullable
-              as List<QuestionModel>,
-      filteredQuestions: null == filteredQuestions
-          ? _value._filteredQuestions
-          : filteredQuestions // ignore: cast_nullable_to_non_nullable
-              as List<QuestionModel>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AthleteQuestionLoadedEventImpl implements _AthleteQuestionLoadedEvent {
-  const _$AthleteQuestionLoadedEventImpl(
-      {final List<QuestionModel> questions = const [],
-      final List<QuestionModel> filteredQuestions = const []})
-      : _questions = questions,
-        _filteredQuestions = filteredQuestions;
-
-  final List<QuestionModel> _questions;
-  @override
-  @JsonKey()
-  List<QuestionModel> get questions {
-    if (_questions is EqualUnmodifiableListView) return _questions;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_questions);
-  }
-
-  final List<QuestionModel> _filteredQuestions;
-  @override
-  @JsonKey()
-  List<QuestionModel> get filteredQuestions {
-    if (_filteredQuestions is EqualUnmodifiableListView)
-      return _filteredQuestions;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_filteredQuestions);
-  }
-
-  @override
-  String toString() {
-    return 'AthleteQuestionLoadedEvent(questions: $questions, filteredQuestions: $filteredQuestions)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AthleteQuestionLoadedEventImpl &&
-            const DeepCollectionEquality()
-                .equals(other._questions, _questions) &&
-            const DeepCollectionEquality()
-                .equals(other._filteredQuestions, _filteredQuestions));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_questions),
-      const DeepCollectionEquality().hash(_filteredQuestions));
-
-  /// Create a copy of AthleteQuestionLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AthleteQuestionLoadedEventImplCopyWith<_$AthleteQuestionLoadedEventImpl>
-      get copyWith => __$$AthleteQuestionLoadedEventImplCopyWithImpl<
-          _$AthleteQuestionLoadedEventImpl>(this, _$identity);
-}
-
-abstract class _AthleteQuestionLoadedEvent
-    implements AthleteQuestionLoadedEvent {
-  const factory _AthleteQuestionLoadedEvent(
-          {final List<QuestionModel> questions,
-          final List<QuestionModel> filteredQuestions}) =
-      _$AthleteQuestionLoadedEventImpl;
-
-  @override
-  List<QuestionModel> get questions;
-  @override
-  List<QuestionModel> get filteredQuestions;
-
-  /// Create a copy of AthleteQuestionLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AthleteQuestionLoadedEventImplCopyWith<_$AthleteQuestionLoadedEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
