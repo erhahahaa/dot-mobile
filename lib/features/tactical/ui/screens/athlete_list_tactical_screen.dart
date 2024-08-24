@@ -31,10 +31,10 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
     _searchController = TextEditingController();
     _scrollController.addListener(_scrollListener);
 
-    final params = GetAllTacticalParams(clubId: 1);
+    const params = GetAllTacticalParams(clubId: 1);
 
     context.read<AthleteTacticalBloc>().add(
-          AthleteTacticalEvent.getTacticals(params),
+          const AthleteTacticalEvent.getTacticals(params),
         );
   }
 
@@ -128,9 +128,9 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
                     ),
                   ],
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     TitleLarge(
                       'Tactical',
                     ),

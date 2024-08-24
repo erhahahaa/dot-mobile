@@ -12,6 +12,6 @@ class AthleteDetailClubScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Parent();
+    return const Parent();
   }
 }

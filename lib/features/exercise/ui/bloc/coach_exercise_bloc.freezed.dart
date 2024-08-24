@@ -49,32 +49,34 @@ mixin _$CoachExerciseEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExercises value) getExercises,
-    required TResult Function(_FilterExercises value) filterExercises,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_CreateBatch value) createBatch,
-    required TResult Function(_UpdateBatch value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExerciseEventGetExercises value)
+        getExercises,
+    required TResult Function(CoachExerciseEventFilterExercises value)
+        filterExercises,
+    required TResult Function(CoachExerciseEventClear value) clear,
+    required TResult Function(CoachExerciseEventCreateBatch value) createBatch,
+    required TResult Function(CoachExerciseEventUpdateBatch value) update,
+    required TResult Function(CoachExerciseEventDelete value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExercises value)? getExercises,
-    TResult? Function(_FilterExercises value)? filterExercises,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_CreateBatch value)? createBatch,
-    TResult? Function(_UpdateBatch value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult? Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult? Function(CoachExerciseEventClear value)? clear,
+    TResult? Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult? Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult? Function(CoachExerciseEventDelete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExercises value)? getExercises,
-    TResult Function(_FilterExercises value)? filterExercises,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_CreateBatch value)? createBatch,
-    TResult Function(_UpdateBatch value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult Function(CoachExerciseEventClear value)? clear,
+    TResult Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult Function(CoachExerciseEventDelete value)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -102,10 +104,11 @@ class _$CoachExerciseEventCopyWithImpl<$Res, $Val extends CoachExerciseEvent>
 }
 
 /// @nodoc
-abstract class _$$GetExercisesImplCopyWith<$Res> {
-  factory _$$GetExercisesImplCopyWith(
-          _$GetExercisesImpl value, $Res Function(_$GetExercisesImpl) then) =
-      __$$GetExercisesImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseEventGetExercisesImplCopyWith<$Res> {
+  factory _$$CoachExerciseEventGetExercisesImplCopyWith(
+          _$CoachExerciseEventGetExercisesImpl value,
+          $Res Function(_$CoachExerciseEventGetExercisesImpl) then) =
+      __$$CoachExerciseEventGetExercisesImplCopyWithImpl<$Res>;
   @useResult
   $Res call({GetAllExerciseParams params});
 
@@ -113,11 +116,13 @@ abstract class _$$GetExercisesImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$GetExercisesImplCopyWithImpl<$Res>
-    extends _$CoachExerciseEventCopyWithImpl<$Res, _$GetExercisesImpl>
-    implements _$$GetExercisesImplCopyWith<$Res> {
-  __$$GetExercisesImplCopyWithImpl(
-      _$GetExercisesImpl _value, $Res Function(_$GetExercisesImpl) _then)
+class __$$CoachExerciseEventGetExercisesImplCopyWithImpl<$Res>
+    extends _$CoachExerciseEventCopyWithImpl<$Res,
+        _$CoachExerciseEventGetExercisesImpl>
+    implements _$$CoachExerciseEventGetExercisesImplCopyWith<$Res> {
+  __$$CoachExerciseEventGetExercisesImplCopyWithImpl(
+      _$CoachExerciseEventGetExercisesImpl _value,
+      $Res Function(_$CoachExerciseEventGetExercisesImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseEvent
@@ -127,7 +132,7 @@ class __$$GetExercisesImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$GetExercisesImpl(
+    return _then(_$CoachExerciseEventGetExercisesImpl(
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -148,8 +153,9 @@ class __$$GetExercisesImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetExercisesImpl implements _GetExercises {
-  const _$GetExercisesImpl(this.params);
+class _$CoachExerciseEventGetExercisesImpl
+    implements CoachExerciseEventGetExercises {
+  const _$CoachExerciseEventGetExercisesImpl(this.params);
 
   @override
   final GetAllExerciseParams params;
@@ -163,7 +169,7 @@ class _$GetExercisesImpl implements _GetExercises {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetExercisesImpl &&
+            other is _$CoachExerciseEventGetExercisesImpl &&
             (identical(other.params, params) || other.params == params));
   }
 
@@ -175,8 +181,10 @@ class _$GetExercisesImpl implements _GetExercises {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetExercisesImplCopyWith<_$GetExercisesImpl> get copyWith =>
-      __$$GetExercisesImplCopyWithImpl<_$GetExercisesImpl>(this, _$identity);
+  _$$CoachExerciseEventGetExercisesImplCopyWith<
+          _$CoachExerciseEventGetExercisesImpl>
+      get copyWith => __$$CoachExerciseEventGetExercisesImplCopyWithImpl<
+          _$CoachExerciseEventGetExercisesImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -224,12 +232,14 @@ class _$GetExercisesImpl implements _GetExercises {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExercises value) getExercises,
-    required TResult Function(_FilterExercises value) filterExercises,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_CreateBatch value) createBatch,
-    required TResult Function(_UpdateBatch value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExerciseEventGetExercises value)
+        getExercises,
+    required TResult Function(CoachExerciseEventFilterExercises value)
+        filterExercises,
+    required TResult Function(CoachExerciseEventClear value) clear,
+    required TResult Function(CoachExerciseEventCreateBatch value) createBatch,
+    required TResult Function(CoachExerciseEventUpdateBatch value) update,
+    required TResult Function(CoachExerciseEventDelete value) delete,
   }) {
     return getExercises(this);
   }
@@ -237,12 +247,12 @@ class _$GetExercisesImpl implements _GetExercises {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExercises value)? getExercises,
-    TResult? Function(_FilterExercises value)? filterExercises,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_CreateBatch value)? createBatch,
-    TResult? Function(_UpdateBatch value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult? Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult? Function(CoachExerciseEventClear value)? clear,
+    TResult? Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult? Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult? Function(CoachExerciseEventDelete value)? delete,
   }) {
     return getExercises?.call(this);
   }
@@ -250,12 +260,12 @@ class _$GetExercisesImpl implements _GetExercises {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExercises value)? getExercises,
-    TResult Function(_FilterExercises value)? filterExercises,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_CreateBatch value)? createBatch,
-    TResult Function(_UpdateBatch value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult Function(CoachExerciseEventClear value)? clear,
+    TResult Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult Function(CoachExerciseEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (getExercises != null) {
@@ -265,34 +275,38 @@ class _$GetExercisesImpl implements _GetExercises {
   }
 }
 
-abstract class _GetExercises implements CoachExerciseEvent {
-  const factory _GetExercises(final GetAllExerciseParams params) =
-      _$GetExercisesImpl;
+abstract class CoachExerciseEventGetExercises implements CoachExerciseEvent {
+  const factory CoachExerciseEventGetExercises(
+      final GetAllExerciseParams params) = _$CoachExerciseEventGetExercisesImpl;
 
   GetAllExerciseParams get params;
 
   /// Create a copy of CoachExerciseEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetExercisesImplCopyWith<_$GetExercisesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExerciseEventGetExercisesImplCopyWith<
+          _$CoachExerciseEventGetExercisesImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FilterExercisesImplCopyWith<$Res> {
-  factory _$$FilterExercisesImplCopyWith(_$FilterExercisesImpl value,
-          $Res Function(_$FilterExercisesImpl) then) =
-      __$$FilterExercisesImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseEventFilterExercisesImplCopyWith<$Res> {
+  factory _$$CoachExerciseEventFilterExercisesImplCopyWith(
+          _$CoachExerciseEventFilterExercisesImpl value,
+          $Res Function(_$CoachExerciseEventFilterExercisesImpl) then) =
+      __$$CoachExerciseEventFilterExercisesImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String query});
 }
 
 /// @nodoc
-class __$$FilterExercisesImplCopyWithImpl<$Res>
-    extends _$CoachExerciseEventCopyWithImpl<$Res, _$FilterExercisesImpl>
-    implements _$$FilterExercisesImplCopyWith<$Res> {
-  __$$FilterExercisesImplCopyWithImpl(
-      _$FilterExercisesImpl _value, $Res Function(_$FilterExercisesImpl) _then)
+class __$$CoachExerciseEventFilterExercisesImplCopyWithImpl<$Res>
+    extends _$CoachExerciseEventCopyWithImpl<$Res,
+        _$CoachExerciseEventFilterExercisesImpl>
+    implements _$$CoachExerciseEventFilterExercisesImplCopyWith<$Res> {
+  __$$CoachExerciseEventFilterExercisesImplCopyWithImpl(
+      _$CoachExerciseEventFilterExercisesImpl _value,
+      $Res Function(_$CoachExerciseEventFilterExercisesImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseEvent
@@ -302,7 +316,7 @@ class __$$FilterExercisesImplCopyWithImpl<$Res>
   $Res call({
     Object? query = null,
   }) {
-    return _then(_$FilterExercisesImpl(
+    return _then(_$CoachExerciseEventFilterExercisesImpl(
       null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
@@ -313,8 +327,9 @@ class __$$FilterExercisesImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FilterExercisesImpl implements _FilterExercises {
-  const _$FilterExercisesImpl(this.query);
+class _$CoachExerciseEventFilterExercisesImpl
+    implements CoachExerciseEventFilterExercises {
+  const _$CoachExerciseEventFilterExercisesImpl(this.query);
 
   @override
   final String query;
@@ -328,7 +343,7 @@ class _$FilterExercisesImpl implements _FilterExercises {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FilterExercisesImpl &&
+            other is _$CoachExerciseEventFilterExercisesImpl &&
             (identical(other.query, query) || other.query == query));
   }
 
@@ -340,9 +355,10 @@ class _$FilterExercisesImpl implements _FilterExercises {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FilterExercisesImplCopyWith<_$FilterExercisesImpl> get copyWith =>
-      __$$FilterExercisesImplCopyWithImpl<_$FilterExercisesImpl>(
-          this, _$identity);
+  _$$CoachExerciseEventFilterExercisesImplCopyWith<
+          _$CoachExerciseEventFilterExercisesImpl>
+      get copyWith => __$$CoachExerciseEventFilterExercisesImplCopyWithImpl<
+          _$CoachExerciseEventFilterExercisesImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -390,12 +406,14 @@ class _$FilterExercisesImpl implements _FilterExercises {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExercises value) getExercises,
-    required TResult Function(_FilterExercises value) filterExercises,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_CreateBatch value) createBatch,
-    required TResult Function(_UpdateBatch value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExerciseEventGetExercises value)
+        getExercises,
+    required TResult Function(CoachExerciseEventFilterExercises value)
+        filterExercises,
+    required TResult Function(CoachExerciseEventClear value) clear,
+    required TResult Function(CoachExerciseEventCreateBatch value) createBatch,
+    required TResult Function(CoachExerciseEventUpdateBatch value) update,
+    required TResult Function(CoachExerciseEventDelete value) delete,
   }) {
     return filterExercises(this);
   }
@@ -403,12 +421,12 @@ class _$FilterExercisesImpl implements _FilterExercises {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExercises value)? getExercises,
-    TResult? Function(_FilterExercises value)? filterExercises,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_CreateBatch value)? createBatch,
-    TResult? Function(_UpdateBatch value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult? Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult? Function(CoachExerciseEventClear value)? clear,
+    TResult? Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult? Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult? Function(CoachExerciseEventDelete value)? delete,
   }) {
     return filterExercises?.call(this);
   }
@@ -416,12 +434,12 @@ class _$FilterExercisesImpl implements _FilterExercises {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExercises value)? getExercises,
-    TResult Function(_FilterExercises value)? filterExercises,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_CreateBatch value)? createBatch,
-    TResult Function(_UpdateBatch value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult Function(CoachExerciseEventClear value)? clear,
+    TResult Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult Function(CoachExerciseEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (filterExercises != null) {
@@ -431,31 +449,36 @@ class _$FilterExercisesImpl implements _FilterExercises {
   }
 }
 
-abstract class _FilterExercises implements CoachExerciseEvent {
-  const factory _FilterExercises(final String query) = _$FilterExercisesImpl;
+abstract class CoachExerciseEventFilterExercises implements CoachExerciseEvent {
+  const factory CoachExerciseEventFilterExercises(final String query) =
+      _$CoachExerciseEventFilterExercisesImpl;
 
   String get query;
 
   /// Create a copy of CoachExerciseEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FilterExercisesImplCopyWith<_$FilterExercisesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExerciseEventFilterExercisesImplCopyWith<
+          _$CoachExerciseEventFilterExercisesImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ClearImplCopyWith<$Res> {
-  factory _$$ClearImplCopyWith(
-          _$ClearImpl value, $Res Function(_$ClearImpl) then) =
-      __$$ClearImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseEventClearImplCopyWith<$Res> {
+  factory _$$CoachExerciseEventClearImplCopyWith(
+          _$CoachExerciseEventClearImpl value,
+          $Res Function(_$CoachExerciseEventClearImpl) then) =
+      __$$CoachExerciseEventClearImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearImplCopyWithImpl<$Res>
-    extends _$CoachExerciseEventCopyWithImpl<$Res, _$ClearImpl>
-    implements _$$ClearImplCopyWith<$Res> {
-  __$$ClearImplCopyWithImpl(
-      _$ClearImpl _value, $Res Function(_$ClearImpl) _then)
+class __$$CoachExerciseEventClearImplCopyWithImpl<$Res>
+    extends _$CoachExerciseEventCopyWithImpl<$Res,
+        _$CoachExerciseEventClearImpl>
+    implements _$$CoachExerciseEventClearImplCopyWith<$Res> {
+  __$$CoachExerciseEventClearImplCopyWithImpl(
+      _$CoachExerciseEventClearImpl _value,
+      $Res Function(_$CoachExerciseEventClearImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseEvent
@@ -464,8 +487,8 @@ class __$$ClearImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ClearImpl implements _Clear {
-  const _$ClearImpl();
+class _$CoachExerciseEventClearImpl implements CoachExerciseEventClear {
+  const _$CoachExerciseEventClearImpl();
 
   @override
   String toString() {
@@ -475,7 +498,8 @@ class _$ClearImpl implements _Clear {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CoachExerciseEventClearImpl);
   }
 
   @override
@@ -527,12 +551,14 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExercises value) getExercises,
-    required TResult Function(_FilterExercises value) filterExercises,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_CreateBatch value) createBatch,
-    required TResult Function(_UpdateBatch value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExerciseEventGetExercises value)
+        getExercises,
+    required TResult Function(CoachExerciseEventFilterExercises value)
+        filterExercises,
+    required TResult Function(CoachExerciseEventClear value) clear,
+    required TResult Function(CoachExerciseEventCreateBatch value) createBatch,
+    required TResult Function(CoachExerciseEventUpdateBatch value) update,
+    required TResult Function(CoachExerciseEventDelete value) delete,
   }) {
     return clear(this);
   }
@@ -540,12 +566,12 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExercises value)? getExercises,
-    TResult? Function(_FilterExercises value)? filterExercises,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_CreateBatch value)? createBatch,
-    TResult? Function(_UpdateBatch value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult? Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult? Function(CoachExerciseEventClear value)? clear,
+    TResult? Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult? Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult? Function(CoachExerciseEventDelete value)? delete,
   }) {
     return clear?.call(this);
   }
@@ -553,12 +579,12 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExercises value)? getExercises,
-    TResult Function(_FilterExercises value)? filterExercises,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_CreateBatch value)? createBatch,
-    TResult Function(_UpdateBatch value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult Function(CoachExerciseEventClear value)? clear,
+    TResult Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult Function(CoachExerciseEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (clear != null) {
@@ -568,25 +594,28 @@ class _$ClearImpl implements _Clear {
   }
 }
 
-abstract class _Clear implements CoachExerciseEvent {
-  const factory _Clear() = _$ClearImpl;
+abstract class CoachExerciseEventClear implements CoachExerciseEvent {
+  const factory CoachExerciseEventClear() = _$CoachExerciseEventClearImpl;
 }
 
 /// @nodoc
-abstract class _$$CreateBatchImplCopyWith<$Res> {
-  factory _$$CreateBatchImplCopyWith(
-          _$CreateBatchImpl value, $Res Function(_$CreateBatchImpl) then) =
-      __$$CreateBatchImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseEventCreateBatchImplCopyWith<$Res> {
+  factory _$$CoachExerciseEventCreateBatchImplCopyWith(
+          _$CoachExerciseEventCreateBatchImpl value,
+          $Res Function(_$CoachExerciseEventCreateBatchImpl) then) =
+      __$$CoachExerciseEventCreateBatchImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<CreateExerciseParams> params});
 }
 
 /// @nodoc
-class __$$CreateBatchImplCopyWithImpl<$Res>
-    extends _$CoachExerciseEventCopyWithImpl<$Res, _$CreateBatchImpl>
-    implements _$$CreateBatchImplCopyWith<$Res> {
-  __$$CreateBatchImplCopyWithImpl(
-      _$CreateBatchImpl _value, $Res Function(_$CreateBatchImpl) _then)
+class __$$CoachExerciseEventCreateBatchImplCopyWithImpl<$Res>
+    extends _$CoachExerciseEventCopyWithImpl<$Res,
+        _$CoachExerciseEventCreateBatchImpl>
+    implements _$$CoachExerciseEventCreateBatchImplCopyWith<$Res> {
+  __$$CoachExerciseEventCreateBatchImplCopyWithImpl(
+      _$CoachExerciseEventCreateBatchImpl _value,
+      $Res Function(_$CoachExerciseEventCreateBatchImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseEvent
@@ -596,7 +625,7 @@ class __$$CreateBatchImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$CreateBatchImpl(
+    return _then(_$CoachExerciseEventCreateBatchImpl(
       null == params
           ? _value._params
           : params // ignore: cast_nullable_to_non_nullable
@@ -607,8 +636,10 @@ class __$$CreateBatchImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreateBatchImpl implements _CreateBatch {
-  const _$CreateBatchImpl(final List<CreateExerciseParams> params)
+class _$CoachExerciseEventCreateBatchImpl
+    implements CoachExerciseEventCreateBatch {
+  const _$CoachExerciseEventCreateBatchImpl(
+      final List<CreateExerciseParams> params)
       : _params = params;
 
   final List<CreateExerciseParams> _params;
@@ -628,7 +659,7 @@ class _$CreateBatchImpl implements _CreateBatch {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateBatchImpl &&
+            other is _$CoachExerciseEventCreateBatchImpl &&
             const DeepCollectionEquality().equals(other._params, _params));
   }
 
@@ -641,8 +672,10 @@ class _$CreateBatchImpl implements _CreateBatch {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateBatchImplCopyWith<_$CreateBatchImpl> get copyWith =>
-      __$$CreateBatchImplCopyWithImpl<_$CreateBatchImpl>(this, _$identity);
+  _$$CoachExerciseEventCreateBatchImplCopyWith<
+          _$CoachExerciseEventCreateBatchImpl>
+      get copyWith => __$$CoachExerciseEventCreateBatchImplCopyWithImpl<
+          _$CoachExerciseEventCreateBatchImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -690,12 +723,14 @@ class _$CreateBatchImpl implements _CreateBatch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExercises value) getExercises,
-    required TResult Function(_FilterExercises value) filterExercises,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_CreateBatch value) createBatch,
-    required TResult Function(_UpdateBatch value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExerciseEventGetExercises value)
+        getExercises,
+    required TResult Function(CoachExerciseEventFilterExercises value)
+        filterExercises,
+    required TResult Function(CoachExerciseEventClear value) clear,
+    required TResult Function(CoachExerciseEventCreateBatch value) createBatch,
+    required TResult Function(CoachExerciseEventUpdateBatch value) update,
+    required TResult Function(CoachExerciseEventDelete value) delete,
   }) {
     return createBatch(this);
   }
@@ -703,12 +738,12 @@ class _$CreateBatchImpl implements _CreateBatch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExercises value)? getExercises,
-    TResult? Function(_FilterExercises value)? filterExercises,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_CreateBatch value)? createBatch,
-    TResult? Function(_UpdateBatch value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult? Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult? Function(CoachExerciseEventClear value)? clear,
+    TResult? Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult? Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult? Function(CoachExerciseEventDelete value)? delete,
   }) {
     return createBatch?.call(this);
   }
@@ -716,12 +751,12 @@ class _$CreateBatchImpl implements _CreateBatch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExercises value)? getExercises,
-    TResult Function(_FilterExercises value)? filterExercises,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_CreateBatch value)? createBatch,
-    TResult Function(_UpdateBatch value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult Function(CoachExerciseEventClear value)? clear,
+    TResult Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult Function(CoachExerciseEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (createBatch != null) {
@@ -731,34 +766,39 @@ class _$CreateBatchImpl implements _CreateBatch {
   }
 }
 
-abstract class _CreateBatch implements CoachExerciseEvent {
-  const factory _CreateBatch(final List<CreateExerciseParams> params) =
-      _$CreateBatchImpl;
+abstract class CoachExerciseEventCreateBatch implements CoachExerciseEvent {
+  const factory CoachExerciseEventCreateBatch(
+          final List<CreateExerciseParams> params) =
+      _$CoachExerciseEventCreateBatchImpl;
 
   List<CreateExerciseParams> get params;
 
   /// Create a copy of CoachExerciseEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateBatchImplCopyWith<_$CreateBatchImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExerciseEventCreateBatchImplCopyWith<
+          _$CoachExerciseEventCreateBatchImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdateBatchImplCopyWith<$Res> {
-  factory _$$UpdateBatchImplCopyWith(
-          _$UpdateBatchImpl value, $Res Function(_$UpdateBatchImpl) then) =
-      __$$UpdateBatchImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseEventUpdateBatchImplCopyWith<$Res> {
+  factory _$$CoachExerciseEventUpdateBatchImplCopyWith(
+          _$CoachExerciseEventUpdateBatchImpl value,
+          $Res Function(_$CoachExerciseEventUpdateBatchImpl) then) =
+      __$$CoachExerciseEventUpdateBatchImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<UpdateExerciseParams> params});
 }
 
 /// @nodoc
-class __$$UpdateBatchImplCopyWithImpl<$Res>
-    extends _$CoachExerciseEventCopyWithImpl<$Res, _$UpdateBatchImpl>
-    implements _$$UpdateBatchImplCopyWith<$Res> {
-  __$$UpdateBatchImplCopyWithImpl(
-      _$UpdateBatchImpl _value, $Res Function(_$UpdateBatchImpl) _then)
+class __$$CoachExerciseEventUpdateBatchImplCopyWithImpl<$Res>
+    extends _$CoachExerciseEventCopyWithImpl<$Res,
+        _$CoachExerciseEventUpdateBatchImpl>
+    implements _$$CoachExerciseEventUpdateBatchImplCopyWith<$Res> {
+  __$$CoachExerciseEventUpdateBatchImplCopyWithImpl(
+      _$CoachExerciseEventUpdateBatchImpl _value,
+      $Res Function(_$CoachExerciseEventUpdateBatchImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseEvent
@@ -768,7 +808,7 @@ class __$$UpdateBatchImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$UpdateBatchImpl(
+    return _then(_$CoachExerciseEventUpdateBatchImpl(
       null == params
           ? _value._params
           : params // ignore: cast_nullable_to_non_nullable
@@ -779,8 +819,10 @@ class __$$UpdateBatchImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateBatchImpl implements _UpdateBatch {
-  const _$UpdateBatchImpl(final List<UpdateExerciseParams> params)
+class _$CoachExerciseEventUpdateBatchImpl
+    implements CoachExerciseEventUpdateBatch {
+  const _$CoachExerciseEventUpdateBatchImpl(
+      final List<UpdateExerciseParams> params)
       : _params = params;
 
   final List<UpdateExerciseParams> _params;
@@ -800,7 +842,7 @@ class _$UpdateBatchImpl implements _UpdateBatch {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateBatchImpl &&
+            other is _$CoachExerciseEventUpdateBatchImpl &&
             const DeepCollectionEquality().equals(other._params, _params));
   }
 
@@ -813,8 +855,10 @@ class _$UpdateBatchImpl implements _UpdateBatch {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateBatchImplCopyWith<_$UpdateBatchImpl> get copyWith =>
-      __$$UpdateBatchImplCopyWithImpl<_$UpdateBatchImpl>(this, _$identity);
+  _$$CoachExerciseEventUpdateBatchImplCopyWith<
+          _$CoachExerciseEventUpdateBatchImpl>
+      get copyWith => __$$CoachExerciseEventUpdateBatchImplCopyWithImpl<
+          _$CoachExerciseEventUpdateBatchImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -862,12 +906,14 @@ class _$UpdateBatchImpl implements _UpdateBatch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExercises value) getExercises,
-    required TResult Function(_FilterExercises value) filterExercises,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_CreateBatch value) createBatch,
-    required TResult Function(_UpdateBatch value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExerciseEventGetExercises value)
+        getExercises,
+    required TResult Function(CoachExerciseEventFilterExercises value)
+        filterExercises,
+    required TResult Function(CoachExerciseEventClear value) clear,
+    required TResult Function(CoachExerciseEventCreateBatch value) createBatch,
+    required TResult Function(CoachExerciseEventUpdateBatch value) update,
+    required TResult Function(CoachExerciseEventDelete value) delete,
   }) {
     return update(this);
   }
@@ -875,12 +921,12 @@ class _$UpdateBatchImpl implements _UpdateBatch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExercises value)? getExercises,
-    TResult? Function(_FilterExercises value)? filterExercises,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_CreateBatch value)? createBatch,
-    TResult? Function(_UpdateBatch value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult? Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult? Function(CoachExerciseEventClear value)? clear,
+    TResult? Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult? Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult? Function(CoachExerciseEventDelete value)? delete,
   }) {
     return update?.call(this);
   }
@@ -888,12 +934,12 @@ class _$UpdateBatchImpl implements _UpdateBatch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExercises value)? getExercises,
-    TResult Function(_FilterExercises value)? filterExercises,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_CreateBatch value)? createBatch,
-    TResult Function(_UpdateBatch value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult Function(CoachExerciseEventClear value)? clear,
+    TResult Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult Function(CoachExerciseEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -903,24 +949,27 @@ class _$UpdateBatchImpl implements _UpdateBatch {
   }
 }
 
-abstract class _UpdateBatch implements CoachExerciseEvent {
-  const factory _UpdateBatch(final List<UpdateExerciseParams> params) =
-      _$UpdateBatchImpl;
+abstract class CoachExerciseEventUpdateBatch implements CoachExerciseEvent {
+  const factory CoachExerciseEventUpdateBatch(
+          final List<UpdateExerciseParams> params) =
+      _$CoachExerciseEventUpdateBatchImpl;
 
   List<UpdateExerciseParams> get params;
 
   /// Create a copy of CoachExerciseEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateBatchImplCopyWith<_$UpdateBatchImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExerciseEventUpdateBatchImplCopyWith<
+          _$CoachExerciseEventUpdateBatchImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeleteImplCopyWith<$Res> {
-  factory _$$DeleteImplCopyWith(
-          _$DeleteImpl value, $Res Function(_$DeleteImpl) then) =
-      __$$DeleteImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseEventDeleteImplCopyWith<$Res> {
+  factory _$$CoachExerciseEventDeleteImplCopyWith(
+          _$CoachExerciseEventDeleteImpl value,
+          $Res Function(_$CoachExerciseEventDeleteImpl) then) =
+      __$$CoachExerciseEventDeleteImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DeleteExerciseParams params});
 
@@ -928,11 +977,13 @@ abstract class _$$DeleteImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DeleteImplCopyWithImpl<$Res>
-    extends _$CoachExerciseEventCopyWithImpl<$Res, _$DeleteImpl>
-    implements _$$DeleteImplCopyWith<$Res> {
-  __$$DeleteImplCopyWithImpl(
-      _$DeleteImpl _value, $Res Function(_$DeleteImpl) _then)
+class __$$CoachExerciseEventDeleteImplCopyWithImpl<$Res>
+    extends _$CoachExerciseEventCopyWithImpl<$Res,
+        _$CoachExerciseEventDeleteImpl>
+    implements _$$CoachExerciseEventDeleteImplCopyWith<$Res> {
+  __$$CoachExerciseEventDeleteImplCopyWithImpl(
+      _$CoachExerciseEventDeleteImpl _value,
+      $Res Function(_$CoachExerciseEventDeleteImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseEvent
@@ -942,7 +993,7 @@ class __$$DeleteImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$DeleteImpl(
+    return _then(_$CoachExerciseEventDeleteImpl(
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -963,8 +1014,8 @@ class __$$DeleteImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeleteImpl implements _Delete {
-  const _$DeleteImpl(this.params);
+class _$CoachExerciseEventDeleteImpl implements CoachExerciseEventDelete {
+  const _$CoachExerciseEventDeleteImpl(this.params);
 
   @override
   final DeleteExerciseParams params;
@@ -978,7 +1029,7 @@ class _$DeleteImpl implements _Delete {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeleteImpl &&
+            other is _$CoachExerciseEventDeleteImpl &&
             (identical(other.params, params) || other.params == params));
   }
 
@@ -990,8 +1041,9 @@ class _$DeleteImpl implements _Delete {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
-      __$$DeleteImplCopyWithImpl<_$DeleteImpl>(this, _$identity);
+  _$$CoachExerciseEventDeleteImplCopyWith<_$CoachExerciseEventDeleteImpl>
+      get copyWith => __$$CoachExerciseEventDeleteImplCopyWithImpl<
+          _$CoachExerciseEventDeleteImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1039,12 +1091,14 @@ class _$DeleteImpl implements _Delete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExercises value) getExercises,
-    required TResult Function(_FilterExercises value) filterExercises,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_CreateBatch value) createBatch,
-    required TResult Function(_UpdateBatch value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExerciseEventGetExercises value)
+        getExercises,
+    required TResult Function(CoachExerciseEventFilterExercises value)
+        filterExercises,
+    required TResult Function(CoachExerciseEventClear value) clear,
+    required TResult Function(CoachExerciseEventCreateBatch value) createBatch,
+    required TResult Function(CoachExerciseEventUpdateBatch value) update,
+    required TResult Function(CoachExerciseEventDelete value) delete,
   }) {
     return delete(this);
   }
@@ -1052,12 +1106,12 @@ class _$DeleteImpl implements _Delete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExercises value)? getExercises,
-    TResult? Function(_FilterExercises value)? filterExercises,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_CreateBatch value)? createBatch,
-    TResult? Function(_UpdateBatch value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult? Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult? Function(CoachExerciseEventClear value)? clear,
+    TResult? Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult? Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult? Function(CoachExerciseEventDelete value)? delete,
   }) {
     return delete?.call(this);
   }
@@ -1065,12 +1119,12 @@ class _$DeleteImpl implements _Delete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExercises value)? getExercises,
-    TResult Function(_FilterExercises value)? filterExercises,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_CreateBatch value)? createBatch,
-    TResult Function(_UpdateBatch value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExerciseEventGetExercises value)? getExercises,
+    TResult Function(CoachExerciseEventFilterExercises value)? filterExercises,
+    TResult Function(CoachExerciseEventClear value)? clear,
+    TResult Function(CoachExerciseEventCreateBatch value)? createBatch,
+    TResult Function(CoachExerciseEventUpdateBatch value)? update,
+    TResult Function(CoachExerciseEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -1080,16 +1134,17 @@ class _$DeleteImpl implements _Delete {
   }
 }
 
-abstract class _Delete implements CoachExerciseEvent {
-  const factory _Delete(final DeleteExerciseParams params) = _$DeleteImpl;
+abstract class CoachExerciseEventDelete implements CoachExerciseEvent {
+  const factory CoachExerciseEventDelete(final DeleteExerciseParams params) =
+      _$CoachExerciseEventDeleteImpl;
 
   DeleteExerciseParams get params;
 
   /// Create a copy of CoachExerciseEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExerciseEventDeleteImplCopyWith<_$CoachExerciseEventDeleteImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1136,35 +1191,37 @@ mixin _$CoachExerciseState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_CreatedBatch value) createdBatch,
-    required TResult Function(_UpdatedBatch value) updatedBatch,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExerciseStateInitial value) initial,
+    required TResult Function(CoachExerciseStateLoading value) loading,
+    required TResult Function(CoachExerciseStateLoaded value) loaded,
+    required TResult Function(CoachExerciseStateFailure value) failure,
+    required TResult Function(CoachExerciseStateCreatedBatch value)
+        createdBatch,
+    required TResult Function(CoachExerciseStateUpdatedBatch value)
+        updatedBatch,
+    required TResult Function(CoachExerciseStateDeleted value) deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_CreatedBatch value)? createdBatch,
-    TResult? Function(_UpdatedBatch value)? updatedBatch,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExerciseStateInitial value)? initial,
+    TResult? Function(CoachExerciseStateLoading value)? loading,
+    TResult? Function(CoachExerciseStateLoaded value)? loaded,
+    TResult? Function(CoachExerciseStateFailure value)? failure,
+    TResult? Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult? Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult? Function(CoachExerciseStateDeleted value)? deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_CreatedBatch value)? createdBatch,
-    TResult Function(_UpdatedBatch value)? updatedBatch,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExerciseStateInitial value)? initial,
+    TResult Function(CoachExerciseStateLoading value)? loading,
+    TResult Function(CoachExerciseStateLoaded value)? loaded,
+    TResult Function(CoachExerciseStateFailure value)? failure,
+    TResult Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult Function(CoachExerciseStateDeleted value)? deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1192,18 +1249,21 @@ class _$CoachExerciseStateCopyWithImpl<$Res, $Val extends CoachExerciseState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseStateInitialImplCopyWith<$Res> {
+  factory _$$CoachExerciseStateInitialImplCopyWith(
+          _$CoachExerciseStateInitialImpl value,
+          $Res Function(_$CoachExerciseStateInitialImpl) then) =
+      __$$CoachExerciseStateInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$CoachExerciseStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$CoachExerciseStateInitialImplCopyWithImpl<$Res>
+    extends _$CoachExerciseStateCopyWithImpl<$Res,
+        _$CoachExerciseStateInitialImpl>
+    implements _$$CoachExerciseStateInitialImplCopyWith<$Res> {
+  __$$CoachExerciseStateInitialImplCopyWithImpl(
+      _$CoachExerciseStateInitialImpl _value,
+      $Res Function(_$CoachExerciseStateInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseState
@@ -1212,8 +1272,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$CoachExerciseStateInitialImpl implements CoachExerciseStateInitial {
+  const _$CoachExerciseStateInitialImpl();
 
   @override
   String toString() {
@@ -1223,7 +1283,8 @@ class _$InitialImpl implements _Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CoachExerciseStateInitialImpl);
   }
 
   @override
@@ -1284,13 +1345,15 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_CreatedBatch value) createdBatch,
-    required TResult Function(_UpdatedBatch value) updatedBatch,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExerciseStateInitial value) initial,
+    required TResult Function(CoachExerciseStateLoading value) loading,
+    required TResult Function(CoachExerciseStateLoaded value) loaded,
+    required TResult Function(CoachExerciseStateFailure value) failure,
+    required TResult Function(CoachExerciseStateCreatedBatch value)
+        createdBatch,
+    required TResult Function(CoachExerciseStateUpdatedBatch value)
+        updatedBatch,
+    required TResult Function(CoachExerciseStateDeleted value) deleted,
   }) {
     return initial(this);
   }
@@ -1298,13 +1361,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_CreatedBatch value)? createdBatch,
-    TResult? Function(_UpdatedBatch value)? updatedBatch,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExerciseStateInitial value)? initial,
+    TResult? Function(CoachExerciseStateLoading value)? loading,
+    TResult? Function(CoachExerciseStateLoaded value)? loaded,
+    TResult? Function(CoachExerciseStateFailure value)? failure,
+    TResult? Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult? Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult? Function(CoachExerciseStateDeleted value)? deleted,
   }) {
     return initial?.call(this);
   }
@@ -1312,13 +1375,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_CreatedBatch value)? createdBatch,
-    TResult Function(_UpdatedBatch value)? updatedBatch,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExerciseStateInitial value)? initial,
+    TResult Function(CoachExerciseStateLoading value)? loading,
+    TResult Function(CoachExerciseStateLoaded value)? loaded,
+    TResult Function(CoachExerciseStateFailure value)? failure,
+    TResult Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult Function(CoachExerciseStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1328,23 +1391,26 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements CoachExerciseState {
-  const factory _Initial() = _$InitialImpl;
+abstract class CoachExerciseStateInitial implements CoachExerciseState {
+  const factory CoachExerciseStateInitial() = _$CoachExerciseStateInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseStateLoadingImplCopyWith<$Res> {
+  factory _$$CoachExerciseStateLoadingImplCopyWith(
+          _$CoachExerciseStateLoadingImpl value,
+          $Res Function(_$CoachExerciseStateLoadingImpl) then) =
+      __$$CoachExerciseStateLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$CoachExerciseStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$CoachExerciseStateLoadingImplCopyWithImpl<$Res>
+    extends _$CoachExerciseStateCopyWithImpl<$Res,
+        _$CoachExerciseStateLoadingImpl>
+    implements _$$CoachExerciseStateLoadingImplCopyWith<$Res> {
+  __$$CoachExerciseStateLoadingImplCopyWithImpl(
+      _$CoachExerciseStateLoadingImpl _value,
+      $Res Function(_$CoachExerciseStateLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseState
@@ -1353,8 +1419,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$CoachExerciseStateLoadingImpl implements CoachExerciseStateLoading {
+  const _$CoachExerciseStateLoadingImpl();
 
   @override
   String toString() {
@@ -1364,7 +1430,8 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CoachExerciseStateLoadingImpl);
   }
 
   @override
@@ -1425,13 +1492,15 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_CreatedBatch value) createdBatch,
-    required TResult Function(_UpdatedBatch value) updatedBatch,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExerciseStateInitial value) initial,
+    required TResult Function(CoachExerciseStateLoading value) loading,
+    required TResult Function(CoachExerciseStateLoaded value) loaded,
+    required TResult Function(CoachExerciseStateFailure value) failure,
+    required TResult Function(CoachExerciseStateCreatedBatch value)
+        createdBatch,
+    required TResult Function(CoachExerciseStateUpdatedBatch value)
+        updatedBatch,
+    required TResult Function(CoachExerciseStateDeleted value) deleted,
   }) {
     return loading(this);
   }
@@ -1439,13 +1508,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_CreatedBatch value)? createdBatch,
-    TResult? Function(_UpdatedBatch value)? updatedBatch,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExerciseStateInitial value)? initial,
+    TResult? Function(CoachExerciseStateLoading value)? loading,
+    TResult? Function(CoachExerciseStateLoaded value)? loaded,
+    TResult? Function(CoachExerciseStateFailure value)? failure,
+    TResult? Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult? Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult? Function(CoachExerciseStateDeleted value)? deleted,
   }) {
     return loading?.call(this);
   }
@@ -1453,13 +1522,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_CreatedBatch value)? createdBatch,
-    TResult Function(_UpdatedBatch value)? updatedBatch,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExerciseStateInitial value)? initial,
+    TResult Function(CoachExerciseStateLoading value)? loading,
+    TResult Function(CoachExerciseStateLoaded value)? loaded,
+    TResult Function(CoachExerciseStateFailure value)? failure,
+    TResult Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult Function(CoachExerciseStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1469,26 +1538,29 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements CoachExerciseState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class CoachExerciseStateLoading implements CoachExerciseState {
+  const factory CoachExerciseStateLoading() = _$CoachExerciseStateLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseStateLoadedImplCopyWith<$Res> {
+  factory _$$CoachExerciseStateLoadedImplCopyWith(
+          _$CoachExerciseStateLoadedImpl value,
+          $Res Function(_$CoachExerciseStateLoadedImpl) then) =
+      __$$CoachExerciseStateLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<ExerciseModel> exercises, List<ExerciseModel> filteredExercises});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$CoachExerciseStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$CoachExerciseStateLoadedImplCopyWithImpl<$Res>
+    extends _$CoachExerciseStateCopyWithImpl<$Res,
+        _$CoachExerciseStateLoadedImpl>
+    implements _$$CoachExerciseStateLoadedImplCopyWith<$Res> {
+  __$$CoachExerciseStateLoadedImplCopyWithImpl(
+      _$CoachExerciseStateLoadedImpl _value,
+      $Res Function(_$CoachExerciseStateLoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseState
@@ -1499,7 +1571,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
     Object? exercises = null,
     Object? filteredExercises = null,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_$CoachExerciseStateLoadedImpl(
       exercises: null == exercises
           ? _value._exercises
           : exercises // ignore: cast_nullable_to_non_nullable
@@ -1514,8 +1586,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(
+class _$CoachExerciseStateLoadedImpl implements CoachExerciseStateLoaded {
+  const _$CoachExerciseStateLoadedImpl(
       {required final List<ExerciseModel> exercises,
       required final List<ExerciseModel> filteredExercises})
       : _exercises = exercises,
@@ -1547,7 +1619,7 @@ class _$LoadedImpl implements _Loaded {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
+            other is _$CoachExerciseStateLoadedImpl &&
             const DeepCollectionEquality()
                 .equals(other._exercises, _exercises) &&
             const DeepCollectionEquality()
@@ -1565,8 +1637,9 @@ class _$LoadedImpl implements _Loaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$CoachExerciseStateLoadedImplCopyWith<_$CoachExerciseStateLoadedImpl>
+      get copyWith => __$$CoachExerciseStateLoadedImplCopyWithImpl<
+          _$CoachExerciseStateLoadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1623,13 +1696,15 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_CreatedBatch value) createdBatch,
-    required TResult Function(_UpdatedBatch value) updatedBatch,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExerciseStateInitial value) initial,
+    required TResult Function(CoachExerciseStateLoading value) loading,
+    required TResult Function(CoachExerciseStateLoaded value) loaded,
+    required TResult Function(CoachExerciseStateFailure value) failure,
+    required TResult Function(CoachExerciseStateCreatedBatch value)
+        createdBatch,
+    required TResult Function(CoachExerciseStateUpdatedBatch value)
+        updatedBatch,
+    required TResult Function(CoachExerciseStateDeleted value) deleted,
   }) {
     return loaded(this);
   }
@@ -1637,13 +1712,13 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_CreatedBatch value)? createdBatch,
-    TResult? Function(_UpdatedBatch value)? updatedBatch,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExerciseStateInitial value)? initial,
+    TResult? Function(CoachExerciseStateLoading value)? loading,
+    TResult? Function(CoachExerciseStateLoaded value)? loaded,
+    TResult? Function(CoachExerciseStateFailure value)? failure,
+    TResult? Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult? Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult? Function(CoachExerciseStateDeleted value)? deleted,
   }) {
     return loaded?.call(this);
   }
@@ -1651,13 +1726,13 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_CreatedBatch value)? createdBatch,
-    TResult Function(_UpdatedBatch value)? updatedBatch,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExerciseStateInitial value)? initial,
+    TResult Function(CoachExerciseStateLoading value)? loading,
+    TResult Function(CoachExerciseStateLoaded value)? loaded,
+    TResult Function(CoachExerciseStateFailure value)? failure,
+    TResult Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult Function(CoachExerciseStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -1667,10 +1742,11 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements CoachExerciseState {
-  const factory _Loaded(
-      {required final List<ExerciseModel> exercises,
-      required final List<ExerciseModel> filteredExercises}) = _$LoadedImpl;
+abstract class CoachExerciseStateLoaded implements CoachExerciseState {
+  const factory CoachExerciseStateLoaded(
+          {required final List<ExerciseModel> exercises,
+          required final List<ExerciseModel> filteredExercises}) =
+      _$CoachExerciseStateLoadedImpl;
 
   List<ExerciseModel> get exercises;
   List<ExerciseModel> get filteredExercises;
@@ -1678,25 +1754,28 @@ abstract class _Loaded implements CoachExerciseState {
   /// Create a copy of CoachExerciseState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExerciseStateLoadedImplCopyWith<_$CoachExerciseStateLoadedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseStateFailureImplCopyWith<$Res> {
+  factory _$$CoachExerciseStateFailureImplCopyWith(
+          _$CoachExerciseStateFailureImpl value,
+          $Res Function(_$CoachExerciseStateFailureImpl) then) =
+      __$$CoachExerciseStateFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$CoachExerciseStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
+class __$$CoachExerciseStateFailureImplCopyWithImpl<$Res>
+    extends _$CoachExerciseStateCopyWithImpl<$Res,
+        _$CoachExerciseStateFailureImpl>
+    implements _$$CoachExerciseStateFailureImplCopyWith<$Res> {
+  __$$CoachExerciseStateFailureImplCopyWithImpl(
+      _$CoachExerciseStateFailureImpl _value,
+      $Res Function(_$CoachExerciseStateFailureImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseState
@@ -1706,7 +1785,7 @@ class __$$FailureImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$FailureImpl(
+    return _then(_$CoachExerciseStateFailureImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1717,8 +1796,8 @@ class __$$FailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl(this.message);
+class _$CoachExerciseStateFailureImpl implements CoachExerciseStateFailure {
+  const _$CoachExerciseStateFailureImpl(this.message);
 
   @override
   final String message;
@@ -1732,7 +1811,7 @@ class _$FailureImpl implements _Failure {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
+            other is _$CoachExerciseStateFailureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -1744,8 +1823,9 @@ class _$FailureImpl implements _Failure {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
+  _$$CoachExerciseStateFailureImplCopyWith<_$CoachExerciseStateFailureImpl>
+      get copyWith => __$$CoachExerciseStateFailureImplCopyWithImpl<
+          _$CoachExerciseStateFailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1802,13 +1882,15 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_CreatedBatch value) createdBatch,
-    required TResult Function(_UpdatedBatch value) updatedBatch,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExerciseStateInitial value) initial,
+    required TResult Function(CoachExerciseStateLoading value) loading,
+    required TResult Function(CoachExerciseStateLoaded value) loaded,
+    required TResult Function(CoachExerciseStateFailure value) failure,
+    required TResult Function(CoachExerciseStateCreatedBatch value)
+        createdBatch,
+    required TResult Function(CoachExerciseStateUpdatedBatch value)
+        updatedBatch,
+    required TResult Function(CoachExerciseStateDeleted value) deleted,
   }) {
     return failure(this);
   }
@@ -1816,13 +1898,13 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_CreatedBatch value)? createdBatch,
-    TResult? Function(_UpdatedBatch value)? updatedBatch,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExerciseStateInitial value)? initial,
+    TResult? Function(CoachExerciseStateLoading value)? loading,
+    TResult? Function(CoachExerciseStateLoaded value)? loaded,
+    TResult? Function(CoachExerciseStateFailure value)? failure,
+    TResult? Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult? Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult? Function(CoachExerciseStateDeleted value)? deleted,
   }) {
     return failure?.call(this);
   }
@@ -1830,13 +1912,13 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_CreatedBatch value)? createdBatch,
-    TResult Function(_UpdatedBatch value)? updatedBatch,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExerciseStateInitial value)? initial,
+    TResult Function(CoachExerciseStateLoading value)? loading,
+    TResult Function(CoachExerciseStateLoaded value)? loaded,
+    TResult Function(CoachExerciseStateFailure value)? failure,
+    TResult Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult Function(CoachExerciseStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1846,33 +1928,37 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements CoachExerciseState {
-  const factory _Failure(final String message) = _$FailureImpl;
+abstract class CoachExerciseStateFailure implements CoachExerciseState {
+  const factory CoachExerciseStateFailure(final String message) =
+      _$CoachExerciseStateFailureImpl;
 
   String get message;
 
   /// Create a copy of CoachExerciseState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExerciseStateFailureImplCopyWith<_$CoachExerciseStateFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CreatedBatchImplCopyWith<$Res> {
-  factory _$$CreatedBatchImplCopyWith(
-          _$CreatedBatchImpl value, $Res Function(_$CreatedBatchImpl) then) =
-      __$$CreatedBatchImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseStateCreatedBatchImplCopyWith<$Res> {
+  factory _$$CoachExerciseStateCreatedBatchImplCopyWith(
+          _$CoachExerciseStateCreatedBatchImpl value,
+          $Res Function(_$CoachExerciseStateCreatedBatchImpl) then) =
+      __$$CoachExerciseStateCreatedBatchImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<ExerciseModel> exercises});
 }
 
 /// @nodoc
-class __$$CreatedBatchImplCopyWithImpl<$Res>
-    extends _$CoachExerciseStateCopyWithImpl<$Res, _$CreatedBatchImpl>
-    implements _$$CreatedBatchImplCopyWith<$Res> {
-  __$$CreatedBatchImplCopyWithImpl(
-      _$CreatedBatchImpl _value, $Res Function(_$CreatedBatchImpl) _then)
+class __$$CoachExerciseStateCreatedBatchImplCopyWithImpl<$Res>
+    extends _$CoachExerciseStateCopyWithImpl<$Res,
+        _$CoachExerciseStateCreatedBatchImpl>
+    implements _$$CoachExerciseStateCreatedBatchImplCopyWith<$Res> {
+  __$$CoachExerciseStateCreatedBatchImplCopyWithImpl(
+      _$CoachExerciseStateCreatedBatchImpl _value,
+      $Res Function(_$CoachExerciseStateCreatedBatchImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseState
@@ -1882,7 +1968,7 @@ class __$$CreatedBatchImplCopyWithImpl<$Res>
   $Res call({
     Object? exercises = null,
   }) {
-    return _then(_$CreatedBatchImpl(
+    return _then(_$CoachExerciseStateCreatedBatchImpl(
       null == exercises
           ? _value._exercises
           : exercises // ignore: cast_nullable_to_non_nullable
@@ -1893,8 +1979,10 @@ class __$$CreatedBatchImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreatedBatchImpl implements _CreatedBatch {
-  const _$CreatedBatchImpl(final List<ExerciseModel> exercises)
+class _$CoachExerciseStateCreatedBatchImpl
+    implements CoachExerciseStateCreatedBatch {
+  const _$CoachExerciseStateCreatedBatchImpl(
+      final List<ExerciseModel> exercises)
       : _exercises = exercises;
 
   final List<ExerciseModel> _exercises;
@@ -1914,7 +2002,7 @@ class _$CreatedBatchImpl implements _CreatedBatch {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreatedBatchImpl &&
+            other is _$CoachExerciseStateCreatedBatchImpl &&
             const DeepCollectionEquality()
                 .equals(other._exercises, _exercises));
   }
@@ -1928,8 +2016,10 @@ class _$CreatedBatchImpl implements _CreatedBatch {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreatedBatchImplCopyWith<_$CreatedBatchImpl> get copyWith =>
-      __$$CreatedBatchImplCopyWithImpl<_$CreatedBatchImpl>(this, _$identity);
+  _$$CoachExerciseStateCreatedBatchImplCopyWith<
+          _$CoachExerciseStateCreatedBatchImpl>
+      get copyWith => __$$CoachExerciseStateCreatedBatchImplCopyWithImpl<
+          _$CoachExerciseStateCreatedBatchImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1986,13 +2076,15 @@ class _$CreatedBatchImpl implements _CreatedBatch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_CreatedBatch value) createdBatch,
-    required TResult Function(_UpdatedBatch value) updatedBatch,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExerciseStateInitial value) initial,
+    required TResult Function(CoachExerciseStateLoading value) loading,
+    required TResult Function(CoachExerciseStateLoaded value) loaded,
+    required TResult Function(CoachExerciseStateFailure value) failure,
+    required TResult Function(CoachExerciseStateCreatedBatch value)
+        createdBatch,
+    required TResult Function(CoachExerciseStateUpdatedBatch value)
+        updatedBatch,
+    required TResult Function(CoachExerciseStateDeleted value) deleted,
   }) {
     return createdBatch(this);
   }
@@ -2000,13 +2092,13 @@ class _$CreatedBatchImpl implements _CreatedBatch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_CreatedBatch value)? createdBatch,
-    TResult? Function(_UpdatedBatch value)? updatedBatch,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExerciseStateInitial value)? initial,
+    TResult? Function(CoachExerciseStateLoading value)? loading,
+    TResult? Function(CoachExerciseStateLoaded value)? loaded,
+    TResult? Function(CoachExerciseStateFailure value)? failure,
+    TResult? Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult? Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult? Function(CoachExerciseStateDeleted value)? deleted,
   }) {
     return createdBatch?.call(this);
   }
@@ -2014,13 +2106,13 @@ class _$CreatedBatchImpl implements _CreatedBatch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_CreatedBatch value)? createdBatch,
-    TResult Function(_UpdatedBatch value)? updatedBatch,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExerciseStateInitial value)? initial,
+    TResult Function(CoachExerciseStateLoading value)? loading,
+    TResult Function(CoachExerciseStateLoaded value)? loaded,
+    TResult Function(CoachExerciseStateFailure value)? failure,
+    TResult Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult Function(CoachExerciseStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (createdBatch != null) {
@@ -2030,34 +2122,39 @@ class _$CreatedBatchImpl implements _CreatedBatch {
   }
 }
 
-abstract class _CreatedBatch implements CoachExerciseState {
-  const factory _CreatedBatch(final List<ExerciseModel> exercises) =
-      _$CreatedBatchImpl;
+abstract class CoachExerciseStateCreatedBatch implements CoachExerciseState {
+  const factory CoachExerciseStateCreatedBatch(
+          final List<ExerciseModel> exercises) =
+      _$CoachExerciseStateCreatedBatchImpl;
 
   List<ExerciseModel> get exercises;
 
   /// Create a copy of CoachExerciseState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreatedBatchImplCopyWith<_$CreatedBatchImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExerciseStateCreatedBatchImplCopyWith<
+          _$CoachExerciseStateCreatedBatchImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdatedBatchImplCopyWith<$Res> {
-  factory _$$UpdatedBatchImplCopyWith(
-          _$UpdatedBatchImpl value, $Res Function(_$UpdatedBatchImpl) then) =
-      __$$UpdatedBatchImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseStateUpdatedBatchImplCopyWith<$Res> {
+  factory _$$CoachExerciseStateUpdatedBatchImplCopyWith(
+          _$CoachExerciseStateUpdatedBatchImpl value,
+          $Res Function(_$CoachExerciseStateUpdatedBatchImpl) then) =
+      __$$CoachExerciseStateUpdatedBatchImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<ExerciseModel> exercises});
 }
 
 /// @nodoc
-class __$$UpdatedBatchImplCopyWithImpl<$Res>
-    extends _$CoachExerciseStateCopyWithImpl<$Res, _$UpdatedBatchImpl>
-    implements _$$UpdatedBatchImplCopyWith<$Res> {
-  __$$UpdatedBatchImplCopyWithImpl(
-      _$UpdatedBatchImpl _value, $Res Function(_$UpdatedBatchImpl) _then)
+class __$$CoachExerciseStateUpdatedBatchImplCopyWithImpl<$Res>
+    extends _$CoachExerciseStateCopyWithImpl<$Res,
+        _$CoachExerciseStateUpdatedBatchImpl>
+    implements _$$CoachExerciseStateUpdatedBatchImplCopyWith<$Res> {
+  __$$CoachExerciseStateUpdatedBatchImplCopyWithImpl(
+      _$CoachExerciseStateUpdatedBatchImpl _value,
+      $Res Function(_$CoachExerciseStateUpdatedBatchImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseState
@@ -2067,7 +2164,7 @@ class __$$UpdatedBatchImplCopyWithImpl<$Res>
   $Res call({
     Object? exercises = null,
   }) {
-    return _then(_$UpdatedBatchImpl(
+    return _then(_$CoachExerciseStateUpdatedBatchImpl(
       null == exercises
           ? _value._exercises
           : exercises // ignore: cast_nullable_to_non_nullable
@@ -2078,8 +2175,10 @@ class __$$UpdatedBatchImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdatedBatchImpl implements _UpdatedBatch {
-  const _$UpdatedBatchImpl(final List<ExerciseModel> exercises)
+class _$CoachExerciseStateUpdatedBatchImpl
+    implements CoachExerciseStateUpdatedBatch {
+  const _$CoachExerciseStateUpdatedBatchImpl(
+      final List<ExerciseModel> exercises)
       : _exercises = exercises;
 
   final List<ExerciseModel> _exercises;
@@ -2099,7 +2198,7 @@ class _$UpdatedBatchImpl implements _UpdatedBatch {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdatedBatchImpl &&
+            other is _$CoachExerciseStateUpdatedBatchImpl &&
             const DeepCollectionEquality()
                 .equals(other._exercises, _exercises));
   }
@@ -2113,8 +2212,10 @@ class _$UpdatedBatchImpl implements _UpdatedBatch {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdatedBatchImplCopyWith<_$UpdatedBatchImpl> get copyWith =>
-      __$$UpdatedBatchImplCopyWithImpl<_$UpdatedBatchImpl>(this, _$identity);
+  _$$CoachExerciseStateUpdatedBatchImplCopyWith<
+          _$CoachExerciseStateUpdatedBatchImpl>
+      get copyWith => __$$CoachExerciseStateUpdatedBatchImplCopyWithImpl<
+          _$CoachExerciseStateUpdatedBatchImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2171,13 +2272,15 @@ class _$UpdatedBatchImpl implements _UpdatedBatch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_CreatedBatch value) createdBatch,
-    required TResult Function(_UpdatedBatch value) updatedBatch,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExerciseStateInitial value) initial,
+    required TResult Function(CoachExerciseStateLoading value) loading,
+    required TResult Function(CoachExerciseStateLoaded value) loaded,
+    required TResult Function(CoachExerciseStateFailure value) failure,
+    required TResult Function(CoachExerciseStateCreatedBatch value)
+        createdBatch,
+    required TResult Function(CoachExerciseStateUpdatedBatch value)
+        updatedBatch,
+    required TResult Function(CoachExerciseStateDeleted value) deleted,
   }) {
     return updatedBatch(this);
   }
@@ -2185,13 +2288,13 @@ class _$UpdatedBatchImpl implements _UpdatedBatch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_CreatedBatch value)? createdBatch,
-    TResult? Function(_UpdatedBatch value)? updatedBatch,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExerciseStateInitial value)? initial,
+    TResult? Function(CoachExerciseStateLoading value)? loading,
+    TResult? Function(CoachExerciseStateLoaded value)? loaded,
+    TResult? Function(CoachExerciseStateFailure value)? failure,
+    TResult? Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult? Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult? Function(CoachExerciseStateDeleted value)? deleted,
   }) {
     return updatedBatch?.call(this);
   }
@@ -2199,13 +2302,13 @@ class _$UpdatedBatchImpl implements _UpdatedBatch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_CreatedBatch value)? createdBatch,
-    TResult Function(_UpdatedBatch value)? updatedBatch,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExerciseStateInitial value)? initial,
+    TResult Function(CoachExerciseStateLoading value)? loading,
+    TResult Function(CoachExerciseStateLoaded value)? loaded,
+    TResult Function(CoachExerciseStateFailure value)? failure,
+    TResult Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult Function(CoachExerciseStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (updatedBatch != null) {
@@ -2215,24 +2318,27 @@ class _$UpdatedBatchImpl implements _UpdatedBatch {
   }
 }
 
-abstract class _UpdatedBatch implements CoachExerciseState {
-  const factory _UpdatedBatch(final List<ExerciseModel> exercises) =
-      _$UpdatedBatchImpl;
+abstract class CoachExerciseStateUpdatedBatch implements CoachExerciseState {
+  const factory CoachExerciseStateUpdatedBatch(
+          final List<ExerciseModel> exercises) =
+      _$CoachExerciseStateUpdatedBatchImpl;
 
   List<ExerciseModel> get exercises;
 
   /// Create a copy of CoachExerciseState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdatedBatchImplCopyWith<_$UpdatedBatchImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExerciseStateUpdatedBatchImplCopyWith<
+          _$CoachExerciseStateUpdatedBatchImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeletedImplCopyWith<$Res> {
-  factory _$$DeletedImplCopyWith(
-          _$DeletedImpl value, $Res Function(_$DeletedImpl) then) =
-      __$$DeletedImplCopyWithImpl<$Res>;
+abstract class _$$CoachExerciseStateDeletedImplCopyWith<$Res> {
+  factory _$$CoachExerciseStateDeletedImplCopyWith(
+          _$CoachExerciseStateDeletedImpl value,
+          $Res Function(_$CoachExerciseStateDeletedImpl) then) =
+      __$$CoachExerciseStateDeletedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ExerciseModel exercise});
 
@@ -2240,11 +2346,13 @@ abstract class _$$DeletedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DeletedImplCopyWithImpl<$Res>
-    extends _$CoachExerciseStateCopyWithImpl<$Res, _$DeletedImpl>
-    implements _$$DeletedImplCopyWith<$Res> {
-  __$$DeletedImplCopyWithImpl(
-      _$DeletedImpl _value, $Res Function(_$DeletedImpl) _then)
+class __$$CoachExerciseStateDeletedImplCopyWithImpl<$Res>
+    extends _$CoachExerciseStateCopyWithImpl<$Res,
+        _$CoachExerciseStateDeletedImpl>
+    implements _$$CoachExerciseStateDeletedImplCopyWith<$Res> {
+  __$$CoachExerciseStateDeletedImplCopyWithImpl(
+      _$CoachExerciseStateDeletedImpl _value,
+      $Res Function(_$CoachExerciseStateDeletedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExerciseState
@@ -2254,7 +2362,7 @@ class __$$DeletedImplCopyWithImpl<$Res>
   $Res call({
     Object? exercise = null,
   }) {
-    return _then(_$DeletedImpl(
+    return _then(_$CoachExerciseStateDeletedImpl(
       null == exercise
           ? _value.exercise
           : exercise // ignore: cast_nullable_to_non_nullable
@@ -2275,8 +2383,8 @@ class __$$DeletedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeletedImpl implements _Deleted {
-  const _$DeletedImpl(this.exercise);
+class _$CoachExerciseStateDeletedImpl implements CoachExerciseStateDeleted {
+  const _$CoachExerciseStateDeletedImpl(this.exercise);
 
   @override
   final ExerciseModel exercise;
@@ -2290,7 +2398,7 @@ class _$DeletedImpl implements _Deleted {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeletedImpl &&
+            other is _$CoachExerciseStateDeletedImpl &&
             (identical(other.exercise, exercise) ||
                 other.exercise == exercise));
   }
@@ -2303,8 +2411,9 @@ class _$DeletedImpl implements _Deleted {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeletedImplCopyWith<_$DeletedImpl> get copyWith =>
-      __$$DeletedImplCopyWithImpl<_$DeletedImpl>(this, _$identity);
+  _$$CoachExerciseStateDeletedImplCopyWith<_$CoachExerciseStateDeletedImpl>
+      get copyWith => __$$CoachExerciseStateDeletedImplCopyWithImpl<
+          _$CoachExerciseStateDeletedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2361,13 +2470,15 @@ class _$DeletedImpl implements _Deleted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_CreatedBatch value) createdBatch,
-    required TResult Function(_UpdatedBatch value) updatedBatch,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExerciseStateInitial value) initial,
+    required TResult Function(CoachExerciseStateLoading value) loading,
+    required TResult Function(CoachExerciseStateLoaded value) loaded,
+    required TResult Function(CoachExerciseStateFailure value) failure,
+    required TResult Function(CoachExerciseStateCreatedBatch value)
+        createdBatch,
+    required TResult Function(CoachExerciseStateUpdatedBatch value)
+        updatedBatch,
+    required TResult Function(CoachExerciseStateDeleted value) deleted,
   }) {
     return deleted(this);
   }
@@ -2375,13 +2486,13 @@ class _$DeletedImpl implements _Deleted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_CreatedBatch value)? createdBatch,
-    TResult? Function(_UpdatedBatch value)? updatedBatch,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExerciseStateInitial value)? initial,
+    TResult? Function(CoachExerciseStateLoading value)? loading,
+    TResult? Function(CoachExerciseStateLoaded value)? loaded,
+    TResult? Function(CoachExerciseStateFailure value)? failure,
+    TResult? Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult? Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult? Function(CoachExerciseStateDeleted value)? deleted,
   }) {
     return deleted?.call(this);
   }
@@ -2389,13 +2500,13 @@ class _$DeletedImpl implements _Deleted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_CreatedBatch value)? createdBatch,
-    TResult Function(_UpdatedBatch value)? updatedBatch,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExerciseStateInitial value)? initial,
+    TResult Function(CoachExerciseStateLoading value)? loading,
+    TResult Function(CoachExerciseStateLoaded value)? loaded,
+    TResult Function(CoachExerciseStateFailure value)? failure,
+    TResult Function(CoachExerciseStateCreatedBatch value)? createdBatch,
+    TResult Function(CoachExerciseStateUpdatedBatch value)? updatedBatch,
+    TResult Function(CoachExerciseStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (deleted != null) {
@@ -2405,14 +2516,15 @@ class _$DeletedImpl implements _Deleted {
   }
 }
 
-abstract class _Deleted implements CoachExerciseState {
-  const factory _Deleted(final ExerciseModel exercise) = _$DeletedImpl;
+abstract class CoachExerciseStateDeleted implements CoachExerciseState {
+  const factory CoachExerciseStateDeleted(final ExerciseModel exercise) =
+      _$CoachExerciseStateDeletedImpl;
 
   ExerciseModel get exercise;
 
   /// Create a copy of CoachExerciseState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeletedImplCopyWith<_$DeletedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExerciseStateDeletedImplCopyWith<_$CoachExerciseStateDeletedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

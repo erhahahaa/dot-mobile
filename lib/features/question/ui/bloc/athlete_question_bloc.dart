@@ -14,29 +14,29 @@ class AthleteQuestionBloc
 
   AthleteQuestionBloc(
     this._getAllQuestionUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetQuestions>(_onGetQuestions);
-    on<_FilterQuestions>(_onFilterQuestions);
+  ) : super(const AthleteQuestionStateInitial()) {
+    on<AthleteQuestionEventClear>(_onClear);
+    on<AthleteQuestionEventGetQuestions>(_onGetQuestions);
+    on<AthleteQuestionEventFilterQuestions>(_onFilterQuestions);
   }
 
   void _onClear(
-    _Clear event,
+    AthleteQuestionEventClear event,
     Emitter<AthleteQuestionState> emit,
   ) =>
-      emit(_Initial());
+      emit(const AthleteQuestionStateInitial());
 
   void _onGetQuestions(
-    _GetQuestions event,
+    AthleteQuestionEventGetQuestions event,
     Emitter<AthleteQuestionState> emit,
   ) async {
-    emit(_Loading());
+    emit(const AthleteQuestionStateLoading());
     final res = await _getAllQuestionUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(AthleteQuestionStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        AthleteQuestionStateLoaded(
           questions: success,
           filteredQuestions: success,
         ),
@@ -45,10 +45,10 @@ class AthleteQuestionBloc
   }
 
   void _onFilterQuestions(
-    _FilterQuestions event,
+    AthleteQuestionEventFilterQuestions event,
     Emitter<AthleteQuestionState> emit,
   ) {
-    emit(_Loading());
+    emit(const AthleteQuestionStateLoading());
     state.maybeWhen(
       loaded: (questions, _) {
         final finds = questions
@@ -60,15 +60,17 @@ class AthleteQuestionBloc
             .toList();
 
         if (finds.isEmpty) {
-          emit(_Failure('Question with title ${event.query} not found'));
+          emit(AthleteQuestionStateFailure(
+              'Question with title ${event.query} not found'));
         } else {
-          emit(_Loaded(
+          emit(AthleteQuestionStateLoaded(
             questions: questions,
             filteredQuestions: finds,
           ));
         }
       },
-      orElse: () => emit(_Failure('Question not found')),
+      orElse: () =>
+          emit(const AthleteQuestionStateFailure('Question not found')),
     );
   }
 }

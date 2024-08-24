@@ -13,29 +13,29 @@ class AthleteExamBloc extends Bloc<AthleteExamEvent, AthleteExamState> {
 
   AthleteExamBloc(
     this._getAllExamUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetExams>(_onGetExams);
-    on<_FilterExams>(_onFilterExams);
+  ) : super(const AthleteExamStateInitial()) {
+    on<AthleteExamEventClear>(_onClear);
+    on<AthleteExamEventGetExams>(_onGetExams);
+    on<AthleteExamEventFilterExams>(_onFilterExams);
   }
 
   void _onClear(
-    _Clear event,
+    AthleteExamEventClear event,
     Emitter<AthleteExamState> emit,
   ) =>
-      emit(_Initial());
+      emit(const AthleteExamStateInitial());
 
   void _onGetExams(
-    _GetExams event,
+    AthleteExamEventGetExams event,
     Emitter<AthleteExamState> emit,
   ) async {
-    emit(_Loading());
+    emit(const AthleteExamStateLoading());
     final res = await _getAllExamUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(AthleteExamStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        AthleteExamStateLoaded(
           exams: success,
           filteredExams: success,
         ),
@@ -44,10 +44,10 @@ class AthleteExamBloc extends Bloc<AthleteExamEvent, AthleteExamState> {
   }
 
   void _onFilterExams(
-    _FilterExams event,
+    AthleteExamEventFilterExams event,
     Emitter<AthleteExamState> emit,
   ) {
-    emit(_Loading());
+    emit(const AthleteExamStateLoading());
     state.maybeWhen(
       loaded: (exams, _) {
         final finds = exams
@@ -59,17 +59,19 @@ class AthleteExamBloc extends Bloc<AthleteExamEvent, AthleteExamState> {
             .toList();
 
         if (finds.isEmpty) {
-          emit(_Failure('Exam with title ${event.query} not found'));
+          emit(
+            AthleteExamStateFailure('Exam with title ${event.query} not found'),
+          );
         } else {
           emit(
-            _Loaded(
+            AthleteExamStateLoaded(
               exams: exams,
               filteredExams: finds,
             ),
           );
         }
       },
-      orElse: () => emit(_Failure('Exams was empty')),
+      orElse: () => emit(const AthleteExamStateFailure('Exams was empty')),
     );
   }
 }

@@ -2,11 +2,11 @@ part of 'athlete_evaluation_bloc.dart';
 
 @freezed
 class AthleteEvaluationEvent with _$AthleteEvaluationEvent {
-  const factory AthleteEvaluationEvent.clear() = _Clear;
+  const factory AthleteEvaluationEvent.clear() = AthleteEvaluationEventClear;
   const factory AthleteEvaluationEvent.getEvaluations(
     GetAllEvaluationParams params,
-  ) = _GetEvaluations;
+  ) = AthleteEvaluationEventGetEvaluations;
   const factory AthleteEvaluationEvent.filterEvaluations(
     String query,
-  ) = _FilterEvaluations;
+  ) = AthleteEvaluationEventFilterEvaluations;
 }

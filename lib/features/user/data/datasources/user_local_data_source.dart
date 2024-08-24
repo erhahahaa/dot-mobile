@@ -34,7 +34,7 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
       _local.isar?.notifications.put(params.notification.toEntity());
     });
 
-    return Right(true);
+    return const Right(true);
   }
 
   @override

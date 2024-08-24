@@ -49,32 +49,32 @@ mixin _$CoachExamEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExams value) getExams,
-    required TResult Function(_FilterExams value) filterExams,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExamEventGetExams value) getExams,
+    required TResult Function(CoachExamEventFilterExams value) filterExams,
+    required TResult Function(CoachExamEventClear value) clear,
+    required TResult Function(CoachExamEventCreate value) create,
+    required TResult Function(CoachExamEventUpdate value) update,
+    required TResult Function(CoachExamEventDelete value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExams value)? getExams,
-    TResult? Function(_FilterExams value)? filterExams,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExamEventGetExams value)? getExams,
+    TResult? Function(CoachExamEventFilterExams value)? filterExams,
+    TResult? Function(CoachExamEventClear value)? clear,
+    TResult? Function(CoachExamEventCreate value)? create,
+    TResult? Function(CoachExamEventUpdate value)? update,
+    TResult? Function(CoachExamEventDelete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExams value)? getExams,
-    TResult Function(_FilterExams value)? filterExams,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExamEventGetExams value)? getExams,
+    TResult Function(CoachExamEventFilterExams value)? filterExams,
+    TResult Function(CoachExamEventClear value)? clear,
+    TResult Function(CoachExamEventCreate value)? create,
+    TResult Function(CoachExamEventUpdate value)? update,
+    TResult Function(CoachExamEventDelete value)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -102,10 +102,11 @@ class _$CoachExamEventCopyWithImpl<$Res, $Val extends CoachExamEvent>
 }
 
 /// @nodoc
-abstract class _$$GetExamsImplCopyWith<$Res> {
-  factory _$$GetExamsImplCopyWith(
-          _$GetExamsImpl value, $Res Function(_$GetExamsImpl) then) =
-      __$$GetExamsImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamEventGetExamsImplCopyWith<$Res> {
+  factory _$$CoachExamEventGetExamsImplCopyWith(
+          _$CoachExamEventGetExamsImpl value,
+          $Res Function(_$CoachExamEventGetExamsImpl) then) =
+      __$$CoachExamEventGetExamsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({GetAllExamParams params});
 
@@ -113,11 +114,12 @@ abstract class _$$GetExamsImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$GetExamsImplCopyWithImpl<$Res>
-    extends _$CoachExamEventCopyWithImpl<$Res, _$GetExamsImpl>
-    implements _$$GetExamsImplCopyWith<$Res> {
-  __$$GetExamsImplCopyWithImpl(
-      _$GetExamsImpl _value, $Res Function(_$GetExamsImpl) _then)
+class __$$CoachExamEventGetExamsImplCopyWithImpl<$Res>
+    extends _$CoachExamEventCopyWithImpl<$Res, _$CoachExamEventGetExamsImpl>
+    implements _$$CoachExamEventGetExamsImplCopyWith<$Res> {
+  __$$CoachExamEventGetExamsImplCopyWithImpl(
+      _$CoachExamEventGetExamsImpl _value,
+      $Res Function(_$CoachExamEventGetExamsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamEvent
@@ -127,7 +129,7 @@ class __$$GetExamsImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$GetExamsImpl(
+    return _then(_$CoachExamEventGetExamsImpl(
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -148,8 +150,8 @@ class __$$GetExamsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetExamsImpl implements _GetExams {
-  const _$GetExamsImpl(this.params);
+class _$CoachExamEventGetExamsImpl implements CoachExamEventGetExams {
+  const _$CoachExamEventGetExamsImpl(this.params);
 
   @override
   final GetAllExamParams params;
@@ -163,7 +165,7 @@ class _$GetExamsImpl implements _GetExams {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetExamsImpl &&
+            other is _$CoachExamEventGetExamsImpl &&
             (identical(other.params, params) || other.params == params));
   }
 
@@ -175,8 +177,9 @@ class _$GetExamsImpl implements _GetExams {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetExamsImplCopyWith<_$GetExamsImpl> get copyWith =>
-      __$$GetExamsImplCopyWithImpl<_$GetExamsImpl>(this, _$identity);
+  _$$CoachExamEventGetExamsImplCopyWith<_$CoachExamEventGetExamsImpl>
+      get copyWith => __$$CoachExamEventGetExamsImplCopyWithImpl<
+          _$CoachExamEventGetExamsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -224,12 +227,12 @@ class _$GetExamsImpl implements _GetExams {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExams value) getExams,
-    required TResult Function(_FilterExams value) filterExams,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExamEventGetExams value) getExams,
+    required TResult Function(CoachExamEventFilterExams value) filterExams,
+    required TResult Function(CoachExamEventClear value) clear,
+    required TResult Function(CoachExamEventCreate value) create,
+    required TResult Function(CoachExamEventUpdate value) update,
+    required TResult Function(CoachExamEventDelete value) delete,
   }) {
     return getExams(this);
   }
@@ -237,12 +240,12 @@ class _$GetExamsImpl implements _GetExams {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExams value)? getExams,
-    TResult? Function(_FilterExams value)? filterExams,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExamEventGetExams value)? getExams,
+    TResult? Function(CoachExamEventFilterExams value)? filterExams,
+    TResult? Function(CoachExamEventClear value)? clear,
+    TResult? Function(CoachExamEventCreate value)? create,
+    TResult? Function(CoachExamEventUpdate value)? update,
+    TResult? Function(CoachExamEventDelete value)? delete,
   }) {
     return getExams?.call(this);
   }
@@ -250,12 +253,12 @@ class _$GetExamsImpl implements _GetExams {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExams value)? getExams,
-    TResult Function(_FilterExams value)? filterExams,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExamEventGetExams value)? getExams,
+    TResult Function(CoachExamEventFilterExams value)? filterExams,
+    TResult Function(CoachExamEventClear value)? clear,
+    TResult Function(CoachExamEventCreate value)? create,
+    TResult Function(CoachExamEventUpdate value)? update,
+    TResult Function(CoachExamEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (getExams != null) {
@@ -265,33 +268,36 @@ class _$GetExamsImpl implements _GetExams {
   }
 }
 
-abstract class _GetExams implements CoachExamEvent {
-  const factory _GetExams(final GetAllExamParams params) = _$GetExamsImpl;
+abstract class CoachExamEventGetExams implements CoachExamEvent {
+  const factory CoachExamEventGetExams(final GetAllExamParams params) =
+      _$CoachExamEventGetExamsImpl;
 
   GetAllExamParams get params;
 
   /// Create a copy of CoachExamEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetExamsImplCopyWith<_$GetExamsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExamEventGetExamsImplCopyWith<_$CoachExamEventGetExamsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FilterExamsImplCopyWith<$Res> {
-  factory _$$FilterExamsImplCopyWith(
-          _$FilterExamsImpl value, $Res Function(_$FilterExamsImpl) then) =
-      __$$FilterExamsImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamEventFilterExamsImplCopyWith<$Res> {
+  factory _$$CoachExamEventFilterExamsImplCopyWith(
+          _$CoachExamEventFilterExamsImpl value,
+          $Res Function(_$CoachExamEventFilterExamsImpl) then) =
+      __$$CoachExamEventFilterExamsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String query});
 }
 
 /// @nodoc
-class __$$FilterExamsImplCopyWithImpl<$Res>
-    extends _$CoachExamEventCopyWithImpl<$Res, _$FilterExamsImpl>
-    implements _$$FilterExamsImplCopyWith<$Res> {
-  __$$FilterExamsImplCopyWithImpl(
-      _$FilterExamsImpl _value, $Res Function(_$FilterExamsImpl) _then)
+class __$$CoachExamEventFilterExamsImplCopyWithImpl<$Res>
+    extends _$CoachExamEventCopyWithImpl<$Res, _$CoachExamEventFilterExamsImpl>
+    implements _$$CoachExamEventFilterExamsImplCopyWith<$Res> {
+  __$$CoachExamEventFilterExamsImplCopyWithImpl(
+      _$CoachExamEventFilterExamsImpl _value,
+      $Res Function(_$CoachExamEventFilterExamsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamEvent
@@ -301,7 +307,7 @@ class __$$FilterExamsImplCopyWithImpl<$Res>
   $Res call({
     Object? query = null,
   }) {
-    return _then(_$FilterExamsImpl(
+    return _then(_$CoachExamEventFilterExamsImpl(
       null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
@@ -312,8 +318,8 @@ class __$$FilterExamsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FilterExamsImpl implements _FilterExams {
-  const _$FilterExamsImpl(this.query);
+class _$CoachExamEventFilterExamsImpl implements CoachExamEventFilterExams {
+  const _$CoachExamEventFilterExamsImpl(this.query);
 
   @override
   final String query;
@@ -327,7 +333,7 @@ class _$FilterExamsImpl implements _FilterExams {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FilterExamsImpl &&
+            other is _$CoachExamEventFilterExamsImpl &&
             (identical(other.query, query) || other.query == query));
   }
 
@@ -339,8 +345,9 @@ class _$FilterExamsImpl implements _FilterExams {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FilterExamsImplCopyWith<_$FilterExamsImpl> get copyWith =>
-      __$$FilterExamsImplCopyWithImpl<_$FilterExamsImpl>(this, _$identity);
+  _$$CoachExamEventFilterExamsImplCopyWith<_$CoachExamEventFilterExamsImpl>
+      get copyWith => __$$CoachExamEventFilterExamsImplCopyWithImpl<
+          _$CoachExamEventFilterExamsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -388,12 +395,12 @@ class _$FilterExamsImpl implements _FilterExams {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExams value) getExams,
-    required TResult Function(_FilterExams value) filterExams,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExamEventGetExams value) getExams,
+    required TResult Function(CoachExamEventFilterExams value) filterExams,
+    required TResult Function(CoachExamEventClear value) clear,
+    required TResult Function(CoachExamEventCreate value) create,
+    required TResult Function(CoachExamEventUpdate value) update,
+    required TResult Function(CoachExamEventDelete value) delete,
   }) {
     return filterExams(this);
   }
@@ -401,12 +408,12 @@ class _$FilterExamsImpl implements _FilterExams {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExams value)? getExams,
-    TResult? Function(_FilterExams value)? filterExams,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExamEventGetExams value)? getExams,
+    TResult? Function(CoachExamEventFilterExams value)? filterExams,
+    TResult? Function(CoachExamEventClear value)? clear,
+    TResult? Function(CoachExamEventCreate value)? create,
+    TResult? Function(CoachExamEventUpdate value)? update,
+    TResult? Function(CoachExamEventDelete value)? delete,
   }) {
     return filterExams?.call(this);
   }
@@ -414,12 +421,12 @@ class _$FilterExamsImpl implements _FilterExams {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExams value)? getExams,
-    TResult Function(_FilterExams value)? filterExams,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExamEventGetExams value)? getExams,
+    TResult Function(CoachExamEventFilterExams value)? filterExams,
+    TResult Function(CoachExamEventClear value)? clear,
+    TResult Function(CoachExamEventCreate value)? create,
+    TResult Function(CoachExamEventUpdate value)? update,
+    TResult Function(CoachExamEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (filterExams != null) {
@@ -429,31 +436,32 @@ class _$FilterExamsImpl implements _FilterExams {
   }
 }
 
-abstract class _FilterExams implements CoachExamEvent {
-  const factory _FilterExams(final String query) = _$FilterExamsImpl;
+abstract class CoachExamEventFilterExams implements CoachExamEvent {
+  const factory CoachExamEventFilterExams(final String query) =
+      _$CoachExamEventFilterExamsImpl;
 
   String get query;
 
   /// Create a copy of CoachExamEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FilterExamsImplCopyWith<_$FilterExamsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExamEventFilterExamsImplCopyWith<_$CoachExamEventFilterExamsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ClearImplCopyWith<$Res> {
-  factory _$$ClearImplCopyWith(
-          _$ClearImpl value, $Res Function(_$ClearImpl) then) =
-      __$$ClearImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamEventClearImplCopyWith<$Res> {
+  factory _$$CoachExamEventClearImplCopyWith(_$CoachExamEventClearImpl value,
+          $Res Function(_$CoachExamEventClearImpl) then) =
+      __$$CoachExamEventClearImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearImplCopyWithImpl<$Res>
-    extends _$CoachExamEventCopyWithImpl<$Res, _$ClearImpl>
-    implements _$$ClearImplCopyWith<$Res> {
-  __$$ClearImplCopyWithImpl(
-      _$ClearImpl _value, $Res Function(_$ClearImpl) _then)
+class __$$CoachExamEventClearImplCopyWithImpl<$Res>
+    extends _$CoachExamEventCopyWithImpl<$Res, _$CoachExamEventClearImpl>
+    implements _$$CoachExamEventClearImplCopyWith<$Res> {
+  __$$CoachExamEventClearImplCopyWithImpl(_$CoachExamEventClearImpl _value,
+      $Res Function(_$CoachExamEventClearImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamEvent
@@ -462,8 +470,8 @@ class __$$ClearImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ClearImpl implements _Clear {
-  const _$ClearImpl();
+class _$CoachExamEventClearImpl implements CoachExamEventClear {
+  const _$CoachExamEventClearImpl();
 
   @override
   String toString() {
@@ -473,7 +481,8 @@ class _$ClearImpl implements _Clear {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CoachExamEventClearImpl);
   }
 
   @override
@@ -525,12 +534,12 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExams value) getExams,
-    required TResult Function(_FilterExams value) filterExams,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExamEventGetExams value) getExams,
+    required TResult Function(CoachExamEventFilterExams value) filterExams,
+    required TResult Function(CoachExamEventClear value) clear,
+    required TResult Function(CoachExamEventCreate value) create,
+    required TResult Function(CoachExamEventUpdate value) update,
+    required TResult Function(CoachExamEventDelete value) delete,
   }) {
     return clear(this);
   }
@@ -538,12 +547,12 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExams value)? getExams,
-    TResult? Function(_FilterExams value)? filterExams,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExamEventGetExams value)? getExams,
+    TResult? Function(CoachExamEventFilterExams value)? filterExams,
+    TResult? Function(CoachExamEventClear value)? clear,
+    TResult? Function(CoachExamEventCreate value)? create,
+    TResult? Function(CoachExamEventUpdate value)? update,
+    TResult? Function(CoachExamEventDelete value)? delete,
   }) {
     return clear?.call(this);
   }
@@ -551,12 +560,12 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExams value)? getExams,
-    TResult Function(_FilterExams value)? filterExams,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExamEventGetExams value)? getExams,
+    TResult Function(CoachExamEventFilterExams value)? filterExams,
+    TResult Function(CoachExamEventClear value)? clear,
+    TResult Function(CoachExamEventCreate value)? create,
+    TResult Function(CoachExamEventUpdate value)? update,
+    TResult Function(CoachExamEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (clear != null) {
@@ -566,15 +575,15 @@ class _$ClearImpl implements _Clear {
   }
 }
 
-abstract class _Clear implements CoachExamEvent {
-  const factory _Clear() = _$ClearImpl;
+abstract class CoachExamEventClear implements CoachExamEvent {
+  const factory CoachExamEventClear() = _$CoachExamEventClearImpl;
 }
 
 /// @nodoc
-abstract class _$$CreateImplCopyWith<$Res> {
-  factory _$$CreateImplCopyWith(
-          _$CreateImpl value, $Res Function(_$CreateImpl) then) =
-      __$$CreateImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamEventCreateImplCopyWith<$Res> {
+  factory _$$CoachExamEventCreateImplCopyWith(_$CoachExamEventCreateImpl value,
+          $Res Function(_$CoachExamEventCreateImpl) then) =
+      __$$CoachExamEventCreateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({CreateExamParams params});
 
@@ -582,11 +591,11 @@ abstract class _$$CreateImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CreateImplCopyWithImpl<$Res>
-    extends _$CoachExamEventCopyWithImpl<$Res, _$CreateImpl>
-    implements _$$CreateImplCopyWith<$Res> {
-  __$$CreateImplCopyWithImpl(
-      _$CreateImpl _value, $Res Function(_$CreateImpl) _then)
+class __$$CoachExamEventCreateImplCopyWithImpl<$Res>
+    extends _$CoachExamEventCopyWithImpl<$Res, _$CoachExamEventCreateImpl>
+    implements _$$CoachExamEventCreateImplCopyWith<$Res> {
+  __$$CoachExamEventCreateImplCopyWithImpl(_$CoachExamEventCreateImpl _value,
+      $Res Function(_$CoachExamEventCreateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamEvent
@@ -596,7 +605,7 @@ class __$$CreateImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$CreateImpl(
+    return _then(_$CoachExamEventCreateImpl(
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -617,8 +626,8 @@ class __$$CreateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreateImpl implements _Create {
-  const _$CreateImpl(this.params);
+class _$CoachExamEventCreateImpl implements CoachExamEventCreate {
+  const _$CoachExamEventCreateImpl(this.params);
 
   @override
   final CreateExamParams params;
@@ -632,7 +641,7 @@ class _$CreateImpl implements _Create {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateImpl &&
+            other is _$CoachExamEventCreateImpl &&
             (identical(other.params, params) || other.params == params));
   }
 
@@ -644,8 +653,10 @@ class _$CreateImpl implements _Create {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateImplCopyWith<_$CreateImpl> get copyWith =>
-      __$$CreateImplCopyWithImpl<_$CreateImpl>(this, _$identity);
+  _$$CoachExamEventCreateImplCopyWith<_$CoachExamEventCreateImpl>
+      get copyWith =>
+          __$$CoachExamEventCreateImplCopyWithImpl<_$CoachExamEventCreateImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -693,12 +704,12 @@ class _$CreateImpl implements _Create {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExams value) getExams,
-    required TResult Function(_FilterExams value) filterExams,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExamEventGetExams value) getExams,
+    required TResult Function(CoachExamEventFilterExams value) filterExams,
+    required TResult Function(CoachExamEventClear value) clear,
+    required TResult Function(CoachExamEventCreate value) create,
+    required TResult Function(CoachExamEventUpdate value) update,
+    required TResult Function(CoachExamEventDelete value) delete,
   }) {
     return create(this);
   }
@@ -706,12 +717,12 @@ class _$CreateImpl implements _Create {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExams value)? getExams,
-    TResult? Function(_FilterExams value)? filterExams,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExamEventGetExams value)? getExams,
+    TResult? Function(CoachExamEventFilterExams value)? filterExams,
+    TResult? Function(CoachExamEventClear value)? clear,
+    TResult? Function(CoachExamEventCreate value)? create,
+    TResult? Function(CoachExamEventUpdate value)? update,
+    TResult? Function(CoachExamEventDelete value)? delete,
   }) {
     return create?.call(this);
   }
@@ -719,12 +730,12 @@ class _$CreateImpl implements _Create {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExams value)? getExams,
-    TResult Function(_FilterExams value)? filterExams,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExamEventGetExams value)? getExams,
+    TResult Function(CoachExamEventFilterExams value)? filterExams,
+    TResult Function(CoachExamEventClear value)? clear,
+    TResult Function(CoachExamEventCreate value)? create,
+    TResult Function(CoachExamEventUpdate value)? update,
+    TResult Function(CoachExamEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (create != null) {
@@ -734,23 +745,24 @@ class _$CreateImpl implements _Create {
   }
 }
 
-abstract class _Create implements CoachExamEvent {
-  const factory _Create(final CreateExamParams params) = _$CreateImpl;
+abstract class CoachExamEventCreate implements CoachExamEvent {
+  const factory CoachExamEventCreate(final CreateExamParams params) =
+      _$CoachExamEventCreateImpl;
 
   CreateExamParams get params;
 
   /// Create a copy of CoachExamEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateImplCopyWith<_$CreateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExamEventCreateImplCopyWith<_$CoachExamEventCreateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdateImplCopyWith<$Res> {
-  factory _$$UpdateImplCopyWith(
-          _$UpdateImpl value, $Res Function(_$UpdateImpl) then) =
-      __$$UpdateImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamEventUpdateImplCopyWith<$Res> {
+  factory _$$CoachExamEventUpdateImplCopyWith(_$CoachExamEventUpdateImpl value,
+          $Res Function(_$CoachExamEventUpdateImpl) then) =
+      __$$CoachExamEventUpdateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UpdateExamParams params});
 
@@ -758,11 +770,11 @@ abstract class _$$UpdateImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$UpdateImplCopyWithImpl<$Res>
-    extends _$CoachExamEventCopyWithImpl<$Res, _$UpdateImpl>
-    implements _$$UpdateImplCopyWith<$Res> {
-  __$$UpdateImplCopyWithImpl(
-      _$UpdateImpl _value, $Res Function(_$UpdateImpl) _then)
+class __$$CoachExamEventUpdateImplCopyWithImpl<$Res>
+    extends _$CoachExamEventCopyWithImpl<$Res, _$CoachExamEventUpdateImpl>
+    implements _$$CoachExamEventUpdateImplCopyWith<$Res> {
+  __$$CoachExamEventUpdateImplCopyWithImpl(_$CoachExamEventUpdateImpl _value,
+      $Res Function(_$CoachExamEventUpdateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamEvent
@@ -772,7 +784,7 @@ class __$$UpdateImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$UpdateImpl(
+    return _then(_$CoachExamEventUpdateImpl(
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -793,8 +805,8 @@ class __$$UpdateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateImpl implements _Update {
-  const _$UpdateImpl(this.params);
+class _$CoachExamEventUpdateImpl implements CoachExamEventUpdate {
+  const _$CoachExamEventUpdateImpl(this.params);
 
   @override
   final UpdateExamParams params;
@@ -808,7 +820,7 @@ class _$UpdateImpl implements _Update {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateImpl &&
+            other is _$CoachExamEventUpdateImpl &&
             (identical(other.params, params) || other.params == params));
   }
 
@@ -820,8 +832,10 @@ class _$UpdateImpl implements _Update {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateImplCopyWith<_$UpdateImpl> get copyWith =>
-      __$$UpdateImplCopyWithImpl<_$UpdateImpl>(this, _$identity);
+  _$$CoachExamEventUpdateImplCopyWith<_$CoachExamEventUpdateImpl>
+      get copyWith =>
+          __$$CoachExamEventUpdateImplCopyWithImpl<_$CoachExamEventUpdateImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -869,12 +883,12 @@ class _$UpdateImpl implements _Update {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExams value) getExams,
-    required TResult Function(_FilterExams value) filterExams,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExamEventGetExams value) getExams,
+    required TResult Function(CoachExamEventFilterExams value) filterExams,
+    required TResult Function(CoachExamEventClear value) clear,
+    required TResult Function(CoachExamEventCreate value) create,
+    required TResult Function(CoachExamEventUpdate value) update,
+    required TResult Function(CoachExamEventDelete value) delete,
   }) {
     return update(this);
   }
@@ -882,12 +896,12 @@ class _$UpdateImpl implements _Update {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExams value)? getExams,
-    TResult? Function(_FilterExams value)? filterExams,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExamEventGetExams value)? getExams,
+    TResult? Function(CoachExamEventFilterExams value)? filterExams,
+    TResult? Function(CoachExamEventClear value)? clear,
+    TResult? Function(CoachExamEventCreate value)? create,
+    TResult? Function(CoachExamEventUpdate value)? update,
+    TResult? Function(CoachExamEventDelete value)? delete,
   }) {
     return update?.call(this);
   }
@@ -895,12 +909,12 @@ class _$UpdateImpl implements _Update {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExams value)? getExams,
-    TResult Function(_FilterExams value)? filterExams,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExamEventGetExams value)? getExams,
+    TResult Function(CoachExamEventFilterExams value)? filterExams,
+    TResult Function(CoachExamEventClear value)? clear,
+    TResult Function(CoachExamEventCreate value)? create,
+    TResult Function(CoachExamEventUpdate value)? update,
+    TResult Function(CoachExamEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -910,23 +924,24 @@ class _$UpdateImpl implements _Update {
   }
 }
 
-abstract class _Update implements CoachExamEvent {
-  const factory _Update(final UpdateExamParams params) = _$UpdateImpl;
+abstract class CoachExamEventUpdate implements CoachExamEvent {
+  const factory CoachExamEventUpdate(final UpdateExamParams params) =
+      _$CoachExamEventUpdateImpl;
 
   UpdateExamParams get params;
 
   /// Create a copy of CoachExamEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateImplCopyWith<_$UpdateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExamEventUpdateImplCopyWith<_$CoachExamEventUpdateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeleteImplCopyWith<$Res> {
-  factory _$$DeleteImplCopyWith(
-          _$DeleteImpl value, $Res Function(_$DeleteImpl) then) =
-      __$$DeleteImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamEventDeleteImplCopyWith<$Res> {
+  factory _$$CoachExamEventDeleteImplCopyWith(_$CoachExamEventDeleteImpl value,
+          $Res Function(_$CoachExamEventDeleteImpl) then) =
+      __$$CoachExamEventDeleteImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DeleteExamParams params});
 
@@ -934,11 +949,11 @@ abstract class _$$DeleteImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DeleteImplCopyWithImpl<$Res>
-    extends _$CoachExamEventCopyWithImpl<$Res, _$DeleteImpl>
-    implements _$$DeleteImplCopyWith<$Res> {
-  __$$DeleteImplCopyWithImpl(
-      _$DeleteImpl _value, $Res Function(_$DeleteImpl) _then)
+class __$$CoachExamEventDeleteImplCopyWithImpl<$Res>
+    extends _$CoachExamEventCopyWithImpl<$Res, _$CoachExamEventDeleteImpl>
+    implements _$$CoachExamEventDeleteImplCopyWith<$Res> {
+  __$$CoachExamEventDeleteImplCopyWithImpl(_$CoachExamEventDeleteImpl _value,
+      $Res Function(_$CoachExamEventDeleteImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamEvent
@@ -948,7 +963,7 @@ class __$$DeleteImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$DeleteImpl(
+    return _then(_$CoachExamEventDeleteImpl(
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -969,8 +984,8 @@ class __$$DeleteImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeleteImpl implements _Delete {
-  const _$DeleteImpl(this.params);
+class _$CoachExamEventDeleteImpl implements CoachExamEventDelete {
+  const _$CoachExamEventDeleteImpl(this.params);
 
   @override
   final DeleteExamParams params;
@@ -984,7 +999,7 @@ class _$DeleteImpl implements _Delete {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeleteImpl &&
+            other is _$CoachExamEventDeleteImpl &&
             (identical(other.params, params) || other.params == params));
   }
 
@@ -996,8 +1011,10 @@ class _$DeleteImpl implements _Delete {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
-      __$$DeleteImplCopyWithImpl<_$DeleteImpl>(this, _$identity);
+  _$$CoachExamEventDeleteImplCopyWith<_$CoachExamEventDeleteImpl>
+      get copyWith =>
+          __$$CoachExamEventDeleteImplCopyWithImpl<_$CoachExamEventDeleteImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1045,12 +1062,12 @@ class _$DeleteImpl implements _Delete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetExams value) getExams,
-    required TResult Function(_FilterExams value) filterExams,
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(CoachExamEventGetExams value) getExams,
+    required TResult Function(CoachExamEventFilterExams value) filterExams,
+    required TResult Function(CoachExamEventClear value) clear,
+    required TResult Function(CoachExamEventCreate value) create,
+    required TResult Function(CoachExamEventUpdate value) update,
+    required TResult Function(CoachExamEventDelete value) delete,
   }) {
     return delete(this);
   }
@@ -1058,12 +1075,12 @@ class _$DeleteImpl implements _Delete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetExams value)? getExams,
-    TResult? Function(_FilterExams value)? filterExams,
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(CoachExamEventGetExams value)? getExams,
+    TResult? Function(CoachExamEventFilterExams value)? filterExams,
+    TResult? Function(CoachExamEventClear value)? clear,
+    TResult? Function(CoachExamEventCreate value)? create,
+    TResult? Function(CoachExamEventUpdate value)? update,
+    TResult? Function(CoachExamEventDelete value)? delete,
   }) {
     return delete?.call(this);
   }
@@ -1071,12 +1088,12 @@ class _$DeleteImpl implements _Delete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetExams value)? getExams,
-    TResult Function(_FilterExams value)? filterExams,
-    TResult Function(_Clear value)? clear,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
+    TResult Function(CoachExamEventGetExams value)? getExams,
+    TResult Function(CoachExamEventFilterExams value)? filterExams,
+    TResult Function(CoachExamEventClear value)? clear,
+    TResult Function(CoachExamEventCreate value)? create,
+    TResult Function(CoachExamEventUpdate value)? update,
+    TResult Function(CoachExamEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -1086,16 +1103,17 @@ class _$DeleteImpl implements _Delete {
   }
 }
 
-abstract class _Delete implements CoachExamEvent {
-  const factory _Delete(final DeleteExamParams params) = _$DeleteImpl;
+abstract class CoachExamEventDelete implements CoachExamEvent {
+  const factory CoachExamEventDelete(final DeleteExamParams params) =
+      _$CoachExamEventDeleteImpl;
 
   DeleteExamParams get params;
 
   /// Create a copy of CoachExamEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExamEventDeleteImplCopyWith<_$CoachExamEventDeleteImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1140,35 +1158,35 @@ mixin _$CoachExamState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExamStateInitial value) initial,
+    required TResult Function(CoachExamStateLoading value) loading,
+    required TResult Function(CoachExamStateLoaded value) loaded,
+    required TResult Function(CoachExamStateFailure value) failure,
+    required TResult Function(CoachExamStateCreated value) created,
+    required TResult Function(CoachExamStateUpdated value) updated,
+    required TResult Function(CoachExamStateDeleted value) deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExamStateInitial value)? initial,
+    TResult? Function(CoachExamStateLoading value)? loading,
+    TResult? Function(CoachExamStateLoaded value)? loaded,
+    TResult? Function(CoachExamStateFailure value)? failure,
+    TResult? Function(CoachExamStateCreated value)? created,
+    TResult? Function(CoachExamStateUpdated value)? updated,
+    TResult? Function(CoachExamStateDeleted value)? deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExamStateInitial value)? initial,
+    TResult Function(CoachExamStateLoading value)? loading,
+    TResult Function(CoachExamStateLoaded value)? loaded,
+    TResult Function(CoachExamStateFailure value)? failure,
+    TResult Function(CoachExamStateCreated value)? created,
+    TResult Function(CoachExamStateUpdated value)? updated,
+    TResult Function(CoachExamStateDeleted value)? deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1196,18 +1214,19 @@ class _$CoachExamStateCopyWithImpl<$Res, $Val extends CoachExamState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamStateInitialImplCopyWith<$Res> {
+  factory _$$CoachExamStateInitialImplCopyWith(
+          _$CoachExamStateInitialImpl value,
+          $Res Function(_$CoachExamStateInitialImpl) then) =
+      __$$CoachExamStateInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$CoachExamStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$CoachExamStateInitialImplCopyWithImpl<$Res>
+    extends _$CoachExamStateCopyWithImpl<$Res, _$CoachExamStateInitialImpl>
+    implements _$$CoachExamStateInitialImplCopyWith<$Res> {
+  __$$CoachExamStateInitialImplCopyWithImpl(_$CoachExamStateInitialImpl _value,
+      $Res Function(_$CoachExamStateInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamState
@@ -1216,8 +1235,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$CoachExamStateInitialImpl implements CoachExamStateInitial {
+  const _$CoachExamStateInitialImpl();
 
   @override
   String toString() {
@@ -1227,7 +1246,8 @@ class _$InitialImpl implements _Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CoachExamStateInitialImpl);
   }
 
   @override
@@ -1286,13 +1306,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExamStateInitial value) initial,
+    required TResult Function(CoachExamStateLoading value) loading,
+    required TResult Function(CoachExamStateLoaded value) loaded,
+    required TResult Function(CoachExamStateFailure value) failure,
+    required TResult Function(CoachExamStateCreated value) created,
+    required TResult Function(CoachExamStateUpdated value) updated,
+    required TResult Function(CoachExamStateDeleted value) deleted,
   }) {
     return initial(this);
   }
@@ -1300,13 +1320,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExamStateInitial value)? initial,
+    TResult? Function(CoachExamStateLoading value)? loading,
+    TResult? Function(CoachExamStateLoaded value)? loaded,
+    TResult? Function(CoachExamStateFailure value)? failure,
+    TResult? Function(CoachExamStateCreated value)? created,
+    TResult? Function(CoachExamStateUpdated value)? updated,
+    TResult? Function(CoachExamStateDeleted value)? deleted,
   }) {
     return initial?.call(this);
   }
@@ -1314,13 +1334,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExamStateInitial value)? initial,
+    TResult Function(CoachExamStateLoading value)? loading,
+    TResult Function(CoachExamStateLoaded value)? loaded,
+    TResult Function(CoachExamStateFailure value)? failure,
+    TResult Function(CoachExamStateCreated value)? created,
+    TResult Function(CoachExamStateUpdated value)? updated,
+    TResult Function(CoachExamStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1330,23 +1350,24 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements CoachExamState {
-  const factory _Initial() = _$InitialImpl;
+abstract class CoachExamStateInitial implements CoachExamState {
+  const factory CoachExamStateInitial() = _$CoachExamStateInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamStateLoadingImplCopyWith<$Res> {
+  factory _$$CoachExamStateLoadingImplCopyWith(
+          _$CoachExamStateLoadingImpl value,
+          $Res Function(_$CoachExamStateLoadingImpl) then) =
+      __$$CoachExamStateLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$CoachExamStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$CoachExamStateLoadingImplCopyWithImpl<$Res>
+    extends _$CoachExamStateCopyWithImpl<$Res, _$CoachExamStateLoadingImpl>
+    implements _$$CoachExamStateLoadingImplCopyWith<$Res> {
+  __$$CoachExamStateLoadingImplCopyWithImpl(_$CoachExamStateLoadingImpl _value,
+      $Res Function(_$CoachExamStateLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamState
@@ -1355,8 +1376,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$CoachExamStateLoadingImpl implements CoachExamStateLoading {
+  const _$CoachExamStateLoadingImpl();
 
   @override
   String toString() {
@@ -1366,7 +1387,8 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CoachExamStateLoadingImpl);
   }
 
   @override
@@ -1425,13 +1447,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExamStateInitial value) initial,
+    required TResult Function(CoachExamStateLoading value) loading,
+    required TResult Function(CoachExamStateLoaded value) loaded,
+    required TResult Function(CoachExamStateFailure value) failure,
+    required TResult Function(CoachExamStateCreated value) created,
+    required TResult Function(CoachExamStateUpdated value) updated,
+    required TResult Function(CoachExamStateDeleted value) deleted,
   }) {
     return loading(this);
   }
@@ -1439,13 +1461,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExamStateInitial value)? initial,
+    TResult? Function(CoachExamStateLoading value)? loading,
+    TResult? Function(CoachExamStateLoaded value)? loaded,
+    TResult? Function(CoachExamStateFailure value)? failure,
+    TResult? Function(CoachExamStateCreated value)? created,
+    TResult? Function(CoachExamStateUpdated value)? updated,
+    TResult? Function(CoachExamStateDeleted value)? deleted,
   }) {
     return loading?.call(this);
   }
@@ -1453,13 +1475,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExamStateInitial value)? initial,
+    TResult Function(CoachExamStateLoading value)? loading,
+    TResult Function(CoachExamStateLoaded value)? loaded,
+    TResult Function(CoachExamStateFailure value)? failure,
+    TResult Function(CoachExamStateCreated value)? created,
+    TResult Function(CoachExamStateUpdated value)? updated,
+    TResult Function(CoachExamStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1469,25 +1491,25 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements CoachExamState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class CoachExamStateLoading implements CoachExamState {
+  const factory CoachExamStateLoading() = _$CoachExamStateLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamStateLoadedImplCopyWith<$Res> {
+  factory _$$CoachExamStateLoadedImplCopyWith(_$CoachExamStateLoadedImpl value,
+          $Res Function(_$CoachExamStateLoadedImpl) then) =
+      __$$CoachExamStateLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<ExamModel> exams, List<ExamModel> filteredExams});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$CoachExamStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$CoachExamStateLoadedImplCopyWithImpl<$Res>
+    extends _$CoachExamStateCopyWithImpl<$Res, _$CoachExamStateLoadedImpl>
+    implements _$$CoachExamStateLoadedImplCopyWith<$Res> {
+  __$$CoachExamStateLoadedImplCopyWithImpl(_$CoachExamStateLoadedImpl _value,
+      $Res Function(_$CoachExamStateLoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamState
@@ -1498,7 +1520,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
     Object? exams = null,
     Object? filteredExams = null,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_$CoachExamStateLoadedImpl(
       exams: null == exams
           ? _value._exams
           : exams // ignore: cast_nullable_to_non_nullable
@@ -1513,8 +1535,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(
+class _$CoachExamStateLoadedImpl implements CoachExamStateLoaded {
+  const _$CoachExamStateLoadedImpl(
       {required final List<ExamModel> exams,
       required final List<ExamModel> filteredExams})
       : _exams = exams,
@@ -1545,7 +1567,7 @@ class _$LoadedImpl implements _Loaded {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
+            other is _$CoachExamStateLoadedImpl &&
             const DeepCollectionEquality().equals(other._exams, _exams) &&
             const DeepCollectionEquality()
                 .equals(other._filteredExams, _filteredExams));
@@ -1562,8 +1584,10 @@ class _$LoadedImpl implements _Loaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$CoachExamStateLoadedImplCopyWith<_$CoachExamStateLoadedImpl>
+      get copyWith =>
+          __$$CoachExamStateLoadedImplCopyWithImpl<_$CoachExamStateLoadedImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1618,13 +1642,13 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExamStateInitial value) initial,
+    required TResult Function(CoachExamStateLoading value) loading,
+    required TResult Function(CoachExamStateLoaded value) loaded,
+    required TResult Function(CoachExamStateFailure value) failure,
+    required TResult Function(CoachExamStateCreated value) created,
+    required TResult Function(CoachExamStateUpdated value) updated,
+    required TResult Function(CoachExamStateDeleted value) deleted,
   }) {
     return loaded(this);
   }
@@ -1632,13 +1656,13 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExamStateInitial value)? initial,
+    TResult? Function(CoachExamStateLoading value)? loading,
+    TResult? Function(CoachExamStateLoaded value)? loaded,
+    TResult? Function(CoachExamStateFailure value)? failure,
+    TResult? Function(CoachExamStateCreated value)? created,
+    TResult? Function(CoachExamStateUpdated value)? updated,
+    TResult? Function(CoachExamStateDeleted value)? deleted,
   }) {
     return loaded?.call(this);
   }
@@ -1646,13 +1670,13 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExamStateInitial value)? initial,
+    TResult Function(CoachExamStateLoading value)? loading,
+    TResult Function(CoachExamStateLoaded value)? loaded,
+    TResult Function(CoachExamStateFailure value)? failure,
+    TResult Function(CoachExamStateCreated value)? created,
+    TResult Function(CoachExamStateUpdated value)? updated,
+    TResult Function(CoachExamStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -1662,10 +1686,11 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements CoachExamState {
-  const factory _Loaded(
-      {required final List<ExamModel> exams,
-      required final List<ExamModel> filteredExams}) = _$LoadedImpl;
+abstract class CoachExamStateLoaded implements CoachExamState {
+  const factory CoachExamStateLoaded(
+          {required final List<ExamModel> exams,
+          required final List<ExamModel> filteredExams}) =
+      _$CoachExamStateLoadedImpl;
 
   List<ExamModel> get exams;
   List<ExamModel> get filteredExams;
@@ -1673,25 +1698,26 @@ abstract class _Loaded implements CoachExamState {
   /// Create a copy of CoachExamState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExamStateLoadedImplCopyWith<_$CoachExamStateLoadedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamStateFailureImplCopyWith<$Res> {
+  factory _$$CoachExamStateFailureImplCopyWith(
+          _$CoachExamStateFailureImpl value,
+          $Res Function(_$CoachExamStateFailureImpl) then) =
+      __$$CoachExamStateFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$CoachExamStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
+class __$$CoachExamStateFailureImplCopyWithImpl<$Res>
+    extends _$CoachExamStateCopyWithImpl<$Res, _$CoachExamStateFailureImpl>
+    implements _$$CoachExamStateFailureImplCopyWith<$Res> {
+  __$$CoachExamStateFailureImplCopyWithImpl(_$CoachExamStateFailureImpl _value,
+      $Res Function(_$CoachExamStateFailureImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamState
@@ -1701,7 +1727,7 @@ class __$$FailureImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$FailureImpl(
+    return _then(_$CoachExamStateFailureImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1712,8 +1738,8 @@ class __$$FailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl(this.message);
+class _$CoachExamStateFailureImpl implements CoachExamStateFailure {
+  const _$CoachExamStateFailureImpl(this.message);
 
   @override
   final String message;
@@ -1727,7 +1753,7 @@ class _$FailureImpl implements _Failure {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
+            other is _$CoachExamStateFailureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -1739,8 +1765,9 @@ class _$FailureImpl implements _Failure {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
+  _$$CoachExamStateFailureImplCopyWith<_$CoachExamStateFailureImpl>
+      get copyWith => __$$CoachExamStateFailureImplCopyWithImpl<
+          _$CoachExamStateFailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1795,13 +1822,13 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExamStateInitial value) initial,
+    required TResult Function(CoachExamStateLoading value) loading,
+    required TResult Function(CoachExamStateLoaded value) loaded,
+    required TResult Function(CoachExamStateFailure value) failure,
+    required TResult Function(CoachExamStateCreated value) created,
+    required TResult Function(CoachExamStateUpdated value) updated,
+    required TResult Function(CoachExamStateDeleted value) deleted,
   }) {
     return failure(this);
   }
@@ -1809,13 +1836,13 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExamStateInitial value)? initial,
+    TResult? Function(CoachExamStateLoading value)? loading,
+    TResult? Function(CoachExamStateLoaded value)? loaded,
+    TResult? Function(CoachExamStateFailure value)? failure,
+    TResult? Function(CoachExamStateCreated value)? created,
+    TResult? Function(CoachExamStateUpdated value)? updated,
+    TResult? Function(CoachExamStateDeleted value)? deleted,
   }) {
     return failure?.call(this);
   }
@@ -1823,13 +1850,13 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExamStateInitial value)? initial,
+    TResult Function(CoachExamStateLoading value)? loading,
+    TResult Function(CoachExamStateLoaded value)? loaded,
+    TResult Function(CoachExamStateFailure value)? failure,
+    TResult Function(CoachExamStateCreated value)? created,
+    TResult Function(CoachExamStateUpdated value)? updated,
+    TResult Function(CoachExamStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1839,23 +1866,25 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements CoachExamState {
-  const factory _Failure(final String message) = _$FailureImpl;
+abstract class CoachExamStateFailure implements CoachExamState {
+  const factory CoachExamStateFailure(final String message) =
+      _$CoachExamStateFailureImpl;
 
   String get message;
 
   /// Create a copy of CoachExamState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExamStateFailureImplCopyWith<_$CoachExamStateFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CreatedImplCopyWith<$Res> {
-  factory _$$CreatedImplCopyWith(
-          _$CreatedImpl value, $Res Function(_$CreatedImpl) then) =
-      __$$CreatedImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamStateCreatedImplCopyWith<$Res> {
+  factory _$$CoachExamStateCreatedImplCopyWith(
+          _$CoachExamStateCreatedImpl value,
+          $Res Function(_$CoachExamStateCreatedImpl) then) =
+      __$$CoachExamStateCreatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ExamModel exam});
 
@@ -1863,11 +1892,11 @@ abstract class _$$CreatedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CreatedImplCopyWithImpl<$Res>
-    extends _$CoachExamStateCopyWithImpl<$Res, _$CreatedImpl>
-    implements _$$CreatedImplCopyWith<$Res> {
-  __$$CreatedImplCopyWithImpl(
-      _$CreatedImpl _value, $Res Function(_$CreatedImpl) _then)
+class __$$CoachExamStateCreatedImplCopyWithImpl<$Res>
+    extends _$CoachExamStateCopyWithImpl<$Res, _$CoachExamStateCreatedImpl>
+    implements _$$CoachExamStateCreatedImplCopyWith<$Res> {
+  __$$CoachExamStateCreatedImplCopyWithImpl(_$CoachExamStateCreatedImpl _value,
+      $Res Function(_$CoachExamStateCreatedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamState
@@ -1877,7 +1906,7 @@ class __$$CreatedImplCopyWithImpl<$Res>
   $Res call({
     Object? exam = null,
   }) {
-    return _then(_$CreatedImpl(
+    return _then(_$CoachExamStateCreatedImpl(
       null == exam
           ? _value.exam
           : exam // ignore: cast_nullable_to_non_nullable
@@ -1898,8 +1927,8 @@ class __$$CreatedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreatedImpl implements _Created {
-  const _$CreatedImpl(this.exam);
+class _$CoachExamStateCreatedImpl implements CoachExamStateCreated {
+  const _$CoachExamStateCreatedImpl(this.exam);
 
   @override
   final ExamModel exam;
@@ -1913,7 +1942,7 @@ class _$CreatedImpl implements _Created {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreatedImpl &&
+            other is _$CoachExamStateCreatedImpl &&
             (identical(other.exam, exam) || other.exam == exam));
   }
 
@@ -1925,8 +1954,9 @@ class _$CreatedImpl implements _Created {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreatedImplCopyWith<_$CreatedImpl> get copyWith =>
-      __$$CreatedImplCopyWithImpl<_$CreatedImpl>(this, _$identity);
+  _$$CoachExamStateCreatedImplCopyWith<_$CoachExamStateCreatedImpl>
+      get copyWith => __$$CoachExamStateCreatedImplCopyWithImpl<
+          _$CoachExamStateCreatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1981,13 +2011,13 @@ class _$CreatedImpl implements _Created {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExamStateInitial value) initial,
+    required TResult Function(CoachExamStateLoading value) loading,
+    required TResult Function(CoachExamStateLoaded value) loaded,
+    required TResult Function(CoachExamStateFailure value) failure,
+    required TResult Function(CoachExamStateCreated value) created,
+    required TResult Function(CoachExamStateUpdated value) updated,
+    required TResult Function(CoachExamStateDeleted value) deleted,
   }) {
     return created(this);
   }
@@ -1995,13 +2025,13 @@ class _$CreatedImpl implements _Created {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExamStateInitial value)? initial,
+    TResult? Function(CoachExamStateLoading value)? loading,
+    TResult? Function(CoachExamStateLoaded value)? loaded,
+    TResult? Function(CoachExamStateFailure value)? failure,
+    TResult? Function(CoachExamStateCreated value)? created,
+    TResult? Function(CoachExamStateUpdated value)? updated,
+    TResult? Function(CoachExamStateDeleted value)? deleted,
   }) {
     return created?.call(this);
   }
@@ -2009,13 +2039,13 @@ class _$CreatedImpl implements _Created {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExamStateInitial value)? initial,
+    TResult Function(CoachExamStateLoading value)? loading,
+    TResult Function(CoachExamStateLoaded value)? loaded,
+    TResult Function(CoachExamStateFailure value)? failure,
+    TResult Function(CoachExamStateCreated value)? created,
+    TResult Function(CoachExamStateUpdated value)? updated,
+    TResult Function(CoachExamStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (created != null) {
@@ -2025,23 +2055,25 @@ class _$CreatedImpl implements _Created {
   }
 }
 
-abstract class _Created implements CoachExamState {
-  const factory _Created(final ExamModel exam) = _$CreatedImpl;
+abstract class CoachExamStateCreated implements CoachExamState {
+  const factory CoachExamStateCreated(final ExamModel exam) =
+      _$CoachExamStateCreatedImpl;
 
   ExamModel get exam;
 
   /// Create a copy of CoachExamState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreatedImplCopyWith<_$CreatedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExamStateCreatedImplCopyWith<_$CoachExamStateCreatedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdatedImplCopyWith<$Res> {
-  factory _$$UpdatedImplCopyWith(
-          _$UpdatedImpl value, $Res Function(_$UpdatedImpl) then) =
-      __$$UpdatedImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamStateUpdatedImplCopyWith<$Res> {
+  factory _$$CoachExamStateUpdatedImplCopyWith(
+          _$CoachExamStateUpdatedImpl value,
+          $Res Function(_$CoachExamStateUpdatedImpl) then) =
+      __$$CoachExamStateUpdatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ExamModel exam});
 
@@ -2049,11 +2081,11 @@ abstract class _$$UpdatedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$UpdatedImplCopyWithImpl<$Res>
-    extends _$CoachExamStateCopyWithImpl<$Res, _$UpdatedImpl>
-    implements _$$UpdatedImplCopyWith<$Res> {
-  __$$UpdatedImplCopyWithImpl(
-      _$UpdatedImpl _value, $Res Function(_$UpdatedImpl) _then)
+class __$$CoachExamStateUpdatedImplCopyWithImpl<$Res>
+    extends _$CoachExamStateCopyWithImpl<$Res, _$CoachExamStateUpdatedImpl>
+    implements _$$CoachExamStateUpdatedImplCopyWith<$Res> {
+  __$$CoachExamStateUpdatedImplCopyWithImpl(_$CoachExamStateUpdatedImpl _value,
+      $Res Function(_$CoachExamStateUpdatedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamState
@@ -2063,7 +2095,7 @@ class __$$UpdatedImplCopyWithImpl<$Res>
   $Res call({
     Object? exam = null,
   }) {
-    return _then(_$UpdatedImpl(
+    return _then(_$CoachExamStateUpdatedImpl(
       null == exam
           ? _value.exam
           : exam // ignore: cast_nullable_to_non_nullable
@@ -2084,8 +2116,8 @@ class __$$UpdatedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdatedImpl implements _Updated {
-  const _$UpdatedImpl(this.exam);
+class _$CoachExamStateUpdatedImpl implements CoachExamStateUpdated {
+  const _$CoachExamStateUpdatedImpl(this.exam);
 
   @override
   final ExamModel exam;
@@ -2099,7 +2131,7 @@ class _$UpdatedImpl implements _Updated {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdatedImpl &&
+            other is _$CoachExamStateUpdatedImpl &&
             (identical(other.exam, exam) || other.exam == exam));
   }
 
@@ -2111,8 +2143,9 @@ class _$UpdatedImpl implements _Updated {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdatedImplCopyWith<_$UpdatedImpl> get copyWith =>
-      __$$UpdatedImplCopyWithImpl<_$UpdatedImpl>(this, _$identity);
+  _$$CoachExamStateUpdatedImplCopyWith<_$CoachExamStateUpdatedImpl>
+      get copyWith => __$$CoachExamStateUpdatedImplCopyWithImpl<
+          _$CoachExamStateUpdatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2167,13 +2200,13 @@ class _$UpdatedImpl implements _Updated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExamStateInitial value) initial,
+    required TResult Function(CoachExamStateLoading value) loading,
+    required TResult Function(CoachExamStateLoaded value) loaded,
+    required TResult Function(CoachExamStateFailure value) failure,
+    required TResult Function(CoachExamStateCreated value) created,
+    required TResult Function(CoachExamStateUpdated value) updated,
+    required TResult Function(CoachExamStateDeleted value) deleted,
   }) {
     return updated(this);
   }
@@ -2181,13 +2214,13 @@ class _$UpdatedImpl implements _Updated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExamStateInitial value)? initial,
+    TResult? Function(CoachExamStateLoading value)? loading,
+    TResult? Function(CoachExamStateLoaded value)? loaded,
+    TResult? Function(CoachExamStateFailure value)? failure,
+    TResult? Function(CoachExamStateCreated value)? created,
+    TResult? Function(CoachExamStateUpdated value)? updated,
+    TResult? Function(CoachExamStateDeleted value)? deleted,
   }) {
     return updated?.call(this);
   }
@@ -2195,13 +2228,13 @@ class _$UpdatedImpl implements _Updated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExamStateInitial value)? initial,
+    TResult Function(CoachExamStateLoading value)? loading,
+    TResult Function(CoachExamStateLoaded value)? loaded,
+    TResult Function(CoachExamStateFailure value)? failure,
+    TResult Function(CoachExamStateCreated value)? created,
+    TResult Function(CoachExamStateUpdated value)? updated,
+    TResult Function(CoachExamStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (updated != null) {
@@ -2211,23 +2244,25 @@ class _$UpdatedImpl implements _Updated {
   }
 }
 
-abstract class _Updated implements CoachExamState {
-  const factory _Updated(final ExamModel exam) = _$UpdatedImpl;
+abstract class CoachExamStateUpdated implements CoachExamState {
+  const factory CoachExamStateUpdated(final ExamModel exam) =
+      _$CoachExamStateUpdatedImpl;
 
   ExamModel get exam;
 
   /// Create a copy of CoachExamState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdatedImplCopyWith<_$UpdatedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExamStateUpdatedImplCopyWith<_$CoachExamStateUpdatedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeletedImplCopyWith<$Res> {
-  factory _$$DeletedImplCopyWith(
-          _$DeletedImpl value, $Res Function(_$DeletedImpl) then) =
-      __$$DeletedImplCopyWithImpl<$Res>;
+abstract class _$$CoachExamStateDeletedImplCopyWith<$Res> {
+  factory _$$CoachExamStateDeletedImplCopyWith(
+          _$CoachExamStateDeletedImpl value,
+          $Res Function(_$CoachExamStateDeletedImpl) then) =
+      __$$CoachExamStateDeletedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ExamModel exam});
 
@@ -2235,11 +2270,11 @@ abstract class _$$DeletedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DeletedImplCopyWithImpl<$Res>
-    extends _$CoachExamStateCopyWithImpl<$Res, _$DeletedImpl>
-    implements _$$DeletedImplCopyWith<$Res> {
-  __$$DeletedImplCopyWithImpl(
-      _$DeletedImpl _value, $Res Function(_$DeletedImpl) _then)
+class __$$CoachExamStateDeletedImplCopyWithImpl<$Res>
+    extends _$CoachExamStateCopyWithImpl<$Res, _$CoachExamStateDeletedImpl>
+    implements _$$CoachExamStateDeletedImplCopyWith<$Res> {
+  __$$CoachExamStateDeletedImplCopyWithImpl(_$CoachExamStateDeletedImpl _value,
+      $Res Function(_$CoachExamStateDeletedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CoachExamState
@@ -2249,7 +2284,7 @@ class __$$DeletedImplCopyWithImpl<$Res>
   $Res call({
     Object? exam = null,
   }) {
-    return _then(_$DeletedImpl(
+    return _then(_$CoachExamStateDeletedImpl(
       null == exam
           ? _value.exam
           : exam // ignore: cast_nullable_to_non_nullable
@@ -2270,8 +2305,8 @@ class __$$DeletedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeletedImpl implements _Deleted {
-  const _$DeletedImpl(this.exam);
+class _$CoachExamStateDeletedImpl implements CoachExamStateDeleted {
+  const _$CoachExamStateDeletedImpl(this.exam);
 
   @override
   final ExamModel exam;
@@ -2285,7 +2320,7 @@ class _$DeletedImpl implements _Deleted {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeletedImpl &&
+            other is _$CoachExamStateDeletedImpl &&
             (identical(other.exam, exam) || other.exam == exam));
   }
 
@@ -2297,8 +2332,9 @@ class _$DeletedImpl implements _Deleted {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeletedImplCopyWith<_$DeletedImpl> get copyWith =>
-      __$$DeletedImplCopyWithImpl<_$DeletedImpl>(this, _$identity);
+  _$$CoachExamStateDeletedImplCopyWith<_$CoachExamStateDeletedImpl>
+      get copyWith => __$$CoachExamStateDeletedImplCopyWithImpl<
+          _$CoachExamStateDeletedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2353,13 +2389,13 @@ class _$DeletedImpl implements _Deleted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Updated value) updated,
-    required TResult Function(_Deleted value) deleted,
+    required TResult Function(CoachExamStateInitial value) initial,
+    required TResult Function(CoachExamStateLoading value) loading,
+    required TResult Function(CoachExamStateLoaded value) loaded,
+    required TResult Function(CoachExamStateFailure value) failure,
+    required TResult Function(CoachExamStateCreated value) created,
+    required TResult Function(CoachExamStateUpdated value) updated,
+    required TResult Function(CoachExamStateDeleted value) deleted,
   }) {
     return deleted(this);
   }
@@ -2367,13 +2403,13 @@ class _$DeletedImpl implements _Deleted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Updated value)? updated,
-    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(CoachExamStateInitial value)? initial,
+    TResult? Function(CoachExamStateLoading value)? loading,
+    TResult? Function(CoachExamStateLoaded value)? loaded,
+    TResult? Function(CoachExamStateFailure value)? failure,
+    TResult? Function(CoachExamStateCreated value)? created,
+    TResult? Function(CoachExamStateUpdated value)? updated,
+    TResult? Function(CoachExamStateDeleted value)? deleted,
   }) {
     return deleted?.call(this);
   }
@@ -2381,13 +2417,13 @@ class _$DeletedImpl implements _Deleted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Created value)? created,
-    TResult Function(_Updated value)? updated,
-    TResult Function(_Deleted value)? deleted,
+    TResult Function(CoachExamStateInitial value)? initial,
+    TResult Function(CoachExamStateLoading value)? loading,
+    TResult Function(CoachExamStateLoaded value)? loaded,
+    TResult Function(CoachExamStateFailure value)? failure,
+    TResult Function(CoachExamStateCreated value)? created,
+    TResult Function(CoachExamStateUpdated value)? updated,
+    TResult Function(CoachExamStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
     if (deleted != null) {
@@ -2397,14 +2433,15 @@ class _$DeletedImpl implements _Deleted {
   }
 }
 
-abstract class _Deleted implements CoachExamState {
-  const factory _Deleted(final ExamModel exam) = _$DeletedImpl;
+abstract class CoachExamStateDeleted implements CoachExamState {
+  const factory CoachExamStateDeleted(final ExamModel exam) =
+      _$CoachExamStateDeletedImpl;
 
   ExamModel get exam;
 
   /// Create a copy of CoachExamState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeletedImplCopyWith<_$DeletedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CoachExamStateDeletedImplCopyWith<_$CoachExamStateDeletedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

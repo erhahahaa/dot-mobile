@@ -40,23 +40,27 @@ mixin _$AthleteTacticalEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_GetTacticals value) getTacticals,
-    required TResult Function(_FilterTacticals value) filterTacticals,
+    required TResult Function(AthleteTacticalEventClear value) clear,
+    required TResult Function(AthleteTacticalEventGetTacticals value)
+        getTacticals,
+    required TResult Function(AthleteTacticalEventFilterTacticals value)
+        filterTacticals,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_GetTacticals value)? getTacticals,
-    TResult? Function(_FilterTacticals value)? filterTacticals,
+    TResult? Function(AthleteTacticalEventClear value)? clear,
+    TResult? Function(AthleteTacticalEventGetTacticals value)? getTacticals,
+    TResult? Function(AthleteTacticalEventFilterTacticals value)?
+        filterTacticals,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Clear value)? clear,
-    TResult Function(_GetTacticals value)? getTacticals,
-    TResult Function(_FilterTacticals value)? filterTacticals,
+    TResult Function(AthleteTacticalEventClear value)? clear,
+    TResult Function(AthleteTacticalEventGetTacticals value)? getTacticals,
+    TResult Function(AthleteTacticalEventFilterTacticals value)?
+        filterTacticals,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -85,18 +89,21 @@ class _$AthleteTacticalEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ClearImplCopyWith<$Res> {
-  factory _$$ClearImplCopyWith(
-          _$ClearImpl value, $Res Function(_$ClearImpl) then) =
-      __$$ClearImplCopyWithImpl<$Res>;
+abstract class _$$AthleteTacticalEventClearImplCopyWith<$Res> {
+  factory _$$AthleteTacticalEventClearImplCopyWith(
+          _$AthleteTacticalEventClearImpl value,
+          $Res Function(_$AthleteTacticalEventClearImpl) then) =
+      __$$AthleteTacticalEventClearImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearImplCopyWithImpl<$Res>
-    extends _$AthleteTacticalEventCopyWithImpl<$Res, _$ClearImpl>
-    implements _$$ClearImplCopyWith<$Res> {
-  __$$ClearImplCopyWithImpl(
-      _$ClearImpl _value, $Res Function(_$ClearImpl) _then)
+class __$$AthleteTacticalEventClearImplCopyWithImpl<$Res>
+    extends _$AthleteTacticalEventCopyWithImpl<$Res,
+        _$AthleteTacticalEventClearImpl>
+    implements _$$AthleteTacticalEventClearImplCopyWith<$Res> {
+  __$$AthleteTacticalEventClearImplCopyWithImpl(
+      _$AthleteTacticalEventClearImpl _value,
+      $Res Function(_$AthleteTacticalEventClearImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteTacticalEvent
@@ -105,8 +112,8 @@ class __$$ClearImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ClearImpl implements _Clear {
-  const _$ClearImpl();
+class _$AthleteTacticalEventClearImpl implements AthleteTacticalEventClear {
+  const _$AthleteTacticalEventClearImpl();
 
   @override
   String toString() {
@@ -116,7 +123,8 @@ class _$ClearImpl implements _Clear {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AthleteTacticalEventClearImpl);
   }
 
   @override
@@ -159,9 +167,11 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_GetTacticals value) getTacticals,
-    required TResult Function(_FilterTacticals value) filterTacticals,
+    required TResult Function(AthleteTacticalEventClear value) clear,
+    required TResult Function(AthleteTacticalEventGetTacticals value)
+        getTacticals,
+    required TResult Function(AthleteTacticalEventFilterTacticals value)
+        filterTacticals,
   }) {
     return clear(this);
   }
@@ -169,9 +179,10 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_GetTacticals value)? getTacticals,
-    TResult? Function(_FilterTacticals value)? filterTacticals,
+    TResult? Function(AthleteTacticalEventClear value)? clear,
+    TResult? Function(AthleteTacticalEventGetTacticals value)? getTacticals,
+    TResult? Function(AthleteTacticalEventFilterTacticals value)?
+        filterTacticals,
   }) {
     return clear?.call(this);
   }
@@ -179,9 +190,10 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Clear value)? clear,
-    TResult Function(_GetTacticals value)? getTacticals,
-    TResult Function(_FilterTacticals value)? filterTacticals,
+    TResult Function(AthleteTacticalEventClear value)? clear,
+    TResult Function(AthleteTacticalEventGetTacticals value)? getTacticals,
+    TResult Function(AthleteTacticalEventFilterTacticals value)?
+        filterTacticals,
     required TResult orElse(),
   }) {
     if (clear != null) {
@@ -191,15 +203,16 @@ class _$ClearImpl implements _Clear {
   }
 }
 
-abstract class _Clear implements AthleteTacticalEvent {
-  const factory _Clear() = _$ClearImpl;
+abstract class AthleteTacticalEventClear implements AthleteTacticalEvent {
+  const factory AthleteTacticalEventClear() = _$AthleteTacticalEventClearImpl;
 }
 
 /// @nodoc
-abstract class _$$GetTacticalsImplCopyWith<$Res> {
-  factory _$$GetTacticalsImplCopyWith(
-          _$GetTacticalsImpl value, $Res Function(_$GetTacticalsImpl) then) =
-      __$$GetTacticalsImplCopyWithImpl<$Res>;
+abstract class _$$AthleteTacticalEventGetTacticalsImplCopyWith<$Res> {
+  factory _$$AthleteTacticalEventGetTacticalsImplCopyWith(
+          _$AthleteTacticalEventGetTacticalsImpl value,
+          $Res Function(_$AthleteTacticalEventGetTacticalsImpl) then) =
+      __$$AthleteTacticalEventGetTacticalsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({GetAllTacticalParams params});
 
@@ -207,11 +220,13 @@ abstract class _$$GetTacticalsImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$GetTacticalsImplCopyWithImpl<$Res>
-    extends _$AthleteTacticalEventCopyWithImpl<$Res, _$GetTacticalsImpl>
-    implements _$$GetTacticalsImplCopyWith<$Res> {
-  __$$GetTacticalsImplCopyWithImpl(
-      _$GetTacticalsImpl _value, $Res Function(_$GetTacticalsImpl) _then)
+class __$$AthleteTacticalEventGetTacticalsImplCopyWithImpl<$Res>
+    extends _$AthleteTacticalEventCopyWithImpl<$Res,
+        _$AthleteTacticalEventGetTacticalsImpl>
+    implements _$$AthleteTacticalEventGetTacticalsImplCopyWith<$Res> {
+  __$$AthleteTacticalEventGetTacticalsImplCopyWithImpl(
+      _$AthleteTacticalEventGetTacticalsImpl _value,
+      $Res Function(_$AthleteTacticalEventGetTacticalsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteTacticalEvent
@@ -221,7 +236,7 @@ class __$$GetTacticalsImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$GetTacticalsImpl(
+    return _then(_$AthleteTacticalEventGetTacticalsImpl(
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -242,8 +257,9 @@ class __$$GetTacticalsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetTacticalsImpl implements _GetTacticals {
-  const _$GetTacticalsImpl(this.params);
+class _$AthleteTacticalEventGetTacticalsImpl
+    implements AthleteTacticalEventGetTacticals {
+  const _$AthleteTacticalEventGetTacticalsImpl(this.params);
 
   @override
   final GetAllTacticalParams params;
@@ -257,7 +273,7 @@ class _$GetTacticalsImpl implements _GetTacticals {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetTacticalsImpl &&
+            other is _$AthleteTacticalEventGetTacticalsImpl &&
             (identical(other.params, params) || other.params == params));
   }
 
@@ -269,8 +285,10 @@ class _$GetTacticalsImpl implements _GetTacticals {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetTacticalsImplCopyWith<_$GetTacticalsImpl> get copyWith =>
-      __$$GetTacticalsImplCopyWithImpl<_$GetTacticalsImpl>(this, _$identity);
+  _$$AthleteTacticalEventGetTacticalsImplCopyWith<
+          _$AthleteTacticalEventGetTacticalsImpl>
+      get copyWith => __$$AthleteTacticalEventGetTacticalsImplCopyWithImpl<
+          _$AthleteTacticalEventGetTacticalsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -309,9 +327,11 @@ class _$GetTacticalsImpl implements _GetTacticals {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_GetTacticals value) getTacticals,
-    required TResult Function(_FilterTacticals value) filterTacticals,
+    required TResult Function(AthleteTacticalEventClear value) clear,
+    required TResult Function(AthleteTacticalEventGetTacticals value)
+        getTacticals,
+    required TResult Function(AthleteTacticalEventFilterTacticals value)
+        filterTacticals,
   }) {
     return getTacticals(this);
   }
@@ -319,9 +339,10 @@ class _$GetTacticalsImpl implements _GetTacticals {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_GetTacticals value)? getTacticals,
-    TResult? Function(_FilterTacticals value)? filterTacticals,
+    TResult? Function(AthleteTacticalEventClear value)? clear,
+    TResult? Function(AthleteTacticalEventGetTacticals value)? getTacticals,
+    TResult? Function(AthleteTacticalEventFilterTacticals value)?
+        filterTacticals,
   }) {
     return getTacticals?.call(this);
   }
@@ -329,9 +350,10 @@ class _$GetTacticalsImpl implements _GetTacticals {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Clear value)? clear,
-    TResult Function(_GetTacticals value)? getTacticals,
-    TResult Function(_FilterTacticals value)? filterTacticals,
+    TResult Function(AthleteTacticalEventClear value)? clear,
+    TResult Function(AthleteTacticalEventGetTacticals value)? getTacticals,
+    TResult Function(AthleteTacticalEventFilterTacticals value)?
+        filterTacticals,
     required TResult orElse(),
   }) {
     if (getTacticals != null) {
@@ -341,34 +363,40 @@ class _$GetTacticalsImpl implements _GetTacticals {
   }
 }
 
-abstract class _GetTacticals implements AthleteTacticalEvent {
-  const factory _GetTacticals(final GetAllTacticalParams params) =
-      _$GetTacticalsImpl;
+abstract class AthleteTacticalEventGetTacticals
+    implements AthleteTacticalEvent {
+  const factory AthleteTacticalEventGetTacticals(
+          final GetAllTacticalParams params) =
+      _$AthleteTacticalEventGetTacticalsImpl;
 
   GetAllTacticalParams get params;
 
   /// Create a copy of AthleteTacticalEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetTacticalsImplCopyWith<_$GetTacticalsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AthleteTacticalEventGetTacticalsImplCopyWith<
+          _$AthleteTacticalEventGetTacticalsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FilterTacticalsImplCopyWith<$Res> {
-  factory _$$FilterTacticalsImplCopyWith(_$FilterTacticalsImpl value,
-          $Res Function(_$FilterTacticalsImpl) then) =
-      __$$FilterTacticalsImplCopyWithImpl<$Res>;
+abstract class _$$AthleteTacticalEventFilterTacticalsImplCopyWith<$Res> {
+  factory _$$AthleteTacticalEventFilterTacticalsImplCopyWith(
+          _$AthleteTacticalEventFilterTacticalsImpl value,
+          $Res Function(_$AthleteTacticalEventFilterTacticalsImpl) then) =
+      __$$AthleteTacticalEventFilterTacticalsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String query});
 }
 
 /// @nodoc
-class __$$FilterTacticalsImplCopyWithImpl<$Res>
-    extends _$AthleteTacticalEventCopyWithImpl<$Res, _$FilterTacticalsImpl>
-    implements _$$FilterTacticalsImplCopyWith<$Res> {
-  __$$FilterTacticalsImplCopyWithImpl(
-      _$FilterTacticalsImpl _value, $Res Function(_$FilterTacticalsImpl) _then)
+class __$$AthleteTacticalEventFilterTacticalsImplCopyWithImpl<$Res>
+    extends _$AthleteTacticalEventCopyWithImpl<$Res,
+        _$AthleteTacticalEventFilterTacticalsImpl>
+    implements _$$AthleteTacticalEventFilterTacticalsImplCopyWith<$Res> {
+  __$$AthleteTacticalEventFilterTacticalsImplCopyWithImpl(
+      _$AthleteTacticalEventFilterTacticalsImpl _value,
+      $Res Function(_$AthleteTacticalEventFilterTacticalsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteTacticalEvent
@@ -378,7 +406,7 @@ class __$$FilterTacticalsImplCopyWithImpl<$Res>
   $Res call({
     Object? query = null,
   }) {
-    return _then(_$FilterTacticalsImpl(
+    return _then(_$AthleteTacticalEventFilterTacticalsImpl(
       null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
@@ -389,8 +417,9 @@ class __$$FilterTacticalsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FilterTacticalsImpl implements _FilterTacticals {
-  const _$FilterTacticalsImpl(this.query);
+class _$AthleteTacticalEventFilterTacticalsImpl
+    implements AthleteTacticalEventFilterTacticals {
+  const _$AthleteTacticalEventFilterTacticalsImpl(this.query);
 
   @override
   final String query;
@@ -404,7 +433,7 @@ class _$FilterTacticalsImpl implements _FilterTacticals {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FilterTacticalsImpl &&
+            other is _$AthleteTacticalEventFilterTacticalsImpl &&
             (identical(other.query, query) || other.query == query));
   }
 
@@ -416,9 +445,10 @@ class _$FilterTacticalsImpl implements _FilterTacticals {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FilterTacticalsImplCopyWith<_$FilterTacticalsImpl> get copyWith =>
-      __$$FilterTacticalsImplCopyWithImpl<_$FilterTacticalsImpl>(
-          this, _$identity);
+  _$$AthleteTacticalEventFilterTacticalsImplCopyWith<
+          _$AthleteTacticalEventFilterTacticalsImpl>
+      get copyWith => __$$AthleteTacticalEventFilterTacticalsImplCopyWithImpl<
+          _$AthleteTacticalEventFilterTacticalsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -457,9 +487,11 @@ class _$FilterTacticalsImpl implements _FilterTacticals {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Clear value) clear,
-    required TResult Function(_GetTacticals value) getTacticals,
-    required TResult Function(_FilterTacticals value) filterTacticals,
+    required TResult Function(AthleteTacticalEventClear value) clear,
+    required TResult Function(AthleteTacticalEventGetTacticals value)
+        getTacticals,
+    required TResult Function(AthleteTacticalEventFilterTacticals value)
+        filterTacticals,
   }) {
     return filterTacticals(this);
   }
@@ -467,9 +499,10 @@ class _$FilterTacticalsImpl implements _FilterTacticals {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Clear value)? clear,
-    TResult? Function(_GetTacticals value)? getTacticals,
-    TResult? Function(_FilterTacticals value)? filterTacticals,
+    TResult? Function(AthleteTacticalEventClear value)? clear,
+    TResult? Function(AthleteTacticalEventGetTacticals value)? getTacticals,
+    TResult? Function(AthleteTacticalEventFilterTacticals value)?
+        filterTacticals,
   }) {
     return filterTacticals?.call(this);
   }
@@ -477,9 +510,10 @@ class _$FilterTacticalsImpl implements _FilterTacticals {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Clear value)? clear,
-    TResult Function(_GetTacticals value)? getTacticals,
-    TResult Function(_FilterTacticals value)? filterTacticals,
+    TResult Function(AthleteTacticalEventClear value)? clear,
+    TResult Function(AthleteTacticalEventGetTacticals value)? getTacticals,
+    TResult Function(AthleteTacticalEventFilterTacticals value)?
+        filterTacticals,
     required TResult orElse(),
   }) {
     if (filterTacticals != null) {
@@ -489,16 +523,19 @@ class _$FilterTacticalsImpl implements _FilterTacticals {
   }
 }
 
-abstract class _FilterTacticals implements AthleteTacticalEvent {
-  const factory _FilterTacticals(final String query) = _$FilterTacticalsImpl;
+abstract class AthleteTacticalEventFilterTacticals
+    implements AthleteTacticalEvent {
+  const factory AthleteTacticalEventFilterTacticals(final String query) =
+      _$AthleteTacticalEventFilterTacticalsImpl;
 
   String get query;
 
   /// Create a copy of AthleteTacticalEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FilterTacticalsImplCopyWith<_$FilterTacticalsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AthleteTacticalEventFilterTacticalsImplCopyWith<
+          _$AthleteTacticalEventFilterTacticalsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -536,26 +573,26 @@ mixin _$AthleteTacticalState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(AthleteTacticalStateInitial value) initial,
+    required TResult Function(AthleteTacticalStateLoading value) loading,
+    required TResult Function(AthleteTacticalStateLoaded value) loaded,
+    required TResult Function(AthleteTacticalStateFailure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(AthleteTacticalStateInitial value)? initial,
+    TResult? Function(AthleteTacticalStateLoading value)? loading,
+    TResult? Function(AthleteTacticalStateLoaded value)? loaded,
+    TResult? Function(AthleteTacticalStateFailure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
+    TResult Function(AthleteTacticalStateInitial value)? initial,
+    TResult Function(AthleteTacticalStateLoading value)? loading,
+    TResult Function(AthleteTacticalStateLoaded value)? loaded,
+    TResult Function(AthleteTacticalStateFailure value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -584,18 +621,21 @@ class _$AthleteTacticalStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$AthleteTacticalStateInitialImplCopyWith<$Res> {
+  factory _$$AthleteTacticalStateInitialImplCopyWith(
+          _$AthleteTacticalStateInitialImpl value,
+          $Res Function(_$AthleteTacticalStateInitialImpl) then) =
+      __$$AthleteTacticalStateInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$AthleteTacticalStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$AthleteTacticalStateInitialImplCopyWithImpl<$Res>
+    extends _$AthleteTacticalStateCopyWithImpl<$Res,
+        _$AthleteTacticalStateInitialImpl>
+    implements _$$AthleteTacticalStateInitialImplCopyWith<$Res> {
+  __$$AthleteTacticalStateInitialImplCopyWithImpl(
+      _$AthleteTacticalStateInitialImpl _value,
+      $Res Function(_$AthleteTacticalStateInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteTacticalState
@@ -604,8 +644,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$AthleteTacticalStateInitialImpl implements AthleteTacticalStateInitial {
+  const _$AthleteTacticalStateInitialImpl();
 
   @override
   String toString() {
@@ -615,7 +655,8 @@ class _$InitialImpl implements _Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AthleteTacticalStateInitialImpl);
   }
 
   @override
@@ -667,10 +708,10 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(AthleteTacticalStateInitial value) initial,
+    required TResult Function(AthleteTacticalStateLoading value) loading,
+    required TResult Function(AthleteTacticalStateLoaded value) loaded,
+    required TResult Function(AthleteTacticalStateFailure value) failure,
   }) {
     return initial(this);
   }
@@ -678,10 +719,10 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(AthleteTacticalStateInitial value)? initial,
+    TResult? Function(AthleteTacticalStateLoading value)? loading,
+    TResult? Function(AthleteTacticalStateLoaded value)? loaded,
+    TResult? Function(AthleteTacticalStateFailure value)? failure,
   }) {
     return initial?.call(this);
   }
@@ -689,10 +730,10 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
+    TResult Function(AthleteTacticalStateInitial value)? initial,
+    TResult Function(AthleteTacticalStateLoading value)? loading,
+    TResult Function(AthleteTacticalStateLoaded value)? loaded,
+    TResult Function(AthleteTacticalStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -702,23 +743,27 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements AthleteTacticalState {
-  const factory _Initial() = _$InitialImpl;
+abstract class AthleteTacticalStateInitial implements AthleteTacticalState {
+  const factory AthleteTacticalStateInitial() =
+      _$AthleteTacticalStateInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$AthleteTacticalStateLoadingImplCopyWith<$Res> {
+  factory _$$AthleteTacticalStateLoadingImplCopyWith(
+          _$AthleteTacticalStateLoadingImpl value,
+          $Res Function(_$AthleteTacticalStateLoadingImpl) then) =
+      __$$AthleteTacticalStateLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$AthleteTacticalStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$AthleteTacticalStateLoadingImplCopyWithImpl<$Res>
+    extends _$AthleteTacticalStateCopyWithImpl<$Res,
+        _$AthleteTacticalStateLoadingImpl>
+    implements _$$AthleteTacticalStateLoadingImplCopyWith<$Res> {
+  __$$AthleteTacticalStateLoadingImplCopyWithImpl(
+      _$AthleteTacticalStateLoadingImpl _value,
+      $Res Function(_$AthleteTacticalStateLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteTacticalState
@@ -727,8 +772,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$AthleteTacticalStateLoadingImpl implements AthleteTacticalStateLoading {
+  const _$AthleteTacticalStateLoadingImpl();
 
   @override
   String toString() {
@@ -738,7 +783,8 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AthleteTacticalStateLoadingImpl);
   }
 
   @override
@@ -790,10 +836,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(AthleteTacticalStateInitial value) initial,
+    required TResult Function(AthleteTacticalStateLoading value) loading,
+    required TResult Function(AthleteTacticalStateLoaded value) loaded,
+    required TResult Function(AthleteTacticalStateFailure value) failure,
   }) {
     return loading(this);
   }
@@ -801,10 +847,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(AthleteTacticalStateInitial value)? initial,
+    TResult? Function(AthleteTacticalStateLoading value)? loading,
+    TResult? Function(AthleteTacticalStateLoaded value)? loaded,
+    TResult? Function(AthleteTacticalStateFailure value)? failure,
   }) {
     return loading?.call(this);
   }
@@ -812,10 +858,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
+    TResult Function(AthleteTacticalStateInitial value)? initial,
+    TResult Function(AthleteTacticalStateLoading value)? loading,
+    TResult Function(AthleteTacticalStateLoaded value)? loaded,
+    TResult Function(AthleteTacticalStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -825,26 +871,30 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements AthleteTacticalState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class AthleteTacticalStateLoading implements AthleteTacticalState {
+  const factory AthleteTacticalStateLoading() =
+      _$AthleteTacticalStateLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$AthleteTacticalStateLoadedImplCopyWith<$Res> {
+  factory _$$AthleteTacticalStateLoadedImplCopyWith(
+          _$AthleteTacticalStateLoadedImpl value,
+          $Res Function(_$AthleteTacticalStateLoadedImpl) then) =
+      __$$AthleteTacticalStateLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<TacticalModel> tacticals, List<TacticalModel> filteredTacticals});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$AthleteTacticalStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$AthleteTacticalStateLoadedImplCopyWithImpl<$Res>
+    extends _$AthleteTacticalStateCopyWithImpl<$Res,
+        _$AthleteTacticalStateLoadedImpl>
+    implements _$$AthleteTacticalStateLoadedImplCopyWith<$Res> {
+  __$$AthleteTacticalStateLoadedImplCopyWithImpl(
+      _$AthleteTacticalStateLoadedImpl _value,
+      $Res Function(_$AthleteTacticalStateLoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteTacticalState
@@ -855,7 +905,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
     Object? tacticals = null,
     Object? filteredTacticals = null,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_$AthleteTacticalStateLoadedImpl(
       tacticals: null == tacticals
           ? _value._tacticals
           : tacticals // ignore: cast_nullable_to_non_nullable
@@ -870,8 +920,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(
+class _$AthleteTacticalStateLoadedImpl implements AthleteTacticalStateLoaded {
+  const _$AthleteTacticalStateLoadedImpl(
       {required final List<TacticalModel> tacticals,
       required final List<TacticalModel> filteredTacticals})
       : _tacticals = tacticals,
@@ -903,7 +953,7 @@ class _$LoadedImpl implements _Loaded {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
+            other is _$AthleteTacticalStateLoadedImpl &&
             const DeepCollectionEquality()
                 .equals(other._tacticals, _tacticals) &&
             const DeepCollectionEquality()
@@ -921,8 +971,9 @@ class _$LoadedImpl implements _Loaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$AthleteTacticalStateLoadedImplCopyWith<_$AthleteTacticalStateLoadedImpl>
+      get copyWith => __$$AthleteTacticalStateLoadedImplCopyWithImpl<
+          _$AthleteTacticalStateLoadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -970,10 +1021,10 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(AthleteTacticalStateInitial value) initial,
+    required TResult Function(AthleteTacticalStateLoading value) loading,
+    required TResult Function(AthleteTacticalStateLoaded value) loaded,
+    required TResult Function(AthleteTacticalStateFailure value) failure,
   }) {
     return loaded(this);
   }
@@ -981,10 +1032,10 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(AthleteTacticalStateInitial value)? initial,
+    TResult? Function(AthleteTacticalStateLoading value)? loading,
+    TResult? Function(AthleteTacticalStateLoaded value)? loaded,
+    TResult? Function(AthleteTacticalStateFailure value)? failure,
   }) {
     return loaded?.call(this);
   }
@@ -992,10 +1043,10 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
+    TResult Function(AthleteTacticalStateInitial value)? initial,
+    TResult Function(AthleteTacticalStateLoading value)? loading,
+    TResult Function(AthleteTacticalStateLoaded value)? loaded,
+    TResult Function(AthleteTacticalStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -1005,10 +1056,11 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements AthleteTacticalState {
-  const factory _Loaded(
-      {required final List<TacticalModel> tacticals,
-      required final List<TacticalModel> filteredTacticals}) = _$LoadedImpl;
+abstract class AthleteTacticalStateLoaded implements AthleteTacticalState {
+  const factory AthleteTacticalStateLoaded(
+          {required final List<TacticalModel> tacticals,
+          required final List<TacticalModel> filteredTacticals}) =
+      _$AthleteTacticalStateLoadedImpl;
 
   List<TacticalModel> get tacticals;
   List<TacticalModel> get filteredTacticals;
@@ -1016,25 +1068,28 @@ abstract class _Loaded implements AthleteTacticalState {
   /// Create a copy of AthleteTacticalState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AthleteTacticalStateLoadedImplCopyWith<_$AthleteTacticalStateLoadedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
+abstract class _$$AthleteTacticalStateFailureImplCopyWith<$Res> {
+  factory _$$AthleteTacticalStateFailureImplCopyWith(
+          _$AthleteTacticalStateFailureImpl value,
+          $Res Function(_$AthleteTacticalStateFailureImpl) then) =
+      __$$AthleteTacticalStateFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$AthleteTacticalStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
+class __$$AthleteTacticalStateFailureImplCopyWithImpl<$Res>
+    extends _$AthleteTacticalStateCopyWithImpl<$Res,
+        _$AthleteTacticalStateFailureImpl>
+    implements _$$AthleteTacticalStateFailureImplCopyWith<$Res> {
+  __$$AthleteTacticalStateFailureImplCopyWithImpl(
+      _$AthleteTacticalStateFailureImpl _value,
+      $Res Function(_$AthleteTacticalStateFailureImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AthleteTacticalState
@@ -1044,7 +1099,7 @@ class __$$FailureImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$FailureImpl(
+    return _then(_$AthleteTacticalStateFailureImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1055,8 +1110,8 @@ class __$$FailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl(this.message);
+class _$AthleteTacticalStateFailureImpl implements AthleteTacticalStateFailure {
+  const _$AthleteTacticalStateFailureImpl(this.message);
 
   @override
   final String message;
@@ -1070,7 +1125,7 @@ class _$FailureImpl implements _Failure {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
+            other is _$AthleteTacticalStateFailureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -1082,8 +1137,9 @@ class _$FailureImpl implements _Failure {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
+  _$$AthleteTacticalStateFailureImplCopyWith<_$AthleteTacticalStateFailureImpl>
+      get copyWith => __$$AthleteTacticalStateFailureImplCopyWithImpl<
+          _$AthleteTacticalStateFailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1131,10 +1187,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(AthleteTacticalStateInitial value) initial,
+    required TResult Function(AthleteTacticalStateLoading value) loading,
+    required TResult Function(AthleteTacticalStateLoaded value) loaded,
+    required TResult Function(AthleteTacticalStateFailure value) failure,
   }) {
     return failure(this);
   }
@@ -1142,10 +1198,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(AthleteTacticalStateInitial value)? initial,
+    TResult? Function(AthleteTacticalStateLoading value)? loading,
+    TResult? Function(AthleteTacticalStateLoaded value)? loaded,
+    TResult? Function(AthleteTacticalStateFailure value)? failure,
   }) {
     return failure?.call(this);
   }
@@ -1153,10 +1209,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
+    TResult Function(AthleteTacticalStateInitial value)? initial,
+    TResult Function(AthleteTacticalStateLoading value)? loading,
+    TResult Function(AthleteTacticalStateLoaded value)? loaded,
+    TResult Function(AthleteTacticalStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1166,14 +1222,15 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements AthleteTacticalState {
-  const factory _Failure(final String message) = _$FailureImpl;
+abstract class AthleteTacticalStateFailure implements AthleteTacticalState {
+  const factory AthleteTacticalStateFailure(final String message) =
+      _$AthleteTacticalStateFailureImpl;
 
   String get message;
 
   /// Create a copy of AthleteTacticalState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AthleteTacticalStateFailureImplCopyWith<_$AthleteTacticalStateFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

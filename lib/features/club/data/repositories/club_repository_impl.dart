@@ -59,7 +59,7 @@ class ClubRepositoryImpl implements ClubRepository {
       (failure) => Left(failure),
       (success) {
         if (success.isEmpty) {
-          return Left(NoContentFailure('No clubs found'));
+          return const Left(NoContentFailure('No clubs found'));
         }
         return Right(success);
       },

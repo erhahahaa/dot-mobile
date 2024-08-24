@@ -2,11 +2,11 @@ part of 'athlete_exam_bloc.dart';
 
 @freezed
 class AthleteExamEvent with _$AthleteExamEvent {
-  const factory AthleteExamEvent.clear() = _Clear;
+  const factory AthleteExamEvent.clear() = AthleteExamEventClear;
   const factory AthleteExamEvent.getExams(
     GetAllExamParams params,
-  ) = _GetExams;
+  ) = AthleteExamEventGetExams;
   const factory AthleteExamEvent.filterExams(
     String query,
-  ) = _FilterExams;
+  ) = AthleteExamEventFilterExams;
 }

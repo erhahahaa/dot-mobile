@@ -19,32 +19,32 @@ class CoachExamBloc extends Bloc<CoachExamEvent, CoachExamState> {
     this._createExamUsecase,
     this._updateExamUsecase,
     this._deleteExamUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetExams>(_onGetExams);
-    on<_FilterExams>(_onFilterExams);
-    on<_Create>(_onCreate);
-    on<_Update>(_onUpdate);
-    on<_Delete>(_onDelete);
+  ) : super(const CoachExamStateInitial()) {
+    on<CoachExamEventClear>(_onClear);
+    on<CoachExamEventGetExams>(_onGetExams);
+    on<CoachExamEventFilterExams>(_onFilterExams);
+    on<CoachExamEventCreate>(_onCreate);
+    on<CoachExamEventUpdate>(_onUpdate);
+    on<CoachExamEventDelete>(_onDelete);
   }
 
   void _onClear(
-    _Clear event,
+    CoachExamEventClear event,
     Emitter<CoachExamState> emit,
   ) =>
-      emit(_Initial());
+      emit(const CoachExamStateInitial());
 
   void _onGetExams(
-    _GetExams event,
+    CoachExamEventGetExams event,
     Emitter<CoachExamState> emit,
   ) async {
-    emit(_Loading());
+    emit(const CoachExamStateLoading());
     final res = await _getAllExamUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(CoachExamStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        CoachExamStateLoaded(
           exams: success,
           filteredExams: success,
         ),
@@ -53,10 +53,10 @@ class CoachExamBloc extends Bloc<CoachExamEvent, CoachExamState> {
   }
 
   void _onFilterExams(
-    _FilterExams event,
+    CoachExamEventFilterExams event,
     Emitter<CoachExamState> emit,
   ) {
-    emit(_Loading());
+    emit(const CoachExamStateLoading());
     state.maybeWhen(
       loaded: (exams, _) {
         final finds = exams
@@ -68,53 +68,54 @@ class CoachExamBloc extends Bloc<CoachExamEvent, CoachExamState> {
             .toList();
 
         if (finds.isEmpty) {
-          emit(_Failure('Exam with title ${event.query} not found'));
+          emit(CoachExamStateFailure(
+              'Exam with title ${event.query} not found'));
         } else {
           emit(
-            _Loaded(
+            CoachExamStateLoaded(
               exams: exams,
               filteredExams: finds,
             ),
           );
         }
       },
-      orElse: () => emit(_Failure('Exams was empty')),
+      orElse: () => emit(const CoachExamStateFailure('Exams was empty')),
     );
   }
 
   void _onCreate(
-    _Create event,
+    CoachExamEventCreate event,
     Emitter<CoachExamState> emit,
   ) async {
     final res = await _createExamUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Created(success)),
+      (failure) => emit(CoachExamStateFailure(failure.message)),
+      (success) => emit(CoachExamStateCreated(success)),
     );
   }
 
   void _onUpdate(
-    _Update event,
+    CoachExamEventUpdate event,
     Emitter<CoachExamState> emit,
   ) async {
     final res = await _updateExamUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Updated(success)),
+      (failure) => emit(CoachExamStateFailure(failure.message)),
+      (success) => emit(CoachExamStateUpdated(success)),
     );
   }
 
   void _onDelete(
-    _Delete event,
+    CoachExamEventDelete event,
     Emitter<CoachExamState> emit,
   ) async {
     final res = await _deleteExamUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Deleted(success)),
+      (failure) => emit(CoachExamStateFailure(failure.message)),
+      (success) => emit(CoachExamStateDeleted(success)),
     );
   }
 }

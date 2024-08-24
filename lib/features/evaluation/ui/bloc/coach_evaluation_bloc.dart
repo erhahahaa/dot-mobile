@@ -20,32 +20,32 @@ class CoachEvaluationBloc
     this._createEvaluationUsecase,
     this._updateEvaluationUsecase,
     this._deleteEvaluationUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetEvaluations>(_onGetEvaluations);
-    on<_FilterEvaluations>(_onFilterEvaluations);
-    on<_Create>(_onCreate);
-    on<_Update>(_onUpdate);
-    on<_Delete>(_onDelete);
+  ) : super(const CoachEvaluationStateInitial()) {
+    on<CoachEvaluationEventClear>(_onClear);
+    on<CoachEvaluationEventGetEvaluations>(_onGetEvaluations);
+    on<CoachEvaluationEventFilterEvaluations>(_onFilterEvaluations);
+    on<CoachEvaluationEventCreate>(_onCreate);
+    on<CoachEvaluationEventUpdate>(_onUpdate);
+    on<CoachEvaluationEventDelete>(_onDelete);
   }
 
   void _onClear(
-    _Clear event,
+    CoachEvaluationEventClear event,
     Emitter<CoachEvaluationState> emit,
   ) =>
-      emit(_Initial());
+      emit(const CoachEvaluationStateInitial());
 
   void _onGetEvaluations(
-    _GetEvaluations event,
+    CoachEvaluationEventGetEvaluations event,
     Emitter<CoachEvaluationState> emit,
   ) async {
-    emit(_Loading());
+    emit(const CoachEvaluationStateLoading());
     final res = await _getAllEvaluationUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(CoachEvaluationStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        CoachEvaluationStateLoaded(
           evaluations: success,
           filteredEvaluations: success,
         ),
@@ -54,10 +54,10 @@ class CoachEvaluationBloc
   }
 
   void _onFilterEvaluations(
-    _FilterEvaluations event,
+    CoachEvaluationEventFilterEvaluations event,
     Emitter<CoachEvaluationState> emit,
   ) {
-    emit(_Loading());
+    emit(const CoachEvaluationStateLoading());
     state.maybeWhen(
       loaded: (evaluations, _) {
         final finds = evaluations
@@ -76,53 +76,55 @@ class CoachEvaluationBloc
             )
             .toList();
         if (finds.isEmpty) {
-          emit(_Failure('Question with ${event.query} not found'));
+          emit(CoachEvaluationStateFailure(
+              'Question with ${event.query} not found'));
         } else {
           emit(
-            _Loaded(
+            CoachEvaluationStateLoaded(
               evaluations: evaluations,
               filteredEvaluations: finds,
             ),
           );
         }
       },
-      orElse: () => emit(_Failure('Evaluation was empty')),
+      orElse: () =>
+          emit(const CoachEvaluationStateFailure('Evaluation was empty')),
     );
   }
 
   void _onCreate(
-    _Create event,
+    CoachEvaluationEventCreate event,
     Emitter<CoachEvaluationState> emit,
   ) async {
     final res = await _createEvaluationUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Created(success)),
+      (failure) => emit(CoachEvaluationStateFailure(failure.message)),
+      (success) => emit(CoachEvaluationStateCreated(success)),
     );
   }
 
   void _onUpdate(
-    _Update event,
+    CoachEvaluationEventUpdate event,
     Emitter<CoachEvaluationState> emit,
   ) async {
     final res = await _updateEvaluationUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Updated(success)),
+      (failure) => emit(CoachEvaluationStateFailure(failure.message)),
+      (success) => emit(CoachEvaluationStateUpdated(success)),
     );
   }
 
   void _onDelete(
-    _Delete event,
+    CoachEvaluationEventDelete event,
     Emitter<CoachEvaluationState> emit,
   ) async {
     final res = await _deleteEvaluationUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Deleted(success)),
+      (failure) => emit(CoachEvaluationStateFailure(failure.message)),
+      (success) => emit(CoachEvaluationStateDeleted(success)),
     );
   }
 }

@@ -19,31 +19,31 @@ class CoachProgramBloc extends Bloc<CoachProgramEvent, CoachProgramState> {
     this._createProgramUsecase,
     this._updateProgramUsecase,
     this._deleteProgramUsecase,
-  ) : super(_Initial()) {
-    on<_Clear>(_onClear);
-    on<_GetPrograms>(_onGetPrograms);
-    on<_FilterPrograms>(_onFilterPrograms);
-    on<_Create>(_onCreate);
-    on<_Update>(_onUpdate);
-    on<_Delete>(_onDelete);
+  ) : super(const CoachProgramStateInitial()) {
+    on<CoachProgramEventClear>(_onClear);
+    on<CoachProgramEventGetPrograms>(_onGetPrograms);
+    on<CoachProgramEventFilterPrograms>(_onFilterPrograms);
+    on<CoachProgramEventCreate>(_onCreate);
+    on<CoachProgramEventUpdate>(_onUpdate);
+    on<CoachProgramEventDelete>(_onDelete);
   }
   void _onClear(
-    _Clear event,
+    CoachProgramEventClear event,
     Emitter<CoachProgramState> emit,
   ) =>
-      emit(_Initial());
+      emit(const CoachProgramStateInitial());
 
   void _onGetPrograms(
-    _GetPrograms event,
+    CoachProgramEventGetPrograms event,
     Emitter<CoachProgramState> emit,
   ) async {
-    emit(_Loading());
+    emit(const CoachProgramStateLoading());
     final res = await _getAllProgramUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(CoachProgramStateFailure(failure.message)),
       (success) => emit(
-        _Loaded(
+        CoachProgramStateLoaded(
           programs: success,
           filteredPrograms: success,
         ),
@@ -52,10 +52,10 @@ class CoachProgramBloc extends Bloc<CoachProgramEvent, CoachProgramState> {
   }
 
   void _onFilterPrograms(
-    _FilterPrograms event,
+    CoachProgramEventFilterPrograms event,
     Emitter<CoachProgramState> emit,
   ) {
-    emit(_Loading());
+    emit(const CoachProgramStateLoading());
     state.maybeWhen(
       loaded: (programs, _) {
         final finds = programs
@@ -67,53 +67,54 @@ class CoachProgramBloc extends Bloc<CoachProgramEvent, CoachProgramState> {
             .toList();
 
         if (finds.isEmpty) {
-          emit(_Failure('Program with name ${event.query} not foundl'));
+          emit(CoachProgramStateFailure(
+              'Program with name ${event.query} not foundl'));
         } else {
           emit(
-            _Loaded(
+            CoachProgramStateLoaded(
               programs: programs,
               filteredPrograms: finds,
             ),
           );
         }
       },
-      orElse: () => emit(_Failure('Programs was empty')),
+      orElse: () => emit(const CoachProgramStateFailure('Programs was empty')),
     );
   }
 
   void _onCreate(
-    _Create event,
+    CoachProgramEventCreate event,
     Emitter<CoachProgramState> emit,
   ) async {
     final res = await _createProgramUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Created(success)),
+      (failure) => emit(CoachProgramStateFailure(failure.message)),
+      (success) => emit(CoachProgramStateCreated(success)),
     );
   }
 
   void _onUpdate(
-    _Update event,
+    CoachProgramEventUpdate event,
     Emitter<CoachProgramState> emit,
   ) async {
     final res = await _updateProgramUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Updated(success)),
+      (failure) => emit(CoachProgramStateFailure(failure.message)),
+      (success) => emit(CoachProgramStateUpdated(success)),
     );
   }
 
   void _onDelete(
-    _Delete event,
+    CoachProgramEventDelete event,
     Emitter<CoachProgramState> emit,
   ) async {
     final res = await _deleteProgramUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (success) => emit(_Deleted(success)),
+      (failure) => emit(CoachProgramStateFailure(failure.message)),
+      (success) => emit(CoachProgramStateDeleted(success)),
     );
   }
 }

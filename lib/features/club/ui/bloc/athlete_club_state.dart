@@ -2,11 +2,13 @@ part of 'athlete_club_bloc.dart';
 
 @freezed
 class AthleteClubState with _$AthleteClubState {
-  const factory AthleteClubState.initial() = _Initial;
-  const factory AthleteClubState.loading() = _Loading;
+  const factory AthleteClubState.initial() = AthleteClubStateInitial;
+  const factory AthleteClubState.loading() = AthleteClubStateLoading;
   const factory AthleteClubState.loaded({
     required List<ClubModel> clubs,
     required List<ClubModel> filteredClubs,
-  }) = _Loaded;
-  const factory AthleteClubState.failure(String message) = _Failure;
+  }) = AthleteClubStateLoaded;
+  const factory AthleteClubState.failure(
+    String message,
+  ) = AthleteClubStateFailure;
 }

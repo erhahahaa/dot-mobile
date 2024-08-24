@@ -4,14 +4,20 @@ part of 'coach_exam_bloc.dart';
 class CoachExamEvent with _$CoachExamEvent {
   const factory CoachExamEvent.getExams(
     GetAllExamParams params,
-  ) = _GetExams;
+  ) = CoachExamEventGetExams;
   const factory CoachExamEvent.filterExams(
     String query,
-  ) = _FilterExams;
-  const factory CoachExamEvent.clear() = _Clear;
+  ) = CoachExamEventFilterExams;
+  const factory CoachExamEvent.clear() = CoachExamEventClear;
 
   // Actions
-  const factory CoachExamEvent.create(CreateExamParams params) = _Create;
-  const factory CoachExamEvent.update(UpdateExamParams params) = _Update;
-  const factory CoachExamEvent.delete(DeleteExamParams params) = _Delete;
+  const factory CoachExamEvent.create(
+    CreateExamParams params,
+  ) = CoachExamEventCreate;
+  const factory CoachExamEvent.update(
+    UpdateExamParams params,
+  ) = CoachExamEventUpdate;
+  const factory CoachExamEvent.delete(
+    DeleteExamParams params,
+  ) = CoachExamEventDelete;
 }
