@@ -18,9 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EvaluationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllEvaluationParams params) getEvaluations,
-    required TResult Function(String query) filterEvaluations,
     required TResult Function() clear,
+    required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
+    required TResult Function(String query) filterEvaluations,
     required TResult Function(CreateEvaluationParams params) create,
     required TResult Function(UpdateEvaluationParams params) update,
     required TResult Function(DeleteEvaluationParams params) delete,
@@ -28,9 +29,10 @@ mixin _$EvaluationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult? Function(String query)? filterEvaluations,
     TResult? Function()? clear,
+    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult? Function(String query)? filterEvaluations,
     TResult? Function(CreateEvaluationParams params)? create,
     TResult? Function(UpdateEvaluationParams params)? update,
     TResult? Function(DeleteEvaluationParams params)? delete,
@@ -38,9 +40,10 @@ mixin _$EvaluationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult Function(String query)? filterEvaluations,
     TResult Function()? clear,
+    TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult Function(String query)? filterEvaluations,
     TResult Function(CreateEvaluationParams params)? create,
     TResult Function(UpdateEvaluationParams params)? update,
     TResult Function(DeleteEvaluationParams params)? delete,
@@ -49,11 +52,13 @@ mixin _$EvaluationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventGetEvaluations value)
         getEvaluations,
+    required TResult Function(EvaluationEventSelectEvaluation value)
+        selectEvaluation,
     required TResult Function(EvaluationEventFilterEvaluations value)
         filterEvaluations,
-    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventCreate value) create,
     required TResult Function(EvaluationEventUpdate value) update,
     required TResult Function(EvaluationEventDelete value) delete,
@@ -61,10 +66,11 @@ mixin _$EvaluationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult? Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
     TResult? Function(EvaluationEventFilterEvaluations value)?
         filterEvaluations,
-    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventCreate value)? create,
     TResult? Function(EvaluationEventUpdate value)? update,
     TResult? Function(EvaluationEventDelete value)? delete,
@@ -72,9 +78,10 @@ mixin _$EvaluationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
-    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventClear value)? clear,
+    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
+    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventCreate value)? create,
     TResult Function(EvaluationEventUpdate value)? update,
     TResult Function(EvaluationEventDelete value)? delete,
@@ -102,6 +109,146 @@ class _$EvaluationEventCopyWithImpl<$Res, $Val extends EvaluationEvent>
 
   /// Create a copy of EvaluationEvent
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$EvaluationEventClearImplCopyWith<$Res> {
+  factory _$$EvaluationEventClearImplCopyWith(_$EvaluationEventClearImpl value,
+          $Res Function(_$EvaluationEventClearImpl) then) =
+      __$$EvaluationEventClearImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EvaluationEventClearImplCopyWithImpl<$Res>
+    extends _$EvaluationEventCopyWithImpl<$Res, _$EvaluationEventClearImpl>
+    implements _$$EvaluationEventClearImplCopyWith<$Res> {
+  __$$EvaluationEventClearImplCopyWithImpl(_$EvaluationEventClearImpl _value,
+      $Res Function(_$EvaluationEventClearImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of EvaluationEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$EvaluationEventClearImpl implements EvaluationEventClear {
+  const _$EvaluationEventClearImpl();
+
+  @override
+  String toString() {
+    return 'EvaluationEvent.clear()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EvaluationEventClearImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clear,
+    required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
+    required TResult Function(String query) filterEvaluations,
+    required TResult Function(CreateEvaluationParams params) create,
+    required TResult Function(UpdateEvaluationParams params) update,
+    required TResult Function(DeleteEvaluationParams params) delete,
+  }) {
+    return clear();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
+    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult? Function(String query)? filterEvaluations,
+    TResult? Function(CreateEvaluationParams params)? create,
+    TResult? Function(UpdateEvaluationParams params)? update,
+    TResult? Function(DeleteEvaluationParams params)? delete,
+  }) {
+    return clear?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
+    TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult Function(String query)? filterEvaluations,
+    TResult Function(CreateEvaluationParams params)? create,
+    TResult Function(UpdateEvaluationParams params)? update,
+    TResult Function(DeleteEvaluationParams params)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EvaluationEventClear value) clear,
+    required TResult Function(EvaluationEventGetEvaluations value)
+        getEvaluations,
+    required TResult Function(EvaluationEventSelectEvaluation value)
+        selectEvaluation,
+    required TResult Function(EvaluationEventFilterEvaluations value)
+        filterEvaluations,
+    required TResult Function(EvaluationEventCreate value) create,
+    required TResult Function(EvaluationEventUpdate value) update,
+    required TResult Function(EvaluationEventDelete value) delete,
+  }) {
+    return clear(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EvaluationEventClear value)? clear,
+    TResult? Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult? Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
+    TResult? Function(EvaluationEventFilterEvaluations value)?
+        filterEvaluations,
+    TResult? Function(EvaluationEventCreate value)? create,
+    TResult? Function(EvaluationEventUpdate value)? update,
+    TResult? Function(EvaluationEventDelete value)? delete,
+  }) {
+    return clear?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EvaluationEventClear value)? clear,
+    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
+    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
+    TResult Function(EvaluationEventCreate value)? create,
+    TResult Function(EvaluationEventUpdate value)? update,
+    TResult Function(EvaluationEventDelete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EvaluationEventClear implements EvaluationEvent {
+  const factory EvaluationEventClear() = _$EvaluationEventClearImpl;
 }
 
 /// @nodoc
@@ -190,9 +337,10 @@ class _$EvaluationEventGetEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllEvaluationParams params) getEvaluations,
-    required TResult Function(String query) filterEvaluations,
     required TResult Function() clear,
+    required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
+    required TResult Function(String query) filterEvaluations,
     required TResult Function(CreateEvaluationParams params) create,
     required TResult Function(UpdateEvaluationParams params) update,
     required TResult Function(DeleteEvaluationParams params) delete,
@@ -203,9 +351,10 @@ class _$EvaluationEventGetEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult? Function(String query)? filterEvaluations,
     TResult? Function()? clear,
+    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult? Function(String query)? filterEvaluations,
     TResult? Function(CreateEvaluationParams params)? create,
     TResult? Function(UpdateEvaluationParams params)? update,
     TResult? Function(DeleteEvaluationParams params)? delete,
@@ -216,9 +365,10 @@ class _$EvaluationEventGetEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult Function(String query)? filterEvaluations,
     TResult Function()? clear,
+    TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult Function(String query)? filterEvaluations,
     TResult Function(CreateEvaluationParams params)? create,
     TResult Function(UpdateEvaluationParams params)? update,
     TResult Function(DeleteEvaluationParams params)? delete,
@@ -233,11 +383,13 @@ class _$EvaluationEventGetEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventGetEvaluations value)
         getEvaluations,
+    required TResult Function(EvaluationEventSelectEvaluation value)
+        selectEvaluation,
     required TResult Function(EvaluationEventFilterEvaluations value)
         filterEvaluations,
-    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventCreate value) create,
     required TResult Function(EvaluationEventUpdate value) update,
     required TResult Function(EvaluationEventDelete value) delete,
@@ -248,10 +400,11 @@ class _$EvaluationEventGetEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult? Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
     TResult? Function(EvaluationEventFilterEvaluations value)?
         filterEvaluations,
-    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventCreate value)? create,
     TResult? Function(EvaluationEventUpdate value)? update,
     TResult? Function(EvaluationEventDelete value)? delete,
@@ -262,9 +415,10 @@ class _$EvaluationEventGetEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
-    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventClear value)? clear,
+    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
+    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventCreate value)? create,
     TResult Function(EvaluationEventUpdate value)? update,
     TResult Function(EvaluationEventDelete value)? delete,
@@ -289,6 +443,206 @@ abstract class EvaluationEventGetEvaluations implements EvaluationEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EvaluationEventGetEvaluationsImplCopyWith<
           _$EvaluationEventGetEvaluationsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EvaluationEventSelectEvaluationImplCopyWith<$Res> {
+  factory _$$EvaluationEventSelectEvaluationImplCopyWith(
+          _$EvaluationEventSelectEvaluationImpl value,
+          $Res Function(_$EvaluationEventSelectEvaluationImpl) then) =
+      __$$EvaluationEventSelectEvaluationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({EvaluationModel? evaluation});
+
+  $EvaluationModelCopyWith<$Res>? get evaluation;
+}
+
+/// @nodoc
+class __$$EvaluationEventSelectEvaluationImplCopyWithImpl<$Res>
+    extends _$EvaluationEventCopyWithImpl<$Res,
+        _$EvaluationEventSelectEvaluationImpl>
+    implements _$$EvaluationEventSelectEvaluationImplCopyWith<$Res> {
+  __$$EvaluationEventSelectEvaluationImplCopyWithImpl(
+      _$EvaluationEventSelectEvaluationImpl _value,
+      $Res Function(_$EvaluationEventSelectEvaluationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of EvaluationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? evaluation = freezed,
+  }) {
+    return _then(_$EvaluationEventSelectEvaluationImpl(
+      freezed == evaluation
+          ? _value.evaluation
+          : evaluation // ignore: cast_nullable_to_non_nullable
+              as EvaluationModel?,
+    ));
+  }
+
+  /// Create a copy of EvaluationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EvaluationModelCopyWith<$Res>? get evaluation {
+    if (_value.evaluation == null) {
+      return null;
+    }
+
+    return $EvaluationModelCopyWith<$Res>(_value.evaluation!, (value) {
+      return _then(_value.copyWith(evaluation: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$EvaluationEventSelectEvaluationImpl
+    implements EvaluationEventSelectEvaluation {
+  const _$EvaluationEventSelectEvaluationImpl(this.evaluation);
+
+  @override
+  final EvaluationModel? evaluation;
+
+  @override
+  String toString() {
+    return 'EvaluationEvent.selectEvaluation(evaluation: $evaluation)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EvaluationEventSelectEvaluationImpl &&
+            (identical(other.evaluation, evaluation) ||
+                other.evaluation == evaluation));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, evaluation);
+
+  /// Create a copy of EvaluationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EvaluationEventSelectEvaluationImplCopyWith<
+          _$EvaluationEventSelectEvaluationImpl>
+      get copyWith => __$$EvaluationEventSelectEvaluationImplCopyWithImpl<
+          _$EvaluationEventSelectEvaluationImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clear,
+    required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
+    required TResult Function(String query) filterEvaluations,
+    required TResult Function(CreateEvaluationParams params) create,
+    required TResult Function(UpdateEvaluationParams params) update,
+    required TResult Function(DeleteEvaluationParams params) delete,
+  }) {
+    return selectEvaluation(evaluation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
+    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult? Function(String query)? filterEvaluations,
+    TResult? Function(CreateEvaluationParams params)? create,
+    TResult? Function(UpdateEvaluationParams params)? update,
+    TResult? Function(DeleteEvaluationParams params)? delete,
+  }) {
+    return selectEvaluation?.call(evaluation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
+    TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult Function(String query)? filterEvaluations,
+    TResult Function(CreateEvaluationParams params)? create,
+    TResult Function(UpdateEvaluationParams params)? update,
+    TResult Function(DeleteEvaluationParams params)? delete,
+    required TResult orElse(),
+  }) {
+    if (selectEvaluation != null) {
+      return selectEvaluation(evaluation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EvaluationEventClear value) clear,
+    required TResult Function(EvaluationEventGetEvaluations value)
+        getEvaluations,
+    required TResult Function(EvaluationEventSelectEvaluation value)
+        selectEvaluation,
+    required TResult Function(EvaluationEventFilterEvaluations value)
+        filterEvaluations,
+    required TResult Function(EvaluationEventCreate value) create,
+    required TResult Function(EvaluationEventUpdate value) update,
+    required TResult Function(EvaluationEventDelete value) delete,
+  }) {
+    return selectEvaluation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EvaluationEventClear value)? clear,
+    TResult? Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult? Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
+    TResult? Function(EvaluationEventFilterEvaluations value)?
+        filterEvaluations,
+    TResult? Function(EvaluationEventCreate value)? create,
+    TResult? Function(EvaluationEventUpdate value)? update,
+    TResult? Function(EvaluationEventDelete value)? delete,
+  }) {
+    return selectEvaluation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EvaluationEventClear value)? clear,
+    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
+    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
+    TResult Function(EvaluationEventCreate value)? create,
+    TResult Function(EvaluationEventUpdate value)? update,
+    TResult Function(EvaluationEventDelete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (selectEvaluation != null) {
+      return selectEvaluation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EvaluationEventSelectEvaluation implements EvaluationEvent {
+  const factory EvaluationEventSelectEvaluation(
+          final EvaluationModel? evaluation) =
+      _$EvaluationEventSelectEvaluationImpl;
+
+  EvaluationModel? get evaluation;
+
+  /// Create a copy of EvaluationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EvaluationEventSelectEvaluationImplCopyWith<
+          _$EvaluationEventSelectEvaluationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -366,9 +720,10 @@ class _$EvaluationEventFilterEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllEvaluationParams params) getEvaluations,
-    required TResult Function(String query) filterEvaluations,
     required TResult Function() clear,
+    required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
+    required TResult Function(String query) filterEvaluations,
     required TResult Function(CreateEvaluationParams params) create,
     required TResult Function(UpdateEvaluationParams params) update,
     required TResult Function(DeleteEvaluationParams params) delete,
@@ -379,9 +734,10 @@ class _$EvaluationEventFilterEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult? Function(String query)? filterEvaluations,
     TResult? Function()? clear,
+    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult? Function(String query)? filterEvaluations,
     TResult? Function(CreateEvaluationParams params)? create,
     TResult? Function(UpdateEvaluationParams params)? update,
     TResult? Function(DeleteEvaluationParams params)? delete,
@@ -392,9 +748,10 @@ class _$EvaluationEventFilterEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult Function(String query)? filterEvaluations,
     TResult Function()? clear,
+    TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult Function(String query)? filterEvaluations,
     TResult Function(CreateEvaluationParams params)? create,
     TResult Function(UpdateEvaluationParams params)? update,
     TResult Function(DeleteEvaluationParams params)? delete,
@@ -409,11 +766,13 @@ class _$EvaluationEventFilterEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventGetEvaluations value)
         getEvaluations,
+    required TResult Function(EvaluationEventSelectEvaluation value)
+        selectEvaluation,
     required TResult Function(EvaluationEventFilterEvaluations value)
         filterEvaluations,
-    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventCreate value) create,
     required TResult Function(EvaluationEventUpdate value) update,
     required TResult Function(EvaluationEventDelete value) delete,
@@ -424,10 +783,11 @@ class _$EvaluationEventFilterEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult? Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
     TResult? Function(EvaluationEventFilterEvaluations value)?
         filterEvaluations,
-    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventCreate value)? create,
     TResult? Function(EvaluationEventUpdate value)? update,
     TResult? Function(EvaluationEventDelete value)? delete,
@@ -438,9 +798,10 @@ class _$EvaluationEventFilterEvaluationsImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
-    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventClear value)? clear,
+    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
+    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventCreate value)? create,
     TResult Function(EvaluationEventUpdate value)? update,
     TResult Function(EvaluationEventDelete value)? delete,
@@ -465,139 +826,6 @@ abstract class EvaluationEventFilterEvaluations implements EvaluationEvent {
   _$$EvaluationEventFilterEvaluationsImplCopyWith<
           _$EvaluationEventFilterEvaluationsImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$EvaluationEventClearImplCopyWith<$Res> {
-  factory _$$EvaluationEventClearImplCopyWith(_$EvaluationEventClearImpl value,
-          $Res Function(_$EvaluationEventClearImpl) then) =
-      __$$EvaluationEventClearImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$EvaluationEventClearImplCopyWithImpl<$Res>
-    extends _$EvaluationEventCopyWithImpl<$Res, _$EvaluationEventClearImpl>
-    implements _$$EvaluationEventClearImplCopyWith<$Res> {
-  __$$EvaluationEventClearImplCopyWithImpl(_$EvaluationEventClearImpl _value,
-      $Res Function(_$EvaluationEventClearImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of EvaluationEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$EvaluationEventClearImpl implements EvaluationEventClear {
-  const _$EvaluationEventClearImpl();
-
-  @override
-  String toString() {
-    return 'EvaluationEvent.clear()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$EvaluationEventClearImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(GetAllEvaluationParams params) getEvaluations,
-    required TResult Function(String query) filterEvaluations,
-    required TResult Function() clear,
-    required TResult Function(CreateEvaluationParams params) create,
-    required TResult Function(UpdateEvaluationParams params) update,
-    required TResult Function(DeleteEvaluationParams params) delete,
-  }) {
-    return clear();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult? Function(String query)? filterEvaluations,
-    TResult? Function()? clear,
-    TResult? Function(CreateEvaluationParams params)? create,
-    TResult? Function(UpdateEvaluationParams params)? update,
-    TResult? Function(DeleteEvaluationParams params)? delete,
-  }) {
-    return clear?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult Function(String query)? filterEvaluations,
-    TResult Function()? clear,
-    TResult Function(CreateEvaluationParams params)? create,
-    TResult Function(UpdateEvaluationParams params)? update,
-    TResult Function(DeleteEvaluationParams params)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(EvaluationEventGetEvaluations value)
-        getEvaluations,
-    required TResult Function(EvaluationEventFilterEvaluations value)
-        filterEvaluations,
-    required TResult Function(EvaluationEventClear value) clear,
-    required TResult Function(EvaluationEventCreate value) create,
-    required TResult Function(EvaluationEventUpdate value) update,
-    required TResult Function(EvaluationEventDelete value) delete,
-  }) {
-    return clear(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(EvaluationEventGetEvaluations value)? getEvaluations,
-    TResult? Function(EvaluationEventFilterEvaluations value)?
-        filterEvaluations,
-    TResult? Function(EvaluationEventClear value)? clear,
-    TResult? Function(EvaluationEventCreate value)? create,
-    TResult? Function(EvaluationEventUpdate value)? update,
-    TResult? Function(EvaluationEventDelete value)? delete,
-  }) {
-    return clear?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
-    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
-    TResult Function(EvaluationEventClear value)? clear,
-    TResult Function(EvaluationEventCreate value)? create,
-    TResult Function(EvaluationEventUpdate value)? update,
-    TResult Function(EvaluationEventDelete value)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class EvaluationEventClear implements EvaluationEvent {
-  const factory EvaluationEventClear() = _$EvaluationEventClearImpl;
 }
 
 /// @nodoc
@@ -682,9 +910,10 @@ class _$EvaluationEventCreateImpl implements EvaluationEventCreate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllEvaluationParams params) getEvaluations,
-    required TResult Function(String query) filterEvaluations,
     required TResult Function() clear,
+    required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
+    required TResult Function(String query) filterEvaluations,
     required TResult Function(CreateEvaluationParams params) create,
     required TResult Function(UpdateEvaluationParams params) update,
     required TResult Function(DeleteEvaluationParams params) delete,
@@ -695,9 +924,10 @@ class _$EvaluationEventCreateImpl implements EvaluationEventCreate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult? Function(String query)? filterEvaluations,
     TResult? Function()? clear,
+    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult? Function(String query)? filterEvaluations,
     TResult? Function(CreateEvaluationParams params)? create,
     TResult? Function(UpdateEvaluationParams params)? update,
     TResult? Function(DeleteEvaluationParams params)? delete,
@@ -708,9 +938,10 @@ class _$EvaluationEventCreateImpl implements EvaluationEventCreate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult Function(String query)? filterEvaluations,
     TResult Function()? clear,
+    TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult Function(String query)? filterEvaluations,
     TResult Function(CreateEvaluationParams params)? create,
     TResult Function(UpdateEvaluationParams params)? update,
     TResult Function(DeleteEvaluationParams params)? delete,
@@ -725,11 +956,13 @@ class _$EvaluationEventCreateImpl implements EvaluationEventCreate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventGetEvaluations value)
         getEvaluations,
+    required TResult Function(EvaluationEventSelectEvaluation value)
+        selectEvaluation,
     required TResult Function(EvaluationEventFilterEvaluations value)
         filterEvaluations,
-    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventCreate value) create,
     required TResult Function(EvaluationEventUpdate value) update,
     required TResult Function(EvaluationEventDelete value) delete,
@@ -740,10 +973,11 @@ class _$EvaluationEventCreateImpl implements EvaluationEventCreate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult? Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
     TResult? Function(EvaluationEventFilterEvaluations value)?
         filterEvaluations,
-    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventCreate value)? create,
     TResult? Function(EvaluationEventUpdate value)? update,
     TResult? Function(EvaluationEventDelete value)? delete,
@@ -754,9 +988,10 @@ class _$EvaluationEventCreateImpl implements EvaluationEventCreate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
-    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventClear value)? clear,
+    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
+    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventCreate value)? create,
     TResult Function(EvaluationEventUpdate value)? update,
     TResult Function(EvaluationEventDelete value)? delete,
@@ -864,9 +1099,10 @@ class _$EvaluationEventUpdateImpl implements EvaluationEventUpdate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllEvaluationParams params) getEvaluations,
-    required TResult Function(String query) filterEvaluations,
     required TResult Function() clear,
+    required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
+    required TResult Function(String query) filterEvaluations,
     required TResult Function(CreateEvaluationParams params) create,
     required TResult Function(UpdateEvaluationParams params) update,
     required TResult Function(DeleteEvaluationParams params) delete,
@@ -877,9 +1113,10 @@ class _$EvaluationEventUpdateImpl implements EvaluationEventUpdate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult? Function(String query)? filterEvaluations,
     TResult? Function()? clear,
+    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult? Function(String query)? filterEvaluations,
     TResult? Function(CreateEvaluationParams params)? create,
     TResult? Function(UpdateEvaluationParams params)? update,
     TResult? Function(DeleteEvaluationParams params)? delete,
@@ -890,9 +1127,10 @@ class _$EvaluationEventUpdateImpl implements EvaluationEventUpdate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult Function(String query)? filterEvaluations,
     TResult Function()? clear,
+    TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult Function(String query)? filterEvaluations,
     TResult Function(CreateEvaluationParams params)? create,
     TResult Function(UpdateEvaluationParams params)? update,
     TResult Function(DeleteEvaluationParams params)? delete,
@@ -907,11 +1145,13 @@ class _$EvaluationEventUpdateImpl implements EvaluationEventUpdate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventGetEvaluations value)
         getEvaluations,
+    required TResult Function(EvaluationEventSelectEvaluation value)
+        selectEvaluation,
     required TResult Function(EvaluationEventFilterEvaluations value)
         filterEvaluations,
-    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventCreate value) create,
     required TResult Function(EvaluationEventUpdate value) update,
     required TResult Function(EvaluationEventDelete value) delete,
@@ -922,10 +1162,11 @@ class _$EvaluationEventUpdateImpl implements EvaluationEventUpdate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult? Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
     TResult? Function(EvaluationEventFilterEvaluations value)?
         filterEvaluations,
-    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventCreate value)? create,
     TResult? Function(EvaluationEventUpdate value)? update,
     TResult? Function(EvaluationEventDelete value)? delete,
@@ -936,9 +1177,10 @@ class _$EvaluationEventUpdateImpl implements EvaluationEventUpdate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
-    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventClear value)? clear,
+    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
+    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventCreate value)? create,
     TResult Function(EvaluationEventUpdate value)? update,
     TResult Function(EvaluationEventDelete value)? delete,
@@ -1046,9 +1288,10 @@ class _$EvaluationEventDeleteImpl implements EvaluationEventDelete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllEvaluationParams params) getEvaluations,
-    required TResult Function(String query) filterEvaluations,
     required TResult Function() clear,
+    required TResult Function(GetAllEvaluationParams params) getEvaluations,
+    required TResult Function(EvaluationModel? evaluation) selectEvaluation,
+    required TResult Function(String query) filterEvaluations,
     required TResult Function(CreateEvaluationParams params) create,
     required TResult Function(UpdateEvaluationParams params) update,
     required TResult Function(DeleteEvaluationParams params) delete,
@@ -1059,9 +1302,10 @@ class _$EvaluationEventDeleteImpl implements EvaluationEventDelete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult? Function(String query)? filterEvaluations,
     TResult? Function()? clear,
+    TResult? Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult? Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult? Function(String query)? filterEvaluations,
     TResult? Function(CreateEvaluationParams params)? create,
     TResult? Function(UpdateEvaluationParams params)? update,
     TResult? Function(DeleteEvaluationParams params)? delete,
@@ -1072,9 +1316,10 @@ class _$EvaluationEventDeleteImpl implements EvaluationEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllEvaluationParams params)? getEvaluations,
-    TResult Function(String query)? filterEvaluations,
     TResult Function()? clear,
+    TResult Function(GetAllEvaluationParams params)? getEvaluations,
+    TResult Function(EvaluationModel? evaluation)? selectEvaluation,
+    TResult Function(String query)? filterEvaluations,
     TResult Function(CreateEvaluationParams params)? create,
     TResult Function(UpdateEvaluationParams params)? update,
     TResult Function(DeleteEvaluationParams params)? delete,
@@ -1089,11 +1334,13 @@ class _$EvaluationEventDeleteImpl implements EvaluationEventDelete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventGetEvaluations value)
         getEvaluations,
+    required TResult Function(EvaluationEventSelectEvaluation value)
+        selectEvaluation,
     required TResult Function(EvaluationEventFilterEvaluations value)
         filterEvaluations,
-    required TResult Function(EvaluationEventClear value) clear,
     required TResult Function(EvaluationEventCreate value) create,
     required TResult Function(EvaluationEventUpdate value) update,
     required TResult Function(EvaluationEventDelete value) delete,
@@ -1104,10 +1351,11 @@ class _$EvaluationEventDeleteImpl implements EvaluationEventDelete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult? Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
     TResult? Function(EvaluationEventFilterEvaluations value)?
         filterEvaluations,
-    TResult? Function(EvaluationEventClear value)? clear,
     TResult? Function(EvaluationEventCreate value)? create,
     TResult? Function(EvaluationEventUpdate value)? update,
     TResult? Function(EvaluationEventDelete value)? delete,
@@ -1118,9 +1366,10 @@ class _$EvaluationEventDeleteImpl implements EvaluationEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
-    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventClear value)? clear,
+    TResult Function(EvaluationEventGetEvaluations value)? getEvaluations,
+    TResult Function(EvaluationEventSelectEvaluation value)? selectEvaluation,
+    TResult Function(EvaluationEventFilterEvaluations value)? filterEvaluations,
     TResult Function(EvaluationEventCreate value)? create,
     TResult Function(EvaluationEventUpdate value)? update,
     TResult Function(EvaluationEventDelete value)? delete,
@@ -1152,8 +1401,10 @@ mixin _$EvaluationState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
@@ -1165,8 +1416,10 @@ mixin _$EvaluationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
@@ -1178,8 +1431,10 @@ mixin _$EvaluationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
@@ -1291,8 +1546,10 @@ class _$EvaluationStateInitialImpl implements EvaluationStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
@@ -1307,8 +1564,10 @@ class _$EvaluationStateInitialImpl implements EvaluationStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
@@ -1323,8 +1582,10 @@ class _$EvaluationStateInitialImpl implements EvaluationStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
@@ -1435,8 +1696,10 @@ class _$EvaluationStateLoadingImpl implements EvaluationStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
@@ -1451,8 +1714,10 @@ class _$EvaluationStateLoadingImpl implements EvaluationStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
@@ -1467,8 +1732,10 @@ class _$EvaluationStateLoadingImpl implements EvaluationStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
@@ -1542,7 +1809,10 @@ abstract class _$$EvaluationStateLoadedImplCopyWith<$Res> {
   @useResult
   $Res call(
       {List<EvaluationModel> evaluations,
-      List<EvaluationModel> filteredEvaluations});
+      List<EvaluationModel> filteredEvaluations,
+      EvaluationModel? selectedEvaluation});
+
+  $EvaluationModelCopyWith<$Res>? get selectedEvaluation;
 }
 
 /// @nodoc
@@ -1560,6 +1830,7 @@ class __$$EvaluationStateLoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? evaluations = null,
     Object? filteredEvaluations = null,
+    Object? selectedEvaluation = freezed,
   }) {
     return _then(_$EvaluationStateLoadedImpl(
       evaluations: null == evaluations
@@ -1570,7 +1841,25 @@ class __$$EvaluationStateLoadedImplCopyWithImpl<$Res>
           ? _value._filteredEvaluations
           : filteredEvaluations // ignore: cast_nullable_to_non_nullable
               as List<EvaluationModel>,
+      selectedEvaluation: freezed == selectedEvaluation
+          ? _value.selectedEvaluation
+          : selectedEvaluation // ignore: cast_nullable_to_non_nullable
+              as EvaluationModel?,
     ));
+  }
+
+  /// Create a copy of EvaluationState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EvaluationModelCopyWith<$Res>? get selectedEvaluation {
+    if (_value.selectedEvaluation == null) {
+      return null;
+    }
+
+    return $EvaluationModelCopyWith<$Res>(_value.selectedEvaluation!, (value) {
+      return _then(_value.copyWith(selectedEvaluation: value));
+    });
   }
 }
 
@@ -1579,7 +1868,8 @@ class __$$EvaluationStateLoadedImplCopyWithImpl<$Res>
 class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
   const _$EvaluationStateLoadedImpl(
       {required final List<EvaluationModel> evaluations,
-      required final List<EvaluationModel> filteredEvaluations})
+      required final List<EvaluationModel> filteredEvaluations,
+      this.selectedEvaluation})
       : _evaluations = evaluations,
         _filteredEvaluations = filteredEvaluations;
 
@@ -1601,8 +1891,11 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
   }
 
   @override
+  final EvaluationModel? selectedEvaluation;
+
+  @override
   String toString() {
-    return 'EvaluationState.loaded(evaluations: $evaluations, filteredEvaluations: $filteredEvaluations)';
+    return 'EvaluationState.loaded(evaluations: $evaluations, filteredEvaluations: $filteredEvaluations, selectedEvaluation: $selectedEvaluation)';
   }
 
   @override
@@ -1613,14 +1906,17 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
             const DeepCollectionEquality()
                 .equals(other._evaluations, _evaluations) &&
             const DeepCollectionEquality()
-                .equals(other._filteredEvaluations, _filteredEvaluations));
+                .equals(other._filteredEvaluations, _filteredEvaluations) &&
+            (identical(other.selectedEvaluation, selectedEvaluation) ||
+                other.selectedEvaluation == selectedEvaluation));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_evaluations),
-      const DeepCollectionEquality().hash(_filteredEvaluations));
+      const DeepCollectionEquality().hash(_filteredEvaluations),
+      selectedEvaluation);
 
   /// Create a copy of EvaluationState
   /// with the given fields replaced by the non-null parameter values.
@@ -1636,15 +1932,17 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
     required TResult Function(EvaluationModel evaluation) deleted,
   }) {
-    return loaded(evaluations, filteredEvaluations);
+    return loaded(evaluations, filteredEvaluations, selectedEvaluation);
   }
 
   @override
@@ -1652,15 +1950,17 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
     TResult? Function(EvaluationModel evaluation)? deleted,
   }) {
-    return loaded?.call(evaluations, filteredEvaluations);
+    return loaded?.call(evaluations, filteredEvaluations, selectedEvaluation);
   }
 
   @override
@@ -1668,8 +1968,10 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
@@ -1678,7 +1980,7 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(evaluations, filteredEvaluations);
+      return loaded(evaluations, filteredEvaluations, selectedEvaluation);
     }
     return orElse();
   }
@@ -1732,12 +2034,13 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
 
 abstract class EvaluationStateLoaded implements EvaluationState {
   const factory EvaluationStateLoaded(
-          {required final List<EvaluationModel> evaluations,
-          required final List<EvaluationModel> filteredEvaluations}) =
-      _$EvaluationStateLoadedImpl;
+      {required final List<EvaluationModel> evaluations,
+      required final List<EvaluationModel> filteredEvaluations,
+      final EvaluationModel? selectedEvaluation}) = _$EvaluationStateLoadedImpl;
 
   List<EvaluationModel> get evaluations;
   List<EvaluationModel> get filteredEvaluations;
+  EvaluationModel? get selectedEvaluation;
 
   /// Create a copy of EvaluationState
   /// with the given fields replaced by the non-null parameter values.
@@ -1819,8 +2122,10 @@ class _$EvaluationStateFailureImpl implements EvaluationStateFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
@@ -1835,8 +2140,10 @@ class _$EvaluationStateFailureImpl implements EvaluationStateFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
@@ -1851,8 +2158,10 @@ class _$EvaluationStateFailureImpl implements EvaluationStateFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
@@ -2012,8 +2321,10 @@ class _$EvaluationStateCreatedImpl implements EvaluationStateCreated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
@@ -2028,8 +2339,10 @@ class _$EvaluationStateCreatedImpl implements EvaluationStateCreated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
@@ -2044,8 +2357,10 @@ class _$EvaluationStateCreatedImpl implements EvaluationStateCreated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
@@ -2205,8 +2520,10 @@ class _$EvaluationStateUpdatedImpl implements EvaluationStateUpdated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
@@ -2221,8 +2538,10 @@ class _$EvaluationStateUpdatedImpl implements EvaluationStateUpdated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
@@ -2237,8 +2556,10 @@ class _$EvaluationStateUpdatedImpl implements EvaluationStateUpdated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
@@ -2398,8 +2719,10 @@ class _$EvaluationStateDeletedImpl implements EvaluationStateDeleted {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)
+    required TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
@@ -2414,8 +2737,10 @@ class _$EvaluationStateDeletedImpl implements EvaluationStateDeleted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult? Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
@@ -2430,8 +2755,10 @@ class _$EvaluationStateDeletedImpl implements EvaluationStateDeleted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EvaluationModel> evaluations,
-            List<EvaluationModel> filteredEvaluations)?
+    TResult Function(
+            List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations,
+            EvaluationModel? selectedEvaluation)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,

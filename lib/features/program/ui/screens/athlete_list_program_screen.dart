@@ -11,14 +11,14 @@ import 'package:moon_design/moon_design.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
-class AthleteListProgramScreen extends StatelessWidget {
-  const AthleteListProgramScreen({
+class ListProgramScreen extends StatelessWidget {
+  const ListProgramScreen({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final clubBloc = context.watch<AthleteClubBloc>();
+    final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
       loaded: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
@@ -76,8 +76,8 @@ class AthleteListProgramScreen extends StatelessWidget {
               '${context.str?.search} ${context.str?.program.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
-            context.read<AthleteClubBloc>().add(
-                  AthleteClubEvent.filterClubs(value),
+            context.read<ClubBloc>().add(
+                  ClubEvent.filterClubs(value),
                 );
           },
           trailing: MoonButton.icon(
@@ -85,8 +85,8 @@ class AthleteListProgramScreen extends StatelessWidget {
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
               search.clear();
-              context.read<AthleteClubBloc>().add(
-                    const AthleteClubEvent.filterClubs(''),
+              context.read<ClubBloc>().add(
+                    const ClubEvent.filterClubs(''),
                   );
             },
           ),
@@ -99,12 +99,12 @@ class AthleteListProgramScreen extends StatelessWidget {
     BuildContext context,
     ScrollController scrollController,
   ) {
-    final clubBloc = context.watch<AthleteClubBloc>();
+    final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
       loaded: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
-    return BlocBuilder<AthleteProgramBloc, AthleteProgramState>(
+    return BlocBuilder<ProgramBloc, ProgramState>(
       builder: (context, state) {
         return state.maybeWhen(
           loaded: (_, filteredPrograms, __) {
@@ -117,8 +117,8 @@ class AthleteListProgramScreen extends StatelessWidget {
                       '${club?.name} doesn\'t had program yet',
                       onRetry: () {
                         if (club != null) {
-                          context.read<AthleteProgramBloc>().add(
-                                AthleteProgramEvent.getPrograms(
+                          context.read<ProgramBloc>().add(
+                                ProgramEvent.getPrograms(
                                   GetAllProgramParams(clubId: club.id),
                                 ),
                               );
@@ -169,7 +169,7 @@ class AthleteListProgramScreen extends StatelessWidget {
     bool isLast,
   ) {
     void onTap() => context.router.push(
-          AthleteDetailProgramRoute(programId: program.id),
+          DetailProgramRoute(programId: program.id),
         );
 
     return ListViewBuilderTile(

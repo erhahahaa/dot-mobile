@@ -18,9 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$QuestionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllQuestionParams params) getQuestions,
     required TResult Function(String query) filterQuestions,
-    required TResult Function() clear,
     required TResult Function(List<CreateQuestionParams> params) createBatch,
     required TResult Function(List<UpdateQuestionParams> params) updateBatch,
     required TResult Function(DeleteQuestionParams params) delete,
@@ -28,9 +28,9 @@ mixin _$QuestionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllQuestionParams params)? getQuestions,
     TResult? Function(String query)? filterQuestions,
-    TResult? Function()? clear,
     TResult? Function(List<CreateQuestionParams> params)? createBatch,
     TResult? Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult? Function(DeleteQuestionParams params)? delete,
@@ -38,9 +38,9 @@ mixin _$QuestionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllQuestionParams params)? getQuestions,
     TResult Function(String query)? filterQuestions,
-    TResult Function()? clear,
     TResult Function(List<CreateQuestionParams> params)? createBatch,
     TResult Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult Function(DeleteQuestionParams params)? delete,
@@ -49,10 +49,10 @@ mixin _$QuestionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventGetQuestions value) getQuestions,
     required TResult Function(QuestionEventFilterQuestions value)
         filterQuestions,
-    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventCreateBatch value) createBatch,
     required TResult Function(QuestionEventUpdateBatch value) updateBatch,
     required TResult Function(QuestionEventDelete value) delete,
@@ -60,9 +60,9 @@ mixin _$QuestionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventGetQuestions value)? getQuestions,
     TResult? Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventCreateBatch value)? createBatch,
     TResult? Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult? Function(QuestionEventDelete value)? delete,
@@ -70,9 +70,9 @@ mixin _$QuestionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventGetQuestions value)? getQuestions,
     TResult Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventCreateBatch value)? createBatch,
     TResult Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult Function(QuestionEventDelete value)? delete,
@@ -100,6 +100,136 @@ class _$QuestionEventCopyWithImpl<$Res, $Val extends QuestionEvent>
 
   /// Create a copy of QuestionEvent
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$QuestionEventClearImplCopyWith<$Res> {
+  factory _$$QuestionEventClearImplCopyWith(_$QuestionEventClearImpl value,
+          $Res Function(_$QuestionEventClearImpl) then) =
+      __$$QuestionEventClearImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$QuestionEventClearImplCopyWithImpl<$Res>
+    extends _$QuestionEventCopyWithImpl<$Res, _$QuestionEventClearImpl>
+    implements _$$QuestionEventClearImplCopyWith<$Res> {
+  __$$QuestionEventClearImplCopyWithImpl(_$QuestionEventClearImpl _value,
+      $Res Function(_$QuestionEventClearImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of QuestionEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$QuestionEventClearImpl implements QuestionEventClear {
+  const _$QuestionEventClearImpl();
+
+  @override
+  String toString() {
+    return 'QuestionEvent.clear()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$QuestionEventClearImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clear,
+    required TResult Function(GetAllQuestionParams params) getQuestions,
+    required TResult Function(String query) filterQuestions,
+    required TResult Function(List<CreateQuestionParams> params) createBatch,
+    required TResult Function(List<UpdateQuestionParams> params) updateBatch,
+    required TResult Function(DeleteQuestionParams params) delete,
+  }) {
+    return clear();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
+    TResult? Function(GetAllQuestionParams params)? getQuestions,
+    TResult? Function(String query)? filterQuestions,
+    TResult? Function(List<CreateQuestionParams> params)? createBatch,
+    TResult? Function(List<UpdateQuestionParams> params)? updateBatch,
+    TResult? Function(DeleteQuestionParams params)? delete,
+  }) {
+    return clear?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
+    TResult Function(GetAllQuestionParams params)? getQuestions,
+    TResult Function(String query)? filterQuestions,
+    TResult Function(List<CreateQuestionParams> params)? createBatch,
+    TResult Function(List<UpdateQuestionParams> params)? updateBatch,
+    TResult Function(DeleteQuestionParams params)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(QuestionEventClear value) clear,
+    required TResult Function(QuestionEventGetQuestions value) getQuestions,
+    required TResult Function(QuestionEventFilterQuestions value)
+        filterQuestions,
+    required TResult Function(QuestionEventCreateBatch value) createBatch,
+    required TResult Function(QuestionEventUpdateBatch value) updateBatch,
+    required TResult Function(QuestionEventDelete value) delete,
+  }) {
+    return clear(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuestionEventClear value)? clear,
+    TResult? Function(QuestionEventGetQuestions value)? getQuestions,
+    TResult? Function(QuestionEventFilterQuestions value)? filterQuestions,
+    TResult? Function(QuestionEventCreateBatch value)? createBatch,
+    TResult? Function(QuestionEventUpdateBatch value)? updateBatch,
+    TResult? Function(QuestionEventDelete value)? delete,
+  }) {
+    return clear?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuestionEventClear value)? clear,
+    TResult Function(QuestionEventGetQuestions value)? getQuestions,
+    TResult Function(QuestionEventFilterQuestions value)? filterQuestions,
+    TResult Function(QuestionEventCreateBatch value)? createBatch,
+    TResult Function(QuestionEventUpdateBatch value)? updateBatch,
+    TResult Function(QuestionEventDelete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class QuestionEventClear implements QuestionEvent {
+  const factory QuestionEventClear() = _$QuestionEventClearImpl;
 }
 
 /// @nodoc
@@ -185,9 +315,9 @@ class _$QuestionEventGetQuestionsImpl implements QuestionEventGetQuestions {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllQuestionParams params) getQuestions,
     required TResult Function(String query) filterQuestions,
-    required TResult Function() clear,
     required TResult Function(List<CreateQuestionParams> params) createBatch,
     required TResult Function(List<UpdateQuestionParams> params) updateBatch,
     required TResult Function(DeleteQuestionParams params) delete,
@@ -198,9 +328,9 @@ class _$QuestionEventGetQuestionsImpl implements QuestionEventGetQuestions {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllQuestionParams params)? getQuestions,
     TResult? Function(String query)? filterQuestions,
-    TResult? Function()? clear,
     TResult? Function(List<CreateQuestionParams> params)? createBatch,
     TResult? Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult? Function(DeleteQuestionParams params)? delete,
@@ -211,9 +341,9 @@ class _$QuestionEventGetQuestionsImpl implements QuestionEventGetQuestions {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllQuestionParams params)? getQuestions,
     TResult Function(String query)? filterQuestions,
-    TResult Function()? clear,
     TResult Function(List<CreateQuestionParams> params)? createBatch,
     TResult Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult Function(DeleteQuestionParams params)? delete,
@@ -228,10 +358,10 @@ class _$QuestionEventGetQuestionsImpl implements QuestionEventGetQuestions {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventGetQuestions value) getQuestions,
     required TResult Function(QuestionEventFilterQuestions value)
         filterQuestions,
-    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventCreateBatch value) createBatch,
     required TResult Function(QuestionEventUpdateBatch value) updateBatch,
     required TResult Function(QuestionEventDelete value) delete,
@@ -242,9 +372,9 @@ class _$QuestionEventGetQuestionsImpl implements QuestionEventGetQuestions {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventGetQuestions value)? getQuestions,
     TResult? Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventCreateBatch value)? createBatch,
     TResult? Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult? Function(QuestionEventDelete value)? delete,
@@ -255,9 +385,9 @@ class _$QuestionEventGetQuestionsImpl implements QuestionEventGetQuestions {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventGetQuestions value)? getQuestions,
     TResult Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventCreateBatch value)? createBatch,
     TResult Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult Function(QuestionEventDelete value)? delete,
@@ -357,9 +487,9 @@ class _$QuestionEventFilterQuestionsImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllQuestionParams params) getQuestions,
     required TResult Function(String query) filterQuestions,
-    required TResult Function() clear,
     required TResult Function(List<CreateQuestionParams> params) createBatch,
     required TResult Function(List<UpdateQuestionParams> params) updateBatch,
     required TResult Function(DeleteQuestionParams params) delete,
@@ -370,9 +500,9 @@ class _$QuestionEventFilterQuestionsImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllQuestionParams params)? getQuestions,
     TResult? Function(String query)? filterQuestions,
-    TResult? Function()? clear,
     TResult? Function(List<CreateQuestionParams> params)? createBatch,
     TResult? Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult? Function(DeleteQuestionParams params)? delete,
@@ -383,9 +513,9 @@ class _$QuestionEventFilterQuestionsImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllQuestionParams params)? getQuestions,
     TResult Function(String query)? filterQuestions,
-    TResult Function()? clear,
     TResult Function(List<CreateQuestionParams> params)? createBatch,
     TResult Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult Function(DeleteQuestionParams params)? delete,
@@ -400,10 +530,10 @@ class _$QuestionEventFilterQuestionsImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventGetQuestions value) getQuestions,
     required TResult Function(QuestionEventFilterQuestions value)
         filterQuestions,
-    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventCreateBatch value) createBatch,
     required TResult Function(QuestionEventUpdateBatch value) updateBatch,
     required TResult Function(QuestionEventDelete value) delete,
@@ -414,9 +544,9 @@ class _$QuestionEventFilterQuestionsImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventGetQuestions value)? getQuestions,
     TResult? Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventCreateBatch value)? createBatch,
     TResult? Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult? Function(QuestionEventDelete value)? delete,
@@ -427,9 +557,9 @@ class _$QuestionEventFilterQuestionsImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventGetQuestions value)? getQuestions,
     TResult Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventCreateBatch value)? createBatch,
     TResult Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult Function(QuestionEventDelete value)? delete,
@@ -454,136 +584,6 @@ abstract class QuestionEventFilterQuestions implements QuestionEvent {
   _$$QuestionEventFilterQuestionsImplCopyWith<
           _$QuestionEventFilterQuestionsImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$QuestionEventClearImplCopyWith<$Res> {
-  factory _$$QuestionEventClearImplCopyWith(_$QuestionEventClearImpl value,
-          $Res Function(_$QuestionEventClearImpl) then) =
-      __$$QuestionEventClearImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$QuestionEventClearImplCopyWithImpl<$Res>
-    extends _$QuestionEventCopyWithImpl<$Res, _$QuestionEventClearImpl>
-    implements _$$QuestionEventClearImplCopyWith<$Res> {
-  __$$QuestionEventClearImplCopyWithImpl(_$QuestionEventClearImpl _value,
-      $Res Function(_$QuestionEventClearImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of QuestionEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$QuestionEventClearImpl implements QuestionEventClear {
-  const _$QuestionEventClearImpl();
-
-  @override
-  String toString() {
-    return 'QuestionEvent.clear()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$QuestionEventClearImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(GetAllQuestionParams params) getQuestions,
-    required TResult Function(String query) filterQuestions,
-    required TResult Function() clear,
-    required TResult Function(List<CreateQuestionParams> params) createBatch,
-    required TResult Function(List<UpdateQuestionParams> params) updateBatch,
-    required TResult Function(DeleteQuestionParams params) delete,
-  }) {
-    return clear();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllQuestionParams params)? getQuestions,
-    TResult? Function(String query)? filterQuestions,
-    TResult? Function()? clear,
-    TResult? Function(List<CreateQuestionParams> params)? createBatch,
-    TResult? Function(List<UpdateQuestionParams> params)? updateBatch,
-    TResult? Function(DeleteQuestionParams params)? delete,
-  }) {
-    return clear?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllQuestionParams params)? getQuestions,
-    TResult Function(String query)? filterQuestions,
-    TResult Function()? clear,
-    TResult Function(List<CreateQuestionParams> params)? createBatch,
-    TResult Function(List<UpdateQuestionParams> params)? updateBatch,
-    TResult Function(DeleteQuestionParams params)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(QuestionEventGetQuestions value) getQuestions,
-    required TResult Function(QuestionEventFilterQuestions value)
-        filterQuestions,
-    required TResult Function(QuestionEventClear value) clear,
-    required TResult Function(QuestionEventCreateBatch value) createBatch,
-    required TResult Function(QuestionEventUpdateBatch value) updateBatch,
-    required TResult Function(QuestionEventDelete value) delete,
-  }) {
-    return clear(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(QuestionEventGetQuestions value)? getQuestions,
-    TResult? Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult? Function(QuestionEventClear value)? clear,
-    TResult? Function(QuestionEventCreateBatch value)? createBatch,
-    TResult? Function(QuestionEventUpdateBatch value)? updateBatch,
-    TResult? Function(QuestionEventDelete value)? delete,
-  }) {
-    return clear?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(QuestionEventGetQuestions value)? getQuestions,
-    TResult Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult Function(QuestionEventClear value)? clear,
-    TResult Function(QuestionEventCreateBatch value)? createBatch,
-    TResult Function(QuestionEventUpdateBatch value)? updateBatch,
-    TResult Function(QuestionEventDelete value)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class QuestionEventClear implements QuestionEvent {
-  const factory QuestionEventClear() = _$QuestionEventClearImpl;
 }
 
 /// @nodoc
@@ -664,9 +664,9 @@ class _$QuestionEventCreateBatchImpl implements QuestionEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllQuestionParams params) getQuestions,
     required TResult Function(String query) filterQuestions,
-    required TResult Function() clear,
     required TResult Function(List<CreateQuestionParams> params) createBatch,
     required TResult Function(List<UpdateQuestionParams> params) updateBatch,
     required TResult Function(DeleteQuestionParams params) delete,
@@ -677,9 +677,9 @@ class _$QuestionEventCreateBatchImpl implements QuestionEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllQuestionParams params)? getQuestions,
     TResult? Function(String query)? filterQuestions,
-    TResult? Function()? clear,
     TResult? Function(List<CreateQuestionParams> params)? createBatch,
     TResult? Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult? Function(DeleteQuestionParams params)? delete,
@@ -690,9 +690,9 @@ class _$QuestionEventCreateBatchImpl implements QuestionEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllQuestionParams params)? getQuestions,
     TResult Function(String query)? filterQuestions,
-    TResult Function()? clear,
     TResult Function(List<CreateQuestionParams> params)? createBatch,
     TResult Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult Function(DeleteQuestionParams params)? delete,
@@ -707,10 +707,10 @@ class _$QuestionEventCreateBatchImpl implements QuestionEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventGetQuestions value) getQuestions,
     required TResult Function(QuestionEventFilterQuestions value)
         filterQuestions,
-    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventCreateBatch value) createBatch,
     required TResult Function(QuestionEventUpdateBatch value) updateBatch,
     required TResult Function(QuestionEventDelete value) delete,
@@ -721,9 +721,9 @@ class _$QuestionEventCreateBatchImpl implements QuestionEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventGetQuestions value)? getQuestions,
     TResult? Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventCreateBatch value)? createBatch,
     TResult? Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult? Function(QuestionEventDelete value)? delete,
@@ -734,9 +734,9 @@ class _$QuestionEventCreateBatchImpl implements QuestionEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventGetQuestions value)? getQuestions,
     TResult Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventCreateBatch value)? createBatch,
     TResult Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult Function(QuestionEventDelete value)? delete,
@@ -840,9 +840,9 @@ class _$QuestionEventUpdateBatchImpl implements QuestionEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllQuestionParams params) getQuestions,
     required TResult Function(String query) filterQuestions,
-    required TResult Function() clear,
     required TResult Function(List<CreateQuestionParams> params) createBatch,
     required TResult Function(List<UpdateQuestionParams> params) updateBatch,
     required TResult Function(DeleteQuestionParams params) delete,
@@ -853,9 +853,9 @@ class _$QuestionEventUpdateBatchImpl implements QuestionEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllQuestionParams params)? getQuestions,
     TResult? Function(String query)? filterQuestions,
-    TResult? Function()? clear,
     TResult? Function(List<CreateQuestionParams> params)? createBatch,
     TResult? Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult? Function(DeleteQuestionParams params)? delete,
@@ -866,9 +866,9 @@ class _$QuestionEventUpdateBatchImpl implements QuestionEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllQuestionParams params)? getQuestions,
     TResult Function(String query)? filterQuestions,
-    TResult Function()? clear,
     TResult Function(List<CreateQuestionParams> params)? createBatch,
     TResult Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult Function(DeleteQuestionParams params)? delete,
@@ -883,10 +883,10 @@ class _$QuestionEventUpdateBatchImpl implements QuestionEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventGetQuestions value) getQuestions,
     required TResult Function(QuestionEventFilterQuestions value)
         filterQuestions,
-    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventCreateBatch value) createBatch,
     required TResult Function(QuestionEventUpdateBatch value) updateBatch,
     required TResult Function(QuestionEventDelete value) delete,
@@ -897,9 +897,9 @@ class _$QuestionEventUpdateBatchImpl implements QuestionEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventGetQuestions value)? getQuestions,
     TResult? Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventCreateBatch value)? createBatch,
     TResult? Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult? Function(QuestionEventDelete value)? delete,
@@ -910,9 +910,9 @@ class _$QuestionEventUpdateBatchImpl implements QuestionEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventGetQuestions value)? getQuestions,
     TResult Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventCreateBatch value)? createBatch,
     TResult Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult Function(QuestionEventDelete value)? delete,
@@ -1019,9 +1019,9 @@ class _$QuestionEventDeleteImpl implements QuestionEventDelete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllQuestionParams params) getQuestions,
     required TResult Function(String query) filterQuestions,
-    required TResult Function() clear,
     required TResult Function(List<CreateQuestionParams> params) createBatch,
     required TResult Function(List<UpdateQuestionParams> params) updateBatch,
     required TResult Function(DeleteQuestionParams params) delete,
@@ -1032,9 +1032,9 @@ class _$QuestionEventDeleteImpl implements QuestionEventDelete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllQuestionParams params)? getQuestions,
     TResult? Function(String query)? filterQuestions,
-    TResult? Function()? clear,
     TResult? Function(List<CreateQuestionParams> params)? createBatch,
     TResult? Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult? Function(DeleteQuestionParams params)? delete,
@@ -1045,9 +1045,9 @@ class _$QuestionEventDeleteImpl implements QuestionEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllQuestionParams params)? getQuestions,
     TResult Function(String query)? filterQuestions,
-    TResult Function()? clear,
     TResult Function(List<CreateQuestionParams> params)? createBatch,
     TResult Function(List<UpdateQuestionParams> params)? updateBatch,
     TResult Function(DeleteQuestionParams params)? delete,
@@ -1062,10 +1062,10 @@ class _$QuestionEventDeleteImpl implements QuestionEventDelete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventGetQuestions value) getQuestions,
     required TResult Function(QuestionEventFilterQuestions value)
         filterQuestions,
-    required TResult Function(QuestionEventClear value) clear,
     required TResult Function(QuestionEventCreateBatch value) createBatch,
     required TResult Function(QuestionEventUpdateBatch value) updateBatch,
     required TResult Function(QuestionEventDelete value) delete,
@@ -1076,9 +1076,9 @@ class _$QuestionEventDeleteImpl implements QuestionEventDelete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventGetQuestions value)? getQuestions,
     TResult? Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult? Function(QuestionEventClear value)? clear,
     TResult? Function(QuestionEventCreateBatch value)? createBatch,
     TResult? Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult? Function(QuestionEventDelete value)? delete,
@@ -1089,9 +1089,9 @@ class _$QuestionEventDeleteImpl implements QuestionEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventGetQuestions value)? getQuestions,
     TResult Function(QuestionEventFilterQuestions value)? filterQuestions,
-    TResult Function(QuestionEventClear value)? clear,
     TResult Function(QuestionEventCreateBatch value)? createBatch,
     TResult Function(QuestionEventUpdateBatch value)? updateBatch,
     TResult Function(QuestionEventDelete value)? delete,

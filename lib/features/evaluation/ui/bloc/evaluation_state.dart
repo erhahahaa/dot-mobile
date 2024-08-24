@@ -7,9 +7,11 @@ class EvaluationState with _$EvaluationState {
   const factory EvaluationState.loaded({
     required List<EvaluationModel> evaluations,
     required List<EvaluationModel> filteredEvaluations,
+    EvaluationModel? selectedEvaluation,
   }) = EvaluationStateLoaded;
-  const factory EvaluationState.failure(String message) =
-      EvaluationStateFailure;
+  const factory EvaluationState.failure(
+    String message,
+  ) = EvaluationStateFailure;
 
   // Actions
   const factory EvaluationState.created(

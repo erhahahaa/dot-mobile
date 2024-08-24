@@ -23,6 +23,7 @@ class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
     on<ProgramEventClear>(_onClear);
     on<ProgramEventGetPrograms>(_onGetPrograms);
     on<ProgramEventFilterPrograms>(_onFilterPrograms);
+    on<ProgramEventSelectProgram>(_onSelectProgram);
     on<ProgramEventCreate>(_onCreate);
     on<ProgramEventUpdate>(_onUpdate);
     on<ProgramEventDelete>(_onDelete);
@@ -57,7 +58,7 @@ class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
   ) {
     emit(const ProgramStateLoading());
     state.maybeWhen(
-      loaded: (programs, _) {
+      loaded: (programs, _, __) {
         final finds = programs
             .where(
               (program) => program.name.toLowerCase().contains(
@@ -77,6 +78,24 @@ class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
             ),
           );
         }
+      },
+      orElse: () => emit(const ProgramStateFailure('Programs was empty')),
+    );
+  }
+
+  void _onSelectProgram(
+    ProgramEventSelectProgram event,
+    Emitter<ProgramState> emit,
+  ) {
+    state.maybeWhen(
+      loaded: (programs, filteredPrograms, _) {
+        emit(
+          ProgramStateLoaded(
+            programs: programs,
+            filteredPrograms: filteredPrograms,
+            selectedProgram: event.program,
+          ),
+        );
       },
       orElse: () => emit(const ProgramStateFailure('Programs was empty')),
     );

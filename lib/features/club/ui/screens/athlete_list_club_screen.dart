@@ -11,8 +11,8 @@ import 'package:moon_design/moon_design.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
-class AthleteListClubScreen extends StatelessWidget {
-  const AthleteListClubScreen({super.key});
+class ListClubScreen extends StatelessWidget {
+  const ListClubScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,8 @@ class AthleteListClubScreen extends StatelessWidget {
       orElse: () => UserModel(),
     );
     return ParentWithSearchAndScrollController(
-      onInit: (search, scroll) => context.read<AthleteClubBloc>().add(
-            const AthleteClubEvent.selectClub(null),
+      onInit: (search, scroll) => context.read<ClubBloc>().add(
+            const ClubEvent.selectClub(null),
           ),
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
@@ -146,8 +146,8 @@ class AthleteListClubScreen extends StatelessWidget {
               '${context.str?.search} ${context.str?.club.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
-            context.read<AthleteClubBloc>().add(
-                  AthleteClubEvent.filterClubs(value),
+            context.read<ClubBloc>().add(
+                  ClubEvent.filterClubs(value),
                 );
           },
           trailing: MoonButton.icon(
@@ -155,8 +155,8 @@ class AthleteListClubScreen extends StatelessWidget {
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
               search.clear();
-              context.read<AthleteClubBloc>().add(
-                    const AthleteClubEvent.filterClubs(''),
+              context.read<ClubBloc>().add(
+                    const ClubEvent.filterClubs(''),
                   );
             },
           ),
@@ -169,7 +169,7 @@ class AthleteListClubScreen extends StatelessWidget {
     BuildContext context,
     ScrollController scrollController,
   ) {
-    return BlocBuilder<AthleteClubBloc, AthleteClubState>(
+    return BlocBuilder<ClubBloc, ClubState>(
       builder: (context, state) {
         return state.maybeWhen(
           loaded: (_, filteredClubs, __) {
@@ -214,11 +214,11 @@ class AthleteListClubScreen extends StatelessWidget {
     bool isLast,
   ) {
     void onTap() {
-      context.read<AthleteClubBloc>().add(
-            AthleteClubEvent.selectClub(club),
+      context.read<ClubBloc>().add(
+            ClubEvent.selectClub(club),
           );
       context.router.push(
-        AthleteClubShellRoute(id: club.id),
+        ClubShellRoute(id: club.id),
       );
     }
 

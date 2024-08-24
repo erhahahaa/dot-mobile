@@ -11,14 +11,14 @@ import 'package:moon_design/moon_design.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
-class AthleteListTacticalScreen extends StatelessWidget {
-  const AthleteListTacticalScreen({
+class ListTacticalScreen extends StatelessWidget {
+  const ListTacticalScreen({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final clubBloc = context.watch<AthleteClubBloc>();
+    final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
       loaded: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
@@ -76,8 +76,8 @@ class AthleteListTacticalScreen extends StatelessWidget {
               '${context.str?.search} ${context.str?.tactical.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
-            context.read<AthleteClubBloc>().add(
-                  AthleteClubEvent.filterClubs(value),
+            context.read<ClubBloc>().add(
+                  ClubEvent.filterClubs(value),
                 );
           },
           trailing: MoonButton.icon(
@@ -85,8 +85,8 @@ class AthleteListTacticalScreen extends StatelessWidget {
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
               search.clear();
-              context.read<AthleteClubBloc>().add(
-                    const AthleteClubEvent.filterClubs(''),
+              context.read<ClubBloc>().add(
+                    const ClubEvent.filterClubs(''),
                   );
             },
           ),
@@ -99,12 +99,12 @@ class AthleteListTacticalScreen extends StatelessWidget {
     BuildContext context,
     ScrollController scrollController,
   ) {
-    final clubBloc = context.watch<AthleteClubBloc>();
+    final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
       loaded: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
-    return BlocBuilder<AthleteTacticalBloc, AthleteTacticalState>(
+    return BlocBuilder<TacticalBloc, TacticalState>(
       builder: (context, state) {
         return state.maybeWhen(
           loaded: (_, filteredTacticals) {
@@ -117,8 +117,8 @@ class AthleteListTacticalScreen extends StatelessWidget {
                       '${club?.name} doesn\'t had tactical yet',
                       onRetry: () {
                         if (club != null) {
-                          context.read<AthleteTacticalBloc>().add(
-                                AthleteTacticalEvent.getTacticals(
+                          context.read<TacticalBloc>().add(
+                                TacticalEvent.getTacticals(
                                   GetAllTacticalParams(clubId: club.id),
                                 ),
                               );
@@ -169,7 +169,7 @@ class AthleteListTacticalScreen extends StatelessWidget {
     bool isLast,
   ) {
     void onTap() => context.router.push(
-          AthleteDetailTacticalRoute(id: tactical.id),
+          DetailTacticalRoute(id: tactical.id),
         );
 
     return ListViewBuilderTile(

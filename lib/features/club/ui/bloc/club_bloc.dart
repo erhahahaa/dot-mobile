@@ -23,6 +23,7 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
     on<ClubEventClear>(_onClear);
     on<ClubEventGetClubs>(_onGetClubs);
     on<ClubEventFilterClubs>(_onFilterClubs);
+    on<ClubEventSelectClub>(_onSelectClub);
     on<ClubEventCreate>(_onCreate);
     on<ClubEventUpdate>(_onUpdate);
     on<ClubEventDelete>(_onDelete);
@@ -55,9 +56,8 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
     ClubEventFilterClubs event,
     Emitter<ClubState> emit,
   ) {
-    emit(const ClubStateLoading());
     state.maybeWhen(
-      loaded: (clubs, _) {
+      loaded: (clubs, _, __) {
         final finds = clubs
             .where(
               (club) => club.name.toLowerCase().contains(
@@ -66,18 +66,32 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
             )
             .toList();
 
-        if (finds.isEmpty) {
-          emit(ClubStateFailure('Club with name ${event.query} not found'));
-        } else {
-          emit(
-            ClubStateLoaded(
-              clubs: clubs,
-              filteredClubs: finds,
-            ),
-          );
-        }
+        emit(
+          ClubStateLoaded(
+            clubs: clubs,
+            filteredClubs: finds,
+          ),
+        );
       },
-      orElse: () => emit(const ClubStateFailure('Clubs was empty')),
+      orElse: () => null,
+    );
+  }
+
+  void _onSelectClub(
+    ClubEventSelectClub event,
+    Emitter<ClubState> emit,
+  ) {
+    state.maybeWhen(
+      loaded: (clubs, filteredClubs, _) {
+        emit(
+          ClubStateLoaded(
+            clubs: clubs,
+            filteredClubs: filteredClubs,
+            selectedClub: event.club,
+          ),
+        );
+      },
+      orElse: () => null,
     );
   }
 

@@ -8,7 +8,9 @@ class ExerciseState with _$ExerciseState {
     required List<ExerciseModel> exercises,
     required List<ExerciseModel> filteredExercises,
   }) = ExerciseStateLoaded;
-  const factory ExerciseState.failure(String message) = ExerciseStateFailure;
+  const factory ExerciseState.failure(
+    String message,
+  ) = ExerciseStateFailure;
 
   // Actions
   const factory ExerciseState.createdBatch(

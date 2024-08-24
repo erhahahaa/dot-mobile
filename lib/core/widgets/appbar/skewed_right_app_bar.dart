@@ -26,7 +26,7 @@ class SkewedRightAppBar extends StatelessWidget {
         child: SafeArea(
           child: Stack(
             children: [
-              Assets.images.bg.homeAthlete.svg(
+              Assets.images.bg.home.svg(
                 width: double.infinity,
                 height: 200.h,
                 colorFilter: ColorFilter.mode(

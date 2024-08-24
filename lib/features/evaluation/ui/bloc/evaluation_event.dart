@@ -2,13 +2,16 @@ part of 'evaluation_bloc.dart';
 
 @freezed
 class EvaluationEvent with _$EvaluationEvent {
+  const factory EvaluationEvent.clear() = EvaluationEventClear;
   const factory EvaluationEvent.getEvaluations(
     GetAllEvaluationParams params,
   ) = EvaluationEventGetEvaluations;
+  const factory EvaluationEvent.selectEvaluation(
+    EvaluationModel? evaluation,
+  ) = EvaluationEventSelectEvaluation;
   const factory EvaluationEvent.filterEvaluations(
     String query,
   ) = EvaluationEventFilterEvaluations;
-  const factory EvaluationEvent.clear() = EvaluationEventClear;
 
   // Actions
   const factory EvaluationEvent.create(

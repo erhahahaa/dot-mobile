@@ -3,9 +3,9 @@ import 'package:dot_coaching/core/core.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class AthleteDetailClubScreen extends StatelessWidget {
+class DetailClubScreen extends StatelessWidget {
   final int clubId;
-  const AthleteDetailClubScreen({
+  const DetailClubScreen({
     super.key,
     @pathParam required this.clubId,
   });

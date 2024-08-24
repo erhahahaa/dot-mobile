@@ -154,13 +154,13 @@ abstract class Strings {
   /// No description provided for @athlete.
   ///
   /// In en, this message translates to:
-  /// **'Athlete'**
+  /// **''**
   String get athlete;
 
   /// No description provided for @athletes.
   ///
   /// In en, this message translates to:
-  /// **'Athletes'**
+  /// **'s'**
   String get athletes;
 
   /// No description provided for @back.

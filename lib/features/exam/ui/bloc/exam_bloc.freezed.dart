@@ -18,9 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ExamEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExamParams params) getExams,
     required TResult Function(String query) filterExams,
-    required TResult Function() clear,
     required TResult Function(CreateExamParams params) create,
     required TResult Function(UpdateExamParams params) update,
     required TResult Function(DeleteExamParams params) delete,
@@ -28,9 +28,9 @@ mixin _$ExamEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExamParams params)? getExams,
     TResult? Function(String query)? filterExams,
-    TResult? Function()? clear,
     TResult? Function(CreateExamParams params)? create,
     TResult? Function(UpdateExamParams params)? update,
     TResult? Function(DeleteExamParams params)? delete,
@@ -38,9 +38,9 @@ mixin _$ExamEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExamParams params)? getExams,
     TResult Function(String query)? filterExams,
-    TResult Function()? clear,
     TResult Function(CreateExamParams params)? create,
     TResult Function(UpdateExamParams params)? update,
     TResult Function(DeleteExamParams params)? delete,
@@ -49,9 +49,9 @@ mixin _$ExamEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventGetExams value) getExams,
     required TResult Function(ExamEventFilterExams value) filterExams,
-    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventCreate value) create,
     required TResult Function(ExamEventUpdate value) update,
     required TResult Function(ExamEventDelete value) delete,
@@ -59,9 +59,9 @@ mixin _$ExamEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventGetExams value)? getExams,
     TResult? Function(ExamEventFilterExams value)? filterExams,
-    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventCreate value)? create,
     TResult? Function(ExamEventUpdate value)? update,
     TResult? Function(ExamEventDelete value)? delete,
@@ -69,9 +69,9 @@ mixin _$ExamEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventGetExams value)? getExams,
     TResult Function(ExamEventFilterExams value)? filterExams,
-    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventCreate value)? create,
     TResult Function(ExamEventUpdate value)? update,
     TResult Function(ExamEventDelete value)? delete,
@@ -98,6 +98,135 @@ class _$ExamEventCopyWithImpl<$Res, $Val extends ExamEvent>
 
   /// Create a copy of ExamEvent
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$ExamEventClearImplCopyWith<$Res> {
+  factory _$$ExamEventClearImplCopyWith(_$ExamEventClearImpl value,
+          $Res Function(_$ExamEventClearImpl) then) =
+      __$$ExamEventClearImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ExamEventClearImplCopyWithImpl<$Res>
+    extends _$ExamEventCopyWithImpl<$Res, _$ExamEventClearImpl>
+    implements _$$ExamEventClearImplCopyWith<$Res> {
+  __$$ExamEventClearImplCopyWithImpl(
+      _$ExamEventClearImpl _value, $Res Function(_$ExamEventClearImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ExamEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ExamEventClearImpl implements ExamEventClear {
+  const _$ExamEventClearImpl();
+
+  @override
+  String toString() {
+    return 'ExamEvent.clear()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ExamEventClearImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clear,
+    required TResult Function(GetAllExamParams params) getExams,
+    required TResult Function(String query) filterExams,
+    required TResult Function(CreateExamParams params) create,
+    required TResult Function(UpdateExamParams params) update,
+    required TResult Function(DeleteExamParams params) delete,
+  }) {
+    return clear();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
+    TResult? Function(GetAllExamParams params)? getExams,
+    TResult? Function(String query)? filterExams,
+    TResult? Function(CreateExamParams params)? create,
+    TResult? Function(UpdateExamParams params)? update,
+    TResult? Function(DeleteExamParams params)? delete,
+  }) {
+    return clear?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
+    TResult Function(GetAllExamParams params)? getExams,
+    TResult Function(String query)? filterExams,
+    TResult Function(CreateExamParams params)? create,
+    TResult Function(UpdateExamParams params)? update,
+    TResult Function(DeleteExamParams params)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExamEventClear value) clear,
+    required TResult Function(ExamEventGetExams value) getExams,
+    required TResult Function(ExamEventFilterExams value) filterExams,
+    required TResult Function(ExamEventCreate value) create,
+    required TResult Function(ExamEventUpdate value) update,
+    required TResult Function(ExamEventDelete value) delete,
+  }) {
+    return clear(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExamEventClear value)? clear,
+    TResult? Function(ExamEventGetExams value)? getExams,
+    TResult? Function(ExamEventFilterExams value)? filterExams,
+    TResult? Function(ExamEventCreate value)? create,
+    TResult? Function(ExamEventUpdate value)? update,
+    TResult? Function(ExamEventDelete value)? delete,
+  }) {
+    return clear?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExamEventClear value)? clear,
+    TResult Function(ExamEventGetExams value)? getExams,
+    TResult Function(ExamEventFilterExams value)? filterExams,
+    TResult Function(ExamEventCreate value)? create,
+    TResult Function(ExamEventUpdate value)? update,
+    TResult Function(ExamEventDelete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ExamEventClear implements ExamEvent {
+  const factory ExamEventClear() = _$ExamEventClearImpl;
 }
 
 /// @nodoc
@@ -181,9 +310,9 @@ class _$ExamEventGetExamsImpl implements ExamEventGetExams {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExamParams params) getExams,
     required TResult Function(String query) filterExams,
-    required TResult Function() clear,
     required TResult Function(CreateExamParams params) create,
     required TResult Function(UpdateExamParams params) update,
     required TResult Function(DeleteExamParams params) delete,
@@ -194,9 +323,9 @@ class _$ExamEventGetExamsImpl implements ExamEventGetExams {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExamParams params)? getExams,
     TResult? Function(String query)? filterExams,
-    TResult? Function()? clear,
     TResult? Function(CreateExamParams params)? create,
     TResult? Function(UpdateExamParams params)? update,
     TResult? Function(DeleteExamParams params)? delete,
@@ -207,9 +336,9 @@ class _$ExamEventGetExamsImpl implements ExamEventGetExams {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExamParams params)? getExams,
     TResult Function(String query)? filterExams,
-    TResult Function()? clear,
     TResult Function(CreateExamParams params)? create,
     TResult Function(UpdateExamParams params)? update,
     TResult Function(DeleteExamParams params)? delete,
@@ -224,9 +353,9 @@ class _$ExamEventGetExamsImpl implements ExamEventGetExams {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventGetExams value) getExams,
     required TResult Function(ExamEventFilterExams value) filterExams,
-    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventCreate value) create,
     required TResult Function(ExamEventUpdate value) update,
     required TResult Function(ExamEventDelete value) delete,
@@ -237,9 +366,9 @@ class _$ExamEventGetExamsImpl implements ExamEventGetExams {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventGetExams value)? getExams,
     TResult? Function(ExamEventFilterExams value)? filterExams,
-    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventCreate value)? create,
     TResult? Function(ExamEventUpdate value)? update,
     TResult? Function(ExamEventDelete value)? delete,
@@ -250,9 +379,9 @@ class _$ExamEventGetExamsImpl implements ExamEventGetExams {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventGetExams value)? getExams,
     TResult Function(ExamEventFilterExams value)? filterExams,
-    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventCreate value)? create,
     TResult Function(ExamEventUpdate value)? update,
     TResult Function(ExamEventDelete value)? delete,
@@ -348,9 +477,9 @@ class _$ExamEventFilterExamsImpl implements ExamEventFilterExams {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExamParams params) getExams,
     required TResult Function(String query) filterExams,
-    required TResult Function() clear,
     required TResult Function(CreateExamParams params) create,
     required TResult Function(UpdateExamParams params) update,
     required TResult Function(DeleteExamParams params) delete,
@@ -361,9 +490,9 @@ class _$ExamEventFilterExamsImpl implements ExamEventFilterExams {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExamParams params)? getExams,
     TResult? Function(String query)? filterExams,
-    TResult? Function()? clear,
     TResult? Function(CreateExamParams params)? create,
     TResult? Function(UpdateExamParams params)? update,
     TResult? Function(DeleteExamParams params)? delete,
@@ -374,9 +503,9 @@ class _$ExamEventFilterExamsImpl implements ExamEventFilterExams {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExamParams params)? getExams,
     TResult Function(String query)? filterExams,
-    TResult Function()? clear,
     TResult Function(CreateExamParams params)? create,
     TResult Function(UpdateExamParams params)? update,
     TResult Function(DeleteExamParams params)? delete,
@@ -391,9 +520,9 @@ class _$ExamEventFilterExamsImpl implements ExamEventFilterExams {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventGetExams value) getExams,
     required TResult Function(ExamEventFilterExams value) filterExams,
-    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventCreate value) create,
     required TResult Function(ExamEventUpdate value) update,
     required TResult Function(ExamEventDelete value) delete,
@@ -404,9 +533,9 @@ class _$ExamEventFilterExamsImpl implements ExamEventFilterExams {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventGetExams value)? getExams,
     TResult? Function(ExamEventFilterExams value)? filterExams,
-    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventCreate value)? create,
     TResult? Function(ExamEventUpdate value)? update,
     TResult? Function(ExamEventDelete value)? delete,
@@ -417,9 +546,9 @@ class _$ExamEventFilterExamsImpl implements ExamEventFilterExams {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventGetExams value)? getExams,
     TResult Function(ExamEventFilterExams value)? filterExams,
-    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventCreate value)? create,
     TResult Function(ExamEventUpdate value)? update,
     TResult Function(ExamEventDelete value)? delete,
@@ -443,135 +572,6 @@ abstract class ExamEventFilterExams implements ExamEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ExamEventFilterExamsImplCopyWith<_$ExamEventFilterExamsImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ExamEventClearImplCopyWith<$Res> {
-  factory _$$ExamEventClearImplCopyWith(_$ExamEventClearImpl value,
-          $Res Function(_$ExamEventClearImpl) then) =
-      __$$ExamEventClearImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ExamEventClearImplCopyWithImpl<$Res>
-    extends _$ExamEventCopyWithImpl<$Res, _$ExamEventClearImpl>
-    implements _$$ExamEventClearImplCopyWith<$Res> {
-  __$$ExamEventClearImplCopyWithImpl(
-      _$ExamEventClearImpl _value, $Res Function(_$ExamEventClearImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ExamEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ExamEventClearImpl implements ExamEventClear {
-  const _$ExamEventClearImpl();
-
-  @override
-  String toString() {
-    return 'ExamEvent.clear()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ExamEventClearImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(GetAllExamParams params) getExams,
-    required TResult Function(String query) filterExams,
-    required TResult Function() clear,
-    required TResult Function(CreateExamParams params) create,
-    required TResult Function(UpdateExamParams params) update,
-    required TResult Function(DeleteExamParams params) delete,
-  }) {
-    return clear();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllExamParams params)? getExams,
-    TResult? Function(String query)? filterExams,
-    TResult? Function()? clear,
-    TResult? Function(CreateExamParams params)? create,
-    TResult? Function(UpdateExamParams params)? update,
-    TResult? Function(DeleteExamParams params)? delete,
-  }) {
-    return clear?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllExamParams params)? getExams,
-    TResult Function(String query)? filterExams,
-    TResult Function()? clear,
-    TResult Function(CreateExamParams params)? create,
-    TResult Function(UpdateExamParams params)? update,
-    TResult Function(DeleteExamParams params)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ExamEventGetExams value) getExams,
-    required TResult Function(ExamEventFilterExams value) filterExams,
-    required TResult Function(ExamEventClear value) clear,
-    required TResult Function(ExamEventCreate value) create,
-    required TResult Function(ExamEventUpdate value) update,
-    required TResult Function(ExamEventDelete value) delete,
-  }) {
-    return clear(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ExamEventGetExams value)? getExams,
-    TResult? Function(ExamEventFilterExams value)? filterExams,
-    TResult? Function(ExamEventClear value)? clear,
-    TResult? Function(ExamEventCreate value)? create,
-    TResult? Function(ExamEventUpdate value)? update,
-    TResult? Function(ExamEventDelete value)? delete,
-  }) {
-    return clear?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ExamEventGetExams value)? getExams,
-    TResult Function(ExamEventFilterExams value)? filterExams,
-    TResult Function(ExamEventClear value)? clear,
-    TResult Function(ExamEventCreate value)? create,
-    TResult Function(ExamEventUpdate value)? update,
-    TResult Function(ExamEventDelete value)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ExamEventClear implements ExamEvent {
-  const factory ExamEventClear() = _$ExamEventClearImpl;
 }
 
 /// @nodoc
@@ -655,9 +655,9 @@ class _$ExamEventCreateImpl implements ExamEventCreate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExamParams params) getExams,
     required TResult Function(String query) filterExams,
-    required TResult Function() clear,
     required TResult Function(CreateExamParams params) create,
     required TResult Function(UpdateExamParams params) update,
     required TResult Function(DeleteExamParams params) delete,
@@ -668,9 +668,9 @@ class _$ExamEventCreateImpl implements ExamEventCreate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExamParams params)? getExams,
     TResult? Function(String query)? filterExams,
-    TResult? Function()? clear,
     TResult? Function(CreateExamParams params)? create,
     TResult? Function(UpdateExamParams params)? update,
     TResult? Function(DeleteExamParams params)? delete,
@@ -681,9 +681,9 @@ class _$ExamEventCreateImpl implements ExamEventCreate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExamParams params)? getExams,
     TResult Function(String query)? filterExams,
-    TResult Function()? clear,
     TResult Function(CreateExamParams params)? create,
     TResult Function(UpdateExamParams params)? update,
     TResult Function(DeleteExamParams params)? delete,
@@ -698,9 +698,9 @@ class _$ExamEventCreateImpl implements ExamEventCreate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventGetExams value) getExams,
     required TResult Function(ExamEventFilterExams value) filterExams,
-    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventCreate value) create,
     required TResult Function(ExamEventUpdate value) update,
     required TResult Function(ExamEventDelete value) delete,
@@ -711,9 +711,9 @@ class _$ExamEventCreateImpl implements ExamEventCreate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventGetExams value)? getExams,
     TResult? Function(ExamEventFilterExams value)? filterExams,
-    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventCreate value)? create,
     TResult? Function(ExamEventUpdate value)? update,
     TResult? Function(ExamEventDelete value)? delete,
@@ -724,9 +724,9 @@ class _$ExamEventCreateImpl implements ExamEventCreate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventGetExams value)? getExams,
     TResult Function(ExamEventFilterExams value)? filterExams,
-    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventCreate value)? create,
     TResult Function(ExamEventUpdate value)? update,
     TResult Function(ExamEventDelete value)? delete,
@@ -833,9 +833,9 @@ class _$ExamEventUpdateImpl implements ExamEventUpdate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExamParams params) getExams,
     required TResult Function(String query) filterExams,
-    required TResult Function() clear,
     required TResult Function(CreateExamParams params) create,
     required TResult Function(UpdateExamParams params) update,
     required TResult Function(DeleteExamParams params) delete,
@@ -846,9 +846,9 @@ class _$ExamEventUpdateImpl implements ExamEventUpdate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExamParams params)? getExams,
     TResult? Function(String query)? filterExams,
-    TResult? Function()? clear,
     TResult? Function(CreateExamParams params)? create,
     TResult? Function(UpdateExamParams params)? update,
     TResult? Function(DeleteExamParams params)? delete,
@@ -859,9 +859,9 @@ class _$ExamEventUpdateImpl implements ExamEventUpdate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExamParams params)? getExams,
     TResult Function(String query)? filterExams,
-    TResult Function()? clear,
     TResult Function(CreateExamParams params)? create,
     TResult Function(UpdateExamParams params)? update,
     TResult Function(DeleteExamParams params)? delete,
@@ -876,9 +876,9 @@ class _$ExamEventUpdateImpl implements ExamEventUpdate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventGetExams value) getExams,
     required TResult Function(ExamEventFilterExams value) filterExams,
-    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventCreate value) create,
     required TResult Function(ExamEventUpdate value) update,
     required TResult Function(ExamEventDelete value) delete,
@@ -889,9 +889,9 @@ class _$ExamEventUpdateImpl implements ExamEventUpdate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventGetExams value)? getExams,
     TResult? Function(ExamEventFilterExams value)? filterExams,
-    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventCreate value)? create,
     TResult? Function(ExamEventUpdate value)? update,
     TResult? Function(ExamEventDelete value)? delete,
@@ -902,9 +902,9 @@ class _$ExamEventUpdateImpl implements ExamEventUpdate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventGetExams value)? getExams,
     TResult Function(ExamEventFilterExams value)? filterExams,
-    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventCreate value)? create,
     TResult Function(ExamEventUpdate value)? update,
     TResult Function(ExamEventDelete value)? delete,
@@ -1011,9 +1011,9 @@ class _$ExamEventDeleteImpl implements ExamEventDelete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExamParams params) getExams,
     required TResult Function(String query) filterExams,
-    required TResult Function() clear,
     required TResult Function(CreateExamParams params) create,
     required TResult Function(UpdateExamParams params) update,
     required TResult Function(DeleteExamParams params) delete,
@@ -1024,9 +1024,9 @@ class _$ExamEventDeleteImpl implements ExamEventDelete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExamParams params)? getExams,
     TResult? Function(String query)? filterExams,
-    TResult? Function()? clear,
     TResult? Function(CreateExamParams params)? create,
     TResult? Function(UpdateExamParams params)? update,
     TResult? Function(DeleteExamParams params)? delete,
@@ -1037,9 +1037,9 @@ class _$ExamEventDeleteImpl implements ExamEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExamParams params)? getExams,
     TResult Function(String query)? filterExams,
-    TResult Function()? clear,
     TResult Function(CreateExamParams params)? create,
     TResult Function(UpdateExamParams params)? update,
     TResult Function(DeleteExamParams params)? delete,
@@ -1054,9 +1054,9 @@ class _$ExamEventDeleteImpl implements ExamEventDelete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventGetExams value) getExams,
     required TResult Function(ExamEventFilterExams value) filterExams,
-    required TResult Function(ExamEventClear value) clear,
     required TResult Function(ExamEventCreate value) create,
     required TResult Function(ExamEventUpdate value) update,
     required TResult Function(ExamEventDelete value) delete,
@@ -1067,9 +1067,9 @@ class _$ExamEventDeleteImpl implements ExamEventDelete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventGetExams value)? getExams,
     TResult? Function(ExamEventFilterExams value)? filterExams,
-    TResult? Function(ExamEventClear value)? clear,
     TResult? Function(ExamEventCreate value)? create,
     TResult? Function(ExamEventUpdate value)? update,
     TResult? Function(ExamEventDelete value)? delete,
@@ -1080,9 +1080,9 @@ class _$ExamEventDeleteImpl implements ExamEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventGetExams value)? getExams,
     TResult Function(ExamEventFilterExams value)? filterExams,
-    TResult Function(ExamEventClear value)? clear,
     TResult Function(ExamEventCreate value)? create,
     TResult Function(ExamEventUpdate value)? update,
     TResult Function(ExamEventDelete value)? delete,

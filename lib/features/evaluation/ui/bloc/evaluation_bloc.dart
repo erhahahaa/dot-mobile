@@ -23,6 +23,7 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
     on<EvaluationEventClear>(_onClear);
     on<EvaluationEventGetEvaluations>(_onGetEvaluations);
     on<EvaluationEventFilterEvaluations>(_onFilterEvaluations);
+    on<EvaluationEventSelectEvaluation>(_onSelectEvaluation);
     on<EvaluationEventCreate>(_onCreate);
     on<EvaluationEventUpdate>(_onUpdate);
     on<EvaluationEventDelete>(_onDelete);
@@ -58,7 +59,7 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
   ) {
     emit(const EvaluationStateLoading());
     state.maybeWhen(
-      loaded: (evaluations, _) {
+      loaded: (evaluations, _, __) {
         final finds = evaluations
             .where(
               (evaluation) =>
@@ -86,7 +87,29 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
           );
         }
       },
-      orElse: () => emit(const EvaluationStateFailure('Evaluation was empty')),
+      orElse: () => emit(
+        const EvaluationStateFailure('Evaluation was empty'),
+      ),
+    );
+  }
+
+  void _onSelectEvaluation(
+    EvaluationEventSelectEvaluation event,
+    Emitter<EvaluationState> emit,
+  ) {
+    state.maybeWhen(
+      loaded: (evaluations, filteredEvaluations, _) {
+        emit(
+          EvaluationStateLoaded(
+            evaluations: evaluations,
+            filteredEvaluations: filteredEvaluations,
+            selectedEvaluation: event.evaluation,
+          ),
+        );
+      },
+      orElse: () => emit(
+        const EvaluationStateFailure('Evaluation was empty'),
+      ),
     );
   }
 

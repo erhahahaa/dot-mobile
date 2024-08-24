@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class AthleteDetailProgramScreen extends StatelessWidget {
+class DetailProgramScreen extends StatelessWidget {
   final int programId;
-  const AthleteDetailProgramScreen({
+  const DetailProgramScreen({
     super.key,
     required this.programId,
   });

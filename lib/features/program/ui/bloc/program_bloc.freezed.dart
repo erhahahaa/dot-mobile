@@ -18,9 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProgramEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllProgramParams params) getPrograms,
-    required TResult Function(String query) filterPrograms,
     required TResult Function() clear,
+    required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
+    required TResult Function(String query) filterPrograms,
     required TResult Function(CreateProgramParams params) create,
     required TResult Function(UpdateProgramParams params) update,
     required TResult Function(DeleteProgramParams params) delete,
@@ -28,9 +29,10 @@ mixin _$ProgramEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllProgramParams params)? getPrograms,
-    TResult? Function(String query)? filterPrograms,
     TResult? Function()? clear,
+    TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
+    TResult? Function(String query)? filterPrograms,
     TResult? Function(CreateProgramParams params)? create,
     TResult? Function(UpdateProgramParams params)? update,
     TResult? Function(DeleteProgramParams params)? delete,
@@ -38,9 +40,10 @@ mixin _$ProgramEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllProgramParams params)? getPrograms,
-    TResult Function(String query)? filterPrograms,
     TResult Function()? clear,
+    TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
+    TResult Function(String query)? filterPrograms,
     TResult Function(CreateProgramParams params)? create,
     TResult Function(UpdateProgramParams params)? update,
     TResult Function(DeleteProgramParams params)? delete,
@@ -49,9 +52,10 @@ mixin _$ProgramEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProgramEventGetPrograms value) getPrograms,
-    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventClear value) clear,
+    required TResult Function(ProgramEventGetPrograms value) getPrograms,
+    required TResult Function(ProgramEventSelectProgram value) selectProgram,
+    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventCreate value) create,
     required TResult Function(ProgramEventUpdate value) update,
     required TResult Function(ProgramEventDelete value) delete,
@@ -59,9 +63,10 @@ mixin _$ProgramEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventClear value)? clear,
+    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventCreate value)? create,
     TResult? Function(ProgramEventUpdate value)? update,
     TResult? Function(ProgramEventDelete value)? delete,
@@ -69,9 +74,10 @@ mixin _$ProgramEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventClear value)? clear,
+    TResult Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventCreate value)? create,
     TResult Function(ProgramEventUpdate value)? update,
     TResult Function(ProgramEventDelete value)? delete,
@@ -99,6 +105,141 @@ class _$ProgramEventCopyWithImpl<$Res, $Val extends ProgramEvent>
 
   /// Create a copy of ProgramEvent
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$ProgramEventClearImplCopyWith<$Res> {
+  factory _$$ProgramEventClearImplCopyWith(_$ProgramEventClearImpl value,
+          $Res Function(_$ProgramEventClearImpl) then) =
+      __$$ProgramEventClearImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ProgramEventClearImplCopyWithImpl<$Res>
+    extends _$ProgramEventCopyWithImpl<$Res, _$ProgramEventClearImpl>
+    implements _$$ProgramEventClearImplCopyWith<$Res> {
+  __$$ProgramEventClearImplCopyWithImpl(_$ProgramEventClearImpl _value,
+      $Res Function(_$ProgramEventClearImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProgramEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ProgramEventClearImpl implements ProgramEventClear {
+  const _$ProgramEventClearImpl();
+
+  @override
+  String toString() {
+    return 'ProgramEvent.clear()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ProgramEventClearImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clear,
+    required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
+    required TResult Function(String query) filterPrograms,
+    required TResult Function(CreateProgramParams params) create,
+    required TResult Function(UpdateProgramParams params) update,
+    required TResult Function(DeleteProgramParams params) delete,
+  }) {
+    return clear();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
+    TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
+    TResult? Function(String query)? filterPrograms,
+    TResult? Function(CreateProgramParams params)? create,
+    TResult? Function(UpdateProgramParams params)? update,
+    TResult? Function(DeleteProgramParams params)? delete,
+  }) {
+    return clear?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
+    TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
+    TResult Function(String query)? filterPrograms,
+    TResult Function(CreateProgramParams params)? create,
+    TResult Function(UpdateProgramParams params)? update,
+    TResult Function(DeleteProgramParams params)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProgramEventClear value) clear,
+    required TResult Function(ProgramEventGetPrograms value) getPrograms,
+    required TResult Function(ProgramEventSelectProgram value) selectProgram,
+    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
+    required TResult Function(ProgramEventCreate value) create,
+    required TResult Function(ProgramEventUpdate value) update,
+    required TResult Function(ProgramEventDelete value) delete,
+  }) {
+    return clear(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProgramEventClear value)? clear,
+    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
+    TResult? Function(ProgramEventCreate value)? create,
+    TResult? Function(ProgramEventUpdate value)? update,
+    TResult? Function(ProgramEventDelete value)? delete,
+  }) {
+    return clear?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProgramEventClear value)? clear,
+    TResult Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
+    TResult Function(ProgramEventCreate value)? create,
+    TResult Function(ProgramEventUpdate value)? update,
+    TResult Function(ProgramEventDelete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProgramEventClear implements ProgramEvent {
+  const factory ProgramEventClear() = _$ProgramEventClearImpl;
 }
 
 /// @nodoc
@@ -184,9 +325,10 @@ class _$ProgramEventGetProgramsImpl implements ProgramEventGetPrograms {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllProgramParams params) getPrograms,
-    required TResult Function(String query) filterPrograms,
     required TResult Function() clear,
+    required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
+    required TResult Function(String query) filterPrograms,
     required TResult Function(CreateProgramParams params) create,
     required TResult Function(UpdateProgramParams params) update,
     required TResult Function(DeleteProgramParams params) delete,
@@ -197,9 +339,10 @@ class _$ProgramEventGetProgramsImpl implements ProgramEventGetPrograms {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllProgramParams params)? getPrograms,
-    TResult? Function(String query)? filterPrograms,
     TResult? Function()? clear,
+    TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
+    TResult? Function(String query)? filterPrograms,
     TResult? Function(CreateProgramParams params)? create,
     TResult? Function(UpdateProgramParams params)? update,
     TResult? Function(DeleteProgramParams params)? delete,
@@ -210,9 +353,10 @@ class _$ProgramEventGetProgramsImpl implements ProgramEventGetPrograms {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllProgramParams params)? getPrograms,
-    TResult Function(String query)? filterPrograms,
     TResult Function()? clear,
+    TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
+    TResult Function(String query)? filterPrograms,
     TResult Function(CreateProgramParams params)? create,
     TResult Function(UpdateProgramParams params)? update,
     TResult Function(DeleteProgramParams params)? delete,
@@ -227,9 +371,10 @@ class _$ProgramEventGetProgramsImpl implements ProgramEventGetPrograms {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProgramEventGetPrograms value) getPrograms,
-    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventClear value) clear,
+    required TResult Function(ProgramEventGetPrograms value) getPrograms,
+    required TResult Function(ProgramEventSelectProgram value) selectProgram,
+    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventCreate value) create,
     required TResult Function(ProgramEventUpdate value) update,
     required TResult Function(ProgramEventDelete value) delete,
@@ -240,9 +385,10 @@ class _$ProgramEventGetProgramsImpl implements ProgramEventGetPrograms {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventClear value)? clear,
+    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventCreate value)? create,
     TResult? Function(ProgramEventUpdate value)? update,
     TResult? Function(ProgramEventDelete value)? delete,
@@ -253,9 +399,10 @@ class _$ProgramEventGetProgramsImpl implements ProgramEventGetPrograms {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventClear value)? clear,
+    TResult Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventCreate value)? create,
     TResult Function(ProgramEventUpdate value)? update,
     TResult Function(ProgramEventDelete value)? delete,
@@ -278,6 +425,192 @@ abstract class ProgramEventGetPrograms implements ProgramEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProgramEventGetProgramsImplCopyWith<_$ProgramEventGetProgramsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ProgramEventSelectProgramImplCopyWith<$Res> {
+  factory _$$ProgramEventSelectProgramImplCopyWith(
+          _$ProgramEventSelectProgramImpl value,
+          $Res Function(_$ProgramEventSelectProgramImpl) then) =
+      __$$ProgramEventSelectProgramImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ProgramModel program});
+
+  $ProgramModelCopyWith<$Res> get program;
+}
+
+/// @nodoc
+class __$$ProgramEventSelectProgramImplCopyWithImpl<$Res>
+    extends _$ProgramEventCopyWithImpl<$Res, _$ProgramEventSelectProgramImpl>
+    implements _$$ProgramEventSelectProgramImplCopyWith<$Res> {
+  __$$ProgramEventSelectProgramImplCopyWithImpl(
+      _$ProgramEventSelectProgramImpl _value,
+      $Res Function(_$ProgramEventSelectProgramImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProgramEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? program = null,
+  }) {
+    return _then(_$ProgramEventSelectProgramImpl(
+      null == program
+          ? _value.program
+          : program // ignore: cast_nullable_to_non_nullable
+              as ProgramModel,
+    ));
+  }
+
+  /// Create a copy of ProgramEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProgramModelCopyWith<$Res> get program {
+    return $ProgramModelCopyWith<$Res>(_value.program, (value) {
+      return _then(_value.copyWith(program: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ProgramEventSelectProgramImpl implements ProgramEventSelectProgram {
+  const _$ProgramEventSelectProgramImpl(this.program);
+
+  @override
+  final ProgramModel program;
+
+  @override
+  String toString() {
+    return 'ProgramEvent.selectProgram(program: $program)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProgramEventSelectProgramImpl &&
+            (identical(other.program, program) || other.program == program));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, program);
+
+  /// Create a copy of ProgramEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProgramEventSelectProgramImplCopyWith<_$ProgramEventSelectProgramImpl>
+      get copyWith => __$$ProgramEventSelectProgramImplCopyWithImpl<
+          _$ProgramEventSelectProgramImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clear,
+    required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
+    required TResult Function(String query) filterPrograms,
+    required TResult Function(CreateProgramParams params) create,
+    required TResult Function(UpdateProgramParams params) update,
+    required TResult Function(DeleteProgramParams params) delete,
+  }) {
+    return selectProgram(program);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
+    TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
+    TResult? Function(String query)? filterPrograms,
+    TResult? Function(CreateProgramParams params)? create,
+    TResult? Function(UpdateProgramParams params)? update,
+    TResult? Function(DeleteProgramParams params)? delete,
+  }) {
+    return selectProgram?.call(program);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
+    TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
+    TResult Function(String query)? filterPrograms,
+    TResult Function(CreateProgramParams params)? create,
+    TResult Function(UpdateProgramParams params)? update,
+    TResult Function(DeleteProgramParams params)? delete,
+    required TResult orElse(),
+  }) {
+    if (selectProgram != null) {
+      return selectProgram(program);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProgramEventClear value) clear,
+    required TResult Function(ProgramEventGetPrograms value) getPrograms,
+    required TResult Function(ProgramEventSelectProgram value) selectProgram,
+    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
+    required TResult Function(ProgramEventCreate value) create,
+    required TResult Function(ProgramEventUpdate value) update,
+    required TResult Function(ProgramEventDelete value) delete,
+  }) {
+    return selectProgram(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProgramEventClear value)? clear,
+    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
+    TResult? Function(ProgramEventCreate value)? create,
+    TResult? Function(ProgramEventUpdate value)? update,
+    TResult? Function(ProgramEventDelete value)? delete,
+  }) {
+    return selectProgram?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProgramEventClear value)? clear,
+    TResult Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
+    TResult Function(ProgramEventCreate value)? create,
+    TResult Function(ProgramEventUpdate value)? update,
+    TResult Function(ProgramEventDelete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (selectProgram != null) {
+      return selectProgram(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProgramEventSelectProgram implements ProgramEvent {
+  const factory ProgramEventSelectProgram(final ProgramModel program) =
+      _$ProgramEventSelectProgramImpl;
+
+  ProgramModel get program;
+
+  /// Create a copy of ProgramEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ProgramEventSelectProgramImplCopyWith<_$ProgramEventSelectProgramImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -352,9 +685,10 @@ class _$ProgramEventFilterProgramsImpl implements ProgramEventFilterPrograms {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllProgramParams params) getPrograms,
-    required TResult Function(String query) filterPrograms,
     required TResult Function() clear,
+    required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
+    required TResult Function(String query) filterPrograms,
     required TResult Function(CreateProgramParams params) create,
     required TResult Function(UpdateProgramParams params) update,
     required TResult Function(DeleteProgramParams params) delete,
@@ -365,9 +699,10 @@ class _$ProgramEventFilterProgramsImpl implements ProgramEventFilterPrograms {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllProgramParams params)? getPrograms,
-    TResult? Function(String query)? filterPrograms,
     TResult? Function()? clear,
+    TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
+    TResult? Function(String query)? filterPrograms,
     TResult? Function(CreateProgramParams params)? create,
     TResult? Function(UpdateProgramParams params)? update,
     TResult? Function(DeleteProgramParams params)? delete,
@@ -378,9 +713,10 @@ class _$ProgramEventFilterProgramsImpl implements ProgramEventFilterPrograms {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllProgramParams params)? getPrograms,
-    TResult Function(String query)? filterPrograms,
     TResult Function()? clear,
+    TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
+    TResult Function(String query)? filterPrograms,
     TResult Function(CreateProgramParams params)? create,
     TResult Function(UpdateProgramParams params)? update,
     TResult Function(DeleteProgramParams params)? delete,
@@ -395,9 +731,10 @@ class _$ProgramEventFilterProgramsImpl implements ProgramEventFilterPrograms {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProgramEventGetPrograms value) getPrograms,
-    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventClear value) clear,
+    required TResult Function(ProgramEventGetPrograms value) getPrograms,
+    required TResult Function(ProgramEventSelectProgram value) selectProgram,
+    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventCreate value) create,
     required TResult Function(ProgramEventUpdate value) update,
     required TResult Function(ProgramEventDelete value) delete,
@@ -408,9 +745,10 @@ class _$ProgramEventFilterProgramsImpl implements ProgramEventFilterPrograms {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventClear value)? clear,
+    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventCreate value)? create,
     TResult? Function(ProgramEventUpdate value)? update,
     TResult? Function(ProgramEventDelete value)? delete,
@@ -421,9 +759,10 @@ class _$ProgramEventFilterProgramsImpl implements ProgramEventFilterPrograms {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventClear value)? clear,
+    TResult Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventCreate value)? create,
     TResult Function(ProgramEventUpdate value)? update,
     TResult Function(ProgramEventDelete value)? delete,
@@ -447,135 +786,6 @@ abstract class ProgramEventFilterPrograms implements ProgramEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProgramEventFilterProgramsImplCopyWith<_$ProgramEventFilterProgramsImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ProgramEventClearImplCopyWith<$Res> {
-  factory _$$ProgramEventClearImplCopyWith(_$ProgramEventClearImpl value,
-          $Res Function(_$ProgramEventClearImpl) then) =
-      __$$ProgramEventClearImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ProgramEventClearImplCopyWithImpl<$Res>
-    extends _$ProgramEventCopyWithImpl<$Res, _$ProgramEventClearImpl>
-    implements _$$ProgramEventClearImplCopyWith<$Res> {
-  __$$ProgramEventClearImplCopyWithImpl(_$ProgramEventClearImpl _value,
-      $Res Function(_$ProgramEventClearImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProgramEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ProgramEventClearImpl implements ProgramEventClear {
-  const _$ProgramEventClearImpl();
-
-  @override
-  String toString() {
-    return 'ProgramEvent.clear()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ProgramEventClearImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(GetAllProgramParams params) getPrograms,
-    required TResult Function(String query) filterPrograms,
-    required TResult Function() clear,
-    required TResult Function(CreateProgramParams params) create,
-    required TResult Function(UpdateProgramParams params) update,
-    required TResult Function(DeleteProgramParams params) delete,
-  }) {
-    return clear();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllProgramParams params)? getPrograms,
-    TResult? Function(String query)? filterPrograms,
-    TResult? Function()? clear,
-    TResult? Function(CreateProgramParams params)? create,
-    TResult? Function(UpdateProgramParams params)? update,
-    TResult? Function(DeleteProgramParams params)? delete,
-  }) {
-    return clear?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllProgramParams params)? getPrograms,
-    TResult Function(String query)? filterPrograms,
-    TResult Function()? clear,
-    TResult Function(CreateProgramParams params)? create,
-    TResult Function(UpdateProgramParams params)? update,
-    TResult Function(DeleteProgramParams params)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProgramEventGetPrograms value) getPrograms,
-    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
-    required TResult Function(ProgramEventClear value) clear,
-    required TResult Function(ProgramEventCreate value) create,
-    required TResult Function(ProgramEventUpdate value) update,
-    required TResult Function(ProgramEventDelete value) delete,
-  }) {
-    return clear(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
-    TResult? Function(ProgramEventClear value)? clear,
-    TResult? Function(ProgramEventCreate value)? create,
-    TResult? Function(ProgramEventUpdate value)? update,
-    TResult? Function(ProgramEventDelete value)? delete,
-  }) {
-    return clear?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
-    TResult Function(ProgramEventClear value)? clear,
-    TResult Function(ProgramEventCreate value)? create,
-    TResult Function(ProgramEventUpdate value)? update,
-    TResult Function(ProgramEventDelete value)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProgramEventClear implements ProgramEvent {
-  const factory ProgramEventClear() = _$ProgramEventClearImpl;
 }
 
 /// @nodoc
@@ -659,9 +869,10 @@ class _$ProgramEventCreateImpl implements ProgramEventCreate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllProgramParams params) getPrograms,
-    required TResult Function(String query) filterPrograms,
     required TResult Function() clear,
+    required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
+    required TResult Function(String query) filterPrograms,
     required TResult Function(CreateProgramParams params) create,
     required TResult Function(UpdateProgramParams params) update,
     required TResult Function(DeleteProgramParams params) delete,
@@ -672,9 +883,10 @@ class _$ProgramEventCreateImpl implements ProgramEventCreate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllProgramParams params)? getPrograms,
-    TResult? Function(String query)? filterPrograms,
     TResult? Function()? clear,
+    TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
+    TResult? Function(String query)? filterPrograms,
     TResult? Function(CreateProgramParams params)? create,
     TResult? Function(UpdateProgramParams params)? update,
     TResult? Function(DeleteProgramParams params)? delete,
@@ -685,9 +897,10 @@ class _$ProgramEventCreateImpl implements ProgramEventCreate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllProgramParams params)? getPrograms,
-    TResult Function(String query)? filterPrograms,
     TResult Function()? clear,
+    TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
+    TResult Function(String query)? filterPrograms,
     TResult Function(CreateProgramParams params)? create,
     TResult Function(UpdateProgramParams params)? update,
     TResult Function(DeleteProgramParams params)? delete,
@@ -702,9 +915,10 @@ class _$ProgramEventCreateImpl implements ProgramEventCreate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProgramEventGetPrograms value) getPrograms,
-    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventClear value) clear,
+    required TResult Function(ProgramEventGetPrograms value) getPrograms,
+    required TResult Function(ProgramEventSelectProgram value) selectProgram,
+    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventCreate value) create,
     required TResult Function(ProgramEventUpdate value) update,
     required TResult Function(ProgramEventDelete value) delete,
@@ -715,9 +929,10 @@ class _$ProgramEventCreateImpl implements ProgramEventCreate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventClear value)? clear,
+    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventCreate value)? create,
     TResult? Function(ProgramEventUpdate value)? update,
     TResult? Function(ProgramEventDelete value)? delete,
@@ -728,9 +943,10 @@ class _$ProgramEventCreateImpl implements ProgramEventCreate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventClear value)? clear,
+    TResult Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventCreate value)? create,
     TResult Function(ProgramEventUpdate value)? update,
     TResult Function(ProgramEventDelete value)? delete,
@@ -837,9 +1053,10 @@ class _$ProgramEventUpdateImpl implements ProgramEventUpdate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllProgramParams params) getPrograms,
-    required TResult Function(String query) filterPrograms,
     required TResult Function() clear,
+    required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
+    required TResult Function(String query) filterPrograms,
     required TResult Function(CreateProgramParams params) create,
     required TResult Function(UpdateProgramParams params) update,
     required TResult Function(DeleteProgramParams params) delete,
@@ -850,9 +1067,10 @@ class _$ProgramEventUpdateImpl implements ProgramEventUpdate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllProgramParams params)? getPrograms,
-    TResult? Function(String query)? filterPrograms,
     TResult? Function()? clear,
+    TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
+    TResult? Function(String query)? filterPrograms,
     TResult? Function(CreateProgramParams params)? create,
     TResult? Function(UpdateProgramParams params)? update,
     TResult? Function(DeleteProgramParams params)? delete,
@@ -863,9 +1081,10 @@ class _$ProgramEventUpdateImpl implements ProgramEventUpdate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllProgramParams params)? getPrograms,
-    TResult Function(String query)? filterPrograms,
     TResult Function()? clear,
+    TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
+    TResult Function(String query)? filterPrograms,
     TResult Function(CreateProgramParams params)? create,
     TResult Function(UpdateProgramParams params)? update,
     TResult Function(DeleteProgramParams params)? delete,
@@ -880,9 +1099,10 @@ class _$ProgramEventUpdateImpl implements ProgramEventUpdate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProgramEventGetPrograms value) getPrograms,
-    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventClear value) clear,
+    required TResult Function(ProgramEventGetPrograms value) getPrograms,
+    required TResult Function(ProgramEventSelectProgram value) selectProgram,
+    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventCreate value) create,
     required TResult Function(ProgramEventUpdate value) update,
     required TResult Function(ProgramEventDelete value) delete,
@@ -893,9 +1113,10 @@ class _$ProgramEventUpdateImpl implements ProgramEventUpdate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventClear value)? clear,
+    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventCreate value)? create,
     TResult? Function(ProgramEventUpdate value)? update,
     TResult? Function(ProgramEventDelete value)? delete,
@@ -906,9 +1127,10 @@ class _$ProgramEventUpdateImpl implements ProgramEventUpdate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventClear value)? clear,
+    TResult Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventCreate value)? create,
     TResult Function(ProgramEventUpdate value)? update,
     TResult Function(ProgramEventDelete value)? delete,
@@ -1015,9 +1237,10 @@ class _$ProgramEventDeleteImpl implements ProgramEventDelete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GetAllProgramParams params) getPrograms,
-    required TResult Function(String query) filterPrograms,
     required TResult Function() clear,
+    required TResult Function(GetAllProgramParams params) getPrograms,
+    required TResult Function(ProgramModel program) selectProgram,
+    required TResult Function(String query) filterPrograms,
     required TResult Function(CreateProgramParams params) create,
     required TResult Function(UpdateProgramParams params) update,
     required TResult Function(DeleteProgramParams params) delete,
@@ -1028,9 +1251,10 @@ class _$ProgramEventDeleteImpl implements ProgramEventDelete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllProgramParams params)? getPrograms,
-    TResult? Function(String query)? filterPrograms,
     TResult? Function()? clear,
+    TResult? Function(GetAllProgramParams params)? getPrograms,
+    TResult? Function(ProgramModel program)? selectProgram,
+    TResult? Function(String query)? filterPrograms,
     TResult? Function(CreateProgramParams params)? create,
     TResult? Function(UpdateProgramParams params)? update,
     TResult? Function(DeleteProgramParams params)? delete,
@@ -1041,9 +1265,10 @@ class _$ProgramEventDeleteImpl implements ProgramEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllProgramParams params)? getPrograms,
-    TResult Function(String query)? filterPrograms,
     TResult Function()? clear,
+    TResult Function(GetAllProgramParams params)? getPrograms,
+    TResult Function(ProgramModel program)? selectProgram,
+    TResult Function(String query)? filterPrograms,
     TResult Function(CreateProgramParams params)? create,
     TResult Function(UpdateProgramParams params)? update,
     TResult Function(DeleteProgramParams params)? delete,
@@ -1058,9 +1283,10 @@ class _$ProgramEventDeleteImpl implements ProgramEventDelete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProgramEventGetPrograms value) getPrograms,
-    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventClear value) clear,
+    required TResult Function(ProgramEventGetPrograms value) getPrograms,
+    required TResult Function(ProgramEventSelectProgram value) selectProgram,
+    required TResult Function(ProgramEventFilterPrograms value) filterPrograms,
     required TResult Function(ProgramEventCreate value) create,
     required TResult Function(ProgramEventUpdate value) update,
     required TResult Function(ProgramEventDelete value) delete,
@@ -1071,9 +1297,10 @@ class _$ProgramEventDeleteImpl implements ProgramEventDelete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventClear value)? clear,
+    TResult? Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult? Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult? Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult? Function(ProgramEventCreate value)? create,
     TResult? Function(ProgramEventUpdate value)? update,
     TResult? Function(ProgramEventDelete value)? delete,
@@ -1084,9 +1311,10 @@ class _$ProgramEventDeleteImpl implements ProgramEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProgramEventGetPrograms value)? getPrograms,
-    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventClear value)? clear,
+    TResult Function(ProgramEventGetPrograms value)? getPrograms,
+    TResult Function(ProgramEventSelectProgram value)? selectProgram,
+    TResult Function(ProgramEventFilterPrograms value)? filterPrograms,
     TResult Function(ProgramEventCreate value)? create,
     TResult Function(ProgramEventUpdate value)? update,
     TResult Function(ProgramEventDelete value)? delete,
@@ -1118,8 +1346,8 @@ mixin _$ProgramState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
@@ -1131,8 +1359,8 @@ mixin _$ProgramState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
@@ -1144,8 +1372,8 @@ mixin _$ProgramState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
@@ -1255,8 +1483,8 @@ class _$ProgramStateInitialImpl implements ProgramStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
@@ -1271,8 +1499,8 @@ class _$ProgramStateInitialImpl implements ProgramStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
@@ -1287,8 +1515,8 @@ class _$ProgramStateInitialImpl implements ProgramStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
@@ -1397,8 +1625,8 @@ class _$ProgramStateLoadingImpl implements ProgramStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
@@ -1413,8 +1641,8 @@ class _$ProgramStateLoadingImpl implements ProgramStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
@@ -1429,8 +1657,8 @@ class _$ProgramStateLoadingImpl implements ProgramStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
@@ -1501,7 +1729,12 @@ abstract class _$$ProgramStateLoadedImplCopyWith<$Res> {
           $Res Function(_$ProgramStateLoadedImpl) then) =
       __$$ProgramStateLoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ProgramModel> programs, List<ProgramModel> filteredPrograms});
+  $Res call(
+      {List<ProgramModel> programs,
+      List<ProgramModel> filteredPrograms,
+      ProgramModel? selectedProgram});
+
+  $ProgramModelCopyWith<$Res>? get selectedProgram;
 }
 
 /// @nodoc
@@ -1519,6 +1752,7 @@ class __$$ProgramStateLoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? programs = null,
     Object? filteredPrograms = null,
+    Object? selectedProgram = freezed,
   }) {
     return _then(_$ProgramStateLoadedImpl(
       programs: null == programs
@@ -1529,7 +1763,25 @@ class __$$ProgramStateLoadedImplCopyWithImpl<$Res>
           ? _value._filteredPrograms
           : filteredPrograms // ignore: cast_nullable_to_non_nullable
               as List<ProgramModel>,
+      selectedProgram: freezed == selectedProgram
+          ? _value.selectedProgram
+          : selectedProgram // ignore: cast_nullable_to_non_nullable
+              as ProgramModel?,
     ));
+  }
+
+  /// Create a copy of ProgramState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProgramModelCopyWith<$Res>? get selectedProgram {
+    if (_value.selectedProgram == null) {
+      return null;
+    }
+
+    return $ProgramModelCopyWith<$Res>(_value.selectedProgram!, (value) {
+      return _then(_value.copyWith(selectedProgram: value));
+    });
   }
 }
 
@@ -1538,7 +1790,8 @@ class __$$ProgramStateLoadedImplCopyWithImpl<$Res>
 class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
   const _$ProgramStateLoadedImpl(
       {required final List<ProgramModel> programs,
-      required final List<ProgramModel> filteredPrograms})
+      required final List<ProgramModel> filteredPrograms,
+      this.selectedProgram})
       : _programs = programs,
         _filteredPrograms = filteredPrograms;
 
@@ -1560,8 +1813,11 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
   }
 
   @override
+  final ProgramModel? selectedProgram;
+
+  @override
   String toString() {
-    return 'ProgramState.loaded(programs: $programs, filteredPrograms: $filteredPrograms)';
+    return 'ProgramState.loaded(programs: $programs, filteredPrograms: $filteredPrograms, selectedProgram: $selectedProgram)';
   }
 
   @override
@@ -1571,14 +1827,17 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
             other is _$ProgramStateLoadedImpl &&
             const DeepCollectionEquality().equals(other._programs, _programs) &&
             const DeepCollectionEquality()
-                .equals(other._filteredPrograms, _filteredPrograms));
+                .equals(other._filteredPrograms, _filteredPrograms) &&
+            (identical(other.selectedProgram, selectedProgram) ||
+                other.selectedProgram == selectedProgram));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_programs),
-      const DeepCollectionEquality().hash(_filteredPrograms));
+      const DeepCollectionEquality().hash(_filteredPrograms),
+      selectedProgram);
 
   /// Create a copy of ProgramState
   /// with the given fields replaced by the non-null parameter values.
@@ -1594,15 +1853,15 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
     required TResult Function(ProgramModel program) updated,
     required TResult Function(ProgramModel program) deleted,
   }) {
-    return loaded(programs, filteredPrograms);
+    return loaded(programs, filteredPrograms, selectedProgram);
   }
 
   @override
@@ -1610,15 +1869,15 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
     TResult? Function(ProgramModel program)? updated,
     TResult? Function(ProgramModel program)? deleted,
   }) {
-    return loaded?.call(programs, filteredPrograms);
+    return loaded?.call(programs, filteredPrograms, selectedProgram);
   }
 
   @override
@@ -1626,8 +1885,8 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
@@ -1636,7 +1895,7 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(programs, filteredPrograms);
+      return loaded(programs, filteredPrograms, selectedProgram);
     }
     return orElse();
   }
@@ -1690,12 +1949,13 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
 
 abstract class ProgramStateLoaded implements ProgramState {
   const factory ProgramStateLoaded(
-          {required final List<ProgramModel> programs,
-          required final List<ProgramModel> filteredPrograms}) =
-      _$ProgramStateLoadedImpl;
+      {required final List<ProgramModel> programs,
+      required final List<ProgramModel> filteredPrograms,
+      final ProgramModel? selectedProgram}) = _$ProgramStateLoadedImpl;
 
   List<ProgramModel> get programs;
   List<ProgramModel> get filteredPrograms;
+  ProgramModel? get selectedProgram;
 
   /// Create a copy of ProgramState
   /// with the given fields replaced by the non-null parameter values.
@@ -1775,8 +2035,8 @@ class _$ProgramStateFailureImpl implements ProgramStateFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
@@ -1791,8 +2051,8 @@ class _$ProgramStateFailureImpl implements ProgramStateFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
@@ -1807,8 +2067,8 @@ class _$ProgramStateFailureImpl implements ProgramStateFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
@@ -1965,8 +2225,8 @@ class _$ProgramStateCreatedImpl implements ProgramStateCreated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
@@ -1981,8 +2241,8 @@ class _$ProgramStateCreatedImpl implements ProgramStateCreated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
@@ -1997,8 +2257,8 @@ class _$ProgramStateCreatedImpl implements ProgramStateCreated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
@@ -2155,8 +2415,8 @@ class _$ProgramStateUpdatedImpl implements ProgramStateUpdated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
@@ -2171,8 +2431,8 @@ class _$ProgramStateUpdatedImpl implements ProgramStateUpdated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
@@ -2187,8 +2447,8 @@ class _$ProgramStateUpdatedImpl implements ProgramStateUpdated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
@@ -2345,8 +2605,8 @@ class _$ProgramStateDeletedImpl implements ProgramStateDeleted {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)
+    required TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
@@ -2361,8 +2621,8 @@ class _$ProgramStateDeletedImpl implements ProgramStateDeleted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult? Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
@@ -2377,8 +2637,8 @@ class _$ProgramStateDeletedImpl implements ProgramStateDeleted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<ProgramModel> programs, List<ProgramModel> filteredPrograms)?
+    TResult Function(List<ProgramModel> programs,
+            List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
