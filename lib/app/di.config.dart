@@ -292,6 +292,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1040.LeaveClubUsecase(gh<_i561.ClubRepository>()));
     gh.lazySingleton<_i561.ExamRepository>(
         () => _i249.ExamRepositoryImpl(gh<_i561.ExamRemoteDatasource>()));
+    gh.lazySingleton<_i1004.ClubBlocRead>(
+        () => _i1004.ClubBlocRead(gh<_i561.GetAllClubUsecase>()));
     gh.lazySingleton<_i980.SignUpUsecase>(
         () => _i980.SignUpUsecase(gh<_i561.AuthRepository>()));
     gh.lazySingleton<_i852.SignInUsecase>(
@@ -300,6 +302,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1029.AuthMeUsecase(gh<_i561.AuthRepository>()));
     gh.lazySingleton<_i250.SignOutUsecase>(
         () => _i250.SignOutUsecase(gh<_i561.AuthRepository>()));
+    gh.lazySingleton<_i1004.ClubBlocWrite>(() => _i1004.ClubBlocWrite(
+          gh<_i561.CreateClubUsecase>(),
+          gh<_i561.UpdateClubUsecase>(),
+          gh<_i561.DeleteClubUsecase>(),
+        ));
     gh.lazySingleton<_i280.AuthBloc>(() => _i280.AuthBloc(
           gh<_i561.AuthMeUsecase>(),
           gh<_i561.SignInUsecase>(),
@@ -372,11 +379,15 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i639.CreateEvaluationUsecase(gh<_i561.EvaluationRepository>()));
     gh.lazySingleton<_i1066.UpdateEvaluationUsecase>(
         () => _i1066.UpdateEvaluationUsecase(gh<_i561.EvaluationRepository>()));
-    gh.lazySingleton<_i804.QuestionBloc>(() => _i804.QuestionBloc(
-          gh<_i561.GetAllQuestionUsecase>(),
+    gh.lazySingleton<_i804.QuestionBlocWrite>(() => _i804.QuestionBlocWrite(
           gh<_i561.CreateQuestionBatchUsecase>(),
           gh<_i561.UpdateQuestionBatchUsecase>(),
           gh<_i561.DeleteQuestionUsecase>(),
+        ));
+    gh.lazySingleton<_i838.ExamBlocWrite>(() => _i838.ExamBlocWrite(
+          gh<_i561.CreateExamUsecase>(),
+          gh<_i561.UpdateExamUsecase>(),
+          gh<_i561.DeleteExamUsecase>(),
         ));
     gh.lazySingleton<_i581.CreateTacticalUsecase>(
         () => _i581.CreateTacticalUsecase(gh<_i561.TacticalRepository>()));
@@ -400,46 +411,42 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i810.GetProgramByIdUsecase(gh<_i561.ProgramRepository>()));
     gh.lazySingleton<_i1022.GetAllProgramUsecase>(
         () => _i1022.GetAllProgramUsecase(gh<_i561.ProgramRepository>()));
-    gh.lazySingleton<_i674.TacticalBloc>(() => _i674.TacticalBloc(
-          gh<_i561.GetAllTacticalUsecase>(),
+    gh.lazySingleton<_i544.EvaluationBlocRead>(
+        () => _i544.EvaluationBlocRead(gh<_i561.GetAllEvaluationUsecase>()));
+    gh.lazySingleton<_i674.TacticalBlocWrite>(() => _i674.TacticalBlocWrite(
           gh<_i561.CreateTacticalUsecase>(),
           gh<_i561.UpdateTacticalUsecase>(),
           gh<_i561.DeleteTacticalUsecase>(),
         ));
-    gh.lazySingleton<_i1004.ClubBloc>(() => _i1004.ClubBloc(
-          gh<_i561.GetAllClubUsecase>(),
-          gh<_i561.CreateClubUsecase>(),
-          gh<_i561.UpdateClubUsecase>(),
-          gh<_i561.DeleteClubUsecase>(),
-        ));
-    gh.lazySingleton<_i187.ExerciseBloc>(() => _i187.ExerciseBloc(
-          gh<_i561.GetAllExerciseUsecase>(),
-          gh<_i561.CreateExerciseBatchUsecase>(),
-          gh<_i561.UpdateExerciseBatchUsecase>(),
-          gh<_i561.DeleteExerciseUsecase>(),
-        ));
-    gh.lazySingleton<_i544.EvaluationBloc>(() => _i544.EvaluationBloc(
-          gh<_i561.GetAllEvaluationUsecase>(),
+    gh.lazySingleton<_i544.EvaluationBlocWrite>(() => _i544.EvaluationBlocWrite(
           gh<_i561.CreateEvaluationUsecase>(),
           gh<_i561.UpdateEvaluationUsecase>(),
           gh<_i561.DeleteEvaluationUsecase>(),
         ));
-    gh.lazySingleton<_i408.ProgramBloc>(() => _i408.ProgramBloc(
-          gh<_i561.GetAllProgramUsecase>(),
-          gh<_i561.CreateProgramUsecase>(),
-          gh<_i561.UpdateProgramUsecase>(),
-          gh<_i561.DeleteProgramUsecase>(),
+    gh.lazySingleton<_i187.ExerciseBlocRead>(
+        () => _i187.ExerciseBlocRead(gh<_i561.GetAllExerciseUsecase>()));
+    gh.lazySingleton<_i804.QuestionBlocRead>(
+        () => _i804.QuestionBlocRead(gh<_i561.GetAllQuestionUsecase>()));
+    gh.lazySingleton<_i187.ExerciseBlocWrite>(() => _i187.ExerciseBlocWrite(
+          gh<_i561.CreateExerciseBatchUsecase>(),
+          gh<_i561.UpdateExerciseBatchUsecase>(),
+          gh<_i561.DeleteExerciseUsecase>(),
         ));
-    gh.lazySingleton<_i838.ExamBloc>(() => _i838.ExamBloc(
-          gh<_i561.GetAllExamUsecase>(),
-          gh<_i561.CreateExamUsecase>(),
-          gh<_i561.UpdateExamUsecase>(),
-          gh<_i561.DeleteExamUsecase>(),
-        ));
+    gh.lazySingleton<_i674.TacticalBlocRead>(
+        () => _i674.TacticalBlocRead(gh<_i561.GetAllTacticalUsecase>()));
     gh.factory<_i792.UserBloc>(() => _i792.UserBloc(
           gh<_i561.GetMeUsecase>(),
           gh<_i561.FindUsernamesUsecase>(),
           gh<_i561.GetFcmTokenUsecase>(),
+        ));
+    gh.lazySingleton<_i838.ExamBlocRead>(
+        () => _i838.ExamBlocRead(gh<_i561.GetAllExamUsecase>()));
+    gh.lazySingleton<_i408.ProgramBlocRead>(
+        () => _i408.ProgramBlocRead(gh<_i561.GetAllProgramUsecase>()));
+    gh.lazySingleton<_i408.ProgramBlocWrite>(() => _i408.ProgramBlocWrite(
+          gh<_i561.CreateProgramUsecase>(),
+          gh<_i561.UpdateProgramUsecase>(),
+          gh<_i561.DeleteProgramUsecase>(),
         ));
     return this;
   }

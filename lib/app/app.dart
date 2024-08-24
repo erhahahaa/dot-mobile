@@ -2,6 +2,7 @@ import 'package:dot_coaching/app/di.dart';
 import 'package:dot_coaching/app/router.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,11 +41,14 @@ class DotApp extends StatelessWidget {
         BlocProvider(
           create: (context) => sl<AuthBloc>(),
         ),
-        BlocProvider<ClubBloc>(
-          create: (_) => sl<ClubBloc>()
-            ..add(
-              const ClubEvent.getClubs(),
-            ),
+        // BlocProvider<ClubBloc>(
+        //   create: (_) => sl<ClubBloc>()
+        //     ..add(
+        //       const ClubEvent.getClubs(),
+        //     ),
+        // ),
+        BlocProvider<ClubBlocRead>(
+          create: (_) => sl<ClubBlocRead>()..add(const BlocEventRead.get()),
         ),
       ],
       child: ScreenUtilInit(

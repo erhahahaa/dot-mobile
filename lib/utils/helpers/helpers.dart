@@ -1,3 +1,3 @@
 export 'logger.dart';
-export 'states/states.dart';
+export 'blocs/blocs.dart';
 export 'observer.dart';

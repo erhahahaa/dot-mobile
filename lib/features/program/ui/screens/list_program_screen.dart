@@ -18,7 +18,7 @@ class ListProgramScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final clubBloc = context.watch<ClubBloc>();
+    final clubBloc = context.watch<ClubBlocRead>();
     final club = clubBloc.state.maybeWhen(
       success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
@@ -76,8 +76,8 @@ class ListProgramScreen extends StatelessWidget {
               '${context.str?.search} ${context.str?.program.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
-            context.read<ClubBloc>().add(
-                  ClubEvent.filterClubs(value),
+            context.read<ClubBlocRead>().add(
+                  BlocEventRead.filter(value),
                 );
           },
           trailing: MoonButton.icon(
@@ -85,8 +85,8 @@ class ListProgramScreen extends StatelessWidget {
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
               search.clear();
-              context.read<ClubBloc>().add(
-                    const ClubEvent.filterClubs(''),
+              context.read<ClubBlocRead>().add(
+                    const BlocEventRead.filter(''),
                   );
             },
           ),
@@ -99,12 +99,12 @@ class ListProgramScreen extends StatelessWidget {
     BuildContext context,
     ScrollController scrollController,
   ) {
-    final clubBloc = context.watch<ClubBloc>();
+    final clubBloc = context.watch<ClubBlocRead>();
     final club = clubBloc.state.maybeWhen(
       success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
-    return BlocBuilder<ProgramBloc, ProgramState>(
+    return BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
       builder: (context, state) {
         return state.maybeWhen(
           success: (_, filteredPrograms, __) {
@@ -117,10 +117,8 @@ class ListProgramScreen extends StatelessWidget {
                       '${club?.name} doesn\'t had program yet',
                       onRetry: () {
                         if (club != null) {
-                          context.read<ProgramBloc>().add(
-                                ProgramEvent.getPrograms(
-                                  GetAllProgramParams(clubId: club.id),
-                                ),
+                          context.read<ProgramBlocRead>().add(
+                                BlocEventRead.get(id: club.id),
                               );
                         }
                       },

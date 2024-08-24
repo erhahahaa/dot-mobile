@@ -22,8 +22,9 @@ class ListClubScreen extends StatelessWidget {
       orElse: () => const UserModel(),
     );
     return ParentWithSearchAndScrollController(
-      onInit: (search, scroll) => context.read<ClubBloc>().add(
-            const ClubEvent.selectClub(null),
+      onInit: (search, scroll) => context.read<ClubBlocRead>().add(
+            // const ClubEvent.selectClub(null),
+            const BlocEventRead.clear(),
           ),
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
@@ -110,7 +111,9 @@ class ListClubScreen extends StatelessWidget {
                 Gap(8.h),
                 FloatingActionButton.extended(
                   heroTag: 'new_club_button_$hashCode',
-                  onPressed: () {},
+                  onPressed: () {
+                    context.router.push(const UpsertClubRoute());
+                  },
                   icon: const Icon(Icons.add),
                   label: const Text('New Club'),
                 ),
@@ -146,8 +149,8 @@ class ListClubScreen extends StatelessWidget {
               '${context.str?.search} ${context.str?.club.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
-            context.read<ClubBloc>().add(
-                  ClubEvent.filterClubs(value),
+            context.read<ClubBlocRead>().add(
+                  BlocEventRead.filter(value),
                 );
           },
           trailing: MoonButton.icon(
@@ -155,8 +158,8 @@ class ListClubScreen extends StatelessWidget {
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
               search.clear();
-              context.read<ClubBloc>().add(
-                    const ClubEvent.filterClubs(''),
+              context.read<ClubBlocRead>().add(
+                    const BlocEventRead.filter(''),
                   );
             },
           ),
@@ -169,7 +172,7 @@ class ListClubScreen extends StatelessWidget {
     BuildContext context,
     ScrollController scrollController,
   ) {
-    return BlocBuilder<ClubBloc, ClubState>(
+    return BlocBuilder<ClubBlocRead, BlocStateRead<ClubModel>>(
       builder: (context, state) {
         return state.maybeWhen(
           success: (_, filteredClubs, __) {
@@ -214,8 +217,8 @@ class ListClubScreen extends StatelessWidget {
     bool isLast,
   ) {
     void onTap() {
-      context.read<ClubBloc>().add(
-            ClubEvent.selectClub(club),
+      context.read<ClubBlocRead>().add(
+            BlocEventRead.select(club),
           );
       context.router.push(
         ClubShellRoute(id: club.id),

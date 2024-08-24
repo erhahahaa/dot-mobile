@@ -1,63 +1,66 @@
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'evaluation_bloc.freezed.dart';
-part 'evaluation_event.dart';
-part 'evaluation_state.dart';
-
 @lazySingleton
-class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
+class EvaluationBlocRead extends BlocRead<EvaluationModel> {
   final GetAllEvaluationUsecase _getAllEvaluationUsecase;
-  final CreateEvaluationUsecase _createEvaluationUsecase;
-  final UpdateEvaluationUsecase _updateEvaluationUsecase;
-  final DeleteEvaluationUsecase _deleteEvaluationUsecase;
 
-  EvaluationBloc(
-    this._getAllEvaluationUsecase,
-    this._createEvaluationUsecase,
-    this._updateEvaluationUsecase,
-    this._deleteEvaluationUsecase,
-  ) : super(const EvaluationStateInitial()) {
-    on<EvaluationEventClear>(_onClear);
-    on<EvaluationEventGetEvaluations>(_onGetEvaluations);
-    on<EvaluationEventFilterEvaluations>(_onFilterEvaluations);
-    on<EvaluationEventSelectEvaluation>(_onSelectEvaluation);
-    on<EvaluationEventCreate>(_onCreate);
-    on<EvaluationEventUpdate>(_onUpdate);
-    on<EvaluationEventDelete>(_onDelete);
+  EvaluationBlocRead(this._getAllEvaluationUsecase)
+      : super(const BlocStateReadInitial()) {
+    on<BlocEventReadClear<EvaluationModel>>(onClear);
+    on<BlocEventReadGet<EvaluationModel>>(onGet);
+    on<BlocEventReadSelect<EvaluationModel>>(onSelect);
+    on<BlocEventReadFilter<EvaluationModel>>(onFilter);
   }
 
-  void _onClear(
-    EvaluationEventClear event,
-    Emitter<EvaluationState> emit,
-  ) =>
-      emit(const EvaluationStateInitial());
-
-  void _onGetEvaluations(
-    EvaluationEventGetEvaluations event,
-    Emitter<EvaluationState> emit,
+  @override
+  void onGet(
+    BlocEventReadGet event,
+    Emitter<BlocStateRead<EvaluationModel>> emit,
   ) async {
-    emit(const EvaluationStateLoading());
-    final res = await _getAllEvaluationUsecase.call(event.params);
+    final id = event.id;
+    if (id == null) {
+      return emit(const BlocStateRead.failure('Id required'));
+    }
+    emit(const BlocStateReadLoading());
+
+    final res = await _getAllEvaluationUsecase.call(
+      GetAllEvaluationParams(clubId: id),
+    );
 
     res.fold(
-      (failure) => emit(EvaluationStateFailure(failure.message)),
-      (success) => emit(
-        EvaluationStateSuccess(
-          evaluations: success,
-          filteredEvaluations: success,
-        ),
-      ),
+      (failure) => emit(BlocStateReadFailure(failure.message)),
+      (success) => emit(BlocStateReadSuccess(
+        items: success,
+        filteredItems: success,
+      )),
     );
   }
 
-  void _onFilterEvaluations(
-    EvaluationEventFilterEvaluations event,
-    Emitter<EvaluationState> emit,
+  @override
+  void onSelect(
+    BlocEventReadSelect<EvaluationModel> event,
+    Emitter<BlocStateRead<EvaluationModel>> emit,
   ) {
-    emit(const EvaluationStateLoading());
+    state.maybeWhen(
+      success: (evaluations, filteredEvaluations, _) {
+        emit(BlocStateReadSuccess(
+          items: evaluations,
+          filteredItems: filteredEvaluations,
+          selectedItem: event.item,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
+
+  @override
+  void onFilter(
+    BlocEventReadFilter event,
+    Emitter<BlocStateRead<EvaluationModel>> emit,
+  ) {
     state.maybeWhen(
       success: (evaluations, _, __) {
         final finds = evaluations
@@ -75,77 +78,75 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
                   false,
             )
             .toList();
-        if (finds.isEmpty) {
-          emit(
-              EvaluationStateFailure('Question with ${event.query} not found'));
-        } else {
-          emit(
-            EvaluationStateSuccess(
-              evaluations: evaluations,
-              filteredEvaluations: finds,
-            ),
-          );
-        }
+
+        emit(BlocStateReadSuccess(
+          items: evaluations,
+          filteredItems: finds,
+        ));
       },
-      orElse: () => emit(
-        const EvaluationStateFailure('Evaluation was empty'),
-      ),
+      orElse: () => null,
     );
   }
+}
 
-  void _onSelectEvaluation(
-    EvaluationEventSelectEvaluation event,
-    Emitter<EvaluationState> emit,
-  ) {
-    state.maybeWhen(
-      success: (evaluations, filteredEvaluations, _) {
-        emit(
-          EvaluationStateSuccess(
-            evaluations: evaluations,
-            filteredEvaluations: filteredEvaluations,
-            selectedEvaluation: event.evaluation,
-          ),
-        );
-      },
-      orElse: () => emit(
-        const EvaluationStateFailure('Evaluation was empty'),
-      ),
-    );
+@lazySingleton
+class EvaluationBlocWrite extends BlocWrite<EvaluationModel> {
+  final CreateEvaluationUsecase _createEvaluationUsecase;
+  final UpdateEvaluationUsecase _updateEvaluationUsecase;
+  final DeleteEvaluationUsecase _deleteEvaluationUsecase;
+
+  EvaluationBlocWrite(
+    this._createEvaluationUsecase,
+    this._updateEvaluationUsecase,
+    this._deleteEvaluationUsecase,
+  ) : super(const BlocStateWriteInitial()) {
+    on<BlocEventWriteCreate>(onCreate);
+    on<BlocEventWriteUpdate>(onUpdate);
+    on<BlocEventWriteDelete>(onDelete);
   }
 
-  void _onCreate(
-    EvaluationEventCreate event,
-    Emitter<EvaluationState> emit,
+  @override
+  void onCreate(
+    BlocEventWriteCreate event,
+    Emitter<BlocStateWrite<EvaluationModel>> emit,
   ) async {
-    final res = await _createEvaluationUsecase.call(event.params);
+    final res = await _createEvaluationUsecase.call(
+      event.params as CreateEvaluationParams,
+    );
 
     res.fold(
-      (failure) => emit(EvaluationStateFailure(failure.message)),
-      (success) => emit(EvaluationStateCreated(success)),
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) => emit(BlocStateWriteSuccess(success)),
     );
   }
 
-  void _onUpdate(
-    EvaluationEventUpdate event,
-    Emitter<EvaluationState> emit,
+  @override
+  void onUpdate(
+    BlocEventWriteUpdate event,
+    Emitter<BlocStateWrite<EvaluationModel>> emit,
   ) async {
-    final res = await _updateEvaluationUsecase.call(event.params);
+    final res = await _updateEvaluationUsecase.call(
+      event.params as UpdateEvaluationParams,
+    );
 
     res.fold(
-      (failure) => emit(EvaluationStateFailure(failure.message)),
-      (success) => emit(EvaluationStateUpdated(success)),
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) => emit(BlocStateWriteSuccess(success)),
     );
   }
 
-  void _onDelete(
-    EvaluationEventDelete event,
-    Emitter<EvaluationState> emit,
+  @override
+  void onDelete(
+    BlocEventWriteDelete event,
+    Emitter<BlocStateWrite<EvaluationModel>> emit,
   ) async {
-    final res = await _deleteEvaluationUsecase.call(event.params);
+    final res = await _deleteEvaluationUsecase.call(
+      event.params as DeleteEvaluationParams,
+    );
 
     res.fold(
-      (failure) => emit(EvaluationStateFailure(failure.message)),
-      (success) => emit(EvaluationStateDeleted(success)),
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) => emit(BlocStateWriteSuccess(success)),
     );
   }
 }

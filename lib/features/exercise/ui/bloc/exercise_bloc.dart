@@ -1,64 +1,68 @@
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'exercise_bloc.freezed.dart';
-part 'exercise_event.dart';
-part 'exercise_state.dart';
-
 @lazySingleton
-class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
+class ExerciseBlocRead extends BlocRead<ExerciseModel> {
   final GetAllExerciseUsecase _getAllExerciseUsecase;
-  final CreateExerciseBatchUsecase _createExerciseBatchUsecase;
-  final UpdateExerciseBatchUsecase _updateExerciseBatchUsecase;
-  final DeleteExerciseUsecase _deleteExerciseUsecase;
 
-  ExerciseBloc(
-    this._getAllExerciseUsecase,
-    this._createExerciseBatchUsecase,
-    this._updateExerciseBatchUsecase,
-    this._deleteExerciseUsecase,
-  ) : super(const ExerciseStateInitial()) {
-    on<ExerciseEventClear>(_onClear);
-    on<ExerciseEventGetExercises>(_onGetExercises);
-    on<ExerciseEventFilterExercises>(_onFilterExercises);
-    on<ExerciseEventCreateBatch>(_onCreateBatch);
-    on<ExerciseEventUpdateBatch>(_onUpdateBatch);
-    on<ExerciseEventDelete>(_onDelete);
+  ExerciseBlocRead(this._getAllExerciseUsecase)
+      : super(const BlocStateReadInitial()) {
+    on<BlocEventReadClear<ExerciseModel>>(onClear);
+    on<BlocEventReadGet<ExerciseModel>>(onGet);
+    on<BlocEventReadSelect<ExerciseModel>>(onSelect);
+    on<BlocEventReadFilter<ExerciseModel>>(onFilter);
   }
-  void _onClear(
-    ExerciseEventClear event,
-    Emitter<ExerciseState> emit,
-  ) =>
-      emit(const ExerciseStateInitial());
 
-  void _onGetExercises(
-    ExerciseEventGetExercises event,
-    Emitter<ExerciseState> emit,
+  @override
+  void onGet(
+    BlocEventReadGet event,
+    Emitter<BlocStateRead<ExerciseModel>> emit,
   ) async {
-    emit(const ExerciseStateLoading());
-    final res = await _getAllExerciseUsecase.call(event.params);
+    final id = event.id;
+    if (id == null) {
+      return emit(const BlocStateRead.failure('Id required'));
+    }
+    emit(const BlocStateReadLoading());
+
+    final res = await _getAllExerciseUsecase.call(
+      GetAllExerciseParams(programId: id),
+    );
 
     res.fold(
-      (failure) => emit(ExerciseStateFailure(failure.message)),
-      (success) => emit(
-        ExerciseStateSuccess(
-          exercises: success,
-          filteredExercises: success,
-        ),
-      ),
+      (failure) => emit(BlocStateReadFailure(failure.message)),
+      (success) => emit(BlocStateReadSuccess(
+        items: success,
+        filteredItems: success,
+      )),
     );
   }
 
-  void _onFilterExercises(
-    ExerciseEventFilterExercises event,
-    Emitter<ExerciseState> emit,
+  @override
+  void onSelect(
+    BlocEventReadSelect<ExerciseModel> event,
+    Emitter<BlocStateRead<ExerciseModel>> emit,
   ) {
-    emit(const ExerciseStateLoading());
-
     state.maybeWhen(
-      success: (exercises, _) {
+      success: (exercises, filteredExercises, _) {
+        emit(BlocStateReadSuccess(
+          items: exercises,
+          filteredItems: filteredExercises,
+          selectedItem: event.item,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
+
+  @override
+  void onFilter(
+    BlocEventReadFilter event,
+    Emitter<BlocStateRead<ExerciseModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (exercises, _, __) {
         final finds = exercises
             .where(
               (exercise) => exercise.name.toLowerCase().contains(
@@ -67,55 +71,87 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
             )
             .toList();
 
-        if (finds.isEmpty) {
-          emit(ExerciseStateFailure(
-              'Exercise with name ${event.query} not found'));
-        } else {
-          emit(
-            ExerciseStateSuccess(
-              exercises: exercises,
-              filteredExercises: finds,
-            ),
-          );
-        }
+        emit(BlocStateReadSuccess(
+          items: exercises,
+          filteredItems: finds,
+        ));
       },
-      orElse: () => emit(const ExerciseStateFailure('Exercise was empty')),
+      orElse: () => null,
+    );
+  }
+}
+
+@lazySingleton
+class ExerciseBlocWrite extends BlocWrite<List<ExerciseModel>> {
+  final CreateExerciseBatchUsecase _createExerciseBatchUsecase;
+  final UpdateExerciseBatchUsecase _updateExerciseBatchUsecase;
+  final DeleteExerciseUsecase _deleteExerciseUsecase;
+
+  ExerciseBlocWrite(
+    this._createExerciseBatchUsecase,
+    this._updateExerciseBatchUsecase,
+    this._deleteExerciseUsecase,
+  ) : super(const BlocStateWriteInitial()) {
+    on<BlocEventWriteCreate>(onCreate);
+    on<BlocEventWriteUpdate>(onUpdate);
+    on<BlocEventWriteDelete>(onDelete);
+  }
+
+  @override
+  void onCreate(
+    BlocEventWriteCreate event,
+    Emitter<BlocStateWrite<List<ExerciseModel>>> emit,
+  ) async {
+    final res = await _createExerciseBatchUsecase.call(
+      event.params as List<CreateExerciseParams>,
+    );
+
+    res.fold(
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) => emit(BlocStateWriteSuccess(success)),
     );
   }
 
-  void _onCreateBatch(
-    ExerciseEventCreateBatch event,
-    Emitter<ExerciseState> emit,
+  @override
+  void onUpdate(
+    BlocEventWriteUpdate event,
+    Emitter<BlocStateWrite<List<ExerciseModel>>> emit,
   ) async {
-    final res = await _createExerciseBatchUsecase.call(event.params);
+    final res = await _updateExerciseBatchUsecase.call(
+      event.params as List<UpdateExerciseParams>,
+    );
 
     res.fold(
-      (failure) => emit(ExerciseStateFailure(failure.message)),
-      (success) => emit(ExerciseStateCreatedBatch(success)),
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) => emit(BlocStateWriteSuccess(success)),
     );
   }
 
-  void _onUpdateBatch(
-    ExerciseEventUpdateBatch event,
-    Emitter<ExerciseState> emit,
+  @override
+  void onDelete(
+    BlocEventWriteDelete event,
+    Emitter<BlocStateWrite<List<ExerciseModel>>> emit,
   ) async {
-    final res = await _updateExerciseBatchUsecase.call(event.params);
-
-    res.fold(
-      (failure) => emit(ExerciseStateFailure(failure.message)),
-      (success) => emit(ExerciseStateUpdatedBatch(success)),
+    final res = await _deleteExerciseUsecase.call(
+      event.params as DeleteExerciseParams,
     );
-  }
-
-  void _onDelete(
-    ExerciseEventDelete event,
-    Emitter<ExerciseState> emit,
-  ) async {
-    final res = await _deleteExerciseUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(ExerciseStateFailure(failure.message)),
-      (success) => emit(ExerciseStateDeleted(success)),
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) {
+        final items = state.maybeWhen(
+          success: (items) => items,
+          orElse: () => null,
+        );
+        if (items == null) return;
+        final filteredItems = items
+            .where(
+              (exercise) => exercise.id != success.id,
+            )
+            .toList();
+
+        emit(BlocStateWriteSuccess(filteredItems));
+      },
     );
   }
 }

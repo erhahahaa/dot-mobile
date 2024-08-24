@@ -1,62 +1,66 @@
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'program_bloc.freezed.dart';
-part 'program_event.dart';
-part 'program_state.dart';
-
 @lazySingleton
-class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
+class ProgramBlocRead extends BlocRead<ProgramModel> {
   final GetAllProgramUsecase _getAllProgramUsecase;
-  final CreateProgramUsecase _createProgramUsecase;
-  final UpdateProgramUsecase _updateProgramUsecase;
-  final DeleteProgramUsecase _deleteProgramUsecase;
 
-  ProgramBloc(
-    this._getAllProgramUsecase,
-    this._createProgramUsecase,
-    this._updateProgramUsecase,
-    this._deleteProgramUsecase,
-  ) : super(const ProgramStateInitial()) {
-    on<ProgramEventClear>(_onClear);
-    on<ProgramEventGetPrograms>(_onGetPrograms);
-    on<ProgramEventFilterPrograms>(_onFilterPrograms);
-    on<ProgramEventSelectProgram>(_onSelectProgram);
-    on<ProgramEventCreate>(_onCreate);
-    on<ProgramEventUpdate>(_onUpdate);
-    on<ProgramEventDelete>(_onDelete);
+  ProgramBlocRead(this._getAllProgramUsecase)
+      : super(const BlocStateReadInitial()) {
+    on<BlocEventReadClear<ProgramModel>>(onClear);
+    on<BlocEventReadGet<ProgramModel>>(onGet);
+    on<BlocEventReadSelect<ProgramModel>>(onSelect);
+    on<BlocEventReadFilter<ProgramModel>>(onFilter);
   }
-  void _onClear(
-    ProgramEventClear event,
-    Emitter<ProgramState> emit,
-  ) =>
-      emit(const ProgramStateInitial());
 
-  void _onGetPrograms(
-    ProgramEventGetPrograms event,
-    Emitter<ProgramState> emit,
+  @override
+  void onGet(
+    BlocEventReadGet event,
+    Emitter<BlocStateRead<ProgramModel>> emit,
   ) async {
-    emit(const ProgramStateLoading());
-    final res = await _getAllProgramUsecase.call(event.params);
+    final id = event.id;
+    if (id == null) {
+      return emit(const BlocStateRead.failure('Id required'));
+    }
+    emit(const BlocStateReadLoading());
+
+    final res = await _getAllProgramUsecase.call(
+      GetAllProgramParams(clubId: id),
+    );
 
     res.fold(
-      (failure) => emit(ProgramStateFailure(failure.message)),
-      (success) => emit(
-        ProgramStateSuccess(
-          programs: success,
-          filteredPrograms: success,
-        ),
-      ),
+      (failure) => emit(BlocStateReadFailure(failure.message)),
+      (success) => emit(BlocStateReadSuccess(
+        items: success,
+        filteredItems: success,
+      )),
     );
   }
 
-  void _onFilterPrograms(
-    ProgramEventFilterPrograms event,
-    Emitter<ProgramState> emit,
+  @override
+  void onSelect(
+    BlocEventReadSelect<ProgramModel> event,
+    Emitter<BlocStateRead<ProgramModel>> emit,
   ) {
-    emit(const ProgramStateLoading());
+    state.maybeWhen(
+      success: (programs, filteredPrograms, _) {
+        emit(BlocStateReadSuccess(
+          items: programs,
+          filteredItems: filteredPrograms,
+          selectedItem: event.item,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
+
+  @override
+  void onFilter(
+    BlocEventReadFilter event,
+    Emitter<BlocStateRead<ProgramModel>> emit,
+  ) {
     state.maybeWhen(
       success: (programs, _, __) {
         final finds = programs
@@ -67,73 +71,69 @@ class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
             )
             .toList();
 
-        if (finds.isEmpty) {
-          emit(ProgramStateFailure(
-              'Program with name ${event.query} not foundl'));
-        } else {
-          emit(
-            ProgramStateSuccess(
-              programs: programs,
-              filteredPrograms: finds,
-            ),
-          );
-        }
+        emit(BlocStateReadSuccess(
+          items: programs,
+          filteredItems: finds,
+        ));
       },
-      orElse: () => emit(const ProgramStateFailure('Programs was empty')),
+      orElse: () => null,
     );
   }
+}
 
-  void _onSelectProgram(
-    ProgramEventSelectProgram event,
-    Emitter<ProgramState> emit,
-  ) {
-    state.maybeWhen(
-      success: (programs, filteredPrograms, _) {
-        emit(
-          ProgramStateSuccess(
-            programs: programs,
-            filteredPrograms: filteredPrograms,
-            selectedProgram: event.program,
-          ),
-        );
-      },
-      orElse: () => emit(const ProgramStateFailure('Programs was empty')),
-    );
+@lazySingleton
+class ProgramBlocWrite extends BlocWrite<ProgramModel> {
+  final CreateProgramUsecase _createProgramUsecase;
+  final UpdateProgramUsecase _updateProgramUsecase;
+  final DeleteProgramUsecase _deleteProgramUsecase;
+
+  ProgramBlocWrite(
+    this._createProgramUsecase,
+    this._updateProgramUsecase,
+    this._deleteProgramUsecase,
+  ) : super(const BlocStateWriteInitial()) {
+    on<BlocEventWriteCreate>(onCreate);
+    on<BlocEventWriteUpdate>(onUpdate);
+    on<BlocEventWriteDelete>(onDelete);
   }
 
-  void _onCreate(
-    ProgramEventCreate event,
-    Emitter<ProgramState> emit,
+  @override
+  void onCreate(
+    BlocEventWriteCreate event,
+    Emitter<BlocStateWrite<ProgramModel>> emit,
   ) async {
-    final res = await _createProgramUsecase.call(event.params);
+    final res =
+        await _createProgramUsecase.call(event.params as CreateProgramParams);
 
     res.fold(
-      (failure) => emit(ProgramStateFailure(failure.message)),
-      (success) => emit(ProgramStateCreated(success)),
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) => emit(BlocStateWriteSuccess(success)),
     );
   }
 
-  void _onUpdate(
-    ProgramEventUpdate event,
-    Emitter<ProgramState> emit,
+  @override
+  void onUpdate(
+    BlocEventWriteUpdate event,
+    Emitter<BlocStateWrite<ProgramModel>> emit,
   ) async {
     final res = await _updateProgramUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(ProgramStateFailure(failure.message)),
-      (success) => emit(ProgramStateUpdated(success)),
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) => emit(BlocStateWriteSuccess(success)),
     );
   }
 
-  void _onDelete(
-    ProgramEventDelete event,
-    Emitter<ProgramState> emit,
+  @override
+  void onDelete(
+    BlocEventWriteDelete event,
+    Emitter<BlocStateWrite<ProgramModel>> emit,
   ) async {
     final res = await _deleteProgramUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(ProgramStateFailure(failure.message)),
-      (success) => emit(ProgramStateDeleted(success)),
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) => emit(BlocStateWriteSuccess(success)),
     );
   }
 }
