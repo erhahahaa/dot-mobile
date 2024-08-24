@@ -11,8 +11,8 @@ import 'package:moon_design/moon_design.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
-class ListProgramScreen extends StatelessWidget {
-  const ListProgramScreen({
+class ListEvaluationScreen extends StatelessWidget {
+  const ListEvaluationScreen({
     super.key,
   });
 
@@ -54,7 +54,7 @@ class ListProgramScreen extends StatelessWidget {
                 Gap(8.h),
                 _buildHeader(context, search),
                 Gap(16.h),
-                _buildListProgram(context, scroll)
+                _buildListEvaluation(context, scroll)
               ],
             ),
           ),
@@ -67,13 +67,12 @@ class ListProgramScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        TitleSmall(context.str?.program),
+        const TitleSmall('Evaluation'),
         MySearchBar(
           width: 180.w,
           height: 32.h,
           controller: search,
-          hintText:
-              '${context.str?.search} ${context.str?.program.toLowerCase()} ...',
+          hintText: '${context.str?.search} ${'Evaluation'.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
             context.read<ClubBloc>().add(
@@ -95,7 +94,7 @@ class ListProgramScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildListProgram(
+  Widget _buildListEvaluation(
     BuildContext context,
     ScrollController scrollController,
   ) {
@@ -104,22 +103,22 @@ class ListProgramScreen extends StatelessWidget {
       loaded: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
-    return BlocBuilder<ProgramBloc, ProgramState>(
+    return BlocBuilder<EvaluationBloc, EvaluationState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loaded: (_, filteredPrograms, __) {
-            if (filteredPrograms.isEmpty) {
+          loaded: (_, filteredEvaluations, __) {
+            if (filteredEvaluations.isEmpty) {
               return Expanded(
                 child: Column(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     ErrorAlert(
-                      '${club?.name} doesn\'t had program yet',
+                      '${club?.name} doesn\'t had evaluation yet',
                       onRetry: () {
                         if (club != null) {
-                          context.read<ProgramBloc>().add(
-                                ProgramEvent.getPrograms(
-                                  GetAllProgramParams(clubId: club.id),
+                          context.read<EvaluationBloc>().add(
+                                EvaluationEvent.getEvaluations(
+                                  GetAllEvaluationParams(clubId: club.id),
                                 ),
                               );
                         }
@@ -131,29 +130,29 @@ class ListProgramScreen extends StatelessWidget {
               );
             }
             return ListViewBuilder(
-              items: filteredPrograms,
+              items: filteredEvaluations,
               scrollController: scrollController,
               height: 0.71.sh,
-              itemBuilder: (context, program) => _buildProgramItem(
+              itemBuilder: (context, evaluation) => _buildEvaluationItem(
                 context,
-                program,
-                program == filteredPrograms.last,
+                evaluation,
+                evaluation == filteredEvaluations.last,
               ),
             );
           },
           failure: (message) => ErrorAlert(message),
           orElse: () {
-            final fakePrograms =
-                List.generate(10, (index) => ProgramModel.fake());
+            final fakeEvaluations =
+                List.generate(10, (index) => EvaluationModel.fake());
             return ListViewBuilder(
               scrollController: scrollController,
               height: 0.71.sh,
-              items: fakePrograms,
-              itemBuilder: (context, program) => Skeletonizer(
-                child: _buildProgramItem(
+              items: fakeEvaluations,
+              itemBuilder: (context, evaluation) => Skeletonizer(
+                child: _buildEvaluationItem(
                   context,
-                  program,
-                  program == fakePrograms.last,
+                  evaluation,
+                  evaluation == fakeEvaluations.last,
                 ),
               ),
             );
@@ -163,19 +162,19 @@ class ListProgramScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildProgramItem(
+  Widget _buildEvaluationItem(
     BuildContext context,
-    ProgramModel program,
+    EvaluationModel evaluation,
     bool isLast,
   ) {
     void onTap() => context.router.push(
-          DetailProgramRoute(programId: program.id),
+          DetailEvaluationRoute(evaluationId: evaluation.id),
         );
 
     return ListViewBuilderTile(
-      titleText: program.name,
-      subtitleText: program.startDate.toString(),
-      imageUrl: program.media?.url,
+      titleText: evaluation.exam?.title,
+      subtitleText: evaluation.createdAt?.toIso8601String(),
+      imageUrl: evaluation.exam?.media?.url,
       margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
       onTap: onTap,
       trailing: MoonButton.icon(

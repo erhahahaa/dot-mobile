@@ -43,6 +43,6 @@ class DashboardScreen extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return AutoRouter();
+    return const AutoRouter();
   }
 }

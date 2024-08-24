@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 @Injectable()
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
-  final _adminShell = EmptyShellRoute('AdminShellRoute');
+  final _adminShell = const EmptyShellRoute('AdminShellRoute');
   @override
   RouteType get defaultRouteType => const RouteType.material();
 
