@@ -21,13 +21,13 @@ import 'package:dot_coaching/features/club/ui/screens/athlete_detail_club_screen
     as _i3;
 import 'package:dot_coaching/features/club/ui/screens/athlete_list_club_screen.dart'
     as _i12;
-import 'package:dot_coaching/features/club/ui/screens/coach_club_shell_screen.dart'
+import 'package:dot_coaching/features/club/ui/screens/club_shell_screen.dart'
     as _i22;
-import 'package:dot_coaching/features/club/ui/screens/coach_detail_club_screen.dart'
+import 'package:dot_coaching/features/club/ui/screens/detail_club_screen.dart'
     as _i24;
-import 'package:dot_coaching/features/club/ui/screens/coach_list_club_screen.dart'
+import 'package:dot_coaching/features/club/ui/screens/list_club_screen.dart'
     as _i34;
-import 'package:dot_coaching/features/club/ui/screens/coach_upsert_club_screen.dart'
+import 'package:dot_coaching/features/club/ui/screens/upsert_club_screen.dart'
     as _i45;
 import 'package:dot_coaching/features/evaluation/ui/screens/athlete_detail_evaluation_screen.dart'
     as _i4;
@@ -35,25 +35,25 @@ import 'package:dot_coaching/features/evaluation/ui/screens/athlete_evaluation_s
     as _i10;
 import 'package:dot_coaching/features/evaluation/ui/screens/athlete_list_evaluation_screen.dart'
     as _i13;
-import 'package:dot_coaching/features/evaluation/ui/screens/coach_detail_evaluation_screen.dart'
+import 'package:dot_coaching/features/evaluation/ui/screens/detail_evaluation_screen.dart'
     as _i25;
-import 'package:dot_coaching/features/evaluation/ui/screens/coach_evaluation_shell_screen.dart'
+import 'package:dot_coaching/features/evaluation/ui/screens/evaluation_shell_screen.dart'
     as _i31;
-import 'package:dot_coaching/features/evaluation/ui/screens/coach_list_evaluation_screen.dart'
+import 'package:dot_coaching/features/evaluation/ui/screens/list_evaluation_screen.dart'
     as _i35;
-import 'package:dot_coaching/features/evaluation/ui/screens/coach_upsert_evaluation_screen.dart'
+import 'package:dot_coaching/features/evaluation/ui/screens/upsert_evaluation_screen.dart'
     as _i46;
 import 'package:dot_coaching/features/exam/ui/screens/athlete_detail_exam_screen.dart'
     as _i5;
 import 'package:dot_coaching/features/exam/ui/screens/athlete_list_exam_screen.dart'
     as _i14;
-import 'package:dot_coaching/features/exam/ui/screens/coach_detail_exam_screen.dart'
+import 'package:dot_coaching/features/exam/ui/screens/detail_exam_screen.dart'
     as _i26;
-import 'package:dot_coaching/features/exam/ui/screens/coach_exam_shell_screen.dart'
+import 'package:dot_coaching/features/exam/ui/screens/exam_shell_screen.dart'
     as _i32;
-import 'package:dot_coaching/features/exam/ui/screens/coach_list_exam_screen.dart'
+import 'package:dot_coaching/features/exam/ui/screens/list_exam_screen.dart'
     as _i36;
-import 'package:dot_coaching/features/exam/ui/screens/coach_upsert_exam_screen.dart'
+import 'package:dot_coaching/features/exam/ui/screens/upsert_exam_screen.dart'
     as _i47;
 import 'package:dot_coaching/features/exercise/ui/screens/athlete_detail_exercise_screen.dart'
     as _i6;
@@ -61,19 +61,19 @@ import 'package:dot_coaching/features/exercise/ui/screens/athlete_exercise_shell
     as _i11;
 import 'package:dot_coaching/features/exercise/ui/screens/athlete_list_exercise_screen.dart'
     as _i15;
-import 'package:dot_coaching/features/exercise/ui/screens/coach_detail_exercise_screen.dart'
+import 'package:dot_coaching/features/exercise/ui/screens/detail_exercise_screen.dart'
     as _i27;
-import 'package:dot_coaching/features/exercise/ui/screens/coach_exercise_shell_screen.dart'
+import 'package:dot_coaching/features/exercise/ui/screens/exercise_shell_screen.dart'
     as _i33;
-import 'package:dot_coaching/features/exercise/ui/screens/coach_list_exercise_screen.dart'
+import 'package:dot_coaching/features/exercise/ui/screens/list_exercise_screen.dart'
     as _i37;
-import 'package:dot_coaching/features/exercise/ui/screens/coach_upsert_exercise_screen.dart'
+import 'package:dot_coaching/features/exercise/ui/screens/upsert_exercise_screen.dart'
     as _i48;
 import 'package:dot_coaching/features/general/ui/screens/athlete_dashboard_screen.dart'
     as _i2;
-import 'package:dot_coaching/features/general/ui/screens/coach_dashboard_screen.dart'
+import 'package:dot_coaching/features/general/ui/screens/dashboard_screen.dart'
     as _i23;
-import 'package:dot_coaching/features/media/ui/screens/coach_list_media_screen.dart'
+import 'package:dot_coaching/features/media/ui/screens/list_media_screen.dart'
     as _i38;
 import 'package:dot_coaching/features/program/ui/screens/athlete_detail_program_screen.dart'
     as _i7;
@@ -81,13 +81,13 @@ import 'package:dot_coaching/features/program/ui/screens/athlete_list_program_sc
     as _i16;
 import 'package:dot_coaching/features/program/ui/screens/athlete_program_shell_screen.dart'
     as _i19;
-import 'package:dot_coaching/features/program/ui/screens/coach_detail_program_screen.dart'
+import 'package:dot_coaching/features/program/ui/screens/detail_program_screen.dart'
     as _i28;
-import 'package:dot_coaching/features/program/ui/screens/coach_list_program_screen.dart'
+import 'package:dot_coaching/features/program/ui/screens/list_program_screen.dart'
     as _i39;
-import 'package:dot_coaching/features/program/ui/screens/coach_program_shell_screen.dart'
+import 'package:dot_coaching/features/program/ui/screens/program_shell_screen.dart'
     as _i42;
-import 'package:dot_coaching/features/program/ui/screens/coach_upsert_program_screen.dart'
+import 'package:dot_coaching/features/program/ui/screens/upsert_program_screen.dart'
     as _i49;
 import 'package:dot_coaching/features/question/ui/screens/athlete_detail_question_screen.dart'
     as _i8;
@@ -95,13 +95,13 @@ import 'package:dot_coaching/features/question/ui/screens/athlete_list_question_
     as _i17;
 import 'package:dot_coaching/features/question/ui/screens/athlete_question_shell_screen.dart'
     as _i20;
-import 'package:dot_coaching/features/question/ui/screens/coach_detail_question_screen.dart'
+import 'package:dot_coaching/features/question/ui/screens/detail_question_screen.dart'
     as _i29;
-import 'package:dot_coaching/features/question/ui/screens/coach_list_question_screen.dart'
+import 'package:dot_coaching/features/question/ui/screens/list_question_screen.dart'
     as _i40;
-import 'package:dot_coaching/features/question/ui/screens/coach_question_shell_screen.dart'
+import 'package:dot_coaching/features/question/ui/screens/question_shell_screen.dart'
     as _i43;
-import 'package:dot_coaching/features/question/ui/screens/coach_upsert_question_screen.dart'
+import 'package:dot_coaching/features/question/ui/screens/upsert_question_screen.dart'
     as _i50;
 import 'package:dot_coaching/features/tactical/ui/screens/athlete_detail_tactical_screen.dart'
     as _i9;
@@ -109,13 +109,13 @@ import 'package:dot_coaching/features/tactical/ui/screens/athlete_list_tactical_
     as _i18;
 import 'package:dot_coaching/features/tactical/ui/screens/athlete_tactical_shell_screen.dart'
     as _i21;
-import 'package:dot_coaching/features/tactical/ui/screens/coach_detail_tactical_screen.dart'
+import 'package:dot_coaching/features/tactical/ui/screens/detail_tactical_screen.dart'
     as _i30;
-import 'package:dot_coaching/features/tactical/ui/screens/coach_list_tactical_screen.dart'
+import 'package:dot_coaching/features/tactical/ui/screens/list_tactical_screen.dart'
     as _i41;
-import 'package:dot_coaching/features/tactical/ui/screens/coach_tactical_shell_screen.dart'
+import 'package:dot_coaching/features/tactical/ui/screens/tactical_shell_screen.dart'
     as _i44;
-import 'package:dot_coaching/features/tactical/ui/screens/coach_upsert_tactical_screen.dart'
+import 'package:dot_coaching/features/tactical/ui/screens/upsert_tactical_screen.dart'
     as _i51;
 import 'package:dot_coaching/features/user/ui/screens/profile_screen.dart'
     as _i52;
@@ -675,571 +675,571 @@ class AthleteTacticalShellRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i22.CoachClubShellScreen]
-class CoachClubShellRoute extends _i57.PageRouteInfo<void> {
-  const CoachClubShellRoute({List<_i57.PageRouteInfo>? children})
+/// [_i22.ClubShellScreen]
+class ClubShellRoute extends _i57.PageRouteInfo<void> {
+  const ClubShellRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachClubShellRoute.name,
+          ClubShellRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachClubShellRoute';
+  static const String name = 'ClubShellRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i22.CoachClubShellScreen();
+      return const _i22.ClubShellScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i23.CoachDashboardScreen]
-class CoachDashboardRoute extends _i57.PageRouteInfo<void> {
-  const CoachDashboardRoute({List<_i57.PageRouteInfo>? children})
+/// [_i23.DashboardScreen]
+class DashboardRoute extends _i57.PageRouteInfo<void> {
+  const DashboardRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachDashboardRoute.name,
+          DashboardRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachDashboardRoute';
+  static const String name = 'DashboardRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return _i57.WrappedRoute(child: const _i23.CoachDashboardScreen());
+      return _i57.WrappedRoute(child: const _i23.DashboardScreen());
     },
   );
 }
 
 /// generated route for
-/// [_i24.CoachDetailClubScreen]
-class CoachDetailClubRoute extends _i57.PageRouteInfo<void> {
-  const CoachDetailClubRoute({List<_i57.PageRouteInfo>? children})
+/// [_i24.DetailClubScreen]
+class DetailClubRoute extends _i57.PageRouteInfo<void> {
+  const DetailClubRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachDetailClubRoute.name,
+          DetailClubRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachDetailClubRoute';
+  static const String name = 'DetailClubRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i24.CoachDetailClubScreen();
+      return const _i24.DetailClubScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i25.CoachDetailEvaluationScreen]
-class CoachDetailEvaluationRoute extends _i57.PageRouteInfo<void> {
-  const CoachDetailEvaluationRoute({List<_i57.PageRouteInfo>? children})
+/// [_i25.DetailEvaluationScreen]
+class DetailEvaluationRoute extends _i57.PageRouteInfo<void> {
+  const DetailEvaluationRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachDetailEvaluationRoute.name,
+          DetailEvaluationRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachDetailEvaluationRoute';
+  static const String name = 'DetailEvaluationRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i25.CoachDetailEvaluationScreen();
+      return const _i25.DetailEvaluationScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i26.CoachDetailExamScreen]
-class CoachDetailExamRoute extends _i57.PageRouteInfo<void> {
-  const CoachDetailExamRoute({List<_i57.PageRouteInfo>? children})
+/// [_i26.DetailExamScreen]
+class DetailExamRoute extends _i57.PageRouteInfo<void> {
+  const DetailExamRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachDetailExamRoute.name,
+          DetailExamRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachDetailExamRoute';
+  static const String name = 'DetailExamRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i26.CoachDetailExamScreen();
+      return const _i26.DetailExamScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i27.CoachDetailExerciseScreen]
-class CoachDetailExerciseRoute extends _i57.PageRouteInfo<void> {
-  const CoachDetailExerciseRoute({List<_i57.PageRouteInfo>? children})
+/// [_i27.DetailExerciseScreen]
+class DetailExerciseRoute extends _i57.PageRouteInfo<void> {
+  const DetailExerciseRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachDetailExerciseRoute.name,
+          DetailExerciseRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachDetailExerciseRoute';
+  static const String name = 'DetailExerciseRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i27.CoachDetailExerciseScreen();
+      return const _i27.DetailExerciseScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i28.CoachDetailProgramScreen]
-class CoachDetailProgramRoute extends _i57.PageRouteInfo<void> {
-  const CoachDetailProgramRoute({List<_i57.PageRouteInfo>? children})
+/// [_i28.DetailProgramScreen]
+class DetailProgramRoute extends _i57.PageRouteInfo<void> {
+  const DetailProgramRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachDetailProgramRoute.name,
+          DetailProgramRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachDetailProgramRoute';
+  static const String name = 'DetailProgramRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i28.CoachDetailProgramScreen();
+      return const _i28.DetailProgramScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i29.CoachDetailQuestionScreen]
-class CoachDetailQuestionRoute extends _i57.PageRouteInfo<void> {
-  const CoachDetailQuestionRoute({List<_i57.PageRouteInfo>? children})
+/// [_i29.DetailQuestionScreen]
+class DetailQuestionRoute extends _i57.PageRouteInfo<void> {
+  const DetailQuestionRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachDetailQuestionRoute.name,
+          DetailQuestionRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachDetailQuestionRoute';
+  static const String name = 'DetailQuestionRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i29.CoachDetailQuestionScreen();
+      return const _i29.DetailQuestionScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i30.CoachDetailTacticalScreen]
-class CoachDetailTacticalRoute extends _i57.PageRouteInfo<void> {
-  const CoachDetailTacticalRoute({List<_i57.PageRouteInfo>? children})
+/// [_i30.DetailTacticalScreen]
+class DetailTacticalRoute extends _i57.PageRouteInfo<void> {
+  const DetailTacticalRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachDetailTacticalRoute.name,
+          DetailTacticalRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachDetailTacticalRoute';
+  static const String name = 'DetailTacticalRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i30.CoachDetailTacticalScreen();
+      return const _i30.DetailTacticalScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i31.CoachEvaluationShellScreen]
-class CoachEvaluationShellRoute extends _i57.PageRouteInfo<void> {
-  const CoachEvaluationShellRoute({List<_i57.PageRouteInfo>? children})
+/// [_i31.EvaluationShellScreen]
+class EvaluationShellRoute extends _i57.PageRouteInfo<void> {
+  const EvaluationShellRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachEvaluationShellRoute.name,
+          EvaluationShellRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachEvaluationShellRoute';
+  static const String name = 'EvaluationShellRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i31.CoachEvaluationShellScreen();
+      return const _i31.EvaluationShellScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i32.CoachExamShellScreen]
-class CoachExamShellRoute extends _i57.PageRouteInfo<void> {
-  const CoachExamShellRoute({List<_i57.PageRouteInfo>? children})
+/// [_i32.ExamShellScreen]
+class ExamShellRoute extends _i57.PageRouteInfo<void> {
+  const ExamShellRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachExamShellRoute.name,
+          ExamShellRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachExamShellRoute';
+  static const String name = 'ExamShellRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i32.CoachExamShellScreen();
+      return const _i32.ExamShellScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i33.CoachExerciseShellScreen]
-class CoachExerciseShellRoute extends _i57.PageRouteInfo<void> {
-  const CoachExerciseShellRoute({List<_i57.PageRouteInfo>? children})
+/// [_i33.ExerciseShellScreen]
+class ExerciseShellRoute extends _i57.PageRouteInfo<void> {
+  const ExerciseShellRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachExerciseShellRoute.name,
+          ExerciseShellRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachExerciseShellRoute';
+  static const String name = 'ExerciseShellRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i33.CoachExerciseShellScreen();
+      return const _i33.ExerciseShellScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i34.CoachListClubScreen]
-class CoachListClubRoute extends _i57.PageRouteInfo<void> {
-  const CoachListClubRoute({List<_i57.PageRouteInfo>? children})
+/// [_i34.ListClubScreen]
+class ListClubRoute extends _i57.PageRouteInfo<void> {
+  const ListClubRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachListClubRoute.name,
+          ListClubRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachListClubRoute';
+  static const String name = 'ListClubRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i34.CoachListClubScreen();
+      return const _i34.ListClubScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i35.CoachListEvaluationScreen]
-class CoachListEvaluationRoute extends _i57.PageRouteInfo<void> {
-  const CoachListEvaluationRoute({List<_i57.PageRouteInfo>? children})
+/// [_i35.ListEvaluationScreen]
+class ListEvaluationRoute extends _i57.PageRouteInfo<void> {
+  const ListEvaluationRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachListEvaluationRoute.name,
+          ListEvaluationRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachListEvaluationRoute';
+  static const String name = 'ListEvaluationRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i35.CoachListEvaluationScreen();
+      return const _i35.ListEvaluationScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i36.CoachListExamScreen]
-class CoachListExamRoute extends _i57.PageRouteInfo<void> {
-  const CoachListExamRoute({List<_i57.PageRouteInfo>? children})
+/// [_i36.ListExamScreen]
+class ListExamRoute extends _i57.PageRouteInfo<void> {
+  const ListExamRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachListExamRoute.name,
+          ListExamRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachListExamRoute';
+  static const String name = 'ListExamRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i36.CoachListExamScreen();
+      return const _i36.ListExamScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i37.CoachListExerciseScreen]
-class CoachListExerciseRoute extends _i57.PageRouteInfo<void> {
-  const CoachListExerciseRoute({List<_i57.PageRouteInfo>? children})
+/// [_i37.ListExerciseScreen]
+class ListExerciseRoute extends _i57.PageRouteInfo<void> {
+  const ListExerciseRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachListExerciseRoute.name,
+          ListExerciseRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachListExerciseRoute';
+  static const String name = 'ListExerciseRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i37.CoachListExerciseScreen();
+      return const _i37.ListExerciseScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i38.CoachListMediaScreen]
-class CoachListMediaRoute extends _i57.PageRouteInfo<void> {
-  const CoachListMediaRoute({List<_i57.PageRouteInfo>? children})
+/// [_i38.ListMediaScreen]
+class ListMediaRoute extends _i57.PageRouteInfo<void> {
+  const ListMediaRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachListMediaRoute.name,
+          ListMediaRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachListMediaRoute';
+  static const String name = 'ListMediaRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i38.CoachListMediaScreen();
+      return const _i38.ListMediaScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i39.CoachListProgramScreen]
-class CoachListProgramRoute extends _i57.PageRouteInfo<void> {
-  const CoachListProgramRoute({List<_i57.PageRouteInfo>? children})
+/// [_i39.ListProgramScreen]
+class ListProgramRoute extends _i57.PageRouteInfo<void> {
+  const ListProgramRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachListProgramRoute.name,
+          ListProgramRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachListProgramRoute';
+  static const String name = 'ListProgramRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i39.CoachListProgramScreen();
+      return const _i39.ListProgramScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i40.CoachListQuestionScreen]
-class CoachListQuestionRoute extends _i57.PageRouteInfo<void> {
-  const CoachListQuestionRoute({List<_i57.PageRouteInfo>? children})
+/// [_i40.ListQuestionScreen]
+class ListQuestionRoute extends _i57.PageRouteInfo<void> {
+  const ListQuestionRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachListQuestionRoute.name,
+          ListQuestionRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachListQuestionRoute';
+  static const String name = 'ListQuestionRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i40.CoachListQuestionScreen();
+      return const _i40.ListQuestionScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i41.CoachListTacticalScreen]
-class CoachListTacticalRoute extends _i57.PageRouteInfo<void> {
-  const CoachListTacticalRoute({List<_i57.PageRouteInfo>? children})
+/// [_i41.ListTacticalScreen]
+class ListTacticalRoute extends _i57.PageRouteInfo<void> {
+  const ListTacticalRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachListTacticalRoute.name,
+          ListTacticalRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachListTacticalRoute';
+  static const String name = 'ListTacticalRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i41.CoachListTacticalScreen();
+      return const _i41.ListTacticalScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i42.CoachProgramShellScreen]
-class CoachProgramShellRoute extends _i57.PageRouteInfo<void> {
-  const CoachProgramShellRoute({List<_i57.PageRouteInfo>? children})
+/// [_i42.ProgramShellScreen]
+class ProgramShellRoute extends _i57.PageRouteInfo<void> {
+  const ProgramShellRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachProgramShellRoute.name,
+          ProgramShellRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachProgramShellRoute';
+  static const String name = 'ProgramShellRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i42.CoachProgramShellScreen();
+      return const _i42.ProgramShellScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i43.CoachQuestionShellScreen]
-class CoachQuestionShellRoute extends _i57.PageRouteInfo<void> {
-  const CoachQuestionShellRoute({List<_i57.PageRouteInfo>? children})
+/// [_i43.QuestionShellScreen]
+class QuestionShellRoute extends _i57.PageRouteInfo<void> {
+  const QuestionShellRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachQuestionShellRoute.name,
+          QuestionShellRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachQuestionShellRoute';
+  static const String name = 'QuestionShellRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i43.CoachQuestionShellScreen();
+      return const _i43.QuestionShellScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i44.CoachTacticalShellScreen]
-class CoachTacticalShellRoute extends _i57.PageRouteInfo<void> {
-  const CoachTacticalShellRoute({List<_i57.PageRouteInfo>? children})
+/// [_i44.TacticalShellScreen]
+class TacticalShellRoute extends _i57.PageRouteInfo<void> {
+  const TacticalShellRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachTacticalShellRoute.name,
+          TacticalShellRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachTacticalShellRoute';
+  static const String name = 'TacticalShellRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i44.CoachTacticalShellScreen();
+      return const _i44.TacticalShellScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i45.CoachUpsertClubScreen]
-class CoachUpsertClubRoute extends _i57.PageRouteInfo<void> {
-  const CoachUpsertClubRoute({List<_i57.PageRouteInfo>? children})
+/// [_i45.UpsertClubScreen]
+class UpsertClubRoute extends _i57.PageRouteInfo<void> {
+  const UpsertClubRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachUpsertClubRoute.name,
+          UpsertClubRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachUpsertClubRoute';
+  static const String name = 'UpsertClubRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i45.CoachUpsertClubScreen();
+      return const _i45.UpsertClubScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i46.CoachUpsertEvaluationScreen]
-class CoachUpsertEvaluationRoute extends _i57.PageRouteInfo<void> {
-  const CoachUpsertEvaluationRoute({List<_i57.PageRouteInfo>? children})
+/// [_i46.UpsertEvaluationScreen]
+class UpsertEvaluationRoute extends _i57.PageRouteInfo<void> {
+  const UpsertEvaluationRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachUpsertEvaluationRoute.name,
+          UpsertEvaluationRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachUpsertEvaluationRoute';
+  static const String name = 'UpsertEvaluationRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i46.CoachUpsertEvaluationScreen();
+      return const _i46.UpsertEvaluationScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i47.CoachUpsertExamScreen]
-class CoachUpsertExamRoute extends _i57.PageRouteInfo<void> {
-  const CoachUpsertExamRoute({List<_i57.PageRouteInfo>? children})
+/// [_i47.UpsertExamScreen]
+class UpsertExamRoute extends _i57.PageRouteInfo<void> {
+  const UpsertExamRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachUpsertExamRoute.name,
+          UpsertExamRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachUpsertExamRoute';
+  static const String name = 'UpsertExamRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i47.CoachUpsertExamScreen();
+      return const _i47.UpsertExamScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i48.CoachUpsertExerciseScreen]
-class CoachUpsertExerciseRoute extends _i57.PageRouteInfo<void> {
-  const CoachUpsertExerciseRoute({List<_i57.PageRouteInfo>? children})
+/// [_i48.UpsertExerciseScreen]
+class UpsertExerciseRoute extends _i57.PageRouteInfo<void> {
+  const UpsertExerciseRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachUpsertExerciseRoute.name,
+          UpsertExerciseRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachUpsertExerciseRoute';
+  static const String name = 'UpsertExerciseRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i48.CoachUpsertExerciseScreen();
+      return const _i48.UpsertExerciseScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i49.CoachUpsertProgramScreen]
-class CoachUpsertProgramRoute extends _i57.PageRouteInfo<void> {
-  const CoachUpsertProgramRoute({List<_i57.PageRouteInfo>? children})
+/// [_i49.UpsertProgramScreen]
+class UpsertProgramRoute extends _i57.PageRouteInfo<void> {
+  const UpsertProgramRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachUpsertProgramRoute.name,
+          UpsertProgramRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachUpsertProgramRoute';
+  static const String name = 'UpsertProgramRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i49.CoachUpsertProgramScreen();
+      return const _i49.UpsertProgramScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i50.CoachUpsertQuestionScreen]
-class CoachUpsertQuestionRoute extends _i57.PageRouteInfo<void> {
-  const CoachUpsertQuestionRoute({List<_i57.PageRouteInfo>? children})
+/// [_i50.UpsertQuestionScreen]
+class UpsertQuestionRoute extends _i57.PageRouteInfo<void> {
+  const UpsertQuestionRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachUpsertQuestionRoute.name,
+          UpsertQuestionRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachUpsertQuestionRoute';
+  static const String name = 'UpsertQuestionRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i50.CoachUpsertQuestionScreen();
+      return const _i50.UpsertQuestionScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i51.CoachUpsertTacticalScreen]
-class CoachUpsertTacticalRoute extends _i57.PageRouteInfo<void> {
-  const CoachUpsertTacticalRoute({List<_i57.PageRouteInfo>? children})
+/// [_i51.UpsertTacticalScreen]
+class UpsertTacticalRoute extends _i57.PageRouteInfo<void> {
+  const UpsertTacticalRoute({List<_i57.PageRouteInfo>? children})
       : super(
-          CoachUpsertTacticalRoute.name,
+          UpsertTacticalRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CoachUpsertTacticalRoute';
+  static const String name = 'UpsertTacticalRoute';
 
   static _i57.PageInfo page = _i57.PageInfo(
     name,
     builder: (data) {
-      return const _i51.CoachUpsertTacticalScreen();
+      return const _i51.UpsertTacticalScreen();
     },
   );
 }

@@ -34,7 +34,7 @@ class SplashScreen extends StatelessWidget implements AutoRouteWrapper {
               );
             } else {
               context.router.replace(
-                const CoachListClubRoute(),
+                const ListClubRoute(),
               );
             }
           },
