@@ -1,6 +1,5 @@
-import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moon_design/moon_design.dart';
 
 class TitleLarge extends StatelessWidget {
   final String? text;
@@ -21,10 +20,9 @@ class TitleLarge extends StatelessWidget {
     return Text(
       text ?? 'Unassigned',
       style: style ??
-          context.theme.textTheme.titleLarge?.copyWith(
-            color: context.theme.colorScheme.onSurface,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w600,
+          context.moonTypography?.heading.text20.copyWith(
+            color: color,
+            fontWeight: fontWeight,
           ),
     );
   }

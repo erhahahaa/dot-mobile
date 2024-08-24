@@ -7,7 +7,7 @@ import 'package:moon_design/moon_design.dart';
 
 class ColumnList<T> extends StatelessWidget {
   final List<T> items;
-  final Widget Function(T item) itemBuilder;
+  final Widget Function(BuildContext context, T item) itemBuilder;
 
   const ColumnList({
     super.key,
@@ -19,7 +19,7 @@ class ColumnList<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return ContainerWrapper(
       child: Column(
-        children: items.map((item) => itemBuilder(item)).toList(),
+        children: items.map((item) => itemBuilder(context, item)).toList(),
       ),
     );
   }
@@ -28,8 +28,9 @@ class ColumnList<T> extends StatelessWidget {
 class ColumnListTile extends StatelessWidget {
   final EdgeInsetsGeometry? padding, margin;
   final String? titleText, subtitleText, imageUrl;
-  final Widget? trailing, leading;
-  final void Function()? onTap; 
+  final Widget? trailing, leading, title, subtitle;
+  final void Function()? onTap;
+  final bool enabled;
 
   const ColumnListTile({
     super.key,
@@ -40,7 +41,10 @@ class ColumnListTile extends StatelessWidget {
     this.imageUrl,
     this.trailing,
     this.leading,
-    this.onTap, 
+    this.title,
+    this.subtitle,
+    this.onTap,
+    this.enabled = true,
   });
 
   @override
@@ -54,6 +58,7 @@ class ColumnListTile extends StatelessWidget {
           margin: margin ?? EdgeInsets.all(4.w),
           color: context.moonColors?.frieza.withOpacity(0.025),
           child: ListTile(
+            enabled: enabled,
             leading: leading ??
                 CachedNetworkImage(
                   imageUrl: imageUrl ?? AppConstants.SPORT_IMAGE,
@@ -65,11 +70,8 @@ class ColumnListTile extends StatelessWidget {
                     );
                   },
                 ),
-            title: TitleMedium(titleText),
-            subtitle: BodyMedium(
-              subtitleText,
-              fontWeight: FontWeight.w300,
-            ),
+            title: title ?? TitleMedium(titleText),
+            subtitle: subtitle ?? BodySmall(subtitleText),
             trailing: trailing,
           ),
         ),

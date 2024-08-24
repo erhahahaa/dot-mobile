@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dot_coaching/app/router.gr.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
 import 'package:dot_coaching/utils/utils.dart';
@@ -11,84 +10,49 @@ import 'package:moon_design/moon_design.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
-class AthleteListClubScreen extends StatefulWidget {
+class AthleteListClubScreen extends StatelessWidget {
   const AthleteListClubScreen({super.key});
 
   @override
-  State<AthleteListClubScreen> createState() => _AthleteListClubScreenState();
-}
-
-class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
-  late ScrollController _scrollController;
-  late TextEditingController _searchController;
-  bool showScrollToTopButton = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController();
-    _searchController = TextEditingController();
-    _scrollController.addListener(_scrollListener);
-    context.read<AthleteClubBloc>().add(
-          const AthleteClubEvent.getClubs(),
-        );
-  }
-
-  void _scrollListener() {
-    final height = MediaQuery.of(context).size.height;
-    if (_scrollController.offset > (height / 3) && !showScrollToTopButton) {
-      setState(() {
-        showScrollToTopButton = true;
-      });
-    } else if (_scrollController.offset <= (height / 3) &&
-        showScrollToTopButton) {
-      setState(() {
-        showScrollToTopButton = false;
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    _scrollController.removeListener(_scrollListener);
-    _scrollController.dispose();
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Parent(
-        body: CustomScrollView(
-          controller: _scrollController,
-          slivers: [
-            _buildAppBar(),
-            _buildTitle(context),
-            _buildListClub(context),
-            SliverToBoxAdapter(child: Gap(64.h)),
-          ],
-        ),
-      ),
-      floatingActionButton: showScrollToTopButton
-          ? Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                FloatingActionButton(
-                  onPressed: () {
-                    _scrollController.animateTo(
-                      0,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  child: const Icon(Icons.arrow_upward),
-                ),
-                Gap(64.h),
-              ],
-            )
-          : null,
+    return ParentWithSearchAndScrollController(
+      onInit: (search, scroll) {
+        context.read<AthleteClubBloc>().add(
+              const AthleteClubEvent.getClubs(),
+            );
+      },
+      builder: (context, search, scroll, showScrollToTopButton) {
+        return Parent(
+          floatingActionButton: showScrollToTopButton
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    FloatingActionButton(
+                      onPressed: () {
+                        scroll.animateTo(
+                          0,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                      child: const Icon(Icons.arrow_upward),
+                    ),
+                    Gap(64.h),
+                  ],
+                )
+              : null,
+          body: CustomScrollView(
+            controller: scroll,
+            slivers: [
+              _buildAppBar(),
+              _buildTitle(context, search),
+              _buildListClub(context),
+              SliverToBoxAdapter(child: Gap(64.h)),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -129,7 +93,7 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
     );
   }
 
-  Widget _buildTitle(BuildContext context) {
+  Widget _buildTitle(BuildContext context, SearchController search) {
     return SliverToBoxAdapter(
       child: Padding(
         padding: EdgeInsets.only(
@@ -141,13 +105,11 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TitleLarge(
-              context.str?.myClub,
-            ),
+            TitleLarge(context.str?.myClub),
             MySearchBar(
               width: 180.w,
               height: 36.h,
-              controller: _searchController,
+              controller: search,
               hintText:
                   '${context.str?.search} ${context.str?.club.toLowerCase()} ...',
               onChanged: (value) {
@@ -160,7 +122,7 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
                 buttonSize: MoonButtonSize.xs,
                 icon: const Icon(MoonIcons.controls_close_24_light),
                 onTap: () {
-                  _searchController.clear();
+                  search.clear();
                   context.read<AthleteClubBloc>().add(
                         const AthleteClubEvent.filterClubs(''),
                       );
@@ -177,61 +139,11 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
     return BlocBuilder<AthleteClubBloc, AthleteClubState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loading: () {
-            final fakeClubs = List.generate(
-              5,
-              (index) => ClubModel.fake(),
-            ).toList();
-            return SliverToBoxAdapter(
-              child: ContainerWrapper(
-                child: ColumnList<ClubModel>(
-                  items: fakeClubs,
-                  itemBuilder: (club) => Skeletonizer(
-                    child: ColumnListTile(
-                      titleText: club.name,
-                      subtitleText: club.description,
-                      leading: Icon(Icons.circle, size: 36.h),
-                      trailing: MoonChip(
-                        chipSize: MoonChipSize.sm,
-                        borderRadius: BorderRadius.circular(84.r),
-                        backgroundColor:
-                            context.moonColors?.frieza.withOpacity(0.2),
-                        label: const BodyMedium('View'),
-                        trailing: const Icon(MoonIcons.arrows_right_24_light),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
           loaded: (_, filteredClubs) {
             return SliverToBoxAdapter(
               child: ColumnList<ClubModel>(
                 items: filteredClubs,
-                itemBuilder: (club) => ColumnListTile(
-                  titleText: club.name,
-                  subtitleText: club.description,
-                  imageUrl: club.media?.url,
-                  trailing: MoonChip(
-                    chipSize: MoonChipSize.sm,
-                    borderRadius: BorderRadius.circular(84.r),
-                    backgroundColor:
-                        context.moonColors?.frieza.withOpacity(0.2),
-                    label: const BodyMedium('View'),
-                    trailing: const Icon(MoonIcons.arrows_right_24_light),
-                    onTap: () {
-                      // context.router.push(
-                      //   AthleteDetailClubRoute(id: club.id),
-                      // );
-                    },
-                  ),
-                  onTap: () {
-                    context.router.push(
-                      AthleteListProgramRoute(clubId: club.id),
-                    );
-                  },
-                ),
+                itemBuilder: _buildClubListTile,
               ),
             );
           },
@@ -241,12 +153,32 @@ class _AthleteListClubScreenState extends State<AthleteListClubScreen> {
             );
           },
           orElse: () {
-            return const SliverToBoxAdapter(
-              child: BodyLarge('An error occured'),
+            final fakeClubs = List.generate(
+              5,
+              (index) => ClubModel.fake(),
+            ).toList();
+            return SliverToBoxAdapter(
+              child: ContainerWrapper(
+                child: ColumnList<ClubModel>(
+                  items: fakeClubs,
+                  itemBuilder: (context, club) => Skeletonizer(
+                    child: _buildClubListTile(context, club),
+                  ),
+                ),
+              ),
             );
           },
         );
       },
+    );
+  }
+
+  Widget _buildClubListTile(BuildContext context, ClubModel club) {
+    return ColumnListTile(
+      titleText: club.name,
+      subtitleText: club.type.name,
+      imageUrl: club.media?.url,
+      trailing: const Icon(MoonIcons.controls_chevron_right_24_light),
     );
   }
 }
