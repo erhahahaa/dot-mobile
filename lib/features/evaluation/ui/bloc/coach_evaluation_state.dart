@@ -4,9 +4,10 @@ part of 'coach_evaluation_bloc.dart';
 class CoachEvaluationState with _$CoachEvaluationState {
   const factory CoachEvaluationState.initial() = _Initial;
   const factory CoachEvaluationState.loading() = _Loading;
-  const factory CoachEvaluationState.loaded(
-    CoachEvaluationLoadedEvent data,
-  ) = _Loaded;
+  const factory CoachEvaluationState.loaded({
+    required List<EvaluationModel> evaluations,
+    required List<EvaluationModel> filteredEvaluations,
+  }) = _Loaded;
   const factory CoachEvaluationState.failure(String message) = _Failure;
 
   // Actions
@@ -16,12 +17,4 @@ class CoachEvaluationState with _$CoachEvaluationState {
       _Updated;
   const factory CoachEvaluationState.deleted(EvaluationModel evaluation) =
       _Deleted;
-}
-
-@freezed
-class CoachEvaluationLoadedEvent with _$CoachEvaluationLoadedEvent {
-  const factory CoachEvaluationLoadedEvent({
-    @Default([]) List<EvaluationModel> evaluations,
-    @Default([]) List<EvaluationModel> filteredEvaluations,
-  }) = _CoachEvaluationLoadedEvent;
 }

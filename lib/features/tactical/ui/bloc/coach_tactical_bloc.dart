@@ -45,10 +45,8 @@ class CoachTacticalBloc extends Bloc<CoachTacticalEvent, CoachTacticalState> {
       (failure) => emit(_Failure(failure.message)),
       (success) => emit(
         _Loaded(
-          CoachTacticalLoadedEvent(
-            tacticals: success,
-            filteredTacticals: success,
-          ),
+          tacticals: success,
+          filteredTacticals: success,
         ),
       ),
     );
@@ -60,8 +58,8 @@ class CoachTacticalBloc extends Bloc<CoachTacticalEvent, CoachTacticalState> {
   ) {
     emit(_Loading());
     state.maybeWhen(
-      loaded: (data) {
-        final finds = data.tacticals
+      loaded: (tacticals, _) {
+        final finds = tacticals
             .where(
               (tactical) => tactical.name.toLowerCase().contains(
                     event.query.toLowerCase(),
@@ -73,10 +71,8 @@ class CoachTacticalBloc extends Bloc<CoachTacticalEvent, CoachTacticalState> {
         } else {
           emit(
             _Loaded(
-              CoachTacticalLoadedEvent(
-                tacticals: data.tacticals,
-                filteredTacticals: finds,
-              ),
+              tacticals: tacticals,
+              filteredTacticals: finds,
             ),
           );
         }

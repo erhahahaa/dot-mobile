@@ -46,10 +46,8 @@ class CoachEvaluationBloc
       (failure) => emit(_Failure(failure.message)),
       (success) => emit(
         _Loaded(
-          CoachEvaluationLoadedEvent(
-            evaluations: success,
-            filteredEvaluations: success,
-          ),
+          evaluations: success,
+          filteredEvaluations: success,
         ),
       ),
     );
@@ -61,8 +59,8 @@ class CoachEvaluationBloc
   ) {
     emit(_Loading());
     state.maybeWhen(
-      loaded: (data) {
-        final finds = data.evaluations
+      loaded: (evaluations, _) {
+        final finds = evaluations
             .where(
               (evaluation) =>
                   evaluation.athlete?.name.toLowerCase().contains(
@@ -82,10 +80,8 @@ class CoachEvaluationBloc
         } else {
           emit(
             _Loaded(
-              CoachEvaluationLoadedEvent(
-                evaluations: data.evaluations,
-                filteredEvaluations: finds,
-              ),
+              evaluations: evaluations,
+              filteredEvaluations: finds,
             ),
           );
         }

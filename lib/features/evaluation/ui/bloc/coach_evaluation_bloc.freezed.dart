@@ -1109,7 +1109,9 @@ mixin _$CoachEvaluationState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachEvaluationLoadedEvent data) loaded,
+    required TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -1120,7 +1122,9 @@ mixin _$CoachEvaluationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult? Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -1131,7 +1135,9 @@ mixin _$CoachEvaluationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -1240,7 +1246,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachEvaluationLoadedEvent data) loaded,
+    required TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -1254,7 +1262,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult? Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -1268,7 +1278,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -1375,7 +1387,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachEvaluationLoadedEvent data) loaded,
+    required TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -1389,7 +1403,9 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult? Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -1403,7 +1419,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -1473,9 +1491,9 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({CoachEvaluationLoadedEvent data});
-
-  $CoachEvaluationLoadedEventCopyWith<$Res> get data;
+  $Res call(
+      {List<EvaluationModel> evaluations,
+      List<EvaluationModel> filteredEvaluations});
 }
 
 /// @nodoc
@@ -1491,38 +1509,51 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? evaluations = null,
+    Object? filteredEvaluations = null,
   }) {
     return _then(_$LoadedImpl(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as CoachEvaluationLoadedEvent,
+      evaluations: null == evaluations
+          ? _value._evaluations
+          : evaluations // ignore: cast_nullable_to_non_nullable
+              as List<EvaluationModel>,
+      filteredEvaluations: null == filteredEvaluations
+          ? _value._filteredEvaluations
+          : filteredEvaluations // ignore: cast_nullable_to_non_nullable
+              as List<EvaluationModel>,
     ));
-  }
-
-  /// Create a copy of CoachEvaluationState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CoachEvaluationLoadedEventCopyWith<$Res> get data {
-    return $CoachEvaluationLoadedEventCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.data);
+  const _$LoadedImpl(
+      {required final List<EvaluationModel> evaluations,
+      required final List<EvaluationModel> filteredEvaluations})
+      : _evaluations = evaluations,
+        _filteredEvaluations = filteredEvaluations;
 
+  final List<EvaluationModel> _evaluations;
   @override
-  final CoachEvaluationLoadedEvent data;
+  List<EvaluationModel> get evaluations {
+    if (_evaluations is EqualUnmodifiableListView) return _evaluations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_evaluations);
+  }
+
+  final List<EvaluationModel> _filteredEvaluations;
+  @override
+  List<EvaluationModel> get filteredEvaluations {
+    if (_filteredEvaluations is EqualUnmodifiableListView)
+      return _filteredEvaluations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredEvaluations);
+  }
 
   @override
   String toString() {
-    return 'CoachEvaluationState.loaded(data: $data)';
+    return 'CoachEvaluationState.loaded(evaluations: $evaluations, filteredEvaluations: $filteredEvaluations)';
   }
 
   @override
@@ -1530,11 +1561,17 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality()
+                .equals(other._evaluations, _evaluations) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredEvaluations, _filteredEvaluations));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_evaluations),
+      const DeepCollectionEquality().hash(_filteredEvaluations));
 
   /// Create a copy of CoachEvaluationState
   /// with the given fields replaced by the non-null parameter values.
@@ -1549,13 +1586,15 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachEvaluationLoadedEvent data) loaded,
+    required TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
     required TResult Function(EvaluationModel evaluation) deleted,
   }) {
-    return loaded(data);
+    return loaded(evaluations, filteredEvaluations);
   }
 
   @override
@@ -1563,13 +1602,15 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult? Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
     TResult? Function(EvaluationModel evaluation)? deleted,
   }) {
-    return loaded?.call(data);
+    return loaded?.call(evaluations, filteredEvaluations);
   }
 
   @override
@@ -1577,7 +1618,9 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -1585,7 +1628,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(data);
+      return loaded(evaluations, filteredEvaluations);
     }
     return orElse();
   }
@@ -1638,9 +1681,12 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements CoachEvaluationState {
-  const factory _Loaded(final CoachEvaluationLoadedEvent data) = _$LoadedImpl;
+  const factory _Loaded(
+      {required final List<EvaluationModel> evaluations,
+      required final List<EvaluationModel> filteredEvaluations}) = _$LoadedImpl;
 
-  CoachEvaluationLoadedEvent get data;
+  List<EvaluationModel> get evaluations;
+  List<EvaluationModel> get filteredEvaluations;
 
   /// Create a copy of CoachEvaluationState
   /// with the given fields replaced by the non-null parameter values.
@@ -1719,7 +1765,9 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachEvaluationLoadedEvent data) loaded,
+    required TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -1733,7 +1781,9 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult? Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -1747,7 +1797,9 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -1902,7 +1954,9 @@ class _$CreatedImpl implements _Created {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachEvaluationLoadedEvent data) loaded,
+    required TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -1916,7 +1970,9 @@ class _$CreatedImpl implements _Created {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult? Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -1930,7 +1986,9 @@ class _$CreatedImpl implements _Created {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -2085,7 +2143,9 @@ class _$UpdatedImpl implements _Updated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachEvaluationLoadedEvent data) loaded,
+    required TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -2099,7 +2159,9 @@ class _$UpdatedImpl implements _Updated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult? Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -2113,7 +2175,9 @@ class _$UpdatedImpl implements _Updated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -2268,7 +2332,9 @@ class _$DeletedImpl implements _Deleted {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachEvaluationLoadedEvent data) loaded,
+    required TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -2282,7 +2348,9 @@ class _$DeletedImpl implements _Deleted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult? Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -2296,7 +2364,9 @@ class _$DeletedImpl implements _Deleted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachEvaluationLoadedEvent data)? loaded,
+    TResult Function(List<EvaluationModel> evaluations,
+            List<EvaluationModel> filteredEvaluations)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -2366,186 +2436,4 @@ abstract class _Deleted implements CoachEvaluationState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeletedImplCopyWith<_$DeletedImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$CoachEvaluationLoadedEvent {
-  List<EvaluationModel> get evaluations => throw _privateConstructorUsedError;
-  List<EvaluationModel> get filteredEvaluations =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of CoachEvaluationLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CoachEvaluationLoadedEventCopyWith<CoachEvaluationLoadedEvent>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CoachEvaluationLoadedEventCopyWith<$Res> {
-  factory $CoachEvaluationLoadedEventCopyWith(CoachEvaluationLoadedEvent value,
-          $Res Function(CoachEvaluationLoadedEvent) then) =
-      _$CoachEvaluationLoadedEventCopyWithImpl<$Res,
-          CoachEvaluationLoadedEvent>;
-  @useResult
-  $Res call(
-      {List<EvaluationModel> evaluations,
-      List<EvaluationModel> filteredEvaluations});
-}
-
-/// @nodoc
-class _$CoachEvaluationLoadedEventCopyWithImpl<$Res,
-        $Val extends CoachEvaluationLoadedEvent>
-    implements $CoachEvaluationLoadedEventCopyWith<$Res> {
-  _$CoachEvaluationLoadedEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of CoachEvaluationLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? evaluations = null,
-    Object? filteredEvaluations = null,
-  }) {
-    return _then(_value.copyWith(
-      evaluations: null == evaluations
-          ? _value.evaluations
-          : evaluations // ignore: cast_nullable_to_non_nullable
-              as List<EvaluationModel>,
-      filteredEvaluations: null == filteredEvaluations
-          ? _value.filteredEvaluations
-          : filteredEvaluations // ignore: cast_nullable_to_non_nullable
-              as List<EvaluationModel>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$CoachEvaluationLoadedEventImplCopyWith<$Res>
-    implements $CoachEvaluationLoadedEventCopyWith<$Res> {
-  factory _$$CoachEvaluationLoadedEventImplCopyWith(
-          _$CoachEvaluationLoadedEventImpl value,
-          $Res Function(_$CoachEvaluationLoadedEventImpl) then) =
-      __$$CoachEvaluationLoadedEventImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {List<EvaluationModel> evaluations,
-      List<EvaluationModel> filteredEvaluations});
-}
-
-/// @nodoc
-class __$$CoachEvaluationLoadedEventImplCopyWithImpl<$Res>
-    extends _$CoachEvaluationLoadedEventCopyWithImpl<$Res,
-        _$CoachEvaluationLoadedEventImpl>
-    implements _$$CoachEvaluationLoadedEventImplCopyWith<$Res> {
-  __$$CoachEvaluationLoadedEventImplCopyWithImpl(
-      _$CoachEvaluationLoadedEventImpl _value,
-      $Res Function(_$CoachEvaluationLoadedEventImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CoachEvaluationLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? evaluations = null,
-    Object? filteredEvaluations = null,
-  }) {
-    return _then(_$CoachEvaluationLoadedEventImpl(
-      evaluations: null == evaluations
-          ? _value._evaluations
-          : evaluations // ignore: cast_nullable_to_non_nullable
-              as List<EvaluationModel>,
-      filteredEvaluations: null == filteredEvaluations
-          ? _value._filteredEvaluations
-          : filteredEvaluations // ignore: cast_nullable_to_non_nullable
-              as List<EvaluationModel>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CoachEvaluationLoadedEventImpl implements _CoachEvaluationLoadedEvent {
-  const _$CoachEvaluationLoadedEventImpl(
-      {final List<EvaluationModel> evaluations = const [],
-      final List<EvaluationModel> filteredEvaluations = const []})
-      : _evaluations = evaluations,
-        _filteredEvaluations = filteredEvaluations;
-
-  final List<EvaluationModel> _evaluations;
-  @override
-  @JsonKey()
-  List<EvaluationModel> get evaluations {
-    if (_evaluations is EqualUnmodifiableListView) return _evaluations;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_evaluations);
-  }
-
-  final List<EvaluationModel> _filteredEvaluations;
-  @override
-  @JsonKey()
-  List<EvaluationModel> get filteredEvaluations {
-    if (_filteredEvaluations is EqualUnmodifiableListView)
-      return _filteredEvaluations;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_filteredEvaluations);
-  }
-
-  @override
-  String toString() {
-    return 'CoachEvaluationLoadedEvent(evaluations: $evaluations, filteredEvaluations: $filteredEvaluations)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CoachEvaluationLoadedEventImpl &&
-            const DeepCollectionEquality()
-                .equals(other._evaluations, _evaluations) &&
-            const DeepCollectionEquality()
-                .equals(other._filteredEvaluations, _filteredEvaluations));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_evaluations),
-      const DeepCollectionEquality().hash(_filteredEvaluations));
-
-  /// Create a copy of CoachEvaluationLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CoachEvaluationLoadedEventImplCopyWith<_$CoachEvaluationLoadedEventImpl>
-      get copyWith => __$$CoachEvaluationLoadedEventImplCopyWithImpl<
-          _$CoachEvaluationLoadedEventImpl>(this, _$identity);
-}
-
-abstract class _CoachEvaluationLoadedEvent
-    implements CoachEvaluationLoadedEvent {
-  const factory _CoachEvaluationLoadedEvent(
-          {final List<EvaluationModel> evaluations,
-          final List<EvaluationModel> filteredEvaluations}) =
-      _$CoachEvaluationLoadedEventImpl;
-
-  @override
-  List<EvaluationModel> get evaluations;
-  @override
-  List<EvaluationModel> get filteredEvaluations;
-
-  /// Create a copy of CoachEvaluationLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CoachEvaluationLoadedEventImplCopyWith<_$CoachEvaluationLoadedEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }

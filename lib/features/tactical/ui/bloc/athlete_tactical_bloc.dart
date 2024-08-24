@@ -37,10 +37,8 @@ class AthleteTacticalBloc
       (failure) => emit(_Failure(failure.message)),
       (success) => emit(
         _Loaded(
-          AthleteTacticalLoadedEvent(
-            tacticals: success,
-            filteredTacticals: success,
-          ),
+          tacticals: success,
+          filteredTacticals: success,
         ),
       ),
     );
@@ -52,8 +50,8 @@ class AthleteTacticalBloc
   ) {
     emit(_Loading());
     state.maybeWhen(
-      loaded: (data) {
-        final finds = data.tacticals
+      loaded: (tacticals, _) {
+        final finds = tacticals
             .where(
               (tactical) => tactical.name.toLowerCase().contains(
                     event.query.toLowerCase(),
@@ -65,10 +63,8 @@ class AthleteTacticalBloc
         } else {
           emit(
             _Loaded(
-              AthleteTacticalLoadedEvent(
-                tacticals: data.tacticals,
-                filteredTacticals: finds,
-              ),
+              tacticals: tacticals,
+              filteredTacticals: finds,
             ),
           );
         }

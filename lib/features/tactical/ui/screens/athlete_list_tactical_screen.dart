@@ -217,10 +217,10 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
               ),
             );
           },
-          loaded: (data) {
+          loaded: (_, filteredTacticals) {
             return SliverToBoxAdapter(
               child: ColumnList<TacticalModel>(
-                items: data.filteredTacticals,
+                items: filteredTacticals,
                 itemBuilder: (tactical) => ColumnListTile(
                   titleText: tactical.name,
                   subtitleText: tactical.description,

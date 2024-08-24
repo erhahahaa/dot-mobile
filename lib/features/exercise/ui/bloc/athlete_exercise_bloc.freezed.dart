@@ -507,7 +507,9 @@ mixin _$AthleteExerciseState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteExerciseLoadedEvent data) loaded,
+    required TResult Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)
+        loaded,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -515,7 +517,9 @@ mixin _$AthleteExerciseState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteExerciseLoadedEvent data)? loaded,
+    TResult? Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)?
+        loaded,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -523,7 +527,9 @@ mixin _$AthleteExerciseState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteExerciseLoadedEvent data)? loaded,
+    TResult Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -620,7 +626,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteExerciseLoadedEvent data) loaded,
+    required TResult Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)
+        loaded,
     required TResult Function(String message) failure,
   }) {
     return initial();
@@ -631,7 +639,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteExerciseLoadedEvent data)? loaded,
+    TResult? Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
     return initial?.call();
@@ -642,7 +652,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteExerciseLoadedEvent data)? loaded,
+    TResult Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -737,7 +749,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteExerciseLoadedEvent data) loaded,
+    required TResult Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)
+        loaded,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -748,7 +762,9 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteExerciseLoadedEvent data)? loaded,
+    TResult? Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -759,7 +775,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteExerciseLoadedEvent data)? loaded,
+    TResult Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -817,9 +835,8 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AthleteExerciseLoadedEvent data});
-
-  $AthleteExerciseLoadedEventCopyWith<$Res> get data;
+  $Res call(
+      {List<ExerciseModel> exercises, List<ExerciseModel> filteredExercises});
 }
 
 /// @nodoc
@@ -835,38 +852,51 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? exercises = null,
+    Object? filteredExercises = null,
   }) {
     return _then(_$LoadedImpl(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as AthleteExerciseLoadedEvent,
+      exercises: null == exercises
+          ? _value._exercises
+          : exercises // ignore: cast_nullable_to_non_nullable
+              as List<ExerciseModel>,
+      filteredExercises: null == filteredExercises
+          ? _value._filteredExercises
+          : filteredExercises // ignore: cast_nullable_to_non_nullable
+              as List<ExerciseModel>,
     ));
-  }
-
-  /// Create a copy of AthleteExerciseState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AthleteExerciseLoadedEventCopyWith<$Res> get data {
-    return $AthleteExerciseLoadedEventCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.data);
+  const _$LoadedImpl(
+      {required final List<ExerciseModel> exercises,
+      required final List<ExerciseModel> filteredExercises})
+      : _exercises = exercises,
+        _filteredExercises = filteredExercises;
 
+  final List<ExerciseModel> _exercises;
   @override
-  final AthleteExerciseLoadedEvent data;
+  List<ExerciseModel> get exercises {
+    if (_exercises is EqualUnmodifiableListView) return _exercises;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_exercises);
+  }
+
+  final List<ExerciseModel> _filteredExercises;
+  @override
+  List<ExerciseModel> get filteredExercises {
+    if (_filteredExercises is EqualUnmodifiableListView)
+      return _filteredExercises;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredExercises);
+  }
 
   @override
   String toString() {
-    return 'AthleteExerciseState.loaded(data: $data)';
+    return 'AthleteExerciseState.loaded(exercises: $exercises, filteredExercises: $filteredExercises)';
   }
 
   @override
@@ -874,11 +904,17 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality()
+                .equals(other._exercises, _exercises) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredExercises, _filteredExercises));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_exercises),
+      const DeepCollectionEquality().hash(_filteredExercises));
 
   /// Create a copy of AthleteExerciseState
   /// with the given fields replaced by the non-null parameter values.
@@ -893,10 +929,12 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteExerciseLoadedEvent data) loaded,
+    required TResult Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)
+        loaded,
     required TResult Function(String message) failure,
   }) {
-    return loaded(data);
+    return loaded(exercises, filteredExercises);
   }
 
   @override
@@ -904,10 +942,12 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteExerciseLoadedEvent data)? loaded,
+    TResult? Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
-    return loaded?.call(data);
+    return loaded?.call(exercises, filteredExercises);
   }
 
   @override
@@ -915,12 +955,14 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteExerciseLoadedEvent data)? loaded,
+    TResult Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(data);
+      return loaded(exercises, filteredExercises);
     }
     return orElse();
   }
@@ -964,9 +1006,12 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements AthleteExerciseState {
-  const factory _Loaded(final AthleteExerciseLoadedEvent data) = _$LoadedImpl;
+  const factory _Loaded(
+      {required final List<ExerciseModel> exercises,
+      required final List<ExerciseModel> filteredExercises}) = _$LoadedImpl;
 
-  AthleteExerciseLoadedEvent get data;
+  List<ExerciseModel> get exercises;
+  List<ExerciseModel> get filteredExercises;
 
   /// Create a copy of AthleteExerciseState
   /// with the given fields replaced by the non-null parameter values.
@@ -1045,7 +1090,9 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteExerciseLoadedEvent data) loaded,
+    required TResult Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)
+        loaded,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -1056,7 +1103,9 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteExerciseLoadedEvent data)? loaded,
+    TResult? Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -1067,7 +1116,9 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteExerciseLoadedEvent data)? loaded,
+    TResult Function(List<ExerciseModel> exercises,
+            List<ExerciseModel> filteredExercises)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -1125,184 +1176,4 @@ abstract class _Failure implements AthleteExerciseState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$AthleteExerciseLoadedEvent {
-  List<ExerciseModel> get exercises => throw _privateConstructorUsedError;
-  List<ExerciseModel> get filteredExercises =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of AthleteExerciseLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $AthleteExerciseLoadedEventCopyWith<AthleteExerciseLoadedEvent>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AthleteExerciseLoadedEventCopyWith<$Res> {
-  factory $AthleteExerciseLoadedEventCopyWith(AthleteExerciseLoadedEvent value,
-          $Res Function(AthleteExerciseLoadedEvent) then) =
-      _$AthleteExerciseLoadedEventCopyWithImpl<$Res,
-          AthleteExerciseLoadedEvent>;
-  @useResult
-  $Res call(
-      {List<ExerciseModel> exercises, List<ExerciseModel> filteredExercises});
-}
-
-/// @nodoc
-class _$AthleteExerciseLoadedEventCopyWithImpl<$Res,
-        $Val extends AthleteExerciseLoadedEvent>
-    implements $AthleteExerciseLoadedEventCopyWith<$Res> {
-  _$AthleteExerciseLoadedEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of AthleteExerciseLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? exercises = null,
-    Object? filteredExercises = null,
-  }) {
-    return _then(_value.copyWith(
-      exercises: null == exercises
-          ? _value.exercises
-          : exercises // ignore: cast_nullable_to_non_nullable
-              as List<ExerciseModel>,
-      filteredExercises: null == filteredExercises
-          ? _value.filteredExercises
-          : filteredExercises // ignore: cast_nullable_to_non_nullable
-              as List<ExerciseModel>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$AthleteExerciseLoadedEventImplCopyWith<$Res>
-    implements $AthleteExerciseLoadedEventCopyWith<$Res> {
-  factory _$$AthleteExerciseLoadedEventImplCopyWith(
-          _$AthleteExerciseLoadedEventImpl value,
-          $Res Function(_$AthleteExerciseLoadedEventImpl) then) =
-      __$$AthleteExerciseLoadedEventImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {List<ExerciseModel> exercises, List<ExerciseModel> filteredExercises});
-}
-
-/// @nodoc
-class __$$AthleteExerciseLoadedEventImplCopyWithImpl<$Res>
-    extends _$AthleteExerciseLoadedEventCopyWithImpl<$Res,
-        _$AthleteExerciseLoadedEventImpl>
-    implements _$$AthleteExerciseLoadedEventImplCopyWith<$Res> {
-  __$$AthleteExerciseLoadedEventImplCopyWithImpl(
-      _$AthleteExerciseLoadedEventImpl _value,
-      $Res Function(_$AthleteExerciseLoadedEventImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AthleteExerciseLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? exercises = null,
-    Object? filteredExercises = null,
-  }) {
-    return _then(_$AthleteExerciseLoadedEventImpl(
-      exercises: null == exercises
-          ? _value._exercises
-          : exercises // ignore: cast_nullable_to_non_nullable
-              as List<ExerciseModel>,
-      filteredExercises: null == filteredExercises
-          ? _value._filteredExercises
-          : filteredExercises // ignore: cast_nullable_to_non_nullable
-              as List<ExerciseModel>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AthleteExerciseLoadedEventImpl implements _AthleteExerciseLoadedEvent {
-  const _$AthleteExerciseLoadedEventImpl(
-      {final List<ExerciseModel> exercises = const [],
-      final List<ExerciseModel> filteredExercises = const []})
-      : _exercises = exercises,
-        _filteredExercises = filteredExercises;
-
-  final List<ExerciseModel> _exercises;
-  @override
-  @JsonKey()
-  List<ExerciseModel> get exercises {
-    if (_exercises is EqualUnmodifiableListView) return _exercises;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_exercises);
-  }
-
-  final List<ExerciseModel> _filteredExercises;
-  @override
-  @JsonKey()
-  List<ExerciseModel> get filteredExercises {
-    if (_filteredExercises is EqualUnmodifiableListView)
-      return _filteredExercises;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_filteredExercises);
-  }
-
-  @override
-  String toString() {
-    return 'AthleteExerciseLoadedEvent(exercises: $exercises, filteredExercises: $filteredExercises)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AthleteExerciseLoadedEventImpl &&
-            const DeepCollectionEquality()
-                .equals(other._exercises, _exercises) &&
-            const DeepCollectionEquality()
-                .equals(other._filteredExercises, _filteredExercises));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_exercises),
-      const DeepCollectionEquality().hash(_filteredExercises));
-
-  /// Create a copy of AthleteExerciseLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AthleteExerciseLoadedEventImplCopyWith<_$AthleteExerciseLoadedEventImpl>
-      get copyWith => __$$AthleteExerciseLoadedEventImplCopyWithImpl<
-          _$AthleteExerciseLoadedEventImpl>(this, _$identity);
-}
-
-abstract class _AthleteExerciseLoadedEvent
-    implements AthleteExerciseLoadedEvent {
-  const factory _AthleteExerciseLoadedEvent(
-          {final List<ExerciseModel> exercises,
-          final List<ExerciseModel> filteredExercises}) =
-      _$AthleteExerciseLoadedEventImpl;
-
-  @override
-  List<ExerciseModel> get exercises;
-  @override
-  List<ExerciseModel> get filteredExercises;
-
-  /// Create a copy of AthleteExerciseLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AthleteExerciseLoadedEventImplCopyWith<_$AthleteExerciseLoadedEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }

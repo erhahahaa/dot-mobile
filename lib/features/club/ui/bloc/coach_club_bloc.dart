@@ -44,7 +44,8 @@ class CoachClubBloc extends Bloc<CoachClubEvent, CoachClubState> {
       (failure) => emit(_Failure(failure.message)),
       (success) => emit(
         _Loaded(
-          CoachClubLoadedEvent(clubs: success, filteredClubs: success),
+          clubs: success,
+          filteredClubs: success,
         ),
       ),
     );
@@ -56,8 +57,8 @@ class CoachClubBloc extends Bloc<CoachClubEvent, CoachClubState> {
   ) {
     emit(_Loading());
     state.maybeWhen(
-      loaded: (data) {
-        final finds = data.clubs
+      loaded: (clubs, _) {
+        final finds = clubs
             .where(
               (club) => club.name.toLowerCase().contains(
                     event.query.toLowerCase(),
@@ -70,10 +71,8 @@ class CoachClubBloc extends Bloc<CoachClubEvent, CoachClubState> {
         } else {
           emit(
             _Loaded(
-              CoachClubLoadedEvent(
-                clubs: data.clubs,
-                filteredClubs: finds,
-              ),
+              clubs: clubs,
+              filteredClubs: finds,
             ),
           );
         }

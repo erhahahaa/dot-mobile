@@ -504,7 +504,9 @@ mixin _$AthleteExamState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteExamLoadedEvent data) loaded,
+    required TResult Function(
+            List<ExamModel> exams, List<ExamModel> filteredExams)
+        loaded,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -512,7 +514,8 @@ mixin _$AthleteExamState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteExamLoadedEvent data)? loaded,
+    TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
+        loaded,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -520,7 +523,8 @@ mixin _$AthleteExamState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteExamLoadedEvent data)? loaded,
+    TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -616,7 +620,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteExamLoadedEvent data) loaded,
+    required TResult Function(
+            List<ExamModel> exams, List<ExamModel> filteredExams)
+        loaded,
     required TResult Function(String message) failure,
   }) {
     return initial();
@@ -627,7 +633,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteExamLoadedEvent data)? loaded,
+    TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
     return initial?.call();
@@ -638,7 +645,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteExamLoadedEvent data)? loaded,
+    TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -733,7 +741,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteExamLoadedEvent data) loaded,
+    required TResult Function(
+            List<ExamModel> exams, List<ExamModel> filteredExams)
+        loaded,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -744,7 +754,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteExamLoadedEvent data)? loaded,
+    TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -755,7 +766,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteExamLoadedEvent data)? loaded,
+    TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -813,9 +825,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AthleteExamLoadedEvent data});
-
-  $AthleteExamLoadedEventCopyWith<$Res> get data;
+  $Res call({List<ExamModel> exams, List<ExamModel> filteredExams});
 }
 
 /// @nodoc
@@ -831,38 +841,50 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? exams = null,
+    Object? filteredExams = null,
   }) {
     return _then(_$LoadedImpl(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as AthleteExamLoadedEvent,
+      exams: null == exams
+          ? _value._exams
+          : exams // ignore: cast_nullable_to_non_nullable
+              as List<ExamModel>,
+      filteredExams: null == filteredExams
+          ? _value._filteredExams
+          : filteredExams // ignore: cast_nullable_to_non_nullable
+              as List<ExamModel>,
     ));
-  }
-
-  /// Create a copy of AthleteExamState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AthleteExamLoadedEventCopyWith<$Res> get data {
-    return $AthleteExamLoadedEventCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.data);
+  const _$LoadedImpl(
+      {required final List<ExamModel> exams,
+      required final List<ExamModel> filteredExams})
+      : _exams = exams,
+        _filteredExams = filteredExams;
 
+  final List<ExamModel> _exams;
   @override
-  final AthleteExamLoadedEvent data;
+  List<ExamModel> get exams {
+    if (_exams is EqualUnmodifiableListView) return _exams;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_exams);
+  }
+
+  final List<ExamModel> _filteredExams;
+  @override
+  List<ExamModel> get filteredExams {
+    if (_filteredExams is EqualUnmodifiableListView) return _filteredExams;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredExams);
+  }
 
   @override
   String toString() {
-    return 'AthleteExamState.loaded(data: $data)';
+    return 'AthleteExamState.loaded(exams: $exams, filteredExams: $filteredExams)';
   }
 
   @override
@@ -870,11 +892,16 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality().equals(other._exams, _exams) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredExams, _filteredExams));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_exams),
+      const DeepCollectionEquality().hash(_filteredExams));
 
   /// Create a copy of AthleteExamState
   /// with the given fields replaced by the non-null parameter values.
@@ -889,10 +916,12 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteExamLoadedEvent data) loaded,
+    required TResult Function(
+            List<ExamModel> exams, List<ExamModel> filteredExams)
+        loaded,
     required TResult Function(String message) failure,
   }) {
-    return loaded(data);
+    return loaded(exams, filteredExams);
   }
 
   @override
@@ -900,10 +929,11 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteExamLoadedEvent data)? loaded,
+    TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
-    return loaded?.call(data);
+    return loaded?.call(exams, filteredExams);
   }
 
   @override
@@ -911,12 +941,13 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteExamLoadedEvent data)? loaded,
+    TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(data);
+      return loaded(exams, filteredExams);
     }
     return orElse();
   }
@@ -960,9 +991,12 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements AthleteExamState {
-  const factory _Loaded(final AthleteExamLoadedEvent data) = _$LoadedImpl;
+  const factory _Loaded(
+      {required final List<ExamModel> exams,
+      required final List<ExamModel> filteredExams}) = _$LoadedImpl;
 
-  AthleteExamLoadedEvent get data;
+  List<ExamModel> get exams;
+  List<ExamModel> get filteredExams;
 
   /// Create a copy of AthleteExamState
   /// with the given fields replaced by the non-null parameter values.
@@ -1041,7 +1075,9 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AthleteExamLoadedEvent data) loaded,
+    required TResult Function(
+            List<ExamModel> exams, List<ExamModel> filteredExams)
+        loaded,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -1052,7 +1088,8 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AthleteExamLoadedEvent data)? loaded,
+    TResult? Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
+        loaded,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -1063,7 +1100,8 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AthleteExamLoadedEvent data)? loaded,
+    TResult Function(List<ExamModel> exams, List<ExamModel> filteredExams)?
+        loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -1121,176 +1159,4 @@ abstract class _Failure implements AthleteExamState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$AthleteExamLoadedEvent {
-  List<ExamModel> get exams => throw _privateConstructorUsedError;
-  List<ExamModel> get filteredExams => throw _privateConstructorUsedError;
-
-  /// Create a copy of AthleteExamLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $AthleteExamLoadedEventCopyWith<AthleteExamLoadedEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AthleteExamLoadedEventCopyWith<$Res> {
-  factory $AthleteExamLoadedEventCopyWith(AthleteExamLoadedEvent value,
-          $Res Function(AthleteExamLoadedEvent) then) =
-      _$AthleteExamLoadedEventCopyWithImpl<$Res, AthleteExamLoadedEvent>;
-  @useResult
-  $Res call({List<ExamModel> exams, List<ExamModel> filteredExams});
-}
-
-/// @nodoc
-class _$AthleteExamLoadedEventCopyWithImpl<$Res,
-        $Val extends AthleteExamLoadedEvent>
-    implements $AthleteExamLoadedEventCopyWith<$Res> {
-  _$AthleteExamLoadedEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of AthleteExamLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? exams = null,
-    Object? filteredExams = null,
-  }) {
-    return _then(_value.copyWith(
-      exams: null == exams
-          ? _value.exams
-          : exams // ignore: cast_nullable_to_non_nullable
-              as List<ExamModel>,
-      filteredExams: null == filteredExams
-          ? _value.filteredExams
-          : filteredExams // ignore: cast_nullable_to_non_nullable
-              as List<ExamModel>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$AthleteExamLoadedEventImplCopyWith<$Res>
-    implements $AthleteExamLoadedEventCopyWith<$Res> {
-  factory _$$AthleteExamLoadedEventImplCopyWith(
-          _$AthleteExamLoadedEventImpl value,
-          $Res Function(_$AthleteExamLoadedEventImpl) then) =
-      __$$AthleteExamLoadedEventImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<ExamModel> exams, List<ExamModel> filteredExams});
-}
-
-/// @nodoc
-class __$$AthleteExamLoadedEventImplCopyWithImpl<$Res>
-    extends _$AthleteExamLoadedEventCopyWithImpl<$Res,
-        _$AthleteExamLoadedEventImpl>
-    implements _$$AthleteExamLoadedEventImplCopyWith<$Res> {
-  __$$AthleteExamLoadedEventImplCopyWithImpl(
-      _$AthleteExamLoadedEventImpl _value,
-      $Res Function(_$AthleteExamLoadedEventImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AthleteExamLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? exams = null,
-    Object? filteredExams = null,
-  }) {
-    return _then(_$AthleteExamLoadedEventImpl(
-      exams: null == exams
-          ? _value._exams
-          : exams // ignore: cast_nullable_to_non_nullable
-              as List<ExamModel>,
-      filteredExams: null == filteredExams
-          ? _value._filteredExams
-          : filteredExams // ignore: cast_nullable_to_non_nullable
-              as List<ExamModel>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AthleteExamLoadedEventImpl implements _AthleteExamLoadedEvent {
-  const _$AthleteExamLoadedEventImpl(
-      {final List<ExamModel> exams = const [],
-      final List<ExamModel> filteredExams = const []})
-      : _exams = exams,
-        _filteredExams = filteredExams;
-
-  final List<ExamModel> _exams;
-  @override
-  @JsonKey()
-  List<ExamModel> get exams {
-    if (_exams is EqualUnmodifiableListView) return _exams;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_exams);
-  }
-
-  final List<ExamModel> _filteredExams;
-  @override
-  @JsonKey()
-  List<ExamModel> get filteredExams {
-    if (_filteredExams is EqualUnmodifiableListView) return _filteredExams;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_filteredExams);
-  }
-
-  @override
-  String toString() {
-    return 'AthleteExamLoadedEvent(exams: $exams, filteredExams: $filteredExams)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AthleteExamLoadedEventImpl &&
-            const DeepCollectionEquality().equals(other._exams, _exams) &&
-            const DeepCollectionEquality()
-                .equals(other._filteredExams, _filteredExams));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_exams),
-      const DeepCollectionEquality().hash(_filteredExams));
-
-  /// Create a copy of AthleteExamLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AthleteExamLoadedEventImplCopyWith<_$AthleteExamLoadedEventImpl>
-      get copyWith => __$$AthleteExamLoadedEventImplCopyWithImpl<
-          _$AthleteExamLoadedEventImpl>(this, _$identity);
-}
-
-abstract class _AthleteExamLoadedEvent implements AthleteExamLoadedEvent {
-  const factory _AthleteExamLoadedEvent(
-      {final List<ExamModel> exams,
-      final List<ExamModel> filteredExams}) = _$AthleteExamLoadedEventImpl;
-
-  @override
-  List<ExamModel> get exams;
-  @override
-  List<ExamModel> get filteredExams;
-
-  /// Create a copy of AthleteExamLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AthleteExamLoadedEventImplCopyWith<_$AthleteExamLoadedEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }

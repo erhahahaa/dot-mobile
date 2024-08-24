@@ -36,7 +36,8 @@ class AthleteExamBloc extends Bloc<AthleteExamEvent, AthleteExamState> {
       (failure) => emit(_Failure(failure.message)),
       (success) => emit(
         _Loaded(
-          AthleteExamLoadedEvent(exams: success, filteredExams: success),
+          exams: success,
+          filteredExams: success,
         ),
       ),
     );
@@ -48,8 +49,8 @@ class AthleteExamBloc extends Bloc<AthleteExamEvent, AthleteExamState> {
   ) {
     emit(_Loading());
     state.maybeWhen(
-      loaded: (data) {
-        final finds = data.exams
+      loaded: (exams, _) {
+        final finds = exams
             .where(
               (exam) => exam.title.toLowerCase().contains(
                     event.query.toLowerCase(),
@@ -62,10 +63,8 @@ class AthleteExamBloc extends Bloc<AthleteExamEvent, AthleteExamState> {
         } else {
           emit(
             _Loaded(
-              AthleteExamLoadedEvent(
-                exams: data.exams,
-                filteredExams: finds,
-              ),
+              exams: exams,
+              filteredExams: finds,
             ),
           );
         }

@@ -4,9 +4,10 @@ part of 'coach_question_bloc.dart';
 class CoachQuestionState with _$CoachQuestionState {
   const factory CoachQuestionState.initial() = _Initial;
   const factory CoachQuestionState.loading() = _Loading;
-  const factory CoachQuestionState.loaded(
-    CoachQuestionLoadedEvent data,
-  ) = _Loaded;
+  const factory CoachQuestionState.loaded({
+    required List<QuestionModel> questions,
+    required List<QuestionModel> filteredQuestions,
+  }) = _Loaded;
   const factory CoachQuestionState.failure(String message) = _Failure;
 
   // Actions
@@ -19,12 +20,4 @@ class CoachQuestionState with _$CoachQuestionState {
   const factory CoachQuestionState.deleted(
     QuestionModel question,
   ) = _Deleted;
-}
-
-@freezed
-class CoachQuestionLoadedEvent with _$CoachQuestionLoadedEvent {
-  const factory CoachQuestionLoadedEvent({
-    @Default([]) List<QuestionModel> questions,
-    @Default([]) List<QuestionModel> filteredQuestions,
-  }) = _CoachQuestionLoadedEvent;
 }

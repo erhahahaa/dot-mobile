@@ -1106,7 +1106,9 @@ mixin _$CoachTacticalState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachTacticalLoadedEvent data) loaded,
+    required TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -1117,7 +1119,9 @@ mixin _$CoachTacticalState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult? Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -1128,7 +1132,9 @@ mixin _$CoachTacticalState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -1236,7 +1242,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachTacticalLoadedEvent data) loaded,
+    required TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -1250,7 +1258,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult? Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -1264,7 +1274,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -1371,7 +1383,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachTacticalLoadedEvent data) loaded,
+    required TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -1385,7 +1399,9 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult? Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -1399,7 +1415,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -1469,9 +1487,8 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({CoachTacticalLoadedEvent data});
-
-  $CoachTacticalLoadedEventCopyWith<$Res> get data;
+  $Res call(
+      {List<TacticalModel> tacticals, List<TacticalModel> filteredTacticals});
 }
 
 /// @nodoc
@@ -1487,38 +1504,51 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? tacticals = null,
+    Object? filteredTacticals = null,
   }) {
     return _then(_$LoadedImpl(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as CoachTacticalLoadedEvent,
+      tacticals: null == tacticals
+          ? _value._tacticals
+          : tacticals // ignore: cast_nullable_to_non_nullable
+              as List<TacticalModel>,
+      filteredTacticals: null == filteredTacticals
+          ? _value._filteredTacticals
+          : filteredTacticals // ignore: cast_nullable_to_non_nullable
+              as List<TacticalModel>,
     ));
-  }
-
-  /// Create a copy of CoachTacticalState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CoachTacticalLoadedEventCopyWith<$Res> get data {
-    return $CoachTacticalLoadedEventCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.data);
+  const _$LoadedImpl(
+      {required final List<TacticalModel> tacticals,
+      required final List<TacticalModel> filteredTacticals})
+      : _tacticals = tacticals,
+        _filteredTacticals = filteredTacticals;
 
+  final List<TacticalModel> _tacticals;
   @override
-  final CoachTacticalLoadedEvent data;
+  List<TacticalModel> get tacticals {
+    if (_tacticals is EqualUnmodifiableListView) return _tacticals;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tacticals);
+  }
+
+  final List<TacticalModel> _filteredTacticals;
+  @override
+  List<TacticalModel> get filteredTacticals {
+    if (_filteredTacticals is EqualUnmodifiableListView)
+      return _filteredTacticals;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredTacticals);
+  }
 
   @override
   String toString() {
-    return 'CoachTacticalState.loaded(data: $data)';
+    return 'CoachTacticalState.loaded(tacticals: $tacticals, filteredTacticals: $filteredTacticals)';
   }
 
   @override
@@ -1526,11 +1556,17 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality()
+                .equals(other._tacticals, _tacticals) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredTacticals, _filteredTacticals));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_tacticals),
+      const DeepCollectionEquality().hash(_filteredTacticals));
 
   /// Create a copy of CoachTacticalState
   /// with the given fields replaced by the non-null parameter values.
@@ -1545,13 +1581,15 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachTacticalLoadedEvent data) loaded,
+    required TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
     required TResult Function(TacticalModel tactical) deleted,
   }) {
-    return loaded(data);
+    return loaded(tacticals, filteredTacticals);
   }
 
   @override
@@ -1559,13 +1597,15 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult? Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
     TResult? Function(TacticalModel tactical)? deleted,
   }) {
-    return loaded?.call(data);
+    return loaded?.call(tacticals, filteredTacticals);
   }
 
   @override
@@ -1573,7 +1613,9 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -1581,7 +1623,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(data);
+      return loaded(tacticals, filteredTacticals);
     }
     return orElse();
   }
@@ -1634,9 +1676,12 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements CoachTacticalState {
-  const factory _Loaded(final CoachTacticalLoadedEvent data) = _$LoadedImpl;
+  const factory _Loaded(
+      {required final List<TacticalModel> tacticals,
+      required final List<TacticalModel> filteredTacticals}) = _$LoadedImpl;
 
-  CoachTacticalLoadedEvent get data;
+  List<TacticalModel> get tacticals;
+  List<TacticalModel> get filteredTacticals;
 
   /// Create a copy of CoachTacticalState
   /// with the given fields replaced by the non-null parameter values.
@@ -1715,7 +1760,9 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachTacticalLoadedEvent data) loaded,
+    required TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -1729,7 +1776,9 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult? Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -1743,7 +1792,9 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -1898,7 +1949,9 @@ class _$CreatedImpl implements _Created {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachTacticalLoadedEvent data) loaded,
+    required TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -1912,7 +1965,9 @@ class _$CreatedImpl implements _Created {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult? Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -1926,7 +1981,9 @@ class _$CreatedImpl implements _Created {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -2081,7 +2138,9 @@ class _$UpdatedImpl implements _Updated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachTacticalLoadedEvent data) loaded,
+    required TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -2095,7 +2154,9 @@ class _$UpdatedImpl implements _Updated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult? Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -2109,7 +2170,9 @@ class _$UpdatedImpl implements _Updated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -2264,7 +2327,9 @@ class _$DeletedImpl implements _Deleted {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CoachTacticalLoadedEvent data) loaded,
+    required TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)
+        loaded,
     required TResult Function(String message) failure,
     required TResult Function(TacticalModel tactical) created,
     required TResult Function(TacticalModel tactical) updated,
@@ -2278,7 +2343,9 @@ class _$DeletedImpl implements _Deleted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult? Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult? Function(String message)? failure,
     TResult? Function(TacticalModel tactical)? created,
     TResult? Function(TacticalModel tactical)? updated,
@@ -2292,7 +2359,9 @@ class _$DeletedImpl implements _Deleted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CoachTacticalLoadedEvent data)? loaded,
+    TResult Function(List<TacticalModel> tacticals,
+            List<TacticalModel> filteredTacticals)?
+        loaded,
     TResult Function(String message)? failure,
     TResult Function(TacticalModel tactical)? created,
     TResult Function(TacticalModel tactical)? updated,
@@ -2362,182 +2431,4 @@ abstract class _Deleted implements CoachTacticalState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeletedImplCopyWith<_$DeletedImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$CoachTacticalLoadedEvent {
-  List<TacticalModel> get tacticals => throw _privateConstructorUsedError;
-  List<TacticalModel> get filteredTacticals =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of CoachTacticalLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CoachTacticalLoadedEventCopyWith<CoachTacticalLoadedEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CoachTacticalLoadedEventCopyWith<$Res> {
-  factory $CoachTacticalLoadedEventCopyWith(CoachTacticalLoadedEvent value,
-          $Res Function(CoachTacticalLoadedEvent) then) =
-      _$CoachTacticalLoadedEventCopyWithImpl<$Res, CoachTacticalLoadedEvent>;
-  @useResult
-  $Res call(
-      {List<TacticalModel> tacticals, List<TacticalModel> filteredTacticals});
-}
-
-/// @nodoc
-class _$CoachTacticalLoadedEventCopyWithImpl<$Res,
-        $Val extends CoachTacticalLoadedEvent>
-    implements $CoachTacticalLoadedEventCopyWith<$Res> {
-  _$CoachTacticalLoadedEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of CoachTacticalLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? tacticals = null,
-    Object? filteredTacticals = null,
-  }) {
-    return _then(_value.copyWith(
-      tacticals: null == tacticals
-          ? _value.tacticals
-          : tacticals // ignore: cast_nullable_to_non_nullable
-              as List<TacticalModel>,
-      filteredTacticals: null == filteredTacticals
-          ? _value.filteredTacticals
-          : filteredTacticals // ignore: cast_nullable_to_non_nullable
-              as List<TacticalModel>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$CoachTacticalLoadedEventImplCopyWith<$Res>
-    implements $CoachTacticalLoadedEventCopyWith<$Res> {
-  factory _$$CoachTacticalLoadedEventImplCopyWith(
-          _$CoachTacticalLoadedEventImpl value,
-          $Res Function(_$CoachTacticalLoadedEventImpl) then) =
-      __$$CoachTacticalLoadedEventImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {List<TacticalModel> tacticals, List<TacticalModel> filteredTacticals});
-}
-
-/// @nodoc
-class __$$CoachTacticalLoadedEventImplCopyWithImpl<$Res>
-    extends _$CoachTacticalLoadedEventCopyWithImpl<$Res,
-        _$CoachTacticalLoadedEventImpl>
-    implements _$$CoachTacticalLoadedEventImplCopyWith<$Res> {
-  __$$CoachTacticalLoadedEventImplCopyWithImpl(
-      _$CoachTacticalLoadedEventImpl _value,
-      $Res Function(_$CoachTacticalLoadedEventImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CoachTacticalLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? tacticals = null,
-    Object? filteredTacticals = null,
-  }) {
-    return _then(_$CoachTacticalLoadedEventImpl(
-      tacticals: null == tacticals
-          ? _value._tacticals
-          : tacticals // ignore: cast_nullable_to_non_nullable
-              as List<TacticalModel>,
-      filteredTacticals: null == filteredTacticals
-          ? _value._filteredTacticals
-          : filteredTacticals // ignore: cast_nullable_to_non_nullable
-              as List<TacticalModel>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CoachTacticalLoadedEventImpl implements _CoachTacticalLoadedEvent {
-  const _$CoachTacticalLoadedEventImpl(
-      {final List<TacticalModel> tacticals = const [],
-      final List<TacticalModel> filteredTacticals = const []})
-      : _tacticals = tacticals,
-        _filteredTacticals = filteredTacticals;
-
-  final List<TacticalModel> _tacticals;
-  @override
-  @JsonKey()
-  List<TacticalModel> get tacticals {
-    if (_tacticals is EqualUnmodifiableListView) return _tacticals;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tacticals);
-  }
-
-  final List<TacticalModel> _filteredTacticals;
-  @override
-  @JsonKey()
-  List<TacticalModel> get filteredTacticals {
-    if (_filteredTacticals is EqualUnmodifiableListView)
-      return _filteredTacticals;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_filteredTacticals);
-  }
-
-  @override
-  String toString() {
-    return 'CoachTacticalLoadedEvent(tacticals: $tacticals, filteredTacticals: $filteredTacticals)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CoachTacticalLoadedEventImpl &&
-            const DeepCollectionEquality()
-                .equals(other._tacticals, _tacticals) &&
-            const DeepCollectionEquality()
-                .equals(other._filteredTacticals, _filteredTacticals));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_tacticals),
-      const DeepCollectionEquality().hash(_filteredTacticals));
-
-  /// Create a copy of CoachTacticalLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CoachTacticalLoadedEventImplCopyWith<_$CoachTacticalLoadedEventImpl>
-      get copyWith => __$$CoachTacticalLoadedEventImplCopyWithImpl<
-          _$CoachTacticalLoadedEventImpl>(this, _$identity);
-}
-
-abstract class _CoachTacticalLoadedEvent implements CoachTacticalLoadedEvent {
-  const factory _CoachTacticalLoadedEvent(
-          {final List<TacticalModel> tacticals,
-          final List<TacticalModel> filteredTacticals}) =
-      _$CoachTacticalLoadedEventImpl;
-
-  @override
-  List<TacticalModel> get tacticals;
-  @override
-  List<TacticalModel> get filteredTacticals;
-
-  /// Create a copy of CoachTacticalLoadedEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CoachTacticalLoadedEventImplCopyWith<_$CoachTacticalLoadedEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
