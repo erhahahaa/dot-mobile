@@ -1,5 +1,4 @@
 import 'package:dot_coaching/features/feature.dart';
-import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -32,12 +31,12 @@ class AthleteClubBloc extends Bloc<AthleteClubEvent, AthleteClubState> {
   ) async {
     emit(_Loading());
     final res = await _getAllClubUsecase.call();
-    Log.e('res: $res');
     res.fold(
       (failure) => emit(_Failure(failure.message)),
       (success) => emit(
         _Loaded(
-          AthleteClubLoadedEvent(clubs: success, filteredClubs: success),
+          clubs: success,
+          filteredClubs: success,
         ),
       ),
     );
@@ -48,8 +47,8 @@ class AthleteClubBloc extends Bloc<AthleteClubEvent, AthleteClubState> {
     Emitter<AthleteClubState> emit,
   ) {
     state.maybeWhen(
-      loaded: (data) {
-        final finds = data.clubs
+      loaded: (clubs, filteredClubs) {
+        final finds = clubs
             .where(
               (club) => club.name.toLowerCase().contains(
                     event.query.toLowerCase(),
@@ -59,10 +58,8 @@ class AthleteClubBloc extends Bloc<AthleteClubEvent, AthleteClubState> {
 
         emit(
           _Loaded(
-            AthleteClubLoadedEvent(
-              clubs: data.clubs,
-              filteredClubs: finds,
-            ),
+            clubs: clubs,
+            filteredClubs: finds,
           ),
         );
       },

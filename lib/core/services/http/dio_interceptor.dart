@@ -21,7 +21,7 @@ class DioInterceptor extends Interceptor with FirebaseCrashLoggerService {
     try {
       const JsonEncoder encoder = JsonEncoder.withIndent('  ');
       final String prettyJson = encoder.convert(options.data);
-      Log.d(
+      Log.debug(
         // ignore: unnecessary_null_comparison
         "REQUEST ► ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"${options.baseUrl}${options.path}"}\n\n"
         "Headers:\n"
@@ -30,7 +30,7 @@ class DioInterceptor extends Interceptor with FirebaseCrashLoggerService {
         "Body: $prettyJson",
       );
     } catch (e, stackTrace) {
-      Log.e("Failed to extract json request $e");
+      Log.error("Failed to extract json request $e");
       nonFatalError(error: e, stackTrace: stackTrace);
     }
 
@@ -39,7 +39,7 @@ class DioInterceptor extends Interceptor with FirebaseCrashLoggerService {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    Log.e(
+    Log.error(
       "<-- ${err.message} ${err.response?.requestOptions != null ? (err.response!.requestOptions.baseUrl + err.response!.requestOptions.path) : 'URL'}\n\n"
       "${err.response != null ? err.response?.data : 'Unknown Error'}",
     );
@@ -53,7 +53,7 @@ class DioInterceptor extends Interceptor with FirebaseCrashLoggerService {
 
     const JsonEncoder encoder = JsonEncoder.withIndent('  ');
     final String prettyJson = encoder.convert(response.data);
-    Log.d(
+    Log.debug(
       // ignore: unnecessary_null_comparison
       "◀ RESPONSE ${response.statusCode} ${response.requestOptions != null ? (response.requestOptions.baseUrl + response.requestOptions.path) : 'URL'}\n\n"
       // "Headers:\n"

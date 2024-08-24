@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dot_coaching/core/core.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -11,6 +12,6 @@ class AthleteDetailClubScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Parent();
   }
 }

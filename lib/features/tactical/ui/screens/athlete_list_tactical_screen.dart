@@ -199,7 +199,6 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
                 items: fakeTacticals,
                 itemBuilder: (tactical) => Skeletonizer(
                   child: ColumnListTile(
-                    hashCode: tactical.hashCode,
                     titleText: tactical.name,
                     subtitleText: tactical.description,
                     leading: Icon(Icons.circle, size: 36.h),
@@ -223,7 +222,6 @@ class _AthleteListTacticalScreenState extends State<AthleteListTacticalScreen> {
               child: ColumnList<TacticalModel>(
                 items: data.filteredTacticals,
                 itemBuilder: (tactical) => ColumnListTile(
-                  hashCode: tactical.hashCode,
                   titleText: tactical.name,
                   subtitleText: tactical.description,
                   imageUrl: tactical.media?.url,

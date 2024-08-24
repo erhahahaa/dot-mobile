@@ -315,7 +315,6 @@ class DioService with FirebaseCrashLoggerService {
     DioException e,
     StackTrace stackTrace,
   ) {
-    Log.f("Dio Exception: ${e.toString()}");
     if (e.type == DioExceptionType.connectionTimeout) {
       return const Left(ServerFailure(message: 'Connection Timeout'));
     }

@@ -12,10 +12,10 @@ final _log = Logger(
 );
 
 mixin class Log {
-  static void d(dynamic message) => _log.d(message);
-  static void e(dynamic message) => _log.e(message);
-  static void f(dynamic message) => _log.f(message);
-  static void i(dynamic message) => _log.i(message);
-  static void w(dynamic message) => _log.w(message);
-  static void t(dynamic message) => _log.t(message);
+  static void debug(dynamic message) => _log.d(message);
+  static void error(dynamic message) => _log.e(message);
+  static void failure(dynamic message) => _log.f(message);
+  static void info(dynamic message) => _log.i(message);
+  static void warning(dynamic message) => _log.w(message);
+  static void trace(dynamic message) => _log.t(message);
 }

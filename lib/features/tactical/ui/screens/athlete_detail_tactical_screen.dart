@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class AthleteDetailTacticalScreen extends StatelessWidget {
-  const AthleteDetailTacticalScreen({super.key});
+  final int id;
+
+  const AthleteDetailTacticalScreen({
+    super.key,
+    @PathParam('id') required this.id,
+  });
 
   @override
   Widget build(BuildContext context) {
