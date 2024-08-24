@@ -17,7 +17,7 @@ class BackTopButton extends StatelessWidget {
       duration: const Duration(milliseconds: 500),
       height: show ? 48.h : 0,
       child: FloatingActionButton(
-        heroTag: 'back_top_button_${hashCode}',
+        heroTag: 'back_top_button_$hashCode',
         onPressed: onPressed,
         child: show ? const Icon(Icons.arrow_upward) : null,
       ),

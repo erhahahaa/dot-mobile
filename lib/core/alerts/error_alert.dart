@@ -16,7 +16,7 @@ class ErrorAlert extends StatelessWidget {
     return MoonAlert.filled(
       color: context.moonColors?.chichi,
       backgroundColor: context.moonColors?.chichi10,
-      leading: Icon(MoonIcons.notifications_alert_24_light),
+      leading: const Icon(MoonIcons.notifications_alert_24_light),
       label: Text(message ?? 'An error occurred'),
       trailing: onRetry != null
           ? MoonButton.icon(

@@ -112,7 +112,7 @@ class ListTacticalScreen extends StatelessWidget {
               return Expanded(
                 child: Column(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     ErrorAlert(
                       '${club?.name} doesn\'t had tactical yet',
                       onRetry: () {

@@ -14,7 +14,7 @@ class DetailClubScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Parent(
       appBar: AppBar(
-        title: Text('Club Detail'),
+        title: const Text('Club Detail'),
       ),
     );
   }

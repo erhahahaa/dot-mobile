@@ -19,7 +19,7 @@ class ListClubScreen extends StatelessWidget {
     final userBloc = context.watch<UserBloc>();
     final user = userBloc.state.maybeWhen(
       success: (user, _) => user,
-      orElse: () => UserModel(),
+      orElse: () => const UserModel(),
     );
     return ParentWithSearchAndScrollController(
       onInit: (search, scroll) => context.read<ClubBloc>().add(
@@ -39,7 +39,7 @@ class ListClubScreen extends StatelessWidget {
               ],
             ),
             centerTitle: true,
-            title: TitleMedium(AppConstants.APP_NAME),
+            title: const TitleMedium(AppConstants.APP_NAME),
             actions: [
               MoonButton.icon(
                 icon: const Icon(MoonIcons.notifications_bell_24_light),
@@ -53,7 +53,7 @@ class ListClubScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Row(children: [
-                    Spacer(),
+                    const Spacer(),
                     MoonButton.icon(
                       icon: const Icon(MoonIcons.controls_close_24_light),
                       onTap: () {
@@ -75,7 +75,7 @@ class ListClubScreen extends StatelessWidget {
                     listener: (context, state) {
                       state.maybeWhen(
                         unauthenticated: (message) {
-                          context.replaceRoute(SplashRoute());
+                          context.replaceRoute(const SplashRoute());
                         },
                         orElse: () {},
                       );
