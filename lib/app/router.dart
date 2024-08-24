@@ -5,7 +5,6 @@ import 'package:injectable/injectable.dart';
 @Injectable()
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
-  final _adminShell = const EmptyShellRoute('AdminShellRoute');
   @override
   RouteType get defaultRouteType => const RouteType.material();
 
@@ -25,43 +24,11 @@ class AppRouter extends RootStackRouter {
           page: SignUpRoute.page,
         ),
         AutoRoute(
-          path: '/athlete',
+          path: '/club',
           page: DashboardRoute.page,
           children: [
             AutoRoute(
-              path: 'club',
-              page: ListClubRoute.page,
-            ),
-            AutoRoute(
-              path: ':id',
-              page: ClubShellRoute.page,
-              children: [
-                AutoRoute(
-                  path: 'program',
-                  page: ListProgramRoute.page,
-                ),
-                AutoRoute(
-                  path: 'tactical',
-                  page: ListTacticalRoute.page,
-                ),
-                AutoRoute(
-                  path: 'exam',
-                  page: ListExamRoute.page,
-                ),
-                AutoRoute(
-                  path: 'evaluation',
-                  page: ListEvaluationRoute.page,
-                ),
-              ],
-            ),
-          ],
-        ),
-        AutoRoute(
-          path: '/coach',
-          page: DashboardRoute.page,
-          children: [
-            AutoRoute(
-              path: 'club',
+              path: '',
               page: ListClubRoute.page,
             ),
             AutoRoute(
