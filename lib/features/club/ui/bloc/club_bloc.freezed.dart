@@ -18,9 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ClubEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getClubs,
-    required TResult Function(String query) filterClubs,
     required TResult Function() clear,
+    required TResult Function() getClubs,
+    required TResult Function(ClubModel? club) selectClub,
+    required TResult Function(String query) filterClubs,
     required TResult Function(CreateClubParams params) create,
     required TResult Function(UpdateClubParams params) update,
     required TResult Function(DeleteClubParams params) delete,
@@ -28,9 +29,10 @@ mixin _$ClubEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getClubs,
-    TResult? Function(String query)? filterClubs,
     TResult? Function()? clear,
+    TResult? Function()? getClubs,
+    TResult? Function(ClubModel? club)? selectClub,
+    TResult? Function(String query)? filterClubs,
     TResult? Function(CreateClubParams params)? create,
     TResult? Function(UpdateClubParams params)? update,
     TResult? Function(DeleteClubParams params)? delete,
@@ -38,9 +40,10 @@ mixin _$ClubEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getClubs,
-    TResult Function(String query)? filterClubs,
     TResult Function()? clear,
+    TResult Function()? getClubs,
+    TResult Function(ClubModel? club)? selectClub,
+    TResult Function(String query)? filterClubs,
     TResult Function(CreateClubParams params)? create,
     TResult Function(UpdateClubParams params)? update,
     TResult Function(DeleteClubParams params)? delete,
@@ -49,9 +52,10 @@ mixin _$ClubEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ClubEventGetClubs value) getClubs,
-    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventClear value) clear,
+    required TResult Function(ClubEventGetClubs value) getClubs,
+    required TResult Function(ClubEventSelectClub value) selectClub,
+    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventCreate value) create,
     required TResult Function(ClubEventUpdate value) update,
     required TResult Function(ClubEventDelete value) delete,
@@ -59,9 +63,10 @@ mixin _$ClubEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ClubEventGetClubs value)? getClubs,
-    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventClear value)? clear,
+    TResult? Function(ClubEventGetClubs value)? getClubs,
+    TResult? Function(ClubEventSelectClub value)? selectClub,
+    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventCreate value)? create,
     TResult? Function(ClubEventUpdate value)? update,
     TResult? Function(ClubEventDelete value)? delete,
@@ -69,9 +74,10 @@ mixin _$ClubEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ClubEventGetClubs value)? getClubs,
-    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventClear value)? clear,
+    TResult Function(ClubEventGetClubs value)? getClubs,
+    TResult Function(ClubEventSelectClub value)? selectClub,
+    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventCreate value)? create,
     TResult Function(ClubEventUpdate value)? update,
     TResult Function(ClubEventDelete value)? delete,
@@ -98,6 +104,141 @@ class _$ClubEventCopyWithImpl<$Res, $Val extends ClubEvent>
 
   /// Create a copy of ClubEvent
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$ClubEventClearImplCopyWith<$Res> {
+  factory _$$ClubEventClearImplCopyWith(_$ClubEventClearImpl value,
+          $Res Function(_$ClubEventClearImpl) then) =
+      __$$ClubEventClearImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClubEventClearImplCopyWithImpl<$Res>
+    extends _$ClubEventCopyWithImpl<$Res, _$ClubEventClearImpl>
+    implements _$$ClubEventClearImplCopyWith<$Res> {
+  __$$ClubEventClearImplCopyWithImpl(
+      _$ClubEventClearImpl _value, $Res Function(_$ClubEventClearImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ClubEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClubEventClearImpl implements ClubEventClear {
+  const _$ClubEventClearImpl();
+
+  @override
+  String toString() {
+    return 'ClubEvent.clear()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClubEventClearImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clear,
+    required TResult Function() getClubs,
+    required TResult Function(ClubModel? club) selectClub,
+    required TResult Function(String query) filterClubs,
+    required TResult Function(CreateClubParams params) create,
+    required TResult Function(UpdateClubParams params) update,
+    required TResult Function(DeleteClubParams params) delete,
+  }) {
+    return clear();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
+    TResult? Function()? getClubs,
+    TResult? Function(ClubModel? club)? selectClub,
+    TResult? Function(String query)? filterClubs,
+    TResult? Function(CreateClubParams params)? create,
+    TResult? Function(UpdateClubParams params)? update,
+    TResult? Function(DeleteClubParams params)? delete,
+  }) {
+    return clear?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
+    TResult Function()? getClubs,
+    TResult Function(ClubModel? club)? selectClub,
+    TResult Function(String query)? filterClubs,
+    TResult Function(CreateClubParams params)? create,
+    TResult Function(UpdateClubParams params)? update,
+    TResult Function(DeleteClubParams params)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClubEventClear value) clear,
+    required TResult Function(ClubEventGetClubs value) getClubs,
+    required TResult Function(ClubEventSelectClub value) selectClub,
+    required TResult Function(ClubEventFilterClubs value) filterClubs,
+    required TResult Function(ClubEventCreate value) create,
+    required TResult Function(ClubEventUpdate value) update,
+    required TResult Function(ClubEventDelete value) delete,
+  }) {
+    return clear(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClubEventClear value)? clear,
+    TResult? Function(ClubEventGetClubs value)? getClubs,
+    TResult? Function(ClubEventSelectClub value)? selectClub,
+    TResult? Function(ClubEventFilterClubs value)? filterClubs,
+    TResult? Function(ClubEventCreate value)? create,
+    TResult? Function(ClubEventUpdate value)? update,
+    TResult? Function(ClubEventDelete value)? delete,
+  }) {
+    return clear?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClubEventClear value)? clear,
+    TResult Function(ClubEventGetClubs value)? getClubs,
+    TResult Function(ClubEventSelectClub value)? selectClub,
+    TResult Function(ClubEventFilterClubs value)? filterClubs,
+    TResult Function(ClubEventCreate value)? create,
+    TResult Function(ClubEventUpdate value)? update,
+    TResult Function(ClubEventDelete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ClubEventClear implements ClubEvent {
+  const factory ClubEventClear() = _$ClubEventClearImpl;
 }
 
 /// @nodoc
@@ -141,9 +282,10 @@ class _$ClubEventGetClubsImpl implements ClubEventGetClubs {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getClubs,
-    required TResult Function(String query) filterClubs,
     required TResult Function() clear,
+    required TResult Function() getClubs,
+    required TResult Function(ClubModel? club) selectClub,
+    required TResult Function(String query) filterClubs,
     required TResult Function(CreateClubParams params) create,
     required TResult Function(UpdateClubParams params) update,
     required TResult Function(DeleteClubParams params) delete,
@@ -154,9 +296,10 @@ class _$ClubEventGetClubsImpl implements ClubEventGetClubs {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getClubs,
-    TResult? Function(String query)? filterClubs,
     TResult? Function()? clear,
+    TResult? Function()? getClubs,
+    TResult? Function(ClubModel? club)? selectClub,
+    TResult? Function(String query)? filterClubs,
     TResult? Function(CreateClubParams params)? create,
     TResult? Function(UpdateClubParams params)? update,
     TResult? Function(DeleteClubParams params)? delete,
@@ -167,9 +310,10 @@ class _$ClubEventGetClubsImpl implements ClubEventGetClubs {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getClubs,
-    TResult Function(String query)? filterClubs,
     TResult Function()? clear,
+    TResult Function()? getClubs,
+    TResult Function(ClubModel? club)? selectClub,
+    TResult Function(String query)? filterClubs,
     TResult Function(CreateClubParams params)? create,
     TResult Function(UpdateClubParams params)? update,
     TResult Function(DeleteClubParams params)? delete,
@@ -184,9 +328,10 @@ class _$ClubEventGetClubsImpl implements ClubEventGetClubs {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ClubEventGetClubs value) getClubs,
-    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventClear value) clear,
+    required TResult Function(ClubEventGetClubs value) getClubs,
+    required TResult Function(ClubEventSelectClub value) selectClub,
+    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventCreate value) create,
     required TResult Function(ClubEventUpdate value) update,
     required TResult Function(ClubEventDelete value) delete,
@@ -197,9 +342,10 @@ class _$ClubEventGetClubsImpl implements ClubEventGetClubs {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ClubEventGetClubs value)? getClubs,
-    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventClear value)? clear,
+    TResult? Function(ClubEventGetClubs value)? getClubs,
+    TResult? Function(ClubEventSelectClub value)? selectClub,
+    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventCreate value)? create,
     TResult? Function(ClubEventUpdate value)? update,
     TResult? Function(ClubEventDelete value)? delete,
@@ -210,9 +356,10 @@ class _$ClubEventGetClubsImpl implements ClubEventGetClubs {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ClubEventGetClubs value)? getClubs,
-    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventClear value)? clear,
+    TResult Function(ClubEventGetClubs value)? getClubs,
+    TResult Function(ClubEventSelectClub value)? selectClub,
+    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventCreate value)? create,
     TResult Function(ClubEventUpdate value)? update,
     TResult Function(ClubEventDelete value)? delete,
@@ -227,6 +374,194 @@ class _$ClubEventGetClubsImpl implements ClubEventGetClubs {
 
 abstract class ClubEventGetClubs implements ClubEvent {
   const factory ClubEventGetClubs() = _$ClubEventGetClubsImpl;
+}
+
+/// @nodoc
+abstract class _$$ClubEventSelectClubImplCopyWith<$Res> {
+  factory _$$ClubEventSelectClubImplCopyWith(_$ClubEventSelectClubImpl value,
+          $Res Function(_$ClubEventSelectClubImpl) then) =
+      __$$ClubEventSelectClubImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ClubModel? club});
+
+  $ClubModelCopyWith<$Res>? get club;
+}
+
+/// @nodoc
+class __$$ClubEventSelectClubImplCopyWithImpl<$Res>
+    extends _$ClubEventCopyWithImpl<$Res, _$ClubEventSelectClubImpl>
+    implements _$$ClubEventSelectClubImplCopyWith<$Res> {
+  __$$ClubEventSelectClubImplCopyWithImpl(_$ClubEventSelectClubImpl _value,
+      $Res Function(_$ClubEventSelectClubImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ClubEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? club = freezed,
+  }) {
+    return _then(_$ClubEventSelectClubImpl(
+      freezed == club
+          ? _value.club
+          : club // ignore: cast_nullable_to_non_nullable
+              as ClubModel?,
+    ));
+  }
+
+  /// Create a copy of ClubEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ClubModelCopyWith<$Res>? get club {
+    if (_value.club == null) {
+      return null;
+    }
+
+    return $ClubModelCopyWith<$Res>(_value.club!, (value) {
+      return _then(_value.copyWith(club: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ClubEventSelectClubImpl implements ClubEventSelectClub {
+  const _$ClubEventSelectClubImpl(this.club);
+
+  @override
+  final ClubModel? club;
+
+  @override
+  String toString() {
+    return 'ClubEvent.selectClub(club: $club)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClubEventSelectClubImpl &&
+            (identical(other.club, club) || other.club == club));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, club);
+
+  /// Create a copy of ClubEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ClubEventSelectClubImplCopyWith<_$ClubEventSelectClubImpl> get copyWith =>
+      __$$ClubEventSelectClubImplCopyWithImpl<_$ClubEventSelectClubImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clear,
+    required TResult Function() getClubs,
+    required TResult Function(ClubModel? club) selectClub,
+    required TResult Function(String query) filterClubs,
+    required TResult Function(CreateClubParams params) create,
+    required TResult Function(UpdateClubParams params) update,
+    required TResult Function(DeleteClubParams params) delete,
+  }) {
+    return selectClub(club);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
+    TResult? Function()? getClubs,
+    TResult? Function(ClubModel? club)? selectClub,
+    TResult? Function(String query)? filterClubs,
+    TResult? Function(CreateClubParams params)? create,
+    TResult? Function(UpdateClubParams params)? update,
+    TResult? Function(DeleteClubParams params)? delete,
+  }) {
+    return selectClub?.call(club);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
+    TResult Function()? getClubs,
+    TResult Function(ClubModel? club)? selectClub,
+    TResult Function(String query)? filterClubs,
+    TResult Function(CreateClubParams params)? create,
+    TResult Function(UpdateClubParams params)? update,
+    TResult Function(DeleteClubParams params)? delete,
+    required TResult orElse(),
+  }) {
+    if (selectClub != null) {
+      return selectClub(club);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClubEventClear value) clear,
+    required TResult Function(ClubEventGetClubs value) getClubs,
+    required TResult Function(ClubEventSelectClub value) selectClub,
+    required TResult Function(ClubEventFilterClubs value) filterClubs,
+    required TResult Function(ClubEventCreate value) create,
+    required TResult Function(ClubEventUpdate value) update,
+    required TResult Function(ClubEventDelete value) delete,
+  }) {
+    return selectClub(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClubEventClear value)? clear,
+    TResult? Function(ClubEventGetClubs value)? getClubs,
+    TResult? Function(ClubEventSelectClub value)? selectClub,
+    TResult? Function(ClubEventFilterClubs value)? filterClubs,
+    TResult? Function(ClubEventCreate value)? create,
+    TResult? Function(ClubEventUpdate value)? update,
+    TResult? Function(ClubEventDelete value)? delete,
+  }) {
+    return selectClub?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClubEventClear value)? clear,
+    TResult Function(ClubEventGetClubs value)? getClubs,
+    TResult Function(ClubEventSelectClub value)? selectClub,
+    TResult Function(ClubEventFilterClubs value)? filterClubs,
+    TResult Function(ClubEventCreate value)? create,
+    TResult Function(ClubEventUpdate value)? update,
+    TResult Function(ClubEventDelete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (selectClub != null) {
+      return selectClub(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ClubEventSelectClub implements ClubEvent {
+  const factory ClubEventSelectClub(final ClubModel? club) =
+      _$ClubEventSelectClubImpl;
+
+  ClubModel? get club;
+
+  /// Create a copy of ClubEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ClubEventSelectClubImplCopyWith<_$ClubEventSelectClubImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -299,9 +634,10 @@ class _$ClubEventFilterClubsImpl implements ClubEventFilterClubs {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getClubs,
-    required TResult Function(String query) filterClubs,
     required TResult Function() clear,
+    required TResult Function() getClubs,
+    required TResult Function(ClubModel? club) selectClub,
+    required TResult Function(String query) filterClubs,
     required TResult Function(CreateClubParams params) create,
     required TResult Function(UpdateClubParams params) update,
     required TResult Function(DeleteClubParams params) delete,
@@ -312,9 +648,10 @@ class _$ClubEventFilterClubsImpl implements ClubEventFilterClubs {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getClubs,
-    TResult? Function(String query)? filterClubs,
     TResult? Function()? clear,
+    TResult? Function()? getClubs,
+    TResult? Function(ClubModel? club)? selectClub,
+    TResult? Function(String query)? filterClubs,
     TResult? Function(CreateClubParams params)? create,
     TResult? Function(UpdateClubParams params)? update,
     TResult? Function(DeleteClubParams params)? delete,
@@ -325,9 +662,10 @@ class _$ClubEventFilterClubsImpl implements ClubEventFilterClubs {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getClubs,
-    TResult Function(String query)? filterClubs,
     TResult Function()? clear,
+    TResult Function()? getClubs,
+    TResult Function(ClubModel? club)? selectClub,
+    TResult Function(String query)? filterClubs,
     TResult Function(CreateClubParams params)? create,
     TResult Function(UpdateClubParams params)? update,
     TResult Function(DeleteClubParams params)? delete,
@@ -342,9 +680,10 @@ class _$ClubEventFilterClubsImpl implements ClubEventFilterClubs {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ClubEventGetClubs value) getClubs,
-    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventClear value) clear,
+    required TResult Function(ClubEventGetClubs value) getClubs,
+    required TResult Function(ClubEventSelectClub value) selectClub,
+    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventCreate value) create,
     required TResult Function(ClubEventUpdate value) update,
     required TResult Function(ClubEventDelete value) delete,
@@ -355,9 +694,10 @@ class _$ClubEventFilterClubsImpl implements ClubEventFilterClubs {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ClubEventGetClubs value)? getClubs,
-    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventClear value)? clear,
+    TResult? Function(ClubEventGetClubs value)? getClubs,
+    TResult? Function(ClubEventSelectClub value)? selectClub,
+    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventCreate value)? create,
     TResult? Function(ClubEventUpdate value)? update,
     TResult? Function(ClubEventDelete value)? delete,
@@ -368,9 +708,10 @@ class _$ClubEventFilterClubsImpl implements ClubEventFilterClubs {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ClubEventGetClubs value)? getClubs,
-    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventClear value)? clear,
+    TResult Function(ClubEventGetClubs value)? getClubs,
+    TResult Function(ClubEventSelectClub value)? selectClub,
+    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventCreate value)? create,
     TResult Function(ClubEventUpdate value)? update,
     TResult Function(ClubEventDelete value)? delete,
@@ -394,135 +735,6 @@ abstract class ClubEventFilterClubs implements ClubEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClubEventFilterClubsImplCopyWith<_$ClubEventFilterClubsImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ClubEventClearImplCopyWith<$Res> {
-  factory _$$ClubEventClearImplCopyWith(_$ClubEventClearImpl value,
-          $Res Function(_$ClubEventClearImpl) then) =
-      __$$ClubEventClearImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ClubEventClearImplCopyWithImpl<$Res>
-    extends _$ClubEventCopyWithImpl<$Res, _$ClubEventClearImpl>
-    implements _$$ClubEventClearImplCopyWith<$Res> {
-  __$$ClubEventClearImplCopyWithImpl(
-      _$ClubEventClearImpl _value, $Res Function(_$ClubEventClearImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ClubEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ClubEventClearImpl implements ClubEventClear {
-  const _$ClubEventClearImpl();
-
-  @override
-  String toString() {
-    return 'ClubEvent.clear()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClubEventClearImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getClubs,
-    required TResult Function(String query) filterClubs,
-    required TResult Function() clear,
-    required TResult Function(CreateClubParams params) create,
-    required TResult Function(UpdateClubParams params) update,
-    required TResult Function(DeleteClubParams params) delete,
-  }) {
-    return clear();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getClubs,
-    TResult? Function(String query)? filterClubs,
-    TResult? Function()? clear,
-    TResult? Function(CreateClubParams params)? create,
-    TResult? Function(UpdateClubParams params)? update,
-    TResult? Function(DeleteClubParams params)? delete,
-  }) {
-    return clear?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getClubs,
-    TResult Function(String query)? filterClubs,
-    TResult Function()? clear,
-    TResult Function(CreateClubParams params)? create,
-    TResult Function(UpdateClubParams params)? update,
-    TResult Function(DeleteClubParams params)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ClubEventGetClubs value) getClubs,
-    required TResult Function(ClubEventFilterClubs value) filterClubs,
-    required TResult Function(ClubEventClear value) clear,
-    required TResult Function(ClubEventCreate value) create,
-    required TResult Function(ClubEventUpdate value) update,
-    required TResult Function(ClubEventDelete value) delete,
-  }) {
-    return clear(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ClubEventGetClubs value)? getClubs,
-    TResult? Function(ClubEventFilterClubs value)? filterClubs,
-    TResult? Function(ClubEventClear value)? clear,
-    TResult? Function(ClubEventCreate value)? create,
-    TResult? Function(ClubEventUpdate value)? update,
-    TResult? Function(ClubEventDelete value)? delete,
-  }) {
-    return clear?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ClubEventGetClubs value)? getClubs,
-    TResult Function(ClubEventFilterClubs value)? filterClubs,
-    TResult Function(ClubEventClear value)? clear,
-    TResult Function(ClubEventCreate value)? create,
-    TResult Function(ClubEventUpdate value)? update,
-    TResult Function(ClubEventDelete value)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ClubEventClear implements ClubEvent {
-  const factory ClubEventClear() = _$ClubEventClearImpl;
 }
 
 /// @nodoc
@@ -606,9 +818,10 @@ class _$ClubEventCreateImpl implements ClubEventCreate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getClubs,
-    required TResult Function(String query) filterClubs,
     required TResult Function() clear,
+    required TResult Function() getClubs,
+    required TResult Function(ClubModel? club) selectClub,
+    required TResult Function(String query) filterClubs,
     required TResult Function(CreateClubParams params) create,
     required TResult Function(UpdateClubParams params) update,
     required TResult Function(DeleteClubParams params) delete,
@@ -619,9 +832,10 @@ class _$ClubEventCreateImpl implements ClubEventCreate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getClubs,
-    TResult? Function(String query)? filterClubs,
     TResult? Function()? clear,
+    TResult? Function()? getClubs,
+    TResult? Function(ClubModel? club)? selectClub,
+    TResult? Function(String query)? filterClubs,
     TResult? Function(CreateClubParams params)? create,
     TResult? Function(UpdateClubParams params)? update,
     TResult? Function(DeleteClubParams params)? delete,
@@ -632,9 +846,10 @@ class _$ClubEventCreateImpl implements ClubEventCreate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getClubs,
-    TResult Function(String query)? filterClubs,
     TResult Function()? clear,
+    TResult Function()? getClubs,
+    TResult Function(ClubModel? club)? selectClub,
+    TResult Function(String query)? filterClubs,
     TResult Function(CreateClubParams params)? create,
     TResult Function(UpdateClubParams params)? update,
     TResult Function(DeleteClubParams params)? delete,
@@ -649,9 +864,10 @@ class _$ClubEventCreateImpl implements ClubEventCreate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ClubEventGetClubs value) getClubs,
-    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventClear value) clear,
+    required TResult Function(ClubEventGetClubs value) getClubs,
+    required TResult Function(ClubEventSelectClub value) selectClub,
+    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventCreate value) create,
     required TResult Function(ClubEventUpdate value) update,
     required TResult Function(ClubEventDelete value) delete,
@@ -662,9 +878,10 @@ class _$ClubEventCreateImpl implements ClubEventCreate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ClubEventGetClubs value)? getClubs,
-    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventClear value)? clear,
+    TResult? Function(ClubEventGetClubs value)? getClubs,
+    TResult? Function(ClubEventSelectClub value)? selectClub,
+    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventCreate value)? create,
     TResult? Function(ClubEventUpdate value)? update,
     TResult? Function(ClubEventDelete value)? delete,
@@ -675,9 +892,10 @@ class _$ClubEventCreateImpl implements ClubEventCreate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ClubEventGetClubs value)? getClubs,
-    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventClear value)? clear,
+    TResult Function(ClubEventGetClubs value)? getClubs,
+    TResult Function(ClubEventSelectClub value)? selectClub,
+    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventCreate value)? create,
     TResult Function(ClubEventUpdate value)? update,
     TResult Function(ClubEventDelete value)? delete,
@@ -784,9 +1002,10 @@ class _$ClubEventUpdateImpl implements ClubEventUpdate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getClubs,
-    required TResult Function(String query) filterClubs,
     required TResult Function() clear,
+    required TResult Function() getClubs,
+    required TResult Function(ClubModel? club) selectClub,
+    required TResult Function(String query) filterClubs,
     required TResult Function(CreateClubParams params) create,
     required TResult Function(UpdateClubParams params) update,
     required TResult Function(DeleteClubParams params) delete,
@@ -797,9 +1016,10 @@ class _$ClubEventUpdateImpl implements ClubEventUpdate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getClubs,
-    TResult? Function(String query)? filterClubs,
     TResult? Function()? clear,
+    TResult? Function()? getClubs,
+    TResult? Function(ClubModel? club)? selectClub,
+    TResult? Function(String query)? filterClubs,
     TResult? Function(CreateClubParams params)? create,
     TResult? Function(UpdateClubParams params)? update,
     TResult? Function(DeleteClubParams params)? delete,
@@ -810,9 +1030,10 @@ class _$ClubEventUpdateImpl implements ClubEventUpdate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getClubs,
-    TResult Function(String query)? filterClubs,
     TResult Function()? clear,
+    TResult Function()? getClubs,
+    TResult Function(ClubModel? club)? selectClub,
+    TResult Function(String query)? filterClubs,
     TResult Function(CreateClubParams params)? create,
     TResult Function(UpdateClubParams params)? update,
     TResult Function(DeleteClubParams params)? delete,
@@ -827,9 +1048,10 @@ class _$ClubEventUpdateImpl implements ClubEventUpdate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ClubEventGetClubs value) getClubs,
-    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventClear value) clear,
+    required TResult Function(ClubEventGetClubs value) getClubs,
+    required TResult Function(ClubEventSelectClub value) selectClub,
+    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventCreate value) create,
     required TResult Function(ClubEventUpdate value) update,
     required TResult Function(ClubEventDelete value) delete,
@@ -840,9 +1062,10 @@ class _$ClubEventUpdateImpl implements ClubEventUpdate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ClubEventGetClubs value)? getClubs,
-    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventClear value)? clear,
+    TResult? Function(ClubEventGetClubs value)? getClubs,
+    TResult? Function(ClubEventSelectClub value)? selectClub,
+    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventCreate value)? create,
     TResult? Function(ClubEventUpdate value)? update,
     TResult? Function(ClubEventDelete value)? delete,
@@ -853,9 +1076,10 @@ class _$ClubEventUpdateImpl implements ClubEventUpdate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ClubEventGetClubs value)? getClubs,
-    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventClear value)? clear,
+    TResult Function(ClubEventGetClubs value)? getClubs,
+    TResult Function(ClubEventSelectClub value)? selectClub,
+    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventCreate value)? create,
     TResult Function(ClubEventUpdate value)? update,
     TResult Function(ClubEventDelete value)? delete,
@@ -962,9 +1186,10 @@ class _$ClubEventDeleteImpl implements ClubEventDelete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getClubs,
-    required TResult Function(String query) filterClubs,
     required TResult Function() clear,
+    required TResult Function() getClubs,
+    required TResult Function(ClubModel? club) selectClub,
+    required TResult Function(String query) filterClubs,
     required TResult Function(CreateClubParams params) create,
     required TResult Function(UpdateClubParams params) update,
     required TResult Function(DeleteClubParams params) delete,
@@ -975,9 +1200,10 @@ class _$ClubEventDeleteImpl implements ClubEventDelete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getClubs,
-    TResult? Function(String query)? filterClubs,
     TResult? Function()? clear,
+    TResult? Function()? getClubs,
+    TResult? Function(ClubModel? club)? selectClub,
+    TResult? Function(String query)? filterClubs,
     TResult? Function(CreateClubParams params)? create,
     TResult? Function(UpdateClubParams params)? update,
     TResult? Function(DeleteClubParams params)? delete,
@@ -988,9 +1214,10 @@ class _$ClubEventDeleteImpl implements ClubEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getClubs,
-    TResult Function(String query)? filterClubs,
     TResult Function()? clear,
+    TResult Function()? getClubs,
+    TResult Function(ClubModel? club)? selectClub,
+    TResult Function(String query)? filterClubs,
     TResult Function(CreateClubParams params)? create,
     TResult Function(UpdateClubParams params)? update,
     TResult Function(DeleteClubParams params)? delete,
@@ -1005,9 +1232,10 @@ class _$ClubEventDeleteImpl implements ClubEventDelete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ClubEventGetClubs value) getClubs,
-    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventClear value) clear,
+    required TResult Function(ClubEventGetClubs value) getClubs,
+    required TResult Function(ClubEventSelectClub value) selectClub,
+    required TResult Function(ClubEventFilterClubs value) filterClubs,
     required TResult Function(ClubEventCreate value) create,
     required TResult Function(ClubEventUpdate value) update,
     required TResult Function(ClubEventDelete value) delete,
@@ -1018,9 +1246,10 @@ class _$ClubEventDeleteImpl implements ClubEventDelete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ClubEventGetClubs value)? getClubs,
-    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventClear value)? clear,
+    TResult? Function(ClubEventGetClubs value)? getClubs,
+    TResult? Function(ClubEventSelectClub value)? selectClub,
+    TResult? Function(ClubEventFilterClubs value)? filterClubs,
     TResult? Function(ClubEventCreate value)? create,
     TResult? Function(ClubEventUpdate value)? update,
     TResult? Function(ClubEventDelete value)? delete,
@@ -1031,9 +1260,10 @@ class _$ClubEventDeleteImpl implements ClubEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ClubEventGetClubs value)? getClubs,
-    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventClear value)? clear,
+    TResult Function(ClubEventGetClubs value)? getClubs,
+    TResult Function(ClubEventSelectClub value)? selectClub,
+    TResult Function(ClubEventFilterClubs value)? filterClubs,
     TResult Function(ClubEventCreate value)? create,
     TResult Function(ClubEventUpdate value)? update,
     TResult Function(ClubEventDelete value)? delete,
@@ -1065,8 +1295,8 @@ mixin _$ClubState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+    required TResult Function(List<ClubModel> clubs,
+            List<ClubModel> filteredClubs, ClubModel? selectedClub)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
@@ -1078,7 +1308,8 @@ mixin _$ClubState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
@@ -1090,7 +1321,8 @@ mixin _$ClubState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
@@ -1198,8 +1430,8 @@ class _$ClubStateInitialImpl implements ClubStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+    required TResult Function(List<ClubModel> clubs,
+            List<ClubModel> filteredClubs, ClubModel? selectedClub)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
@@ -1214,7 +1446,8 @@ class _$ClubStateInitialImpl implements ClubStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
@@ -1229,7 +1462,8 @@ class _$ClubStateInitialImpl implements ClubStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
@@ -1337,8 +1571,8 @@ class _$ClubStateLoadingImpl implements ClubStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+    required TResult Function(List<ClubModel> clubs,
+            List<ClubModel> filteredClubs, ClubModel? selectedClub)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
@@ -1353,7 +1587,8 @@ class _$ClubStateLoadingImpl implements ClubStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
@@ -1368,7 +1603,8 @@ class _$ClubStateLoadingImpl implements ClubStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
@@ -1439,7 +1675,12 @@ abstract class _$$ClubStateLoadedImplCopyWith<$Res> {
           $Res Function(_$ClubStateLoadedImpl) then) =
       __$$ClubStateLoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ClubModel> clubs, List<ClubModel> filteredClubs});
+  $Res call(
+      {List<ClubModel> clubs,
+      List<ClubModel> filteredClubs,
+      ClubModel? selectedClub});
+
+  $ClubModelCopyWith<$Res>? get selectedClub;
 }
 
 /// @nodoc
@@ -1457,6 +1698,7 @@ class __$$ClubStateLoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? clubs = null,
     Object? filteredClubs = null,
+    Object? selectedClub = freezed,
   }) {
     return _then(_$ClubStateLoadedImpl(
       clubs: null == clubs
@@ -1467,7 +1709,25 @@ class __$$ClubStateLoadedImplCopyWithImpl<$Res>
           ? _value._filteredClubs
           : filteredClubs // ignore: cast_nullable_to_non_nullable
               as List<ClubModel>,
+      selectedClub: freezed == selectedClub
+          ? _value.selectedClub
+          : selectedClub // ignore: cast_nullable_to_non_nullable
+              as ClubModel?,
     ));
+  }
+
+  /// Create a copy of ClubState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ClubModelCopyWith<$Res>? get selectedClub {
+    if (_value.selectedClub == null) {
+      return null;
+    }
+
+    return $ClubModelCopyWith<$Res>(_value.selectedClub!, (value) {
+      return _then(_value.copyWith(selectedClub: value));
+    });
   }
 }
 
@@ -1476,7 +1736,8 @@ class __$$ClubStateLoadedImplCopyWithImpl<$Res>
 class _$ClubStateLoadedImpl implements ClubStateLoaded {
   const _$ClubStateLoadedImpl(
       {required final List<ClubModel> clubs,
-      required final List<ClubModel> filteredClubs})
+      required final List<ClubModel> filteredClubs,
+      this.selectedClub})
       : _clubs = clubs,
         _filteredClubs = filteredClubs;
 
@@ -1497,8 +1758,11 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
   }
 
   @override
+  final ClubModel? selectedClub;
+
+  @override
   String toString() {
-    return 'ClubState.loaded(clubs: $clubs, filteredClubs: $filteredClubs)';
+    return 'ClubState.loaded(clubs: $clubs, filteredClubs: $filteredClubs, selectedClub: $selectedClub)';
   }
 
   @override
@@ -1508,14 +1772,17 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
             other is _$ClubStateLoadedImpl &&
             const DeepCollectionEquality().equals(other._clubs, _clubs) &&
             const DeepCollectionEquality()
-                .equals(other._filteredClubs, _filteredClubs));
+                .equals(other._filteredClubs, _filteredClubs) &&
+            (identical(other.selectedClub, selectedClub) ||
+                other.selectedClub == selectedClub));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_clubs),
-      const DeepCollectionEquality().hash(_filteredClubs));
+      const DeepCollectionEquality().hash(_filteredClubs),
+      selectedClub);
 
   /// Create a copy of ClubState
   /// with the given fields replaced by the non-null parameter values.
@@ -1531,15 +1798,15 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+    required TResult Function(List<ClubModel> clubs,
+            List<ClubModel> filteredClubs, ClubModel? selectedClub)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
     required TResult Function(ClubModel club) deleted,
   }) {
-    return loaded(clubs, filteredClubs);
+    return loaded(clubs, filteredClubs, selectedClub);
   }
 
   @override
@@ -1547,14 +1814,15 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
     TResult? Function(ClubModel club)? deleted,
   }) {
-    return loaded?.call(clubs, filteredClubs);
+    return loaded?.call(clubs, filteredClubs, selectedClub);
   }
 
   @override
@@ -1562,7 +1830,8 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
@@ -1571,7 +1840,7 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(clubs, filteredClubs);
+      return loaded(clubs, filteredClubs, selectedClub);
     }
     return orElse();
   }
@@ -1626,10 +1895,12 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
 abstract class ClubStateLoaded implements ClubState {
   const factory ClubStateLoaded(
       {required final List<ClubModel> clubs,
-      required final List<ClubModel> filteredClubs}) = _$ClubStateLoadedImpl;
+      required final List<ClubModel> filteredClubs,
+      final ClubModel? selectedClub}) = _$ClubStateLoadedImpl;
 
   List<ClubModel> get clubs;
   List<ClubModel> get filteredClubs;
+  ClubModel? get selectedClub;
 
   /// Create a copy of ClubState
   /// with the given fields replaced by the non-null parameter values.
@@ -1709,8 +1980,8 @@ class _$ClubStateFailureImpl implements ClubStateFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+    required TResult Function(List<ClubModel> clubs,
+            List<ClubModel> filteredClubs, ClubModel? selectedClub)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
@@ -1725,7 +1996,8 @@ class _$ClubStateFailureImpl implements ClubStateFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
@@ -1740,7 +2012,8 @@ class _$ClubStateFailureImpl implements ClubStateFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
@@ -1896,8 +2169,8 @@ class _$ClubStateCreatedImpl implements ClubStateCreated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+    required TResult Function(List<ClubModel> clubs,
+            List<ClubModel> filteredClubs, ClubModel? selectedClub)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
@@ -1912,7 +2185,8 @@ class _$ClubStateCreatedImpl implements ClubStateCreated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
@@ -1927,7 +2201,8 @@ class _$ClubStateCreatedImpl implements ClubStateCreated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
@@ -2083,8 +2358,8 @@ class _$ClubStateUpdatedImpl implements ClubStateUpdated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+    required TResult Function(List<ClubModel> clubs,
+            List<ClubModel> filteredClubs, ClubModel? selectedClub)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
@@ -2099,7 +2374,8 @@ class _$ClubStateUpdatedImpl implements ClubStateUpdated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
@@ -2114,7 +2390,8 @@ class _$ClubStateUpdatedImpl implements ClubStateUpdated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
@@ -2270,8 +2547,8 @@ class _$ClubStateDeletedImpl implements ClubStateDeleted {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<ClubModel> clubs, List<ClubModel> filteredClubs)
+    required TResult Function(List<ClubModel> clubs,
+            List<ClubModel> filteredClubs, ClubModel? selectedClub)
         loaded,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
@@ -2286,7 +2563,8 @@ class _$ClubStateDeletedImpl implements ClubStateDeleted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
@@ -2301,7 +2579,8 @@ class _$ClubStateDeletedImpl implements ClubStateDeleted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs)?
+    TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
+            ClubModel? selectedClub)?
         loaded,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,

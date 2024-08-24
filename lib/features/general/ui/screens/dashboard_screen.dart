@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/app/di.dart';
-import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,6 +43,6 @@ class DashboardScreen extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return const Parent();
+    return AutoRouter();
   }
 }

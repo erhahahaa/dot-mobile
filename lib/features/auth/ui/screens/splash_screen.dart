@@ -30,7 +30,7 @@ class SplashScreen extends StatelessWidget implements AutoRouteWrapper {
             final role = user.role;
             if (role == UserRole.athlete) {
               context.router.replace(
-                const AthleteListClubRoute(),
+                const ListClubRoute(),
               );
             } else {
               context.router.replace(

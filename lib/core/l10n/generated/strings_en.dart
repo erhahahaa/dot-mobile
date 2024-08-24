@@ -34,10 +34,10 @@ class StringsEn extends Strings {
   String get assets => 'Assets';
 
   @override
-  String get athlete => 'Athlete';
+  String get athlete => '';
 
   @override
-  String get athletes => 'Athletes';
+  String get athletes => 's';
 
   @override
   String get back => 'Back';

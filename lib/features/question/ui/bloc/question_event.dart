@@ -2,13 +2,13 @@ part of 'question_bloc.dart';
 
 @freezed
 class QuestionEvent with _$QuestionEvent {
+  const factory QuestionEvent.clear() = QuestionEventClear;
   const factory QuestionEvent.getQuestions(
     GetAllQuestionParams params,
   ) = QuestionEventGetQuestions;
   const factory QuestionEvent.filterQuestions(
     String query,
   ) = QuestionEventFilterQuestions;
-  const factory QuestionEvent.clear() = QuestionEventClear;
 
   // Actions
   const factory QuestionEvent.createBatch(

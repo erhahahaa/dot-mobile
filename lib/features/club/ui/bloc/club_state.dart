@@ -7,8 +7,11 @@ class ClubState with _$ClubState {
   const factory ClubState.loaded({
     required List<ClubModel> clubs,
     required List<ClubModel> filteredClubs,
+    ClubModel? selectedClub,
   }) = ClubStateLoaded;
-  const factory ClubState.failure(String message) = ClubStateFailure;
+  const factory ClubState.failure(
+    String message,
+  ) = ClubStateFailure;
 
   // Actions
   const factory ClubState.created(

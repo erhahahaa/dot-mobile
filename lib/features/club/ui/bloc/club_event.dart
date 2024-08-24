@@ -2,11 +2,14 @@ part of 'club_bloc.dart';
 
 @freezed
 class ClubEvent with _$ClubEvent {
+  const factory ClubEvent.clear() = ClubEventClear;
   const factory ClubEvent.getClubs() = ClubEventGetClubs;
+  const factory ClubEvent.selectClub(
+    ClubModel? club,
+  ) = ClubEventSelectClub;
   const factory ClubEvent.filterClubs(
     String query,
   ) = ClubEventFilterClubs;
-  const factory ClubEvent.clear() = ClubEventClear;
 
   // Actions
   const factory ClubEvent.create(

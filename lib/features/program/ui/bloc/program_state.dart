@@ -7,8 +7,11 @@ class ProgramState with _$ProgramState {
   const factory ProgramState.loaded({
     required List<ProgramModel> programs,
     required List<ProgramModel> filteredPrograms,
+    ProgramModel? selectedProgram,
   }) = ProgramStateLoaded;
-  const factory ProgramState.failure(String message) = ProgramStateFailure;
+  const factory ProgramState.failure(
+    String message,
+  ) = ProgramStateFailure;
 
   // Actions
   const factory ProgramState.created(

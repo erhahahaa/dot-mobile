@@ -180,7 +180,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   context.successToast(
                       title: context.str?.successSignIn,
                       description: '${context.str?.welcomeBack}, ${user.name}');
-                  context.router.replace(const AthleteListClubRoute());
+                  context.router.replace(const ListClubRoute());
                 },
                 unauthenticated: (message) {
                   context.errorToast(

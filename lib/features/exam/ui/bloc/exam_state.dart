@@ -8,8 +8,9 @@ class ExamState with _$ExamState {
     required List<ExamModel> exams,
     required List<ExamModel> filteredExams,
   }) = ExamStateLoaded;
-  const factory ExamState.failure(String message) = ExamStateFailure;
-
+  const factory ExamState.failure(
+    String message,
+  ) = ExamStateFailure;
   // Actions
   const factory ExamState.created(
     ExamModel exam,

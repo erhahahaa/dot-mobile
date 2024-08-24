@@ -11,14 +11,14 @@ import 'package:moon_design/moon_design.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
-class AthleteListEvaluationScreen extends StatelessWidget {
-  const AthleteListEvaluationScreen({
+class ListEvaluationScreen extends StatelessWidget {
+  const ListEvaluationScreen({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final clubBloc = context.watch<AthleteClubBloc>();
+    final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
       loaded: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
@@ -75,8 +75,8 @@ class AthleteListEvaluationScreen extends StatelessWidget {
           hintText: '${context.str?.search} ${'Evaluation'.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
-            context.read<AthleteClubBloc>().add(
-                  AthleteClubEvent.filterClubs(value),
+            context.read<ClubBloc>().add(
+                  ClubEvent.filterClubs(value),
                 );
           },
           trailing: MoonButton.icon(
@@ -84,8 +84,8 @@ class AthleteListEvaluationScreen extends StatelessWidget {
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
               search.clear();
-              context.read<AthleteClubBloc>().add(
-                    const AthleteClubEvent.filterClubs(''),
+              context.read<ClubBloc>().add(
+                    const ClubEvent.filterClubs(''),
                   );
             },
           ),
@@ -98,12 +98,12 @@ class AthleteListEvaluationScreen extends StatelessWidget {
     BuildContext context,
     ScrollController scrollController,
   ) {
-    final clubBloc = context.watch<AthleteClubBloc>();
+    final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
       loaded: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
-    return BlocBuilder<AthleteEvaluationBloc, AthleteEvaluationState>(
+    return BlocBuilder<EvaluationBloc, EvaluationState>(
       builder: (context, state) {
         return state.maybeWhen(
           loaded: (_, filteredEvaluations, __) {
@@ -116,8 +116,8 @@ class AthleteListEvaluationScreen extends StatelessWidget {
                       '${club?.name} doesn\'t had evaluation yet',
                       onRetry: () {
                         if (club != null) {
-                          context.read<AthleteEvaluationBloc>().add(
-                                AthleteEvaluationEvent.getEvaluations(
+                          context.read<EvaluationBloc>().add(
+                                EvaluationEvent.getEvaluations(
                                   GetAllEvaluationParams(clubId: club.id),
                                 ),
                               );
@@ -168,7 +168,7 @@ class AthleteListEvaluationScreen extends StatelessWidget {
     bool isLast,
   ) {
     void onTap() => context.router.push(
-          AthleteDetailEvaluationRoute(evaluationId: evaluation.id),
+          DetailEvaluationRoute(evaluationId: evaluation.id),
         );
 
     return ListViewBuilderTile(

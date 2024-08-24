@@ -18,9 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ExerciseEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExerciseParams params) getExercises,
     required TResult Function(String query) filterExercises,
-    required TResult Function() clear,
     required TResult Function(List<CreateExerciseParams> params) createBatch,
     required TResult Function(List<UpdateExerciseParams> params) update,
     required TResult Function(DeleteExerciseParams params) delete,
@@ -28,9 +28,9 @@ mixin _$ExerciseEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExerciseParams params)? getExercises,
     TResult? Function(String query)? filterExercises,
-    TResult? Function()? clear,
     TResult? Function(List<CreateExerciseParams> params)? createBatch,
     TResult? Function(List<UpdateExerciseParams> params)? update,
     TResult? Function(DeleteExerciseParams params)? delete,
@@ -38,9 +38,9 @@ mixin _$ExerciseEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExerciseParams params)? getExercises,
     TResult Function(String query)? filterExercises,
-    TResult Function()? clear,
     TResult Function(List<CreateExerciseParams> params)? createBatch,
     TResult Function(List<UpdateExerciseParams> params)? update,
     TResult Function(DeleteExerciseParams params)? delete,
@@ -49,10 +49,10 @@ mixin _$ExerciseEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventGetExercises value) getExercises,
     required TResult Function(ExerciseEventFilterExercises value)
         filterExercises,
-    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventCreateBatch value) createBatch,
     required TResult Function(ExerciseEventUpdateBatch value) update,
     required TResult Function(ExerciseEventDelete value) delete,
@@ -60,9 +60,9 @@ mixin _$ExerciseEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventGetExercises value)? getExercises,
     TResult? Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventCreateBatch value)? createBatch,
     TResult? Function(ExerciseEventUpdateBatch value)? update,
     TResult? Function(ExerciseEventDelete value)? delete,
@@ -70,9 +70,9 @@ mixin _$ExerciseEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventGetExercises value)? getExercises,
     TResult Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventCreateBatch value)? createBatch,
     TResult Function(ExerciseEventUpdateBatch value)? update,
     TResult Function(ExerciseEventDelete value)? delete,
@@ -100,6 +100,136 @@ class _$ExerciseEventCopyWithImpl<$Res, $Val extends ExerciseEvent>
 
   /// Create a copy of ExerciseEvent
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$ExerciseEventClearImplCopyWith<$Res> {
+  factory _$$ExerciseEventClearImplCopyWith(_$ExerciseEventClearImpl value,
+          $Res Function(_$ExerciseEventClearImpl) then) =
+      __$$ExerciseEventClearImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ExerciseEventClearImplCopyWithImpl<$Res>
+    extends _$ExerciseEventCopyWithImpl<$Res, _$ExerciseEventClearImpl>
+    implements _$$ExerciseEventClearImplCopyWith<$Res> {
+  __$$ExerciseEventClearImplCopyWithImpl(_$ExerciseEventClearImpl _value,
+      $Res Function(_$ExerciseEventClearImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ExerciseEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ExerciseEventClearImpl implements ExerciseEventClear {
+  const _$ExerciseEventClearImpl();
+
+  @override
+  String toString() {
+    return 'ExerciseEvent.clear()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ExerciseEventClearImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clear,
+    required TResult Function(GetAllExerciseParams params) getExercises,
+    required TResult Function(String query) filterExercises,
+    required TResult Function(List<CreateExerciseParams> params) createBatch,
+    required TResult Function(List<UpdateExerciseParams> params) update,
+    required TResult Function(DeleteExerciseParams params) delete,
+  }) {
+    return clear();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
+    TResult? Function(GetAllExerciseParams params)? getExercises,
+    TResult? Function(String query)? filterExercises,
+    TResult? Function(List<CreateExerciseParams> params)? createBatch,
+    TResult? Function(List<UpdateExerciseParams> params)? update,
+    TResult? Function(DeleteExerciseParams params)? delete,
+  }) {
+    return clear?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
+    TResult Function(GetAllExerciseParams params)? getExercises,
+    TResult Function(String query)? filterExercises,
+    TResult Function(List<CreateExerciseParams> params)? createBatch,
+    TResult Function(List<UpdateExerciseParams> params)? update,
+    TResult Function(DeleteExerciseParams params)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExerciseEventClear value) clear,
+    required TResult Function(ExerciseEventGetExercises value) getExercises,
+    required TResult Function(ExerciseEventFilterExercises value)
+        filterExercises,
+    required TResult Function(ExerciseEventCreateBatch value) createBatch,
+    required TResult Function(ExerciseEventUpdateBatch value) update,
+    required TResult Function(ExerciseEventDelete value) delete,
+  }) {
+    return clear(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExerciseEventClear value)? clear,
+    TResult? Function(ExerciseEventGetExercises value)? getExercises,
+    TResult? Function(ExerciseEventFilterExercises value)? filterExercises,
+    TResult? Function(ExerciseEventCreateBatch value)? createBatch,
+    TResult? Function(ExerciseEventUpdateBatch value)? update,
+    TResult? Function(ExerciseEventDelete value)? delete,
+  }) {
+    return clear?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExerciseEventClear value)? clear,
+    TResult Function(ExerciseEventGetExercises value)? getExercises,
+    TResult Function(ExerciseEventFilterExercises value)? filterExercises,
+    TResult Function(ExerciseEventCreateBatch value)? createBatch,
+    TResult Function(ExerciseEventUpdateBatch value)? update,
+    TResult Function(ExerciseEventDelete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (clear != null) {
+      return clear(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ExerciseEventClear implements ExerciseEvent {
+  const factory ExerciseEventClear() = _$ExerciseEventClearImpl;
 }
 
 /// @nodoc
@@ -185,9 +315,9 @@ class _$ExerciseEventGetExercisesImpl implements ExerciseEventGetExercises {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExerciseParams params) getExercises,
     required TResult Function(String query) filterExercises,
-    required TResult Function() clear,
     required TResult Function(List<CreateExerciseParams> params) createBatch,
     required TResult Function(List<UpdateExerciseParams> params) update,
     required TResult Function(DeleteExerciseParams params) delete,
@@ -198,9 +328,9 @@ class _$ExerciseEventGetExercisesImpl implements ExerciseEventGetExercises {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExerciseParams params)? getExercises,
     TResult? Function(String query)? filterExercises,
-    TResult? Function()? clear,
     TResult? Function(List<CreateExerciseParams> params)? createBatch,
     TResult? Function(List<UpdateExerciseParams> params)? update,
     TResult? Function(DeleteExerciseParams params)? delete,
@@ -211,9 +341,9 @@ class _$ExerciseEventGetExercisesImpl implements ExerciseEventGetExercises {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExerciseParams params)? getExercises,
     TResult Function(String query)? filterExercises,
-    TResult Function()? clear,
     TResult Function(List<CreateExerciseParams> params)? createBatch,
     TResult Function(List<UpdateExerciseParams> params)? update,
     TResult Function(DeleteExerciseParams params)? delete,
@@ -228,10 +358,10 @@ class _$ExerciseEventGetExercisesImpl implements ExerciseEventGetExercises {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventGetExercises value) getExercises,
     required TResult Function(ExerciseEventFilterExercises value)
         filterExercises,
-    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventCreateBatch value) createBatch,
     required TResult Function(ExerciseEventUpdateBatch value) update,
     required TResult Function(ExerciseEventDelete value) delete,
@@ -242,9 +372,9 @@ class _$ExerciseEventGetExercisesImpl implements ExerciseEventGetExercises {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventGetExercises value)? getExercises,
     TResult? Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventCreateBatch value)? createBatch,
     TResult? Function(ExerciseEventUpdateBatch value)? update,
     TResult? Function(ExerciseEventDelete value)? delete,
@@ -255,9 +385,9 @@ class _$ExerciseEventGetExercisesImpl implements ExerciseEventGetExercises {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventGetExercises value)? getExercises,
     TResult Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventCreateBatch value)? createBatch,
     TResult Function(ExerciseEventUpdateBatch value)? update,
     TResult Function(ExerciseEventDelete value)? delete,
@@ -357,9 +487,9 @@ class _$ExerciseEventFilterExercisesImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExerciseParams params) getExercises,
     required TResult Function(String query) filterExercises,
-    required TResult Function() clear,
     required TResult Function(List<CreateExerciseParams> params) createBatch,
     required TResult Function(List<UpdateExerciseParams> params) update,
     required TResult Function(DeleteExerciseParams params) delete,
@@ -370,9 +500,9 @@ class _$ExerciseEventFilterExercisesImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExerciseParams params)? getExercises,
     TResult? Function(String query)? filterExercises,
-    TResult? Function()? clear,
     TResult? Function(List<CreateExerciseParams> params)? createBatch,
     TResult? Function(List<UpdateExerciseParams> params)? update,
     TResult? Function(DeleteExerciseParams params)? delete,
@@ -383,9 +513,9 @@ class _$ExerciseEventFilterExercisesImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExerciseParams params)? getExercises,
     TResult Function(String query)? filterExercises,
-    TResult Function()? clear,
     TResult Function(List<CreateExerciseParams> params)? createBatch,
     TResult Function(List<UpdateExerciseParams> params)? update,
     TResult Function(DeleteExerciseParams params)? delete,
@@ -400,10 +530,10 @@ class _$ExerciseEventFilterExercisesImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventGetExercises value) getExercises,
     required TResult Function(ExerciseEventFilterExercises value)
         filterExercises,
-    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventCreateBatch value) createBatch,
     required TResult Function(ExerciseEventUpdateBatch value) update,
     required TResult Function(ExerciseEventDelete value) delete,
@@ -414,9 +544,9 @@ class _$ExerciseEventFilterExercisesImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventGetExercises value)? getExercises,
     TResult? Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventCreateBatch value)? createBatch,
     TResult? Function(ExerciseEventUpdateBatch value)? update,
     TResult? Function(ExerciseEventDelete value)? delete,
@@ -427,9 +557,9 @@ class _$ExerciseEventFilterExercisesImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventGetExercises value)? getExercises,
     TResult Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventCreateBatch value)? createBatch,
     TResult Function(ExerciseEventUpdateBatch value)? update,
     TResult Function(ExerciseEventDelete value)? delete,
@@ -454,136 +584,6 @@ abstract class ExerciseEventFilterExercises implements ExerciseEvent {
   _$$ExerciseEventFilterExercisesImplCopyWith<
           _$ExerciseEventFilterExercisesImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ExerciseEventClearImplCopyWith<$Res> {
-  factory _$$ExerciseEventClearImplCopyWith(_$ExerciseEventClearImpl value,
-          $Res Function(_$ExerciseEventClearImpl) then) =
-      __$$ExerciseEventClearImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ExerciseEventClearImplCopyWithImpl<$Res>
-    extends _$ExerciseEventCopyWithImpl<$Res, _$ExerciseEventClearImpl>
-    implements _$$ExerciseEventClearImplCopyWith<$Res> {
-  __$$ExerciseEventClearImplCopyWithImpl(_$ExerciseEventClearImpl _value,
-      $Res Function(_$ExerciseEventClearImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ExerciseEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ExerciseEventClearImpl implements ExerciseEventClear {
-  const _$ExerciseEventClearImpl();
-
-  @override
-  String toString() {
-    return 'ExerciseEvent.clear()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ExerciseEventClearImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(GetAllExerciseParams params) getExercises,
-    required TResult Function(String query) filterExercises,
-    required TResult Function() clear,
-    required TResult Function(List<CreateExerciseParams> params) createBatch,
-    required TResult Function(List<UpdateExerciseParams> params) update,
-    required TResult Function(DeleteExerciseParams params) delete,
-  }) {
-    return clear();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GetAllExerciseParams params)? getExercises,
-    TResult? Function(String query)? filterExercises,
-    TResult? Function()? clear,
-    TResult? Function(List<CreateExerciseParams> params)? createBatch,
-    TResult? Function(List<UpdateExerciseParams> params)? update,
-    TResult? Function(DeleteExerciseParams params)? delete,
-  }) {
-    return clear?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GetAllExerciseParams params)? getExercises,
-    TResult Function(String query)? filterExercises,
-    TResult Function()? clear,
-    TResult Function(List<CreateExerciseParams> params)? createBatch,
-    TResult Function(List<UpdateExerciseParams> params)? update,
-    TResult Function(DeleteExerciseParams params)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ExerciseEventGetExercises value) getExercises,
-    required TResult Function(ExerciseEventFilterExercises value)
-        filterExercises,
-    required TResult Function(ExerciseEventClear value) clear,
-    required TResult Function(ExerciseEventCreateBatch value) createBatch,
-    required TResult Function(ExerciseEventUpdateBatch value) update,
-    required TResult Function(ExerciseEventDelete value) delete,
-  }) {
-    return clear(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ExerciseEventGetExercises value)? getExercises,
-    TResult? Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult? Function(ExerciseEventClear value)? clear,
-    TResult? Function(ExerciseEventCreateBatch value)? createBatch,
-    TResult? Function(ExerciseEventUpdateBatch value)? update,
-    TResult? Function(ExerciseEventDelete value)? delete,
-  }) {
-    return clear?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ExerciseEventGetExercises value)? getExercises,
-    TResult Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult Function(ExerciseEventClear value)? clear,
-    TResult Function(ExerciseEventCreateBatch value)? createBatch,
-    TResult Function(ExerciseEventUpdateBatch value)? update,
-    TResult Function(ExerciseEventDelete value)? delete,
-    required TResult orElse(),
-  }) {
-    if (clear != null) {
-      return clear(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ExerciseEventClear implements ExerciseEvent {
-  const factory ExerciseEventClear() = _$ExerciseEventClearImpl;
 }
 
 /// @nodoc
@@ -664,9 +664,9 @@ class _$ExerciseEventCreateBatchImpl implements ExerciseEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExerciseParams params) getExercises,
     required TResult Function(String query) filterExercises,
-    required TResult Function() clear,
     required TResult Function(List<CreateExerciseParams> params) createBatch,
     required TResult Function(List<UpdateExerciseParams> params) update,
     required TResult Function(DeleteExerciseParams params) delete,
@@ -677,9 +677,9 @@ class _$ExerciseEventCreateBatchImpl implements ExerciseEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExerciseParams params)? getExercises,
     TResult? Function(String query)? filterExercises,
-    TResult? Function()? clear,
     TResult? Function(List<CreateExerciseParams> params)? createBatch,
     TResult? Function(List<UpdateExerciseParams> params)? update,
     TResult? Function(DeleteExerciseParams params)? delete,
@@ -690,9 +690,9 @@ class _$ExerciseEventCreateBatchImpl implements ExerciseEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExerciseParams params)? getExercises,
     TResult Function(String query)? filterExercises,
-    TResult Function()? clear,
     TResult Function(List<CreateExerciseParams> params)? createBatch,
     TResult Function(List<UpdateExerciseParams> params)? update,
     TResult Function(DeleteExerciseParams params)? delete,
@@ -707,10 +707,10 @@ class _$ExerciseEventCreateBatchImpl implements ExerciseEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventGetExercises value) getExercises,
     required TResult Function(ExerciseEventFilterExercises value)
         filterExercises,
-    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventCreateBatch value) createBatch,
     required TResult Function(ExerciseEventUpdateBatch value) update,
     required TResult Function(ExerciseEventDelete value) delete,
@@ -721,9 +721,9 @@ class _$ExerciseEventCreateBatchImpl implements ExerciseEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventGetExercises value)? getExercises,
     TResult? Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventCreateBatch value)? createBatch,
     TResult? Function(ExerciseEventUpdateBatch value)? update,
     TResult? Function(ExerciseEventDelete value)? delete,
@@ -734,9 +734,9 @@ class _$ExerciseEventCreateBatchImpl implements ExerciseEventCreateBatch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventGetExercises value)? getExercises,
     TResult Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventCreateBatch value)? createBatch,
     TResult Function(ExerciseEventUpdateBatch value)? update,
     TResult Function(ExerciseEventDelete value)? delete,
@@ -840,9 +840,9 @@ class _$ExerciseEventUpdateBatchImpl implements ExerciseEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExerciseParams params) getExercises,
     required TResult Function(String query) filterExercises,
-    required TResult Function() clear,
     required TResult Function(List<CreateExerciseParams> params) createBatch,
     required TResult Function(List<UpdateExerciseParams> params) update,
     required TResult Function(DeleteExerciseParams params) delete,
@@ -853,9 +853,9 @@ class _$ExerciseEventUpdateBatchImpl implements ExerciseEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExerciseParams params)? getExercises,
     TResult? Function(String query)? filterExercises,
-    TResult? Function()? clear,
     TResult? Function(List<CreateExerciseParams> params)? createBatch,
     TResult? Function(List<UpdateExerciseParams> params)? update,
     TResult? Function(DeleteExerciseParams params)? delete,
@@ -866,9 +866,9 @@ class _$ExerciseEventUpdateBatchImpl implements ExerciseEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExerciseParams params)? getExercises,
     TResult Function(String query)? filterExercises,
-    TResult Function()? clear,
     TResult Function(List<CreateExerciseParams> params)? createBatch,
     TResult Function(List<UpdateExerciseParams> params)? update,
     TResult Function(DeleteExerciseParams params)? delete,
@@ -883,10 +883,10 @@ class _$ExerciseEventUpdateBatchImpl implements ExerciseEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventGetExercises value) getExercises,
     required TResult Function(ExerciseEventFilterExercises value)
         filterExercises,
-    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventCreateBatch value) createBatch,
     required TResult Function(ExerciseEventUpdateBatch value) update,
     required TResult Function(ExerciseEventDelete value) delete,
@@ -897,9 +897,9 @@ class _$ExerciseEventUpdateBatchImpl implements ExerciseEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventGetExercises value)? getExercises,
     TResult? Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventCreateBatch value)? createBatch,
     TResult? Function(ExerciseEventUpdateBatch value)? update,
     TResult? Function(ExerciseEventDelete value)? delete,
@@ -910,9 +910,9 @@ class _$ExerciseEventUpdateBatchImpl implements ExerciseEventUpdateBatch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventGetExercises value)? getExercises,
     TResult Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventCreateBatch value)? createBatch,
     TResult Function(ExerciseEventUpdateBatch value)? update,
     TResult Function(ExerciseEventDelete value)? delete,
@@ -1019,9 +1019,9 @@ class _$ExerciseEventDeleteImpl implements ExerciseEventDelete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() clear,
     required TResult Function(GetAllExerciseParams params) getExercises,
     required TResult Function(String query) filterExercises,
-    required TResult Function() clear,
     required TResult Function(List<CreateExerciseParams> params) createBatch,
     required TResult Function(List<UpdateExerciseParams> params) update,
     required TResult Function(DeleteExerciseParams params) delete,
@@ -1032,9 +1032,9 @@ class _$ExerciseEventDeleteImpl implements ExerciseEventDelete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clear,
     TResult? Function(GetAllExerciseParams params)? getExercises,
     TResult? Function(String query)? filterExercises,
-    TResult? Function()? clear,
     TResult? Function(List<CreateExerciseParams> params)? createBatch,
     TResult? Function(List<UpdateExerciseParams> params)? update,
     TResult? Function(DeleteExerciseParams params)? delete,
@@ -1045,9 +1045,9 @@ class _$ExerciseEventDeleteImpl implements ExerciseEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clear,
     TResult Function(GetAllExerciseParams params)? getExercises,
     TResult Function(String query)? filterExercises,
-    TResult Function()? clear,
     TResult Function(List<CreateExerciseParams> params)? createBatch,
     TResult Function(List<UpdateExerciseParams> params)? update,
     TResult Function(DeleteExerciseParams params)? delete,
@@ -1062,10 +1062,10 @@ class _$ExerciseEventDeleteImpl implements ExerciseEventDelete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventGetExercises value) getExercises,
     required TResult Function(ExerciseEventFilterExercises value)
         filterExercises,
-    required TResult Function(ExerciseEventClear value) clear,
     required TResult Function(ExerciseEventCreateBatch value) createBatch,
     required TResult Function(ExerciseEventUpdateBatch value) update,
     required TResult Function(ExerciseEventDelete value) delete,
@@ -1076,9 +1076,9 @@ class _$ExerciseEventDeleteImpl implements ExerciseEventDelete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventGetExercises value)? getExercises,
     TResult? Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult? Function(ExerciseEventClear value)? clear,
     TResult? Function(ExerciseEventCreateBatch value)? createBatch,
     TResult? Function(ExerciseEventUpdateBatch value)? update,
     TResult? Function(ExerciseEventDelete value)? delete,
@@ -1089,9 +1089,9 @@ class _$ExerciseEventDeleteImpl implements ExerciseEventDelete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventGetExercises value)? getExercises,
     TResult Function(ExerciseEventFilterExercises value)? filterExercises,
-    TResult Function(ExerciseEventClear value)? clear,
     TResult Function(ExerciseEventCreateBatch value)? createBatch,
     TResult Function(ExerciseEventUpdateBatch value)? update,
     TResult Function(ExerciseEventDelete value)? delete,

@@ -2,13 +2,16 @@ part of 'program_bloc.dart';
 
 @freezed
 class ProgramEvent with _$ProgramEvent {
+  const factory ProgramEvent.clear() = ProgramEventClear;
   const factory ProgramEvent.getPrograms(
     GetAllProgramParams params,
   ) = ProgramEventGetPrograms;
+  const factory ProgramEvent.selectProgram(
+    ProgramModel program,
+  ) = ProgramEventSelectProgram;
   const factory ProgramEvent.filterPrograms(
     String query,
   ) = ProgramEventFilterPrograms;
-  const factory ProgramEvent.clear() = ProgramEventClear;
 
   // Actions
   const factory ProgramEvent.create(

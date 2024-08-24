@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class AthleteDetailTacticalScreen extends StatelessWidget {
+class DetailTacticalScreen extends StatelessWidget {
   final int id;
 
-  const AthleteDetailTacticalScreen({
+  const DetailTacticalScreen({
     super.key,
     @PathParam('id') required this.id,
   });

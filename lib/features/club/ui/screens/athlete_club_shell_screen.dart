@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class AthleteClubShellScreen extends StatelessWidget
-    implements AutoRouteWrapper {
+class ClubShellScreen extends StatelessWidget implements AutoRouteWrapper {
   final int id;
-  const AthleteClubShellScreen({
+  const ClubShellScreen({
     super.key,
     @pathParam required this.id,
   });
@@ -18,25 +17,25 @@ class AthleteClubShellScreen extends StatelessWidget
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(
-          value: context.read<AthleteProgramBloc>()
+          value: context.read<ProgramBloc>()
             ..add(
-              AthleteProgramEvent.getPrograms(
+              ProgramEvent.getPrograms(
                 GetAllProgramParams(clubId: id),
               ),
             ),
         ),
         BlocProvider.value(
-          value: context.read<AthleteTacticalBloc>()
+          value: context.read<TacticalBloc>()
             ..add(
-              AthleteTacticalEvent.getTacticals(
+              TacticalEvent.getTacticals(
                 GetAllTacticalParams(clubId: id),
               ),
             ),
         ),
         BlocProvider.value(
-          value: context.read<AthleteEvaluationBloc>()
+          value: context.read<EvaluationBloc>()
             ..add(
-              AthleteEvaluationEvent.getEvaluations(
+              EvaluationEvent.getEvaluations(
                 GetAllEvaluationParams(clubId: id),
               ),
             ),
@@ -53,9 +52,9 @@ class AthleteClubShellScreen extends StatelessWidget
       resizeToAvoidBottomInset: true,
       extendBodyBehindAppBar: true,
       routes: const [
-        AthleteListProgramRoute(),
-        AthleteListTacticalRoute(),
-        AthleteListEvaluationRoute(),
+        ListProgramRoute(),
+        ListTacticalRoute(),
+        ListEvaluationRoute(),
       ],
       transitionBuilder: (context, child, animation) => FadeTransition(
         opacity: animation,
