@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/helpers/helpers.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: AuthRepository)
@@ -12,8 +13,14 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, bool>> signOut() async {
-    await _local.clearSignedInUser();
-    return const Right(true);
+    final res = await _local.clearSignedInUser();
+    if (res == null) {
+      return const Left(
+          StorageFailure(message: 'Failed to clear signed in user'));
+    }
+    await _remote.signOut();
+    Log.error('Signed out ${res ? 'successfully' : 'unsuccessfully'}');
+    return Right(res);
   }
 
   @override

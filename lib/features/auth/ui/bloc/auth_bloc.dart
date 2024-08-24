@@ -1,5 +1,3 @@
-import 'package:dot_coaching/app/di.dart';
-import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -57,12 +55,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     res.fold(
       (failure) => emit(_Unauthenticated(failure.message)),
       (user) {
-        if (sl.isRegistered<DioService>()) {
-          sl.unregister<DioService>();
-          sl.registerLazySingleton<DioService>(() => DioService(sl()));
-        } else {
-          sl.registerLazySingleton<DioService>(() => DioService(sl()));
-        }
+        // if (sl.isRegistered<IsarService>()) {
+        //   sl.unregister<IsarService>();
+        //   sl.registerLazySingleton<IsarService>(() => IsarService( ));
+        // } else {
+        //   sl.registerLazySingleton<IsarService>(() => IsarService( ));
+        // }
+
+        // if (sl.isRegistered<DioService>()) {
+        //   sl.unregister<DioService>();
+        //   sl.registerLazySingleton<DioService>(() => DioService(sl()));
+        // } else {
+        //   sl.registerLazySingleton<DioService>(() => DioService(sl()));
+        // }
+
         emit(_Authenticated(user));
       },
     );
@@ -77,12 +83,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     res.fold(
       (failure) => emit(_Unauthenticated(failure.message)),
       (user) {
-        if (sl.isRegistered<DioService>()) {
-          sl.unregister<DioService>();
-          sl.registerLazySingleton<DioService>(() => DioService(sl()));
-        } else {
-          sl.registerLazySingleton<DioService>(() => DioService(sl()));
-        }
+        //  if (sl.isRegistered<IsarService>()) {
+        //     sl.unregister<IsarService>();
+        //     sl.registerLazySingleton<IsarService>(() => IsarService());
+        //   } else {
+        //     sl.registerLazySingleton<IsarService>(() => IsarService());
+        //   }
+
+        //   if (sl.isRegistered<DioService>()) {
+        //     sl.unregister<DioService>();
+        //     sl.registerLazySingleton<DioService>(() => DioService(sl()));
+        //   } else {
+        //     sl.registerLazySingleton<DioService>(() => DioService(sl()));
+        //   }
+
         emit(_Authenticated(user));
       },
     );

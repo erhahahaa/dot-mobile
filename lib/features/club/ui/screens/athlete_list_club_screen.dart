@@ -71,29 +71,52 @@ class AthleteListClubScreen extends StatelessWidget {
                   Gap(8.h),
                   BodySmall(user.email),
                   Gap(16.h),
-                  MoonFilledButton(
-                    label: BodySmall(context.str?.logout),
-                    onTap: () {
-                      context.read<AuthBloc>().add(const AuthEvent.signOut());
-                      context.router.replace(const SplashRoute());
+                  BlocListener<AuthBloc, AuthState>(
+                    listener: (context, state) {
+                      state.maybeWhen(
+                        unauthenticated: (message) {
+                          context.replaceRoute(SplashRoute());
+                        },
+                        orElse: () {},
+                      );
                     },
+                    child: MoonFilledButton(
+                      label: BodySmall(context.str?.logout),
+                      onTap: () {
+                        context.read<AuthBloc>().add(const AuthEvent.signOut());
+                      },
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-          floatingActionButton: showScrollToTopButton
-              ? FloatingActionButton(
-                  onPressed: () {
-                    scroll.animateTo(
-                      0,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  child: const Icon(Icons.arrow_upward),
-                )
-              : null,
+          floatingActionButton: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              BackTopButton(
+                show: showScrollToTopButton,
+                onPressed: () {
+                  scroll.animateTo(
+                    0,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              if (user.role == UserRole.athlete) ...[
+                Gap(8.h),
+                FloatingActionButton.extended(
+                  heroTag: 'new_club_button_$hashCode',
+                  onPressed: () {},
+                  icon: const Icon(Icons.add),
+                  label: const Text('New Club'),
+                ),
+              ],
+            ],
+          ),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
             child: Column(
@@ -150,14 +173,16 @@ class AthleteListClubScreen extends StatelessWidget {
       builder: (context, state) {
         return state.maybeWhen(
           loaded: (_, filteredClubs, __) {
+            final fakeClubs =
+                List.generate(20, (index) => ClubModel.fake()).toList();
             return ListViewBuilder<ClubModel>(
-              items: filteredClubs,
+              items: fakeClubs,
               scrollController: scrollController,
               height: 0.8.sh,
               itemBuilder: (context, club) => _buildClubItem(
                 context,
                 club,
-                club == filteredClubs.last,
+                club == fakeClubs.last,
               ),
             );
           },
