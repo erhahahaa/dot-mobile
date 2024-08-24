@@ -4,11 +4,11 @@ part of 'club_bloc.dart';
 class ClubState with _$ClubState {
   const factory ClubState.initial() = ClubStateInitial;
   const factory ClubState.loading() = ClubStateLoading;
-  const factory ClubState.loaded({
+  const factory ClubState.success({
     required List<ClubModel> clubs,
     required List<ClubModel> filteredClubs,
     ClubModel? selectedClub,
-  }) = ClubStateLoaded;
+  }) = ClubStateSuccess;
   const factory ClubState.failure(
     String message,
   ) = ClubStateFailure;

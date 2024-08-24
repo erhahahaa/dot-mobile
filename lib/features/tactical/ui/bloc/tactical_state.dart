@@ -4,10 +4,10 @@ part of 'tactical_bloc.dart';
 class TacticalState with _$TacticalState {
   const factory TacticalState.initial() = TacticalStateInitial;
   const factory TacticalState.loading() = TacticalStateLoading;
-  const factory TacticalState.loaded({
+  const factory TacticalState.success({
     required List<TacticalModel> tacticals,
     required List<TacticalModel> filteredTacticals,
-  }) = TacticalStateLoaded;
+  }) = TacticalStateSuccess;
   const factory TacticalState.failure(String message) = TacticalStateFailure;
 
   // Actions

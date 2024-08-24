@@ -1348,7 +1348,7 @@ mixin _$ProgramState {
     required TResult Function() loading,
     required TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
     required TResult Function(ProgramModel program) updated,
@@ -1361,7 +1361,7 @@ mixin _$ProgramState {
     TResult? Function()? loading,
     TResult? Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
     TResult? Function(ProgramModel program)? updated,
@@ -1374,7 +1374,7 @@ mixin _$ProgramState {
     TResult Function()? loading,
     TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
     TResult Function(ProgramModel program)? updated,
@@ -1386,7 +1386,7 @@ mixin _$ProgramState {
   TResult map<TResult extends Object?>({
     required TResult Function(ProgramStateInitial value) initial,
     required TResult Function(ProgramStateLoading value) loading,
-    required TResult Function(ProgramStateLoaded value) loaded,
+    required TResult Function(ProgramStateSuccess value) success,
     required TResult Function(ProgramStateFailure value) failure,
     required TResult Function(ProgramStateCreated value) created,
     required TResult Function(ProgramStateUpdated value) updated,
@@ -1397,7 +1397,7 @@ mixin _$ProgramState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProgramStateInitial value)? initial,
     TResult? Function(ProgramStateLoading value)? loading,
-    TResult? Function(ProgramStateLoaded value)? loaded,
+    TResult? Function(ProgramStateSuccess value)? success,
     TResult? Function(ProgramStateFailure value)? failure,
     TResult? Function(ProgramStateCreated value)? created,
     TResult? Function(ProgramStateUpdated value)? updated,
@@ -1408,7 +1408,7 @@ mixin _$ProgramState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProgramStateInitial value)? initial,
     TResult Function(ProgramStateLoading value)? loading,
-    TResult Function(ProgramStateLoaded value)? loaded,
+    TResult Function(ProgramStateSuccess value)? success,
     TResult Function(ProgramStateFailure value)? failure,
     TResult Function(ProgramStateCreated value)? created,
     TResult Function(ProgramStateUpdated value)? updated,
@@ -1485,7 +1485,7 @@ class _$ProgramStateInitialImpl implements ProgramStateInitial {
     required TResult Function() loading,
     required TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
     required TResult Function(ProgramModel program) updated,
@@ -1501,7 +1501,7 @@ class _$ProgramStateInitialImpl implements ProgramStateInitial {
     TResult? Function()? loading,
     TResult? Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
     TResult? Function(ProgramModel program)? updated,
@@ -1517,7 +1517,7 @@ class _$ProgramStateInitialImpl implements ProgramStateInitial {
     TResult Function()? loading,
     TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
     TResult Function(ProgramModel program)? updated,
@@ -1535,7 +1535,7 @@ class _$ProgramStateInitialImpl implements ProgramStateInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(ProgramStateInitial value) initial,
     required TResult Function(ProgramStateLoading value) loading,
-    required TResult Function(ProgramStateLoaded value) loaded,
+    required TResult Function(ProgramStateSuccess value) success,
     required TResult Function(ProgramStateFailure value) failure,
     required TResult Function(ProgramStateCreated value) created,
     required TResult Function(ProgramStateUpdated value) updated,
@@ -1549,7 +1549,7 @@ class _$ProgramStateInitialImpl implements ProgramStateInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProgramStateInitial value)? initial,
     TResult? Function(ProgramStateLoading value)? loading,
-    TResult? Function(ProgramStateLoaded value)? loaded,
+    TResult? Function(ProgramStateSuccess value)? success,
     TResult? Function(ProgramStateFailure value)? failure,
     TResult? Function(ProgramStateCreated value)? created,
     TResult? Function(ProgramStateUpdated value)? updated,
@@ -1563,7 +1563,7 @@ class _$ProgramStateInitialImpl implements ProgramStateInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProgramStateInitial value)? initial,
     TResult Function(ProgramStateLoading value)? loading,
-    TResult Function(ProgramStateLoaded value)? loaded,
+    TResult Function(ProgramStateSuccess value)? success,
     TResult Function(ProgramStateFailure value)? failure,
     TResult Function(ProgramStateCreated value)? created,
     TResult Function(ProgramStateUpdated value)? updated,
@@ -1627,7 +1627,7 @@ class _$ProgramStateLoadingImpl implements ProgramStateLoading {
     required TResult Function() loading,
     required TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
     required TResult Function(ProgramModel program) updated,
@@ -1643,7 +1643,7 @@ class _$ProgramStateLoadingImpl implements ProgramStateLoading {
     TResult? Function()? loading,
     TResult? Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
     TResult? Function(ProgramModel program)? updated,
@@ -1659,7 +1659,7 @@ class _$ProgramStateLoadingImpl implements ProgramStateLoading {
     TResult Function()? loading,
     TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
     TResult Function(ProgramModel program)? updated,
@@ -1677,7 +1677,7 @@ class _$ProgramStateLoadingImpl implements ProgramStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(ProgramStateInitial value) initial,
     required TResult Function(ProgramStateLoading value) loading,
-    required TResult Function(ProgramStateLoaded value) loaded,
+    required TResult Function(ProgramStateSuccess value) success,
     required TResult Function(ProgramStateFailure value) failure,
     required TResult Function(ProgramStateCreated value) created,
     required TResult Function(ProgramStateUpdated value) updated,
@@ -1691,7 +1691,7 @@ class _$ProgramStateLoadingImpl implements ProgramStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProgramStateInitial value)? initial,
     TResult? Function(ProgramStateLoading value)? loading,
-    TResult? Function(ProgramStateLoaded value)? loaded,
+    TResult? Function(ProgramStateSuccess value)? success,
     TResult? Function(ProgramStateFailure value)? failure,
     TResult? Function(ProgramStateCreated value)? created,
     TResult? Function(ProgramStateUpdated value)? updated,
@@ -1705,7 +1705,7 @@ class _$ProgramStateLoadingImpl implements ProgramStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProgramStateInitial value)? initial,
     TResult Function(ProgramStateLoading value)? loading,
-    TResult Function(ProgramStateLoaded value)? loaded,
+    TResult Function(ProgramStateSuccess value)? success,
     TResult Function(ProgramStateFailure value)? failure,
     TResult Function(ProgramStateCreated value)? created,
     TResult Function(ProgramStateUpdated value)? updated,
@@ -1724,10 +1724,10 @@ abstract class ProgramStateLoading implements ProgramState {
 }
 
 /// @nodoc
-abstract class _$$ProgramStateLoadedImplCopyWith<$Res> {
-  factory _$$ProgramStateLoadedImplCopyWith(_$ProgramStateLoadedImpl value,
-          $Res Function(_$ProgramStateLoadedImpl) then) =
-      __$$ProgramStateLoadedImplCopyWithImpl<$Res>;
+abstract class _$$ProgramStateSuccessImplCopyWith<$Res> {
+  factory _$$ProgramStateSuccessImplCopyWith(_$ProgramStateSuccessImpl value,
+          $Res Function(_$ProgramStateSuccessImpl) then) =
+      __$$ProgramStateSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<ProgramModel> programs,
@@ -1738,11 +1738,11 @@ abstract class _$$ProgramStateLoadedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ProgramStateLoadedImplCopyWithImpl<$Res>
-    extends _$ProgramStateCopyWithImpl<$Res, _$ProgramStateLoadedImpl>
-    implements _$$ProgramStateLoadedImplCopyWith<$Res> {
-  __$$ProgramStateLoadedImplCopyWithImpl(_$ProgramStateLoadedImpl _value,
-      $Res Function(_$ProgramStateLoadedImpl) _then)
+class __$$ProgramStateSuccessImplCopyWithImpl<$Res>
+    extends _$ProgramStateCopyWithImpl<$Res, _$ProgramStateSuccessImpl>
+    implements _$$ProgramStateSuccessImplCopyWith<$Res> {
+  __$$ProgramStateSuccessImplCopyWithImpl(_$ProgramStateSuccessImpl _value,
+      $Res Function(_$ProgramStateSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ProgramState
@@ -1754,7 +1754,7 @@ class __$$ProgramStateLoadedImplCopyWithImpl<$Res>
     Object? filteredPrograms = null,
     Object? selectedProgram = freezed,
   }) {
-    return _then(_$ProgramStateLoadedImpl(
+    return _then(_$ProgramStateSuccessImpl(
       programs: null == programs
           ? _value._programs
           : programs // ignore: cast_nullable_to_non_nullable
@@ -1787,8 +1787,8 @@ class __$$ProgramStateLoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
-  const _$ProgramStateLoadedImpl(
+class _$ProgramStateSuccessImpl implements ProgramStateSuccess {
+  const _$ProgramStateSuccessImpl(
       {required final List<ProgramModel> programs,
       required final List<ProgramModel> filteredPrograms,
       this.selectedProgram})
@@ -1817,14 +1817,14 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
 
   @override
   String toString() {
-    return 'ProgramState.loaded(programs: $programs, filteredPrograms: $filteredPrograms, selectedProgram: $selectedProgram)';
+    return 'ProgramState.success(programs: $programs, filteredPrograms: $filteredPrograms, selectedProgram: $selectedProgram)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProgramStateLoadedImpl &&
+            other is _$ProgramStateSuccessImpl &&
             const DeepCollectionEquality().equals(other._programs, _programs) &&
             const DeepCollectionEquality()
                 .equals(other._filteredPrograms, _filteredPrograms) &&
@@ -1844,8 +1844,8 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProgramStateLoadedImplCopyWith<_$ProgramStateLoadedImpl> get copyWith =>
-      __$$ProgramStateLoadedImplCopyWithImpl<_$ProgramStateLoadedImpl>(
+  _$$ProgramStateSuccessImplCopyWith<_$ProgramStateSuccessImpl> get copyWith =>
+      __$$ProgramStateSuccessImplCopyWithImpl<_$ProgramStateSuccessImpl>(
           this, _$identity);
 
   @override
@@ -1855,13 +1855,13 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
     required TResult Function() loading,
     required TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
     required TResult Function(ProgramModel program) updated,
     required TResult Function(ProgramModel program) deleted,
   }) {
-    return loaded(programs, filteredPrograms, selectedProgram);
+    return success(programs, filteredPrograms, selectedProgram);
   }
 
   @override
@@ -1871,13 +1871,13 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
     TResult? Function()? loading,
     TResult? Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
     TResult? Function(ProgramModel program)? updated,
     TResult? Function(ProgramModel program)? deleted,
   }) {
-    return loaded?.call(programs, filteredPrograms, selectedProgram);
+    return success?.call(programs, filteredPrograms, selectedProgram);
   }
 
   @override
@@ -1887,15 +1887,15 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
     TResult Function()? loading,
     TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
     TResult Function(ProgramModel program)? updated,
     TResult Function(ProgramModel program)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(programs, filteredPrograms, selectedProgram);
+    if (success != null) {
+      return success(programs, filteredPrograms, selectedProgram);
     }
     return orElse();
   }
@@ -1905,13 +1905,13 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(ProgramStateInitial value) initial,
     required TResult Function(ProgramStateLoading value) loading,
-    required TResult Function(ProgramStateLoaded value) loaded,
+    required TResult Function(ProgramStateSuccess value) success,
     required TResult Function(ProgramStateFailure value) failure,
     required TResult Function(ProgramStateCreated value) created,
     required TResult Function(ProgramStateUpdated value) updated,
     required TResult Function(ProgramStateDeleted value) deleted,
   }) {
-    return loaded(this);
+    return success(this);
   }
 
   @override
@@ -1919,13 +1919,13 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProgramStateInitial value)? initial,
     TResult? Function(ProgramStateLoading value)? loading,
-    TResult? Function(ProgramStateLoaded value)? loaded,
+    TResult? Function(ProgramStateSuccess value)? success,
     TResult? Function(ProgramStateFailure value)? failure,
     TResult? Function(ProgramStateCreated value)? created,
     TResult? Function(ProgramStateUpdated value)? updated,
     TResult? Function(ProgramStateDeleted value)? deleted,
   }) {
-    return loaded?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -1933,25 +1933,25 @@ class _$ProgramStateLoadedImpl implements ProgramStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProgramStateInitial value)? initial,
     TResult Function(ProgramStateLoading value)? loading,
-    TResult Function(ProgramStateLoaded value)? loaded,
+    TResult Function(ProgramStateSuccess value)? success,
     TResult Function(ProgramStateFailure value)? failure,
     TResult Function(ProgramStateCreated value)? created,
     TResult Function(ProgramStateUpdated value)? updated,
     TResult Function(ProgramStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class ProgramStateLoaded implements ProgramState {
-  const factory ProgramStateLoaded(
+abstract class ProgramStateSuccess implements ProgramState {
+  const factory ProgramStateSuccess(
       {required final List<ProgramModel> programs,
       required final List<ProgramModel> filteredPrograms,
-      final ProgramModel? selectedProgram}) = _$ProgramStateLoadedImpl;
+      final ProgramModel? selectedProgram}) = _$ProgramStateSuccessImpl;
 
   List<ProgramModel> get programs;
   List<ProgramModel> get filteredPrograms;
@@ -1960,7 +1960,7 @@ abstract class ProgramStateLoaded implements ProgramState {
   /// Create a copy of ProgramState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProgramStateLoadedImplCopyWith<_$ProgramStateLoadedImpl> get copyWith =>
+  _$$ProgramStateSuccessImplCopyWith<_$ProgramStateSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2037,7 +2037,7 @@ class _$ProgramStateFailureImpl implements ProgramStateFailure {
     required TResult Function() loading,
     required TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
     required TResult Function(ProgramModel program) updated,
@@ -2053,7 +2053,7 @@ class _$ProgramStateFailureImpl implements ProgramStateFailure {
     TResult? Function()? loading,
     TResult? Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
     TResult? Function(ProgramModel program)? updated,
@@ -2069,7 +2069,7 @@ class _$ProgramStateFailureImpl implements ProgramStateFailure {
     TResult Function()? loading,
     TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
     TResult Function(ProgramModel program)? updated,
@@ -2087,7 +2087,7 @@ class _$ProgramStateFailureImpl implements ProgramStateFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(ProgramStateInitial value) initial,
     required TResult Function(ProgramStateLoading value) loading,
-    required TResult Function(ProgramStateLoaded value) loaded,
+    required TResult Function(ProgramStateSuccess value) success,
     required TResult Function(ProgramStateFailure value) failure,
     required TResult Function(ProgramStateCreated value) created,
     required TResult Function(ProgramStateUpdated value) updated,
@@ -2101,7 +2101,7 @@ class _$ProgramStateFailureImpl implements ProgramStateFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProgramStateInitial value)? initial,
     TResult? Function(ProgramStateLoading value)? loading,
-    TResult? Function(ProgramStateLoaded value)? loaded,
+    TResult? Function(ProgramStateSuccess value)? success,
     TResult? Function(ProgramStateFailure value)? failure,
     TResult? Function(ProgramStateCreated value)? created,
     TResult? Function(ProgramStateUpdated value)? updated,
@@ -2115,7 +2115,7 @@ class _$ProgramStateFailureImpl implements ProgramStateFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProgramStateInitial value)? initial,
     TResult Function(ProgramStateLoading value)? loading,
-    TResult Function(ProgramStateLoaded value)? loaded,
+    TResult Function(ProgramStateSuccess value)? success,
     TResult Function(ProgramStateFailure value)? failure,
     TResult Function(ProgramStateCreated value)? created,
     TResult Function(ProgramStateUpdated value)? updated,
@@ -2227,7 +2227,7 @@ class _$ProgramStateCreatedImpl implements ProgramStateCreated {
     required TResult Function() loading,
     required TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
     required TResult Function(ProgramModel program) updated,
@@ -2243,7 +2243,7 @@ class _$ProgramStateCreatedImpl implements ProgramStateCreated {
     TResult? Function()? loading,
     TResult? Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
     TResult? Function(ProgramModel program)? updated,
@@ -2259,7 +2259,7 @@ class _$ProgramStateCreatedImpl implements ProgramStateCreated {
     TResult Function()? loading,
     TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
     TResult Function(ProgramModel program)? updated,
@@ -2277,7 +2277,7 @@ class _$ProgramStateCreatedImpl implements ProgramStateCreated {
   TResult map<TResult extends Object?>({
     required TResult Function(ProgramStateInitial value) initial,
     required TResult Function(ProgramStateLoading value) loading,
-    required TResult Function(ProgramStateLoaded value) loaded,
+    required TResult Function(ProgramStateSuccess value) success,
     required TResult Function(ProgramStateFailure value) failure,
     required TResult Function(ProgramStateCreated value) created,
     required TResult Function(ProgramStateUpdated value) updated,
@@ -2291,7 +2291,7 @@ class _$ProgramStateCreatedImpl implements ProgramStateCreated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProgramStateInitial value)? initial,
     TResult? Function(ProgramStateLoading value)? loading,
-    TResult? Function(ProgramStateLoaded value)? loaded,
+    TResult? Function(ProgramStateSuccess value)? success,
     TResult? Function(ProgramStateFailure value)? failure,
     TResult? Function(ProgramStateCreated value)? created,
     TResult? Function(ProgramStateUpdated value)? updated,
@@ -2305,7 +2305,7 @@ class _$ProgramStateCreatedImpl implements ProgramStateCreated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProgramStateInitial value)? initial,
     TResult Function(ProgramStateLoading value)? loading,
-    TResult Function(ProgramStateLoaded value)? loaded,
+    TResult Function(ProgramStateSuccess value)? success,
     TResult Function(ProgramStateFailure value)? failure,
     TResult Function(ProgramStateCreated value)? created,
     TResult Function(ProgramStateUpdated value)? updated,
@@ -2417,7 +2417,7 @@ class _$ProgramStateUpdatedImpl implements ProgramStateUpdated {
     required TResult Function() loading,
     required TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
     required TResult Function(ProgramModel program) updated,
@@ -2433,7 +2433,7 @@ class _$ProgramStateUpdatedImpl implements ProgramStateUpdated {
     TResult? Function()? loading,
     TResult? Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
     TResult? Function(ProgramModel program)? updated,
@@ -2449,7 +2449,7 @@ class _$ProgramStateUpdatedImpl implements ProgramStateUpdated {
     TResult Function()? loading,
     TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
     TResult Function(ProgramModel program)? updated,
@@ -2467,7 +2467,7 @@ class _$ProgramStateUpdatedImpl implements ProgramStateUpdated {
   TResult map<TResult extends Object?>({
     required TResult Function(ProgramStateInitial value) initial,
     required TResult Function(ProgramStateLoading value) loading,
-    required TResult Function(ProgramStateLoaded value) loaded,
+    required TResult Function(ProgramStateSuccess value) success,
     required TResult Function(ProgramStateFailure value) failure,
     required TResult Function(ProgramStateCreated value) created,
     required TResult Function(ProgramStateUpdated value) updated,
@@ -2481,7 +2481,7 @@ class _$ProgramStateUpdatedImpl implements ProgramStateUpdated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProgramStateInitial value)? initial,
     TResult? Function(ProgramStateLoading value)? loading,
-    TResult? Function(ProgramStateLoaded value)? loaded,
+    TResult? Function(ProgramStateSuccess value)? success,
     TResult? Function(ProgramStateFailure value)? failure,
     TResult? Function(ProgramStateCreated value)? created,
     TResult? Function(ProgramStateUpdated value)? updated,
@@ -2495,7 +2495,7 @@ class _$ProgramStateUpdatedImpl implements ProgramStateUpdated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProgramStateInitial value)? initial,
     TResult Function(ProgramStateLoading value)? loading,
-    TResult Function(ProgramStateLoaded value)? loaded,
+    TResult Function(ProgramStateSuccess value)? success,
     TResult Function(ProgramStateFailure value)? failure,
     TResult Function(ProgramStateCreated value)? created,
     TResult Function(ProgramStateUpdated value)? updated,
@@ -2607,7 +2607,7 @@ class _$ProgramStateDeletedImpl implements ProgramStateDeleted {
     required TResult Function() loading,
     required TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ProgramModel program) created,
     required TResult Function(ProgramModel program) updated,
@@ -2623,7 +2623,7 @@ class _$ProgramStateDeletedImpl implements ProgramStateDeleted {
     TResult? Function()? loading,
     TResult? Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ProgramModel program)? created,
     TResult? Function(ProgramModel program)? updated,
@@ -2639,7 +2639,7 @@ class _$ProgramStateDeletedImpl implements ProgramStateDeleted {
     TResult Function()? loading,
     TResult Function(List<ProgramModel> programs,
             List<ProgramModel> filteredPrograms, ProgramModel? selectedProgram)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ProgramModel program)? created,
     TResult Function(ProgramModel program)? updated,
@@ -2657,7 +2657,7 @@ class _$ProgramStateDeletedImpl implements ProgramStateDeleted {
   TResult map<TResult extends Object?>({
     required TResult Function(ProgramStateInitial value) initial,
     required TResult Function(ProgramStateLoading value) loading,
-    required TResult Function(ProgramStateLoaded value) loaded,
+    required TResult Function(ProgramStateSuccess value) success,
     required TResult Function(ProgramStateFailure value) failure,
     required TResult Function(ProgramStateCreated value) created,
     required TResult Function(ProgramStateUpdated value) updated,
@@ -2671,7 +2671,7 @@ class _$ProgramStateDeletedImpl implements ProgramStateDeleted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProgramStateInitial value)? initial,
     TResult? Function(ProgramStateLoading value)? loading,
-    TResult? Function(ProgramStateLoaded value)? loaded,
+    TResult? Function(ProgramStateSuccess value)? success,
     TResult? Function(ProgramStateFailure value)? failure,
     TResult? Function(ProgramStateCreated value)? created,
     TResult? Function(ProgramStateUpdated value)? updated,
@@ -2685,7 +2685,7 @@ class _$ProgramStateDeletedImpl implements ProgramStateDeleted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProgramStateInitial value)? initial,
     TResult Function(ProgramStateLoading value)? loading,
-    TResult Function(ProgramStateLoaded value)? loaded,
+    TResult Function(ProgramStateSuccess value)? success,
     TResult Function(ProgramStateFailure value)? failure,
     TResult Function(ProgramStateCreated value)? created,
     TResult Function(ProgramStateUpdated value)? updated,

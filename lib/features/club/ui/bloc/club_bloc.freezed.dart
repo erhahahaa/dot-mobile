@@ -1297,7 +1297,7 @@ mixin _$ClubState {
     required TResult Function() loading,
     required TResult Function(List<ClubModel> clubs,
             List<ClubModel> filteredClubs, ClubModel? selectedClub)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -1310,7 +1310,7 @@ mixin _$ClubState {
     TResult? Function()? loading,
     TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -1323,7 +1323,7 @@ mixin _$ClubState {
     TResult Function()? loading,
     TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -1335,7 +1335,7 @@ mixin _$ClubState {
   TResult map<TResult extends Object?>({
     required TResult Function(ClubStateInitial value) initial,
     required TResult Function(ClubStateLoading value) loading,
-    required TResult Function(ClubStateLoaded value) loaded,
+    required TResult Function(ClubStateSuccess value) success,
     required TResult Function(ClubStateFailure value) failure,
     required TResult Function(ClubStateCreated value) created,
     required TResult Function(ClubStateUpdated value) updated,
@@ -1346,7 +1346,7 @@ mixin _$ClubState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ClubStateInitial value)? initial,
     TResult? Function(ClubStateLoading value)? loading,
-    TResult? Function(ClubStateLoaded value)? loaded,
+    TResult? Function(ClubStateSuccess value)? success,
     TResult? Function(ClubStateFailure value)? failure,
     TResult? Function(ClubStateCreated value)? created,
     TResult? Function(ClubStateUpdated value)? updated,
@@ -1357,7 +1357,7 @@ mixin _$ClubState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ClubStateInitial value)? initial,
     TResult Function(ClubStateLoading value)? loading,
-    TResult Function(ClubStateLoaded value)? loaded,
+    TResult Function(ClubStateSuccess value)? success,
     TResult Function(ClubStateFailure value)? failure,
     TResult Function(ClubStateCreated value)? created,
     TResult Function(ClubStateUpdated value)? updated,
@@ -1432,7 +1432,7 @@ class _$ClubStateInitialImpl implements ClubStateInitial {
     required TResult Function() loading,
     required TResult Function(List<ClubModel> clubs,
             List<ClubModel> filteredClubs, ClubModel? selectedClub)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -1448,7 +1448,7 @@ class _$ClubStateInitialImpl implements ClubStateInitial {
     TResult? Function()? loading,
     TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -1464,7 +1464,7 @@ class _$ClubStateInitialImpl implements ClubStateInitial {
     TResult Function()? loading,
     TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -1482,7 +1482,7 @@ class _$ClubStateInitialImpl implements ClubStateInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(ClubStateInitial value) initial,
     required TResult Function(ClubStateLoading value) loading,
-    required TResult Function(ClubStateLoaded value) loaded,
+    required TResult Function(ClubStateSuccess value) success,
     required TResult Function(ClubStateFailure value) failure,
     required TResult Function(ClubStateCreated value) created,
     required TResult Function(ClubStateUpdated value) updated,
@@ -1496,7 +1496,7 @@ class _$ClubStateInitialImpl implements ClubStateInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ClubStateInitial value)? initial,
     TResult? Function(ClubStateLoading value)? loading,
-    TResult? Function(ClubStateLoaded value)? loaded,
+    TResult? Function(ClubStateSuccess value)? success,
     TResult? Function(ClubStateFailure value)? failure,
     TResult? Function(ClubStateCreated value)? created,
     TResult? Function(ClubStateUpdated value)? updated,
@@ -1510,7 +1510,7 @@ class _$ClubStateInitialImpl implements ClubStateInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ClubStateInitial value)? initial,
     TResult Function(ClubStateLoading value)? loading,
-    TResult Function(ClubStateLoaded value)? loaded,
+    TResult Function(ClubStateSuccess value)? success,
     TResult Function(ClubStateFailure value)? failure,
     TResult Function(ClubStateCreated value)? created,
     TResult Function(ClubStateUpdated value)? updated,
@@ -1573,7 +1573,7 @@ class _$ClubStateLoadingImpl implements ClubStateLoading {
     required TResult Function() loading,
     required TResult Function(List<ClubModel> clubs,
             List<ClubModel> filteredClubs, ClubModel? selectedClub)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -1589,7 +1589,7 @@ class _$ClubStateLoadingImpl implements ClubStateLoading {
     TResult? Function()? loading,
     TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -1605,7 +1605,7 @@ class _$ClubStateLoadingImpl implements ClubStateLoading {
     TResult Function()? loading,
     TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -1623,7 +1623,7 @@ class _$ClubStateLoadingImpl implements ClubStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(ClubStateInitial value) initial,
     required TResult Function(ClubStateLoading value) loading,
-    required TResult Function(ClubStateLoaded value) loaded,
+    required TResult Function(ClubStateSuccess value) success,
     required TResult Function(ClubStateFailure value) failure,
     required TResult Function(ClubStateCreated value) created,
     required TResult Function(ClubStateUpdated value) updated,
@@ -1637,7 +1637,7 @@ class _$ClubStateLoadingImpl implements ClubStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ClubStateInitial value)? initial,
     TResult? Function(ClubStateLoading value)? loading,
-    TResult? Function(ClubStateLoaded value)? loaded,
+    TResult? Function(ClubStateSuccess value)? success,
     TResult? Function(ClubStateFailure value)? failure,
     TResult? Function(ClubStateCreated value)? created,
     TResult? Function(ClubStateUpdated value)? updated,
@@ -1651,7 +1651,7 @@ class _$ClubStateLoadingImpl implements ClubStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ClubStateInitial value)? initial,
     TResult Function(ClubStateLoading value)? loading,
-    TResult Function(ClubStateLoaded value)? loaded,
+    TResult Function(ClubStateSuccess value)? success,
     TResult Function(ClubStateFailure value)? failure,
     TResult Function(ClubStateCreated value)? created,
     TResult Function(ClubStateUpdated value)? updated,
@@ -1670,10 +1670,10 @@ abstract class ClubStateLoading implements ClubState {
 }
 
 /// @nodoc
-abstract class _$$ClubStateLoadedImplCopyWith<$Res> {
-  factory _$$ClubStateLoadedImplCopyWith(_$ClubStateLoadedImpl value,
-          $Res Function(_$ClubStateLoadedImpl) then) =
-      __$$ClubStateLoadedImplCopyWithImpl<$Res>;
+abstract class _$$ClubStateSuccessImplCopyWith<$Res> {
+  factory _$$ClubStateSuccessImplCopyWith(_$ClubStateSuccessImpl value,
+          $Res Function(_$ClubStateSuccessImpl) then) =
+      __$$ClubStateSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<ClubModel> clubs,
@@ -1684,11 +1684,11 @@ abstract class _$$ClubStateLoadedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ClubStateLoadedImplCopyWithImpl<$Res>
-    extends _$ClubStateCopyWithImpl<$Res, _$ClubStateLoadedImpl>
-    implements _$$ClubStateLoadedImplCopyWith<$Res> {
-  __$$ClubStateLoadedImplCopyWithImpl(
-      _$ClubStateLoadedImpl _value, $Res Function(_$ClubStateLoadedImpl) _then)
+class __$$ClubStateSuccessImplCopyWithImpl<$Res>
+    extends _$ClubStateCopyWithImpl<$Res, _$ClubStateSuccessImpl>
+    implements _$$ClubStateSuccessImplCopyWith<$Res> {
+  __$$ClubStateSuccessImplCopyWithImpl(_$ClubStateSuccessImpl _value,
+      $Res Function(_$ClubStateSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ClubState
@@ -1700,7 +1700,7 @@ class __$$ClubStateLoadedImplCopyWithImpl<$Res>
     Object? filteredClubs = null,
     Object? selectedClub = freezed,
   }) {
-    return _then(_$ClubStateLoadedImpl(
+    return _then(_$ClubStateSuccessImpl(
       clubs: null == clubs
           ? _value._clubs
           : clubs // ignore: cast_nullable_to_non_nullable
@@ -1733,8 +1733,8 @@ class __$$ClubStateLoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ClubStateLoadedImpl implements ClubStateLoaded {
-  const _$ClubStateLoadedImpl(
+class _$ClubStateSuccessImpl implements ClubStateSuccess {
+  const _$ClubStateSuccessImpl(
       {required final List<ClubModel> clubs,
       required final List<ClubModel> filteredClubs,
       this.selectedClub})
@@ -1762,14 +1762,14 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
 
   @override
   String toString() {
-    return 'ClubState.loaded(clubs: $clubs, filteredClubs: $filteredClubs, selectedClub: $selectedClub)';
+    return 'ClubState.success(clubs: $clubs, filteredClubs: $filteredClubs, selectedClub: $selectedClub)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ClubStateLoadedImpl &&
+            other is _$ClubStateSuccessImpl &&
             const DeepCollectionEquality().equals(other._clubs, _clubs) &&
             const DeepCollectionEquality()
                 .equals(other._filteredClubs, _filteredClubs) &&
@@ -1789,8 +1789,8 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ClubStateLoadedImplCopyWith<_$ClubStateLoadedImpl> get copyWith =>
-      __$$ClubStateLoadedImplCopyWithImpl<_$ClubStateLoadedImpl>(
+  _$$ClubStateSuccessImplCopyWith<_$ClubStateSuccessImpl> get copyWith =>
+      __$$ClubStateSuccessImplCopyWithImpl<_$ClubStateSuccessImpl>(
           this, _$identity);
 
   @override
@@ -1800,13 +1800,13 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
     required TResult Function() loading,
     required TResult Function(List<ClubModel> clubs,
             List<ClubModel> filteredClubs, ClubModel? selectedClub)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
     required TResult Function(ClubModel club) deleted,
   }) {
-    return loaded(clubs, filteredClubs, selectedClub);
+    return success(clubs, filteredClubs, selectedClub);
   }
 
   @override
@@ -1816,13 +1816,13 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
     TResult? Function()? loading,
     TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
     TResult? Function(ClubModel club)? deleted,
   }) {
-    return loaded?.call(clubs, filteredClubs, selectedClub);
+    return success?.call(clubs, filteredClubs, selectedClub);
   }
 
   @override
@@ -1832,15 +1832,15 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
     TResult Function()? loading,
     TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
     TResult Function(ClubModel club)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(clubs, filteredClubs, selectedClub);
+    if (success != null) {
+      return success(clubs, filteredClubs, selectedClub);
     }
     return orElse();
   }
@@ -1850,13 +1850,13 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(ClubStateInitial value) initial,
     required TResult Function(ClubStateLoading value) loading,
-    required TResult Function(ClubStateLoaded value) loaded,
+    required TResult Function(ClubStateSuccess value) success,
     required TResult Function(ClubStateFailure value) failure,
     required TResult Function(ClubStateCreated value) created,
     required TResult Function(ClubStateUpdated value) updated,
     required TResult Function(ClubStateDeleted value) deleted,
   }) {
-    return loaded(this);
+    return success(this);
   }
 
   @override
@@ -1864,13 +1864,13 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ClubStateInitial value)? initial,
     TResult? Function(ClubStateLoading value)? loading,
-    TResult? Function(ClubStateLoaded value)? loaded,
+    TResult? Function(ClubStateSuccess value)? success,
     TResult? Function(ClubStateFailure value)? failure,
     TResult? Function(ClubStateCreated value)? created,
     TResult? Function(ClubStateUpdated value)? updated,
     TResult? Function(ClubStateDeleted value)? deleted,
   }) {
-    return loaded?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -1878,25 +1878,25 @@ class _$ClubStateLoadedImpl implements ClubStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ClubStateInitial value)? initial,
     TResult Function(ClubStateLoading value)? loading,
-    TResult Function(ClubStateLoaded value)? loaded,
+    TResult Function(ClubStateSuccess value)? success,
     TResult Function(ClubStateFailure value)? failure,
     TResult Function(ClubStateCreated value)? created,
     TResult Function(ClubStateUpdated value)? updated,
     TResult Function(ClubStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class ClubStateLoaded implements ClubState {
-  const factory ClubStateLoaded(
+abstract class ClubStateSuccess implements ClubState {
+  const factory ClubStateSuccess(
       {required final List<ClubModel> clubs,
       required final List<ClubModel> filteredClubs,
-      final ClubModel? selectedClub}) = _$ClubStateLoadedImpl;
+      final ClubModel? selectedClub}) = _$ClubStateSuccessImpl;
 
   List<ClubModel> get clubs;
   List<ClubModel> get filteredClubs;
@@ -1905,7 +1905,7 @@ abstract class ClubStateLoaded implements ClubState {
   /// Create a copy of ClubState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ClubStateLoadedImplCopyWith<_$ClubStateLoadedImpl> get copyWith =>
+  _$$ClubStateSuccessImplCopyWith<_$ClubStateSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1982,7 +1982,7 @@ class _$ClubStateFailureImpl implements ClubStateFailure {
     required TResult Function() loading,
     required TResult Function(List<ClubModel> clubs,
             List<ClubModel> filteredClubs, ClubModel? selectedClub)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -1998,7 +1998,7 @@ class _$ClubStateFailureImpl implements ClubStateFailure {
     TResult? Function()? loading,
     TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -2014,7 +2014,7 @@ class _$ClubStateFailureImpl implements ClubStateFailure {
     TResult Function()? loading,
     TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -2032,7 +2032,7 @@ class _$ClubStateFailureImpl implements ClubStateFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(ClubStateInitial value) initial,
     required TResult Function(ClubStateLoading value) loading,
-    required TResult Function(ClubStateLoaded value) loaded,
+    required TResult Function(ClubStateSuccess value) success,
     required TResult Function(ClubStateFailure value) failure,
     required TResult Function(ClubStateCreated value) created,
     required TResult Function(ClubStateUpdated value) updated,
@@ -2046,7 +2046,7 @@ class _$ClubStateFailureImpl implements ClubStateFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ClubStateInitial value)? initial,
     TResult? Function(ClubStateLoading value)? loading,
-    TResult? Function(ClubStateLoaded value)? loaded,
+    TResult? Function(ClubStateSuccess value)? success,
     TResult? Function(ClubStateFailure value)? failure,
     TResult? Function(ClubStateCreated value)? created,
     TResult? Function(ClubStateUpdated value)? updated,
@@ -2060,7 +2060,7 @@ class _$ClubStateFailureImpl implements ClubStateFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ClubStateInitial value)? initial,
     TResult Function(ClubStateLoading value)? loading,
-    TResult Function(ClubStateLoaded value)? loaded,
+    TResult Function(ClubStateSuccess value)? success,
     TResult Function(ClubStateFailure value)? failure,
     TResult Function(ClubStateCreated value)? created,
     TResult Function(ClubStateUpdated value)? updated,
@@ -2171,7 +2171,7 @@ class _$ClubStateCreatedImpl implements ClubStateCreated {
     required TResult Function() loading,
     required TResult Function(List<ClubModel> clubs,
             List<ClubModel> filteredClubs, ClubModel? selectedClub)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -2187,7 +2187,7 @@ class _$ClubStateCreatedImpl implements ClubStateCreated {
     TResult? Function()? loading,
     TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -2203,7 +2203,7 @@ class _$ClubStateCreatedImpl implements ClubStateCreated {
     TResult Function()? loading,
     TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -2221,7 +2221,7 @@ class _$ClubStateCreatedImpl implements ClubStateCreated {
   TResult map<TResult extends Object?>({
     required TResult Function(ClubStateInitial value) initial,
     required TResult Function(ClubStateLoading value) loading,
-    required TResult Function(ClubStateLoaded value) loaded,
+    required TResult Function(ClubStateSuccess value) success,
     required TResult Function(ClubStateFailure value) failure,
     required TResult Function(ClubStateCreated value) created,
     required TResult Function(ClubStateUpdated value) updated,
@@ -2235,7 +2235,7 @@ class _$ClubStateCreatedImpl implements ClubStateCreated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ClubStateInitial value)? initial,
     TResult? Function(ClubStateLoading value)? loading,
-    TResult? Function(ClubStateLoaded value)? loaded,
+    TResult? Function(ClubStateSuccess value)? success,
     TResult? Function(ClubStateFailure value)? failure,
     TResult? Function(ClubStateCreated value)? created,
     TResult? Function(ClubStateUpdated value)? updated,
@@ -2249,7 +2249,7 @@ class _$ClubStateCreatedImpl implements ClubStateCreated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ClubStateInitial value)? initial,
     TResult Function(ClubStateLoading value)? loading,
-    TResult Function(ClubStateLoaded value)? loaded,
+    TResult Function(ClubStateSuccess value)? success,
     TResult Function(ClubStateFailure value)? failure,
     TResult Function(ClubStateCreated value)? created,
     TResult Function(ClubStateUpdated value)? updated,
@@ -2360,7 +2360,7 @@ class _$ClubStateUpdatedImpl implements ClubStateUpdated {
     required TResult Function() loading,
     required TResult Function(List<ClubModel> clubs,
             List<ClubModel> filteredClubs, ClubModel? selectedClub)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -2376,7 +2376,7 @@ class _$ClubStateUpdatedImpl implements ClubStateUpdated {
     TResult? Function()? loading,
     TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -2392,7 +2392,7 @@ class _$ClubStateUpdatedImpl implements ClubStateUpdated {
     TResult Function()? loading,
     TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -2410,7 +2410,7 @@ class _$ClubStateUpdatedImpl implements ClubStateUpdated {
   TResult map<TResult extends Object?>({
     required TResult Function(ClubStateInitial value) initial,
     required TResult Function(ClubStateLoading value) loading,
-    required TResult Function(ClubStateLoaded value) loaded,
+    required TResult Function(ClubStateSuccess value) success,
     required TResult Function(ClubStateFailure value) failure,
     required TResult Function(ClubStateCreated value) created,
     required TResult Function(ClubStateUpdated value) updated,
@@ -2424,7 +2424,7 @@ class _$ClubStateUpdatedImpl implements ClubStateUpdated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ClubStateInitial value)? initial,
     TResult? Function(ClubStateLoading value)? loading,
-    TResult? Function(ClubStateLoaded value)? loaded,
+    TResult? Function(ClubStateSuccess value)? success,
     TResult? Function(ClubStateFailure value)? failure,
     TResult? Function(ClubStateCreated value)? created,
     TResult? Function(ClubStateUpdated value)? updated,
@@ -2438,7 +2438,7 @@ class _$ClubStateUpdatedImpl implements ClubStateUpdated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ClubStateInitial value)? initial,
     TResult Function(ClubStateLoading value)? loading,
-    TResult Function(ClubStateLoaded value)? loaded,
+    TResult Function(ClubStateSuccess value)? success,
     TResult Function(ClubStateFailure value)? failure,
     TResult Function(ClubStateCreated value)? created,
     TResult Function(ClubStateUpdated value)? updated,
@@ -2549,7 +2549,7 @@ class _$ClubStateDeletedImpl implements ClubStateDeleted {
     required TResult Function() loading,
     required TResult Function(List<ClubModel> clubs,
             List<ClubModel> filteredClubs, ClubModel? selectedClub)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(ClubModel club) created,
     required TResult Function(ClubModel club) updated,
@@ -2565,7 +2565,7 @@ class _$ClubStateDeletedImpl implements ClubStateDeleted {
     TResult? Function()? loading,
     TResult? Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(ClubModel club)? created,
     TResult? Function(ClubModel club)? updated,
@@ -2581,7 +2581,7 @@ class _$ClubStateDeletedImpl implements ClubStateDeleted {
     TResult Function()? loading,
     TResult Function(List<ClubModel> clubs, List<ClubModel> filteredClubs,
             ClubModel? selectedClub)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(ClubModel club)? created,
     TResult Function(ClubModel club)? updated,
@@ -2599,7 +2599,7 @@ class _$ClubStateDeletedImpl implements ClubStateDeleted {
   TResult map<TResult extends Object?>({
     required TResult Function(ClubStateInitial value) initial,
     required TResult Function(ClubStateLoading value) loading,
-    required TResult Function(ClubStateLoaded value) loaded,
+    required TResult Function(ClubStateSuccess value) success,
     required TResult Function(ClubStateFailure value) failure,
     required TResult Function(ClubStateCreated value) created,
     required TResult Function(ClubStateUpdated value) updated,
@@ -2613,7 +2613,7 @@ class _$ClubStateDeletedImpl implements ClubStateDeleted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ClubStateInitial value)? initial,
     TResult? Function(ClubStateLoading value)? loading,
-    TResult? Function(ClubStateLoaded value)? loaded,
+    TResult? Function(ClubStateSuccess value)? success,
     TResult? Function(ClubStateFailure value)? failure,
     TResult? Function(ClubStateCreated value)? created,
     TResult? Function(ClubStateUpdated value)? updated,
@@ -2627,7 +2627,7 @@ class _$ClubStateDeletedImpl implements ClubStateDeleted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ClubStateInitial value)? initial,
     TResult Function(ClubStateLoading value)? loading,
-    TResult Function(ClubStateLoaded value)? loaded,
+    TResult Function(ClubStateSuccess value)? success,
     TResult Function(ClubStateFailure value)? failure,
     TResult Function(ClubStateCreated value)? created,
     TResult Function(ClubStateUpdated value)? updated,

@@ -4,10 +4,10 @@ part of 'question_bloc.dart';
 class QuestionState with _$QuestionState {
   const factory QuestionState.initial() = QuestionStateInitial;
   const factory QuestionState.loading() = QuestionStateLoading;
-  const factory QuestionState.loaded({
+  const factory QuestionState.success({
     required List<QuestionModel> questions,
     required List<QuestionModel> filteredQuestions,
-  }) = QuestionStateLoaded;
+  }) = QuestionStateSuccess;
   const factory QuestionState.failure(
     String message,
   ) = QuestionStateFailure;

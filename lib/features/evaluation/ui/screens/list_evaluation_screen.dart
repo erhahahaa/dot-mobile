@@ -20,7 +20,7 @@ class ListEvaluationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
-      loaded: (_, __, selectedClub) => selectedClub,
+      success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
     return ParentWithSearchAndScrollController(
@@ -100,13 +100,13 @@ class ListEvaluationScreen extends StatelessWidget {
   ) {
     final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
-      loaded: (_, __, selectedClub) => selectedClub,
+      success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
     return BlocBuilder<EvaluationBloc, EvaluationState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loaded: (_, filteredEvaluations, __) {
+          success: (_, filteredEvaluations, __) {
             if (filteredEvaluations.isEmpty) {
               return Expanded(
                 child: Column(

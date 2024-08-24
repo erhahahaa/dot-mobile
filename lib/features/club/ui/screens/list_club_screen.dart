@@ -172,7 +172,7 @@ class ListClubScreen extends StatelessWidget {
     return BlocBuilder<ClubBloc, ClubState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loaded: (_, filteredClubs, __) {
+          success: (_, filteredClubs, __) {
             final fakeClubs =
                 List.generate(20, (index) => ClubModel.fake()).toList();
             return ListViewBuilder<ClubModel>(

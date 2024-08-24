@@ -4,10 +4,10 @@ part of 'exercise_bloc.dart';
 class ExerciseState with _$ExerciseState {
   const factory ExerciseState.initial() = ExerciseStateInitial;
   const factory ExerciseState.loading() = ExerciseStateLoading;
-  const factory ExerciseState.loaded({
+  const factory ExerciseState.success({
     required List<ExerciseModel> exercises,
     required List<ExerciseModel> filteredExercises,
-  }) = ExerciseStateLoaded;
+  }) = ExerciseStateSuccess;
   const factory ExerciseState.failure(
     String message,
   ) = ExerciseStateFailure;

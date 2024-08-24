@@ -43,7 +43,7 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
     res.fold(
       (failure) => emit(ExerciseStateFailure(failure.message)),
       (success) => emit(
-        ExerciseStateLoaded(
+        ExerciseStateSuccess(
           exercises: success,
           filteredExercises: success,
         ),
@@ -58,7 +58,7 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
     emit(const ExerciseStateLoading());
 
     state.maybeWhen(
-      loaded: (exercises, _) {
+      success: (exercises, _) {
         final finds = exercises
             .where(
               (exercise) => exercise.name.toLowerCase().contains(
@@ -72,7 +72,7 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
               'Exercise with name ${event.query} not found'));
         } else {
           emit(
-            ExerciseStateLoaded(
+            ExerciseStateSuccess(
               exercises: exercises,
               filteredExercises: finds,
             ),

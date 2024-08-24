@@ -45,7 +45,7 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
     res.fold(
       (failure) => emit(EvaluationStateFailure(failure.message)),
       (success) => emit(
-        EvaluationStateLoaded(
+        EvaluationStateSuccess(
           evaluations: success,
           filteredEvaluations: success,
         ),
@@ -59,7 +59,7 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
   ) {
     emit(const EvaluationStateLoading());
     state.maybeWhen(
-      loaded: (evaluations, _, __) {
+      success: (evaluations, _, __) {
         final finds = evaluations
             .where(
               (evaluation) =>
@@ -80,7 +80,7 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
               EvaluationStateFailure('Question with ${event.query} not found'));
         } else {
           emit(
-            EvaluationStateLoaded(
+            EvaluationStateSuccess(
               evaluations: evaluations,
               filteredEvaluations: finds,
             ),
@@ -98,9 +98,9 @@ class EvaluationBloc extends Bloc<EvaluationEvent, EvaluationState> {
     Emitter<EvaluationState> emit,
   ) {
     state.maybeWhen(
-      loaded: (evaluations, filteredEvaluations, _) {
+      success: (evaluations, filteredEvaluations, _) {
         emit(
-          EvaluationStateLoaded(
+          EvaluationStateSuccess(
             evaluations: evaluations,
             filteredEvaluations: filteredEvaluations,
             selectedEvaluation: event.evaluation,

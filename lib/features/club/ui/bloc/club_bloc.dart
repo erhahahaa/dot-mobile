@@ -44,7 +44,7 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
     res.fold(
       (failure) => emit(ClubStateFailure(failure.message)),
       (success) => emit(
-        ClubStateLoaded(
+        ClubStateSuccess(
           clubs: success,
           filteredClubs: success,
         ),
@@ -57,7 +57,7 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
     Emitter<ClubState> emit,
   ) {
     state.maybeWhen(
-      loaded: (clubs, _, __) {
+      success: (clubs, _, __) {
         final finds = clubs
             .where(
               (club) => club.name.toLowerCase().contains(
@@ -67,7 +67,7 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
             .toList();
 
         emit(
-          ClubStateLoaded(
+          ClubStateSuccess(
             clubs: clubs,
             filteredClubs: finds,
           ),
@@ -82,9 +82,9 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
     Emitter<ClubState> emit,
   ) {
     state.maybeWhen(
-      loaded: (clubs, filteredClubs, _) {
+      success: (clubs, filteredClubs, _) {
         emit(
-          ClubStateLoaded(
+          ClubStateSuccess(
             clubs: clubs,
             filteredClubs: filteredClubs,
             selectedClub: event.club,

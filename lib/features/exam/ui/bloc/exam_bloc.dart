@@ -44,7 +44,7 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
     res.fold(
       (failure) => emit(ExamStateFailure(failure.message)),
       (success) => emit(
-        ExamStateLoaded(
+        ExamStateSuccess(
           exams: success,
           filteredExams: success,
         ),
@@ -58,7 +58,7 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
   ) {
     emit(const ExamStateLoading());
     state.maybeWhen(
-      loaded: (exams, _) {
+      success: (exams, _) {
         final finds = exams
             .where(
               (exam) => exam.title.toLowerCase().contains(
@@ -71,7 +71,7 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
           emit(ExamStateFailure('Exam with title ${event.query} not found'));
         } else {
           emit(
-            ExamStateLoaded(
+            ExamStateSuccess(
               exams: exams,
               filteredExams: finds,
             ),

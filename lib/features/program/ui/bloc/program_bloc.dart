@@ -44,7 +44,7 @@ class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
     res.fold(
       (failure) => emit(ProgramStateFailure(failure.message)),
       (success) => emit(
-        ProgramStateLoaded(
+        ProgramStateSuccess(
           programs: success,
           filteredPrograms: success,
         ),
@@ -58,7 +58,7 @@ class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
   ) {
     emit(const ProgramStateLoading());
     state.maybeWhen(
-      loaded: (programs, _, __) {
+      success: (programs, _, __) {
         final finds = programs
             .where(
               (program) => program.name.toLowerCase().contains(
@@ -72,7 +72,7 @@ class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
               'Program with name ${event.query} not foundl'));
         } else {
           emit(
-            ProgramStateLoaded(
+            ProgramStateSuccess(
               programs: programs,
               filteredPrograms: finds,
             ),
@@ -88,9 +88,9 @@ class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
     Emitter<ProgramState> emit,
   ) {
     state.maybeWhen(
-      loaded: (programs, filteredPrograms, _) {
+      success: (programs, filteredPrograms, _) {
         emit(
-          ProgramStateLoaded(
+          ProgramStateSuccess(
             programs: programs,
             filteredPrograms: filteredPrograms,
             selectedProgram: event.program,

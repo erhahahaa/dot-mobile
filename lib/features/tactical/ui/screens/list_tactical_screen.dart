@@ -20,7 +20,7 @@ class ListTacticalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
-      loaded: (_, __, selectedClub) => selectedClub,
+      success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
     return ParentWithSearchAndScrollController(
@@ -101,13 +101,13 @@ class ListTacticalScreen extends StatelessWidget {
   ) {
     final clubBloc = context.watch<ClubBloc>();
     final club = clubBloc.state.maybeWhen(
-      loaded: (_, __, selectedClub) => selectedClub,
+      success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
     return BlocBuilder<TacticalBloc, TacticalState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loaded: (_, filteredTacticals) {
+          success: (_, filteredTacticals) {
             if (filteredTacticals.isEmpty) {
               return Expanded(
                 child: Column(

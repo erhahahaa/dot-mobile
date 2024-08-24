@@ -1405,7 +1405,7 @@ mixin _$EvaluationState {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -1420,7 +1420,7 @@ mixin _$EvaluationState {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -1435,7 +1435,7 @@ mixin _$EvaluationState {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -1447,7 +1447,7 @@ mixin _$EvaluationState {
   TResult map<TResult extends Object?>({
     required TResult Function(EvaluationStateInitial value) initial,
     required TResult Function(EvaluationStateLoading value) loading,
-    required TResult Function(EvaluationStateLoaded value) loaded,
+    required TResult Function(EvaluationStateSuccess value) success,
     required TResult Function(EvaluationStateFailure value) failure,
     required TResult Function(EvaluationStateCreated value) created,
     required TResult Function(EvaluationStateUpdated value) updated,
@@ -1458,7 +1458,7 @@ mixin _$EvaluationState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EvaluationStateInitial value)? initial,
     TResult? Function(EvaluationStateLoading value)? loading,
-    TResult? Function(EvaluationStateLoaded value)? loaded,
+    TResult? Function(EvaluationStateSuccess value)? success,
     TResult? Function(EvaluationStateFailure value)? failure,
     TResult? Function(EvaluationStateCreated value)? created,
     TResult? Function(EvaluationStateUpdated value)? updated,
@@ -1469,7 +1469,7 @@ mixin _$EvaluationState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EvaluationStateInitial value)? initial,
     TResult Function(EvaluationStateLoading value)? loading,
-    TResult Function(EvaluationStateLoaded value)? loaded,
+    TResult Function(EvaluationStateSuccess value)? success,
     TResult Function(EvaluationStateFailure value)? failure,
     TResult Function(EvaluationStateCreated value)? created,
     TResult Function(EvaluationStateUpdated value)? updated,
@@ -1550,7 +1550,7 @@ class _$EvaluationStateInitialImpl implements EvaluationStateInitial {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -1568,7 +1568,7 @@ class _$EvaluationStateInitialImpl implements EvaluationStateInitial {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -1586,7 +1586,7 @@ class _$EvaluationStateInitialImpl implements EvaluationStateInitial {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -1604,7 +1604,7 @@ class _$EvaluationStateInitialImpl implements EvaluationStateInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(EvaluationStateInitial value) initial,
     required TResult Function(EvaluationStateLoading value) loading,
-    required TResult Function(EvaluationStateLoaded value) loaded,
+    required TResult Function(EvaluationStateSuccess value) success,
     required TResult Function(EvaluationStateFailure value) failure,
     required TResult Function(EvaluationStateCreated value) created,
     required TResult Function(EvaluationStateUpdated value) updated,
@@ -1618,7 +1618,7 @@ class _$EvaluationStateInitialImpl implements EvaluationStateInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EvaluationStateInitial value)? initial,
     TResult? Function(EvaluationStateLoading value)? loading,
-    TResult? Function(EvaluationStateLoaded value)? loaded,
+    TResult? Function(EvaluationStateSuccess value)? success,
     TResult? Function(EvaluationStateFailure value)? failure,
     TResult? Function(EvaluationStateCreated value)? created,
     TResult? Function(EvaluationStateUpdated value)? updated,
@@ -1632,7 +1632,7 @@ class _$EvaluationStateInitialImpl implements EvaluationStateInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EvaluationStateInitial value)? initial,
     TResult Function(EvaluationStateLoading value)? loading,
-    TResult Function(EvaluationStateLoaded value)? loaded,
+    TResult Function(EvaluationStateSuccess value)? success,
     TResult Function(EvaluationStateFailure value)? failure,
     TResult Function(EvaluationStateCreated value)? created,
     TResult Function(EvaluationStateUpdated value)? updated,
@@ -1700,7 +1700,7 @@ class _$EvaluationStateLoadingImpl implements EvaluationStateLoading {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -1718,7 +1718,7 @@ class _$EvaluationStateLoadingImpl implements EvaluationStateLoading {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -1736,7 +1736,7 @@ class _$EvaluationStateLoadingImpl implements EvaluationStateLoading {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -1754,7 +1754,7 @@ class _$EvaluationStateLoadingImpl implements EvaluationStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(EvaluationStateInitial value) initial,
     required TResult Function(EvaluationStateLoading value) loading,
-    required TResult Function(EvaluationStateLoaded value) loaded,
+    required TResult Function(EvaluationStateSuccess value) success,
     required TResult Function(EvaluationStateFailure value) failure,
     required TResult Function(EvaluationStateCreated value) created,
     required TResult Function(EvaluationStateUpdated value) updated,
@@ -1768,7 +1768,7 @@ class _$EvaluationStateLoadingImpl implements EvaluationStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EvaluationStateInitial value)? initial,
     TResult? Function(EvaluationStateLoading value)? loading,
-    TResult? Function(EvaluationStateLoaded value)? loaded,
+    TResult? Function(EvaluationStateSuccess value)? success,
     TResult? Function(EvaluationStateFailure value)? failure,
     TResult? Function(EvaluationStateCreated value)? created,
     TResult? Function(EvaluationStateUpdated value)? updated,
@@ -1782,7 +1782,7 @@ class _$EvaluationStateLoadingImpl implements EvaluationStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EvaluationStateInitial value)? initial,
     TResult Function(EvaluationStateLoading value)? loading,
-    TResult Function(EvaluationStateLoaded value)? loaded,
+    TResult Function(EvaluationStateSuccess value)? success,
     TResult Function(EvaluationStateFailure value)? failure,
     TResult Function(EvaluationStateCreated value)? created,
     TResult Function(EvaluationStateUpdated value)? updated,
@@ -1801,11 +1801,11 @@ abstract class EvaluationStateLoading implements EvaluationState {
 }
 
 /// @nodoc
-abstract class _$$EvaluationStateLoadedImplCopyWith<$Res> {
-  factory _$$EvaluationStateLoadedImplCopyWith(
-          _$EvaluationStateLoadedImpl value,
-          $Res Function(_$EvaluationStateLoadedImpl) then) =
-      __$$EvaluationStateLoadedImplCopyWithImpl<$Res>;
+abstract class _$$EvaluationStateSuccessImplCopyWith<$Res> {
+  factory _$$EvaluationStateSuccessImplCopyWith(
+          _$EvaluationStateSuccessImpl value,
+          $Res Function(_$EvaluationStateSuccessImpl) then) =
+      __$$EvaluationStateSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<EvaluationModel> evaluations,
@@ -1816,11 +1816,12 @@ abstract class _$$EvaluationStateLoadedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$EvaluationStateLoadedImplCopyWithImpl<$Res>
-    extends _$EvaluationStateCopyWithImpl<$Res, _$EvaluationStateLoadedImpl>
-    implements _$$EvaluationStateLoadedImplCopyWith<$Res> {
-  __$$EvaluationStateLoadedImplCopyWithImpl(_$EvaluationStateLoadedImpl _value,
-      $Res Function(_$EvaluationStateLoadedImpl) _then)
+class __$$EvaluationStateSuccessImplCopyWithImpl<$Res>
+    extends _$EvaluationStateCopyWithImpl<$Res, _$EvaluationStateSuccessImpl>
+    implements _$$EvaluationStateSuccessImplCopyWith<$Res> {
+  __$$EvaluationStateSuccessImplCopyWithImpl(
+      _$EvaluationStateSuccessImpl _value,
+      $Res Function(_$EvaluationStateSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of EvaluationState
@@ -1832,7 +1833,7 @@ class __$$EvaluationStateLoadedImplCopyWithImpl<$Res>
     Object? filteredEvaluations = null,
     Object? selectedEvaluation = freezed,
   }) {
-    return _then(_$EvaluationStateLoadedImpl(
+    return _then(_$EvaluationStateSuccessImpl(
       evaluations: null == evaluations
           ? _value._evaluations
           : evaluations // ignore: cast_nullable_to_non_nullable
@@ -1865,8 +1866,8 @@ class __$$EvaluationStateLoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
-  const _$EvaluationStateLoadedImpl(
+class _$EvaluationStateSuccessImpl implements EvaluationStateSuccess {
+  const _$EvaluationStateSuccessImpl(
       {required final List<EvaluationModel> evaluations,
       required final List<EvaluationModel> filteredEvaluations,
       this.selectedEvaluation})
@@ -1895,14 +1896,14 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
 
   @override
   String toString() {
-    return 'EvaluationState.loaded(evaluations: $evaluations, filteredEvaluations: $filteredEvaluations, selectedEvaluation: $selectedEvaluation)';
+    return 'EvaluationState.success(evaluations: $evaluations, filteredEvaluations: $filteredEvaluations, selectedEvaluation: $selectedEvaluation)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EvaluationStateLoadedImpl &&
+            other is _$EvaluationStateSuccessImpl &&
             const DeepCollectionEquality()
                 .equals(other._evaluations, _evaluations) &&
             const DeepCollectionEquality()
@@ -1923,9 +1924,9 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$EvaluationStateLoadedImplCopyWith<_$EvaluationStateLoadedImpl>
-      get copyWith => __$$EvaluationStateLoadedImplCopyWithImpl<
-          _$EvaluationStateLoadedImpl>(this, _$identity);
+  _$$EvaluationStateSuccessImplCopyWith<_$EvaluationStateSuccessImpl>
+      get copyWith => __$$EvaluationStateSuccessImplCopyWithImpl<
+          _$EvaluationStateSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1936,13 +1937,13 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
     required TResult Function(EvaluationModel evaluation) deleted,
   }) {
-    return loaded(evaluations, filteredEvaluations, selectedEvaluation);
+    return success(evaluations, filteredEvaluations, selectedEvaluation);
   }
 
   @override
@@ -1954,13 +1955,13 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
     TResult? Function(EvaluationModel evaluation)? deleted,
   }) {
-    return loaded?.call(evaluations, filteredEvaluations, selectedEvaluation);
+    return success?.call(evaluations, filteredEvaluations, selectedEvaluation);
   }
 
   @override
@@ -1972,15 +1973,15 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
     TResult Function(EvaluationModel evaluation)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(evaluations, filteredEvaluations, selectedEvaluation);
+    if (success != null) {
+      return success(evaluations, filteredEvaluations, selectedEvaluation);
     }
     return orElse();
   }
@@ -1990,13 +1991,13 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(EvaluationStateInitial value) initial,
     required TResult Function(EvaluationStateLoading value) loading,
-    required TResult Function(EvaluationStateLoaded value) loaded,
+    required TResult Function(EvaluationStateSuccess value) success,
     required TResult Function(EvaluationStateFailure value) failure,
     required TResult Function(EvaluationStateCreated value) created,
     required TResult Function(EvaluationStateUpdated value) updated,
     required TResult Function(EvaluationStateDeleted value) deleted,
   }) {
-    return loaded(this);
+    return success(this);
   }
 
   @override
@@ -2004,13 +2005,13 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EvaluationStateInitial value)? initial,
     TResult? Function(EvaluationStateLoading value)? loading,
-    TResult? Function(EvaluationStateLoaded value)? loaded,
+    TResult? Function(EvaluationStateSuccess value)? success,
     TResult? Function(EvaluationStateFailure value)? failure,
     TResult? Function(EvaluationStateCreated value)? created,
     TResult? Function(EvaluationStateUpdated value)? updated,
     TResult? Function(EvaluationStateDeleted value)? deleted,
   }) {
-    return loaded?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -2018,25 +2019,26 @@ class _$EvaluationStateLoadedImpl implements EvaluationStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EvaluationStateInitial value)? initial,
     TResult Function(EvaluationStateLoading value)? loading,
-    TResult Function(EvaluationStateLoaded value)? loaded,
+    TResult Function(EvaluationStateSuccess value)? success,
     TResult Function(EvaluationStateFailure value)? failure,
     TResult Function(EvaluationStateCreated value)? created,
     TResult Function(EvaluationStateUpdated value)? updated,
     TResult Function(EvaluationStateDeleted value)? deleted,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class EvaluationStateLoaded implements EvaluationState {
-  const factory EvaluationStateLoaded(
-      {required final List<EvaluationModel> evaluations,
-      required final List<EvaluationModel> filteredEvaluations,
-      final EvaluationModel? selectedEvaluation}) = _$EvaluationStateLoadedImpl;
+abstract class EvaluationStateSuccess implements EvaluationState {
+  const factory EvaluationStateSuccess(
+          {required final List<EvaluationModel> evaluations,
+          required final List<EvaluationModel> filteredEvaluations,
+          final EvaluationModel? selectedEvaluation}) =
+      _$EvaluationStateSuccessImpl;
 
   List<EvaluationModel> get evaluations;
   List<EvaluationModel> get filteredEvaluations;
@@ -2045,7 +2047,7 @@ abstract class EvaluationStateLoaded implements EvaluationState {
   /// Create a copy of EvaluationState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$EvaluationStateLoadedImplCopyWith<_$EvaluationStateLoadedImpl>
+  _$$EvaluationStateSuccessImplCopyWith<_$EvaluationStateSuccessImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -2126,7 +2128,7 @@ class _$EvaluationStateFailureImpl implements EvaluationStateFailure {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -2144,7 +2146,7 @@ class _$EvaluationStateFailureImpl implements EvaluationStateFailure {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -2162,7 +2164,7 @@ class _$EvaluationStateFailureImpl implements EvaluationStateFailure {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -2180,7 +2182,7 @@ class _$EvaluationStateFailureImpl implements EvaluationStateFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(EvaluationStateInitial value) initial,
     required TResult Function(EvaluationStateLoading value) loading,
-    required TResult Function(EvaluationStateLoaded value) loaded,
+    required TResult Function(EvaluationStateSuccess value) success,
     required TResult Function(EvaluationStateFailure value) failure,
     required TResult Function(EvaluationStateCreated value) created,
     required TResult Function(EvaluationStateUpdated value) updated,
@@ -2194,7 +2196,7 @@ class _$EvaluationStateFailureImpl implements EvaluationStateFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EvaluationStateInitial value)? initial,
     TResult? Function(EvaluationStateLoading value)? loading,
-    TResult? Function(EvaluationStateLoaded value)? loaded,
+    TResult? Function(EvaluationStateSuccess value)? success,
     TResult? Function(EvaluationStateFailure value)? failure,
     TResult? Function(EvaluationStateCreated value)? created,
     TResult? Function(EvaluationStateUpdated value)? updated,
@@ -2208,7 +2210,7 @@ class _$EvaluationStateFailureImpl implements EvaluationStateFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EvaluationStateInitial value)? initial,
     TResult Function(EvaluationStateLoading value)? loading,
-    TResult Function(EvaluationStateLoaded value)? loaded,
+    TResult Function(EvaluationStateSuccess value)? success,
     TResult Function(EvaluationStateFailure value)? failure,
     TResult Function(EvaluationStateCreated value)? created,
     TResult Function(EvaluationStateUpdated value)? updated,
@@ -2325,7 +2327,7 @@ class _$EvaluationStateCreatedImpl implements EvaluationStateCreated {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -2343,7 +2345,7 @@ class _$EvaluationStateCreatedImpl implements EvaluationStateCreated {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -2361,7 +2363,7 @@ class _$EvaluationStateCreatedImpl implements EvaluationStateCreated {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -2379,7 +2381,7 @@ class _$EvaluationStateCreatedImpl implements EvaluationStateCreated {
   TResult map<TResult extends Object?>({
     required TResult Function(EvaluationStateInitial value) initial,
     required TResult Function(EvaluationStateLoading value) loading,
-    required TResult Function(EvaluationStateLoaded value) loaded,
+    required TResult Function(EvaluationStateSuccess value) success,
     required TResult Function(EvaluationStateFailure value) failure,
     required TResult Function(EvaluationStateCreated value) created,
     required TResult Function(EvaluationStateUpdated value) updated,
@@ -2393,7 +2395,7 @@ class _$EvaluationStateCreatedImpl implements EvaluationStateCreated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EvaluationStateInitial value)? initial,
     TResult? Function(EvaluationStateLoading value)? loading,
-    TResult? Function(EvaluationStateLoaded value)? loaded,
+    TResult? Function(EvaluationStateSuccess value)? success,
     TResult? Function(EvaluationStateFailure value)? failure,
     TResult? Function(EvaluationStateCreated value)? created,
     TResult? Function(EvaluationStateUpdated value)? updated,
@@ -2407,7 +2409,7 @@ class _$EvaluationStateCreatedImpl implements EvaluationStateCreated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EvaluationStateInitial value)? initial,
     TResult Function(EvaluationStateLoading value)? loading,
-    TResult Function(EvaluationStateLoaded value)? loaded,
+    TResult Function(EvaluationStateSuccess value)? success,
     TResult Function(EvaluationStateFailure value)? failure,
     TResult Function(EvaluationStateCreated value)? created,
     TResult Function(EvaluationStateUpdated value)? updated,
@@ -2524,7 +2526,7 @@ class _$EvaluationStateUpdatedImpl implements EvaluationStateUpdated {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -2542,7 +2544,7 @@ class _$EvaluationStateUpdatedImpl implements EvaluationStateUpdated {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -2560,7 +2562,7 @@ class _$EvaluationStateUpdatedImpl implements EvaluationStateUpdated {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -2578,7 +2580,7 @@ class _$EvaluationStateUpdatedImpl implements EvaluationStateUpdated {
   TResult map<TResult extends Object?>({
     required TResult Function(EvaluationStateInitial value) initial,
     required TResult Function(EvaluationStateLoading value) loading,
-    required TResult Function(EvaluationStateLoaded value) loaded,
+    required TResult Function(EvaluationStateSuccess value) success,
     required TResult Function(EvaluationStateFailure value) failure,
     required TResult Function(EvaluationStateCreated value) created,
     required TResult Function(EvaluationStateUpdated value) updated,
@@ -2592,7 +2594,7 @@ class _$EvaluationStateUpdatedImpl implements EvaluationStateUpdated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EvaluationStateInitial value)? initial,
     TResult? Function(EvaluationStateLoading value)? loading,
-    TResult? Function(EvaluationStateLoaded value)? loaded,
+    TResult? Function(EvaluationStateSuccess value)? success,
     TResult? Function(EvaluationStateFailure value)? failure,
     TResult? Function(EvaluationStateCreated value)? created,
     TResult? Function(EvaluationStateUpdated value)? updated,
@@ -2606,7 +2608,7 @@ class _$EvaluationStateUpdatedImpl implements EvaluationStateUpdated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EvaluationStateInitial value)? initial,
     TResult Function(EvaluationStateLoading value)? loading,
-    TResult Function(EvaluationStateLoaded value)? loaded,
+    TResult Function(EvaluationStateSuccess value)? success,
     TResult Function(EvaluationStateFailure value)? failure,
     TResult Function(EvaluationStateCreated value)? created,
     TResult Function(EvaluationStateUpdated value)? updated,
@@ -2723,7 +2725,7 @@ class _$EvaluationStateDeletedImpl implements EvaluationStateDeleted {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)
-        loaded,
+        success,
     required TResult Function(String message) failure,
     required TResult Function(EvaluationModel evaluation) created,
     required TResult Function(EvaluationModel evaluation) updated,
@@ -2741,7 +2743,7 @@ class _$EvaluationStateDeletedImpl implements EvaluationStateDeleted {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult? Function(String message)? failure,
     TResult? Function(EvaluationModel evaluation)? created,
     TResult? Function(EvaluationModel evaluation)? updated,
@@ -2759,7 +2761,7 @@ class _$EvaluationStateDeletedImpl implements EvaluationStateDeleted {
             List<EvaluationModel> evaluations,
             List<EvaluationModel> filteredEvaluations,
             EvaluationModel? selectedEvaluation)?
-        loaded,
+        success,
     TResult Function(String message)? failure,
     TResult Function(EvaluationModel evaluation)? created,
     TResult Function(EvaluationModel evaluation)? updated,
@@ -2777,7 +2779,7 @@ class _$EvaluationStateDeletedImpl implements EvaluationStateDeleted {
   TResult map<TResult extends Object?>({
     required TResult Function(EvaluationStateInitial value) initial,
     required TResult Function(EvaluationStateLoading value) loading,
-    required TResult Function(EvaluationStateLoaded value) loaded,
+    required TResult Function(EvaluationStateSuccess value) success,
     required TResult Function(EvaluationStateFailure value) failure,
     required TResult Function(EvaluationStateCreated value) created,
     required TResult Function(EvaluationStateUpdated value) updated,
@@ -2791,7 +2793,7 @@ class _$EvaluationStateDeletedImpl implements EvaluationStateDeleted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EvaluationStateInitial value)? initial,
     TResult? Function(EvaluationStateLoading value)? loading,
-    TResult? Function(EvaluationStateLoaded value)? loaded,
+    TResult? Function(EvaluationStateSuccess value)? success,
     TResult? Function(EvaluationStateFailure value)? failure,
     TResult? Function(EvaluationStateCreated value)? created,
     TResult? Function(EvaluationStateUpdated value)? updated,
@@ -2805,7 +2807,7 @@ class _$EvaluationStateDeletedImpl implements EvaluationStateDeleted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EvaluationStateInitial value)? initial,
     TResult Function(EvaluationStateLoading value)? loading,
-    TResult Function(EvaluationStateLoaded value)? loaded,
+    TResult Function(EvaluationStateSuccess value)? success,
     TResult Function(EvaluationStateFailure value)? failure,
     TResult Function(EvaluationStateCreated value)? created,
     TResult Function(EvaluationStateUpdated value)? updated,
