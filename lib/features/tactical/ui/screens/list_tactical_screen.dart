@@ -18,7 +18,7 @@ class ListTacticalScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final clubBloc = context.watch<ClubBloc>();
+    final clubBloc = context.watch<ClubBlocRead>();
     final club = clubBloc.state.maybeWhen(
       success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
@@ -76,8 +76,8 @@ class ListTacticalScreen extends StatelessWidget {
               '${context.str?.search} ${context.str?.tactical.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
-            context.read<ClubBloc>().add(
-                  ClubEvent.filterClubs(value),
+            context.read<ClubBlocRead>().add(
+                  BlocEventRead.filter(value),
                 );
           },
           trailing: MoonButton.icon(
@@ -85,8 +85,8 @@ class ListTacticalScreen extends StatelessWidget {
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
               search.clear();
-              context.read<ClubBloc>().add(
-                    const ClubEvent.filterClubs(''),
+              context.read<ClubBlocRead>().add(
+                    const BlocEventRead.filter(''),
                   );
             },
           ),
@@ -99,15 +99,15 @@ class ListTacticalScreen extends StatelessWidget {
     BuildContext context,
     ScrollController scrollController,
   ) {
-    final clubBloc = context.watch<ClubBloc>();
+    final clubBloc = context.watch<ClubBlocRead>();
     final club = clubBloc.state.maybeWhen(
       success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
-    return BlocBuilder<TacticalBloc, TacticalState>(
+    return BlocBuilder<TacticalBlocRead, BlocStateRead<TacticalModel>>(
       builder: (context, state) {
         return state.maybeWhen(
-          success: (_, filteredTacticals) {
+          success: (_, filteredTacticals, __) {
             if (filteredTacticals.isEmpty) {
               return Expanded(
                 child: Column(
@@ -117,10 +117,8 @@ class ListTacticalScreen extends StatelessWidget {
                       '${club?.name} doesn\'t had tactical yet',
                       onRetry: () {
                         if (club != null) {
-                          context.read<TacticalBloc>().add(
-                                TacticalEvent.getTacticals(
-                                  GetAllTacticalParams(clubId: club.id),
-                                ),
+                          context.read<TacticalBlocRead>().add(
+                                BlocEventRead.get(id: club.id),
                               );
                         }
                       },

@@ -18,7 +18,7 @@ class ListEvaluationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final clubBloc = context.watch<ClubBloc>();
+    final clubBloc = context.watch<ClubBlocRead>();
     final club = clubBloc.state.maybeWhen(
       success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
@@ -75,8 +75,8 @@ class ListEvaluationScreen extends StatelessWidget {
           hintText: '${context.str?.search} ${'Evaluation'.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
-            context.read<ClubBloc>().add(
-                  ClubEvent.filterClubs(value),
+            context.read<ClubBlocRead>().add(
+                  BlocEventRead.filter(value),
                 );
           },
           trailing: MoonButton.icon(
@@ -84,8 +84,8 @@ class ListEvaluationScreen extends StatelessWidget {
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
               search.clear();
-              context.read<ClubBloc>().add(
-                    const ClubEvent.filterClubs(''),
+              context.read<ClubBlocRead>().add(
+                    const BlocEventRead.filter(''),
                   );
             },
           ),
@@ -98,12 +98,12 @@ class ListEvaluationScreen extends StatelessWidget {
     BuildContext context,
     ScrollController scrollController,
   ) {
-    final clubBloc = context.watch<ClubBloc>();
+    final clubBloc = context.watch<ClubBlocRead>();
     final club = clubBloc.state.maybeWhen(
       success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
-    return BlocBuilder<EvaluationBloc, EvaluationState>(
+    return BlocBuilder<EvaluationBlocRead, BlocStateRead<EvaluationModel>>(
       builder: (context, state) {
         return state.maybeWhen(
           success: (_, filteredEvaluations, __) {
@@ -116,10 +116,8 @@ class ListEvaluationScreen extends StatelessWidget {
                       '${club?.name} doesn\'t had evaluation yet',
                       onRetry: () {
                         if (club != null) {
-                          context.read<EvaluationBloc>().add(
-                                EvaluationEvent.getEvaluations(
-                                  GetAllEvaluationParams(clubId: club.id),
-                                ),
+                          context.read<EvaluationBlocRead>().add(
+                                BlocEventRead.get(id: club.id),
                               );
                         }
                       },

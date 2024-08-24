@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/app/router.gr.dart';
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,27 +18,21 @@ class ClubShellScreen extends StatelessWidget implements AutoRouteWrapper {
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(
-          value: context.read<ProgramBloc>()
+          value: context.read<ProgramBlocRead>()
             ..add(
-              ProgramEvent.getPrograms(
-                GetAllProgramParams(clubId: id),
-              ),
+              BlocEventRead.get(id: id),
             ),
         ),
         BlocProvider.value(
-          value: context.read<TacticalBloc>()
+          value: context.read<TacticalBlocRead>()
             ..add(
-              TacticalEvent.getTacticals(
-                GetAllTacticalParams(clubId: id),
-              ),
+              BlocEventRead.get(id: id),
             ),
         ),
         BlocProvider.value(
-          value: context.read<EvaluationBloc>()
+          value: context.read<EvaluationBlocRead>()
             ..add(
-              EvaluationEvent.getEvaluations(
-                GetAllEvaluationParams(clubId: id),
-              ),
+              BlocEventRead.get(id: id),
             ),
         ),
       ],

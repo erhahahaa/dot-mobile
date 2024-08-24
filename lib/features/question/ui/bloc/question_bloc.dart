@@ -1,64 +1,68 @@
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'question_bloc.freezed.dart';
-part 'question_event.dart';
-part 'question_state.dart';
-
 @lazySingleton
-class QuestionBloc extends Bloc<QuestionEvent, QuestionState> {
+class QuestionBlocRead extends BlocRead<QuestionModel> {
   final GetAllQuestionUsecase _getAllQuestionUsecase;
-  final CreateQuestionBatchUsecase _createQuestionBatchUsecase;
-  final UpdateQuestionBatchUsecase _updateQuestionBatchUsecase;
-  final DeleteQuestionUsecase _deleteQuestionUsecase;
 
-  QuestionBloc(
-    this._getAllQuestionUsecase,
-    this._createQuestionBatchUsecase,
-    this._updateQuestionBatchUsecase,
-    this._deleteQuestionUsecase,
-  ) : super(const QuestionStateInitial()) {
-    on<QuestionEventClear>(_onClear);
-    on<QuestionEventGetQuestions>(_onGetQuestions);
-    on<QuestionEventFilterQuestions>(_onFilterQuestions);
-    on<QuestionEventCreateBatch>(_onCreateBatch);
-    on<QuestionEventUpdateBatch>(_onUpdateBatch);
-    on<QuestionEventDelete>(_onDelete);
+  QuestionBlocRead(this._getAllQuestionUsecase)
+      : super(const BlocStateReadInitial()) {
+    on<BlocEventReadClear<QuestionModel>>(onClear);
+    on<BlocEventReadGet<QuestionModel>>(onGet);
+    on<BlocEventReadSelect<QuestionModel>>(onSelect);
+    on<BlocEventReadFilter<QuestionModel>>(onFilter);
   }
 
-  void _onClear(
-    QuestionEventClear event,
-    Emitter<QuestionState> emit,
-  ) =>
-      emit(const QuestionStateInitial());
-
-  void _onGetQuestions(
-    QuestionEventGetQuestions event,
-    Emitter<QuestionState> emit,
+  @override
+  void onGet(
+    BlocEventReadGet event,
+    Emitter<BlocStateRead<QuestionModel>> emit,
   ) async {
-    emit(const QuestionStateLoading());
-    final res = await _getAllQuestionUsecase.call(event.params);
+    final id = event.id;
+    if (id == null) {
+      return emit(const BlocStateRead.failure('Id required'));
+    }
+    emit(const BlocStateReadLoading());
+
+    final res = await _getAllQuestionUsecase.call(
+      GetAllQuestionParams(examId: id),
+    );
 
     res.fold(
-      (failure) => emit(QuestionStateFailure(failure.message)),
-      (success) => emit(
-        QuestionStateSuccess(
-          questions: success,
-          filteredQuestions: success,
-        ),
-      ),
+      (failure) => emit(BlocStateReadFailure(failure.message)),
+      (success) => emit(BlocStateReadSuccess(
+        items: success,
+        filteredItems: success,
+      )),
     );
   }
 
-  void _onFilterQuestions(
-    QuestionEventFilterQuestions event,
-    Emitter<QuestionState> emit,
+  @override
+  void onSelect(
+    BlocEventReadSelect<QuestionModel> event,
+    Emitter<BlocStateRead<QuestionModel>> emit,
   ) {
-    emit(const QuestionStateLoading());
     state.maybeWhen(
-      success: (questions, _) {
+      success: (questions, filteredQuestions, _) {
+        emit(BlocStateReadSuccess(
+          items: questions,
+          filteredItems: filteredQuestions,
+          selectedItem: event.item,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
+
+  @override
+  void onFilter(
+    BlocEventReadFilter event,
+    Emitter<BlocStateRead<QuestionModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (questions, _, __) {
         final finds = questions
             .where(
               (question) => question.question.toLowerCase().contains(
@@ -67,53 +71,87 @@ class QuestionBloc extends Bloc<QuestionEvent, QuestionState> {
             )
             .toList();
 
-        if (finds.isEmpty) {
-          emit(QuestionStateFailure(
-              'Question with title ${event.query} not found'));
-        } else {
-          emit(QuestionStateSuccess(
-            questions: questions,
-            filteredQuestions: finds,
-          ));
-        }
+        emit(BlocStateReadSuccess(
+          items: questions,
+          filteredItems: finds,
+        ));
       },
-      orElse: () => emit(const QuestionStateFailure('Question not found')),
+      orElse: () => null,
+    );
+  }
+}
+
+@lazySingleton
+class QuestionBlocWrite extends BlocWrite<List<QuestionModel>> {
+  final CreateQuestionBatchUsecase _createQuestionBatchUsecase;
+  final UpdateQuestionBatchUsecase _updateQuestionBatchUsecase;
+  final DeleteQuestionUsecase _deleteQuestionUsecase;
+
+  QuestionBlocWrite(
+    this._createQuestionBatchUsecase,
+    this._updateQuestionBatchUsecase,
+    this._deleteQuestionUsecase,
+  ) : super(const BlocStateWriteInitial()) {
+    on<BlocEventWriteCreate>(onCreate);
+    on<BlocEventWriteUpdate>(onUpdate);
+    on<BlocEventWriteDelete>(onDelete);
+  }
+
+  @override
+  void onCreate(
+    BlocEventWriteCreate event,
+    Emitter<BlocStateWrite<List<QuestionModel>>> emit,
+  ) async {
+    final res = await _createQuestionBatchUsecase.call(
+      event.params as List<CreateQuestionParams>,
+    );
+
+    res.fold(
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) => emit(BlocStateWriteSuccess(success)),
     );
   }
 
-  void _onCreateBatch(
-    QuestionEventCreateBatch event,
-    Emitter<QuestionState> emit,
+  @override
+  void onUpdate(
+    BlocEventWriteUpdate event,
+    Emitter<BlocStateWrite<List<QuestionModel>>> emit,
   ) async {
-    final res = await _createQuestionBatchUsecase.call(event.params);
+    final res = await _updateQuestionBatchUsecase.call(
+      event.params as List<UpdateQuestionParams>,
+    );
 
     res.fold(
-      (failure) => emit(QuestionStateFailure(failure.message)),
-      (success) => emit(QuestionStateCreatedBatch(success)),
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) => emit(BlocStateWriteSuccess(success)),
     );
   }
 
-  void _onUpdateBatch(
-    QuestionEventUpdateBatch event,
-    Emitter<QuestionState> emit,
+  @override
+  void onDelete(
+    BlocEventWriteDelete event,
+    Emitter<BlocStateWrite<List<QuestionModel>>> emit,
   ) async {
-    final res = await _updateQuestionBatchUsecase.call(event.params);
-
-    res.fold(
-      (failure) => emit(QuestionStateFailure(failure.message)),
-      (success) => emit(QuestionStateUpdatedBatch(success)),
+    final res = await _deleteQuestionUsecase.call(
+      event.params as DeleteQuestionParams,
     );
-  }
-
-  void _onDelete(
-    QuestionEventDelete event,
-    Emitter<QuestionState> emit,
-  ) async {
-    final res = await _deleteQuestionUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(QuestionStateFailure(failure.message)),
-      (success) => emit(QuestionStateDeleted(success)),
+      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (success) {
+        final items = state.maybeWhen(
+          success: (items) => items,
+          orElse: () => null,
+        );
+        if (items == null) return;
+        final filteredItems = items
+            .where(
+              (question) => question.id != success.id,
+            )
+            .toList();
+
+        emit(BlocStateWriteSuccess(filteredItems));
+      },
     );
   }
 }
