@@ -18,7 +18,7 @@ class ListClubScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final userBloc = context.watch<UserBloc>();
     final user =
-        userBloc.state.whenOrNull(success: (user, _) => user) ?? UserModel();
+        userBloc.state.whenOrNull(success: (user, _) => user) ?? const UserModel();
     return ParentWithSearchAndScrollController(
       onInit: (search, scroll) => context.read<ClubBlocRead>().add(
             // const ClubEvent.selectClub(null),
@@ -173,6 +173,35 @@ class ListClubScreen extends StatelessWidget {
       builder: (context, state) {
         return state.maybeWhen(
           success: (_, filteredClubs, __) {
+            if (filteredClubs.isEmpty) {
+              return Expanded(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Flexible(
+                        child: Text(
+                          "There's no club created yet",
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Flexible(
+                        child: TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                WidgetStateProperty.all<Color>(Colors.blue),
+                          ),
+                          onPressed: () {},
+                          child: const Text("Reload"),
+                        ),
+                      ),
+                      Gap(16.h),
+                    ],
+                  ),
+                ),
+              );
+            }
             return ListViewBuilder<ClubModel>(
               items: filteredClubs,
               scrollController: scrollController,
@@ -184,7 +213,7 @@ class ListClubScreen extends StatelessWidget {
               ),
             );
           },
-          failure: (message) => BodyLarge(message),
+          failure: (message) => ErrorAlert(message),
           orElse: () {
             final fakeClubs =
                 List.generate(5, (index) => ClubModel.fake()).toList();

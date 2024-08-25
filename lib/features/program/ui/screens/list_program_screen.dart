@@ -9,12 +9,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 @RoutePage()
-class ListProgramScreen extends StatelessWidget {
-  const ListProgramScreen({
-    super.key,
-  });
+class ListProgramScreen extends StatefulWidget {
+  const ListProgramScreen({super.key});
+
+  @override
+  State<ListProgramScreen> createState() => _ListProgramScreenState();
+}
+
+class _ListProgramScreenState extends State<ListProgramScreen> {
+  bool hideCalendar = false, hideListProgram = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +29,7 @@ class ListProgramScreen extends StatelessWidget {
       success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
+
     return ParentWithSearchAndScrollController(
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
@@ -35,27 +42,49 @@ class ListProgramScreen extends StatelessWidget {
               ),
             ],
           ),
-          floatingActionButton: showScrollToTopButton
-              ? FloatingActionButton(
-                  onPressed: () {
-                    scroll.animateTo(
-                      0,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  child: const Icon(Icons.arrow_upward),
-                )
-              : null,
+          floatingActionButton: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              BackTopButton(
+                show: showScrollToTopButton,
+                onPressed: () {
+                  scroll.animateTo(
+                    0,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              Gap(8.h),
+              FloatingActionButton.extended(
+                heroTag: 'new_program_button_$hashCode',
+                onPressed: () {
+                  final nonNullClub = club ??
+                      ClubModel.fake(); // Provide a default value if needed
+                  context.router.push(
+                    UpsertProgramRoute(club: nonNullClub),
+                  );
+                },
+                icon: const Icon(Icons.add),
+                label: const Text('New Program'),
+              ),
+            ],
+          ),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: Column(
-              children: [
-                Gap(8.h),
-                _buildHeader(context, search),
-                Gap(16.h),
-                _buildListProgram(context, scroll)
-              ],
+            child: SingleChildScrollView(
+              controller: scroll,
+              child: Column(
+                children: [
+                  Gap(8.h),
+                  _buildHeader(context, search),
+                  Gap(16.h),
+                  _buildHideCalendar(context, scroll),
+                  if (!hideListProgram) _buildListProgram(context, scroll),
+                ],
+              ),
             ),
           ),
         );
@@ -65,11 +94,10 @@ class ListProgramScreen extends StatelessWidget {
 
   Widget _buildHeader(BuildContext context, SearchController search) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TitleSmall(context.str?.program),
         MySearchBar(
-          width: 180.w,
+          width: 325.w,
           height: 32.h,
           controller: search,
           hintText:
@@ -95,6 +123,77 @@ class ListProgramScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildHideCalendar(
+      BuildContext context, ScrollController scrollController) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          children: [
+            Text(
+              context.str?.calendar ?? 'Calendar',
+              style: context.theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            IconButton(
+              onPressed: () => setState(() => hideCalendar = !hideCalendar),
+              icon: Icon(
+                hideCalendar
+                    ? Icons.keyboard_arrow_right
+                    : Icons.keyboard_arrow_down,
+              ),
+            )
+          ],
+        ),
+        hideCalendar
+            ? Container()
+            : SizedBox(
+                height: 400.h,
+                child: Skeletonizer(
+                  child: SfCalendar(
+                    view: CalendarView.month,
+                    monthViewSettings: const MonthViewSettings(
+                      showAgenda: true,
+                      agendaItemHeight: 70,
+                    ),
+                    initialSelectedDate: DateTime.now(),
+                    onTap: (calendarTapDetails) {
+                      final len = calendarTapDetails.appointments?.length ?? 0;
+
+                      final el = calendarTapDetails.targetElement;
+                      if (el == CalendarElement.appointment && len == 1) {
+                        final program = calendarTapDetails.appointments?.first;
+                        // Handle the appointment tap
+                      }
+                    },
+                  ),
+                ),
+              ),
+        SizedBox(height: 16.h),
+        Row(
+          children: [
+            Text(
+              context.str?.programs ?? 'Programs',
+              style: context.theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            IconButton(
+              onPressed: () =>
+                  setState(() => hideListProgram = !hideListProgram),
+              icon: Icon(
+                hideListProgram
+                    ? Icons.keyboard_arrow_right
+                    : Icons.keyboard_arrow_down,
+              ),
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
   Widget _buildListProgram(
     BuildContext context,
     ScrollController scrollController,
@@ -104,38 +203,58 @@ class ListProgramScreen extends StatelessWidget {
       success: (_, __, selectedClub) => selectedClub,
       orElse: () => ClubModel.fake(),
     );
+
     return BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
       builder: (context, state) {
         return state.maybeWhen(
           success: (_, filteredPrograms, __) {
             if (filteredPrograms.isEmpty) {
-              return Expanded(
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    ErrorAlert(
-                      '${club?.name} doesn\'t had program yet',
-                      onRetry: () {
-                        if (club != null) {
-                          context.read<ProgramBlocRead>().add(
-                                BlocEventRead.get(id: club.id),
-                              );
-                        }
-                      },
-                    ),
-                    Gap(16.h),
-                  ],
+              return SizedBox(
+                height: 400.h, // Use a fixed height to prevent unbounded error
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          '${club?.name} doesn\'t have a program yet',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Flexible(
+                        child: TextButton(
+                          style: ButtonStyle(
+                            textStyle: WidgetStateProperty.all<TextStyle>(
+                              const TextStyle(color: Colors.blue),
+                            ),
+                          ),
+                          onPressed: club != null
+                              ? () {
+                                  context.read<ProgramBlocRead>().add(
+                                        BlocEventRead.get(id: club.id),
+                                      );
+                                }
+                              : null,
+                          child: const Text("Reload"),
+                        ),
+                      ),
+                      Gap(16.h),
+                    ],
+                  ),
                 ),
               );
             }
-            return ListViewBuilder(
-              items: filteredPrograms,
-              scrollController: scrollController,
+            return SizedBox(
               height: 0.71.sh,
-              itemBuilder: (context, program) => _buildProgramItem(
-                context,
-                program,
-                program == filteredPrograms.last,
+              child: ListViewBuilder(
+                items: filteredPrograms,
+                scrollController: scrollController,
+                itemBuilder: (context, program) => _buildProgramItem(
+                  context,
+                  program,
+                  program == filteredPrograms.last,
+                ),
               ),
             );
           },
@@ -143,15 +262,17 @@ class ListProgramScreen extends StatelessWidget {
           orElse: () {
             final fakePrograms =
                 List.generate(10, (index) => ProgramModel.fake());
-            return ListViewBuilder(
-              scrollController: scrollController,
+            return SizedBox(
               height: 0.71.sh,
-              items: fakePrograms,
-              itemBuilder: (context, program) => Skeletonizer(
-                child: _buildProgramItem(
-                  context,
-                  program,
-                  program == fakePrograms.last,
+              child: ListViewBuilder(
+                scrollController: scrollController,
+                items: fakePrograms,
+                itemBuilder: (context, program) => Skeletonizer(
+                  child: _buildProgramItem(
+                    context,
+                    program,
+                    program == fakePrograms.last,
+                  ),
                 ),
               ),
             );

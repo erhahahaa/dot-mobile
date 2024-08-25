@@ -77,7 +77,7 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
   Widget build(BuildContext context) {
     return Parent(
       appBar: AppBar(
-        title: TitleMedium('Club form'),
+        title: const TitleMedium('Club Form'),
       ),
       body: Padding(
         padding: EdgeInsets.all(8.w),

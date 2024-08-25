@@ -445,10 +445,16 @@ class StringsId extends Strings {
   String get phoneNumberRequired => 'Nomor telepon diperlukan';
 
   @override
+  String get programName => 'Nama Program';
+
+  @override
   String get program => 'Program';
 
   @override
   String get programDetail => 'Detail Program';
+
+  @override
+  String get programImageRequired => 'Foto program diperlukan';
 
   @override
   String get programNameRequired => 'Nama program diperlukan';

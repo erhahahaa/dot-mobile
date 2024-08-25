@@ -445,10 +445,16 @@ class StringsEn extends Strings {
   String get phoneNumberRequired => 'Phone number is required';
 
   @override
+  String get programName => 'Program Name';
+
+  @override
   String get program => 'Program';
 
   @override
   String get programDetail => 'Program Detail';
+
+  @override
+  String get programImageRequired => 'Program image is required';
 
   @override
   String get programNameRequired => 'Program name is required';

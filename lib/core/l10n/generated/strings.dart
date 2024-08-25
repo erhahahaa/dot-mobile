@@ -971,6 +971,12 @@ abstract class Strings {
   /// **'Phone number is required'**
   String get phoneNumberRequired;
 
+  /// No description provided for @programName.
+  ///
+  /// In en, this message translates to:
+  /// **'Program Name'**
+  String get programName;
+
   /// No description provided for @program.
   ///
   /// In en, this message translates to:
@@ -982,6 +988,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Program Detail'**
   String get programDetail;
+
+  /// No description provided for @programImageRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Program image is required'**
+  String get programImageRequired;
 
   /// No description provided for @programNameRequired.
   ///

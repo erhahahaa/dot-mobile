@@ -36,6 +36,10 @@ class AppRouter extends RootStackRouter {
               page: UpsertClubRoute.page,
             ),
             AutoRoute(
+              path: 'program/upsert',
+              page: UpsertProgramRoute.page,
+            ),
+            AutoRoute(
               path: ':id',
               page: ClubShellRoute.page,
               children: [

@@ -45,6 +45,7 @@ import 'package:dot_coaching/features/exercise/ui/screens/list_exercise_screen.d
     as _i15;
 import 'package:dot_coaching/features/exercise/ui/screens/upsert_exercise_screen.dart'
     as _i31;
+import 'package:dot_coaching/features/feature.dart';
 import 'package:dot_coaching/features/general/ui/screens/dashboard_screen.dart'
     as _i2;
 import 'package:dot_coaching/features/media/ui/screens/list_media_screen.dart'
@@ -818,10 +819,14 @@ class UpsertExerciseRoute extends _i35.PageRouteInfo<void> {
 /// generated route for
 /// [_i32.UpsertProgramScreen]
 class UpsertProgramRoute extends _i35.PageRouteInfo<void> {
-  const UpsertProgramRoute({List<_i35.PageRouteInfo>? children})
-      : super(
+  final ClubModel club;
+   const UpsertProgramRoute({
+    required this.club, 
+    List<_i35.PageRouteInfo>? children,
+  }) : super(
           UpsertProgramRoute.name,
           initialChildren: children,
+          args: club, 
         );
 
   static const String name = 'UpsertProgramRoute';
@@ -829,7 +834,8 @@ class UpsertProgramRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i32.UpsertProgramScreen();
+      final club = data.args as ClubModel; 
+      return _i32.UpsertProgramScreen(club: club); 
     },
   );
 }
