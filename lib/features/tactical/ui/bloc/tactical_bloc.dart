@@ -13,6 +13,8 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
     on<BlocEventReadGet<TacticalModel>>(onGet);
     on<BlocEventReadSelect<TacticalModel>>(onSelect);
     on<BlocEventReadFilter<TacticalModel>>(onFilter);
+    on<BlocEventReadAppend<TacticalModel>>(onAppend);
+    on<BlocEventReadRemove<TacticalModel>>(onRemove);
   }
 
   @override
@@ -79,6 +81,43 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
       orElse: () => null,
     );
   }
+
+  @override
+  void onAppend(
+    BlocEventReadAppend<TacticalModel> event,
+    Emitter<BlocStateRead<TacticalModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (tacticals, _, __) {
+        final items = [...tacticals, event.item];
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
+
+  @override
+  void onRemove(
+    BlocEventReadRemove<TacticalModel> event,
+    Emitter<BlocStateRead<TacticalModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (tacticals, _, __) {
+        final items =
+            tacticals.where((tactical) => tactical.id != event.id).toList();
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
 }
 
 @lazySingleton
@@ -102,6 +141,7 @@ class TacticalBlocWrite extends BlocWrite<TacticalModel> {
     BlocEventWriteCreate event,
     Emitter<BlocStateWrite<TacticalModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res =
         await _createTacticalUsecase.call(event.params as CreateTacticalParams);
 
@@ -116,6 +156,7 @@ class TacticalBlocWrite extends BlocWrite<TacticalModel> {
     BlocEventWriteUpdate event,
     Emitter<BlocStateWrite<TacticalModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _updateTacticalUsecase.call(event.params);
 
     res.fold(
@@ -129,6 +170,7 @@ class TacticalBlocWrite extends BlocWrite<TacticalModel> {
     BlocEventWriteDelete event,
     Emitter<BlocStateWrite<TacticalModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _deleteTacticalUsecase.call(event.params);
 
     res.fold(

@@ -27,6 +27,16 @@ abstract class BlocRead<T> extends Bloc<BlocEventRead<T>, BlocStateRead<T>> {
     BlocEventReadFilter event,
     Emitter<BlocStateRead<T>> emit,
   );
+
+  void onAppend(
+    BlocEventReadAppend<T> event,
+    Emitter<BlocStateRead<T>> emit,
+  );
+
+  void onRemove(
+    BlocEventReadRemove<T> event,
+    Emitter<BlocStateRead<T>> emit,
+  );
 }
 
 abstract class BlocWrite<T> extends Bloc<BlocEventWrite, BlocStateWrite<T>> {

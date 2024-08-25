@@ -21,7 +21,7 @@ class TitleMedium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text ?? 'Unassigned',
+      text ?? 'An error occurred',
       style: style ??
           context.moonTypography?.heading.text16.copyWith(
             color: color,

@@ -12,6 +12,8 @@ class ClubBlocRead extends BlocRead<ClubModel> {
     on<BlocEventReadGet<ClubModel>>(onGet);
     on<BlocEventReadSelect<ClubModel>>(onSelect);
     on<BlocEventReadFilter<ClubModel>>(onFilter);
+    on<BlocEventReadAppend<ClubModel>>(onAppend);
+    on<BlocEventReadRemove<ClubModel>>(onRemove);
   }
 
   @override
@@ -72,6 +74,42 @@ class ClubBlocRead extends BlocRead<ClubModel> {
       orElse: () => null,
     );
   }
+
+  @override
+  void onAppend(
+    BlocEventReadAppend<ClubModel> event,
+    Emitter<BlocStateRead<ClubModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (clubs, _, __) {
+        final items = [...clubs, event.item];
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
+
+  @override
+  void onRemove(
+    BlocEventReadRemove<ClubModel> event,
+    Emitter<BlocStateRead<ClubModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (clubs, _, __) {
+        final items = clubs.where((club) => club.id != event.id).toList();
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
 }
 
 @lazySingleton
@@ -95,6 +133,7 @@ class ClubBlocWrite extends BlocWrite<ClubModel> {
     BlocEventWriteCreate event,
     Emitter<BlocStateWrite<ClubModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _createClubUsecase.call(event.params as CreateClubParams);
 
     res.fold(
@@ -108,6 +147,7 @@ class ClubBlocWrite extends BlocWrite<ClubModel> {
     BlocEventWriteUpdate event,
     Emitter<BlocStateWrite<ClubModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _updateClubUsecase.call(event.params);
 
     res.fold(
@@ -121,6 +161,7 @@ class ClubBlocWrite extends BlocWrite<ClubModel> {
     BlocEventWriteDelete event,
     Emitter<BlocStateWrite<ClubModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _deleteClubUsecase.call(event.params);
 
     res.fold(

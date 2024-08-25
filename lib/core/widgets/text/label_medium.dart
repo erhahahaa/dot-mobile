@@ -21,7 +21,7 @@ class LabelMedium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text ?? 'Unassigned',
+      text ?? 'An error occurred',
       style: style ??
           context.moonTypography?.heading.text12.copyWith(
             color: color,

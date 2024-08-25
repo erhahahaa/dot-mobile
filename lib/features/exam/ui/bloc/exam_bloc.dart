@@ -12,6 +12,8 @@ class ExamBlocRead extends BlocRead<ExamModel> {
     on<BlocEventReadGet<ExamModel>>(onGet);
     on<BlocEventReadSelect<ExamModel>>(onSelect);
     on<BlocEventReadFilter<ExamModel>>(onFilter);
+    on<BlocEventReadAppend<ExamModel>>(onAppend);
+    on<BlocEventReadRemove<ExamModel>>(onRemove);
   }
 
   @override
@@ -78,6 +80,43 @@ class ExamBlocRead extends BlocRead<ExamModel> {
       orElse: () => null,
     );
   }
+
+  @override
+  void onAppend(
+    BlocEventReadAppend<ExamModel> event,
+    Emitter<BlocStateRead<ExamModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (exams, _, __) {
+        final items = [...exams, event.item];
+        emit(BlocStateReadSuccess(
+          items: exams,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
+
+  @override
+  void onRemove(
+    BlocEventReadRemove<ExamModel> event,
+    Emitter<BlocStateRead<ExamModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (exams, _, __) {
+        final items = exams.where((exam) => exam.id != event.id).toList();
+
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
 }
 
 @lazySingleton
@@ -101,6 +140,7 @@ class ExamBlocWrite extends BlocWrite<ExamModel> {
     BlocEventWriteCreate event,
     Emitter<BlocStateWrite<ExamModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _createExamUsecase.call(event.params as CreateExamParams);
 
     res.fold(
@@ -114,6 +154,7 @@ class ExamBlocWrite extends BlocWrite<ExamModel> {
     BlocEventWriteUpdate event,
     Emitter<BlocStateWrite<ExamModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _updateExamUsecase.call(event.params);
 
     res.fold(
@@ -127,6 +168,7 @@ class ExamBlocWrite extends BlocWrite<ExamModel> {
     BlocEventWriteDelete event,
     Emitter<BlocStateWrite<ExamModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _deleteExamUsecase.call(event.params);
 
     res.fold(
