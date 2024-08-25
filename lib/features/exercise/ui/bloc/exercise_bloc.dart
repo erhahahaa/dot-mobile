@@ -13,6 +13,8 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
     on<BlocEventReadGet<ExerciseModel>>(onGet);
     on<BlocEventReadSelect<ExerciseModel>>(onSelect);
     on<BlocEventReadFilter<ExerciseModel>>(onFilter);
+    on<BlocEventReadAppend<ExerciseModel>>(onAppend);
+    on<BlocEventReadRemove<ExerciseModel>>(onRemove);
   }
 
   @override
@@ -79,6 +81,45 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
       orElse: () => null,
     );
   }
+
+  @override
+  void onAppend(
+    BlocEventReadAppend<ExerciseModel> event,
+    Emitter<BlocStateRead<ExerciseModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (exercises, _, __) {
+        final items = [...exercises, event.item];
+
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
+
+  @override
+  void onRemove(
+    BlocEventReadRemove<ExerciseModel> event,
+    Emitter<BlocStateRead<ExerciseModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (exercises, _, __) {
+        final items =
+            exercises.where((exercise) => exercise.id != event.id).toList();
+
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
 }
 
 @lazySingleton
@@ -102,6 +143,7 @@ class ExerciseBlocWrite extends BlocWrite<List<ExerciseModel>> {
     BlocEventWriteCreate event,
     Emitter<BlocStateWrite<List<ExerciseModel>>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _createExerciseBatchUsecase.call(
       event.params as List<CreateExerciseParams>,
     );
@@ -117,6 +159,7 @@ class ExerciseBlocWrite extends BlocWrite<List<ExerciseModel>> {
     BlocEventWriteUpdate event,
     Emitter<BlocStateWrite<List<ExerciseModel>>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _updateExerciseBatchUsecase.call(
       event.params as List<UpdateExerciseParams>,
     );
@@ -132,6 +175,7 @@ class ExerciseBlocWrite extends BlocWrite<List<ExerciseModel>> {
     BlocEventWriteDelete event,
     Emitter<BlocStateWrite<List<ExerciseModel>>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _deleteExerciseUsecase.call(
       event.params as DeleteExerciseParams,
     );

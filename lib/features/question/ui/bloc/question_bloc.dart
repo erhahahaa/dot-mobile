@@ -13,6 +13,8 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
     on<BlocEventReadGet<QuestionModel>>(onGet);
     on<BlocEventReadSelect<QuestionModel>>(onSelect);
     on<BlocEventReadFilter<QuestionModel>>(onFilter);
+    on<BlocEventReadAppend<QuestionModel>>(onAppend);
+    on<BlocEventReadRemove<QuestionModel>>(onRemove);
   }
 
   @override
@@ -79,6 +81,43 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
       orElse: () => null,
     );
   }
+
+  @override
+  void onAppend(
+    BlocEventReadAppend<QuestionModel> event,
+    Emitter<BlocStateRead<QuestionModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (questions, _, __) {
+        final items = [...questions, event.item];
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
+
+  @override
+  void onRemove(
+    BlocEventReadRemove<QuestionModel> event,
+    Emitter<BlocStateRead<QuestionModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (questions, _, __) {
+        final items =
+            questions.where((question) => question.id != event.id).toList();
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
 }
 
 @lazySingleton
@@ -102,6 +141,7 @@ class QuestionBlocWrite extends BlocWrite<List<QuestionModel>> {
     BlocEventWriteCreate event,
     Emitter<BlocStateWrite<List<QuestionModel>>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _createQuestionBatchUsecase.call(
       event.params as List<CreateQuestionParams>,
     );
@@ -117,6 +157,7 @@ class QuestionBlocWrite extends BlocWrite<List<QuestionModel>> {
     BlocEventWriteUpdate event,
     Emitter<BlocStateWrite<List<QuestionModel>>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _updateQuestionBatchUsecase.call(
       event.params as List<UpdateQuestionParams>,
     );
@@ -132,6 +173,7 @@ class QuestionBlocWrite extends BlocWrite<List<QuestionModel>> {
     BlocEventWriteDelete event,
     Emitter<BlocStateWrite<List<QuestionModel>>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _deleteQuestionUsecase.call(
       event.params as DeleteQuestionParams,
     );

@@ -17,10 +17,8 @@ class ListClubScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userBloc = context.watch<UserBloc>();
-    final user = userBloc.state.maybeWhen(
-      success: (user, _) => user,
-      orElse: () => const UserModel(),
-    );
+    final user =
+        userBloc.state.whenOrNull(success: (user, _) => user) ?? UserModel();
     return ParentWithSearchAndScrollController(
       onInit: (search, scroll) => context.read<ClubBlocRead>().add(
             // const ClubEvent.selectClub(null),
@@ -74,11 +72,10 @@ class ListClubScreen extends StatelessWidget {
                   Gap(16.h),
                   BlocListener<AuthBloc, AuthState>(
                     listener: (context, state) {
-                      state.maybeWhen(
+                      state.mapOrNull(
                         unauthenticated: (message) {
                           context.replaceRoute(const SplashRoute());
                         },
-                        orElse: () {},
                       );
                     },
                     child: MoonFilledButton(
@@ -176,16 +173,14 @@ class ListClubScreen extends StatelessWidget {
       builder: (context, state) {
         return state.maybeWhen(
           success: (_, filteredClubs, __) {
-            final fakeClubs =
-                List.generate(20, (index) => ClubModel.fake()).toList();
             return ListViewBuilder<ClubModel>(
-              items: fakeClubs,
+              items: filteredClubs,
               scrollController: scrollController,
               height: 0.8.sh,
               itemBuilder: (context, club) => _buildClubItem(
                 context,
                 club,
-                club == fakeClubs.last,
+                club == filteredClubs.last,
               ),
             );
           },

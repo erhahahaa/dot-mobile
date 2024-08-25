@@ -7,3 +7,4 @@ export 'list/list.dart';
 export 'scaffolds/scaffolds.dart';
 export 'search_bar.dart';
 export 'text/text.dart';
+export 'image_picker.dart';

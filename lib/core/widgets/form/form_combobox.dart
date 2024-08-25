@@ -1,4 +1,5 @@
 import 'package:dot_coaching/core/widgets/widgets.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -8,11 +9,13 @@ class FormCombobox<T> extends StatefulWidget {
   final List<ComboboxItem<T>> items;
   final TextEditingController controller;
   final FocusNode currentFocus;
-  final FocusNode nextFocus;
-  final void Function(dynamic)? onChanged;
+  final FocusNode? nextFocus;
+  final void Function(T? value)? onChanged;
   final String? hintText;
-  final String? Function(String?)? validator;
+  final String? Function(String? value)? validator;
   final Widget? leading;
+  final Color? backgroundColor;
+  final TextInputAction? textInputAction;
 
   const FormCombobox({
     super.key,
@@ -20,10 +23,12 @@ class FormCombobox<T> extends StatefulWidget {
     this.onChanged,
     required this.controller,
     required this.currentFocus,
-    required this.nextFocus,
+    this.nextFocus,
     this.hintText,
     this.validator,
     this.leading,
+    this.backgroundColor,
+    this.textInputAction,
   });
 
   @override
@@ -57,6 +62,8 @@ class _FormComboboxState<T> extends State<FormCombobox<T>> {
       }),
       dropdownMargin: EdgeInsets.zero,
       maxHeight: 100,
+      backgroundColor:
+          widget.backgroundColor ?? context.theme.colorScheme.surface,
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxHeight: 100),
         child: _filteredItems.isEmpty
@@ -71,7 +78,7 @@ class _FormComboboxState<T> extends State<FormCombobox<T>> {
                     label: Text(item.label),
                     onTap: () {
                       widget.controller.text = item.label;
-                      if (widget.onChanged != null) widget.onChanged!(item);
+                      if (widget.onChanged != null) widget.onChanged!(item.value);
                       setState(() {
                         _selectedOption = item;
                         _showCombobox = false;
@@ -86,6 +93,7 @@ class _FormComboboxState<T> extends State<FormCombobox<T>> {
         nextFocus: widget.nextFocus,
         controller: widget.controller,
         leading: widget.leading,
+        textInputAction: widget.textInputAction ?? TextInputAction.next,
         onTap: () {
           setState(() {
             _showCombobox = true;

@@ -459,7 +459,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       );
-                      _userBloc.state.maybeWhen(
+                      _userBloc.state.whenOrNull(
                         foundUsernames: (usernames) {
                           if (usernames.isNotEmpty) {
                             context.errorToast(
@@ -492,7 +492,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             )));
                           }
                         },
-                        orElse: () {},
                       );
                     }
                   },

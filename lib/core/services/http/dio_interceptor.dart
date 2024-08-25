@@ -27,6 +27,7 @@ class DioInterceptor extends Interceptor with FirebaseCrashLoggerService {
         "Headers:\n"
         "$headerMessage\n"
         "❖ QueryParameters : \n"
+        "Query: ${options.queryParameters}\n"
         "Body: $prettyJson",
       );
     } catch (e, stackTrace) {

@@ -13,6 +13,8 @@ class EvaluationBlocRead extends BlocRead<EvaluationModel> {
     on<BlocEventReadGet<EvaluationModel>>(onGet);
     on<BlocEventReadSelect<EvaluationModel>>(onSelect);
     on<BlocEventReadFilter<EvaluationModel>>(onFilter);
+    on<BlocEventReadAppend<EvaluationModel>>(onAppend);
+    on<BlocEventReadRemove<EvaluationModel>>(onRemove);
   }
 
   @override
@@ -87,6 +89,42 @@ class EvaluationBlocRead extends BlocRead<EvaluationModel> {
       orElse: () => null,
     );
   }
+
+  @override
+  void onAppend(
+    BlocEventReadAppend<EvaluationModel> event,
+    Emitter<BlocStateRead<EvaluationModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (evaluations, _, __) {
+        final items = [...evaluations, event.item];
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
+
+  @override
+  void onRemove(
+    BlocEventReadRemove<EvaluationModel> event,
+    Emitter<BlocStateRead<EvaluationModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (evaluations, _, __) {
+        final items = evaluations.where((e) => e.id != event.id).toList();
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
 }
 
 @lazySingleton
@@ -110,6 +148,7 @@ class EvaluationBlocWrite extends BlocWrite<EvaluationModel> {
     BlocEventWriteCreate event,
     Emitter<BlocStateWrite<EvaluationModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _createEvaluationUsecase.call(
       event.params as CreateEvaluationParams,
     );
@@ -125,6 +164,7 @@ class EvaluationBlocWrite extends BlocWrite<EvaluationModel> {
     BlocEventWriteUpdate event,
     Emitter<BlocStateWrite<EvaluationModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _updateEvaluationUsecase.call(
       event.params as UpdateEvaluationParams,
     );
@@ -140,6 +180,7 @@ class EvaluationBlocWrite extends BlocWrite<EvaluationModel> {
     BlocEventWriteDelete event,
     Emitter<BlocStateWrite<EvaluationModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _deleteEvaluationUsecase.call(
       event.params as DeleteEvaluationParams,
     );

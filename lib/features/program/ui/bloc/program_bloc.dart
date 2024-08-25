@@ -13,6 +13,8 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
     on<BlocEventReadGet<ProgramModel>>(onGet);
     on<BlocEventReadSelect<ProgramModel>>(onSelect);
     on<BlocEventReadFilter<ProgramModel>>(onFilter);
+    on<BlocEventReadAppend<ProgramModel>>(onAppend);
+    on<BlocEventReadRemove<ProgramModel>>(onRemove);
   }
 
   @override
@@ -79,6 +81,45 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
       orElse: () => null,
     );
   }
+
+  @override
+  void onAppend(
+    BlocEventReadAppend<ProgramModel> event,
+    Emitter<BlocStateRead<ProgramModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (programs, _, __) {
+        final items = [...programs, event.item];
+
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
+
+  @override
+  void onRemove(
+    BlocEventReadRemove<ProgramModel> event,
+    Emitter<BlocStateRead<ProgramModel>> emit,
+  ) {
+    state.maybeWhen(
+      success: (programs, _, __) {
+        final items =
+            programs.where((program) => program.id != event.id).toList();
+
+        emit(BlocStateReadSuccess(
+          items: items,
+          filteredItems: items,
+          selectedItem: null,
+        ));
+      },
+      orElse: () => null,
+    );
+  }
 }
 
 @lazySingleton
@@ -102,6 +143,7 @@ class ProgramBlocWrite extends BlocWrite<ProgramModel> {
     BlocEventWriteCreate event,
     Emitter<BlocStateWrite<ProgramModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res =
         await _createProgramUsecase.call(event.params as CreateProgramParams);
 
@@ -116,6 +158,7 @@ class ProgramBlocWrite extends BlocWrite<ProgramModel> {
     BlocEventWriteUpdate event,
     Emitter<BlocStateWrite<ProgramModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _updateProgramUsecase.call(event.params);
 
     res.fold(
@@ -129,6 +172,7 @@ class ProgramBlocWrite extends BlocWrite<ProgramModel> {
     BlocEventWriteDelete event,
     Emitter<BlocStateWrite<ProgramModel>> emit,
   ) async {
+    emit(const BlocStateWriteLoading());
     final res = await _deleteProgramUsecase.call(event.params);
 
     res.fold(

@@ -59,7 +59,7 @@ class FormButton extends StatelessWidget {
                   )
                 : Text(
                     key: ValueKey<bool>(isLoading),
-                    text ?? 'Unassigned',
+                    text ?? 'An error occurred',
                   ),
           ),
         ],
