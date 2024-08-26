@@ -166,7 +166,7 @@ class ListEvaluationScreen extends StatelessWidget {
     bool isLast,
   ) {
     void onTap() => context.router.push(
-          DetailEvaluationRoute(evaluationId: evaluation.id),
+          DetailEvaluationRoute(id: evaluation.id),
         );
 
     return ListViewBuilderTile(
