@@ -11,11 +11,16 @@ import 'package:moon_design/moon_design.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
-class ListEvaluationScreen extends StatelessWidget {
+class ListEvaluationScreen extends StatefulWidget {
   const ListEvaluationScreen({
     super.key,
   });
 
+  @override
+  State<ListEvaluationScreen> createState() => _ListEvaluationScreenState();
+}
+
+class _ListEvaluationScreenState extends State<ListEvaluationScreen> {
   @override
   Widget build(BuildContext context) {
     final clubBloc = context.watch<ClubBlocRead>();
@@ -35,18 +40,34 @@ class ListEvaluationScreen extends StatelessWidget {
               ),
             ],
           ),
-          floatingActionButton: showScrollToTopButton
-              ? FloatingActionButton(
-                  onPressed: () {
-                    scroll.animateTo(
-                      0,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  child: const Icon(Icons.arrow_upward),
-                )
-              : null,
+          floatingActionButton: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              BackTopButton(
+                show: showScrollToTopButton,
+                onPressed: () {
+                  scroll.animateTo(
+                    0,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              Gap(8.h),
+              FloatingActionButton.extended(
+                heroTag: 'new_evaluation_button_$hashCode',
+                onPressed: () {
+                  context.router.push(
+                    const UpsertEvaluationRoute(),
+                  );
+                },
+                icon: const Icon(Icons.add),
+                label: const Text('New Evaluation'),
+              ),
+            ],
+          ),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
             child: Column(
@@ -67,9 +88,8 @@ class ListEvaluationScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const TitleSmall('Evaluation'),
         MySearchBar(
-          width: 180.w,
+          width: 325.w,
           height: 32.h,
           controller: search,
           hintText: '${context.str?.search} ${'Evaluation'.toLowerCase()} ...',
@@ -108,22 +128,39 @@ class ListEvaluationScreen extends StatelessWidget {
         return state.maybeWhen(
           success: (_, filteredEvaluations, __) {
             if (filteredEvaluations.isEmpty) {
-              return Expanded(
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    ErrorAlert(
-                      '${club?.name} doesn\'t had evaluation yet',
-                      onRetry: () {
-                        if (club != null) {
-                          context.read<EvaluationBlocRead>().add(
-                                BlocEventRead.get(id: club.id),
-                              );
-                        }
-                      },
-                    ),
-                    Gap(16.h),
-                  ],
+              return SizedBox(
+                height: 400.h,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          '${club?.name} doesn\'t have evaluation yet',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Flexible(
+                        child: TextButton(
+                          style: ButtonStyle(
+                            textStyle: WidgetStateProperty.all<TextStyle>(
+                              const TextStyle(color: Colors.blue),
+                            ),
+                          ),
+                          onPressed: club != null
+                              ? () {
+                                  context.read<EvaluationBlocRead>().add(
+                                        BlocEventRead.get(id: club.id),
+                                      );
+                                }
+                              : null,
+                          child: const Text("Reload"),
+                        ),
+                      ),
+                      Gap(16.h),
+                    ],
+                  ),
                 ),
               );
             }
