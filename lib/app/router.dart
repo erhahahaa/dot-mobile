@@ -36,40 +36,64 @@ class AppRouter extends RootStackRouter {
               page: UpsertClubRoute.page,
             ),
             AutoRoute(
-              path: 'program/upsert',
-              page: UpsertProgramRoute.page,
-            ),
-            AutoRoute(
-              path: 'tactical/upsert',
-              page: UpsertTacticalRoute.page,
-            ),
-            AutoRoute(
-              path: 'exam/upsert',
-              page: UpsertTacticalRoute.page,
-            ),
-            AutoRoute(
-              path: 'evaluatipn/upsert',
-              page: UpsertTacticalRoute.page,
-            ),
-            AutoRoute(
               path: ':id',
               page: ClubShellRoute.page,
               children: [
                 AutoRoute(
                   path: 'program',
-                  page: ListProgramRoute.page,
+                  page: ProgramShellRoute.page,
+                  children: [
+                    AutoRoute(
+                      path: '',
+                      page: ListProgramRoute.page,
+                    ),
+                    AutoRoute(
+                      path: 'upsert',
+                      page: UpsertProgramRoute.page,
+                    ),
+                  ],
                 ),
                 AutoRoute(
                   path: 'tactical',
-                  page: ListTacticalRoute.page,
+                  page: TacticalShellRoute.page,
+                  children: [
+                    AutoRoute(
+                      path: '',
+                      page: ListTacticalRoute.page,
+                    ),
+                    AutoRoute(
+                      path: 'upsert',
+                      page: UpsertTacticalRoute.page,
+                    ),
+                  ],
                 ),
                 AutoRoute(
                   path: 'exam',
-                  page: ListExamRoute.page,
+                  page: ExamShellRoute.page,
+                  children: [
+                    AutoRoute(
+                      path: '',
+                      page: ListExamRoute.page,
+                    ),
+                    AutoRoute(
+                      path: 'upsert',
+                      page: UpsertExamRoute.page,
+                    ),
+                  ],
                 ),
                 AutoRoute(
                   path: 'evaluation',
-                  page: ListEvaluationRoute.page,
+                  page: EvaluationShellRoute.page,
+                  children: [
+                    AutoRoute(
+                      path: '',
+                      page: ListEvaluationRoute.page,
+                    ),
+                    AutoRoute(
+                      path: 'upsert',
+                      page: UpsertEvaluationRoute.page,
+                    ),
+                  ],
                 ),
                 AutoRoute(
                   path: 'media',
