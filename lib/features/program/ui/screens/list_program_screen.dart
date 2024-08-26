@@ -62,7 +62,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                 heroTag: 'new_program_button_$hashCode',
                 onPressed: () {
                   final nonNullClub = club ??
-                      ClubModel.fake(); // Provide a default value if needed
+                      ClubModel.fake(); 
                   context.router.push(
                     UpsertProgramRoute(club: nonNullClub),
                   );
@@ -210,7 +210,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
           success: (_, filteredPrograms, __) {
             if (filteredPrograms.isEmpty) {
               return SizedBox(
-                height: 400.h, // Use a fixed height to prevent unbounded error
+                height: 400.h, 
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

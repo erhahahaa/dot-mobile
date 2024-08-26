@@ -17,11 +17,10 @@ class ListClubScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userBloc = context.watch<UserBloc>();
-    final user =
-        userBloc.state.whenOrNull(success: (user, _) => user) ?? const UserModel();
+    final user = userBloc.state.whenOrNull(success: (user, _) => user) ??
+        const UserModel();
     return ParentWithSearchAndScrollController(
       onInit: (search, scroll) => context.read<ClubBlocRead>().add(
-            // const ClubEvent.selectClub(null),
             const BlocEventRead.clear(),
           ),
       builder: (context, search, scroll, showScrollToTopButton) {

@@ -118,6 +118,9 @@ class StringsId extends Strings {
   String get description => 'Deskripsi';
 
   @override
+  String get descriptionRequired => 'Deskripsi diperlukan';
+
+  @override
   String get detail => 'Detail';
 
   @override
@@ -196,10 +199,22 @@ class StringsId extends Strings {
   String get enterExamTitle => 'Masukkan judul ujian';
 
   @override
+  String get enterHeight => 'Masukkan tinggi papan';
+
+  @override
   String get enterProgramName => 'Masukkan nama program';
 
   @override
   String get enterStartDate => 'Masukkan tanggal mulai';
+
+  @override
+  String get enterTacticalName => 'Masukkan nama taktik';
+
+  @override
+  String get enterTotalPlayers => 'Masukkan jumlah pemain';
+
+  @override
+  String get enterWidth => 'Masukkan lebar papan';
 
   @override
   String get enterYourAddress => 'Masukkan alamat Anda';
@@ -329,6 +344,12 @@ class StringsId extends Strings {
 
   @override
   String get handBall => 'Bola Tangan';
+
+  @override
+  String get height => 'Tinggi (m)';
+
+  @override
+  String get heightRequired => 'Tinggi diperlukan';
 
   @override
   String get hello => 'Halo,';
@@ -547,7 +568,22 @@ class StringsId extends Strings {
   String get system => 'Sistem';
 
   @override
-  String get tactical => 'Taktis';
+  String get tactical => 'Taktik';
+
+  @override
+  String get tacticalName => 'Nama Taktik';
+
+  @override
+  String get tacticalImageRequired => 'Foto taktik diperlukan';
+
+  @override
+  String get tacticalNameRequired => 'Taktik diperlukan';
+
+  @override
+  String get totalPlayers => 'Jumlah Pemain/Tim';
+
+  @override
+  String get totalPlayersRequired => 'Jumlah pemain diperlukan';
 
   @override
   String get theme => 'Tema';
@@ -584,6 +620,12 @@ class StringsId extends Strings {
 
   @override
   String get warning => 'Peringatan';
+
+  @override
+  String get width => 'Lebar (m)';
+
+  @override
+  String get widthRequired => 'Lebar diperlukan';
 
   @override
   String get welcomeBack => 'Selamat datang kembali';

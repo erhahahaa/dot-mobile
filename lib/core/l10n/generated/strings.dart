@@ -317,6 +317,12 @@ abstract class Strings {
   /// **'Description'**
   String get description;
 
+  /// No description provided for @descriptionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Description is required'**
+  String get descriptionRequired;
+
   /// No description provided for @detail.
   ///
   /// In en, this message translates to:
@@ -440,7 +446,7 @@ abstract class Strings {
   /// No description provided for @enterDescription.
   ///
   /// In en, this message translates to:
-  /// **'Enter description'**
+  /// **'Enter the description'**
   String get enterDescription;
 
   /// No description provided for @enterDueAt.
@@ -473,6 +479,12 @@ abstract class Strings {
   /// **'Enter exam title'**
   String get enterExamTitle;
 
+  /// No description provided for @enterHeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the board height'**
+  String get enterHeight;
+
   /// No description provided for @enterProgramName.
   ///
   /// In en, this message translates to:
@@ -484,6 +496,24 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Enter the start date'**
   String get enterStartDate;
+
+  /// No description provided for @enterTacticalName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the tactical name'**
+  String get enterTacticalName;
+
+  /// No description provided for @enterTotalPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the total players'**
+  String get enterTotalPlayers;
+
+  /// No description provided for @enterWidth.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the board width'**
+  String get enterWidth;
 
   /// No description provided for @enterYourAddress.
   ///
@@ -742,6 +772,18 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Handball'**
   String get handBall;
+
+  /// No description provided for @height.
+  ///
+  /// In en, this message translates to:
+  /// **'Height (m)'**
+  String get height;
+
+  /// No description provided for @heightRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Height is required'**
+  String get heightRequired;
 
   /// No description provided for @hello.
   ///
@@ -1181,6 +1223,36 @@ abstract class Strings {
   /// **'Tactical'**
   String get tactical;
 
+  /// No description provided for @tacticalName.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactical Name'**
+  String get tacticalName;
+
+  /// No description provided for @tacticalImageRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactical image is required'**
+  String get tacticalImageRequired;
+
+  /// No description provided for @tacticalNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactical name is required'**
+  String get tacticalNameRequired;
+
+  /// No description provided for @totalPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Players/Team'**
+  String get totalPlayers;
+
+  /// No description provided for @totalPlayersRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Total players are required'**
+  String get totalPlayersRequired;
+
   /// No description provided for @theme.
   ///
   /// In en, this message translates to:
@@ -1252,6 +1324,18 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Warning'**
   String get warning;
+
+  /// No description provided for @width.
+  ///
+  /// In en, this message translates to:
+  /// **'Width (m)'**
+  String get width;
+
+  /// No description provided for @widthRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Width is required'**
+  String get widthRequired;
 
   /// No description provided for @welcomeBack.
   ///

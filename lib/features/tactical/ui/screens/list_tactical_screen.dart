@@ -35,27 +35,46 @@ class ListTacticalScreen extends StatelessWidget {
               ),
             ],
           ),
-          floatingActionButton: showScrollToTopButton
-              ? FloatingActionButton(
-                  onPressed: () {
-                    scroll.animateTo(
-                      0,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  child: const Icon(Icons.arrow_upward),
-                )
-              : null,
+          floatingActionButton: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              BackTopButton(
+                show: showScrollToTopButton,
+                onPressed: () {
+                  scroll.animateTo(
+                    0,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              Gap(8.h),
+              FloatingActionButton.extended(
+                heroTag: 'new_tactical_button_$hashCode',
+                onPressed: () {
+                  context.router.push(
+                    const UpsertTacticalRoute(),
+                  );
+                },
+                icon: const Icon(Icons.add),
+                label: const Text('New Tactical'),
+              ),
+            ],
+          ),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: Column(
-              children: [
-                Gap(8.h),
-                _buildHeader(context, search),
-                Gap(16.h),
-                _buildListTactical(context, scroll)
-              ],
+            child: SingleChildScrollView(
+              controller: scroll,
+              child: Column(
+                children: [
+                  Gap(8.h),
+                  _buildHeader(context, search),
+                  Gap(16.h),
+                  _buildListTactical(context, scroll),
+                ],
+              ),
             ),
           ),
         );
@@ -65,11 +84,10 @@ class ListTacticalScreen extends StatelessWidget {
 
   Widget _buildHeader(BuildContext context, SearchController search) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TitleSmall(context.str?.tactical),
         MySearchBar(
-          width: 180.w,
+          width: 325.w,
           height: 32.h,
           controller: search,
           hintText:
@@ -109,22 +127,39 @@ class ListTacticalScreen extends StatelessWidget {
         return state.maybeWhen(
           success: (_, filteredTacticals, __) {
             if (filteredTacticals.isEmpty) {
-              return Expanded(
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    ErrorAlert(
-                      '${club?.name} doesn\'t had tactical yet',
-                      onRetry: () {
-                        if (club != null) {
-                          context.read<TacticalBlocRead>().add(
-                                BlocEventRead.get(id: club.id),
-                              );
-                        }
-                      },
-                    ),
-                    Gap(16.h),
-                  ],
+              return SizedBox(
+                height: 400.h,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          '${club?.name} doesn\'t have tactical yet',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Flexible(
+                        child: TextButton(
+                          style: ButtonStyle(
+                            textStyle: WidgetStateProperty.all<TextStyle>(
+                              const TextStyle(color: Colors.blue),
+                            ),
+                          ),
+                          onPressed: club != null
+                              ? () {
+                                  context.read<TacticalBlocRead>().add(
+                                        BlocEventRead.get(id: club.id),
+                                      );
+                                }
+                              : null,
+                          child: const Text("Reload"),
+                        ),
+                      ),
+                      Gap(16.h),
+                    ],
+                  ),
                 ),
               );
             }

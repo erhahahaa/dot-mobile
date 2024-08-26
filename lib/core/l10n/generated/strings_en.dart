@@ -118,6 +118,9 @@ class StringsEn extends Strings {
   String get description => 'Description';
 
   @override
+  String get descriptionRequired => 'Description is required';
+
+  @override
   String get detail => 'Detail';
 
   @override
@@ -178,7 +181,7 @@ class StringsEn extends Strings {
   String get enterClubName => 'Enter club name';
 
   @override
-  String get enterDescription => 'Enter description';
+  String get enterDescription => 'Enter the description';
 
   @override
   String get enterDueAt => 'Enter due at';
@@ -196,10 +199,22 @@ class StringsEn extends Strings {
   String get enterExamTitle => 'Enter exam title';
 
   @override
+  String get enterHeight => 'Enter the board height';
+
+  @override
   String get enterProgramName => 'Enter program name';
 
   @override
   String get enterStartDate => 'Enter the start date';
+
+  @override
+  String get enterTacticalName => 'Enter the tactical name';
+
+  @override
+  String get enterTotalPlayers => 'Enter the total players';
+
+  @override
+  String get enterWidth => 'Enter the board width';
 
   @override
   String get enterYourAddress => 'Enter your address';
@@ -329,6 +344,12 @@ class StringsEn extends Strings {
 
   @override
   String get handBall => 'Handball';
+
+  @override
+  String get height => 'Height (m)';
+
+  @override
+  String get heightRequired => 'Height is required';
 
   @override
   String get hello => 'Hello,';
@@ -550,6 +571,21 @@ class StringsEn extends Strings {
   String get tactical => 'Tactical';
 
   @override
+  String get tacticalName => 'Tactical Name';
+
+  @override
+  String get tacticalImageRequired => 'Tactical image is required';
+
+  @override
+  String get tacticalNameRequired => 'Tactical name is required';
+
+  @override
+  String get totalPlayers => 'Total Players/Team';
+
+  @override
+  String get totalPlayersRequired => 'Total players are required';
+
+  @override
   String get theme => 'Theme';
 
   @override
@@ -584,6 +620,12 @@ class StringsEn extends Strings {
 
   @override
   String get warning => 'Warning';
+
+  @override
+  String get width => 'Width (m)';
+
+  @override
+  String get widthRequired => 'Width is required';
 
   @override
   String get welcomeBack => 'Welcome back';
