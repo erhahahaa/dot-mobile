@@ -6,13 +6,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'create_exam_params.freezed.dart';
 part 'create_exam_params.g.dart';
 
+
 @freezed
 class CreateExamParams with _$CreateExamParams {
   const factory CreateExamParams({
     required int clubId,
     required String title,
     required String? description,
-    required DateTime? endDate,
+    required DateTime? dueAt,
     // ignore: invalid_annotation_target
     @JsonKey(includeFromJson: false, includeToJson: false) File? image,
   }) = _CreateExamParams;

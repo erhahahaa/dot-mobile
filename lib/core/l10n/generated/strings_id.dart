@@ -271,10 +271,16 @@ class StringsId extends Strings {
   String get exam => 'Ujian';
 
   @override
+  String get examTitle => 'Judul Ujian';
+
+  @override
   String get examDescription => 'Deskripsi Ujian';
 
   @override
   String get exams => 'Ujian';
+
+  @override
+  String get examImageRequired => 'Foto ujian diperlukan';
 
   @override
   String get examTitleRequired => 'Judul ujian diperlukan';

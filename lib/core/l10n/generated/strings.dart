@@ -623,6 +623,12 @@ abstract class Strings {
   /// **'Exam'**
   String get exam;
 
+  /// No description provided for @examTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Title'**
+  String get examTitle;
+
   /// No description provided for @examDescription.
   ///
   /// In en, this message translates to:
@@ -634,6 +640,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Exams'**
   String get exams;
+
+  /// No description provided for @examImageRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam image is required'**
+  String get examImageRequired;
 
   /// No description provided for @examTitleRequired.
   ///

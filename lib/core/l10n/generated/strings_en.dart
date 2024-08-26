@@ -271,10 +271,16 @@ class StringsEn extends Strings {
   String get exam => 'Exam';
 
   @override
+  String get examTitle => 'Exam Title';
+
+  @override
   String get examDescription => 'Exam Description';
 
   @override
   String get exams => 'Exams';
+
+  @override
+  String get examImageRequired => 'Exam image is required';
 
   @override
   String get examTitleRequired => 'Exam title is required';
