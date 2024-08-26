@@ -12,7 +12,11 @@ import 'package:gap/gap.dart';
 
 @RoutePage()
 class UpsertClubScreen extends StatefulWidget implements AutoRouteWrapper {
-  const UpsertClubScreen({super.key});
+  final void Function(ClubModel club) onUpserted;
+  const UpsertClubScreen({
+    super.key,
+    required this.onUpserted,
+  });
 
   @override
   State<UpsertClubScreen> createState() => _UpsertClubScreenState();
@@ -77,7 +81,7 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
   Widget build(BuildContext context) {
     return Parent(
       appBar: AppBar(
-        title: const TitleMedium('Club Form'),
+        title: const TitleMedium('Club form'),
       ),
       body: Padding(
         padding: EdgeInsets.all(8.w),
@@ -117,9 +121,12 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
               ),
             ),
             if (imageError != null) ...[
-              BodyMedium(
-                imageError,
-                color: context.theme.colorScheme.error,
+              Gap(8.h),
+              Center(
+                child: BodyMedium(
+                  imageError,
+                  color: context.theme.colorScheme.error,
+                ),
               ),
             ],
             Gap(16.h),
@@ -183,12 +190,13 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
             BlocConsumer<ClubBlocWrite, BlocStateWrite<ClubModel>>(
               listener: (context, state) {
                 state.mapOrNull(
-                  success: (club) {
+                  success: (success) {
                     context.successToast(
                       title: 'Success',
                       description: 'Club created successfully',
                     );
-                    context.router.back();
+                    widget.onUpserted.call(success.item);
+                    context.router.maybePop();
                   },
                   failure: (failure) {
                     context.errorToast(

@@ -10,7 +10,68 @@ enum MediaParent {
   exam,
   question,
   tactical,
-  user,
+  user;
+
+  String get value {
+    switch (this) {
+      case MediaParent.club:
+        return 'club';
+      case MediaParent.program:
+        return 'program';
+      case MediaParent.exercise:
+        return 'exercise';
+      case MediaParent.exam:
+        return 'exam';
+      case MediaParent.question:
+        return 'question';
+      case MediaParent.tactical:
+        return 'tactical';
+      case MediaParent.user:
+        return 'user';
+    }
+  }
+
+  static MediaParent fromString(String value) {
+    switch (value) {
+      case 'club' || 'Club':
+        return MediaParent.club;
+      case 'program' || 'Program':
+        return MediaParent.program;
+      case 'exercise' || 'Exercise':
+        return MediaParent.exercise;
+      case 'exam' || 'Exam':
+        return MediaParent.exam;
+      case 'question' || 'Question':
+        return MediaParent.question;
+      case 'tactical' || 'Tactical':
+        return MediaParent.tactical;
+      case 'user' || 'User':
+        return MediaParent.user;
+      default:
+        throw Exception('Unknown media parent: $value');
+    }
+  }
+
+  static int fromStringToInt(String value) {
+    switch (value) {
+      case 'club' || 'Club':
+        return 0;
+      case 'program' || 'Program':
+        return 1;
+      case 'exercise' || 'Exercise':
+        return 2;
+      case 'exam' || 'Exam':
+        return 3;
+      case 'question' || 'Question':
+        return 4;
+      case 'tactical' || 'Tactical':
+        return 5;
+      case 'user' || 'User':
+        return 6;
+      default:
+        throw Exception('Unknown media parent: $value');
+    }
+  }
 }
 
 enum MediaType {

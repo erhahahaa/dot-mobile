@@ -41,14 +41,11 @@ class DotApp extends StatelessWidget {
         BlocProvider(
           create: (context) => sl<AuthBloc>(),
         ),
-        // BlocProvider<ClubBloc>(
-        //   create: (_) => sl<ClubBloc>()
-        //     ..add(
-        //       const ClubEvent.getClubs(),
-        //     ),
-        // ),
         BlocProvider<ClubBlocRead>(
           create: (_) => sl<ClubBlocRead>()..add(const BlocEventRead.get()),
+        ),
+        BlocProvider<LoadingCubit>(
+          create: (_) => sl<LoadingCubit>(),
         ),
       ],
       child: ScreenUtilInit(

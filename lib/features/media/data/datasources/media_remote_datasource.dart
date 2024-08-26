@@ -30,7 +30,7 @@ class MediaRemoteDatasourceImpl implements MediaRemoteDatasource {
   Future<Either<Failure, File>> download(
     DownloadMediaParams params,
   ) async {
-    const dir = '/storage/emulated/0/Download/Doting';
+    const dir = '/storage/emulated/0/Download/DayOfTraining';
     final dirExist = await Directory(dir).exists();
     if (!dirExist) {
       await Directory(dir).create(recursive: true);

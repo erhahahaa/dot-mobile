@@ -1,5 +1,5 @@
 import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/utils/extensions/extensions.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class Parent extends StatefulWidget {

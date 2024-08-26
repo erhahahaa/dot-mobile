@@ -27,10 +27,13 @@ class ClubBlocRead extends BlocRead<ClubModel> {
 
     res.fold(
       (failure) => emit(BlocStateReadFailure(failure.message)),
-      (success) => emit(BlocStateReadSuccess(
-        items: success,
-        filteredItems: success,
-      )),
+      (success) {
+        success.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+        emit(BlocStateReadSuccess(
+          items: success,
+          filteredItems: success,
+        ));
+      },
     );
   }
 
@@ -83,6 +86,7 @@ class ClubBlocRead extends BlocRead<ClubModel> {
     state.maybeWhen(
       success: (clubs, _, __) {
         final items = [...clubs, event.item];
+        items.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
@@ -101,6 +105,7 @@ class ClubBlocRead extends BlocRead<ClubModel> {
     state.maybeWhen(
       success: (clubs, _, __) {
         final items = clubs.where((club) => club.id != event.id).toList();
+        items.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,

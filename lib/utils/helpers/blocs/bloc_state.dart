@@ -19,21 +19,14 @@ class BlocStateRead<T> with _$BlocStateRead<T> {
 @Freezed(genericArgumentFactories: true)
 class BlocStateWrite<T> with _$BlocStateWrite<T> {
   const factory BlocStateWrite.initial() = BlocStateWriteInitial;
-  const factory BlocStateWrite.loading() = BlocStateWriteLoading;
+  const factory BlocStateWrite.loading({
+    int? count,
+    int? total,
+  }) = BlocStateWriteLoading;
   const factory BlocStateWrite.success(
     T item,
   ) = BlocStateWriteSuccess;
   const factory BlocStateWrite.failure(
     String message,
   ) = BlocStateWriteFailure;
-}
-
-@Freezed(genericArgumentFactories: true)
-class BlocStateReadWrite<T> with _$BlocStateReadWrite<T> {
-  const factory BlocStateReadWrite.read(
-    BlocStateRead<T> state,
-  ) = BlocStateReadWriteRead<T>;
-  const factory BlocStateReadWrite.write(
-    BlocStateWrite<T> state,
-  ) = BlocStateReadWriteWrite<T>;
 }

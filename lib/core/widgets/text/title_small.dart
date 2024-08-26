@@ -29,6 +29,7 @@ class TitleSmall extends StatelessWidget {
             fontSize: fontSize ?? 14.sp,
             letterSpacing: 0.1.sp,
           ),
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

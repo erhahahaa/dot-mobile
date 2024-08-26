@@ -71,6 +71,10 @@ class AppRouter extends RootStackRouter {
                   path: 'evaluation',
                   page: ListEvaluationRoute.page,
                 ),
+                AutoRoute(
+                  path: 'media',
+                  page: MediaRoute.page,
+                ),
               ],
             ),
           ],

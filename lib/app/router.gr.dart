@@ -45,15 +45,14 @@ import 'package:dot_coaching/features/exercise/ui/screens/list_exercise_screen.d
     as _i15;
 import 'package:dot_coaching/features/exercise/ui/screens/upsert_exercise_screen.dart'
     as _i31;
-import 'package:dot_coaching/features/feature.dart';
 import 'package:dot_coaching/features/general/ui/screens/dashboard_screen.dart'
     as _i2;
-import 'package:dot_coaching/features/media/ui/screens/list_media_screen.dart'
-    as _i16;
+import 'package:dot_coaching/features/media/ui/screens/media_screen.dart'
+    as _i19;
 import 'package:dot_coaching/features/program/ui/screens/detail_program_screen.dart'
     as _i7;
 import 'package:dot_coaching/features/program/ui/screens/list_program_screen.dart'
-    as _i17;
+    as _i16;
 import 'package:dot_coaching/features/program/ui/screens/program_shell_screen.dart'
     as _i21;
 import 'package:dot_coaching/features/program/ui/screens/upsert_program_screen.dart'
@@ -61,7 +60,7 @@ import 'package:dot_coaching/features/program/ui/screens/upsert_program_screen.d
 import 'package:dot_coaching/features/question/ui/screens/detail_question_screen.dart'
     as _i8;
 import 'package:dot_coaching/features/question/ui/screens/list_question_screen.dart'
-    as _i18;
+    as _i17;
 import 'package:dot_coaching/features/question/ui/screens/question_shell_screen.dart'
     as _i22;
 import 'package:dot_coaching/features/question/ui/screens/upsert_question_screen.dart'
@@ -69,7 +68,7 @@ import 'package:dot_coaching/features/question/ui/screens/upsert_question_screen
 import 'package:dot_coaching/features/tactical/ui/screens/detail_tactical_screen.dart'
     as _i9;
 import 'package:dot_coaching/features/tactical/ui/screens/list_tactical_screen.dart'
-    as _i19;
+    as _i18;
 import 'package:dot_coaching/features/tactical/ui/screens/tactical_shell_screen.dart'
     as _i26;
 import 'package:dot_coaching/features/tactical/ui/screens/upsert_tactical_screen.dart'
@@ -513,26 +512,7 @@ class ListExerciseRoute extends _i35.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.ListMediaScreen]
-class ListMediaRoute extends _i35.PageRouteInfo<void> {
-  const ListMediaRoute({List<_i35.PageRouteInfo>? children})
-      : super(
-          ListMediaRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ListMediaRoute';
-
-  static _i35.PageInfo page = _i35.PageInfo(
-    name,
-    builder: (data) {
-      return const _i16.ListMediaScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i17.ListProgramScreen]
+/// [_i16.ListProgramScreen]
 class ListProgramRoute extends _i35.PageRouteInfo<void> {
   const ListProgramRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -545,13 +525,13 @@ class ListProgramRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i17.ListProgramScreen();
+      return const _i16.ListProgramScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i18.ListQuestionScreen]
+/// [_i17.ListQuestionScreen]
 class ListQuestionRoute extends _i35.PageRouteInfo<void> {
   const ListQuestionRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -564,13 +544,13 @@ class ListQuestionRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i18.ListQuestionScreen();
+      return const _i17.ListQuestionScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i19.ListTacticalScreen]
+/// [_i18.ListTacticalScreen]
 class ListTacticalRoute extends _i35.PageRouteInfo<void> {
   const ListTacticalRoute({List<_i35.PageRouteInfo>? children})
       : super(
@@ -583,7 +563,26 @@ class ListTacticalRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i19.ListTacticalScreen();
+      return const _i18.ListTacticalScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i19.MediaScreen]
+class MediaRoute extends _i35.PageRouteInfo<void> {
+  const MediaRoute({List<_i35.PageRouteInfo>? children})
+      : super(
+          MediaRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MediaRoute';
+
+  static _i35.PageInfo page = _i35.PageInfo(
+    name,
+    builder: (data) {
+      return _i35.WrappedRoute(child: const _i19.MediaScreen());
     },
   );
 }
@@ -742,10 +741,17 @@ class UpdateProfileRoute extends _i35.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i28.UpsertClubScreen]
-class UpsertClubRoute extends _i35.PageRouteInfo<void> {
-  const UpsertClubRoute({List<_i35.PageRouteInfo>? children})
-      : super(
+class UpsertClubRoute extends _i35.PageRouteInfo<UpsertClubRouteArgs> {
+  UpsertClubRoute({
+    _i36.Key? key,
+    required void Function(_i37.ClubModel) onUpserted,
+    List<_i35.PageRouteInfo>? children,
+  }) : super(
           UpsertClubRoute.name,
+          args: UpsertClubRouteArgs(
+            key: key,
+            onUpserted: onUpserted,
+          ),
           initialChildren: children,
         );
 
@@ -754,9 +760,30 @@ class UpsertClubRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return _i35.WrappedRoute(child: const _i28.UpsertClubScreen());
+      final args = data.argsAs<UpsertClubRouteArgs>();
+      return _i35.WrappedRoute(
+          child: _i28.UpsertClubScreen(
+        key: args.key,
+        onUpserted: args.onUpserted,
+      ));
     },
   );
+}
+
+class UpsertClubRouteArgs {
+  const UpsertClubRouteArgs({
+    this.key,
+    required this.onUpserted,
+  });
+
+  final _i36.Key? key;
+
+  final void Function(_i37.ClubModel) onUpserted;
+
+  @override
+  String toString() {
+    return 'UpsertClubRouteArgs{key: $key, onUpserted: $onUpserted}';
+  }
 }
 
 /// generated route for
@@ -820,13 +847,13 @@ class UpsertExerciseRoute extends _i35.PageRouteInfo<void> {
 /// [_i32.UpsertProgramScreen]
 class UpsertProgramRoute extends _i35.PageRouteInfo<void> {
   final ClubModel club;
-   const UpsertProgramRoute({
-    required this.club, 
+  const UpsertProgramRoute({
+    required this.club,
     List<_i35.PageRouteInfo>? children,
   }) : super(
           UpsertProgramRoute.name,
           initialChildren: children,
-          args: club, 
+          args: club,
         );
 
   static const String name = 'UpsertProgramRoute';
@@ -834,8 +861,8 @@ class UpsertProgramRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      final club = data.args as ClubModel; 
-      return _i32.UpsertProgramScreen(club: club); 
+      final club = data.args as ClubModel;
+      return _i32.UpsertProgramScreen(club: club);
     },
   );
 }

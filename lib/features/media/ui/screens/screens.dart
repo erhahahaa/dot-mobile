@@ -1,1 +1,1 @@
-export 'list_media_screen.dart';
+export 'media_screen.dart';

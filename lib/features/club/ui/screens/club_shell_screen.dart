@@ -49,7 +49,9 @@ class ClubShellScreen extends StatelessWidget implements AutoRouteWrapper {
       routes: const [
         ListProgramRoute(),
         ListTacticalRoute(),
+        ListExamRoute(),
         ListEvaluationRoute(),
+        MediaRoute(),
       ],
       transitionBuilder: (context, child, animation) => FadeTransition(
         opacity: animation,
@@ -61,16 +63,24 @@ class ClubShellScreen extends StatelessWidget implements AutoRouteWrapper {
           onDestinationSelected: tabsRouter.setActiveIndex,
           destinations: const [
             NavigationDestination(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.event),
               label: 'Program',
             ),
             NavigationDestination(
-              icon: Icon(Icons.sports_soccer),
+              icon: Icon(Icons.military_tech),
               label: 'Tactical',
             ),
             NavigationDestination(
-              icon: Icon(Icons.assignment_turned_in),
+              icon: Icon(Icons.quiz),
+              label: 'Exam',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.rate_review),
               label: 'Evaluation',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.inventory),
+              label: 'Asset',
             ),
           ],
         );

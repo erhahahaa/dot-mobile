@@ -99,7 +99,9 @@ import '../features/media/domain/usecases/update_media/update_media_usecase.dart
     as _i609;
 import '../features/media/domain/usecases/upload_media/upload_media_usecase.dart'
     as _i252;
-import '../features/media/ui/bloc/media_bloc.dart' as _i1001;
+import '../features/media/ui/bloc/exercise_media_bloc.dart' as _i255;
+import '../features/media/ui/bloc/program_media_bloc.dart' as _i640;
+import '../features/media/ui/bloc/tactical_media_bloc.dart' as _i974;
 import '../features/program/data/datasources/program_remote_datasource.dart'
     as _i802;
 import '../features/program/data/repositories/program_repository_impl.dart'
@@ -175,6 +177,7 @@ import '../features/user/domain/usecases/update_profile/update_profile_usecase.d
 import '../features/user/ui/bloc/user_bloc.dart' as _i792;
 import '../features/user/ui/bloc/user_pref_bloc.dart' as _i1050;
 import '../features/user/user.dart' as _i438;
+import '../utils/helpers/cubit/loading_cubit.dart' as _i1045;
 import 'router.dart' as _i216;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -212,7 +215,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i963.ImagePickerService(),
       dispose: (i) => i.dispose(),
     );
-    gh.lazySingleton<_i1001.MediaBloc>(() => _i1001.MediaBloc());
+    gh.lazySingleton<_i1045.LoadingCubit>(() => _i1045.LoadingCubit());
     gh.lazySingleton<_i322.DioService>(
       () => _i322.DioService(gh<_i156.IsarService>()),
       dispose: (i) => i.dispose(),
@@ -349,6 +352,21 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i694.GetUserPreferencesUsecase(gh<_i561.UserRepository>()));
     gh.lazySingleton<_i877.SaveUserPreferencesUsecase>(
         () => _i877.SaveUserPreferencesUsecase(gh<_i561.UserRepository>()));
+    gh.lazySingleton<_i255.ExerciseMediaBlocRead>(
+        () => _i255.ExerciseMediaBlocRead(
+              gh<_i561.GetAllMediaUsecase>(),
+              gh<_i561.DownloadMediaUsecase>(),
+            ));
+    gh.lazySingleton<_i974.TacticalMediaBlocRead>(
+        () => _i974.TacticalMediaBlocRead(
+              gh<_i561.GetAllMediaUsecase>(),
+              gh<_i561.DownloadMediaUsecase>(),
+            ));
+    gh.lazySingleton<_i640.ProgramMediaBlocRead>(
+        () => _i640.ProgramMediaBlocRead(
+              gh<_i561.GetAllMediaUsecase>(),
+              gh<_i561.DownloadMediaUsecase>(),
+            ));
     gh.lazySingleton<_i700.DeleteExamUsecase>(
         () => _i700.DeleteExamUsecase(gh<_i561.ExamRepository>()));
     gh.lazySingleton<_i423.GetAllExamUsecase>(
@@ -411,6 +429,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i810.GetProgramByIdUsecase(gh<_i561.ProgramRepository>()));
     gh.lazySingleton<_i1022.GetAllProgramUsecase>(
         () => _i1022.GetAllProgramUsecase(gh<_i561.ProgramRepository>()));
+    gh.lazySingleton<_i255.ExerciseMediaBlocWrite>(
+        () => _i255.ExerciseMediaBlocWrite(gh<_i561.UploadMediaUsecase>()));
+    gh.lazySingleton<_i974.TacticalMediaBlocWrite>(
+        () => _i974.TacticalMediaBlocWrite(gh<_i561.UploadMediaUsecase>()));
+    gh.lazySingleton<_i640.ProgramMediaBlocWrite>(
+        () => _i640.ProgramMediaBlocWrite(gh<_i561.UploadMediaUsecase>()));
     gh.lazySingleton<_i544.EvaluationBlocRead>(
         () => _i544.EvaluationBlocRead(gh<_i561.GetAllEvaluationUsecase>()));
     gh.lazySingleton<_i674.TacticalBlocWrite>(() => _i674.TacticalBlocWrite(

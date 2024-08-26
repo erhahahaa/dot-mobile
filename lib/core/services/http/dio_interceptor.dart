@@ -19,8 +19,13 @@ class DioInterceptor extends Interceptor with FirebaseCrashLoggerService {
       );
     } catch (_) {}
     try {
-      const JsonEncoder encoder = JsonEncoder.withIndent('  ');
-      final String prettyJson = encoder.convert(options.data);
+      String prettyJson = "";
+      if (options.data is FormData) {
+        prettyJson = options.data.toString();
+      } else {
+        const JsonEncoder encoder = JsonEncoder.withIndent('  ');
+        prettyJson = encoder.convert(options.data);
+      }
       Log.debug(
         // ignore: unnecessary_null_comparison
         "REQUEST ► ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"${options.baseUrl}${options.path}"}\n\n"

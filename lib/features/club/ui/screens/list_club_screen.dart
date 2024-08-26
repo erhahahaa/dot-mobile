@@ -17,8 +17,8 @@ class ListClubScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userBloc = context.watch<UserBloc>();
-    final user = userBloc.state.whenOrNull(success: (user, _) => user) ??
-        const UserModel();
+    final user =
+        userBloc.state.whenOrNull(success: (user, _) => user) ?? const UserModel();
     return ParentWithSearchAndScrollController(
       onInit: (search, scroll) => context.read<ClubBlocRead>().add(
             const BlocEventRead.clear(),
@@ -78,6 +78,7 @@ class ListClubScreen extends StatelessWidget {
                       );
                     },
                     child: MoonFilledButton(
+                      buttonSize: MoonButtonSize.sm,
                       label: BodySmall(context.str?.logout),
                       onTap: () {
                         context.read<AuthBloc>().add(const AuthEvent.signOut());
@@ -108,7 +109,15 @@ class ListClubScreen extends StatelessWidget {
                 FloatingActionButton.extended(
                   heroTag: 'new_club_button_$hashCode',
                   onPressed: () {
-                    context.router.push(const UpsertClubRoute());
+                    context.router.push<ClubModel>(
+                      UpsertClubRoute(
+                        onUpserted: (club) {
+                          context.read<ClubBlocRead>().add(
+                                BlocEventRead.append(club),
+                              );
+                        },
+                      ),
+                    );
                   },
                   icon: const Icon(Icons.add),
                   label: const Text('New Club'),
@@ -122,7 +131,7 @@ class ListClubScreen extends StatelessWidget {
               children: [
                 Gap(8.h),
                 _buildHeader(context, search),
-                Gap(16.h),
+                Gap(8.h),
                 _buildListClub(context, scroll),
               ],
             ),
