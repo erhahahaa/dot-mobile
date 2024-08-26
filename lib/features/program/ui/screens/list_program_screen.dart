@@ -81,7 +81,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                   _buildHeader(context, search),
                   Gap(16.h),
                   _buildCalendar(context),
-                  _buildListProgram(context, scroll),
+                  _buildListProgram(context),
                 ],
               ),
             ),
@@ -193,7 +193,6 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
 
   Widget _buildListProgram(
     BuildContext context,
-    ScrollController scrollController,
   ) {
     final clubBloc = context.watch<ClubBlocRead>();
     final club = clubBloc.state.maybeWhen(
@@ -268,7 +267,6 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                   height: 0.71.sh,
                   child: ListViewBuilder(
                     items: filteredPrograms,
-                    scrollController: scrollController,
                     itemBuilder: (context, program) => _buildProgramItem(
                       context,
                       program,
@@ -284,7 +282,6 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                 return SizedBox(
                   height: 0.71.sh,
                   child: ListViewBuilder(
-                    scrollController: scrollController,
                     items: fakePrograms,
                     itemBuilder: (context, program) => Skeletonizer(
                       child: _buildProgramItem(
