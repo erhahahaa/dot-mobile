@@ -61,8 +61,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
               FloatingActionButton.extended(
                 heroTag: 'new_program_button_$hashCode',
                 onPressed: () {
-                  final nonNullClub = club ??
-                      ClubModel.fake(); 
+                  final nonNullClub = club ?? ClubModel.fake();
                   context.router.push(
                     UpsertProgramRoute(club: nonNullClub),
                   );
@@ -81,8 +80,8 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                   Gap(8.h),
                   _buildHeader(context, search),
                   Gap(16.h),
-                  _buildHideCalendar(context, scroll),
-                  if (!hideListProgram) _buildListProgram(context, scroll),
+                  _buildCalendar(context),
+                  _buildListProgram(context, scroll),
                 ],
               ),
             ),
@@ -123,8 +122,27 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
     );
   }
 
-  Widget _buildHideCalendar(
-      BuildContext context, ScrollController scrollController) {
+  Widget _buildCalendar(BuildContext context) {
+    Widget _calendar() {
+      return SfCalendar(
+        view: CalendarView.month,
+        monthViewSettings: const MonthViewSettings(
+          showAgenda: true,
+          agendaItemHeight: 70,
+        ),
+        initialSelectedDate: DateTime.now(),
+        onTap: (calendarTapDetails) {
+          final len = calendarTapDetails.appointments?.length ?? 0;
+
+          final el = calendarTapDetails.targetElement;
+          if (el == CalendarElement.appointment && len == 1) {
+            final program = calendarTapDetails.appointments?.first;
+            // Handle the appointment tap
+          }
+        },
+      );
+    }
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -146,30 +164,45 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
             )
           ],
         ),
-        hideCalendar
-            ? Container()
-            : SizedBox(
-                height: 400.h,
-                child: Skeletonizer(
-                  child: SfCalendar(
-                    view: CalendarView.month,
-                    monthViewSettings: const MonthViewSettings(
-                      showAgenda: true,
-                      agendaItemHeight: 70,
+        if (hideCalendar == false) ...[
+          BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                success: (_, filteredPrograms, __) {
+                  return SizedBox(
+                    height: 400.h,
+                    child: _calendar(),
+                  );
+                },
+                failure: (message) => ErrorAlert(message),
+                orElse: () {
+                  return SizedBox(
+                    height: 400.h,
+                    child: Skeletonizer(
+                      child: _calendar(),
                     ),
-                    initialSelectedDate: DateTime.now(),
-                    onTap: (calendarTapDetails) {
-                      final len = calendarTapDetails.appointments?.length ?? 0;
+                  );
+                },
+              );
+            },
+          ),
+        ],
+      ],
+    );
+  }
 
-                      final el = calendarTapDetails.targetElement;
-                      if (el == CalendarElement.appointment && len == 1) {
-                        final program = calendarTapDetails.appointments?.first;
-                        // Handle the appointment tap
-                      }
-                    },
-                  ),
-                ),
-              ),
+  Widget _buildListProgram(
+    BuildContext context,
+    ScrollController scrollController,
+  ) {
+    final clubBloc = context.watch<ClubBlocRead>();
+    final club = clubBloc.state.maybeWhen(
+      success: (_, __, selectedClub) => selectedClub,
+      orElse: () => ClubModel.fake(),
+    );
+
+    return Column(
+      children: [
         SizedBox(height: 16.h),
         Row(
           children: [
@@ -190,95 +223,83 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
             )
           ],
         ),
-      ],
-    );
-  }
-
-  Widget _buildListProgram(
-    BuildContext context,
-    ScrollController scrollController,
-  ) {
-    final clubBloc = context.watch<ClubBlocRead>();
-    final club = clubBloc.state.maybeWhen(
-      success: (_, __, selectedClub) => selectedClub,
-      orElse: () => ClubModel.fake(),
-    );
-
-    return BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
-      builder: (context, state) {
-        return state.maybeWhen(
-          success: (_, filteredPrograms, __) {
-            if (filteredPrograms.isEmpty) {
-              return SizedBox(
-                height: 400.h, 
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          '${club?.name} doesn\'t have a program yet',
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      Flexible(
-                        child: TextButton(
-                          style: ButtonStyle(
-                            textStyle: WidgetStateProperty.all<TextStyle>(
-                              const TextStyle(color: Colors.blue),
+        BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
+          builder: (context, state) {
+            return state.maybeWhen(
+              success: (_, filteredPrograms, __) {
+                if (filteredPrograms.isEmpty) {
+                  return SizedBox(
+                    height: 400.h,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              '${club?.name} doesn\'t have a program yet',
+                              textAlign: TextAlign.center,
                             ),
                           ),
-                          onPressed: club != null
-                              ? () {
-                                  context.read<ProgramBlocRead>().add(
-                                        BlocEventRead.get(id: club.id),
-                                      );
-                                }
-                              : null,
-                          child: const Text("Reload"),
-                        ),
+                          Flexible(
+                            child: TextButton(
+                              style: ButtonStyle(
+                                textStyle: WidgetStateProperty.all<TextStyle>(
+                                  const TextStyle(color: Colors.blue),
+                                ),
+                              ),
+                              onPressed: club != null
+                                  ? () {
+                                      context.read<ProgramBlocRead>().add(
+                                            BlocEventRead.get(id: club.id),
+                                          );
+                                    }
+                                  : null,
+                              child: const Text("Reload"),
+                            ),
+                          ),
+                          Gap(16.h),
+                        ],
                       ),
-                      Gap(16.h),
-                    ],
+                    ),
+                  );
+                }
+                return SizedBox(
+                  height: 0.71.sh,
+                  child: ListViewBuilder(
+                    items: filteredPrograms,
+                    scrollController: scrollController,
+                    itemBuilder: (context, program) => _buildProgramItem(
+                      context,
+                      program,
+                      program == filteredPrograms.last,
+                    ),
                   ),
-                ),
-              );
-            }
-            return SizedBox(
-              height: 0.71.sh,
-              child: ListViewBuilder(
-                items: filteredPrograms,
-                scrollController: scrollController,
-                itemBuilder: (context, program) => _buildProgramItem(
-                  context,
-                  program,
-                  program == filteredPrograms.last,
-                ),
-              ),
+                );
+              },
+              failure: (message) => ErrorAlert(message),
+              orElse: () {
+                final fakePrograms =
+                    List.generate(10, (index) => ProgramModel.fake());
+                return SizedBox(
+                  height: 0.71.sh,
+                  child: ListViewBuilder(
+                    scrollController: scrollController,
+                    items: fakePrograms,
+                    itemBuilder: (context, program) => Skeletonizer(
+                      child: _buildProgramItem(
+                        context,
+                        program,
+                        program == fakePrograms.last,
+                      ),
+                    ),
+                  ),
+                );
+              },
             );
           },
-          failure: (message) => ErrorAlert(message),
-          orElse: () {
-            final fakePrograms =
-                List.generate(10, (index) => ProgramModel.fake());
-            return SizedBox(
-              height: 0.71.sh,
-              child: ListViewBuilder(
-                scrollController: scrollController,
-                items: fakePrograms,
-                itemBuilder: (context, program) => Skeletonizer(
-                  child: _buildProgramItem(
-                    context,
-                    program,
-                    program == fakePrograms.last,
-                  ),
-                ),
-              ),
-            );
-          },
-        );
-      },
+        ),
+      ],
     );
   }
 

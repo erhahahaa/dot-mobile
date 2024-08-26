@@ -46,7 +46,7 @@ class DioService with FirebaseCrashLoggerService {
   }
 
   Dio get dio {
-    if (_dio != null && _auth != null) return _dio!;
+    // if (_dio != null && _auth != null) return _dio!;
     try {
       final token = _local.isar?.users.where().tokenIsNotNull().findAll();
       if (token != null) {

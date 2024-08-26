@@ -15,7 +15,7 @@ class UpsertTacticalScreen extends StatefulWidget implements AutoRouteWrapper {
   const UpsertTacticalScreen({super.key});
 
   @override
-  _UpsertTacticalScreenState createState() => _UpsertTacticalScreenState();
+  State<UpsertTacticalScreen> createState() => _UpsertTacticalScreenState();
 
   @override
   Widget wrappedRoute(BuildContext context) {
