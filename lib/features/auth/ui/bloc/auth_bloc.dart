@@ -54,9 +54,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final res = await _signIn.call(event.params);
     res.fold(
       (failure) => emit(_Unauthenticated(failure.message)),
-      (user) {
-        _authMe.call().then((_) => emit(_Authenticated(user)));
-      },
+      (user) => emit(_Authenticated(user)),
     );
   }
 
@@ -68,23 +66,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final res = await _signUp.call(event.params);
     res.fold(
       (failure) => emit(_Unauthenticated(failure.message)),
-      (user) {
-        //  if (sl.isRegistered<IsarService>()) {
-        //     sl.unregister<IsarService>();
-        //     sl.registerLazySingleton<IsarService>(() => IsarService());
-        //   } else {
-        //     sl.registerLazySingleton<IsarService>(() => IsarService());
-        //   }
-
-        //   if (sl.isRegistered<DioService>()) {
-        //     sl.unregister<DioService>();
-        //     sl.registerLazySingleton<DioService>(() => DioService(sl()));
-        //   } else {
-        //     sl.registerLazySingleton<DioService>(() => DioService(sl()));
-        //   }
-
-        _authMe.call().then((_) => emit(_Authenticated(user)));
-      },
+      (user) => emit(_Authenticated(user)),
     );
   }
 

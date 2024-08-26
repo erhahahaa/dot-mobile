@@ -195,7 +195,7 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
               },
             ),
             Gap(12.h),
-            BlocConsumer<ClubBlocWrite, BlocStateWrite<ClubModel>>(
+            BlocConsumer<ProgramBlocWrite, BlocStateWrite<ProgramModel>>(
               listener: (context, state) {
                 state.mapOrNull(
                   success: (club) {

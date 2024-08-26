@@ -12,6 +12,7 @@ class DashboardScreen extends StatelessWidget implements AutoRouteWrapper {
   Widget wrappedRoute(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        // Read
         BlocProvider<ProgramBlocRead>(
           create: (_) => sl<ProgramBlocRead>(),
         ),
@@ -39,6 +40,26 @@ class DashboardScreen extends StatelessWidget implements AutoRouteWrapper {
         BlocProvider<TacticalMediaBlocRead>(
           create: (_) => sl<TacticalMediaBlocRead>(),
         ),
+
+        // Write
+        // BlocProvider<ProgramBlocWrite>(
+        //   create: (_) => sl<ProgramBlocWrite>(),
+        // ),
+        // BlocProvider<ExerciseBlocWrite>(
+        //   create: (_) => sl<ExerciseBlocWrite>(),
+        // ),
+        // BlocProvider<ExamBlocWrite>(
+        //   create: (_) => sl<ExamBlocWrite>(),
+        // ),
+        // BlocProvider<QuestionBlocWrite>(
+        //   create: (_) => sl<QuestionBlocWrite>(),
+        // ),
+        // BlocProvider<EvaluationBlocWrite>(
+        //   create: (_) => sl<EvaluationBlocWrite>(),
+        // ),
+        // BlocProvider<TacticalBlocWrite>(
+        //   create: (_) => sl<TacticalBlocWrite>(),
+        // ),
         BlocProvider<ProgramMediaBlocWrite>(
           create: (_) => sl<ProgramMediaBlocWrite>(),
         ),

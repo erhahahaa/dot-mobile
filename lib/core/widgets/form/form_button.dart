@@ -27,7 +27,7 @@ class FormButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MoonFilledButton(
       width: width ?? double.infinity,
-      buttonSize: buttonSize ?? MoonButtonSize.md,
+      // buttonSize: buttonSize ?? MoonButtonSize.md,
       onTap: isLoading ? null : onTap,
       label: Row(
         children: [

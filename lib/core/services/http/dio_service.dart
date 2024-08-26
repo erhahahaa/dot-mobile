@@ -46,7 +46,7 @@ class DioService with FirebaseCrashLoggerService {
   }
 
   Dio get dio {
-    // if (_dio != null && _auth != null) return _dio!;
+    if (_dio != null && _auth != null) return _dio!;
     try {
       final token = _local.isar?.users.where().tokenIsNotNull().findAll();
       if (token != null) {
@@ -64,6 +64,12 @@ class DioService with FirebaseCrashLoggerService {
 
   void clearAuth() {
     _auth = null;
+    final token = _local.isar?.users.where().tokenIsNotNull().findAll();
+    if (token != null) {
+      if (token.isNotEmpty) {
+        _auth = token.first.token;
+      }
+    }
     _dio = _createDio();
     _dio?.interceptors.add(DioInterceptor());
   }
