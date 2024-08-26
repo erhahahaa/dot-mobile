@@ -45,6 +45,7 @@ import 'package:dot_coaching/features/exercise/ui/screens/list_exercise_screen.d
     as _i15;
 import 'package:dot_coaching/features/exercise/ui/screens/upsert_exercise_screen.dart'
     as _i31;
+import 'package:dot_coaching/features/feature.dart' as _i37;
 import 'package:dot_coaching/features/general/ui/screens/dashboard_screen.dart'
     as _i2;
 import 'package:dot_coaching/features/media/ui/screens/media_screen.dart'
@@ -845,15 +846,18 @@ class UpsertExerciseRoute extends _i35.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i32.UpsertProgramScreen]
-class UpsertProgramRoute extends _i35.PageRouteInfo<void> {
-  final ClubModel club;
-  const UpsertProgramRoute({
-    required this.club,
+class UpsertProgramRoute extends _i35.PageRouteInfo<UpsertProgramRouteArgs> {
+  UpsertProgramRoute({
+    _i36.Key? key,
+    required _i37.ClubModel club,
     List<_i35.PageRouteInfo>? children,
   }) : super(
           UpsertProgramRoute.name,
+          args: UpsertProgramRouteArgs(
+            key: key,
+            club: club,
+          ),
           initialChildren: children,
-          args: club,
         );
 
   static const String name = 'UpsertProgramRoute';
@@ -861,10 +865,30 @@ class UpsertProgramRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      final club = data.args as ClubModel;
-      return _i32.UpsertProgramScreen(club: club);
+      final args = data.argsAs<UpsertProgramRouteArgs>();
+      return _i35.WrappedRoute(
+          child: _i32.UpsertProgramScreen(
+        key: args.key,
+        club: args.club,
+      ));
     },
   );
+}
+
+class UpsertProgramRouteArgs {
+  const UpsertProgramRouteArgs({
+    this.key,
+    required this.club,
+  });
+
+  final _i36.Key? key;
+
+  final _i37.ClubModel club;
+
+  @override
+  String toString() {
+    return 'UpsertProgramRouteArgs{key: $key, club: $club}';
+  }
 }
 
 /// generated route for
@@ -900,7 +924,7 @@ class UpsertTacticalRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i34.UpsertTacticalScreen();
+      return _i35.WrappedRoute(child: const _i34.UpsertTacticalScreen());
     },
   );
 }
