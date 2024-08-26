@@ -156,15 +156,15 @@ class DashboardRoute extends _i36.PageRouteInfo<void> {
 class DetailClubRoute extends _i36.PageRouteInfo<DetailClubRouteArgs> {
   DetailClubRoute({
     _i37.Key? key,
-    required int clubId,
+    required int id,
     List<_i36.PageRouteInfo>? children,
   }) : super(
           DetailClubRoute.name,
           args: DetailClubRouteArgs(
             key: key,
-            clubId: clubId,
+            id: id,
           ),
-          rawPathParams: {'clubId': clubId},
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -175,11 +175,10 @@ class DetailClubRoute extends _i36.PageRouteInfo<DetailClubRouteArgs> {
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<DetailClubRouteArgs>(
-          orElse: () =>
-              DetailClubRouteArgs(clubId: pathParams.getInt('clubId')));
+          orElse: () => DetailClubRouteArgs(id: pathParams.getInt('id')));
       return _i3.DetailClubScreen(
         key: args.key,
-        clubId: args.clubId,
+        id: args.id,
       );
     },
   );
@@ -188,16 +187,16 @@ class DetailClubRoute extends _i36.PageRouteInfo<DetailClubRouteArgs> {
 class DetailClubRouteArgs {
   const DetailClubRouteArgs({
     this.key,
-    required this.clubId,
+    required this.id,
   });
 
   final _i37.Key? key;
 
-  final int clubId;
+  final int id;
 
   @override
   String toString() {
-    return 'DetailClubRouteArgs{key: $key, clubId: $clubId}';
+    return 'DetailClubRouteArgs{key: $key, id: $id}';
   }
 }
 
@@ -207,13 +206,13 @@ class DetailEvaluationRoute
     extends _i36.PageRouteInfo<DetailEvaluationRouteArgs> {
   DetailEvaluationRoute({
     _i37.Key? key,
-    required int evaluationId,
+    required int id,
     List<_i36.PageRouteInfo>? children,
   }) : super(
           DetailEvaluationRoute.name,
           args: DetailEvaluationRouteArgs(
             key: key,
-            evaluationId: evaluationId,
+            id: id,
           ),
           initialChildren: children,
         );
@@ -226,7 +225,7 @@ class DetailEvaluationRoute
       final args = data.argsAs<DetailEvaluationRouteArgs>();
       return _i4.DetailEvaluationScreen(
         key: args.key,
-        evaluationId: args.evaluationId,
+        id: args.id,
       );
     },
   );
@@ -235,25 +234,33 @@ class DetailEvaluationRoute
 class DetailEvaluationRouteArgs {
   const DetailEvaluationRouteArgs({
     this.key,
-    required this.evaluationId,
+    required this.id,
   });
 
   final _i37.Key? key;
 
-  final int evaluationId;
+  final int id;
 
   @override
   String toString() {
-    return 'DetailEvaluationRouteArgs{key: $key, evaluationId: $evaluationId}';
+    return 'DetailEvaluationRouteArgs{key: $key, id: $id}';
   }
 }
 
 /// generated route for
 /// [_i5.DetailExamScreen]
-class DetailExamRoute extends _i36.PageRouteInfo<void> {
-  const DetailExamRoute({List<_i36.PageRouteInfo>? children})
-      : super(
+class DetailExamRoute extends _i36.PageRouteInfo<DetailExamRouteArgs> {
+  DetailExamRoute({
+    _i37.Key? key,
+    required int id,
+    List<_i36.PageRouteInfo>? children,
+  }) : super(
           DetailExamRoute.name,
+          args: DetailExamRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -262,9 +269,31 @@ class DetailExamRoute extends _i36.PageRouteInfo<void> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i5.DetailExamScreen();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<DetailExamRouteArgs>(
+          orElse: () => DetailExamRouteArgs(id: pathParams.getInt('id')));
+      return _i5.DetailExamScreen(
+        key: args.key,
+        id: args.id,
+      );
     },
   );
+}
+
+class DetailExamRouteArgs {
+  const DetailExamRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i37.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'DetailExamRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
@@ -291,13 +320,13 @@ class DetailExerciseRoute extends _i36.PageRouteInfo<void> {
 class DetailProgramRoute extends _i36.PageRouteInfo<DetailProgramRouteArgs> {
   DetailProgramRoute({
     _i37.Key? key,
-    required int programId,
+    required int id,
     List<_i36.PageRouteInfo>? children,
   }) : super(
           DetailProgramRoute.name,
           args: DetailProgramRouteArgs(
             key: key,
-            programId: programId,
+            id: id,
           ),
           initialChildren: children,
         );
@@ -310,7 +339,7 @@ class DetailProgramRoute extends _i36.PageRouteInfo<DetailProgramRouteArgs> {
       final args = data.argsAs<DetailProgramRouteArgs>();
       return _i7.DetailProgramScreen(
         key: args.key,
-        programId: args.programId,
+        id: args.id,
       );
     },
   );
@@ -319,25 +348,33 @@ class DetailProgramRoute extends _i36.PageRouteInfo<DetailProgramRouteArgs> {
 class DetailProgramRouteArgs {
   const DetailProgramRouteArgs({
     this.key,
-    required this.programId,
+    required this.id,
   });
 
   final _i37.Key? key;
 
-  final int programId;
+  final int id;
 
   @override
   String toString() {
-    return 'DetailProgramRouteArgs{key: $key, programId: $programId}';
+    return 'DetailProgramRouteArgs{key: $key, id: $id}';
   }
 }
 
 /// generated route for
 /// [_i8.DetailQuestionScreen]
-class DetailQuestionRoute extends _i36.PageRouteInfo<void> {
-  const DetailQuestionRoute({List<_i36.PageRouteInfo>? children})
-      : super(
+class DetailQuestionRoute extends _i36.PageRouteInfo<DetailQuestionRouteArgs> {
+  DetailQuestionRoute({
+    _i37.Key? key,
+    required int id,
+    List<_i36.PageRouteInfo>? children,
+  }) : super(
           DetailQuestionRoute.name,
+          args: DetailQuestionRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -346,9 +383,31 @@ class DetailQuestionRoute extends _i36.PageRouteInfo<void> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i8.DetailQuestionScreen();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<DetailQuestionRouteArgs>(
+          orElse: () => DetailQuestionRouteArgs(id: pathParams.getInt('id')));
+      return _i8.DetailQuestionScreen(
+        key: args.key,
+        id: args.id,
+      );
     },
   );
+}
+
+class DetailQuestionRouteArgs {
+  const DetailQuestionRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i37.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'DetailQuestionRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for

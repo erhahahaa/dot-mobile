@@ -7,7 +7,7 @@ class DetailTacticalScreen extends StatelessWidget {
 
   const DetailTacticalScreen({
     super.key,
-    @PathParam('id') required this.id,
+    @pathParam required this.id,
   });
 
   @override

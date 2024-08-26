@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class DetailQuestionScreen extends StatelessWidget {
-  const DetailQuestionScreen({super.key});
+  final int id;
+
+  const DetailQuestionScreen({
+    super.key,
+    @pathParam required this.id,
+  });
 
   @override
   Widget build(BuildContext context) {

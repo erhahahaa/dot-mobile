@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class DetailEvaluationScreen extends StatelessWidget {
-  final int evaluationId;
+  final int id;
   const DetailEvaluationScreen({
     super.key,
-    required this.evaluationId,
+    required this.id,
   });
 
   @override

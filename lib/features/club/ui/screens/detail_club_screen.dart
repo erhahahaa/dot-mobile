@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class DetailClubScreen extends StatelessWidget {
-  final int clubId;
+  final int id;
   const DetailClubScreen({
     super.key,
-    @pathParam required this.clubId,
+    @pathParam required this.id,
   });
 
   @override

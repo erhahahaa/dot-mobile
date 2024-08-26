@@ -51,6 +51,10 @@ class AppRouter extends RootStackRouter {
                       path: 'upsert',
                       page: UpsertProgramRoute.page,
                     ),
+                    AutoRoute(
+                      path: ':id',
+                      page: DetailProgramRoute.page,
+                    )
                   ],
                 ),
                 AutoRoute(
@@ -64,6 +68,10 @@ class AppRouter extends RootStackRouter {
                     AutoRoute(
                       path: 'upsert',
                       page: UpsertTacticalRoute.page,
+                    ),
+                    AutoRoute(
+                      path: ':id',
+                      page: DetailTacticalRoute.page,
                     ),
                   ],
                 ),
@@ -79,6 +87,10 @@ class AppRouter extends RootStackRouter {
                       path: 'upsert',
                       page: UpsertExamRoute.page,
                     ),
+                    AutoRoute(
+                      path: ':id',
+                      page: DetailExamRoute.page,
+                    )
                   ],
                 ),
                 AutoRoute(
@@ -92,6 +104,10 @@ class AppRouter extends RootStackRouter {
                     AutoRoute(
                       path: 'upsert',
                       page: UpsertEvaluationRoute.page,
+                    ),
+                    AutoRoute(
+                      path: ':id',
+                      page: DetailEvaluationRoute.page,
                     ),
                   ],
                 ),

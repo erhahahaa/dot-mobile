@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class DetailProgramScreen extends StatelessWidget {
-  final int programId;
+  final int id;
   const DetailProgramScreen({
     super.key,
-    required this.programId,
+    required this.id,
   });
 
   @override
