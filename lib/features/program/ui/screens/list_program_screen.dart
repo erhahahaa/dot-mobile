@@ -306,7 +306,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
     bool isLast,
   ) {
     void onTap() => context.router.push(
-          DetailProgramRoute(programId: program.id),
+          DetailProgramRoute(id: program.id),
         );
 
     return ListViewBuilderTile(
