@@ -19,13 +19,19 @@ class ListExamScreen extends StatefulWidget {
 }
 
 class _ListExamScreenState extends State<ListExamScreen> {
+  ClubModel? club;
+
+  @override
+  void initState() {
+    super.initState();
+    final clubBloc = context.read<ClubBlocRead>();
+    club = clubBloc.state.whenOrNull(
+      success: (_, __, selectedClub) => selectedClub,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final clubBloc = context.watch<ClubBlocRead>();
-    final club = clubBloc.state.maybeWhen(
-      success: (_, __, selectedClub) => selectedClub,
-      orElse: () => ClubModel.fake(),
-    );
     return ParentWithSearchAndScrollController(
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
@@ -120,11 +126,6 @@ class _ListExamScreenState extends State<ListExamScreen> {
     BuildContext context,
     ScrollController scrollController,
   ) {
-    final clubBloc = context.watch<ClubBlocRead>();
-    final club = clubBloc.state.maybeWhen(
-      success: (_, __, selectedClub) => selectedClub,
-      orElse: () => ClubModel.fake(),
-    );
     return BlocBuilder<ExamBlocRead, BlocStateRead<ExamModel>>(
       builder: (context, state) {
         return state.maybeWhen(
@@ -153,7 +154,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
                           onPressed: club != null
                               ? () {
                                   context.read<ExamBlocRead>().add(
-                                        BlocEventRead.get(id: club.id),
+                                        BlocEventRead.get(id: club?.id),
                                       );
                                 }
                               : null,

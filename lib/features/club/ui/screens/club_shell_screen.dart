@@ -30,6 +30,12 @@ class ClubShellScreen extends StatelessWidget implements AutoRouteWrapper {
             ),
         ),
         BlocProvider.value(
+          value: context.read<ExamBlocRead>()
+            ..add(
+              BlocEventRead.get(id: id),
+            ),
+        ),
+        BlocProvider.value(
           value: context.read<EvaluationBlocRead>()
             ..add(
               BlocEventRead.get(id: id),

@@ -21,15 +21,19 @@ class ListProgramScreen extends StatefulWidget {
 
 class _ListProgramScreenState extends State<ListProgramScreen> {
   bool hideCalendar = false, hideListProgram = false;
+  ClubModel? club;
+
+  @override
+  void initState() {
+    super.initState();
+    final clubBloc = context.read<ClubBlocRead>();
+    club = clubBloc.state.whenOrNull(
+      success: (_, __, selectedClub) => selectedClub,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final clubBloc = context.watch<ClubBlocRead>();
-    final club = clubBloc.state.maybeWhen(
-      success: (_, __, selectedClub) => selectedClub,
-      orElse: () => ClubModel.fake(),
-    );
-
     return ParentWithSearchAndScrollController(
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
@@ -201,12 +205,6 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
   Widget _buildListProgram(
     BuildContext context,
   ) {
-    final clubBloc = context.watch<ClubBlocRead>();
-    final club = clubBloc.state.maybeWhen(
-      success: (_, __, selectedClub) => selectedClub,
-      orElse: () => ClubModel.fake(),
-    );
-
     return Column(
       children: [
         SizedBox(height: 16.h),
@@ -258,7 +256,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                                 onPressed: club != null
                                     ? () {
                                         context.read<ProgramBlocRead>().add(
-                                              BlocEventRead.get(id: club.id),
+                                              BlocEventRead.get(id: club?.id),
                                             );
                                       }
                                     : null,

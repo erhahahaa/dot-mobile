@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/app/di.dart';
 import 'package:dot_coaching/core/core.dart';
@@ -39,8 +37,6 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
   late GlobalKey<FormState> _formKey;
 
   DateTime? _dueAt;
-  File? image;
-  String? imageError;
 
   @override
   void initState() {
@@ -91,36 +87,6 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: ImagePickerWidget(
-                firstChild: imageFallback(
-                  image,
-                  null,
-                ),
-                onTap: () async {
-                  final res =
-                      await sl<ImagePickerService>().getImageFromGallery();
-                  res.fold(
-                    (l) {
-                      imageError = l.message;
-                    },
-                    (r) {
-                      setState(() {
-                        imageError = null;
-                        image = r;
-                      });
-                    },
-                  );
-                },
-              ),
-            ),
-            if (imageError != null) ...[
-              BodyMedium(
-                imageError,
-                color: context.theme.colorScheme.error,
-              ),
-            ],
-            Gap(16.h),
             FormLabel(context.str?.examTitle),
             FormInput(
               controller: _titleController,
@@ -157,6 +123,7 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
               currentFocus: _dueAtFocusNode,
               textInputAction: TextInputAction.done,
               hintText: context.str?.enterDueAt,
+              readOnly: true,
               validator: (String? value) {
                 if (value == null || value.isEmpty || _dueAt == null) {
                   return context.str?.dueAtRequired ?? 'Start date is required';
@@ -202,27 +169,29 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
                   isLoading: state is BlocStateWriteLoading,
                   text: 'Create Exam',
                   onTap: () {
-                    if (image == null) {
-                      setState(() {
-                        imageError = context.str?.examImageRequired;
-                      });
-                      return;
-                    } else {
-                      setState(() {
-                        imageError = null;
-                      });
+                    if (_formKey.currentState?.validate() ?? false) {
+                      final clubBloc = context.read<ClubBlocRead>();
+                      final club = clubBloc.state.whenOrNull(
+                        success: (_, __, selectedItem) => selectedItem,
+                      );
 
-                      // context.read<ExamBlocWrite>().add(
-                      //       BlocEventWrite.create(
-                      //         CreateExamParams(
-                      //           clubId: widget.club.id,
-                      //           image: image!,
-                      //           title: _titleController.text,
-                      //           description: _descriptionController.text,
-                      //           dueAt: _dueAt!,
-                      //         ),
-                      //       ),
-                      //     );
+                      if (club == null) {
+                        return context.errorToast(
+                          title: 'App state obfuscated',
+                          description: 'Please restart the app',
+                        );
+                      }
+
+                      context.read<ExamBlocWrite>().add(
+                            BlocEventWrite.create(
+                              CreateExamParams(
+                                clubId: club.id,
+                                title: _titleController.text,
+                                description: _descriptionController.text,
+                                dueAt: _dueAt!,
+                              ),
+                            ),
+                          );
                     }
                   },
                 );

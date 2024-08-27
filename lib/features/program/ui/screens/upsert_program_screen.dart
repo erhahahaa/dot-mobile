@@ -253,10 +253,10 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
 
                     if (_formKey.currentState?.validate() ?? false) {
                       final clubBloc = context.read<ClubBlocRead>();
-                      final club = clubBloc.state.maybeWhen(
+                      final club = clubBloc.state.whenOrNull(
                         success: (_, __, selectedItem) => selectedItem,
-                        orElse: () => null,
                       );
+
                       if (club == null) {
                         return context.errorToast(
                           title: 'App state obfuscated',

@@ -55,7 +55,7 @@ class DioService with FirebaseCrashLoggerService {
         }
       }
       _dio = _createDio();
-      // _dio?.interceptors.add(DioInterceptor());
+      _dio?.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
@@ -74,7 +74,7 @@ class DioService with FirebaseCrashLoggerService {
       }
     }
     _dio = _createDio();
-    // _dio?.interceptors.add(DioInterceptor());
+    _dio?.interceptors.add(DioInterceptor());
   }
 
   Dio _createDio() => Dio(
