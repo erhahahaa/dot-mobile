@@ -93,6 +93,18 @@ const MediaEmbedEntitySchema = IsarGeneratedSchema(
         type: IsarType.string,
       ),
       IsarPropertySchema(
+        name: 'aspectRatio',
+        type: IsarType.double,
+      ),
+      IsarPropertySchema(
+        name: 'width',
+        type: IsarType.long,
+      ),
+      IsarPropertySchema(
+        name: 'height',
+        type: IsarType.long,
+      ),
+      IsarPropertySchema(
         name: 'createdAt',
         type: IsarType.dateTime,
       ),
@@ -143,9 +155,12 @@ int serializeMediaEmbedEntity(IsarWriter writer, MediaEmbedEntity object) {
       IsarCore.writeString(writer, 11, value);
     }
   }
-  IsarCore.writeLong(writer, 12,
+  IsarCore.writeDouble(writer, 12, object.aspectRatio ?? double.nan);
+  IsarCore.writeLong(writer, 13, object.width ?? -9223372036854775808);
+  IsarCore.writeLong(writer, 14, object.height ?? -9223372036854775808);
+  IsarCore.writeLong(writer, 15,
       object.createdAt?.toUtc().microsecondsSinceEpoch ?? -9223372036854775808);
-  IsarCore.writeLong(writer, 13,
+  IsarCore.writeLong(writer, 16,
       object.updatedAt?.toUtc().microsecondsSinceEpoch ?? -9223372036854775808);
   return 0;
 }
@@ -209,9 +224,36 @@ MediaEmbedEntity deserializeMediaEmbedEntity(IsarReader reader) {
   _thumbPath = IsarCore.readString(reader, 10);
   final String? _thumbUrl;
   _thumbUrl = IsarCore.readString(reader, 11);
+  final double? _aspectRatio;
+  {
+    final value = IsarCore.readDouble(reader, 12);
+    if (value.isNaN) {
+      _aspectRatio = null;
+    } else {
+      _aspectRatio = value;
+    }
+  }
+  final int? _width;
+  {
+    final value = IsarCore.readLong(reader, 13);
+    if (value == -9223372036854775808) {
+      _width = null;
+    } else {
+      _width = value;
+    }
+  }
+  final int? _height;
+  {
+    final value = IsarCore.readLong(reader, 14);
+    if (value == -9223372036854775808) {
+      _height = null;
+    } else {
+      _height = value;
+    }
+  }
   final DateTime? _createdAt;
   {
-    final value = IsarCore.readLong(reader, 12);
+    final value = IsarCore.readLong(reader, 15);
     if (value == -9223372036854775808) {
       _createdAt = null;
     } else {
@@ -221,7 +263,7 @@ MediaEmbedEntity deserializeMediaEmbedEntity(IsarReader reader) {
   }
   final DateTime? _updatedAt;
   {
-    final value = IsarCore.readLong(reader, 13);
+    final value = IsarCore.readLong(reader, 16);
     if (value == -9223372036854775808) {
       _updatedAt = null;
     } else {
@@ -241,6 +283,9 @@ MediaEmbedEntity deserializeMediaEmbedEntity(IsarReader reader) {
     url: _url,
     thumbPath: _thumbPath,
     thumbUrl: _thumbUrl,
+    aspectRatio: _aspectRatio,
+    width: _width,
+    height: _height,
     createdAt: _createdAt,
     updatedAt: _updatedAt,
   );
@@ -1836,16 +1881,328 @@ extension MediaEmbedEntityQueryFilter
   }
 
   QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
-      createdAtIsNull() {
+      aspectRatioIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const IsNullCondition(property: 12));
     });
   }
 
   QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
-      createdAtIsNotNull() {
+      aspectRatioIsNotNull() {
     return QueryBuilder.apply(not(), (query) {
       return query.addFilterCondition(const IsNullCondition(property: 12));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      aspectRatioEqualTo(
+    double? value, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        EqualCondition(
+          property: 12,
+          value: value,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      aspectRatioGreaterThan(
+    double? value, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterCondition(
+          property: 12,
+          value: value,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      aspectRatioGreaterThanOrEqualTo(
+    double? value, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterOrEqualCondition(
+          property: 12,
+          value: value,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      aspectRatioLessThan(
+    double? value, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessCondition(
+          property: 12,
+          value: value,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      aspectRatioLessThanOrEqualTo(
+    double? value, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessOrEqualCondition(
+          property: 12,
+          value: value,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      aspectRatioBetween(
+    double? lower,
+    double? upper, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        BetweenCondition(
+          property: 12,
+          lower: lower,
+          upper: upper,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      widthIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 13));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      widthIsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 13));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      widthEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        EqualCondition(
+          property: 13,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      widthGreaterThan(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterCondition(
+          property: 13,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      widthGreaterThanOrEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterOrEqualCondition(
+          property: 13,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      widthLessThan(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessCondition(
+          property: 13,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      widthLessThanOrEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessOrEqualCondition(
+          property: 13,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      widthBetween(
+    int? lower,
+    int? upper,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        BetweenCondition(
+          property: 13,
+          lower: lower,
+          upper: upper,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      heightIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 14));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      heightIsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 14));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      heightEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        EqualCondition(
+          property: 14,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      heightGreaterThan(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterCondition(
+          property: 14,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      heightGreaterThanOrEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterOrEqualCondition(
+          property: 14,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      heightLessThan(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessCondition(
+          property: 14,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      heightLessThanOrEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessOrEqualCondition(
+          property: 14,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      heightBetween(
+    int? lower,
+    int? upper,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        BetweenCondition(
+          property: 14,
+          lower: lower,
+          upper: upper,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      createdAtIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 15));
+    });
+  }
+
+  QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
+      createdAtIsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 15));
     });
   }
 
@@ -1856,7 +2213,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EqualCondition(
-          property: 12,
+          property: 15,
           value: value,
         ),
       );
@@ -1870,7 +2227,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterCondition(
-          property: 12,
+          property: 15,
           value: value,
         ),
       );
@@ -1884,7 +2241,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterOrEqualCondition(
-          property: 12,
+          property: 15,
           value: value,
         ),
       );
@@ -1898,7 +2255,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessCondition(
-          property: 12,
+          property: 15,
           value: value,
         ),
       );
@@ -1912,7 +2269,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
-          property: 12,
+          property: 15,
           value: value,
         ),
       );
@@ -1927,7 +2284,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
-          property: 12,
+          property: 15,
           lower: lower,
           upper: upper,
         ),
@@ -1938,14 +2295,14 @@ extension MediaEmbedEntityQueryFilter
   QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       updatedAtIsNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 13));
+      return query.addFilterCondition(const IsNullCondition(property: 16));
     });
   }
 
   QueryBuilder<MediaEmbedEntity, MediaEmbedEntity, QAfterFilterCondition>
       updatedAtIsNotNull() {
     return QueryBuilder.apply(not(), (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 13));
+      return query.addFilterCondition(const IsNullCondition(property: 16));
     });
   }
 
@@ -1956,7 +2313,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EqualCondition(
-          property: 13,
+          property: 16,
           value: value,
         ),
       );
@@ -1970,7 +2327,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterCondition(
-          property: 13,
+          property: 16,
           value: value,
         ),
       );
@@ -1984,7 +2341,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterOrEqualCondition(
-          property: 13,
+          property: 16,
           value: value,
         ),
       );
@@ -1998,7 +2355,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessCondition(
-          property: 13,
+          property: 16,
           value: value,
         ),
       );
@@ -2012,7 +2369,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
-          property: 13,
+          property: 16,
           value: value,
         ),
       );
@@ -2027,7 +2384,7 @@ extension MediaEmbedEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
-          property: 13,
+          property: 16,
           lower: lower,
           upper: upper,
         ),

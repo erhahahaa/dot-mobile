@@ -29,6 +29,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDataSource {
       converter: (res) => UserModel.fromJson(res['data']),
     );
 
+    await _remote.clearAuth();
     return res;
   }
 
@@ -36,13 +37,12 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDataSource {
   Future<Either<Failure, UserModel>> signIn(
     SignInParams params,
   ) async {
-    _remote.clearAuth();
     final res = await _remote.postRequest(
       ListAPI.AUTH_SIGN_IN,
       data: params.toJson(),
       converter: (res) => UserModel.fromJson(res['data']),
     );
-    _remote.clearAuth();
+    await _remote.clearAuth();
 
     return res;
   }
@@ -51,13 +51,12 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDataSource {
   Future<Either<Failure, UserModel>> signUp(
     SignUpParams params,
   ) async {
-    _remote.clearAuth();
     final res = await _remote.postRequest(
       ListAPI.AUTH_SIGN_UP,
       data: params.toJson(),
       converter: (res) => UserModel.fromJson(res['data']),
     );
-    _remote.clearAuth();
+    await _remote.clearAuth();
 
     return res;
   }

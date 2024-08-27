@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/app/router.gr.dart';
 import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/core/gen/assets.gen.dart';
 import 'package:dot_coaching/features/feature.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';

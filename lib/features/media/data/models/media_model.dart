@@ -23,6 +23,9 @@ class MediaModel with _$MediaModel {
     @Default('') String url,
     String? thumbPath,
     String? thumbUrl,
+    double? aspectRatio,
+    int? width,
+    int? height,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _MediaModel;
@@ -46,10 +49,14 @@ class MediaModel with _$MediaModel {
       url: entity.url,
       thumbPath: entity.thumbPath,
       thumbUrl: entity.thumbUrl,
+      aspectRatio: entity.aspectRatio,
+      width: entity.width,
+      height: entity.height,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );
   }
+  
 
   MediaEntity toEntity() {
     return MediaEntity(
@@ -65,6 +72,9 @@ class MediaModel with _$MediaModel {
       url: url,
       thumbPath: thumbPath,
       thumbUrl: thumbUrl,
+      aspectRatio: aspectRatio,
+      width: width,
+      height: height,
       createdAt: createdAt,
       updatedAt: updatedAt,
     );
@@ -80,6 +90,10 @@ class MediaModel with _$MediaModel {
       fileSize: Random().nextInt(100),
       path: BoneMock.subtitle,
       url: AppConstants.SPORT_IMAGE,
+      type: MediaType.imageJpg,
+      aspectRatio: 1.0,
+      width: 100,
+      height: 100,
     );
   }
 }

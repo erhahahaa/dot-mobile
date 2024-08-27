@@ -144,6 +144,9 @@ class MediaEntity {
   String url;
   String? thumbPath;
   String? thumbUrl;
+  double? aspectRatio;
+  int? width;
+  int? height;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -160,6 +163,9 @@ class MediaEntity {
     this.url = '',
     this.thumbPath,
     this.thumbUrl,
+    this.aspectRatio,
+    this.width,
+    this.height,
     this.createdAt,
     this.updatedAt,
   });

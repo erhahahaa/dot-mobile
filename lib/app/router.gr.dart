@@ -328,6 +328,7 @@ class DetailProgramRoute extends _i36.PageRouteInfo<DetailProgramRouteArgs> {
             key: key,
             id: id,
           ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -336,11 +337,14 @@ class DetailProgramRoute extends _i36.PageRouteInfo<DetailProgramRouteArgs> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<DetailProgramRouteArgs>();
-      return _i7.DetailProgramScreen(
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<DetailProgramRouteArgs>(
+          orElse: () => DetailProgramRouteArgs(id: pathParams.getInt('id')));
+      return _i36.WrappedRoute(
+          child: _i7.DetailProgramScreen(
         key: args.key,
         id: args.id,
-      );
+      ));
     },
   );
 }
@@ -926,17 +930,10 @@ class UpsertExerciseRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i33.UpsertProgramScreen]
-class UpsertProgramRoute extends _i36.PageRouteInfo<UpsertProgramRouteArgs> {
-  UpsertProgramRoute({
-    _i37.Key? key,
-    required _i38.ClubModel club,
-    List<_i36.PageRouteInfo>? children,
-  }) : super(
+class UpsertProgramRoute extends _i36.PageRouteInfo<void> {
+  const UpsertProgramRoute({List<_i36.PageRouteInfo>? children})
+      : super(
           UpsertProgramRoute.name,
-          args: UpsertProgramRouteArgs(
-            key: key,
-            club: club,
-          ),
           initialChildren: children,
         );
 
@@ -945,30 +942,9 @@ class UpsertProgramRoute extends _i36.PageRouteInfo<UpsertProgramRouteArgs> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<UpsertProgramRouteArgs>();
-      return _i36.WrappedRoute(
-          child: _i33.UpsertProgramScreen(
-        key: args.key,
-        club: args.club,
-      ));
+      return _i36.WrappedRoute(child: const _i33.UpsertProgramScreen());
     },
   );
-}
-
-class UpsertProgramRouteArgs {
-  const UpsertProgramRouteArgs({
-    this.key,
-    required this.club,
-  });
-
-  final _i37.Key? key;
-
-  final _i38.ClubModel club;
-
-  @override
-  String toString() {
-    return 'UpsertProgramRouteArgs{key: $key, club: $club}';
-  }
 }
 
 /// generated route for

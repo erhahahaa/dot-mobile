@@ -9,7 +9,7 @@ part 'club_model.g.dart';
 
 @freezed
 class ClubModel with _$ClubModel {
-  factory ClubModel({
+  const factory ClubModel({
     @Default(0) int id,
     @Default(0) int creatorId,
     @Default('Indo Sports') String name,
@@ -22,7 +22,7 @@ class ClubModel with _$ClubModel {
     DateTime? createdAt,
   }) = _ClubModel;
 
-  ClubModel._();
+  const ClubModel._();
 
   factory ClubModel.fromJson(Map<String, dynamic> json) =>
       _$ClubModelFromJson(json);

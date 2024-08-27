@@ -6,8 +6,8 @@ part of 'exercise_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$mExerciseModelImpl _$$mExerciseModelImplFromJson(Map<String, dynamic> json) =>
-    _$mExerciseModelImpl(
+_$ExerciseModelImpl _$$ExerciseModelImplFromJson(Map<String, dynamic> json) =>
+    _$ExerciseModelImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
       programId: (json['programId'] as num?)?.toInt() ?? 0,
       mediaId: (json['mediaId'] as num?)?.toInt(),
@@ -36,7 +36,7 @@ _$mExerciseModelImpl _$$mExerciseModelImplFromJson(Map<String, dynamic> json) =>
               json['intensity'] as Map<String, dynamic>),
       media: json['media'] == null
           ? null
-          : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),
+          : MediaModel.fromJson(json['media'] as Map<String, dynamic>),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -45,8 +45,7 @@ _$mExerciseModelImpl _$$mExerciseModelImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$$mExerciseModelImplToJson(
-        _$mExerciseModelImpl instance) =>
+Map<String, dynamic> _$$ExerciseModelImplToJson(_$ExerciseModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'programId': instance.programId,

@@ -24,6 +24,7 @@ class DownloadMediaUsecase extends FPUC<File, DownloadMediaParams> {
 class DownloadMediaParams with _$DownloadMediaParams {
   const factory DownloadMediaParams({
     required MediaModel media,
+    Function(int, int)? onReceiveProgress,
   }) = _DownloadMediaParams;
 
   const DownloadMediaParams._();

@@ -23,6 +23,9 @@ _$MediaEmbedModelImpl _$$MediaEmbedModelImplFromJson(
       url: json['url'] as String? ?? '',
       thumbPath: json['thumbPath'] as String?,
       thumbUrl: json['thumbUrl'] as String?,
+      aspectRatio: (json['aspectRatio'] as num?)?.toDouble(),
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -46,6 +49,9 @@ Map<String, dynamic> _$$MediaEmbedModelImplToJson(
       'url': instance.url,
       'thumbPath': instance.thumbPath,
       'thumbUrl': instance.thumbUrl,
+      'aspectRatio': instance.aspectRatio,
+      'width': instance.width,
+      'height': instance.height,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };

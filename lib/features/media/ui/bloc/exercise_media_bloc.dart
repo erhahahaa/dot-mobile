@@ -127,9 +127,13 @@ class ExerciseMediaBlocRead extends BlocRead<MediaModel> {
     BlocEventReadGetOne<MediaModel> event,
     Emitter<BlocStateRead<MediaModel>> emit,
   ) async {
-    emit(const BlocStateReadLoading());
     final res = await _downloadMediaUsecase.call(
-      DownloadMediaParams(media: event.params),
+      DownloadMediaParams(
+        media: event.params,
+        onReceiveProgress: (count, total) {
+          emit(BlocStateReadLoading(count: count, total: total));
+        },
+      ),
     );
 
     res.fold(

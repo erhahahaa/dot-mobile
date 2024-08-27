@@ -40,7 +40,8 @@ class GridViewBuilder<T> extends StatelessWidget {
 class GridViewBuilderTile extends StatelessWidget {
   final EdgeInsetsGeometry? padding, margin;
   final String? titleText, imageUrl;
-  final Widget? child;
+  final Widget? child, media;
+  final VoidCallback? onTap;
 
   const GridViewBuilderTile({
     super.key,
@@ -49,6 +50,8 @@ class GridViewBuilderTile extends StatelessWidget {
     this.titleText,
     this.imageUrl,
     this.child,
+    this.onTap,
+    this.media,
   });
 
   @override
@@ -60,7 +63,7 @@ class GridViewBuilderTile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (imageUrl != null) ...[
+          if (imageUrl != null && media == null) ...[
             Center(
               child: CachedNetworkImage(
                 imageUrl: imageUrl!,
@@ -69,8 +72,12 @@ class GridViewBuilderTile extends StatelessWidget {
                 height: 150.h,
               ),
             ),
+          ] else ...[
+            media!,
           ],
-          if (titleText != null) TitleSmall(titleText),
+          if (titleText != null) ...[
+            InkWell(onTap: onTap, child: TitleSmall(titleText)),
+          ],
           if (child != null) child!,
         ],
       ),

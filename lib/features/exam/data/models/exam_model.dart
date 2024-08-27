@@ -9,7 +9,7 @@ part 'exam_model.g.dart';
 
 @freezed
 class ExamModel with _$ExamModel {
-  factory ExamModel({
+  const factory ExamModel({
     @Default(0) int id,
     @Default(0) int clubId,
     int? imageId,
@@ -21,7 +21,7 @@ class ExamModel with _$ExamModel {
     DateTime? updatedAt,
   }) = _ExamModel;
 
-  ExamModel._();
+  const ExamModel._();
 
   factory ExamModel.fromJson(Map<String, dynamic> json) =>
       _$ExamModelFromJson(json);

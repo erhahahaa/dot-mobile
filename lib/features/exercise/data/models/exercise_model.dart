@@ -8,7 +8,7 @@ part 'exercise_model.g.dart';
 
 @freezed
 class ExerciseModel with _$ExerciseModel {
-  factory ExerciseModel({
+  const factory ExerciseModel({
     @Default(0) int id,
     @Default(0) int programId,
     int? mediaId,
@@ -20,12 +20,12 @@ class ExerciseModel with _$ExerciseModel {
     ExerciseUnitValueModel? rest,
     ExerciseUnitValueModel? tempo,
     ExerciseUnitValueModel? intensity,
-    MediaEmbedModel? media,
+    MediaModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,
-  }) = mExerciseModel;
+  }) = _ExerciseModel;
 
-  ExerciseModel._();
+  const ExerciseModel._();
 
   factory ExerciseModel.fromJson(Map<String, dynamic> json) =>
       _$ExerciseModelFromJson(json);
@@ -53,9 +53,6 @@ class ExerciseModel with _$ExerciseModel {
       intensity: entity.intensity != null
           ? ExerciseUnitValueModel.fromEntity(entity.intensity!)
           : null,
-      media: entity.media != null
-          ? MediaEmbedModel.fromEntity(entity.media!)
-          : null,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );
@@ -73,7 +70,6 @@ class ExerciseModel with _$ExerciseModel {
       sets: sets?.toEntity(),
       rest: rest?.toEntity(),
       tempo: tempo?.toEntity(),
-      media: media?.toEntity(),
       intensity: intensity?.toEntity(),
       createdAt: createdAt,
       updatedAt: updatedAt,
@@ -95,7 +91,7 @@ class ExerciseModel with _$ExerciseModel {
       intensity: ExerciseUnitValueModel.fake(),
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
-      media: MediaEmbedModel.fake(),
+      media: MediaModel.fake(),
     );
   }
 }

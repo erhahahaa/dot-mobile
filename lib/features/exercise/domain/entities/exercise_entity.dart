@@ -7,7 +7,7 @@ enum ExerciseRestUnit { sec, min, hour }
 
 enum ExerciseSetsUnit { set }
 
-enum ExerciseRepitionUnit { rep }
+enum ExerciseRepetitionUnit { rep }
 
 enum ExerciseTempoUnit { mpm, mph, bpm, kph, sec }
 
@@ -64,10 +64,10 @@ class ExerciseUnitValueEntity {
   });
 }
 
-extension ExerciseRepitionUnitExtension on ExerciseRepitionUnit {
+extension ExerciseRepetitionUnitExtension on ExerciseRepetitionUnit {
   String get name {
     switch (this) {
-      case ExerciseRepitionUnit.rep:
+      case ExerciseRepetitionUnit.rep:
         return 'Rep';
       default:
         return 'Rep';
@@ -76,7 +76,7 @@ extension ExerciseRepitionUnitExtension on ExerciseRepitionUnit {
 
   String get value {
     switch (this) {
-      case ExerciseRepitionUnit.rep:
+      case ExerciseRepetitionUnit.rep:
       default:
         return 'reps';
     }

@@ -19,7 +19,7 @@ mixin _$BlocStateRead<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(int? count, int? total) loading,
     required TResult Function(
             List<T> items, List<T> filteredItems, T? selectedItem)
         success,
@@ -29,7 +29,7 @@ mixin _$BlocStateRead<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(int? count, int? total)? loading,
     TResult? Function(List<T> items, List<T> filteredItems, T? selectedItem)?
         success,
     TResult? Function(String message)? failure,
@@ -38,7 +38,7 @@ mixin _$BlocStateRead<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(int? count, int? total)? loading,
     TResult Function(List<T> items, List<T> filteredItems, T? selectedItem)?
         success,
     TResult Function(String message)? failure,
@@ -137,7 +137,7 @@ class _$BlocStateReadInitialImpl<T> implements BlocStateReadInitial<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(int? count, int? total) loading,
     required TResult Function(
             List<T> items, List<T> filteredItems, T? selectedItem)
         success,
@@ -150,7 +150,7 @@ class _$BlocStateReadInitialImpl<T> implements BlocStateReadInitial<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(int? count, int? total)? loading,
     TResult? Function(List<T> items, List<T> filteredItems, T? selectedItem)?
         success,
     TResult? Function(String message)? failure,
@@ -162,7 +162,7 @@ class _$BlocStateReadInitialImpl<T> implements BlocStateReadInitial<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(int? count, int? total)? loading,
     TResult Function(List<T> items, List<T> filteredItems, T? selectedItem)?
         success,
     TResult Function(String message)? failure,
@@ -222,6 +222,8 @@ abstract class _$$BlocStateReadLoadingImplCopyWith<T, $Res> {
           _$BlocStateReadLoadingImpl<T> value,
           $Res Function(_$BlocStateReadLoadingImpl<T>) then) =
       __$$BlocStateReadLoadingImplCopyWithImpl<T, $Res>;
+  @useResult
+  $Res call({int? count, int? total});
 }
 
 /// @nodoc
@@ -234,65 +236,98 @@ class __$$BlocStateReadLoadingImplCopyWithImpl<T, $Res>
 
   /// Create a copy of BlocStateRead
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? count = freezed,
+    Object? total = freezed,
+  }) {
+    return _then(_$BlocStateReadLoadingImpl<T>(
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int?,
+      total: freezed == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$BlocStateReadLoadingImpl<T> implements BlocStateReadLoading<T> {
-  const _$BlocStateReadLoadingImpl();
+  const _$BlocStateReadLoadingImpl({this.count, this.total});
+
+  @override
+  final int? count;
+  @override
+  final int? total;
 
   @override
   String toString() {
-    return 'BlocStateRead<$T>.loading()';
+    return 'BlocStateRead<$T>.loading(count: $count, total: $total)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlocStateReadLoadingImpl<T>);
+            other is _$BlocStateReadLoadingImpl<T> &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.total, total) || other.total == total));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, count, total);
+
+  /// Create a copy of BlocStateRead
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BlocStateReadLoadingImplCopyWith<T, _$BlocStateReadLoadingImpl<T>>
+      get copyWith => __$$BlocStateReadLoadingImplCopyWithImpl<T,
+          _$BlocStateReadLoadingImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(int? count, int? total) loading,
     required TResult Function(
             List<T> items, List<T> filteredItems, T? selectedItem)
         success,
     required TResult Function(String message) failure,
   }) {
-    return loading();
+    return loading(count, total);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(int? count, int? total)? loading,
     TResult? Function(List<T> items, List<T> filteredItems, T? selectedItem)?
         success,
     TResult? Function(String message)? failure,
   }) {
-    return loading?.call();
+    return loading?.call(count, total);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(int? count, int? total)? loading,
     TResult Function(List<T> items, List<T> filteredItems, T? selectedItem)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(count, total);
     }
     return orElse();
   }
@@ -336,7 +371,17 @@ class _$BlocStateReadLoadingImpl<T> implements BlocStateReadLoading<T> {
 }
 
 abstract class BlocStateReadLoading<T> implements BlocStateRead<T> {
-  const factory BlocStateReadLoading() = _$BlocStateReadLoadingImpl<T>;
+  const factory BlocStateReadLoading({final int? count, final int? total}) =
+      _$BlocStateReadLoadingImpl<T>;
+
+  int? get count;
+  int? get total;
+
+  /// Create a copy of BlocStateRead
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BlocStateReadLoadingImplCopyWith<T, _$BlocStateReadLoadingImpl<T>>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -451,7 +496,7 @@ class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(int? count, int? total) loading,
     required TResult Function(
             List<T> items, List<T> filteredItems, T? selectedItem)
         success,
@@ -464,7 +509,7 @@ class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(int? count, int? total)? loading,
     TResult? Function(List<T> items, List<T> filteredItems, T? selectedItem)?
         success,
     TResult? Function(String message)? failure,
@@ -476,7 +521,7 @@ class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(int? count, int? total)? loading,
     TResult Function(List<T> items, List<T> filteredItems, T? selectedItem)?
         success,
     TResult Function(String message)? failure,
@@ -614,7 +659,7 @@ class _$BlocStateReadFailureImpl<T> implements BlocStateReadFailure<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(int? count, int? total) loading,
     required TResult Function(
             List<T> items, List<T> filteredItems, T? selectedItem)
         success,
@@ -627,7 +672,7 @@ class _$BlocStateReadFailureImpl<T> implements BlocStateReadFailure<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(int? count, int? total)? loading,
     TResult? Function(List<T> items, List<T> filteredItems, T? selectedItem)?
         success,
     TResult? Function(String message)? failure,
@@ -639,7 +684,7 @@ class _$BlocStateReadFailureImpl<T> implements BlocStateReadFailure<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(int? count, int? total)? loading,
     TResult Function(List<T> items, List<T> filteredItems, T? selectedItem)?
         success,
     TResult Function(String message)? failure,

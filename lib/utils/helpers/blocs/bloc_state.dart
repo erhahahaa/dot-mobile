@@ -5,7 +5,10 @@ part 'bloc_state.freezed.dart';
 @Freezed(genericArgumentFactories: true)
 class BlocStateRead<T> with _$BlocStateRead<T> {
   const factory BlocStateRead.initial() = BlocStateReadInitial;
-  const factory BlocStateRead.loading() = BlocStateReadLoading;
+  const factory BlocStateRead.loading({
+    int? count,
+    int? total,
+  }) = BlocStateReadLoading;
   const factory BlocStateRead.success({
     @Default([]) List<T> items,
     @Default([]) List<T> filteredItems,

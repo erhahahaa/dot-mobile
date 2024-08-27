@@ -23,6 +23,9 @@ class MediaEmbedModel with _$MediaEmbedModel {
     @Default('') String url,
     String? thumbPath,
     String? thumbUrl,
+    double? aspectRatio,
+    int? width,
+    int? height,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _MediaEmbedModel;
@@ -45,6 +48,9 @@ class MediaEmbedModel with _$MediaEmbedModel {
       url: entity.url,
       thumbPath: entity.thumbPath,
       thumbUrl: entity.thumbUrl,
+      aspectRatio: entity.aspectRatio,
+      width: entity.width,
+      height: entity.height,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );
@@ -52,23 +58,38 @@ class MediaEmbedModel with _$MediaEmbedModel {
 
   MediaEmbedEntity toEntity() {
     return MediaEmbedEntity(
+      creatorId: creatorId,
+      clubId: clubId,
       name: name,
+      description: description,
       fileSize: fileSize,
-      url: url,
+      path: path,
       type: type,
+      parent: parent,
+      url: url,
       thumbPath: thumbPath,
       thumbUrl: thumbUrl,
+      aspectRatio: aspectRatio,
+      width: width,
+      height: height,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
     );
   }
 
   static MediaEmbedModel fake() {
     return MediaEmbedModel(
+      creatorId: Random().nextInt(100),
+      clubId: Random().nextInt(100),
       name: BoneMock.name,
+      description: BoneMock.subtitle,
       fileSize: Random().nextInt(100),
+      path: BoneMock.subtitle,
       url: AppConstants.SPORT_IMAGE,
-      type: MediaType.applicationOctetStream,
-      thumbPath: BoneMock.subtitle,
-      thumbUrl: AppConstants.SPORT_IMAGE,
+      type: MediaType.imageJpg,
+      aspectRatio: 1.0,
+      width: 100,
+      height: 100,
     );
   }
 }

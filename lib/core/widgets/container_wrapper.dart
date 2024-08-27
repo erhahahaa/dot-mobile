@@ -29,7 +29,9 @@ class ContainerWrapper extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         borderRadius: borderRadius ?? BorderRadius.circular(8.r),
-        color: color ?? context.moonColors?.hit.withOpacity(0.03),
+        // color: color ?? context.moonColors?.hit.withOpacity(0.03),
+        color: color ??
+            (context.isDarkMode ? const Color(0xFF1E1E1E) : const Color(0xFFF5F5F5)),
       ),
       child: child,
     );

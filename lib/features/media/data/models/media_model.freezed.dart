@@ -32,6 +32,9 @@ mixin _$MediaModel {
   String get url => throw _privateConstructorUsedError;
   String? get thumbPath => throw _privateConstructorUsedError;
   String? get thumbUrl => throw _privateConstructorUsedError;
+  double? get aspectRatio => throw _privateConstructorUsedError;
+  int? get width => throw _privateConstructorUsedError;
+  int? get height => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -64,6 +67,9 @@ abstract class $MediaModelCopyWith<$Res> {
       String url,
       String? thumbPath,
       String? thumbUrl,
+      double? aspectRatio,
+      int? width,
+      int? height,
       DateTime? createdAt,
       DateTime? updatedAt});
 }
@@ -95,6 +101,9 @@ class _$MediaModelCopyWithImpl<$Res, $Val extends MediaModel>
     Object? url = null,
     Object? thumbPath = freezed,
     Object? thumbUrl = freezed,
+    Object? aspectRatio = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -147,6 +156,18 @@ class _$MediaModelCopyWithImpl<$Res, $Val extends MediaModel>
           ? _value.thumbUrl
           : thumbUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      aspectRatio: freezed == aspectRatio
+          ? _value.aspectRatio
+          : aspectRatio // ignore: cast_nullable_to_non_nullable
+              as double?,
+      width: freezed == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int?,
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -180,6 +201,9 @@ abstract class _$$MediaModelImplCopyWith<$Res>
       String url,
       String? thumbPath,
       String? thumbUrl,
+      double? aspectRatio,
+      int? width,
+      int? height,
       DateTime? createdAt,
       DateTime? updatedAt});
 }
@@ -209,6 +233,9 @@ class __$$MediaModelImplCopyWithImpl<$Res>
     Object? url = null,
     Object? thumbPath = freezed,
     Object? thumbUrl = freezed,
+    Object? aspectRatio = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -261,6 +288,18 @@ class __$$MediaModelImplCopyWithImpl<$Res>
           ? _value.thumbUrl
           : thumbUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      aspectRatio: freezed == aspectRatio
+          ? _value.aspectRatio
+          : aspectRatio // ignore: cast_nullable_to_non_nullable
+              as double?,
+      width: freezed == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int?,
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -289,6 +328,9 @@ class _$MediaModelImpl extends _MediaModel {
       this.url = '',
       this.thumbPath,
       this.thumbUrl,
+      this.aspectRatio,
+      this.width,
+      this.height,
       this.createdAt,
       this.updatedAt})
       : super._();
@@ -330,13 +372,19 @@ class _$MediaModelImpl extends _MediaModel {
   @override
   final String? thumbUrl;
   @override
+  final double? aspectRatio;
+  @override
+  final int? width;
+  @override
+  final int? height;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'MediaModel(id: $id, creatorId: $creatorId, clubId: $clubId, name: $name, description: $description, fileSize: $fileSize, path: $path, type: $type, parent: $parent, url: $url, thumbPath: $thumbPath, thumbUrl: $thumbUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'MediaModel(id: $id, creatorId: $creatorId, clubId: $clubId, name: $name, description: $description, fileSize: $fileSize, path: $path, type: $type, parent: $parent, url: $url, thumbPath: $thumbPath, thumbUrl: $thumbUrl, aspectRatio: $aspectRatio, width: $width, height: $height, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -361,6 +409,10 @@ class _$MediaModelImpl extends _MediaModel {
                 other.thumbPath == thumbPath) &&
             (identical(other.thumbUrl, thumbUrl) ||
                 other.thumbUrl == thumbUrl) &&
+            (identical(other.aspectRatio, aspectRatio) ||
+                other.aspectRatio == aspectRatio) &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -383,6 +435,9 @@ class _$MediaModelImpl extends _MediaModel {
       url,
       thumbPath,
       thumbUrl,
+      aspectRatio,
+      width,
+      height,
       createdAt,
       updatedAt);
 
@@ -416,6 +471,9 @@ abstract class _MediaModel extends MediaModel {
       final String url,
       final String? thumbPath,
       final String? thumbUrl,
+      final double? aspectRatio,
+      final int? width,
+      final int? height,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$MediaModelImpl;
   _MediaModel._() : super._();
@@ -447,6 +505,12 @@ abstract class _MediaModel extends MediaModel {
   String? get thumbPath;
   @override
   String? get thumbUrl;
+  @override
+  double? get aspectRatio;
+  @override
+  int? get width;
+  @override
+  int? get height;
   @override
   DateTime? get createdAt;
   @override

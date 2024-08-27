@@ -98,6 +98,18 @@ const MediaEntitySchema = IsarGeneratedSchema(
         type: IsarType.string,
       ),
       IsarPropertySchema(
+        name: 'aspectRatio',
+        type: IsarType.double,
+      ),
+      IsarPropertySchema(
+        name: 'width',
+        type: IsarType.long,
+      ),
+      IsarPropertySchema(
+        name: 'height',
+        type: IsarType.long,
+      ),
+      IsarPropertySchema(
         name: 'createdAt',
         type: IsarType.dateTime,
       ),
@@ -150,9 +162,12 @@ int serializeMediaEntity(IsarWriter writer, MediaEntity object) {
       IsarCore.writeString(writer, 11, value);
     }
   }
-  IsarCore.writeLong(writer, 12,
+  IsarCore.writeDouble(writer, 12, object.aspectRatio ?? double.nan);
+  IsarCore.writeLong(writer, 13, object.width ?? -9223372036854775808);
+  IsarCore.writeLong(writer, 14, object.height ?? -9223372036854775808);
+  IsarCore.writeLong(writer, 15,
       object.createdAt?.toUtc().microsecondsSinceEpoch ?? -9223372036854775808);
-  IsarCore.writeLong(writer, 13,
+  IsarCore.writeLong(writer, 16,
       object.updatedAt?.toUtc().microsecondsSinceEpoch ?? -9223372036854775808);
   return object.id;
 }
@@ -218,9 +233,36 @@ MediaEntity deserializeMediaEntity(IsarReader reader) {
   _thumbPath = IsarCore.readString(reader, 10);
   final String? _thumbUrl;
   _thumbUrl = IsarCore.readString(reader, 11);
+  final double? _aspectRatio;
+  {
+    final value = IsarCore.readDouble(reader, 12);
+    if (value.isNaN) {
+      _aspectRatio = null;
+    } else {
+      _aspectRatio = value;
+    }
+  }
+  final int? _width;
+  {
+    final value = IsarCore.readLong(reader, 13);
+    if (value == -9223372036854775808) {
+      _width = null;
+    } else {
+      _width = value;
+    }
+  }
+  final int? _height;
+  {
+    final value = IsarCore.readLong(reader, 14);
+    if (value == -9223372036854775808) {
+      _height = null;
+    } else {
+      _height = value;
+    }
+  }
   final DateTime? _createdAt;
   {
-    final value = IsarCore.readLong(reader, 12);
+    final value = IsarCore.readLong(reader, 15);
     if (value == -9223372036854775808) {
       _createdAt = null;
     } else {
@@ -230,7 +272,7 @@ MediaEntity deserializeMediaEntity(IsarReader reader) {
   }
   final DateTime? _updatedAt;
   {
-    final value = IsarCore.readLong(reader, 13);
+    final value = IsarCore.readLong(reader, 16);
     if (value == -9223372036854775808) {
       _updatedAt = null;
     } else {
@@ -251,6 +293,9 @@ MediaEntity deserializeMediaEntity(IsarReader reader) {
     url: _url,
     thumbPath: _thumbPath,
     thumbUrl: _thumbUrl,
+    aspectRatio: _aspectRatio,
+    width: _width,
+    height: _height,
     createdAt: _createdAt,
     updatedAt: _updatedAt,
   );
@@ -321,7 +366,34 @@ dynamic deserializeMediaEntityProp(IsarReader reader, int property) {
       return IsarCore.readString(reader, 11);
     case 12:
       {
-        final value = IsarCore.readLong(reader, 12);
+        final value = IsarCore.readDouble(reader, 12);
+        if (value.isNaN) {
+          return null;
+        } else {
+          return value;
+        }
+      }
+    case 13:
+      {
+        final value = IsarCore.readLong(reader, 13);
+        if (value == -9223372036854775808) {
+          return null;
+        } else {
+          return value;
+        }
+      }
+    case 14:
+      {
+        final value = IsarCore.readLong(reader, 14);
+        if (value == -9223372036854775808) {
+          return null;
+        } else {
+          return value;
+        }
+      }
+    case 15:
+      {
+        final value = IsarCore.readLong(reader, 15);
         if (value == -9223372036854775808) {
           return null;
         } else {
@@ -329,9 +401,9 @@ dynamic deserializeMediaEntityProp(IsarReader reader, int property) {
               .toLocal();
         }
       }
-    case 13:
+    case 16:
       {
-        final value = IsarCore.readLong(reader, 13);
+        final value = IsarCore.readLong(reader, 16);
         if (value == -9223372036854775808) {
           return null;
         } else {
@@ -358,6 +430,9 @@ sealed class _MediaEntityUpdate {
     String? url,
     String? thumbPath,
     String? thumbUrl,
+    double? aspectRatio,
+    int? width,
+    int? height,
     DateTime? createdAt,
     DateTime? updatedAt,
   });
@@ -382,6 +457,9 @@ class _MediaEntityUpdateImpl implements _MediaEntityUpdate {
     Object? url = ignore,
     Object? thumbPath = ignore,
     Object? thumbUrl = ignore,
+    Object? aspectRatio = ignore,
+    Object? width = ignore,
+    Object? height = ignore,
     Object? createdAt = ignore,
     Object? updatedAt = ignore,
   }) {
@@ -399,8 +477,11 @@ class _MediaEntityUpdateImpl implements _MediaEntityUpdate {
           if (url != ignore) 9: url as String?,
           if (thumbPath != ignore) 10: thumbPath as String?,
           if (thumbUrl != ignore) 11: thumbUrl as String?,
-          if (createdAt != ignore) 12: createdAt as DateTime?,
-          if (updatedAt != ignore) 13: updatedAt as DateTime?,
+          if (aspectRatio != ignore) 12: aspectRatio as double?,
+          if (width != ignore) 13: width as int?,
+          if (height != ignore) 14: height as int?,
+          if (createdAt != ignore) 15: createdAt as DateTime?,
+          if (updatedAt != ignore) 16: updatedAt as DateTime?,
         }) >
         0;
   }
@@ -420,6 +501,9 @@ sealed class _MediaEntityUpdateAll {
     String? url,
     String? thumbPath,
     String? thumbUrl,
+    double? aspectRatio,
+    int? width,
+    int? height,
     DateTime? createdAt,
     DateTime? updatedAt,
   });
@@ -444,6 +528,9 @@ class _MediaEntityUpdateAllImpl implements _MediaEntityUpdateAll {
     Object? url = ignore,
     Object? thumbPath = ignore,
     Object? thumbUrl = ignore,
+    Object? aspectRatio = ignore,
+    Object? width = ignore,
+    Object? height = ignore,
     Object? createdAt = ignore,
     Object? updatedAt = ignore,
   }) {
@@ -459,8 +546,11 @@ class _MediaEntityUpdateAllImpl implements _MediaEntityUpdateAll {
       if (url != ignore) 9: url as String?,
       if (thumbPath != ignore) 10: thumbPath as String?,
       if (thumbUrl != ignore) 11: thumbUrl as String?,
-      if (createdAt != ignore) 12: createdAt as DateTime?,
-      if (updatedAt != ignore) 13: updatedAt as DateTime?,
+      if (aspectRatio != ignore) 12: aspectRatio as double?,
+      if (width != ignore) 13: width as int?,
+      if (height != ignore) 14: height as int?,
+      if (createdAt != ignore) 15: createdAt as DateTime?,
+      if (updatedAt != ignore) 16: updatedAt as DateTime?,
     });
   }
 }
@@ -484,6 +574,9 @@ sealed class _MediaEntityQueryUpdate {
     String? url,
     String? thumbPath,
     String? thumbUrl,
+    double? aspectRatio,
+    int? width,
+    int? height,
     DateTime? createdAt,
     DateTime? updatedAt,
   });
@@ -508,6 +601,9 @@ class _MediaEntityQueryUpdateImpl implements _MediaEntityQueryUpdate {
     Object? url = ignore,
     Object? thumbPath = ignore,
     Object? thumbUrl = ignore,
+    Object? aspectRatio = ignore,
+    Object? width = ignore,
+    Object? height = ignore,
     Object? createdAt = ignore,
     Object? updatedAt = ignore,
   }) {
@@ -523,8 +619,11 @@ class _MediaEntityQueryUpdateImpl implements _MediaEntityQueryUpdate {
       if (url != ignore) 9: url as String?,
       if (thumbPath != ignore) 10: thumbPath as String?,
       if (thumbUrl != ignore) 11: thumbUrl as String?,
-      if (createdAt != ignore) 12: createdAt as DateTime?,
-      if (updatedAt != ignore) 13: updatedAt as DateTime?,
+      if (aspectRatio != ignore) 12: aspectRatio as double?,
+      if (width != ignore) 13: width as int?,
+      if (height != ignore) 14: height as int?,
+      if (createdAt != ignore) 15: createdAt as DateTime?,
+      if (updatedAt != ignore) 16: updatedAt as DateTime?,
     });
   }
 }
@@ -555,6 +654,9 @@ class _MediaEntityQueryBuilderUpdateImpl implements _MediaEntityQueryUpdate {
     Object? url = ignore,
     Object? thumbPath = ignore,
     Object? thumbUrl = ignore,
+    Object? aspectRatio = ignore,
+    Object? width = ignore,
+    Object? height = ignore,
     Object? createdAt = ignore,
     Object? updatedAt = ignore,
   }) {
@@ -572,8 +674,11 @@ class _MediaEntityQueryBuilderUpdateImpl implements _MediaEntityQueryUpdate {
         if (url != ignore) 9: url as String?,
         if (thumbPath != ignore) 10: thumbPath as String?,
         if (thumbUrl != ignore) 11: thumbUrl as String?,
-        if (createdAt != ignore) 12: createdAt as DateTime?,
-        if (updatedAt != ignore) 13: updatedAt as DateTime?,
+        if (aspectRatio != ignore) 12: aspectRatio as double?,
+        if (width != ignore) 13: width as int?,
+        if (height != ignore) 14: height as int?,
+        if (createdAt != ignore) 15: createdAt as DateTime?,
+        if (updatedAt != ignore) 16: updatedAt as DateTime?,
       });
     } finally {
       q.close();
@@ -2233,16 +2338,320 @@ extension MediaEntityQueryFilter
   }
 
   QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
-      createdAtIsNull() {
+      aspectRatioIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const IsNullCondition(property: 12));
     });
   }
 
   QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
-      createdAtIsNotNull() {
+      aspectRatioIsNotNull() {
     return QueryBuilder.apply(not(), (query) {
       return query.addFilterCondition(const IsNullCondition(property: 12));
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      aspectRatioEqualTo(
+    double? value, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        EqualCondition(
+          property: 12,
+          value: value,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      aspectRatioGreaterThan(
+    double? value, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterCondition(
+          property: 12,
+          value: value,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      aspectRatioGreaterThanOrEqualTo(
+    double? value, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterOrEqualCondition(
+          property: 12,
+          value: value,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      aspectRatioLessThan(
+    double? value, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessCondition(
+          property: 12,
+          value: value,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      aspectRatioLessThanOrEqualTo(
+    double? value, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessOrEqualCondition(
+          property: 12,
+          value: value,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      aspectRatioBetween(
+    double? lower,
+    double? upper, {
+    double epsilon = Filter.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        BetweenCondition(
+          property: 12,
+          lower: lower,
+          upper: upper,
+          epsilon: epsilon,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> widthIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 13));
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      widthIsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 13));
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> widthEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        EqualCondition(
+          property: 13,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      widthGreaterThan(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterCondition(
+          property: 13,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      widthGreaterThanOrEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterOrEqualCondition(
+          property: 13,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> widthLessThan(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessCondition(
+          property: 13,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      widthLessThanOrEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessOrEqualCondition(
+          property: 13,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> widthBetween(
+    int? lower,
+    int? upper,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        BetweenCondition(
+          property: 13,
+          lower: lower,
+          upper: upper,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> heightIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 14));
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      heightIsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 14));
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> heightEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        EqualCondition(
+          property: 14,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      heightGreaterThan(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterCondition(
+          property: 14,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      heightGreaterThanOrEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterOrEqualCondition(
+          property: 14,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> heightLessThan(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessCondition(
+          property: 14,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      heightLessThanOrEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessOrEqualCondition(
+          property: 14,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition> heightBetween(
+    int? lower,
+    int? upper,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        BetweenCondition(
+          property: 14,
+          lower: lower,
+          upper: upper,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      createdAtIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 15));
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
+      createdAtIsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 15));
     });
   }
 
@@ -2253,7 +2662,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EqualCondition(
-          property: 12,
+          property: 15,
           value: value,
         ),
       );
@@ -2267,7 +2676,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterCondition(
-          property: 12,
+          property: 15,
           value: value,
         ),
       );
@@ -2281,7 +2690,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterOrEqualCondition(
-          property: 12,
+          property: 15,
           value: value,
         ),
       );
@@ -2295,7 +2704,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessCondition(
-          property: 12,
+          property: 15,
           value: value,
         ),
       );
@@ -2309,7 +2718,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
-          property: 12,
+          property: 15,
           value: value,
         ),
       );
@@ -2324,7 +2733,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
-          property: 12,
+          property: 15,
           lower: lower,
           upper: upper,
         ),
@@ -2335,14 +2744,14 @@ extension MediaEntityQueryFilter
   QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
       updatedAtIsNull() {
     return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 13));
+      return query.addFilterCondition(const IsNullCondition(property: 16));
     });
   }
 
   QueryBuilder<MediaEntity, MediaEntity, QAfterFilterCondition>
       updatedAtIsNotNull() {
     return QueryBuilder.apply(not(), (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 13));
+      return query.addFilterCondition(const IsNullCondition(property: 16));
     });
   }
 
@@ -2353,7 +2762,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EqualCondition(
-          property: 13,
+          property: 16,
           value: value,
         ),
       );
@@ -2367,7 +2776,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterCondition(
-          property: 13,
+          property: 16,
           value: value,
         ),
       );
@@ -2381,7 +2790,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterOrEqualCondition(
-          property: 13,
+          property: 16,
           value: value,
         ),
       );
@@ -2395,7 +2804,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessCondition(
-          property: 13,
+          property: 16,
           value: value,
         ),
       );
@@ -2409,7 +2818,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
-          property: 13,
+          property: 16,
           value: value,
         ),
       );
@@ -2424,7 +2833,7 @@ extension MediaEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
-          property: 13,
+          property: 16,
           lower: lower,
           upper: upper,
         ),
@@ -2636,27 +3045,63 @@ extension MediaEntityQuerySortBy
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByCreatedAt() {
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByAspectRatio() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(12);
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByCreatedAtDesc() {
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByAspectRatioDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(12, sort: Sort.desc);
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByUpdatedAt() {
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByWidth() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(13);
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByUpdatedAtDesc() {
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByWidthDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(13, sort: Sort.desc);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByHeight() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(14);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByHeightDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(14, sort: Sort.desc);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByCreatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(15);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByCreatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(15, sort: Sort.desc);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(16);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> sortByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(16, sort: Sort.desc);
     });
   }
 }
@@ -2819,27 +3264,63 @@ extension MediaEntityQuerySortThenBy
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByCreatedAt() {
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByAspectRatio() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(12);
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByCreatedAtDesc() {
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByAspectRatioDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(12, sort: Sort.desc);
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByUpdatedAt() {
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByWidth() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(13);
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByUpdatedAtDesc() {
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByWidthDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(13, sort: Sort.desc);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByHeight() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(14);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByHeightDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(14, sort: Sort.desc);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByCreatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(15);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByCreatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(15, sort: Sort.desc);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(16);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterSortBy> thenByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(16, sort: Sort.desc);
     });
   }
 }
@@ -2918,15 +3399,34 @@ extension MediaEntityQueryWhereDistinct
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterDistinct> distinctByCreatedAt() {
+  QueryBuilder<MediaEntity, MediaEntity, QAfterDistinct>
+      distinctByAspectRatio() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(12);
     });
   }
 
-  QueryBuilder<MediaEntity, MediaEntity, QAfterDistinct> distinctByUpdatedAt() {
+  QueryBuilder<MediaEntity, MediaEntity, QAfterDistinct> distinctByWidth() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(13);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterDistinct> distinctByHeight() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(14);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterDistinct> distinctByCreatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(15);
+    });
+  }
+
+  QueryBuilder<MediaEntity, MediaEntity, QAfterDistinct> distinctByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(16);
     });
   }
 }
@@ -3005,15 +3505,33 @@ extension MediaEntityQueryProperty1
     });
   }
 
-  QueryBuilder<MediaEntity, DateTime?, QAfterProperty> createdAtProperty() {
+  QueryBuilder<MediaEntity, double?, QAfterProperty> aspectRatioProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(12);
     });
   }
 
-  QueryBuilder<MediaEntity, DateTime?, QAfterProperty> updatedAtProperty() {
+  QueryBuilder<MediaEntity, int?, QAfterProperty> widthProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(13);
+    });
+  }
+
+  QueryBuilder<MediaEntity, int?, QAfterProperty> heightProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(14);
+    });
+  }
+
+  QueryBuilder<MediaEntity, DateTime?, QAfterProperty> createdAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(15);
+    });
+  }
+
+  QueryBuilder<MediaEntity, DateTime?, QAfterProperty> updatedAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(16);
     });
   }
 }
@@ -3093,17 +3611,36 @@ extension MediaEntityQueryProperty2<R>
     });
   }
 
+  QueryBuilder<MediaEntity, (R, double?), QAfterProperty>
+      aspectRatioProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(12);
+    });
+  }
+
+  QueryBuilder<MediaEntity, (R, int?), QAfterProperty> widthProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(13);
+    });
+  }
+
+  QueryBuilder<MediaEntity, (R, int?), QAfterProperty> heightProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(14);
+    });
+  }
+
   QueryBuilder<MediaEntity, (R, DateTime?), QAfterProperty>
       createdAtProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addProperty(12);
+      return query.addProperty(15);
     });
   }
 
   QueryBuilder<MediaEntity, (R, DateTime?), QAfterProperty>
       updatedAtProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addProperty(13);
+      return query.addProperty(16);
     });
   }
 }
@@ -3185,17 +3722,36 @@ extension MediaEntityQueryProperty3<R1, R2>
     });
   }
 
+  QueryBuilder<MediaEntity, (R1, R2, double?), QOperations>
+      aspectRatioProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(12);
+    });
+  }
+
+  QueryBuilder<MediaEntity, (R1, R2, int?), QOperations> widthProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(13);
+    });
+  }
+
+  QueryBuilder<MediaEntity, (R1, R2, int?), QOperations> heightProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(14);
+    });
+  }
+
   QueryBuilder<MediaEntity, (R1, R2, DateTime?), QOperations>
       createdAtProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addProperty(12);
+      return query.addProperty(15);
     });
   }
 
   QueryBuilder<MediaEntity, (R1, R2, DateTime?), QOperations>
       updatedAtProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addProperty(13);
+      return query.addProperty(16);
     });
   }
 }

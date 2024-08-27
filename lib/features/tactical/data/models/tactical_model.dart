@@ -23,6 +23,8 @@ class TacticalModel with _$TacticalModel {
     DateTime? updatedAt,
   }) = _TacticalModel;
 
+  const TacticalModel._();
+
   factory TacticalModel.fromJson(Map<String, dynamic> json) =>
       _$TacticalModelFromJson(json);
 

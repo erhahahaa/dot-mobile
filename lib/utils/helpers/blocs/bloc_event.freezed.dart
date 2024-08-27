@@ -20,7 +20,7 @@ mixin _$BlocEventRead<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(int? id, String? query) get,
-    required TResult Function(T item) select,
+    required TResult Function(T? item) select,
     required TResult Function(String query) filter,
     required TResult Function(T item) append,
     required TResult Function(int id) remove,
@@ -31,7 +31,7 @@ mixin _$BlocEventRead<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(int? id, String? query)? get,
-    TResult? Function(T item)? select,
+    TResult? Function(T? item)? select,
     TResult? Function(String query)? filter,
     TResult? Function(T item)? append,
     TResult? Function(int id)? remove,
@@ -42,7 +42,7 @@ mixin _$BlocEventRead<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(int? id, String? query)? get,
-    TResult Function(T item)? select,
+    TResult Function(T? item)? select,
     TResult Function(String query)? filter,
     TResult Function(T item)? append,
     TResult Function(int id)? remove,
@@ -151,7 +151,7 @@ class _$BlocEventReadClearImpl<T> implements BlocEventReadClear<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(int? id, String? query) get,
-    required TResult Function(T item) select,
+    required TResult Function(T? item) select,
     required TResult Function(String query) filter,
     required TResult Function(T item) append,
     required TResult Function(int id) remove,
@@ -165,7 +165,7 @@ class _$BlocEventReadClearImpl<T> implements BlocEventReadClear<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(int? id, String? query)? get,
-    TResult? Function(T item)? select,
+    TResult? Function(T? item)? select,
     TResult? Function(String query)? filter,
     TResult? Function(T item)? append,
     TResult? Function(int id)? remove,
@@ -179,7 +179,7 @@ class _$BlocEventReadClearImpl<T> implements BlocEventReadClear<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(int? id, String? query)? get,
-    TResult Function(T item)? select,
+    TResult Function(T? item)? select,
     TResult Function(String query)? filter,
     TResult Function(T item)? append,
     TResult Function(int id)? remove,
@@ -322,7 +322,7 @@ class _$BlocEventReadGetImpl<T> implements BlocEventReadGet<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(int? id, String? query) get,
-    required TResult Function(T item) select,
+    required TResult Function(T? item) select,
     required TResult Function(String query) filter,
     required TResult Function(T item) append,
     required TResult Function(int id) remove,
@@ -336,7 +336,7 @@ class _$BlocEventReadGetImpl<T> implements BlocEventReadGet<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(int? id, String? query)? get,
-    TResult? Function(T item)? select,
+    TResult? Function(T? item)? select,
     TResult? Function(String query)? filter,
     TResult? Function(T item)? append,
     TResult? Function(int id)? remove,
@@ -350,7 +350,7 @@ class _$BlocEventReadGetImpl<T> implements BlocEventReadGet<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(int? id, String? query)? get,
-    TResult Function(T item)? select,
+    TResult Function(T? item)? select,
     TResult Function(String query)? filter,
     TResult Function(T item)? append,
     TResult Function(int id)? remove,
@@ -430,7 +430,7 @@ abstract class _$$BlocEventReadSelectImplCopyWith<T, $Res> {
           $Res Function(_$BlocEventReadSelectImpl<T>) then) =
       __$$BlocEventReadSelectImplCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({T item});
+  $Res call({T? item});
 }
 
 /// @nodoc
@@ -452,7 +452,7 @@ class __$$BlocEventReadSelectImplCopyWithImpl<T, $Res>
       freezed == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
-              as T,
+              as T?,
     ));
   }
 }
@@ -463,7 +463,7 @@ class _$BlocEventReadSelectImpl<T> implements BlocEventReadSelect<T> {
   const _$BlocEventReadSelectImpl(this.item);
 
   @override
-  final T item;
+  final T? item;
 
   @override
   String toString() {
@@ -496,7 +496,7 @@ class _$BlocEventReadSelectImpl<T> implements BlocEventReadSelect<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(int? id, String? query) get,
-    required TResult Function(T item) select,
+    required TResult Function(T? item) select,
     required TResult Function(String query) filter,
     required TResult Function(T item) append,
     required TResult Function(int id) remove,
@@ -510,7 +510,7 @@ class _$BlocEventReadSelectImpl<T> implements BlocEventReadSelect<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(int? id, String? query)? get,
-    TResult? Function(T item)? select,
+    TResult? Function(T? item)? select,
     TResult? Function(String query)? filter,
     TResult? Function(T item)? append,
     TResult? Function(int id)? remove,
@@ -524,7 +524,7 @@ class _$BlocEventReadSelectImpl<T> implements BlocEventReadSelect<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(int? id, String? query)? get,
-    TResult Function(T item)? select,
+    TResult Function(T? item)? select,
     TResult Function(String query)? filter,
     TResult Function(T item)? append,
     TResult Function(int id)? remove,
@@ -585,10 +585,10 @@ class _$BlocEventReadSelectImpl<T> implements BlocEventReadSelect<T> {
 }
 
 abstract class BlocEventReadSelect<T> implements BlocEventRead<T> {
-  const factory BlocEventReadSelect(final T item) =
+  const factory BlocEventReadSelect(final T? item) =
       _$BlocEventReadSelectImpl<T>;
 
-  T get item;
+  T? get item;
 
   /// Create a copy of BlocEventRead
   /// with the given fields replaced by the non-null parameter values.
@@ -668,7 +668,7 @@ class _$BlocEventReadFilterImpl<T> implements BlocEventReadFilter<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(int? id, String? query) get,
-    required TResult Function(T item) select,
+    required TResult Function(T? item) select,
     required TResult Function(String query) filter,
     required TResult Function(T item) append,
     required TResult Function(int id) remove,
@@ -682,7 +682,7 @@ class _$BlocEventReadFilterImpl<T> implements BlocEventReadFilter<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(int? id, String? query)? get,
-    TResult? Function(T item)? select,
+    TResult? Function(T? item)? select,
     TResult? Function(String query)? filter,
     TResult? Function(T item)? append,
     TResult? Function(int id)? remove,
@@ -696,7 +696,7 @@ class _$BlocEventReadFilterImpl<T> implements BlocEventReadFilter<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(int? id, String? query)? get,
-    TResult Function(T item)? select,
+    TResult Function(T? item)? select,
     TResult Function(String query)? filter,
     TResult Function(T item)? append,
     TResult Function(int id)? remove,
@@ -841,7 +841,7 @@ class _$BlocEventReadAppendImpl<T> implements BlocEventReadAppend<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(int? id, String? query) get,
-    required TResult Function(T item) select,
+    required TResult Function(T? item) select,
     required TResult Function(String query) filter,
     required TResult Function(T item) append,
     required TResult Function(int id) remove,
@@ -855,7 +855,7 @@ class _$BlocEventReadAppendImpl<T> implements BlocEventReadAppend<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(int? id, String? query)? get,
-    TResult? Function(T item)? select,
+    TResult? Function(T? item)? select,
     TResult? Function(String query)? filter,
     TResult? Function(T item)? append,
     TResult? Function(int id)? remove,
@@ -869,7 +869,7 @@ class _$BlocEventReadAppendImpl<T> implements BlocEventReadAppend<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(int? id, String? query)? get,
-    TResult Function(T item)? select,
+    TResult Function(T? item)? select,
     TResult Function(String query)? filter,
     TResult Function(T item)? append,
     TResult Function(int id)? remove,
@@ -1013,7 +1013,7 @@ class _$BlocEventReadRemoveImpl<T> implements BlocEventReadRemove<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(int? id, String? query) get,
-    required TResult Function(T item) select,
+    required TResult Function(T? item) select,
     required TResult Function(String query) filter,
     required TResult Function(T item) append,
     required TResult Function(int id) remove,
@@ -1027,7 +1027,7 @@ class _$BlocEventReadRemoveImpl<T> implements BlocEventReadRemove<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(int? id, String? query)? get,
-    TResult? Function(T item)? select,
+    TResult? Function(T? item)? select,
     TResult? Function(String query)? filter,
     TResult? Function(T item)? append,
     TResult? Function(int id)? remove,
@@ -1041,7 +1041,7 @@ class _$BlocEventReadRemoveImpl<T> implements BlocEventReadRemove<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(int? id, String? query)? get,
-    TResult Function(T item)? select,
+    TResult Function(T? item)? select,
     TResult Function(String query)? filter,
     TResult Function(T item)? append,
     TResult Function(int id)? remove,
@@ -1186,7 +1186,7 @@ class _$BlocEventReadGetOneImpl<T> implements BlocEventReadGetOne<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() clear,
     required TResult Function(int? id, String? query) get,
-    required TResult Function(T item) select,
+    required TResult Function(T? item) select,
     required TResult Function(String query) filter,
     required TResult Function(T item) append,
     required TResult Function(int id) remove,
@@ -1200,7 +1200,7 @@ class _$BlocEventReadGetOneImpl<T> implements BlocEventReadGetOne<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clear,
     TResult? Function(int? id, String? query)? get,
-    TResult? Function(T item)? select,
+    TResult? Function(T? item)? select,
     TResult? Function(String query)? filter,
     TResult? Function(T item)? append,
     TResult? Function(int id)? remove,
@@ -1214,7 +1214,7 @@ class _$BlocEventReadGetOneImpl<T> implements BlocEventReadGetOne<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clear,
     TResult Function(int? id, String? query)? get,
-    TResult Function(T item)? select,
+    TResult Function(T? item)? select,
     TResult Function(String query)? filter,
     TResult Function(T item)? append,
     TResult Function(int id)? remove,

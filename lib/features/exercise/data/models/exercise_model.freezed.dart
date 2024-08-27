@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ExerciseModel _$ExerciseModelFromJson(Map<String, dynamic> json) {
-  return mExerciseModel.fromJson(json);
+  return _ExerciseModel.fromJson(json);
 }
 
 /// @nodoc
@@ -31,7 +31,7 @@ mixin _$ExerciseModel {
   ExerciseUnitValueModel? get rest => throw _privateConstructorUsedError;
   ExerciseUnitValueModel? get tempo => throw _privateConstructorUsedError;
   ExerciseUnitValueModel? get intensity => throw _privateConstructorUsedError;
-  MediaEmbedModel? get media => throw _privateConstructorUsedError;
+  MediaModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -63,7 +63,7 @@ abstract class $ExerciseModelCopyWith<$Res> {
       ExerciseUnitValueModel? rest,
       ExerciseUnitValueModel? tempo,
       ExerciseUnitValueModel? intensity,
-      MediaEmbedModel? media,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
@@ -72,7 +72,7 @@ abstract class $ExerciseModelCopyWith<$Res> {
   $ExerciseUnitValueModelCopyWith<$Res>? get rest;
   $ExerciseUnitValueModelCopyWith<$Res>? get tempo;
   $ExerciseUnitValueModelCopyWith<$Res>? get intensity;
-  $MediaEmbedModelCopyWith<$Res>? get media;
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -153,7 +153,7 @@ class _$ExerciseModelCopyWithImpl<$Res, $Val extends ExerciseModel>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaEmbedModel?,
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -239,23 +239,23 @@ class _$ExerciseModelCopyWithImpl<$Res, $Val extends ExerciseModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MediaEmbedModelCopyWith<$Res>? get media {
+  $MediaModelCopyWith<$Res>? get media {
     if (_value.media == null) {
       return null;
     }
 
-    return $MediaEmbedModelCopyWith<$Res>(_value.media!, (value) {
+    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
       return _then(_value.copyWith(media: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$mExerciseModelImplCopyWith<$Res>
+abstract class _$$ExerciseModelImplCopyWith<$Res>
     implements $ExerciseModelCopyWith<$Res> {
-  factory _$$mExerciseModelImplCopyWith(_$mExerciseModelImpl value,
-          $Res Function(_$mExerciseModelImpl) then) =
-      __$$mExerciseModelImplCopyWithImpl<$Res>;
+  factory _$$ExerciseModelImplCopyWith(
+          _$ExerciseModelImpl value, $Res Function(_$ExerciseModelImpl) then) =
+      __$$ExerciseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -270,7 +270,7 @@ abstract class _$$mExerciseModelImplCopyWith<$Res>
       ExerciseUnitValueModel? rest,
       ExerciseUnitValueModel? tempo,
       ExerciseUnitValueModel? intensity,
-      MediaEmbedModel? media,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
@@ -285,15 +285,15 @@ abstract class _$$mExerciseModelImplCopyWith<$Res>
   @override
   $ExerciseUnitValueModelCopyWith<$Res>? get intensity;
   @override
-  $MediaEmbedModelCopyWith<$Res>? get media;
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
-class __$$mExerciseModelImplCopyWithImpl<$Res>
-    extends _$ExerciseModelCopyWithImpl<$Res, _$mExerciseModelImpl>
-    implements _$$mExerciseModelImplCopyWith<$Res> {
-  __$$mExerciseModelImplCopyWithImpl(
-      _$mExerciseModelImpl _value, $Res Function(_$mExerciseModelImpl) _then)
+class __$$ExerciseModelImplCopyWithImpl<$Res>
+    extends _$ExerciseModelCopyWithImpl<$Res, _$ExerciseModelImpl>
+    implements _$$ExerciseModelImplCopyWith<$Res> {
+  __$$ExerciseModelImplCopyWithImpl(
+      _$ExerciseModelImpl _value, $Res Function(_$ExerciseModelImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ExerciseModel
@@ -316,7 +316,7 @@ class __$$mExerciseModelImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
-    return _then(_$mExerciseModelImpl(
+    return _then(_$ExerciseModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -364,7 +364,7 @@ class __$$mExerciseModelImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaEmbedModel?,
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -379,8 +379,8 @@ class __$$mExerciseModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$mExerciseModelImpl extends mExerciseModel {
-  _$mExerciseModelImpl(
+class _$ExerciseModelImpl extends _ExerciseModel {
+  const _$ExerciseModelImpl(
       {this.id = 0,
       this.programId = 0,
       this.mediaId,
@@ -397,8 +397,8 @@ class _$mExerciseModelImpl extends mExerciseModel {
       this.updatedAt})
       : super._();
 
-  factory _$mExerciseModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$mExerciseModelImplFromJson(json);
+  factory _$ExerciseModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ExerciseModelImplFromJson(json);
 
   @override
   @JsonKey()
@@ -427,7 +427,7 @@ class _$mExerciseModelImpl extends mExerciseModel {
   @override
   final ExerciseUnitValueModel? intensity;
   @override
-  final MediaEmbedModel? media;
+  final MediaModel? media;
   @override
   final DateTime? createdAt;
   @override
@@ -442,7 +442,7 @@ class _$mExerciseModelImpl extends mExerciseModel {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$mExerciseModelImpl &&
+            other is _$ExerciseModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.programId, programId) ||
                 other.programId == programId) &&
@@ -489,20 +489,19 @@ class _$mExerciseModelImpl extends mExerciseModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$mExerciseModelImplCopyWith<_$mExerciseModelImpl> get copyWith =>
-      __$$mExerciseModelImplCopyWithImpl<_$mExerciseModelImpl>(
-          this, _$identity);
+  _$$ExerciseModelImplCopyWith<_$ExerciseModelImpl> get copyWith =>
+      __$$ExerciseModelImplCopyWithImpl<_$ExerciseModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$mExerciseModelImplToJson(
+    return _$$ExerciseModelImplToJson(
       this,
     );
   }
 }
 
-abstract class mExerciseModel extends ExerciseModel {
-  factory mExerciseModel(
+abstract class _ExerciseModel extends ExerciseModel {
+  const factory _ExerciseModel(
       {final int id,
       final int programId,
       final int? mediaId,
@@ -514,13 +513,13 @@ abstract class mExerciseModel extends ExerciseModel {
       final ExerciseUnitValueModel? rest,
       final ExerciseUnitValueModel? tempo,
       final ExerciseUnitValueModel? intensity,
-      final MediaEmbedModel? media,
+      final MediaModel? media,
       final DateTime? createdAt,
-      final DateTime? updatedAt}) = _$mExerciseModelImpl;
-  mExerciseModel._() : super._();
+      final DateTime? updatedAt}) = _$ExerciseModelImpl;
+  const _ExerciseModel._() : super._();
 
-  factory mExerciseModel.fromJson(Map<String, dynamic> json) =
-      _$mExerciseModelImpl.fromJson;
+  factory _ExerciseModel.fromJson(Map<String, dynamic> json) =
+      _$ExerciseModelImpl.fromJson;
 
   @override
   int get id;
@@ -545,7 +544,7 @@ abstract class mExerciseModel extends ExerciseModel {
   @override
   ExerciseUnitValueModel? get intensity;
   @override
-  MediaEmbedModel? get media;
+  MediaModel? get media;
   @override
   DateTime? get createdAt;
   @override
@@ -555,7 +554,7 @@ abstract class mExerciseModel extends ExerciseModel {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$mExerciseModelImplCopyWith<_$mExerciseModelImpl> get copyWith =>
+  _$$ExerciseModelImplCopyWith<_$ExerciseModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

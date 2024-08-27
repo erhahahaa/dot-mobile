@@ -21,6 +21,7 @@ class MediaView<
   final void Function(File file) onUpload;
   final void Function(MediaModel item) onSuccess;
   final void Function(MediaModel item)? onDownload;
+  final void Function(MediaModel item)? onTap;
 
   const MediaView(
     this.club, {
@@ -28,6 +29,7 @@ class MediaView<
     required this.onUpload,
     required this.onSuccess,
     this.onDownload,
+    this.onTap,
   });
 
   @override
@@ -40,41 +42,29 @@ class _MediaViewState<
     ReaderState extends BlocStateRead<MediaModel>,
     WriterBloc extends StateStreamable<WriterState>,
     WriterState extends BlocStateWrite<MediaModel>> extends State<MediaView> {
-  ElegantNotification? toast;
+  ElegantNotification? uploadToast;
+  ElegantNotification? downloadToast;
 
-  bool isToastShowing = false;
+  bool showUploadToast = false;
+  bool showDownloadToast = false;
+
+  bool isUploading = false;
   bool isDownloading = false;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    toast ??= context.buildUploadToast();
+    uploadToast ??= context.buildLoaderToast(title: 'Uploading media');
+    downloadToast ??= context.buildLoaderToast(title: 'Downloading media');
   }
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        BlocListener<WriterBloc, WriterState>(
+        BlocListener<ReaderBloc, ReaderState>(
           listener: (context, state) {
             state.whenOrNull(
-              success: (item) {
-                toast?.dismiss();
-                context.read<LoadingCubit>().stopLoading();
-                context.successToast(
-                  title: 'Success',
-                  description: 'Media uploaded successfully',
-                );
-                widget.onSuccess(item);
-              },
-              failure: (error) {
-                toast?.dismiss();
-                context.read<LoadingCubit>().stopLoading();
-                context.errorToast(
-                  title: 'Error',
-                  description: error,
-                );
-              },
               loading: (count, total) {
                 if (count != null && total != null) {
                   context.read<LoadingCubit>().startLoading(
@@ -83,34 +73,10 @@ class _MediaViewState<
                       );
                 }
               },
-            );
-          },
-        ),
-        BlocListener<LoadingCubit, LoadingState>(
-          listener: (context, state) {
-            if (state.isLoading == true) {
-              if (!isToastShowing) {
-                setState(() {
-                  isToastShowing = true;
-                });
-                toast?.show(context);
-              }
-            }
-            if (state.isLoading == false) {
-              if (isToastShowing) {
-                setState(() {
-                  isToastShowing = false;
-                });
-                toast?.dismiss();
-              }
-            }
-          },
-        ),
-        BlocListener<ReaderBloc, ReaderState>(
-          listener: (context, state) {
-            state.whenOrNull(
               success: (_, __, selected) {
-                if (isDownloading) {
+                if (showDownloadToast) {
+                  downloadToast?.dismiss();
+                  context.read<LoadingCubit>().stopLoading();
                   Log.info('Media downloaded successfully');
                   const dir = '/Download/DayOfTraining';
 
@@ -119,17 +85,108 @@ class _MediaViewState<
                     description: 'Saved at $dir/${selected?.name}',
                   );
                   setState(() {
+                    showDownloadToast = false;
                     isDownloading = false;
+                    downloadToast =
+                        context.buildLoaderToast(title: 'Downloading media');
                   });
                 }
               },
               failure: (error) {
+                downloadToast?.dismiss();
+                context.read<LoadingCubit>().stopLoading();
                 context.errorToast(
                   title: 'Error',
                   description: error,
                 );
+                setState(() {
+                  showDownloadToast = false;
+                  isDownloading = false;
+                  downloadToast =
+                      context.buildLoaderToast(title: 'Downloading media');
+                });
               },
             );
+          },
+        ),
+        BlocListener<WriterBloc, WriterState>(
+          listener: (context, state) {
+            state.whenOrNull(
+              loading: (count, total) {
+                if (count != null && total != null) {
+                  context.read<LoadingCubit>().startLoading(
+                        count: count,
+                        total: total,
+                      );
+                }
+                if (count != null && total != null && count == total) {
+                  context.infoToast(
+                    title: 'Processing',
+                    description: 'Please wait, media is being processed',
+                  );
+                }
+              },
+              success: (item) {
+                uploadToast?.dismiss();
+                context.read<LoadingCubit>().stopLoading();
+                context.successToast(
+                  title: 'Success',
+                  description: 'Media uploaded successfully',
+                );
+                widget.onSuccess(item);
+                setState(() {
+                  showUploadToast = false;
+                  isUploading = false;
+                  downloadToast =
+                      context.buildLoaderToast(title: 'Downloading media');
+                });
+              },
+              failure: (error) {
+                uploadToast?.dismiss();
+                context.read<LoadingCubit>().stopLoading();
+                context.errorToast(
+                  title: 'Error',
+                  description: error,
+                );
+                setState(() {
+                  showUploadToast = false;
+                  isUploading = false;
+                  downloadToast =
+                      context.buildLoaderToast(title: 'Downloading media');
+                });
+              },
+            );
+          },
+        ),
+        BlocListener<LoadingCubit, LoadingState>(
+          listener: (context, state) {
+            if (state.isLoading == true) {
+              if (showUploadToast && !isUploading) {
+                setState(() {
+                  isUploading = true;
+                });
+                uploadToast?.show(context);
+              }
+
+              if (showDownloadToast && !isDownloading) {
+                setState(() {
+                  isDownloading = true;
+                });
+                downloadToast?.show(context);
+              }
+            }
+            if (state.isLoading == false) {
+              setState(() {
+                showUploadToast = false;
+                showDownloadToast = false;
+              });
+              if (showUploadToast) {
+                uploadToast?.dismiss();
+              }
+              if (showDownloadToast) {
+                downloadToast?.dismiss();
+              }
+            }
           },
         ),
       ],
@@ -155,7 +212,9 @@ class _MediaViewState<
                       return;
                     }
                     final file = File(res.files.single.path!);
-
+                    setState(() {
+                      showUploadToast = true;
+                    });
                     widget.onUpload(file);
                   },
                   label: const BodySmall('Upload'),
@@ -176,7 +235,8 @@ class _MediaViewState<
                           return _buildMediaItem(
                             context,
                             item,
-                            widget.onDownload,
+                            onDownload: widget.onDownload,
+                            onTap: widget.onTap,
                           );
                         },
                       );
@@ -192,7 +252,8 @@ class _MediaViewState<
                           child: _buildMediaItem(
                             context,
                             item,
-                            widget.onDownload,
+                            onDownload: widget.onDownload,
+                            onTap: widget.onTap,
                           ),
                         ),
                       );
@@ -209,12 +270,18 @@ class _MediaViewState<
 
   Widget _buildMediaItem(
     BuildContext context,
-    MediaModel media,
+    MediaModel media, {
     void Function(MediaModel item)? onDownload,
-  ) {
+    void Function(MediaModel item)? onTap,
+  }) {
     return GridViewBuilderTile(
       titleText: media.name,
-      imageUrl: media.thumbUrl ?? media.url,
+      media: media.determineLoader(context, width: 150.h, height: 150.h),
+      onTap: () {
+        if (onTap != null) {
+          onTap(media);
+        }
+      },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -224,9 +291,8 @@ class _MediaViewState<
             onTap: () {
               if (onDownload != null) {
                 setState(() {
-                  isDownloading = true;
+                  showDownloadToast = true;
                 });
-                Log.error('Download media: ${media.name}');
                 onDownload(media);
               }
             },
@@ -282,6 +348,12 @@ class _MediaViewState<
               );
             },
           ),
+          if (onTap != null) ...[
+            MoonButton.icon(
+              icon: const Icon(MoonIcons.generic_check_alternative_24_light),
+              onTap: () => onTap(media),
+            ),
+          ]
         ],
       ),
     );

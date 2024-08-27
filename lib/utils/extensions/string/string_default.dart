@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 
 extension StringDefault on String {
   String maxChar(int length) {
+    if (this.length <= length) {
+      return this;
+    }
     return substring(0, length);
   }
 

@@ -242,7 +242,7 @@ class __$$ClubModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ClubModelImpl extends _ClubModel {
-  _$ClubModelImpl(
+  const _$ClubModelImpl(
       {this.id = 0,
       this.creatorId = 0,
       this.name = 'Indo Sports',
@@ -337,7 +337,7 @@ class _$ClubModelImpl extends _ClubModel {
 }
 
 abstract class _ClubModel extends ClubModel {
-  factory _ClubModel(
+  const factory _ClubModel(
       {final int id,
       final int creatorId,
       final String name,
@@ -348,7 +348,7 @@ abstract class _ClubModel extends ClubModel {
       final int programCount,
       final int examCount,
       final DateTime? createdAt}) = _$ClubModelImpl;
-  _ClubModel._() : super._();
+  const _ClubModel._() : super._();
 
   factory _ClubModel.fromJson(Map<String, dynamic> json) =
       _$ClubModelImpl.fromJson;

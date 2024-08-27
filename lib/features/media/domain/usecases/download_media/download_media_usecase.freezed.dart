@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DownloadMediaParams {
   MediaModel get media => throw _privateConstructorUsedError;
+  dynamic Function(int, int)? get onReceiveProgress =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of DownloadMediaParams
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +33,7 @@ abstract class $DownloadMediaParamsCopyWith<$Res> {
           DownloadMediaParams value, $Res Function(DownloadMediaParams) then) =
       _$DownloadMediaParamsCopyWithImpl<$Res, DownloadMediaParams>;
   @useResult
-  $Res call({MediaModel media});
+  $Res call({MediaModel media, dynamic Function(int, int)? onReceiveProgress});
 
   $MediaModelCopyWith<$Res> get media;
 }
@@ -52,12 +54,17 @@ class _$DownloadMediaParamsCopyWithImpl<$Res, $Val extends DownloadMediaParams>
   @override
   $Res call({
     Object? media = null,
+    Object? onReceiveProgress = freezed,
   }) {
     return _then(_value.copyWith(
       media: null == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
               as MediaModel,
+      onReceiveProgress: freezed == onReceiveProgress
+          ? _value.onReceiveProgress
+          : onReceiveProgress // ignore: cast_nullable_to_non_nullable
+              as dynamic Function(int, int)?,
     ) as $Val);
   }
 
@@ -80,7 +87,7 @@ abstract class _$$DownloadMediaParamsImplCopyWith<$Res>
       __$$DownloadMediaParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({MediaModel media});
+  $Res call({MediaModel media, dynamic Function(int, int)? onReceiveProgress});
 
   @override
   $MediaModelCopyWith<$Res> get media;
@@ -100,12 +107,17 @@ class __$$DownloadMediaParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? media = null,
+    Object? onReceiveProgress = freezed,
   }) {
     return _then(_$DownloadMediaParamsImpl(
       media: null == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
               as MediaModel,
+      onReceiveProgress: freezed == onReceiveProgress
+          ? _value.onReceiveProgress
+          : onReceiveProgress // ignore: cast_nullable_to_non_nullable
+              as dynamic Function(int, int)?,
     ));
   }
 }
@@ -113,14 +125,17 @@ class __$$DownloadMediaParamsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DownloadMediaParamsImpl extends _DownloadMediaParams {
-  const _$DownloadMediaParamsImpl({required this.media}) : super._();
+  const _$DownloadMediaParamsImpl({required this.media, this.onReceiveProgress})
+      : super._();
 
   @override
   final MediaModel media;
+  @override
+  final dynamic Function(int, int)? onReceiveProgress;
 
   @override
   String toString() {
-    return 'DownloadMediaParams(media: $media)';
+    return 'DownloadMediaParams(media: $media, onReceiveProgress: $onReceiveProgress)';
   }
 
   @override
@@ -128,11 +143,13 @@ class _$DownloadMediaParamsImpl extends _DownloadMediaParams {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DownloadMediaParamsImpl &&
-            (identical(other.media, media) || other.media == media));
+            (identical(other.media, media) || other.media == media) &&
+            (identical(other.onReceiveProgress, onReceiveProgress) ||
+                other.onReceiveProgress == onReceiveProgress));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, media);
+  int get hashCode => Object.hash(runtimeType, media, onReceiveProgress);
 
   /// Create a copy of DownloadMediaParams
   /// with the given fields replaced by the non-null parameter values.
@@ -145,12 +162,16 @@ class _$DownloadMediaParamsImpl extends _DownloadMediaParams {
 }
 
 abstract class _DownloadMediaParams extends DownloadMediaParams {
-  const factory _DownloadMediaParams({required final MediaModel media}) =
+  const factory _DownloadMediaParams(
+          {required final MediaModel media,
+          final dynamic Function(int, int)? onReceiveProgress}) =
       _$DownloadMediaParamsImpl;
   const _DownloadMediaParams._() : super._();
 
   @override
   MediaModel get media;
+  @override
+  dynamic Function(int, int)? get onReceiveProgress;
 
   /// Create a copy of DownloadMediaParams
   /// with the given fields replaced by the non-null parameter values.

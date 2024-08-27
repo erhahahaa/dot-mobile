@@ -18,7 +18,7 @@ import 'strings_id.dart';
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'generated/strings.dart';
+/// import 'gen/strings.dart';
 ///
 /// return MaterialApp(
 ///   localizationsDelegates: Strings.localizationsDelegates,

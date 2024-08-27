@@ -39,7 +39,7 @@ class DioService with FirebaseCrashLoggerService {
         }
       }
       _dio = _createDio();
-      _dio?.interceptors.add(DioInterceptor());
+      // _dio?.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
@@ -55,23 +55,26 @@ class DioService with FirebaseCrashLoggerService {
         }
       }
       _dio = _createDio();
-      _dio?.interceptors.add(DioInterceptor());
+      // _dio?.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
     }
     return _dio!;
   }
 
-  void clearAuth() {
+  Future<void> clearAuth() async {
     _auth = null;
-    final token = _local.isar?.users.where().tokenIsNotNull().findAll();
+    _dio = null;
+    final token =
+        await _local.isar?.users.where().tokenIsNotNull().findAllAsync();
+    Log.info('====== USER TOKEN ======: $token');
     if (token != null) {
       if (token.isNotEmpty) {
         _auth = token.first.token;
       }
     }
     _dio = _createDio();
-    _dio?.interceptors.add(DioInterceptor());
+    // _dio?.interceptors.add(DioInterceptor());
   }
 
   Dio _createDio() => Dio(

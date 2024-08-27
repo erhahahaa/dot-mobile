@@ -1,5 +1,4 @@
 import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/core/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
 

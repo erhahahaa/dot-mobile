@@ -61,9 +61,8 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
               FloatingActionButton.extended(
                 heroTag: 'new_program_button_$hashCode',
                 onPressed: () {
-                  final nonNullClub = club ?? ClubModel.fake();
                   context.router.push(
-                    UpsertProgramRoute(club: nonNullClub),
+                    const UpsertProgramRoute(),
                   );
                 },
                 icon: const Icon(Icons.add),
@@ -123,13 +122,14 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
   }
 
   Widget _buildCalendar(BuildContext context) {
-    Widget _calendar() {
+    Widget calendar(List<ProgramModel> programs) {
       return SfCalendar(
         view: CalendarView.month,
         monthViewSettings: const MonthViewSettings(
           showAgenda: true,
           agendaItemHeight: 70,
         ),
+        dataSource: ProgramCalendarModel(programs),
         initialSelectedDate: DateTime.now(),
         onTap: (calendarTapDetails) {
           final len = calendarTapDetails.appointments?.length ?? 0;
@@ -137,7 +137,12 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
           final el = calendarTapDetails.targetElement;
           if (el == CalendarElement.appointment && len == 1) {
             final program = calendarTapDetails.appointments?.first;
-            // Handle the appointment tap
+            context.read<ProgramBlocRead>().add(
+                  BlocEventRead.select(program),
+                );
+            context.router.push(
+              DetailProgramRoute(id: program.id),
+            );
           }
         },
       );
@@ -171,15 +176,17 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                 success: (_, filteredPrograms, __) {
                   return SizedBox(
                     height: 400.h,
-                    child: _calendar(),
+                    child: calendar(filteredPrograms),
                   );
                 },
                 failure: (message) => ErrorAlert(message),
                 orElse: () {
+                  final fakePrograms =
+                      List.generate(10, (index) => ProgramModel.fake());
                   return SizedBox(
                     height: 400.h,
                     child: Skeletonizer(
-                      child: _calendar(),
+                      child: calendar(fakePrograms),
                     ),
                   );
                 },
@@ -222,80 +229,82 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
             )
           ],
         ),
-        BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
-          builder: (context, state) {
-            return state.maybeWhen(
-              success: (_, filteredPrograms, __) {
-                if (filteredPrograms.isEmpty) {
-                  return SizedBox(
-                    height: 400.h,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              '${club?.name} doesn\'t have a program yet',
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Flexible(
-                            child: TextButton(
-                              style: ButtonStyle(
-                                textStyle: WidgetStateProperty.all<TextStyle>(
-                                  const TextStyle(color: Colors.blue),
-                                ),
+        if (hideListProgram == false) ...[
+          BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                success: (_, filteredPrograms, __) {
+                  if (filteredPrograms.isEmpty) {
+                    return SizedBox(
+                      height: 400.h,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                '${club?.name} doesn\'t have a program yet',
+                                textAlign: TextAlign.center,
                               ),
-                              onPressed: club != null
-                                  ? () {
-                                      context.read<ProgramBlocRead>().add(
-                                            BlocEventRead.get(id: club.id),
-                                          );
-                                    }
-                                  : null,
-                              child: const Text("Reload"),
                             ),
-                          ),
-                          Gap(16.h),
-                        ],
+                            Flexible(
+                              child: TextButton(
+                                style: ButtonStyle(
+                                  textStyle: WidgetStateProperty.all<TextStyle>(
+                                    const TextStyle(color: Colors.blue),
+                                  ),
+                                ),
+                                onPressed: club != null
+                                    ? () {
+                                        context.read<ProgramBlocRead>().add(
+                                              BlocEventRead.get(id: club.id),
+                                            );
+                                      }
+                                    : null,
+                                child: const Text("Reload"),
+                              ),
+                            ),
+                            Gap(16.h),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                  return SizedBox(
+                    height: 0.71.sh,
+                    child: ListViewBuilder(
+                      items: filteredPrograms,
+                      itemBuilder: (context, program) => _buildProgramItem(
+                        context,
+                        program,
+                        program == filteredPrograms.last,
                       ),
                     ),
                   );
-                }
-                return SizedBox(
-                  height: 0.71.sh,
-                  child: ListViewBuilder(
-                    items: filteredPrograms,
-                    itemBuilder: (context, program) => _buildProgramItem(
-                      context,
-                      program,
-                      program == filteredPrograms.last,
-                    ),
-                  ),
-                );
-              },
-              failure: (message) => ErrorAlert(message),
-              orElse: () {
-                final fakePrograms =
-                    List.generate(10, (index) => ProgramModel.fake());
-                return SizedBox(
-                  height: 0.71.sh,
-                  child: ListViewBuilder(
-                    items: fakePrograms,
-                    itemBuilder: (context, program) => Skeletonizer(
-                      child: _buildProgramItem(
-                        context,
-                        program,
-                        program == fakePrograms.last,
+                },
+                failure: (message) => ErrorAlert(message),
+                orElse: () {
+                  final fakePrograms =
+                      List.generate(10, (index) => ProgramModel.fake());
+                  return SizedBox(
+                    height: 0.71.sh,
+                    child: ListViewBuilder(
+                      items: fakePrograms,
+                      itemBuilder: (context, program) => Skeletonizer(
+                        child: _buildProgramItem(
+                          context,
+                          program,
+                          program == fakePrograms.last,
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-            );
-          },
-        ),
+                  );
+                },
+              );
+            },
+          ),
+        ],
       ],
     );
   }
@@ -305,9 +314,14 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
     ProgramModel program,
     bool isLast,
   ) {
-    void onTap() => context.router.push(
-          DetailProgramRoute(id: program.id),
-        );
+    void onTap() {
+      context.read<ProgramBlocRead>().add(
+            BlocEventRead.select(program),
+          );
+      context.router.push(
+        DetailProgramRoute(id: program.id),
+      );
+    }
 
     return ListViewBuilderTile(
       titleText: program.name,

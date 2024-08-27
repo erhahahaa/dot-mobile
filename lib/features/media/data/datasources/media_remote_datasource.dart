@@ -40,6 +40,7 @@ class MediaRemoteDatasourceImpl implements MediaRemoteDatasource {
     final res = await _remote.downloadRequest(
       params.media.url,
       path,
+      onReceiveProgress: params.onReceiveProgress,
     );
     return res;
   }

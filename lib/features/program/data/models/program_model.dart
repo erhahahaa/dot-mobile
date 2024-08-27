@@ -9,7 +9,7 @@ part 'program_model.g.dart';
 
 @freezed
 class ProgramModel with _$ProgramModel {
-  factory ProgramModel({
+  const factory ProgramModel({
     @Default(0) int id,
     @Default(0) int clubId,
     @Default('DOT Sport') String name,
@@ -20,7 +20,7 @@ class ProgramModel with _$ProgramModel {
     DateTime? updatedAt,
   }) = _ProgramModel;
 
-  ProgramModel._();
+  const ProgramModel._();
 
   factory ProgramModel.fromJson(Map<String, dynamic> json) =>
       _$ProgramModelFromJson(json);

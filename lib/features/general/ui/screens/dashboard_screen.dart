@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/app/di.dart';
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/helpers/blocs/blocs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,6 +14,12 @@ class DashboardScreen extends StatelessWidget implements AutoRouteWrapper {
     return MultiBlocProvider(
       providers: [
         // Read
+        BlocProvider<ClubBlocRead>(
+          create: (_) => sl<ClubBlocRead>()
+            ..add(
+              const BlocEventRead.get(),
+            ),
+        ),
         BlocProvider<ProgramBlocRead>(
           create: (_) => sl<ProgramBlocRead>(),
         ),
@@ -42,24 +49,24 @@ class DashboardScreen extends StatelessWidget implements AutoRouteWrapper {
         ),
 
         // Write
-        // BlocProvider<ProgramBlocWrite>(
-        //   create: (_) => sl<ProgramBlocWrite>(),
-        // ),
-        // BlocProvider<ExerciseBlocWrite>(
-        //   create: (_) => sl<ExerciseBlocWrite>(),
-        // ),
-        // BlocProvider<ExamBlocWrite>(
-        //   create: (_) => sl<ExamBlocWrite>(),
-        // ),
-        // BlocProvider<QuestionBlocWrite>(
-        //   create: (_) => sl<QuestionBlocWrite>(),
-        // ),
-        // BlocProvider<EvaluationBlocWrite>(
-        //   create: (_) => sl<EvaluationBlocWrite>(),
-        // ),
-        // BlocProvider<TacticalBlocWrite>(
-        //   create: (_) => sl<TacticalBlocWrite>(),
-        // ),
+        BlocProvider<ProgramBlocWrite>(
+          create: (_) => sl<ProgramBlocWrite>(),
+        ),
+        BlocProvider<ExerciseBlocWrite>(
+          create: (_) => sl<ExerciseBlocWrite>(),
+        ),
+        BlocProvider<ExamBlocWrite>(
+          create: (_) => sl<ExamBlocWrite>(),
+        ),
+        BlocProvider<QuestionBlocWrite>(
+          create: (_) => sl<QuestionBlocWrite>(),
+        ),
+        BlocProvider<EvaluationBlocWrite>(
+          create: (_) => sl<EvaluationBlocWrite>(),
+        ),
+        BlocProvider<TacticalBlocWrite>(
+          create: (_) => sl<TacticalBlocWrite>(),
+        ),
         BlocProvider<ProgramMediaBlocWrite>(
           create: (_) => sl<ProgramMediaBlocWrite>(),
         ),

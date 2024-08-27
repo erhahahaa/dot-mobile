@@ -243,7 +243,7 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionModelImpl extends _QuestionModel {
-  _$QuestionModelImpl(
+  const _$QuestionModelImpl(
       {this.id = 0,
       this.examId = 0,
       this.mediaId,
@@ -350,7 +350,7 @@ class _$QuestionModelImpl extends _QuestionModel {
 }
 
 abstract class _QuestionModel extends QuestionModel {
-  factory _QuestionModel(
+  const factory _QuestionModel(
       {final int id,
       final int examId,
       final int? mediaId,
@@ -361,7 +361,7 @@ abstract class _QuestionModel extends QuestionModel {
       final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$QuestionModelImpl;
-  _QuestionModel._() : super._();
+  const _QuestionModel._() : super._();
 
   factory _QuestionModel.fromJson(Map<String, dynamic> json) =
       _$QuestionModelImpl.fromJson;

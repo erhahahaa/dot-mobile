@@ -44,6 +44,16 @@ class AppRouter extends RootStackRouter {
                   page: ProgramShellRoute.page,
                   children: [
                     AutoRoute(
+                      path: 'exercise',
+                      page: ExerciseShellRoute.page,
+                      children: [
+                        AutoRoute(
+                          path: 'upsert',
+                          page: UpsertExerciseRoute.page,
+                        ),
+                      ],
+                    ),
+                    AutoRoute(
                       path: '',
                       page: ListProgramRoute.page,
                     ),
@@ -54,7 +64,7 @@ class AppRouter extends RootStackRouter {
                     AutoRoute(
                       path: ':id',
                       page: DetailProgramRoute.page,
-                    )
+                    ),
                   ],
                 ),
                 AutoRoute(

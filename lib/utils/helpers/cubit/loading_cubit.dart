@@ -20,8 +20,8 @@ class LoadingCubit extends Cubit<LoadingState> {
   void stopLoading() {
     emit(state.copyWith(
       isLoading: false,
-      total: 1,
-      count: 1,
+      total: null,
+      count: null,
     ));
   }
 }

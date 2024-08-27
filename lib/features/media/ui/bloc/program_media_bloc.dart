@@ -131,9 +131,13 @@ class ProgramMediaBlocRead extends BlocRead<MediaModel> {
       success: (medias, _, __) => medias,
       orElse: () => <MediaModel>[],
     );
-    emit(const BlocStateReadLoading());
     final res = await _downloadMediaUsecase.call(
-      DownloadMediaParams(media: event.params),
+      DownloadMediaParams(
+        media: event.params,
+        onReceiveProgress: (count, total) {
+          emit(BlocStateReadLoading(count: count, total: total));
+        },
+      ),
     );
 
     res.fold(

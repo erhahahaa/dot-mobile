@@ -8,7 +8,7 @@ part 'evaluation_model.g.dart';
 
 @freezed
 class EvaluationModel with _$EvaluationModel {
-  factory EvaluationModel({
+  const factory EvaluationModel({
     @Default(0) int id,
     @Default(0) int examId,
     @Default(0) int clubId,
@@ -22,7 +22,7 @@ class EvaluationModel with _$EvaluationModel {
     DateTime? updatedAt,
   }) = _EvaluationModel;
 
-  EvaluationModel._();
+  const EvaluationModel._();
 
   factory EvaluationModel.fromJson(Map<String, dynamic> json) =>
       _$EvaluationModelFromJson(json);

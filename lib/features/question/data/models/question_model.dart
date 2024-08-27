@@ -8,7 +8,7 @@ part 'question_model.g.dart';
 
 @freezed
 class QuestionModel with _$QuestionModel {
-  factory QuestionModel({
+  const factory QuestionModel({
     @Default(0) int id,
     @Default(0) int examId,
     int? mediaId,
@@ -21,7 +21,7 @@ class QuestionModel with _$QuestionModel {
     DateTime? updatedAt,
   }) = _QuestionModel;
 
-  QuestionModel._();
+  const QuestionModel._();
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) =>
       _$QuestionModelFromJson(json);

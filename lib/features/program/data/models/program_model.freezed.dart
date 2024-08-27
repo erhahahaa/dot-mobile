@@ -217,7 +217,7 @@ class __$$ProgramModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProgramModelImpl extends _ProgramModel {
-  _$ProgramModelImpl(
+  const _$ProgramModelImpl(
       {this.id = 0,
       this.clubId = 0,
       this.name = 'DOT Sport',
@@ -296,7 +296,7 @@ class _$ProgramModelImpl extends _ProgramModel {
 }
 
 abstract class _ProgramModel extends ProgramModel {
-  factory _ProgramModel(
+  const factory _ProgramModel(
       {final int id,
       final int clubId,
       final String name,
@@ -305,7 +305,7 @@ abstract class _ProgramModel extends ProgramModel {
       final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$ProgramModelImpl;
-  _ProgramModel._() : super._();
+  const _ProgramModel._() : super._();
 
   factory _ProgramModel.fromJson(Map<String, dynamic> json) =
       _$ProgramModelImpl.fromJson;

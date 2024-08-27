@@ -103,9 +103,9 @@ extension BuildContextX on BuildContext {
     );
   }
 
-  ElegantNotification buildUploadToast() {
+  ElegantNotification buildLoaderToast({String? title}) {
     return ElegantNotification.info(
-      title: const TitleSmall('Uploading...'),
+      title: TitleSmall(title),
       description: BlocProvider.value(
         value: sl<LoadingCubit>(),
         child: BlocBuilder<LoadingCubit, LoadingState>(

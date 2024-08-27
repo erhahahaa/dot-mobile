@@ -291,7 +291,7 @@ class __$$EvaluationModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvaluationModelImpl extends _EvaluationModel {
-  _$EvaluationModelImpl(
+  const _$EvaluationModelImpl(
       {this.id = 0,
       this.examId = 0,
       this.clubId = 0,
@@ -405,7 +405,7 @@ class _$EvaluationModelImpl extends _EvaluationModel {
 }
 
 abstract class _EvaluationModel extends EvaluationModel {
-  factory _EvaluationModel(
+  const factory _EvaluationModel(
       {final int id,
       final int examId,
       final int clubId,
@@ -417,7 +417,7 @@ abstract class _EvaluationModel extends EvaluationModel {
       final UserModel? coach,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$EvaluationModelImpl;
-  _EvaluationModel._() : super._();
+  const _EvaluationModel._() : super._();
 
   factory _EvaluationModel.fromJson(Map<String, dynamic> json) =
       _$EvaluationModelImpl.fromJson;

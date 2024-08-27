@@ -29,6 +29,7 @@ class TitleMedium extends StatelessWidget {
             fontSize: fontSize ?? 16.sp,
             letterSpacing: 0.15.sp,
           ),
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

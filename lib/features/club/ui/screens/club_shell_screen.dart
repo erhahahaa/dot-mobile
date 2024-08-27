@@ -58,6 +58,12 @@ class ClubShellScreen extends StatelessWidget implements AutoRouteWrapper {
         child: child,
       ),
       bottomNavigationBuilder: (context, tabsRouter) {
+        final path = tabsRouter.currentUrl;
+        final depth = path.split('/').length;
+        if (depth > 4) {
+          return const SizedBox.shrink();
+        }
+
         return NavigationBar(
           selectedIndex: tabsRouter.activeIndex,
           onDestinationSelected: tabsRouter.setActiveIndex,

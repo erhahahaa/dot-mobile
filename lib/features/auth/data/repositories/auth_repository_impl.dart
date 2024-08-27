@@ -29,9 +29,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
     return res.fold(
       (failure) => Left(failure),
-      (success) {
-        _local.clearSignedInUser();
-        _local.cacheSignedInUser(success);
+      (success) async {
+        await _local.cacheSignedInUser(success);
         return Right(success);
       },
     );
@@ -45,10 +44,14 @@ class AuthRepositoryImpl implements AuthRepository {
 
     return res.fold(
       (failure) => Left(failure),
-      (success) {
-        _local.clearSignedInUser();
-        _local.cacheSignedInUser(success);
-        return Right(success);
+      (success) async {
+        await _local.clearSignedInUser();
+        final local = await _local.cacheSignedInUser(success);
+        if (local == null) {
+          return const Left(
+              StorageFailure(message: 'Failed to cache signed in user'));
+        }
+        return Right(UserModel.fromEntity(local));
       },
     );
   }

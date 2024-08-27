@@ -229,7 +229,7 @@ class __$$ExamModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExamModelImpl extends _ExamModel {
-  _$ExamModelImpl(
+  const _$ExamModelImpl(
       {this.id = 0,
       this.clubId = 0,
       this.imageId,
@@ -312,7 +312,7 @@ class _$ExamModelImpl extends _ExamModel {
 }
 
 abstract class _ExamModel extends ExamModel {
-  factory _ExamModel(
+  const factory _ExamModel(
       {final int id,
       final int clubId,
       final int? imageId,
@@ -322,7 +322,7 @@ abstract class _ExamModel extends ExamModel {
       final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$ExamModelImpl;
-  _ExamModel._() : super._();
+  const _ExamModel._() : super._();
 
   factory _ExamModel.fromJson(Map<String, dynamic> json) =
       _$ExamModelImpl.fromJson;

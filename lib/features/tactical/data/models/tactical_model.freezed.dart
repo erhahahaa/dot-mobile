@@ -285,7 +285,7 @@ class __$$TacticalModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TacticalModelImpl implements _TacticalModel {
+class _$TacticalModelImpl extends _TacticalModel {
   const _$TacticalModelImpl(
       {this.id = 0,
       this.clubId = 0,
@@ -297,7 +297,8 @@ class _$TacticalModelImpl implements _TacticalModel {
       this.isLive = false,
       this.media,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt})
+      : super._();
 
   factory _$TacticalModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TacticalModelImplFromJson(json);
@@ -378,7 +379,7 @@ class _$TacticalModelImpl implements _TacticalModel {
   }
 }
 
-abstract class _TacticalModel implements TacticalModel {
+abstract class _TacticalModel extends TacticalModel {
   const factory _TacticalModel(
       {final int id,
       final int clubId,
@@ -391,6 +392,7 @@ abstract class _TacticalModel implements TacticalModel {
       final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$TacticalModelImpl;
+  const _TacticalModel._() : super._();
 
   factory _TacticalModel.fromJson(Map<String, dynamic> json) =
       _$TacticalModelImpl.fromJson;

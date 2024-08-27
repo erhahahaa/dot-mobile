@@ -6,3 +6,4 @@ export 'services/services.dart';
 export 'usecases/usecases.dart';
 export 'widgets/widgets.dart';
 export 'buttons/buttons.dart';
+export 'gen/gen.dart';
