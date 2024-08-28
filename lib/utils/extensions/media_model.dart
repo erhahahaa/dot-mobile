@@ -24,10 +24,11 @@ extension MediaExt on MediaModel {
     double? height,
     BoxFit fit = BoxFit.cover,
     bool asDialog = true,
+    bool useThumb = true,
   }) {
     if (MediaExt.imageType.contains(type)) {
       return CachedNetworkImage(
-        imageUrl: thumbUrl ?? url,
+        imageUrl: useThumb ? thumbUrl ?? url : url,
         fit: fit,
         width: width,
         height: height,
@@ -35,7 +36,7 @@ extension MediaExt on MediaModel {
     }
     if (MediaExt.bitmapType.contains(type)) {
       return SvgPicture.network(
-        thumbUrl ?? url,
+        useThumb ? thumbUrl ?? url : url,
         fit: fit,
         width: width,
         height: height,
@@ -57,7 +58,6 @@ extension MediaExt on MediaModel {
         fit: fit,
         width: width,
         height: height,
-        // add play button
         imageBuilder: (context, imageProvider) {
           return Container(
             width: width,

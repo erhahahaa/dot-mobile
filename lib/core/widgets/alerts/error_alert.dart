@@ -14,6 +14,7 @@ class ErrorAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MoonAlert.filled(
+      
       color: context.moonColors?.chichi,
       backgroundColor: context.moonColors?.chichi10,
       leading: const Icon(MoonIcons.notifications_alert_24_light),

@@ -89,6 +89,7 @@ class _MediaScreenState extends State<MediaScreen>
           MediaView<ProgramMediaBlocRead, BlocStateRead<MediaModel>,
               ProgramMediaBlocWrite, BlocStateWrite<MediaModel>>(
             club,
+            allowedExtensions: ['jpg', 'jpeg', 'png', 'svg'],
             onUpload: (file) {
               context.read<ProgramMediaBlocWrite>().add(
                     BlocEventWrite.create({
@@ -133,6 +134,7 @@ class _MediaScreenState extends State<MediaScreen>
           MediaView<TacticalMediaBlocRead, BlocStateRead<MediaModel>,
               TacticalMediaBlocWrite, BlocStateWrite<MediaModel>>(
             club,
+            allowedExtensions: ['jpg', 'jpeg', 'png', 'svg'],
             onUpload: (file) {
               context.read<TacticalMediaBlocWrite>().add(
                     BlocEventWrite.create({

@@ -14,17 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-GetAllMediaParams _$GetAllMediaParamsFromJson(Map<String, dynamic> json) {
-  return _GetAllMediaParams.fromJson(json);
-}
-
 /// @nodoc
 mixin _$GetAllMediaParams {
   MediaParent get parent => throw _privateConstructorUsedError;
   int get clubId => throw _privateConstructorUsedError;
-
-  /// Serializes this GetAllMediaParams to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  MediaType? get type => throw _privateConstructorUsedError;
 
   /// Create a copy of GetAllMediaParams
   /// with the given fields replaced by the non-null parameter values.
@@ -39,7 +33,7 @@ abstract class $GetAllMediaParamsCopyWith<$Res> {
           GetAllMediaParams value, $Res Function(GetAllMediaParams) then) =
       _$GetAllMediaParamsCopyWithImpl<$Res, GetAllMediaParams>;
   @useResult
-  $Res call({MediaParent parent, int clubId});
+  $Res call({MediaParent parent, int clubId, MediaType? type});
 }
 
 /// @nodoc
@@ -59,6 +53,7 @@ class _$GetAllMediaParamsCopyWithImpl<$Res, $Val extends GetAllMediaParams>
   $Res call({
     Object? parent = null,
     Object? clubId = null,
+    Object? type = freezed,
   }) {
     return _then(_value.copyWith(
       parent: null == parent
@@ -69,6 +64,10 @@ class _$GetAllMediaParamsCopyWithImpl<$Res, $Val extends GetAllMediaParams>
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as MediaType?,
     ) as $Val);
   }
 }
@@ -81,7 +80,7 @@ abstract class _$$GetAllMediaParamsImplCopyWith<$Res>
       __$$GetAllMediaParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({MediaParent parent, int clubId});
+  $Res call({MediaParent parent, int clubId, MediaType? type});
 }
 
 /// @nodoc
@@ -99,6 +98,7 @@ class __$$GetAllMediaParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? parent = null,
     Object? clubId = null,
+    Object? type = freezed,
   }) {
     return _then(_$GetAllMediaParamsImpl(
       parent: null == parent
@@ -109,26 +109,30 @@ class __$$GetAllMediaParamsImplCopyWithImpl<$Res>
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as int,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as MediaType?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$GetAllMediaParamsImpl implements _GetAllMediaParams {
-  const _$GetAllMediaParamsImpl({required this.parent, required this.clubId});
 
-  factory _$GetAllMediaParamsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GetAllMediaParamsImplFromJson(json);
+class _$GetAllMediaParamsImpl implements _GetAllMediaParams {
+  const _$GetAllMediaParamsImpl(
+      {required this.parent, required this.clubId, this.type});
 
   @override
   final MediaParent parent;
   @override
   final int clubId;
+  @override
+  final MediaType? type;
 
   @override
   String toString() {
-    return 'GetAllMediaParams(parent: $parent, clubId: $clubId)';
+    return 'GetAllMediaParams(parent: $parent, clubId: $clubId, type: $type)';
   }
 
   @override
@@ -137,12 +141,12 @@ class _$GetAllMediaParamsImpl implements _GetAllMediaParams {
         (other.runtimeType == runtimeType &&
             other is _$GetAllMediaParamsImpl &&
             (identical(other.parent, parent) || other.parent == parent) &&
-            (identical(other.clubId, clubId) || other.clubId == clubId));
+            (identical(other.clubId, clubId) || other.clubId == clubId) &&
+            (identical(other.type, type) || other.type == type));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, parent, clubId);
+  int get hashCode => Object.hash(runtimeType, parent, clubId, type);
 
   /// Create a copy of GetAllMediaParams
   /// with the given fields replaced by the non-null parameter values.
@@ -152,27 +156,20 @@ class _$GetAllMediaParamsImpl implements _GetAllMediaParams {
   _$$GetAllMediaParamsImplCopyWith<_$GetAllMediaParamsImpl> get copyWith =>
       __$$GetAllMediaParamsImplCopyWithImpl<_$GetAllMediaParamsImpl>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GetAllMediaParamsImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _GetAllMediaParams implements GetAllMediaParams {
   const factory _GetAllMediaParams(
       {required final MediaParent parent,
-      required final int clubId}) = _$GetAllMediaParamsImpl;
-
-  factory _GetAllMediaParams.fromJson(Map<String, dynamic> json) =
-      _$GetAllMediaParamsImpl.fromJson;
+      required final int clubId,
+      final MediaType? type}) = _$GetAllMediaParamsImpl;
 
   @override
   MediaParent get parent;
   @override
   int get clubId;
+  @override
+  MediaType? get type;
 
   /// Create a copy of GetAllMediaParams
   /// with the given fields replaced by the non-null parameter values.

@@ -904,7 +904,7 @@ class UpsertExamRoute extends _i36.PageRouteInfo<void> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i31.UpsertExamScreen();
+      return _i36.WrappedRoute(child: const _i31.UpsertExamScreen());
     },
   );
 }

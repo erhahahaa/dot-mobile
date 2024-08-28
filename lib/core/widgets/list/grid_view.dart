@@ -26,9 +26,9 @@ class GridViewBuilder<T> extends StatelessWidget {
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
-          childAspectRatio: (1 / 1.6).sp,
+          crossAxisSpacing: 2,
+          mainAxisSpacing: 2,
+          childAspectRatio: (1 / 1.65).sp,
         ),
         itemCount: items.length,
         itemBuilder: (context, index) => itemBuilder(context, items[index]),
@@ -56,10 +56,10 @@ class GridViewBuilderTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ContainerWrapper(
+    return EightCard(
       padding: padding,
-      margin: margin ?? EdgeInsets.zero,
-      width: double.infinity,
+      // margin: margin ?? EdgeInsets.zero,
+      // width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

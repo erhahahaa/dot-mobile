@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class MediaRemoteDatasource {
@@ -53,7 +54,8 @@ class MediaRemoteDatasourceImpl implements MediaRemoteDatasource {
       '${ListAPI.MEDIA}/${params.parent.value}',
       queryParameters: {
         'clubId': params.clubId,
-      },
+        'type': params.type?.value,
+      }.removeNullValues(),
       converter: (res) {
         final List<MediaModel> medias = [];
         for (final item in res['data']) {

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moon_design/moon_design.dart';
 
 class ListViewBuilder<T> extends StatelessWidget {
   final List<T> items;
@@ -61,10 +60,10 @@ class ListViewBuilderTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: ContainerWrapper(
+      child: EightCard(
         padding: padding ?? EdgeInsets.zero,
         margin: margin ?? EdgeInsets.all(4.w),
-        color: context.moonColors?.frieza.withOpacity(0.2),
+        // color: context.moonColors?.frieza.withOpacity(0.2),
         child: ListTile(
           enabled: enabled,
           leading: leading ??

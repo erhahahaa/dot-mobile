@@ -7,7 +7,7 @@ class BlocEventRead<T> with _$BlocEventRead<T> {
   const factory BlocEventRead.clear() = BlocEventReadClear;
   const factory BlocEventRead.get({
     int? id,
-    String? query
+    String? query,
   }) = BlocEventReadGet;
   const factory BlocEventRead.select(T? item) = BlocEventReadSelect<T>;
   const factory BlocEventRead.filter(String query) = BlocEventReadFilter;

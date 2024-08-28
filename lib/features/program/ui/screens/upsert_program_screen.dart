@@ -47,9 +47,8 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
   @override
   void initState() {
     final programBloc = context.read<ProgramBlocRead>();
-    _program = programBloc.state.maybeWhen(
+    _program = programBloc.state.whenOrNull(
       success: (_, __, selectedItem) => selectedItem,
-      orElse: () => null,
     );
     _start = _program?.startDate;
     _end = _program?.endDate;

@@ -98,27 +98,29 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        MySearchBar(
-          width: 325.w,
-          height: 32.h,
-          controller: search,
-          hintText:
-              '${context.str?.search} ${context.str?.program.toLowerCase()} ...',
-          onChanged: (value) {
-            if (value == null) return;
-            context.read<ClubBlocRead>().add(
-                  BlocEventRead.filter(value),
-                );
-          },
-          trailing: MoonButton.icon(
-            buttonSize: MoonButtonSize.xs,
-            icon: const Icon(MoonIcons.controls_close_24_light),
-            onTap: () {
-              search.clear();
-              context.read<ClubBlocRead>().add(
-                    const BlocEventRead.filter(''),
+        Expanded(
+          child: MySearchBar(
+            width: 325.w,
+            height: 32.h,
+            controller: search,
+            hintText:
+                '${context.str?.search} ${context.str?.program.toLowerCase()} ...',
+            onChanged: (value) {
+              if (value == null) return;
+              context.read<ProgramBlocRead>().add(
+                    BlocEventRead.filter(value),
                   );
             },
+            trailing: MoonButton.icon(
+              buttonSize: MoonButtonSize.xs,
+              icon: const Icon(MoonIcons.controls_close_24_light),
+              onTap: () {
+                search.clear();
+                context.read<ProgramBlocRead>().add(
+                      const BlocEventRead.filter(''),
+                    );
+              },
+            ),
           ),
         ),
       ],
@@ -325,7 +327,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
       titleText: program.name,
       subtitleText: program.startDate.toString(),
       imageUrl: program.media?.url,
-      margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
+      // margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
       onTap: onTap,
       trailing: MoonButton.icon(
         buttonSize: MoonButtonSize.xs,

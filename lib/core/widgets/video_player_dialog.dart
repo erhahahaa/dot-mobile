@@ -28,16 +28,15 @@ class _VideoPlayerDialogState extends State<VideoPlayerDialog> {
     super.initState();
     _controller = VideoPlayerController.networkUrl(
       Uri.parse(widget.url),
-    );
-    _controller.initialize().then((_) {
-      setState(() {
-        _chewieController = ChewieController(
-          videoPlayerController: _controller,
-          autoPlay: true,
-          looping: false,
-        );
+    )..initialize().then((_) {
+        setState(() {
+          _chewieController = ChewieController(
+            videoPlayerController: _controller,
+            autoPlay: true,
+            looping: false,
+          );
+        });
       });
-    });
   }
 
   @override

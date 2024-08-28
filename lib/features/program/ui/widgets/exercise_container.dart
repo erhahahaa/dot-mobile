@@ -67,6 +67,7 @@ class _ExerciseContainerState extends State<ExerciseContainer> {
                   width: 310.w,
                   height: 310.h,
                   asDialog: false,
+                  useThumb: false,
                 )
               : Container(),
         ),

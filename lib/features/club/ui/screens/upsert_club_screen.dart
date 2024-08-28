@@ -245,6 +245,7 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
                 );
               },
             ),
+            Gap(256.h),
           ],
         ),
       ),

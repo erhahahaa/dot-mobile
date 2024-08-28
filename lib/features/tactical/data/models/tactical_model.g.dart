@@ -23,7 +23,7 @@ _$TacticalModelImpl _$$TacticalModelImplFromJson(Map<String, dynamic> json) =>
       isLive: json['isLive'] as bool? ?? false,
       media: json['media'] == null
           ? null
-          : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),
+          : MediaModel.fromJson(json['media'] as Map<String, dynamic>),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),

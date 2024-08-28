@@ -25,7 +25,7 @@ class DedicatedVideoPlayer extends StatefulWidget {
 
 class _DedicatedVideoPlayerState extends State<DedicatedVideoPlayer> {
   late VideoPlayerController _controller;
-  late ChewieController _chewieController;
+  ChewieController? _chewieController;
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _DedicatedVideoPlayerState extends State<DedicatedVideoPlayer> {
   @override
   void dispose() {
     _controller.dispose();
-    _chewieController.dispose();
+    _chewieController?.dispose();
     super.dispose();
   }
 
@@ -65,9 +65,19 @@ class _DedicatedVideoPlayerState extends State<DedicatedVideoPlayer> {
       children: [
         Positioned.fill(
           child: _controller.value.isPlaying
-              ? Chewie(
-                  controller: _chewieController,
-                )
+              ? _chewieController != null &&
+                      _chewieController!
+                          .videoPlayerController.value.isInitialized
+                  ? Expanded(
+                      child: Chewie(
+                        controller: _chewieController!,
+                      ),
+                    )
+                  : Center(
+                      child: Padding(
+                      padding: EdgeInsets.all(16.w),
+                      child: const MoonCircularLoader(),
+                    ))
               : CachedNetworkImage(
                   imageUrl: widget.thumbUrl,
                   width: widget.width,

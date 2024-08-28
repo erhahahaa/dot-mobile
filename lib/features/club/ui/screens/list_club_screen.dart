@@ -17,8 +17,8 @@ class ListClubScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userBloc = context.watch<UserBloc>();
-    final user =
-        userBloc.state.whenOrNull(success: (user, _) => user) ?? const UserModel();
+    final user = userBloc.state.whenOrNull(success: (user, _) => user) ??
+        const UserModel();
     return ParentWithSearchAndScrollController(
       onInit: (search, scroll) => context.read<ClubBlocRead>().add(
             const BlocEventRead.clear(),
@@ -127,13 +127,15 @@ class ListClubScreen extends StatelessWidget {
           ),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: Column(
-              children: [
-                Gap(8.h),
-                _buildHeader(context, search),
-                Gap(8.h),
-                _buildListClub(context, scroll),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Gap(8.h),
+                  _buildHeader(context, search),
+                  Gap(8.h),
+                  _buildListClub(context, search, scroll),
+                ],
+              ),
             ),
           ),
         );
@@ -175,39 +177,34 @@ class ListClubScreen extends StatelessWidget {
 
   Widget _buildListClub(
     BuildContext context,
+    SearchController searchController,
     ScrollController scrollController,
   ) {
     return BlocBuilder<ClubBlocRead, BlocStateRead<ClubModel>>(
       builder: (context, state) {
         return state.maybeWhen(
-          success: (_, filteredClubs, __) {
+          success: (clubs, filteredClubs, __) {
             if (filteredClubs.isEmpty) {
-              return Expanded(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Flexible(
-                        child: Text(
-                          "There's no club created yet",
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      Flexible(
-                        child: TextButton(
-                          style: ButtonStyle(
-                            foregroundColor:
-                                WidgetStateProperty.all<Color>(Colors.blue),
-                          ),
-                          onPressed: () {},
-                          child: const Text("Reload"),
-                        ),
-                      ),
-                      Gap(16.h),
-                    ],
+              return ErrorAlert('No club with ${searchController.text} found');
+            }
+            if (clubs.isEmpty) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    "There's no club created yet",
+                    textAlign: TextAlign.center,
                   ),
-                ),
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor:
+                          WidgetStateProperty.all<Color>(Colors.blue),
+                    ),
+                    onPressed: () {},
+                    child: const Text("Reload"),
+                  ),
+                ],
               );
             }
             return ListViewBuilder<ClubModel>(
@@ -261,7 +258,7 @@ class ListClubScreen extends StatelessWidget {
       titleText: club.name,
       subtitleText: club.type.name,
       imageUrl: club.media?.url,
-      margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
+      // margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
       onTap: onTap,
       trailing: MoonButton.icon(
         buttonSize: MoonButtonSize.xs,

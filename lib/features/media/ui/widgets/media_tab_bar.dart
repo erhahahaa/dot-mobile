@@ -17,6 +17,7 @@ class MediaTabBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return ContainerWrapper(
       margin: EdgeInsets.symmetric(horizontal: 8.w),
+      padding: EdgeInsets.all(4.w),
       child: MoonTabBar.pill(
         tabController: controller,
         tabBarSize: MoonTabBarSize.sm,

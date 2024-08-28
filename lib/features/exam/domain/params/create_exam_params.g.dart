@@ -12,9 +12,9 @@ _$CreateExamParamsImpl _$$CreateExamParamsImplFromJson(
       clubId: (json['clubId'] as num).toInt(),
       title: json['title'] as String,
       description: json['description'] as String?,
-      dueAt: json['endDate'] == null
+      dueAt: json['dueAt'] == null
           ? null
-          : DateTime.parse(json['endDate'] as String),
+          : DateTime.parse(json['dueAt'] as String),
     );
 
 Map<String, dynamic> _$$CreateExamParamsImplToJson(
@@ -23,5 +23,5 @@ Map<String, dynamic> _$$CreateExamParamsImplToJson(
       'clubId': instance.clubId,
       'title': instance.title,
       'description': instance.description,
-      'endDate': instance.dueAt?.toIso8601String(),
+      'dueAt': instance.dueAt?.toIso8601String(),
     };

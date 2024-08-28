@@ -22,6 +22,7 @@ class MediaView<
   final void Function(MediaModel item) onSuccess;
   final void Function(MediaModel item)? onDownload;
   final void Function(MediaModel item)? onTap;
+  final List<String> allowedExtensions;
 
   const MediaView(
     this.club, {
@@ -30,6 +31,7 @@ class MediaView<
     required this.onSuccess,
     this.onDownload,
     this.onTap,
+    this.allowedExtensions = const ['jpg', 'jpeg', 'png', 'mp4'],
   });
 
   @override
@@ -200,7 +202,7 @@ class _MediaViewState<
                   onPressed: () async {
                     final res = await sl<FilePickerService>().picker.pickFiles(
                           allowMultiple: false,
-                          allowedExtensions: ['jpg', 'jpeg', 'png', 'mp4'],
+                          allowedExtensions: widget.allowedExtensions,
                           type: FileType.custom,
                         );
                     if (!context.mounted) return;
@@ -228,6 +230,12 @@ class _MediaViewState<
                 builder: (context, state) {
                   return state.maybeWhen(
                     success: (_, filteredItems, __) {
+                      if (filteredItems.isEmpty) {
+                        return SizedBox(
+                          height: 50.h,
+                          child: const ErrorAlert('No media found'),
+                        );
+                      }
                       return GridViewBuilder(
                         items: filteredItems,
                         scrollController: scroll,

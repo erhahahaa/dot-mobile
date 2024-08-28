@@ -28,7 +28,7 @@ mixin _$TacticalModel {
   TacticalBoardModel get board => throw _privateConstructorUsedError;
   TacticalStrategicModel? get strategic => throw _privateConstructorUsedError;
   bool get isLive => throw _privateConstructorUsedError;
-  MediaEmbedModel? get media => throw _privateConstructorUsedError;
+  MediaModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -57,13 +57,13 @@ abstract class $TacticalModelCopyWith<$Res> {
       TacticalBoardModel board,
       TacticalStrategicModel? strategic,
       bool isLive,
-      MediaEmbedModel? media,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
   $TacticalBoardModelCopyWith<$Res> get board;
   $TacticalStrategicModelCopyWith<$Res>? get strategic;
-  $MediaEmbedModelCopyWith<$Res>? get media;
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -129,7 +129,7 @@ class _$TacticalModelCopyWithImpl<$Res, $Val extends TacticalModel>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaEmbedModel?,
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -169,12 +169,12 @@ class _$TacticalModelCopyWithImpl<$Res, $Val extends TacticalModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MediaEmbedModelCopyWith<$Res>? get media {
+  $MediaModelCopyWith<$Res>? get media {
     if (_value.media == null) {
       return null;
     }
 
-    return $MediaEmbedModelCopyWith<$Res>(_value.media!, (value) {
+    return $MediaModelCopyWith<$Res>(_value.media!, (value) {
       return _then(_value.copyWith(media: value) as $Val);
     });
   }
@@ -197,7 +197,7 @@ abstract class _$$TacticalModelImplCopyWith<$Res>
       TacticalBoardModel board,
       TacticalStrategicModel? strategic,
       bool isLive,
-      MediaEmbedModel? media,
+      MediaModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
 
@@ -206,7 +206,7 @@ abstract class _$$TacticalModelImplCopyWith<$Res>
   @override
   $TacticalStrategicModelCopyWith<$Res>? get strategic;
   @override
-  $MediaEmbedModelCopyWith<$Res>? get media;
+  $MediaModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -270,7 +270,7 @@ class __$$TacticalModelImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as MediaEmbedModel?,
+              as MediaModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -325,7 +325,7 @@ class _$TacticalModelImpl extends _TacticalModel {
   @JsonKey()
   final bool isLive;
   @override
-  final MediaEmbedModel? media;
+  final MediaModel? media;
   @override
   final DateTime? createdAt;
   @override
@@ -389,7 +389,7 @@ abstract class _TacticalModel extends TacticalModel {
       final TacticalBoardModel board,
       final TacticalStrategicModel? strategic,
       final bool isLive,
-      final MediaEmbedModel? media,
+      final MediaModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$TacticalModelImpl;
   const _TacticalModel._() : super._();
@@ -414,7 +414,7 @@ abstract class _TacticalModel extends TacticalModel {
   @override
   bool get isLive;
   @override
-  MediaEmbedModel? get media;
+  MediaModel? get media;
   @override
   DateTime? get createdAt;
   @override

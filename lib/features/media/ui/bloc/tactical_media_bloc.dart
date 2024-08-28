@@ -29,13 +29,18 @@ class TacticalMediaBlocRead extends BlocRead<MediaModel> {
     Emitter<BlocStateRead<MediaModel>> emit,
   ) async {
     final clubId = event.id;
+    final type =
+        event.query != null ? MediaType.fromString(event.query!) : null;
     if (clubId == null) {
       return emit(const BlocStateReadFailure('Club ID is required'));
     }
     emit(const BlocStateReadLoading());
 
-    final res = await _getAllMediaUsecase
-        .call(GetAllMediaParams(parent: parent, clubId: clubId));
+    final res = await _getAllMediaUsecase.call(GetAllMediaParams(
+      parent: parent,
+      clubId: clubId,
+      type: type,
+    ));
 
     res.fold(
       (failure) => emit(BlocStateReadFailure(failure.message)),

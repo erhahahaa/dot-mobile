@@ -18,7 +18,7 @@ class TacticalModel with _$TacticalModel {
     @Default(TacticalBoardModel()) TacticalBoardModel board,
     TacticalStrategicModel? strategic,
     @Default(false) bool isLive,
-    MediaEmbedModel? media,
+    MediaModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _TacticalModel;
@@ -40,9 +40,9 @@ class TacticalModel with _$TacticalModel {
           ? TacticalStrategicModel.fromEntity(entity.strategic!)
           : null,
       isLive: entity.isLive,
-      media: entity.media != null
-          ? MediaEmbedModel.fromEntity(entity.media!)
-          : null,
+      // media: entity.media != null
+      //     ? MediaEmbedModel.fromEntity(entity.media!)
+      //     : null,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );
@@ -57,7 +57,7 @@ class TacticalModel with _$TacticalModel {
         width: 1000,
         height: 1000,
       ),
-      media: MediaEmbedModel.fake(),
+      media: MediaModel.fake(),
     );
   }
 }
@@ -73,7 +73,7 @@ extension TacticalModelX on TacticalModel {
       board: board.toEntity(),
       strategic: strategic?.toEntity(),
       isLive: isLive,
-      media: media?.toEntity(),
+      // media: media?.toEntity(),
       createdAt: createdAt,
       updatedAt: updatedAt,
     );

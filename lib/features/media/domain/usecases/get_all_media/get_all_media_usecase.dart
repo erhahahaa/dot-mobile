@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'get_all_media_usecase.freezed.dart';
-part 'get_all_media_usecase.g.dart';
 
 @lazySingleton
 class GetAllMediaUsecase extends FPUC<List<MediaModel>, GetAllMediaParams> {
@@ -24,8 +23,6 @@ class GetAllMediaParams with _$GetAllMediaParams {
   const factory GetAllMediaParams({
     required MediaParent parent,
     required int clubId,
+    MediaType? type,
   }) = _GetAllMediaParams;
-
-  factory GetAllMediaParams.fromJson(Map<String, dynamic> json) =>
-      _$GetAllMediaParamsFromJson(json);
 }

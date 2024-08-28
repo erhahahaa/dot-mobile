@@ -208,6 +208,13 @@ class ListTacticalScreen extends StatelessWidget {
     return ListViewBuilderTile(
       titleText: tactical.name,
       imageUrl: tactical.media?.url,
+      subtitle: tactical.isLive
+          ? MoonChip(
+              label: BodySmall(
+                'live',
+              ),
+            )
+          : Container(),
       margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
       onTap: onTap,
       trailing: MoonButton.icon(
