@@ -90,6 +90,16 @@ class AppRouter extends RootStackRouter {
                   page: ExamShellRoute.page,
                   children: [
                     AutoRoute(
+                      path: 'question',
+                      page: QuestionShellRoute.page,
+                      children: [
+                        AutoRoute(
+                          path: 'upsert',
+                          page: UpsertQuestionRoute.page,
+                        ),
+                      ],
+                    ),
+                    AutoRoute(
                       path: '',
                       page: ListExamRoute.page,
                     ),

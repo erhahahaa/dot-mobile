@@ -104,7 +104,6 @@ class QuestionRemoteDatasourceImpl implements QuestionRemoteDatasource {
         createParams.add(CreateQuestionParams(
           order: param.order,
           examId: param.examId,
-          mediaId: param.mediaId,
           type: param.type,
           question: param.question,
           options: param.options,

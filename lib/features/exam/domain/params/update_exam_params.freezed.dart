@@ -24,7 +24,7 @@ mixin _$UpdateExamParams {
   int get clubId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  DateTime? get endDate =>
+  DateTime? get dueAt =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(includeFromJson: false, includeToJson: false)
   File? get image => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $UpdateExamParamsCopyWith<$Res> {
       int clubId,
       String title,
       String? description,
-      DateTime? endDate,
+      DateTime? dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
 
@@ -73,7 +73,7 @@ class _$UpdateExamParamsCopyWithImpl<$Res, $Val extends UpdateExamParams>
     Object? clubId = null,
     Object? title = null,
     Object? description = freezed,
-    Object? endDate = freezed,
+    Object? dueAt = freezed,
     Object? image = freezed,
   }) {
     return _then(_value.copyWith(
@@ -93,9 +93,9 @@ class _$UpdateExamParamsCopyWithImpl<$Res, $Val extends UpdateExamParams>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
+      dueAt: freezed == dueAt
+          ? _value.dueAt
+          : dueAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       image: freezed == image
           ? _value.image
@@ -118,7 +118,7 @@ abstract class _$$UpdateExamParamsImplCopyWith<$Res>
       int clubId,
       String title,
       String? description,
-      DateTime? endDate,
+      DateTime? dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false) File? image});
 }
 
@@ -139,7 +139,7 @@ class __$$UpdateExamParamsImplCopyWithImpl<$Res>
     Object? clubId = null,
     Object? title = null,
     Object? description = freezed,
-    Object? endDate = freezed,
+    Object? dueAt = freezed,
     Object? image = freezed,
   }) {
     return _then(_$UpdateExamParamsImpl(
@@ -159,9 +159,9 @@ class __$$UpdateExamParamsImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
+      dueAt: freezed == dueAt
+          ? _value.dueAt
+          : dueAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       image: freezed == image
           ? _value.image
@@ -179,7 +179,7 @@ class _$UpdateExamParamsImpl extends _UpdateExamParams {
       required this.clubId,
       required this.title,
       required this.description,
-      required this.endDate,
+      required this.dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false) this.image})
       : super._();
 
@@ -195,7 +195,7 @@ class _$UpdateExamParamsImpl extends _UpdateExamParams {
   @override
   final String? description;
   @override
-  final DateTime? endDate;
+  final DateTime? dueAt;
 // ignore: invalid_annotation_target
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -203,7 +203,7 @@ class _$UpdateExamParamsImpl extends _UpdateExamParams {
 
   @override
   String toString() {
-    return 'UpdateExamParams(id: $id, clubId: $clubId, title: $title, description: $description, endDate: $endDate, image: $image)';
+    return 'UpdateExamParams(id: $id, clubId: $clubId, title: $title, description: $description, dueAt: $dueAt, image: $image)';
   }
 
   @override
@@ -216,14 +216,14 @@ class _$UpdateExamParamsImpl extends _UpdateExamParams {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.dueAt, dueAt) || other.dueAt == dueAt) &&
             (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, clubId, title, description, endDate, image);
+      Object.hash(runtimeType, id, clubId, title, description, dueAt, image);
 
   /// Create a copy of UpdateExamParams
   /// with the given fields replaced by the non-null parameter values.
@@ -248,7 +248,7 @@ abstract class _UpdateExamParams extends UpdateExamParams {
       required final int clubId,
       required final String title,
       required final String? description,
-      required final DateTime? endDate,
+      required final DateTime? dueAt,
       @JsonKey(includeFromJson: false, includeToJson: false)
       final File? image}) = _$UpdateExamParamsImpl;
   const _UpdateExamParams._() : super._();
@@ -265,7 +265,7 @@ abstract class _UpdateExamParams extends UpdateExamParams {
   @override
   String? get description;
   @override
-  DateTime? get endDate; // ignore: invalid_annotation_target
+  DateTime? get dueAt; // ignore: invalid_annotation_target
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   File? get image;

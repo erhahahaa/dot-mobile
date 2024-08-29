@@ -68,7 +68,7 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
       builder: (child, search, scroll, showScrollToTopButton) {
         return Parent(
           appBar: AppBar(
-            title: Text('${_program?.name} exercises'),
+            title: Text('${_program?.name} Exercises'),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
@@ -318,7 +318,6 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
                                 });
                               },
                             ),
-                            // drag handle
                             ReorderableDragStartListener(
                               index: index,
                               child: Container(

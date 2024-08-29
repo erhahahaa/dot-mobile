@@ -13,9 +13,9 @@ _$UpdateExamParamsImpl _$$UpdateExamParamsImplFromJson(
       clubId: (json['clubId'] as num).toInt(),
       title: json['title'] as String,
       description: json['description'] as String?,
-      endDate: json['endDate'] == null
+      dueAt: json['dueAt'] == null
           ? null
-          : DateTime.parse(json['endDate'] as String),
+          : DateTime.parse(json['dueAt'] as String),
     );
 
 Map<String, dynamic> _$$UpdateExamParamsImplToJson(
@@ -25,5 +25,5 @@ Map<String, dynamic> _$$UpdateExamParamsImplToJson(
       'clubId': instance.clubId,
       'title': instance.title,
       'description': instance.description,
-      'endDate': instance.endDate?.toIso8601String(),
+      'dueAt': instance.dueAt?.toIso8601String(),
     };

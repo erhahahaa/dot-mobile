@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/app/di.dart';
+import 'package:dot_coaching/app/router.gr.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
 import 'package:dot_coaching/utils/extensions/datetime.dart';
@@ -26,6 +27,7 @@ class UpsertExamScreen extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _UpsertExamScreenState extends State<UpsertExamScreen> {
+  ExamModel? _exam;
   late TextEditingController _titleController;
   late TextEditingController _descriptionController;
   late TextEditingController _dueAtController;
@@ -40,9 +42,15 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
 
   @override
   void initState() {
-    _titleController = TextEditingController();
-    _descriptionController = TextEditingController();
-    _dueAtController = TextEditingController();
+    final examBloc = context.read<ExamBlocRead>();
+    _exam = examBloc.state.whenOrNull(
+      success: (_, __, selectedItem) => selectedItem,
+    );
+    _titleController = TextEditingController(text: _exam?.title);
+    _descriptionController = TextEditingController(text: _exam?.description);
+    _dueAtController = TextEditingController(
+      text: _exam?.dueAt?.toDayMonthYear(),
+    );
 
     _titleFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
@@ -71,7 +79,9 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
   Widget build(BuildContext context) {
     return Parent(
       appBar: AppBar(
-        title: const TitleMedium('Exam Form'),
+        title: TitleMedium(
+          _exam == null ? 'Create New Exam' : 'Edit ${_exam?.title}',
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(8.w),
@@ -126,7 +136,7 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
               readOnly: true,
               validator: (String? value) {
                 if (value == null || value.isEmpty || _dueAt == null) {
-                  return context.str?.dueAtRequired ?? 'Start date is required';
+                  return context.str?.dueAtRequired ?? 'Due date is required';
                 }
                 return null;
               },
@@ -148,18 +158,20 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
             Gap(12.h),
             BlocConsumer<ExamBlocWrite, BlocStateWrite<ExamModel>>(
               listener: (context, state) {
-                state.mapOrNull(
-                  success: (club) {
-                    context.successToast(
-                      title: 'Success',
-                      description: 'Exam created successfully',
-                    );
-                    context.router.back();
+                state.whenOrNull(
+                  success: (exam) {
+                    context.read<ExamBlocRead>().add(
+                          BlocEventRead.select(exam),
+                        );
+                    context.read<QuestionBlocRead>().add(
+                          BlocEventRead.get(id: exam.id),
+                        );
+                    context.router.popAndPush(const UpsertQuestionRoute());
                   },
-                  failure: (failure) {
+                  failure: (message) {
                     context.errorToast(
                       title: 'Error',
-                      description: failure.message,
+                      description: message,
                     );
                   },
                 );
@@ -167,7 +179,7 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
               builder: (context, state) {
                 return FormButton(
                   isLoading: state is BlocStateWriteLoading,
-                  text: 'Create Exam',
+                  text: _exam == null ? 'Create Exam' : 'Update Exam',
                   onTap: () {
                     if (_formKey.currentState?.validate() ?? false) {
                       final clubBloc = context.read<ClubBlocRead>();
@@ -182,16 +194,31 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
                         );
                       }
 
-                      context.read<ExamBlocWrite>().add(
-                            BlocEventWrite.create(
-                              CreateExamParams(
-                                clubId: club.id,
-                                title: _titleController.text,
-                                description: _descriptionController.text,
-                                dueAt: _dueAt!,
+                      final id = _exam?.id;
+                      if (_exam == null || id == null) {
+                        context.read<ExamBlocWrite>().add(
+                              BlocEventWrite.create(
+                                CreateExamParams(
+                                  clubId: club.id,
+                                  title: _titleController.text,
+                                  description: _descriptionController.text,
+                                  dueAt: _dueAt!,
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                      } else {
+                        context.read<ExamBlocWrite>().add(
+                              BlocEventWrite.update(
+                                UpdateExamParams(
+                                  id: id,
+                                  clubId: club.id,
+                                  title: _titleController.text,
+                                  description: _descriptionController.text,
+                                  dueAt: _dueAt!,
+                                ),
+                              ),
+                            );
+                      }
                     }
                   },
                 );

@@ -23,7 +23,6 @@ mixin _$UpdateQuestionParams {
   int get id => throw _privateConstructorUsedError;
   int get order => throw _privateConstructorUsedError;
   int get examId => throw _privateConstructorUsedError;
-  int? get mediaId => throw _privateConstructorUsedError;
   QuestionType get type => throw _privateConstructorUsedError;
   String get question => throw _privateConstructorUsedError;
   List<QuestionOptionModel> get options => throw _privateConstructorUsedError;
@@ -48,7 +47,6 @@ abstract class $UpdateQuestionParamsCopyWith<$Res> {
       {int id,
       int order,
       int examId,
-      int? mediaId,
       QuestionType type,
       String question,
       List<QuestionOptionModel> options});
@@ -73,7 +71,6 @@ class _$UpdateQuestionParamsCopyWithImpl<$Res,
     Object? id = null,
     Object? order = null,
     Object? examId = null,
-    Object? mediaId = freezed,
     Object? type = null,
     Object? question = null,
     Object? options = null,
@@ -91,10 +88,6 @@ class _$UpdateQuestionParamsCopyWithImpl<$Res,
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
-      mediaId: freezed == mediaId
-          ? _value.mediaId
-          : mediaId // ignore: cast_nullable_to_non_nullable
-              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -123,7 +116,6 @@ abstract class _$$UpdateQuestionParamsImplCopyWith<$Res>
       {int id,
       int order,
       int examId,
-      int? mediaId,
       QuestionType type,
       String question,
       List<QuestionOptionModel> options});
@@ -145,7 +137,6 @@ class __$$UpdateQuestionParamsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? order = null,
     Object? examId = null,
-    Object? mediaId = freezed,
     Object? type = null,
     Object? question = null,
     Object? options = null,
@@ -163,10 +154,6 @@ class __$$UpdateQuestionParamsImplCopyWithImpl<$Res>
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
-      mediaId: freezed == mediaId
-          ? _value.mediaId
-          : mediaId // ignore: cast_nullable_to_non_nullable
-              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -190,7 +177,6 @@ class _$UpdateQuestionParamsImpl extends _UpdateQuestionParams {
       {required this.id,
       required this.order,
       required this.examId,
-      required this.mediaId,
       required this.type,
       required this.question,
       required final List<QuestionOptionModel> options})
@@ -207,8 +193,6 @@ class _$UpdateQuestionParamsImpl extends _UpdateQuestionParams {
   @override
   final int examId;
   @override
-  final int? mediaId;
-  @override
   final QuestionType type;
   @override
   final String question;
@@ -222,7 +206,7 @@ class _$UpdateQuestionParamsImpl extends _UpdateQuestionParams {
 
   @override
   String toString() {
-    return 'UpdateQuestionParams(id: $id, order: $order, examId: $examId, mediaId: $mediaId, type: $type, question: $question, options: $options)';
+    return 'UpdateQuestionParams(id: $id, order: $order, examId: $examId, type: $type, question: $question, options: $options)';
   }
 
   @override
@@ -233,7 +217,6 @@ class _$UpdateQuestionParamsImpl extends _UpdateQuestionParams {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.order, order) || other.order == order) &&
             (identical(other.examId, examId) || other.examId == examId) &&
-            (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.question, question) ||
                 other.question == question) &&
@@ -242,7 +225,7 @@ class _$UpdateQuestionParamsImpl extends _UpdateQuestionParams {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, order, examId, mediaId, type,
+  int get hashCode => Object.hash(runtimeType, id, order, examId, type,
       question, const DeepCollectionEquality().hash(_options));
 
   /// Create a copy of UpdateQuestionParams
@@ -268,7 +251,6 @@ abstract class _UpdateQuestionParams extends UpdateQuestionParams {
           {required final int id,
           required final int order,
           required final int examId,
-          required final int? mediaId,
           required final QuestionType type,
           required final String question,
           required final List<QuestionOptionModel> options}) =
@@ -284,8 +266,6 @@ abstract class _UpdateQuestionParams extends UpdateQuestionParams {
   int get order;
   @override
   int get examId;
-  @override
-  int? get mediaId;
   @override
   QuestionType get type;
   @override

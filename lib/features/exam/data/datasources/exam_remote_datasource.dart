@@ -33,7 +33,7 @@ class ExamRemoteDatasourceImpl implements ExamRemoteDatasource {
   ) async {
     final res = await _remote.postRequest(
       ListAPI.EXAM,
-      formData: params.toFormData(),
+      data: params.toJson(),
       converter: (res) => ExamModel.fromJson(res['data']),
     );
 

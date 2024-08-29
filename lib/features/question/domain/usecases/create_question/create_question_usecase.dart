@@ -9,7 +9,6 @@ class CreateQuestionParams with _$CreateQuestionParams {
   const factory CreateQuestionParams({
     required int order,
     required int examId,
-    required int? mediaId,
     required QuestionType type,
     required String question,
     required List<QuestionOptionModel> options,

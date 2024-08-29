@@ -12,7 +12,6 @@ _$UpdateQuestionParamsImpl _$$UpdateQuestionParamsImplFromJson(
       id: (json['id'] as num).toInt(),
       order: (json['order'] as num).toInt(),
       examId: (json['examId'] as num).toInt(),
-      mediaId: (json['mediaId'] as num?)?.toInt(),
       type: $enumDecode(_$QuestionTypeEnumMap, json['type']),
       question: json['question'] as String,
       options: (json['options'] as List<dynamic>)
@@ -26,7 +25,6 @@ Map<String, dynamic> _$$UpdateQuestionParamsImplToJson(
       'id': instance.id,
       'order': instance.order,
       'examId': instance.examId,
-      'mediaId': instance.mediaId,
       'type': _$QuestionTypeEnumMap[instance.type]!,
       'question': instance.question,
       'options': instance.options,

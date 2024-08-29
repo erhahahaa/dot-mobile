@@ -11,12 +11,10 @@ class QuestionModel with _$QuestionModel {
   const factory QuestionModel({
     @Default(0) int id,
     @Default(0) int examId,
-    int? mediaId,
     @Default(QuestionType.text) QuestionType type,
     @Default('Mention 5 basic Movement') String question,
     @Default([]) List<QuestionOptionModel> options,
     @Default(0) int order,
-    MediaEmbedModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _QuestionModel;
@@ -34,9 +32,6 @@ class QuestionModel with _$QuestionModel {
       question: entity.question,
       options:
           entity.options.map((e) => QuestionOptionModel.fromEntity(e)).toList(),
-      media: entity.media != null
-          ? MediaEmbedModel.fromEntity(entity.media!)
-          : null,
       order: entity.order,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
@@ -50,7 +45,6 @@ class QuestionModel with _$QuestionModel {
       type: type,
       question: question,
       options: options.map((e) => e.toEntity()).toList(),
-      media: media?.toEntity(),
       order: order,
       createdAt: createdAt,
       updatedAt: updatedAt,
@@ -64,7 +58,6 @@ class QuestionModel with _$QuestionModel {
       order: Random().nextInt(100),
       type: QuestionType.text,
       question: 'Mention 5 basic Movement',
-      media: MediaEmbedModel.fake(),
     );
   }
 }

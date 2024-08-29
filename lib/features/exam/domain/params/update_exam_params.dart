@@ -13,7 +13,7 @@ class UpdateExamParams with _$UpdateExamParams {
     required int clubId,
     required String title,
     required String? description,
-    required DateTime? endDate,
+    required DateTime? dueAt,
     // ignore: invalid_annotation_target
     @JsonKey(includeFromJson: false, includeToJson: false) File? image,
   }) = _UpdateExamParams;

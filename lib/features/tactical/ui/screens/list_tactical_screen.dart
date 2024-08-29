@@ -209,7 +209,7 @@ class ListTacticalScreen extends StatelessWidget {
       titleText: tactical.name,
       imageUrl: tactical.media?.url,
       subtitle: tactical.isLive
-          ? MoonChip(
+          ? const MoonChip(
               label: BodySmall(
                 'live',
               ),

@@ -163,7 +163,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
               },
             ),
             Gap(8.h),
-            FormLabel('Board'),
+            const FormLabel('Board'),
             Stack(
               children: [
                 Container(
@@ -269,7 +269,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
             Row(
               children: [
                 Gap(4.w),
-                FormLabel('Live'),
+                const FormLabel('Live'),
                 SizedBox(width: 8.w),
                 MoonSwitch(
                   value: isLive,
@@ -484,7 +484,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                           TacticalMediaBlocWrite,
                           BlocStateWrite<MediaModel>>(
                         club,
-                        allowedExtensions: ['jpg', 'jpeg', 'png', 'svg'],
+                        allowedExtensions: const ['jpg', 'jpeg', 'png', 'svg'],
                         onUpload: (file) {
                           context.read<TacticalMediaBlocWrite>().add(
                                 BlocEventWrite.create({

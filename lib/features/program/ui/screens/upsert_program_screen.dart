@@ -91,7 +91,7 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
     return Parent(
       appBar: AppBar(
         title: TitleMedium(
-          _program == null ? 'Create new program' : 'Edit ${_program?.name}',
+          _program == null ? 'Create New Program' : 'Edit ${_program?.name}',
         ),
       ),
       body: Padding(

@@ -10,7 +10,6 @@ class UpdateQuestionParams with _$UpdateQuestionParams {
     required int id,
     required int order,
     required int examId,
-    required int? mediaId,
     required QuestionType type,
     required String question,
     required List<QuestionOptionModel> options,

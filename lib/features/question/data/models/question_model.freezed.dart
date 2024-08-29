@@ -22,12 +22,10 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) {
 mixin _$QuestionModel {
   int get id => throw _privateConstructorUsedError;
   int get examId => throw _privateConstructorUsedError;
-  int? get mediaId => throw _privateConstructorUsedError;
   QuestionType get type => throw _privateConstructorUsedError;
   String get question => throw _privateConstructorUsedError;
   List<QuestionOptionModel> get options => throw _privateConstructorUsedError;
   int get order => throw _privateConstructorUsedError;
-  MediaEmbedModel? get media => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -50,16 +48,12 @@ abstract class $QuestionModelCopyWith<$Res> {
   $Res call(
       {int id,
       int examId,
-      int? mediaId,
       QuestionType type,
       String question,
       List<QuestionOptionModel> options,
       int order,
-      MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
-
-  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -79,12 +73,10 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
   $Res call({
     Object? id = null,
     Object? examId = null,
-    Object? mediaId = freezed,
     Object? type = null,
     Object? question = null,
     Object? options = null,
     Object? order = null,
-    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -97,10 +89,6 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
-      mediaId: freezed == mediaId
-          ? _value.mediaId
-          : mediaId // ignore: cast_nullable_to_non_nullable
-              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -117,10 +105,6 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
               as int,
-      media: freezed == media
-          ? _value.media
-          : media // ignore: cast_nullable_to_non_nullable
-              as MediaEmbedModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -130,20 +114,6 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
-  }
-
-  /// Create a copy of QuestionModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $MediaEmbedModelCopyWith<$Res>? get media {
-    if (_value.media == null) {
-      return null;
-    }
-
-    return $MediaEmbedModelCopyWith<$Res>(_value.media!, (value) {
-      return _then(_value.copyWith(media: value) as $Val);
-    });
   }
 }
 
@@ -158,17 +128,12 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
   $Res call(
       {int id,
       int examId,
-      int? mediaId,
       QuestionType type,
       String question,
       List<QuestionOptionModel> options,
       int order,
-      MediaEmbedModel? media,
       DateTime? createdAt,
       DateTime? updatedAt});
-
-  @override
-  $MediaEmbedModelCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -186,12 +151,10 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? examId = null,
-    Object? mediaId = freezed,
     Object? type = null,
     Object? question = null,
     Object? options = null,
     Object? order = null,
-    Object? media = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -204,10 +167,6 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
-      mediaId: freezed == mediaId
-          ? _value.mediaId
-          : mediaId // ignore: cast_nullable_to_non_nullable
-              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -224,10 +183,6 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
               as int,
-      media: freezed == media
-          ? _value.media
-          : media // ignore: cast_nullable_to_non_nullable
-              as MediaEmbedModel?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -246,12 +201,10 @@ class _$QuestionModelImpl extends _QuestionModel {
   const _$QuestionModelImpl(
       {this.id = 0,
       this.examId = 0,
-      this.mediaId,
       this.type = QuestionType.text,
       this.question = 'Mention 5 basic Movement',
       final List<QuestionOptionModel> options = const [],
       this.order = 0,
-      this.media,
       this.createdAt,
       this.updatedAt})
       : _options = options,
@@ -266,8 +219,6 @@ class _$QuestionModelImpl extends _QuestionModel {
   @override
   @JsonKey()
   final int examId;
-  @override
-  final int? mediaId;
   @override
   @JsonKey()
   final QuestionType type;
@@ -287,15 +238,13 @@ class _$QuestionModelImpl extends _QuestionModel {
   @JsonKey()
   final int order;
   @override
-  final MediaEmbedModel? media;
-  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'QuestionModel(id: $id, examId: $examId, mediaId: $mediaId, type: $type, question: $question, options: $options, order: $order, media: $media, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'QuestionModel(id: $id, examId: $examId, type: $type, question: $question, options: $options, order: $order, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -305,13 +254,11 @@ class _$QuestionModelImpl extends _QuestionModel {
             other is _$QuestionModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.examId, examId) || other.examId == examId) &&
-            (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.question, question) ||
                 other.question == question) &&
             const DeepCollectionEquality().equals(other._options, _options) &&
             (identical(other.order, order) || other.order == order) &&
-            (identical(other.media, media) || other.media == media) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -324,12 +271,10 @@ class _$QuestionModelImpl extends _QuestionModel {
       runtimeType,
       id,
       examId,
-      mediaId,
       type,
       question,
       const DeepCollectionEquality().hash(_options),
       order,
-      media,
       createdAt,
       updatedAt);
 
@@ -353,12 +298,10 @@ abstract class _QuestionModel extends QuestionModel {
   const factory _QuestionModel(
       {final int id,
       final int examId,
-      final int? mediaId,
       final QuestionType type,
       final String question,
       final List<QuestionOptionModel> options,
       final int order,
-      final MediaEmbedModel? media,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$QuestionModelImpl;
   const _QuestionModel._() : super._();
@@ -371,8 +314,6 @@ abstract class _QuestionModel extends QuestionModel {
   @override
   int get examId;
   @override
-  int? get mediaId;
-  @override
   QuestionType get type;
   @override
   String get question;
@@ -380,8 +321,6 @@ abstract class _QuestionModel extends QuestionModel {
   List<QuestionOptionModel> get options;
   @override
   int get order;
-  @override
-  MediaEmbedModel? get media;
   @override
   DateTime? get createdAt;
   @override

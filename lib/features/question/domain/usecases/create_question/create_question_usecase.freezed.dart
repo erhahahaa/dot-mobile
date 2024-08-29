@@ -22,7 +22,6 @@ CreateQuestionParams _$CreateQuestionParamsFromJson(Map<String, dynamic> json) {
 mixin _$CreateQuestionParams {
   int get order => throw _privateConstructorUsedError;
   int get examId => throw _privateConstructorUsedError;
-  int? get mediaId => throw _privateConstructorUsedError;
   QuestionType get type => throw _privateConstructorUsedError;
   String get question => throw _privateConstructorUsedError;
   List<QuestionOptionModel> get options => throw _privateConstructorUsedError;
@@ -46,7 +45,6 @@ abstract class $CreateQuestionParamsCopyWith<$Res> {
   $Res call(
       {int order,
       int examId,
-      int? mediaId,
       QuestionType type,
       String question,
       List<QuestionOptionModel> options});
@@ -70,7 +68,6 @@ class _$CreateQuestionParamsCopyWithImpl<$Res,
   $Res call({
     Object? order = null,
     Object? examId = null,
-    Object? mediaId = freezed,
     Object? type = null,
     Object? question = null,
     Object? options = null,
@@ -84,10 +81,6 @@ class _$CreateQuestionParamsCopyWithImpl<$Res,
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
-      mediaId: freezed == mediaId
-          ? _value.mediaId
-          : mediaId // ignore: cast_nullable_to_non_nullable
-              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -115,7 +108,6 @@ abstract class _$$CreateQuestionParamsImplCopyWith<$Res>
   $Res call(
       {int order,
       int examId,
-      int? mediaId,
       QuestionType type,
       String question,
       List<QuestionOptionModel> options});
@@ -136,7 +128,6 @@ class __$$CreateQuestionParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? order = null,
     Object? examId = null,
-    Object? mediaId = freezed,
     Object? type = null,
     Object? question = null,
     Object? options = null,
@@ -150,10 +141,6 @@ class __$$CreateQuestionParamsImplCopyWithImpl<$Res>
           ? _value.examId
           : examId // ignore: cast_nullable_to_non_nullable
               as int,
-      mediaId: freezed == mediaId
-          ? _value.mediaId
-          : mediaId // ignore: cast_nullable_to_non_nullable
-              as int?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -176,7 +163,6 @@ class _$CreateQuestionParamsImpl extends _CreateQuestionParams {
   const _$CreateQuestionParamsImpl(
       {required this.order,
       required this.examId,
-      required this.mediaId,
       required this.type,
       required this.question,
       required final List<QuestionOptionModel> options})
@@ -191,8 +177,6 @@ class _$CreateQuestionParamsImpl extends _CreateQuestionParams {
   @override
   final int examId;
   @override
-  final int? mediaId;
-  @override
   final QuestionType type;
   @override
   final String question;
@@ -206,7 +190,7 @@ class _$CreateQuestionParamsImpl extends _CreateQuestionParams {
 
   @override
   String toString() {
-    return 'CreateQuestionParams(order: $order, examId: $examId, mediaId: $mediaId, type: $type, question: $question, options: $options)';
+    return 'CreateQuestionParams(order: $order, examId: $examId, type: $type, question: $question, options: $options)';
   }
 
   @override
@@ -216,7 +200,6 @@ class _$CreateQuestionParamsImpl extends _CreateQuestionParams {
             other is _$CreateQuestionParamsImpl &&
             (identical(other.order, order) || other.order == order) &&
             (identical(other.examId, examId) || other.examId == examId) &&
-            (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.question, question) ||
                 other.question == question) &&
@@ -225,8 +208,8 @@ class _$CreateQuestionParamsImpl extends _CreateQuestionParams {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, order, examId, mediaId, type,
-      question, const DeepCollectionEquality().hash(_options));
+  int get hashCode => Object.hash(runtimeType, order, examId, type, question,
+      const DeepCollectionEquality().hash(_options));
 
   /// Create a copy of CreateQuestionParams
   /// with the given fields replaced by the non-null parameter values.
@@ -250,7 +233,6 @@ abstract class _CreateQuestionParams extends CreateQuestionParams {
   const factory _CreateQuestionParams(
           {required final int order,
           required final int examId,
-          required final int? mediaId,
           required final QuestionType type,
           required final String question,
           required final List<QuestionOptionModel> options}) =
@@ -264,8 +246,6 @@ abstract class _CreateQuestionParams extends CreateQuestionParams {
   int get order;
   @override
   int get examId;
-  @override
-  int? get mediaId;
   @override
   QuestionType get type;
   @override
