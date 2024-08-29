@@ -12,6 +12,20 @@ extension StringDefault on String {
   void toClipboard() async {
     await Clipboard.setData(ClipboardData(text: this));
   }
+
+  String? get capitalizeFirst {
+    if (isEmpty) {
+      return null;
+    }
+    return '${this[0].toUpperCase()}${substring(1)}';
+  }
+
+  String get capitalize {
+    if (isEmpty) {
+      return this;
+    }
+    return split(' ').map((e) => e.capitalizeFirst!).join(' ');
+  }
 }
 
 extension StringDefaultNullable on String? {

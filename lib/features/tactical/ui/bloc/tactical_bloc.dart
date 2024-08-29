@@ -89,6 +89,9 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
   ) {
     state.maybeWhen(
       success: (tacticals, _, __) {
+        final isInList =
+            tacticals.any((tactical) => tactical.id == event.item.id);
+        if (isInList) return;
         final items = [...tacticals, event.item];
         emit(BlocStateReadSuccess(
           items: items,
@@ -157,6 +160,7 @@ class TacticalBlocWrite extends BlocWrite<TacticalModel> {
     Emitter<BlocStateWrite<TacticalModel>> emit,
   ) async {
     emit(const BlocStateWriteLoading());
+
     final res = await _updateTacticalUsecase.call(event.params);
 
     res.fold(

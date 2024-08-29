@@ -169,7 +169,7 @@ class ExamBlocWrite extends BlocWrite<ExamModel> {
     Emitter<BlocStateWrite<ExamModel>> emit,
   ) async {
     emit(const BlocStateWriteLoading());
-    final res = await _deleteExamUsecase.call(event.params);
+    final res = await _deleteExamUsecase.call(event.params as DeleteExamParams);
 
     res.fold(
       (failure) => emit(BlocStateWriteFailure(failure.message)),

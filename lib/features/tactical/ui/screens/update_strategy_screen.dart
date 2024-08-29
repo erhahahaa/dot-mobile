@@ -10,7 +10,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
 class UpdateStrategyScreen extends StatefulWidget {
-  const UpdateStrategyScreen({super.key});
+  final double screenWidth;
+  const UpdateStrategyScreen({
+    super.key,
+    @queryParam this.screenWidth = 0,
+  });
 
   @override
   State<UpdateStrategyScreen> createState() => _UpdateStrategyScreenState();
@@ -19,6 +23,7 @@ class UpdateStrategyScreen extends StatefulWidget {
 class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
   TacticalModel? _tactical;
   UserModel? _user;
+  // Size  screenSize = Size.zero;
   late GlobalKey<ScaffoldState> _scaffoldKey;
   late TransformationController _transformationController;
 
@@ -63,8 +68,13 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // screenSize = MediaQuery.of(context).size;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return Parent(
       scaffoldKey: _scaffoldKey,
       appBar: _buildAppBar(),
@@ -86,7 +96,7 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            _buildBoard(context, screenSize),
+            _buildBoard(context),
             _buildFooter(context),
           ],
         ),
@@ -120,7 +130,7 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
     );
   }
 
-  InteractiveViewer _buildBoard(BuildContext context, Size screenSize) {
+  InteractiveViewer _buildBoard(BuildContext context) {
     final boardWidth = _tactical?.board.width ?? 0;
     final boardHeight = _tactical?.board.height ?? 0;
     return InteractiveViewer(
@@ -167,14 +177,14 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
         child: Stack(
           children: [
             Container(
-              width: screenSize.width,
-              height: screenSize.width * (boardWidth / boardHeight) + 60.h,
+              width: widget.screenWidth,
+              height: widget.screenWidth * (boardWidth / boardHeight) + 60.h,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
               ),
               child: _tactical?.media?.determineLoader(
                 context,
-                width: screenSize.width,
+                width: widget.screenWidth,
                 fit: BoxFit.fill,
                 useThumb: false,
               ),
@@ -276,6 +286,7 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
             },
             audiences: audiences ?? [],
             isConnected: isConnected ?? false,
+            showActions: false,
           );
         },
       ),
@@ -291,7 +302,16 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
               title: 'Success',
               description: 'Update ${item.name} successfully',
             );
-            context.router.back();
+            context.read<TacticalBlocRead>().add(
+                  BlocEventRead.append(item),
+                );
+            context.read<TacticalBlocRead>().add(
+                  BlocEventRead.get(id: _tactical?.clubId),
+                );
+            Future.delayed(Duration(seconds: 1), () {
+              if (!context.mounted) return;
+              context.router.maybePop();
+            });
           },
           failure: (message) {
             context.errorToast(
@@ -321,7 +341,9 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
               if (_tactical?.isLive == true) {
                 context.read<StrategyCubit>().closeWebSocket();
               }
-            } catch (e) {}
+            } catch (e) {
+              Log.error('errror ${e.toString()}');
+            }
           },
           isLoading: state is BlocStateWriteLoading,
           icon: const Icon(Icons.stop),

@@ -52,6 +52,8 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
       text: _exam?.dueAt?.toDayMonthYear(),
     );
 
+    _dueAt = _exam?.dueAt;
+
     _titleFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
     _dueAtFocusNode = FocusNode();

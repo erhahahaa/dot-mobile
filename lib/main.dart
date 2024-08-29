@@ -23,6 +23,7 @@ class MyHttpOverrides extends HttpOverrides {
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
+  // Bloc.observer = GlobalBlocObserver();
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await FirebaseService.init();

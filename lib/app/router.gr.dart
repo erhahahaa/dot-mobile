@@ -276,10 +276,11 @@ class DetailExamRoute extends _i38.PageRouteInfo<DetailExamRouteArgs> {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<DetailExamRouteArgs>(
           orElse: () => DetailExamRouteArgs(id: pathParams.getInt('id')));
-      return _i5.DetailExamScreen(
+      return _i38.WrappedRoute(
+          child: _i5.DetailExamScreen(
         key: args.key,
         id: args.id,
-      );
+      ));
     },
   );
 }
@@ -443,11 +444,10 @@ class DetailTacticalRoute extends _i38.PageRouteInfo<DetailTacticalRouteArgs> {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<DetailTacticalRouteArgs>(
           orElse: () => DetailTacticalRouteArgs(id: pathParams.getInt('id')));
-      return _i38.WrappedRoute(
-          child: _i9.DetailTacticalScreen(
+      return _i9.DetailTacticalScreen(
         key: args.key,
         id: args.id,
-      ));
+      );
     },
   );
 }
@@ -850,10 +850,18 @@ class UpdateProfileRoute extends _i38.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i30.UpdateStrategyScreen]
-class UpdateStrategyRoute extends _i38.PageRouteInfo<void> {
-  const UpdateStrategyRoute({List<_i38.PageRouteInfo>? children})
-      : super(
+class UpdateStrategyRoute extends _i38.PageRouteInfo<UpdateStrategyRouteArgs> {
+  UpdateStrategyRoute({
+    _i39.Key? key,
+    double screenWidth = 0,
+    List<_i38.PageRouteInfo>? children,
+  }) : super(
           UpdateStrategyRoute.name,
+          args: UpdateStrategyRouteArgs(
+            key: key,
+            screenWidth: screenWidth,
+          ),
+          rawQueryParams: {'screenWidth': screenWidth},
           initialChildren: children,
         );
 
@@ -862,9 +870,35 @@ class UpdateStrategyRoute extends _i38.PageRouteInfo<void> {
   static _i38.PageInfo page = _i38.PageInfo(
     name,
     builder: (data) {
-      return const _i30.UpdateStrategyScreen();
+      final queryParams = data.queryParams;
+      final args = data.argsAs<UpdateStrategyRouteArgs>(
+          orElse: () => UpdateStrategyRouteArgs(
+                  screenWidth: queryParams.getDouble(
+                'screenWidth',
+                0,
+              )));
+      return _i30.UpdateStrategyScreen(
+        key: args.key,
+        screenWidth: args.screenWidth,
+      );
     },
   );
+}
+
+class UpdateStrategyRouteArgs {
+  const UpdateStrategyRouteArgs({
+    this.key,
+    this.screenWidth = 0,
+  });
+
+  final _i39.Key? key;
+
+  final double screenWidth;
+
+  @override
+  String toString() {
+    return 'UpdateStrategyRouteArgs{key: $key, screenWidth: $screenWidth}';
+  }
 }
 
 /// generated route for

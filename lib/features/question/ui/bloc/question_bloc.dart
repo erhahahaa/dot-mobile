@@ -173,7 +173,7 @@ class QuestionBlocWrite extends BlocWrite<List<QuestionModel>> {
     BlocEventWriteDelete event,
     Emitter<BlocStateWrite<List<QuestionModel>>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    // emit(const BlocStateWriteLoading());
     final res = await _deleteQuestionUsecase.call(
       event.params as DeleteQuestionParams,
     );
@@ -181,18 +181,18 @@ class QuestionBlocWrite extends BlocWrite<List<QuestionModel>> {
     res.fold(
       (failure) => emit(BlocStateWriteFailure(failure.message)),
       (success) {
-        final items = state.maybeWhen(
-          success: (items) => items,
-          orElse: () => null,
-        );
-        if (items == null) return;
-        final filteredItems = items
-            .where(
-              (question) => question.id != success.id,
-            )
-            .toList();
+        // final items = state.maybeWhen(
+        //   success: (items) => items,
+        //   orElse: () => null,
+        // );
+        // if (items == null) return;
+        // final filteredItems = items
+        //     .where(
+        //       (question) => question.id != success.id,
+        //     )
+        //     .toList();
 
-        emit(BlocStateWriteSuccess(filteredItems));
+        // emit(BlocStateWriteSuccess(filteredItems));
       },
     );
   }

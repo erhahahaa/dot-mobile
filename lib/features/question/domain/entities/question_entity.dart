@@ -3,7 +3,30 @@ import 'package:isar/isar.dart';
 
 part 'question_entity.g.dart';
 
-enum QuestionType { text, numeric }
+enum QuestionType {
+  text,
+  numeric;
+
+  String get value {
+    switch (this) {
+      case QuestionType.numeric:
+        return 'numeric';
+      case QuestionType.text:
+      default:
+        return 'text';
+    }
+  }
+
+  static QuestionType fromString(String str) {
+    switch (str) {
+      case 'numeric':
+        return QuestionType.numeric;
+      case 'text':
+      default:
+        return QuestionType.text;
+    }
+  }
+}
 
 @Collection(accessor: 'questions')
 class QuestionEntity {

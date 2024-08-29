@@ -46,6 +46,8 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
           question: question,
           questionFN: FocusNode(),
           questionCon: TextEditingController(text: question.question),
+          typeFN: FocusNode(),
+          typeCon: TextEditingController(text: question.type.value),
           order: question.order,
         );
       }));
@@ -121,8 +123,10 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                             return CreateQuestionParams(
                               order: question.order,
                               examId: _exam?.id ?? 0,
-                              type: question.question.type,
-                              question: question.question.question,
+                              type: QuestionType.fromString(
+                                question.typeCon.text,
+                              ),
+                              question: question.questionCon.text,
                               options: question.question.options,
                             );
                           }).toList();
@@ -136,8 +140,10 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                               id: question.question.id,
                               order: question.order,
                               examId: _exam?.id ?? 0,
-                              type: question.question.type,
-                              question: question.question.question,
+                              type: QuestionType.fromString(
+                                question.typeCon.text,
+                              ),
+                              question: question.questionCon.text,
                               options: question.question.options,
                             );
                           }).toList();
@@ -177,6 +183,8 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                     question: question,
                     questionFN: FocusNode(),
                     questionCon: TextEditingController(text: question.question),
+                    typeFN: FocusNode(),
+                    typeCon: TextEditingController(text: question.type.value),
                     order: question.order,
                   );
                 },
@@ -197,6 +205,31 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                   index: index,
                   animation: animation,
                   child: child,
+                ),
+                footer: AddItemButton(
+                  text: 'Add Question',
+                  onTap: () {
+                    setState(
+                      () {
+                        _questions.add(
+                          QuestionItem(
+                            question: QuestionModel(
+                              examId: _exam?.id ?? 0,
+                              question: '',
+                              type: QuestionType.text,
+                            ),
+                            questionFN: FocusNode(),
+                            questionCon: TextEditingController(),
+                            typeFN: FocusNode(),
+                            typeCon: TextEditingController(
+                              text: QuestionType.text.value.capitalize,
+                            ),
+                            order: _questions.length,
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
                 itemBuilder: (context, index) {
                   return _buildQuestionItem(context, index);
@@ -246,6 +279,7 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
       margin: EdgeInsets.only(bottom: 16.h),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
@@ -260,7 +294,15 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                 onPressed: () {
                   setState(
                     () {
-                      if (_questions[index].question.id != 0) {}
+                      if (_questions[index].question.id != 0) {
+                        context.read<QuestionBlocWrite>().add(
+                              BlocEventWrite.delete(
+                                DeleteQuestionParams(
+                                  id: _questions[index].question.id,
+                                ),
+                              ),
+                            );
+                      }
                       _questions.removeAt(index);
                     },
                   );
@@ -308,27 +350,32 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
             ],
           ),
           SizedBox(height: 8.h),
-          DropdownButtonFormField<QuestionType>(
-            value: questionItem.question.type,
-            items: QuestionType.values.map((e) {
-              return DropdownMenuItem(
-                value: e,
-                child: Text(e.name),
+          FormLabel('Type'),
+          FormCombobox<QuestionType>(
+            items: QuestionType.values
+                .map(
+                  (e) => ComboboxItem<QuestionType>(
+                    value: e,
+                    label: e.value.capitalize,
+                  ),
+                )
+                .toList(),
+            controller: questionItem.typeCon,
+            currentFocus: questionItem.typeFN,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please choose optiion';
+              }
+
+              final isInList = QuestionType.values.any(
+                (e) => e.value == value.toLowerCase(),
               );
-            }).toList(),
-            onChanged: (QuestionType? value) {
-              if (value == null) return;
-              setState(() {
-                questionItem.question =
-                    questionItem.question.copyWith(type: value);
-              });
+              if (!isInList) {
+                return 'Please choose valid option';
+              }
+              return null;
             },
-            padding: EdgeInsets.symmetric(
-              horizontal: 12.w,
-              vertical: 8.h,
-            ),
-            borderRadius: BorderRadius.circular(12.r),
-          ),
+          )
         ],
       ),
     );
@@ -338,8 +385,8 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
 class QuestionItem {
   QuestionModel question;
 
-  final FocusNode questionFN;
-  final TextEditingController questionCon;
+  final FocusNode questionFN, typeFN;
+  final TextEditingController questionCon, typeCon;
 
   int order;
 
@@ -347,6 +394,8 @@ class QuestionItem {
     required this.question,
     required this.questionFN,
     required this.questionCon,
+    required this.typeFN,
+    required this.typeCon,
     this.order = 0,
   });
 

@@ -128,6 +128,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
   }
 
   Widget _buildForm(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Form(
       key: _formKey,
       child: SingleChildScrollView(
@@ -290,7 +291,9 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                     context
                         .read<TacticalBlocRead>()
                         .add(BlocEventRead.select(tactical));
-                    context.router.popAndPush(const UpdateStrategyRoute());
+                    context.router.popAndPush(UpdateStrategyRoute(
+                      screenWidth: size.width,
+                    ));
                   },
                   failure: (message) {
                     context.errorToast(

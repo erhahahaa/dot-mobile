@@ -63,6 +63,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
               FloatingActionButton.extended(
                 heroTag: 'new_exam_button_$hashCode',
                 onPressed: () {
+                  context.read<ExamBlocRead>().add(BlocEventRead.select(null));
                   context.router.push(
                     const UpsertExamRoute(),
                   );
@@ -194,9 +195,14 @@ class _ListExamScreenState extends State<ListExamScreen> {
     BuildContext context,
     ExamModel exam,
   ) {
-    void onTap() => context.router.push(
-          DetailExamRoute(id: exam.id),
-        );
+    void onTap() {
+      context.read<ExamBlocRead>().add(
+            BlocEventRead.select(exam),
+          );
+      context.router.push(
+        DetailExamRoute(id: exam.id),
+      );
+    }
 
     return ListViewBuilderTile(
       titleText: exam.title,
