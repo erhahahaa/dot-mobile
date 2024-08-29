@@ -20,7 +20,7 @@ class ListProgramScreen extends StatefulWidget {
 }
 
 class _ListProgramScreenState extends State<ListProgramScreen> {
-  bool hideCalendar = false, hideListProgram = false;
+  bool hideCalendar = true, hideListProgram = false;
   ClubModel? club;
 
   @override
@@ -209,7 +209,6 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
   ) {
     return Column(
       children: [
-        SizedBox(height: 16.h),
         Row(
           children: [
             Text(

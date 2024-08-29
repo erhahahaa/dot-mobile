@@ -37,7 +37,7 @@ class DetailProgramScreen extends StatelessWidget implements AutoRouteWrapper {
                 return TitleLarge(program.name);
               }
             }
-            return const Text('Detail Program');
+            return const TitleLarge('Detail Program');
           },
         ),
         actions: [
@@ -55,10 +55,10 @@ class DetailProgramScreen extends StatelessWidget implements AutoRouteWrapper {
                   );
                   Navigator.of(context).pop();
                 },
-                failure: (failure) {
+                failure: (message) {
                   context.errorToast(
                     title: 'Failure',
-                    description: failure,
+                    description: message,
                   );
                 },
               );

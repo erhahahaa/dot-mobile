@@ -118,9 +118,8 @@ class ListTacticalScreen extends StatelessWidget {
     ScrollController scrollController,
   ) {
     final clubBloc = context.watch<ClubBlocRead>();
-    final club = clubBloc.state.maybeWhen(
+    final club = clubBloc.state.whenOrNull(
       success: (_, __, selectedClub) => selectedClub,
-      orElse: () => ClubModel.fake(),
     );
     return BlocBuilder<TacticalBlocRead, BlocStateRead<TacticalModel>>(
       builder: (context, state) {
@@ -167,11 +166,8 @@ class ListTacticalScreen extends StatelessWidget {
               items: filteredTacticals,
               scrollController: scrollController,
               height: 0.71.sh,
-              itemBuilder: (context, tactical) => _buildTacticalItem(
-                context,
-                tactical,
-                tactical == filteredTacticals.last,
-              ),
+              itemBuilder: (context, tactical) =>
+                  _buildTacticalItem(context, tactical),
             );
           },
           failure: (message) => ErrorAlert(message),
@@ -183,11 +179,7 @@ class ListTacticalScreen extends StatelessWidget {
               height: 0.71.sh,
               items: fakeTacticals,
               itemBuilder: (context, tactical) => Skeletonizer(
-                child: _buildTacticalItem(
-                  context,
-                  tactical,
-                  tactical == fakeTacticals.last,
-                ),
+                child: _buildTacticalItem(context, tactical),
               ),
             );
           },
@@ -199,23 +191,22 @@ class ListTacticalScreen extends StatelessWidget {
   Widget _buildTacticalItem(
     BuildContext context,
     TacticalModel tactical,
-    bool isLast,
   ) {
-    void onTap() => context.router.push(
-          DetailTacticalRoute(id: tactical.id),
-        );
+    void onTap() {
+      context.read<TacticalBlocRead>().add(
+            BlocEventRead.select(tactical),
+          );
+      context.router.push(
+        DetailTacticalRoute(id: tactical.id),
+      );
+    }
 
     return ListViewBuilderTile(
       titleText: tactical.name,
       imageUrl: tactical.media?.url,
       subtitle: tactical.isLive
-          ? const MoonChip(
-              label: BodySmall(
-                'live',
-              ),
-            )
+          ? const MoonChip(label: BodySmall('live'))
           : Container(),
-      margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
       onTap: onTap,
       trailing: MoonButton.icon(
         buttonSize: MoonButtonSize.xs,

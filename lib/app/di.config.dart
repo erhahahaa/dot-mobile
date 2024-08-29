@@ -147,6 +147,7 @@ import '../features/tactical/domain/usecases/get_tactical_by_id/get_tactical_by_
 import '../features/tactical/domain/usecases/update_tactical/update_tactical_usecase.dart'
     as _i567;
 import '../features/tactical/ui/bloc/tactical_bloc.dart' as _i674;
+import '../features/tactical/ui/cubit/strategy_cubit.dart' as _i1034;
 import '../features/user/data/datasources/user_local_data_source.dart' as _i959;
 import '../features/user/data/datasources/user_remote_data_source.dart'
     as _i593;
@@ -192,6 +193,14 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i216.AppRouter>(() => _i216.AppRouter());
+    await gh.lazySingletonAsync<_i373.IsarService>(
+      () {
+        final i = _i373.IsarService();
+        return i.initIsar().then((_) => i);
+      },
+      preResolve: true,
+      dispose: (i) => i.dispose(),
+    );
     gh.lazySingleton<_i905.FilePickerService>(
       () => _i905.FilePickerService(),
       dispose: (i) => i.dispose(),
@@ -205,14 +214,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i963.ImagePickerService>(
       () => _i963.ImagePickerService(),
-      dispose: (i) => i.dispose(),
-    );
-    await gh.lazySingletonAsync<_i373.IsarService>(
-      () {
-        final i = _i373.IsarService();
-        return i.initIsar().then((_) => i);
-      },
-      preResolve: true,
       dispose: (i) => i.dispose(),
     );
     gh.lazySingleton<_i1045.LoadingCubit>(() => _i1045.LoadingCubit());

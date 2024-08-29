@@ -72,6 +72,16 @@ class AppRouter extends RootStackRouter {
                   page: TacticalShellRoute.page,
                   children: [
                     AutoRoute(
+                      path: 'strategy',
+                      page: StrategyShellRoute.page,
+                      children: [
+                        AutoRoute(
+                          path: 'update',
+                          page: UpdateStrategyRoute.page,
+                        ),
+                      ],
+                    ),
+                    AutoRoute(
                       path: '',
                       page: ListTacticalRoute.page,
                     ),

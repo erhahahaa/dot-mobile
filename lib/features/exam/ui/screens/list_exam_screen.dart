@@ -53,7 +53,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
                 show: showScrollToTopButton,
                 onPressed: () {
                   scroll.animateTo(
-                    0,                         
+                    0,
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.easeInOut,
                   );
@@ -75,7 +75,6 @@ class _ListExamScreenState extends State<ListExamScreen> {
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
             child: SingleChildScrollView(
-              controller: scroll,
               child: Column(
                 children: [
                   Gap(8.h),
@@ -171,11 +170,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
               items: filteredExams,
               scrollController: scrollController,
               height: 0.71.sh,
-              itemBuilder: (context, exam) => _buildExamItem(
-                context,
-                exam,
-                exam == filteredExams.last,
-              ),
+              itemBuilder: (context, exam) => _buildExamItem(context, exam),
             );
           },
           failure: (message) => ErrorAlert(message),
@@ -186,11 +181,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
               height: 0.71.sh,
               items: fakeExams,
               itemBuilder: (context, exam) => Skeletonizer(
-                child: _buildExamItem(
-                  context,
-                  exam,
-                  exam == fakeExams.last,
-                ),
+                child: _buildExamItem(context, exam),
               ),
             );
           },
@@ -202,7 +193,6 @@ class _ListExamScreenState extends State<ListExamScreen> {
   Widget _buildExamItem(
     BuildContext context,
     ExamModel exam,
-    bool isLast,
   ) {
     void onTap() => context.router.push(
           DetailExamRoute(id: exam.id),
@@ -212,7 +202,6 @@ class _ListExamScreenState extends State<ListExamScreen> {
       titleText: exam.title,
       subtitleText: exam.dueAt.toString(),
       imageUrl: exam.media?.url,
-      margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
       onTap: onTap,
       trailing: MoonButton.icon(
         buttonSize: MoonButtonSize.xs,

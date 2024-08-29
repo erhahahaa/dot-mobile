@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dot_coaching/app/app.dart';
-import 'package:dot_coaching/app/di.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
 import 'package:dot_coaching/utils/utils.dart';

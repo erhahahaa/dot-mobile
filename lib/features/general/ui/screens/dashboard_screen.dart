@@ -67,6 +67,9 @@ class DashboardScreen extends StatelessWidget implements AutoRouteWrapper {
         BlocProvider<TacticalBlocWrite>(
           create: (_) => sl<TacticalBlocWrite>(),
         ),
+        BlocProvider<StrategyCubit>(
+          create: (_) => sl<StrategyCubit>(),
+        ),
         BlocProvider<ProgramMediaBlocWrite>(
           create: (_) => sl<ProgramMediaBlocWrite>(),
         ),

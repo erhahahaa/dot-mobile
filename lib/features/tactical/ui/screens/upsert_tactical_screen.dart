@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:dot_coaching/app/di.dart';
+import 'package:dot_coaching/app/app.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
 import 'package:dot_coaching/utils/utils.dart';
@@ -47,7 +47,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
   MediaModel? _media;
   String? _imageError;
 
-  bool isLive = false;
+  bool _isLive = false;
 
   @override
   void initState() {
@@ -78,10 +78,11 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
       text: (_tactical?.strategic == null ||
               (_tactical?.strategic?.players.isEmpty ?? true))
           ? null
-          : (_tactical!.strategic!.players.length / 2).toString(),
+          : (_tactical!.strategic!.players.length ~/ 2).toString(),
     );
 
     _media = _tactical?.media;
+    _isLive = _tactical?.isLive ?? false;
 
     _nameFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
@@ -121,12 +122,12 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.all(8.w),
-        child: _buildTactical(context),
+        child: _buildForm(context),
       ),
     );
   }
 
-  Widget _buildTactical(BuildContext context) {
+  Widget _buildForm(BuildContext context) {
     return Form(
       key: _formKey,
       child: SingleChildScrollView(
@@ -272,10 +273,10 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                 const FormLabel('Live'),
                 SizedBox(width: 8.w),
                 MoonSwitch(
-                  value: isLive,
+                  value: _isLive,
                   onChanged: (value) {
                     setState(() {
-                      isLive = value;
+                      _isLive = value;
                     });
                   },
                 ),
@@ -284,18 +285,17 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
             Gap(12.h),
             BlocConsumer<TacticalBlocWrite, BlocStateWrite<TacticalModel>>(
               listener: (context, state) {
-                state.mapOrNull(
+                state.whenOrNull(
                   success: (tactical) {
-                    context.successToast(
-                      title: 'Success',
-                      description: 'Tactical created successfully',
-                    );
-                    context.router.back();
+                    context
+                        .read<TacticalBlocRead>()
+                        .add(BlocEventRead.select(tactical));
+                    context.router.popAndPush(const UpdateStrategyRoute());
                   },
-                  failure: (failure) {
+                  failure: (message) {
                     context.errorToast(
                       title: 'Error',
-                      description: failure.message,
+                      description: message,
                     );
                   },
                 );
@@ -329,33 +329,15 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                       final totalPlayer =
                           int.parse(_totalPlayersController.text);
 
-                      final List<PlayerModel> players = List.generate(
-                        totalPlayer * 2,
-                        (index) {
-                          final team = index < totalPlayer ? 1 : 2;
-                          final color = team == 1 ? Colors.blue : Colors.red;
-                          final position = Offset(
-                            (index % totalPlayer) *
-                                (screenSize.width - 40) /
-                                (totalPlayer - 1),
-                            team == 1
-                                ? screenSize.width * aspectRatio / 28
-                                : screenSize.width * aspectRatio + 47,
-                          );
-                          return PlayerModel(
-                            alias: 'Player $index',
-                            x: position.dx,
-                            y: position.dy,
-                            number: index + 1,
-                            team: team,
-                            hexColor: color.value,
-                          );
-                        },
-                      );
-
-                      final strategy =
-                          TacticalStrategicModel(players: players, arrows: []);
                       if (_tactical == null) {
+                        final List<PlayerModel> players = generatePlayers(
+                          totalPlayer,
+                          aspectRatio,
+                          screenSize,
+                        );
+
+                        final strategy = TacticalStrategicModel(
+                            players: players, arrows: []);
                         context
                             .read<TacticalBlocWrite>()
                             .add(BlocEventWrite.create(
@@ -368,49 +350,31 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                                   width: double.parse(_widthController.text),
                                   height: double.parse(_heightController.text),
                                 ),
-                                isLive: isLive,
+                                isLive: _isLive,
                                 strategic: strategy,
                               ),
                             ));
                       } else {
-                        List<PlayerModel> player = [];
+                        List<PlayerModel> players = [];
                         if (_tactical?.strategic?.players.length !=
                             (int.parse(_totalPlayersController.text)) * 2) {
-                          player = List.generate(
-                            totalPlayer * 2,
-                            (index) {
-                              final team = index < totalPlayer ? 1 : 2;
-                              final color =
-                                  team == 1 ? Colors.blue : Colors.red;
-                              final position = Offset(
-                                (index % totalPlayer) *
-                                    (screenSize.width - 40) /
-                                    (totalPlayer - 1),
-                                team == 1
-                                    ? screenSize.width * aspectRatio / 28
-                                    : screenSize.width * aspectRatio + 47,
-                              );
-                              return PlayerModel(
-                                alias: 'Player $index',
-                                x: position.dx,
-                                y: position.dy,
-                                number: index + 1,
-                                team: team,
-                                hexColor: color.value,
-                              );
-                            },
+                          players = generatePlayers(
+                            int.parse(_totalPlayersController.text),
+                            aspectRatio,
+                            screenSize,
                           );
                         } else {
-                          player = _tactical?.strategic?.players ?? [];
+                          players = _tactical?.strategic?.players ?? [];
                         }
                         final strategy = TacticalStrategicModel(
-                          players: player,
+                          players: players,
                           arrows: _tactical?.strategic?.arrows ?? [],
                         );
 
                         context.read<TacticalBlocWrite>().add(
-                              BlocEventWrite.create(
-                                CreateTacticalParams(
+                              BlocEventWrite.update(
+                                UpdateTacticalParams(
+                                  id: _tactical!.id,
                                   clubId: club!.id,
                                   name: _nameController.text,
                                   description: _descriptionController.text,
@@ -420,7 +384,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                                     height:
                                         double.parse(_heightController.text),
                                   ),
-                                  isLive: isLive,
+                                  isLive: _isLive,
                                   strategic: strategy,
                                 ),
                               ),
@@ -434,6 +398,31 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  List<PlayerModel> generatePlayers(
+      int totalPlayer, double aspectRatio, Size screenSize) {
+    return List.generate(
+      totalPlayer * 2,
+      (index) {
+        final team = index < totalPlayer ? 1 : 2;
+        final color = team == 1 ? Colors.blue : Colors.red;
+        final position = Offset(
+          (index % totalPlayer) * (screenSize.width - 40) / (totalPlayer - 1),
+          team == 1
+              ? screenSize.width * aspectRatio / 28
+              : screenSize.width * aspectRatio + 47,
+        );
+        return PlayerModel(
+          alias: 'Player $index',
+          x: position.dx,
+          y: position.dy,
+          number: index + 1,
+          team: team,
+          hexColor: color.value,
+        );
+      },
     );
   }
 
