@@ -118,32 +118,32 @@ class AppRouter extends RootStackRouter {
                       page: UpsertExamRoute.page,
                     ),
                     AutoRoute(
-                      path: ':id',
-                      page: DetailExamRoute.page,
-                    )
-                  ],
-                ),
-                AutoRoute(
-                  path: 'evaluation',
-                  page: EvaluationShellRoute.page,
-                  children: [
-                    AutoRoute(
-                      path: '',
-                      page: ListEvaluationRoute.page,
-                    ),
-                    AutoRoute(
-                      path: 'upsert',
+                      path: 'evaluation/upsert',
                       page: UpsertEvaluationRoute.page,
                     ),
                     AutoRoute(
                       path: ':id',
-                      page: DetailEvaluationRoute.page,
+                      page: DetailExamRoute.page,
                     ),
+                    AutoRoute(
+                      path: 'evaluation/:id',
+                      page: DetailEvaluationRoute.page,
+                    )
                   ],
                 ),
                 AutoRoute(
                   path: 'media',
                   page: MediaRoute.page,
+                ),
+                AutoRoute(
+                  path: 'detail',
+                  page: EmptyShellRoute('DetailClub').page,
+                  children: [
+                    AutoRoute(
+                      path: '',
+                      page: DetailClubRoute.page,
+                    ),
+                  ],
                 ),
               ],
             ),

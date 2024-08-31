@@ -34,10 +34,14 @@ class EvaluationBlocRead extends BlocRead<EvaluationModel> {
 
     res.fold(
       (failure) => emit(BlocStateReadFailure(failure.message)),
-      (success) => emit(BlocStateReadSuccess(
-        items: success,
-        filteredItems: success,
-      )),
+      (success) {
+        success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
+        emit(BlocStateReadSuccess(
+          items: success,
+          filteredItems: success,
+        ));
+      },
     );
   }
 
@@ -46,7 +50,7 @@ class EvaluationBlocRead extends BlocRead<EvaluationModel> {
     BlocEventReadSelect<EvaluationModel> event,
     Emitter<BlocStateRead<EvaluationModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (evaluations, filteredEvaluations, _) {
         emit(BlocStateReadSuccess(
           items: evaluations,
@@ -54,7 +58,6 @@ class EvaluationBlocRead extends BlocRead<EvaluationModel> {
           selectedItem: event.item,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -63,7 +66,7 @@ class EvaluationBlocRead extends BlocRead<EvaluationModel> {
     BlocEventReadFilter event,
     Emitter<BlocStateRead<EvaluationModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (evaluations, _, __) {
         final finds = evaluations
             .where(
@@ -86,7 +89,6 @@ class EvaluationBlocRead extends BlocRead<EvaluationModel> {
           filteredItems: finds,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -95,16 +97,39 @@ class EvaluationBlocRead extends BlocRead<EvaluationModel> {
     BlocEventReadAppend<EvaluationModel> event,
     Emitter<BlocStateRead<EvaluationModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (evaluations, _, __) {
+        final find = evaluations.where((e) => e.id == event.item.id).toList();
+
+        if (find.isNotEmpty) {
+          final items = evaluations.map((e) {
+            if (e.id == event.item.id) {
+              return event.item;
+            }
+            return e;
+          }).toList();
+          items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
+          emit(BlocStateReadSuccess(
+            items: items,
+            filteredItems: items,
+          ));
+          return;
+        }
+
         final items = [...evaluations, event.item];
+
+        items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
+      failure: (_) => emit(BlocStateReadSuccess(
+        items: [event.item],
+        filteredItems: [event.item],
+      )),
     );
   }
 
@@ -113,16 +138,14 @@ class EvaluationBlocRead extends BlocRead<EvaluationModel> {
     BlocEventReadRemove<EvaluationModel> event,
     Emitter<BlocStateRead<EvaluationModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (evaluations, _, __) {
         final items = evaluations.where((e) => e.id != event.id).toList();
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
     );
   }
 }

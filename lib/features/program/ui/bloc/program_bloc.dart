@@ -34,10 +34,14 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
 
     res.fold(
       (failure) => emit(BlocStateReadFailure(failure.message)),
-      (success) => emit(BlocStateReadSuccess(
-        items: success,
-        filteredItems: success,
-      )),
+      (success) {
+        success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
+        emit(BlocStateReadSuccess(
+          items: success,
+          filteredItems: success,
+        ));
+      },
     );
   }
 
@@ -46,15 +50,14 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
     BlocEventReadSelect<ProgramModel> event,
     Emitter<BlocStateRead<ProgramModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (programs, filteredPrograms, _) {
         emit(BlocStateReadSuccess(
           items: programs,
-          filteredItems: filteredPrograms,
+          filteredItems: programs,
           selectedItem: event.item,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -63,7 +66,7 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
     BlocEventReadFilter event,
     Emitter<BlocStateRead<ProgramModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (programs, _, __) {
         final finds = programs
             .where(
@@ -78,7 +81,6 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
           filteredItems: finds,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -87,17 +89,40 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
     BlocEventReadAppend<ProgramModel> event,
     Emitter<BlocStateRead<ProgramModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (programs, _, __) {
+        final find =
+            programs.where((program) => program.id == event.item.id).toList();
+
+        if (find.isNotEmpty) {
+          final items = programs.map((program) {
+            if (program.id == event.item.id) {
+              return event.item;
+            }
+            return program;
+          }).toList();
+
+          items.sort((a, b) => a.updatedAt!.compareTo(b.updatedAt!));
+
+          emit(BlocStateReadSuccess(
+            items: items,
+            filteredItems: items,
+          ));
+          return;
+        }
+
         final items = [...programs, event.item];
+        items.sort((a, b) => a.updatedAt!.compareTo(b.updatedAt!));
 
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
+      failure: (_) => emit(BlocStateReadSuccess(
+        items: [event.item],
+        filteredItems: [event.item],
+      )),
     );
   }
 
@@ -106,18 +131,21 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
     BlocEventReadRemove<ProgramModel> event,
     Emitter<BlocStateRead<ProgramModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (programs, _, __) {
-        final items =
-            programs.where((program) => program.id != event.id).toList();
+        final items = programs
+            .where(
+              (program) => program.id != event.id,
+            )
+            .toList();
+
+        items.sort((a, b) => a.updatedAt!.compareTo(b.updatedAt!));
 
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
     );
   }
 }

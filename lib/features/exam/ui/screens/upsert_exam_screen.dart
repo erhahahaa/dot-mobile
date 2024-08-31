@@ -3,7 +3,6 @@ import 'package:dot_coaching/app/di.dart';
 import 'package:dot_coaching/app/router.gr.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
-import 'package:dot_coaching/utils/extensions/datetime.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,15 +29,15 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
   ExamModel? _exam;
   late TextEditingController _titleController;
   late TextEditingController _descriptionController;
-  late TextEditingController _dueAtController;
+  // late TextEditingController _dueAtController;
 
   late FocusNode _titleFocusNode;
   late FocusNode _descriptionFocusNode;
-  late FocusNode _dueAtFocusNode;
+  // late FocusNode _dueAtFocusNode;
 
   late GlobalKey<FormState> _formKey;
 
-  DateTime? _dueAt;
+  // DateTime? _dueAt;
 
   @override
   void initState() {
@@ -48,15 +47,15 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
     );
     _titleController = TextEditingController(text: _exam?.title);
     _descriptionController = TextEditingController(text: _exam?.description);
-    _dueAtController = TextEditingController(
-      text: _exam?.dueAt?.toDayMonthYear(),
-    );
+    // _dueAtController = TextEditingController(
+    //   text: _exam?.dueAt?.toDayMonthYear(),
+    // );
 
-    _dueAt = _exam?.dueAt;
+    // _dueAt = _exam?.dueAt;
 
     _titleFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
-    _dueAtFocusNode = FocusNode();
+    // _dueAtFocusNode = FocusNode();
 
     _formKey = GlobalKey<FormState>();
 
@@ -67,11 +66,11 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
   void dispose() {
     _titleController.dispose();
     _descriptionController.dispose();
-    _dueAtController.dispose();
+    // _dueAtController.dispose();
 
     _titleFocusNode.dispose();
     _descriptionFocusNode.dispose();
-    _dueAtFocusNode.dispose();
+    // _dueAtFocusNode.dispose();
 
     _formKey.currentState?.dispose();
     super.dispose();
@@ -118,8 +117,7 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
             FormInput(
               controller: _descriptionController,
               currentFocus: _descriptionFocusNode,
-              nextFocus: _dueAtFocusNode,
-              textInputAction: TextInputAction.next,
+              textInputAction: TextInputAction.done,
               hintText: context.str?.enterDescription,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -129,35 +127,35 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
               },
             ),
             Gap(12.h),
-            FormLabel(context.str?.dueAt),
-            FormInput(
-              controller: _dueAtController,
-              currentFocus: _dueAtFocusNode,
-              textInputAction: TextInputAction.done,
-              hintText: context.str?.enterDueAt,
-              readOnly: true,
-              validator: (String? value) {
-                if (value == null || value.isEmpty || _dueAt == null) {
-                  return context.str?.dueAtRequired ?? 'Due date is required';
-                }
-                return null;
-              },
-              onTap: () async {
-                final res = await showDatePicker(
-                  context: context,
-                  firstDate: DateTime(1970),
-                  lastDate: DateTime(2030),
-                  initialDate: _dueAt,
-                );
-                if (res != null) {
-                  setState(() {
-                    _dueAt = res;
-                    _dueAtController.text = res.toDayMonthYear();
-                  });
-                }
-              },
-            ),
-            Gap(12.h),
+            // FormLabel(context.str?.dueAt),
+            // FormInput(
+            //   controller: _dueAtController,
+            //   currentFocus: _dueAtFocusNode,
+            //   textInputAction: TextInputAction.done,
+            //   hintText: context.str?.enterDueAt,
+            //   readOnly: true,
+            //   validator: (String? value) {
+            //     if (value == null || value.isEmpty || _dueAt == null) {
+            //       return context.str?.dueAtRequired ?? 'Due date is required';
+            //     }
+            //     return null;
+            //   },
+            //   onTap: () async {
+            //     final res = await showDatePicker(
+            //       context: context,
+            //       firstDate: DateTime(1970),
+            //       lastDate: DateTime(2030),
+            //       initialDate: _dueAt,
+            //     );
+            //     if (res != null) {
+            //       setState(() {
+            //         _dueAt = res;
+            //         _dueAtController.text = res.toDayMonthYear();
+            //       });
+            //     }
+            //   },
+            // ),
+            // Gap(12.h),
             BlocConsumer<ExamBlocWrite, BlocStateWrite<ExamModel>>(
               listener: (context, state) {
                 state.whenOrNull(
@@ -204,7 +202,7 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
                                   clubId: club.id,
                                   title: _titleController.text,
                                   description: _descriptionController.text,
-                                  dueAt: _dueAt!,
+                                  dueAt: DateTime.now(),
                                 ),
                               ),
                             );
@@ -216,7 +214,7 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
                                   clubId: club.id,
                                   title: _titleController.text,
                                   description: _descriptionController.text,
-                                  dueAt: _dueAt!,
+                                  dueAt: DateTime.now(),
                                 ),
                               ),
                             );

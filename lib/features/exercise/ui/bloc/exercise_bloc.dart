@@ -34,10 +34,14 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
 
     res.fold(
       (failure) => emit(BlocStateReadFailure(failure.message)),
-      (success) => emit(BlocStateReadSuccess(
-        items: success,
-        filteredItems: success,
-      )),
+      (success) {
+        success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
+        emit(BlocStateReadSuccess(
+          items: success,
+          filteredItems: success,
+        ));
+      },
     );
   }
 
@@ -46,15 +50,14 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
     BlocEventReadSelect<ExerciseModel> event,
     Emitter<BlocStateRead<ExerciseModel>> emit,
   ) {
-    state.maybeWhen(
-      success: (exercises, filteredExercises, _) {
+    state.whenOrNull(
+      success: (exercises, __, ___) {
         emit(BlocStateReadSuccess(
           items: exercises,
-          filteredItems: filteredExercises,
+          filteredItems: exercises,
           selectedItem: event.item,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -63,7 +66,7 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
     BlocEventReadFilter event,
     Emitter<BlocStateRead<ExerciseModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (exercises, _, __) {
         final finds = exercises
             .where(
@@ -78,7 +81,6 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
           filteredItems: finds,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -87,17 +89,41 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
     BlocEventReadAppend<ExerciseModel> event,
     Emitter<BlocStateRead<ExerciseModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (exercises, _, __) {
+        final find = exercises
+            .where((exercise) => exercise.id == event.item.id)
+            .toList();
+
+        if (find.isNotEmpty) {
+          final items = exercises.map((exercise) {
+            if (exercise.id == event.item.id) {
+              return event.item;
+            }
+            return exercise;
+          }).toList();
+
+          items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
+          emit(BlocStateReadSuccess(
+            items: items,
+            filteredItems: items,
+          ));
+        }
+
         final items = [...exercises, event.item];
+
+        items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
+      failure: (_) => emit(BlocStateReadSuccess(
+        items: [event.item],
+        filteredItems: [event.item],
+      )),
     );
   }
 
@@ -106,18 +132,21 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
     BlocEventReadRemove<ExerciseModel> event,
     Emitter<BlocStateRead<ExerciseModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (exercises, _, __) {
-        final items =
-            exercises.where((exercise) => exercise.id != event.id).toList();
+        final items = exercises
+            .where(
+              (exercise) => exercise.id != event.id,
+            )
+            .toList();
+
+        items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
     );
   }
 }
@@ -183,9 +212,8 @@ class ExerciseBlocWrite extends BlocWrite<List<ExerciseModel>> {
     res.fold(
       (failure) => emit(BlocStateWriteFailure(failure.message)),
       (success) {
-        final items = state.maybeWhen(
+        final items = state.whenOrNull(
           success: (items) => items,
-          orElse: () => null,
         );
         if (items == null) return;
         final filteredItems = items

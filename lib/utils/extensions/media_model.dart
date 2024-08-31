@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 
 extension MediaExt on MediaModel {
   static const imageType = [
@@ -27,19 +29,93 @@ extension MediaExt on MediaModel {
     bool useThumb = true,
   }) {
     if (MediaExt.imageType.contains(type)) {
-      return CachedNetworkImage(
-        imageUrl: useThumb ? thumbUrl ?? url : url,
-        fit: fit,
-        width: width,
-        height: height,
+      return GestureDetector(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (ctx) {
+              return Dialog(
+                insetPadding: EdgeInsets.zero,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        Gap(8.w),
+                        TitleMedium(name),
+                        Spacer(),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(ctx);
+                          },
+                          icon: const Icon(Icons.close),
+                        ),
+                        Gap(8.w),
+                      ],
+                    ),
+                    CachedNetworkImage(
+                      imageUrl: useThumb ? thumbUrl ?? url : url,
+                      fit: fit,
+                      width: 0.95.sw,
+                      height: 0.9.sh,
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
+        child: CachedNetworkImage(
+          imageUrl: useThumb ? thumbUrl ?? url : url,
+          fit: fit,
+          width: width,
+          height: height,
+        ),
       );
     }
     if (MediaExt.bitmapType.contains(type)) {
-      return SvgPicture.network(
-        useThumb ? thumbUrl ?? url : url,
-        fit: fit,
-        width: width,
-        height: height,
+      return GestureDetector(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (ctx) {
+              return Dialog(
+                insetPadding: EdgeInsets.zero,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        Gap(8.w),
+                        TitleMedium(name),
+                        Spacer(),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(ctx);
+                          },
+                          icon: const Icon(Icons.close),
+                        ),
+                        Gap(8.w),
+                      ],
+                    ),
+                    SvgPicture.network(
+                      useThumb ? thumbUrl ?? url : url,
+                      fit: fit,
+                      width: 0.95.sw,
+                      height: 0.9.sh,
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
+        child: SvgPicture.network(
+          useThumb ? thumbUrl ?? url : url,
+          fit: fit,
+          width: width,
+          height: height,
+        ),
       );
     }
 

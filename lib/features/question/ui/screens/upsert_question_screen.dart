@@ -47,7 +47,8 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
           questionFN: FocusNode(),
           questionCon: TextEditingController(text: question.question),
           typeFN: FocusNode(),
-          typeCon: TextEditingController(text: question.type.value),
+          typeCon:
+              TextEditingController(text: question.type.value.capitalizeFirst),
           order: question.order,
         );
       }));
@@ -118,38 +119,43 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                     isLoading: state is BlocStateWriteLoading,
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
-                        if (_questions.isNotEmpty) {
-                          final params = _questions.map((question) {
-                            return CreateQuestionParams(
-                              order: question.order,
+                        Log.info('QUESTION LENGTH: ${_questions.length}');
+                        final createParams = <CreateQuestionParams>[];
+                        final updateParams = <UpdateQuestionParams>[];
+                        for (final quest in _questions) {
+                          if (quest.question.id == 0) {
+                            final params = CreateQuestionParams(
+                              order: quest.order,
                               examId: _exam?.id ?? 0,
                               type: QuestionType.fromString(
-                                question.typeCon.text,
+                                quest.typeCon.text,
                               ),
-                              question: question.questionCon.text,
-                              options: question.question.options,
+                              question: quest.questionCon.text,
+                              options: quest.question.options,
                             );
-                          }).toList();
-
+                            createParams.add(params);
+                          } else {
+                            final params = UpdateQuestionParams(
+                              id: quest.question.id,
+                              order: quest.order,
+                              examId: _exam?.id ?? 0,
+                              type: QuestionType.fromString(
+                                quest.typeCon.text,
+                              ),
+                              question: quest.questionCon.text,
+                              options: quest.question.options,
+                            );
+                            updateParams.add(params);
+                          }
+                        }
+                        if (createParams.isNotEmpty) {
                           context.read<QuestionBlocWrite>().add(
-                                BlocEventWrite.create(params),
+                                BlocEventWrite.create(createParams),
                               );
-                        } else {
-                          final params = _questions.map((question) {
-                            return UpdateQuestionParams(
-                              id: question.question.id,
-                              order: question.order,
-                              examId: _exam?.id ?? 0,
-                              type: QuestionType.fromString(
-                                question.typeCon.text,
-                              ),
-                              question: question.questionCon.text,
-                              options: question.question.options,
-                            );
-                          }).toList();
-
+                        }
+                        if (updateParams.isNotEmpty) {
                           context.read<QuestionBlocWrite>().add(
-                                BlocEventWrite.update(params),
+                                BlocEventWrite.update(updateParams),
                               );
                         }
                       }
@@ -184,7 +190,8 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                     questionFN: FocusNode(),
                     questionCon: TextEditingController(text: question.question),
                     typeFN: FocusNode(),
-                    typeCon: TextEditingController(text: question.type.value),
+                    typeCon: TextEditingController(
+                        text: question.type.value.capitalizeFirst),
                     order: question.order,
                   );
                 },
@@ -222,7 +229,7 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                             questionCon: TextEditingController(),
                             typeFN: FocusNode(),
                             typeCon: TextEditingController(
-                              text: QuestionType.text.value.capitalize,
+                              text: QuestionType.text.value.capitalizeFirst,
                             ),
                             order: _questions.length,
                           ),

@@ -20,9 +20,13 @@ _$ClubModelImpl _$$ClubModelImplFromJson(Map<String, dynamic> json) =>
       memberCount: (json['memberCount'] as num?)?.toInt() ?? 0,
       programCount: (json['programCount'] as num?)?.toInt() ?? 0,
       examCount: (json['examCount'] as num?)?.toInt() ?? 0,
+      tacticalCount: (json['tacticalCount'] as num?)?.toInt() ?? 0,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
     );
 
 Map<String, dynamic> _$$ClubModelImplToJson(_$ClubModelImpl instance) =>
@@ -36,7 +40,9 @@ Map<String, dynamic> _$$ClubModelImplToJson(_$ClubModelImpl instance) =>
       'memberCount': instance.memberCount,
       'programCount': instance.programCount,
       'examCount': instance.examCount,
+      'tacticalCount': instance.tacticalCount,
       'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 
 const _$SportTypeEnumMap = {

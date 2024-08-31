@@ -12,9 +12,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
 class ListTacticalScreen extends StatelessWidget {
-  const ListTacticalScreen({
-    super.key,
-  });
+  const ListTacticalScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,59 +24,81 @@ class ListTacticalScreen extends StatelessWidget {
     return ParentWithSearchAndScrollController(
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
-          appBar: AppBar(
-            title: TitleLarge(club?.name),
-            actions: [
-              MoonButton.icon(
-                icon: const Icon(MoonIcons.generic_info_24_light),
-                onTap: () {},
-              ),
-            ],
-          ),
-          floatingActionButton: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              BackTopButton(
-                show: showScrollToTopButton,
-                onPressed: () {
-                  scroll.animateTo(
-                    0,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              ),
-              Gap(8.h),
-              FloatingActionButton.extended(
-                heroTag: 'new_tactical_button_$hashCode',
-                onPressed: () {
-                  context.router.push(
-                    const UpsertTacticalRoute(),
-                  );
-                },
-                icon: const Icon(Icons.add),
-                label: const Text('New Tactical'),
-              ),
-            ],
-          ),
+          appBar: _buildAppBar(club),
+          floatingActionButton:
+              _buildFloatingActionBar(showScrollToTopButton, scroll, context),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: SingleChildScrollView(
-              controller: scroll,
-              child: Column(
-                children: [
-                  Gap(8.h),
-                  _buildHeader(context, search),
-                  Gap(16.h),
-                  _buildListTactical(context, scroll),
-                ],
+            child: RefreshIndicator(
+              onRefresh: () async {
+                final clubBloc = context.read<ClubBlocRead>();
+                final club = clubBloc.state.whenOrNull(
+                  success: (_, __, selectedClub) => selectedClub,
+                );
+                context.read<TacticalBlocRead>().add(
+                      BlocEventRead.get(id: club?.id),
+                    );
+              },
+              child: SingleChildScrollView(
+                controller: scroll,
+                physics: AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  children: [
+                    Gap(8.h),
+                    _buildHeader(context, search),
+                    Gap(16.h),
+                    _buildListTactical(context, scroll),
+                  ],
+                ),
               ),
             ),
           ),
         );
       },
+    );
+  }
+
+  AppBar _buildAppBar(ClubModel? club) {
+    return AppBar(
+      title: TitleMedium(club?.name),
+      actions: [
+        MoonButton.icon(
+          icon: const Icon(MoonIcons.generic_info_24_light),
+          onTap: () {},
+        ),
+      ],
+    );
+  }
+
+  Column _buildFloatingActionBar(bool showScrollToTopButton,
+      ScrollController scroll, BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        BackTopButton(
+          show: showScrollToTopButton,
+          onPressed: () {
+            scroll.animateTo(
+              0,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+            );
+          },
+        ),
+        Gap(8.h),
+        FloatingActionButton.extended(
+          heroTag: 'new_tactical_button_$hashCode',
+          onPressed: () {
+            context.router.push(
+              const UpsertTacticalRoute(),
+            );
+          },
+          icon: const Icon(Icons.add),
+          label: const Text('New Tactical'),
+        ),
+      ],
     );
   }
 
@@ -166,7 +186,7 @@ class ListTacticalScreen extends StatelessWidget {
               items: filteredTacticals,
               scrollController: scrollController,
               height: 0.71.sh,
-              itemBuilder: (context, tactical) =>
+              itemBuilder: (context, index, tactical) =>
                   _buildTacticalItem(context, tactical),
             );
           },
@@ -178,7 +198,7 @@ class ListTacticalScreen extends StatelessWidget {
               scrollController: scrollController,
               height: 0.71.sh,
               items: fakeTacticals,
-              itemBuilder: (context, tactical) => Skeletonizer(
+              itemBuilder: (context, index, tactical) => Skeletonizer(
                 child: _buildTacticalItem(context, tactical),
               ),
             );

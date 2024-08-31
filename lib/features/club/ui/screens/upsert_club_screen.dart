@@ -31,6 +31,7 @@ class UpsertClubScreen extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _UpsertClubScreenState extends State<UpsertClubScreen> {
+  ClubModel? _club;
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
   late TextEditingController _sportTypeController;
@@ -47,9 +48,22 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
 
   @override
   void initState() {
-    _nameController = TextEditingController();
-    _descriptionController = TextEditingController();
-    _sportTypeController = TextEditingController();
+    final clubBloc = context.read<ClubBlocRead>();
+    _club = clubBloc.state.whenOrNull(
+      success: (_, __, selectedClub) => selectedClub,
+    );
+
+    _nameController = TextEditingController(
+      text: _club?.name,
+    );
+    _descriptionController = TextEditingController(
+      text: _club?.description,
+    );
+    _sportTypeController = TextEditingController(
+      text: _club?.type.name,
+    );
+
+    selectedSportType = _club?.type;
 
     _nameFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
@@ -81,7 +95,9 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
   Widget build(BuildContext context) {
     return Parent(
       appBar: AppBar(
-        title: const TitleMedium('Club form'),
+        title: TitleMedium(
+          _club == null ? 'Create Club' : 'Update ${_club?.name}',
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(8.w),
@@ -101,7 +117,7 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
               child: ImagePickerWidget(
                 firstChild: imageFallback(
                   image,
-                  null,
+                  _club?.media?.url,
                 ),
                 onTap: () async {
                   final res =
@@ -191,9 +207,12 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
               listener: (context, state) {
                 state.mapOrNull(
                   success: (success) {
+                    final msg = _club == null
+                        ? 'Club created successfully'
+                        : 'Club updated successfully';
                     context.successToast(
                       title: 'Success',
-                      description: 'Club created successfully',
+                      description: msg,
                     );
                     widget.onUpserted.call(success.item);
                     context.router.maybePop();
@@ -211,7 +230,7 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
                   isLoading: state is BlocStateWriteLoading,
                   text: 'Create club',
                   onTap: () {
-                    if (image == null) {
+                    if (image == null && _club == null) {
                       setState(() {
                         imageError = context.str?.clubImageRequired;
                       });
@@ -230,16 +249,30 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
                         return context.showSnackBar(message: 'Un mounter');
                       }
 
-                      context.read<ClubBlocWrite>().add(
-                            BlocEventWrite.create(
-                              CreateClubParams(
-                                name: _nameController.text,
-                                description: _descriptionController.text,
-                                type: selectedSportType!,
-                                image: image!,
+                      if (_club != null) {
+                        context.read<ClubBlocWrite>().add(
+                              BlocEventWrite.update(
+                                UpdateClubParams(
+                                  id: _club!.id,
+                                  name: _nameController.text,
+                                  description: _descriptionController.text,
+                                  type: selectedSportType!,
+                                  image: image,
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                      } else {
+                        context.read<ClubBlocWrite>().add(
+                              BlocEventWrite.create(
+                                CreateClubParams(
+                                  name: _nameController.text,
+                                  description: _descriptionController.text,
+                                  type: selectedSportType!,
+                                  image: image!,
+                                ),
+                              ),
+                            );
+                      }
                     }
                   },
                 );

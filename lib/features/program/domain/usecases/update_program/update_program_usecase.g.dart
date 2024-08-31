@@ -11,6 +11,7 @@ _$UpdateProgramParamsImpl _$$UpdateProgramParamsImplFromJson(
     _$UpdateProgramParamsImpl(
       id: (json['id'] as num).toInt(),
       clubId: (json['clubId'] as num).toInt(),
+      mediaId: (json['mediaId'] as num).toInt(),
       name: json['name'] as String,
       startDate: json['startDate'] == null
           ? null
@@ -25,6 +26,7 @@ Map<String, dynamic> _$$UpdateProgramParamsImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'clubId': instance.clubId,
+      'mediaId': instance.mediaId,
       'name': instance.name,
       'startDate': instance.startDate?.toIso8601String(),
       'endDate': instance.endDate?.toIso8601String(),

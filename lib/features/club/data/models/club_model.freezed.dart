@@ -29,7 +29,9 @@ mixin _$ClubModel {
   int get memberCount => throw _privateConstructorUsedError;
   int get programCount => throw _privateConstructorUsedError;
   int get examCount => throw _privateConstructorUsedError;
+  int get tacticalCount => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   /// Serializes this ClubModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,7 +58,9 @@ abstract class $ClubModelCopyWith<$Res> {
       int memberCount,
       int programCount,
       int examCount,
-      DateTime? createdAt});
+      int tacticalCount,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 
   $MediaEmbedModelCopyWith<$Res>? get media;
 }
@@ -85,7 +89,9 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
     Object? memberCount = null,
     Object? programCount = null,
     Object? examCount = null,
+    Object? tacticalCount = null,
     Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -124,9 +130,17 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
           ? _value.examCount
           : examCount // ignore: cast_nullable_to_non_nullable
               as int,
+      tacticalCount: null == tacticalCount
+          ? _value.tacticalCount
+          : tacticalCount // ignore: cast_nullable_to_non_nullable
+              as int,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
   }
@@ -164,7 +178,9 @@ abstract class _$$ClubModelImplCopyWith<$Res>
       int memberCount,
       int programCount,
       int examCount,
-      DateTime? createdAt});
+      int tacticalCount,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 
   @override
   $MediaEmbedModelCopyWith<$Res>? get media;
@@ -192,7 +208,9 @@ class __$$ClubModelImplCopyWithImpl<$Res>
     Object? memberCount = null,
     Object? programCount = null,
     Object? examCount = null,
+    Object? tacticalCount = null,
     Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$ClubModelImpl(
       id: null == id
@@ -231,9 +249,17 @@ class __$$ClubModelImplCopyWithImpl<$Res>
           ? _value.examCount
           : examCount // ignore: cast_nullable_to_non_nullable
               as int,
+      tacticalCount: null == tacticalCount
+          ? _value.tacticalCount
+          : tacticalCount // ignore: cast_nullable_to_non_nullable
+              as int,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }
@@ -252,7 +278,9 @@ class _$ClubModelImpl extends _ClubModel {
       this.memberCount = 0,
       this.programCount = 0,
       this.examCount = 0,
-      this.createdAt})
+      this.tacticalCount = 0,
+      this.createdAt,
+      this.updatedAt})
       : super._();
 
   factory _$ClubModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -285,11 +313,16 @@ class _$ClubModelImpl extends _ClubModel {
   @JsonKey()
   final int examCount;
   @override
+  @JsonKey()
+  final int tacticalCount;
+  @override
   final DateTime? createdAt;
+  @override
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'ClubModel(id: $id, creatorId: $creatorId, name: $name, description: $description, type: $type, media: $media, memberCount: $memberCount, programCount: $programCount, examCount: $examCount, createdAt: $createdAt)';
+    return 'ClubModel(id: $id, creatorId: $creatorId, name: $name, description: $description, type: $type, media: $media, memberCount: $memberCount, programCount: $programCount, examCount: $examCount, tacticalCount: $tacticalCount, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -311,14 +344,30 @@ class _$ClubModelImpl extends _ClubModel {
                 other.programCount == programCount) &&
             (identical(other.examCount, examCount) ||
                 other.examCount == examCount) &&
+            (identical(other.tacticalCount, tacticalCount) ||
+                other.tacticalCount == tacticalCount) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, creatorId, name, description,
-      type, media, memberCount, programCount, examCount, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      creatorId,
+      name,
+      description,
+      type,
+      media,
+      memberCount,
+      programCount,
+      examCount,
+      tacticalCount,
+      createdAt,
+      updatedAt);
 
   /// Create a copy of ClubModel
   /// with the given fields replaced by the non-null parameter values.
@@ -347,7 +396,9 @@ abstract class _ClubModel extends ClubModel {
       final int memberCount,
       final int programCount,
       final int examCount,
-      final DateTime? createdAt}) = _$ClubModelImpl;
+      final int tacticalCount,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$ClubModelImpl;
   const _ClubModel._() : super._();
 
   factory _ClubModel.fromJson(Map<String, dynamic> json) =
@@ -372,7 +423,11 @@ abstract class _ClubModel extends ClubModel {
   @override
   int get examCount;
   @override
+  int get tacticalCount;
+  @override
   DateTime? get createdAt;
+  @override
+  DateTime? get updatedAt;
 
   /// Create a copy of ClubModel
   /// with the given fields replaced by the non-null parameter values.

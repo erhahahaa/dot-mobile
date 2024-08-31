@@ -5,9 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ListViewBuilder<T> extends StatelessWidget {
   final List<T> items;
-  final Widget Function(BuildContext context, T item) itemBuilder;
+  final Widget Function(BuildContext context, int index, T item) itemBuilder;
   final ScrollController? scrollController;
   final double? height;
+  final Color? color;
+  final EdgeInsets? padding, margin;
+  final ScrollPhysics? physics;
 
   const ListViewBuilder({
     super.key,
@@ -15,20 +18,27 @@ class ListViewBuilder<T> extends StatelessWidget {
     required this.itemBuilder,
     this.scrollController,
     this.height,
+    this.color,
+    this.padding,
+    this.margin,
+    this.physics,
   });
 
   @override
   Widget build(BuildContext context) {
     return ContainerWrapper(
-      margin: EdgeInsets.zero,
-      padding: EdgeInsets.zero,
+      margin: margin ?? EdgeInsets.zero,
+      padding: padding ?? EdgeInsets.zero,
       height: height,
+      color: color,
       child: ListView.builder(
         shrinkWrap: true,
         padding: EdgeInsets.zero,
         controller: scrollController,
+        physics: physics,
         itemCount: items.length,
-        itemBuilder: (context, index) => itemBuilder(context, items[index]),
+        itemBuilder: (context, index) =>
+            itemBuilder(context, index, items[index]),
       ),
     );
   }

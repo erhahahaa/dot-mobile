@@ -157,18 +157,10 @@ class DashboardRoute extends _i38.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.DetailClubScreen]
-class DetailClubRoute extends _i38.PageRouteInfo<DetailClubRouteArgs> {
-  DetailClubRoute({
-    _i39.Key? key,
-    required int id,
-    List<_i38.PageRouteInfo>? children,
-  }) : super(
+class DetailClubRoute extends _i38.PageRouteInfo<void> {
+  const DetailClubRoute({List<_i38.PageRouteInfo>? children})
+      : super(
           DetailClubRoute.name,
-          args: DetailClubRouteArgs(
-            key: key,
-            id: id,
-          ),
-          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -177,31 +169,9 @@ class DetailClubRoute extends _i38.PageRouteInfo<DetailClubRouteArgs> {
   static _i38.PageInfo page = _i38.PageInfo(
     name,
     builder: (data) {
-      final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<DetailClubRouteArgs>(
-          orElse: () => DetailClubRouteArgs(id: pathParams.getInt('id')));
-      return _i3.DetailClubScreen(
-        key: args.key,
-        id: args.id,
-      );
+      return const _i3.DetailClubScreen();
     },
   );
-}
-
-class DetailClubRouteArgs {
-  const DetailClubRouteArgs({
-    this.key,
-    required this.id,
-  });
-
-  final _i39.Key? key;
-
-  final int id;
-
-  @override
-  String toString() {
-    return 'DetailClubRouteArgs{key: $key, id: $id}';
-  }
 }
 
 /// generated route for
@@ -218,6 +188,7 @@ class DetailEvaluationRoute
             key: key,
             id: id,
           ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -226,7 +197,9 @@ class DetailEvaluationRoute
   static _i38.PageInfo page = _i38.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<DetailEvaluationRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<DetailEvaluationRouteArgs>(
+          orElse: () => DetailEvaluationRouteArgs(id: pathParams.getInt('id')));
       return _i4.DetailEvaluationScreen(
         key: args.key,
         id: args.id,

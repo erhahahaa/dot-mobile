@@ -35,59 +35,77 @@ class _ListExamScreenState extends State<ListExamScreen> {
     return ParentWithSearchAndScrollController(
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
-          appBar: AppBar(
-            title: TitleLarge(club?.name),
-            actions: [
-              MoonButton.icon(
-                icon: const Icon(MoonIcons.generic_info_24_light),
-                onTap: () {},
-              ),
-            ],
-          ),
-          floatingActionButton: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              BackTopButton(
-                show: showScrollToTopButton,
-                onPressed: () {
-                  scroll.animateTo(
-                    0,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              ),
-              Gap(8.h),
-              FloatingActionButton.extended(
-                heroTag: 'new_exam_button_$hashCode',
-                onPressed: () {
-                  context.read<ExamBlocRead>().add(BlocEventRead.select(null));
-                  context.router.push(
-                    const UpsertExamRoute(),
-                  );
-                },
-                icon: const Icon(Icons.add),
-                label: const Text('New Exam'),
-              ),
-            ],
-          ),
+          appBar: _buildAppBar(),
+          floatingActionButton: _buildFloatingActionButton(
+              showScrollToTopButton, scroll, context),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Gap(8.h),
-                  _buildHeader(context, search),
-                  Gap(16.h),
-                  _buildListExam(context, scroll),
-                ],
+            child: RefreshIndicator(
+              onRefresh: () async {
+                context.read<ExamBlocRead>().add(
+                      BlocEventRead.get(id: club?.id),
+                    );
+              },
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  children: [
+                    Gap(8.h),
+                    _buildHeader(context, search),
+                    Gap(16.h),
+                    _buildListExam(context, scroll),
+                  ],
+                ),
               ),
             ),
           ),
         );
       },
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: TitleMedium(club?.name),
+      actions: [
+        MoonButton.icon(
+          icon: const Icon(MoonIcons.generic_info_24_light),
+          onTap: () {},
+        ),
+      ],
+    );
+  }
+
+  Column _buildFloatingActionButton(bool showScrollToTopButton,
+      ScrollController scroll, BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        BackTopButton(
+          show: showScrollToTopButton,
+          onPressed: () {
+            scroll.animateTo(
+              0,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+            );
+          },
+        ),
+        Gap(8.h),
+        FloatingActionButton.extended(
+          heroTag: 'new_exam_button_$hashCode',
+          onPressed: () {
+            context.read<ExamBlocRead>().add(BlocEventRead.select(null));
+            context.router.push(
+              const UpsertExamRoute(),
+            );
+          },
+          icon: const Icon(Icons.add),
+          label: const Text('New Exam'),
+        ),
+      ],
     );
   }
 
@@ -171,7 +189,8 @@ class _ListExamScreenState extends State<ListExamScreen> {
               items: filteredExams,
               scrollController: scrollController,
               height: 0.71.sh,
-              itemBuilder: (context, exam) => _buildExamItem(context, exam),
+              itemBuilder: (context, index, exam) =>
+                  _buildExamItem(context, exam),
             );
           },
           failure: (message) => ErrorAlert(message),
@@ -181,7 +200,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
               scrollController: scrollController,
               height: 0.71.sh,
               items: fakeExams,
-              itemBuilder: (context, exam) => Skeletonizer(
+              itemBuilder: (context, index, exam) => Skeletonizer(
                 child: _buildExamItem(context, exam),
               ),
             );
@@ -206,7 +225,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
 
     return ListViewBuilderTile(
       titleText: exam.title,
-      subtitleText: exam.dueAt.toString(),
+      subtitleText: exam.description,
       imageUrl: exam.media?.url,
       onTap: onTap,
       trailing: MoonButton.icon(

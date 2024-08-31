@@ -78,7 +78,7 @@ class _MediaScreenState extends State<MediaScreen>
     );
     return Parent(
       appBar: AppBar(
-        title: const BodyLarge('Assets'),
+        title: const TitleMedium('Assets'),
         bottom: MediaTabBar(
           controller: _tabController,
         ),

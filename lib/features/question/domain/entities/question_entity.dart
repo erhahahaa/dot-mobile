@@ -19,9 +19,9 @@ enum QuestionType {
 
   static QuestionType fromString(String str) {
     switch (str) {
-      case 'numeric':
+      case 'numeric' || 'Numeric':
         return QuestionType.numeric;
-      case 'text':
+      case 'text' || 'Text':
       default:
         return QuestionType.text;
     }

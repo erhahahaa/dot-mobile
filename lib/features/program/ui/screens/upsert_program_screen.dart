@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/app/di.dart';
 import 'package:dot_coaching/app/router.gr.dart';
@@ -31,6 +29,7 @@ class UpsertProgramScreen extends StatefulWidget implements AutoRouteWrapper {
 
 class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
   ProgramModel? _program;
+  ClubModel? club;
   late TextEditingController _nameController;
   late TextEditingController _startDateController;
   late TextEditingController _endDateController;
@@ -41,8 +40,10 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
   late GlobalKey<FormState> _formKey;
 
   DateTime? _start, _end;
-  File? image;
-  String? imageError;
+  // File? image;
+  String? _imageError;
+
+  MediaModel? _media;
 
   @override
   void initState() {
@@ -50,8 +51,14 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
     _program = programBloc.state.whenOrNull(
       success: (_, __, selectedItem) => selectedItem,
     );
+    final clubBloc = context.read<ClubBlocRead>();
+    club = clubBloc.state.whenOrNull(
+      success: (_, __, selectedItem) => selectedItem,
+    );
+
     _start = _program?.startDate;
     _end = _program?.endDate;
+    _media = _program?.media;
 
     _nameController = TextEditingController(text: _program?.name);
     _startDateController = TextEditingController(
@@ -72,8 +79,8 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
 
   @override
   void dispose() {
-    image?.delete();
-    image = null;
+    // image?.delete();
+    // image = null;
     _nameController.dispose();
     _startDateController.dispose();
     _endDateController.dispose();
@@ -108,32 +115,75 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: ImagePickerWidget(
-                firstChild: imageFallback(
-                  image,
-                  _program?.media?.url,
+            // Center(
+            //   child: ImagePickerWidget(
+            //     firstChild: imageFallback(
+            //       image,
+            //       _program?.media?.url,
+            //     ),
+            //     onTap: () async {
+            //       final res =
+            //           await sl<ImagePickerService>().getImageFromGallery();
+            //       res.fold(
+            //         (l) {
+            //           imageError = l.message;
+            //         },
+            //         (r) {
+            //           setState(() {
+            //             imageError = null;
+            //             image = r;
+            //           });
+            //         },
+            //       );
+            //     },
+            //   ),
+            // ),
+            Stack(
+              children: [
+                Container(
+                  width: 310.w,
+                  height: 210.h,
+                  padding: EdgeInsets.all(8.w),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: context.theme.colorScheme.onSurface,
+                      width: 1.w,
+                    ),
+                    color: context.theme.colorScheme.surface,
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: _media != null
+                      ? _media!.determineLoader(
+                          context,
+                          width: 310.w,
+                          height: 210.h,
+                        )
+                      : Assets.images.placeholder.placeholder.image(
+                          width: 310.w,
+                          height: 210.h,
+                        ),
                 ),
-                onTap: () async {
-                  final res =
-                      await sl<ImagePickerService>().getImageFromGallery();
-                  res.fold(
-                    (l) {
-                      imageError = l.message;
-                    },
-                    (r) {
-                      setState(() {
-                        imageError = null;
-                        image = r;
-                      });
-                    },
-                  );
-                },
-              ),
+                Positioned(
+                  bottom: 8,
+                  right: 8,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: context.theme.colorScheme.surface,
+                      borderRadius: BorderRadius.circular(666.r),
+                      border: Border.all(
+                        color: context.theme.colorScheme.onSurface,
+                        width: 1.w,
+                      ),
+                    ),
+                    child: _buildMediaButton(context),
+                  ),
+                )
+              ],
             ),
-            if (imageError != null) ...[
+            SizedBox(height: 16.h),
+            if (_imageError != null) ...[
               BodyMedium(
-                imageError,
+                _imageError,
                 color: context.theme.colorScheme.error,
               ),
             ],
@@ -239,14 +289,14 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
                   isLoading: state is BlocStateWriteLoading,
                   text: _program == null ? 'Create Program' : 'Update Program',
                   onTap: () {
-                    if (image == null && _program == null) {
+                    if (_media == null && _program == null) {
                       setState(() {
-                        imageError = context.str?.programImageRequired;
+                        _imageError = context.str?.programImageRequired;
                       });
                       return;
                     } else {
                       setState(() {
-                        imageError = null;
+                        _imageError = null;
                       });
                     }
 
@@ -272,7 +322,7 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
                                   name: _nameController.text,
                                   startDate: _start!,
                                   endDate: _end!,
-                                  image: image!,
+                                  mediaId: _media!.id,
                                 ),
                               ),
                             );
@@ -285,7 +335,7 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
                                   name: _nameController.text,
                                   startDate: _start!,
                                   endDate: _end!,
-                                  image: image,
+                                  mediaId: _media!.id,
                                 ),
                               ),
                             );
@@ -298,6 +348,93 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  IconButton _buildMediaButton(BuildContext context) {
+    return IconButton(
+      onPressed: () async {
+        final res = await showAdaptiveDialog<MediaModel>(
+          context: context,
+          builder: (ctx) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: context.read<ProgramMediaBlocRead>()
+                    ..add(
+                      BlocEventRead.get(id: club?.id),
+                    ),
+                ),
+                BlocProvider.value(
+                  value: context.read<ProgramMediaBlocWrite>(),
+                ),
+              ],
+              child: Dialog(
+                insetPadding: EdgeInsets.zero,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Gap(16.h),
+                    Row(
+                      children: [
+                        Gap(16.w),
+                        const BodyLarge('Select Program Asset'),
+                        const Spacer(),
+                        IconButton(
+                          icon: const Icon(Icons.close),
+                          onPressed: () {
+                            Navigator.of(ctx).pop();
+                          },
+                        ),
+                        Gap(8.w),
+                      ],
+                    ),
+                    Gap(8.h),
+                    Expanded(
+                      child: MediaView<
+                          ProgramMediaBlocRead,
+                          BlocStateRead<MediaModel>,
+                          ProgramMediaBlocWrite,
+                          BlocStateWrite<MediaModel>>(
+                        club,
+                        allowedExtensions: ['jpg', 'jpeg', 'png'],
+                        onUpload: (file) {
+                          context.read<ProgramMediaBlocWrite>().add(
+                                BlocEventWrite.create({
+                                  'clubId': club?.id,
+                                  'file': file,
+                                }),
+                              );
+                        },
+                        onSuccess: (item) {
+                          context.read<ProgramMediaBlocRead>().add(
+                                BlocEventRead.append(item),
+                              );
+                        },
+                        onDownload: (item) {
+                          context
+                              .read<ProgramMediaBlocRead>()
+                              .add(BlocEventRead.getOne(item));
+                        },
+                        onTap: (item) {
+                          Navigator.of(ctx).pop(item);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+        if (res != null) {
+          setState(() {
+            _media = res;
+          });
+        }
+      },
+      icon: const Icon(Icons.edit),
     );
   }
 }

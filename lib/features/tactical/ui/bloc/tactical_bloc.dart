@@ -34,10 +34,15 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
 
     res.fold(
       (failure) => emit(BlocStateReadFailure(failure.message)),
-      (success) => emit(BlocStateReadSuccess(
-        items: success,
-        filteredItems: success,
-      )),
+      (success) {
+        success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
+        emit(BlocStateReadSuccess(
+          items: success,
+          filteredItems: success,
+          selectedItem: null,
+        ));
+      },
     );
   }
 
@@ -46,7 +51,7 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
     BlocEventReadSelect<TacticalModel> event,
     Emitter<BlocStateRead<TacticalModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (tacticals, filteredTacticals, _) {
         emit(BlocStateReadSuccess(
           items: tacticals,
@@ -54,7 +59,6 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
           selectedItem: event.item,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -63,7 +67,7 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
     BlocEventReadFilter event,
     Emitter<BlocStateRead<TacticalModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (tacticals, _, __) {
         final finds = tacticals
             .where(
@@ -76,9 +80,9 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
         emit(BlocStateReadSuccess(
           items: tacticals,
           filteredItems: finds,
+          selectedItem: null,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -87,19 +91,41 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
     BlocEventReadAppend<TacticalModel> event,
     Emitter<BlocStateRead<TacticalModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (tacticals, _, __) {
-        final isInList =
-            tacticals.any((tactical) => tactical.id == event.item.id);
-        if (isInList) return;
+        final find = tacticals
+            .where((tactical) => tactical.id == event.item.id)
+            .toList();
+        if (find.isNotEmpty) {
+          final items = tacticals.map((tactical) {
+            if (tactical.id == event.item.id) {
+              return event.item;
+            }
+            return tactical;
+          }).toList();
+
+          items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
+          emit(BlocStateReadSuccess(
+            items: items,
+            filteredItems: items,
+          ));
+          return;
+        }
+
         final items = [...tacticals, event.item];
+
+        items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
+      failure: (_) => emit(BlocStateReadSuccess(
+        items: [event.item],
+        filteredItems: [event.item],
+      )),
     );
   }
 
@@ -108,17 +134,15 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
     BlocEventReadRemove<TacticalModel> event,
     Emitter<BlocStateRead<TacticalModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (tacticals, _, __) {
         final items =
             tacticals.where((tactical) => tactical.id != event.id).toList();
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
     );
   }
 }

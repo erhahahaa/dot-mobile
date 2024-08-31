@@ -19,7 +19,9 @@ class ClubModel with _$ClubModel {
     @Default(0) int memberCount,
     @Default(0) int programCount,
     @Default(0) int examCount,
+    @Default(0) int tacticalCount,
     DateTime? createdAt,
+    DateTime? updatedAt,
   }) = _ClubModel;
 
   const ClubModel._();
@@ -39,8 +41,10 @@ class ClubModel with _$ClubModel {
           : null,
       memberCount: entity.memberCount,
       programCount: entity.programCount,
+      tacticalCount: entity.tacticalCount,
       examCount: entity.examCount,
       createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
     );
   }
 
@@ -54,8 +58,10 @@ class ClubModel with _$ClubModel {
       media: media?.toEntity(),
       memberCount: memberCount,
       programCount: programCount,
+      tacticalCount: tacticalCount,
       examCount: examCount,
       createdAt: createdAt,
+      updatedAt: updatedAt,
     );
   }
 

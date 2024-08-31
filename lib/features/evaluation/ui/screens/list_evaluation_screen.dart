@@ -168,7 +168,7 @@ class _ListEvaluationScreenState extends State<ListEvaluationScreen> {
               items: filteredEvaluations,
               scrollController: scrollController,
               height: 0.71.sh,
-              itemBuilder: (context, evaluation) => _buildEvaluationItem(
+              itemBuilder: (context, index, evaluation) => _buildEvaluationItem(
                 context,
                 evaluation,
                 evaluation == filteredEvaluations.last,
@@ -183,7 +183,7 @@ class _ListEvaluationScreenState extends State<ListEvaluationScreen> {
               scrollController: scrollController,
               height: 0.71.sh,
               items: fakeEvaluations,
-              itemBuilder: (context, evaluation) => Skeletonizer(
+              itemBuilder: (context, index, evaluation) => Skeletonizer(
                 child: _buildEvaluationItem(
                   context,
                   evaluation,

@@ -21,12 +21,10 @@ CreateProgramParams _$CreateProgramParamsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CreateProgramParams {
   int get clubId => throw _privateConstructorUsedError;
+  int get mediaId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
-  DateTime get endDate =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  File? get image => throw _privateConstructorUsedError;
+  DateTime get endDate => throw _privateConstructorUsedError;
 
   /// Serializes this CreateProgramParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,10 +44,10 @@ abstract class $CreateProgramParamsCopyWith<$Res> {
   @useResult
   $Res call(
       {int clubId,
+      int mediaId,
       String name,
       DateTime startDate,
-      DateTime endDate,
-      @JsonKey(includeFromJson: false, includeToJson: false) File? image});
+      DateTime endDate});
 }
 
 /// @nodoc
@@ -68,15 +66,19 @@ class _$CreateProgramParamsCopyWithImpl<$Res, $Val extends CreateProgramParams>
   @override
   $Res call({
     Object? clubId = null,
+    Object? mediaId = null,
     Object? name = null,
     Object? startDate = null,
     Object? endDate = null,
-    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
+              as int,
+      mediaId: null == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
@@ -90,10 +92,6 @@ class _$CreateProgramParamsCopyWithImpl<$Res, $Val extends CreateProgramParams>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as File?,
     ) as $Val);
   }
 }
@@ -108,10 +106,10 @@ abstract class _$$CreateProgramParamsImplCopyWith<$Res>
   @useResult
   $Res call(
       {int clubId,
+      int mediaId,
       String name,
       DateTime startDate,
-      DateTime endDate,
-      @JsonKey(includeFromJson: false, includeToJson: false) File? image});
+      DateTime endDate});
 }
 
 /// @nodoc
@@ -128,15 +126,19 @@ class __$$CreateProgramParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? clubId = null,
+    Object? mediaId = null,
     Object? name = null,
     Object? startDate = null,
     Object? endDate = null,
-    Object? image = freezed,
   }) {
     return _then(_$CreateProgramParamsImpl(
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
+              as int,
+      mediaId: null == mediaId
+          ? _value.mediaId
+          : mediaId // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
@@ -150,10 +152,6 @@ class __$$CreateProgramParamsImplCopyWithImpl<$Res>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as File?,
     ));
   }
 }
@@ -163,10 +161,10 @@ class __$$CreateProgramParamsImplCopyWithImpl<$Res>
 class _$CreateProgramParamsImpl extends _CreateProgramParams {
   const _$CreateProgramParamsImpl(
       {required this.clubId,
+      required this.mediaId,
       required this.name,
       required this.startDate,
-      required this.endDate,
-      @JsonKey(includeFromJson: false, includeToJson: false) this.image})
+      required this.endDate})
       : super._();
 
   factory _$CreateProgramParamsImpl.fromJson(Map<String, dynamic> json) =>
@@ -175,19 +173,17 @@ class _$CreateProgramParamsImpl extends _CreateProgramParams {
   @override
   final int clubId;
   @override
+  final int mediaId;
+  @override
   final String name;
   @override
   final DateTime startDate;
   @override
   final DateTime endDate;
-// ignore: invalid_annotation_target
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  final File? image;
 
   @override
   String toString() {
-    return 'CreateProgramParams(clubId: $clubId, name: $name, startDate: $startDate, endDate: $endDate, image: $image)';
+    return 'CreateProgramParams(clubId: $clubId, mediaId: $mediaId, name: $name, startDate: $startDate, endDate: $endDate)';
   }
 
   @override
@@ -196,17 +192,17 @@ class _$CreateProgramParamsImpl extends _CreateProgramParams {
         (other.runtimeType == runtimeType &&
             other is _$CreateProgramParamsImpl &&
             (identical(other.clubId, clubId) || other.clubId == clubId) &&
+            (identical(other.mediaId, mediaId) || other.mediaId == mediaId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.endDate, endDate) || other.endDate == endDate));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, clubId, name, startDate, endDate, image);
+      Object.hash(runtimeType, clubId, mediaId, name, startDate, endDate);
 
   /// Create a copy of CreateProgramParams
   /// with the given fields replaced by the non-null parameter values.
@@ -228,11 +224,10 @@ class _$CreateProgramParamsImpl extends _CreateProgramParams {
 abstract class _CreateProgramParams extends CreateProgramParams {
   const factory _CreateProgramParams(
       {required final int clubId,
+      required final int mediaId,
       required final String name,
       required final DateTime startDate,
-      required final DateTime endDate,
-      @JsonKey(includeFromJson: false, includeToJson: false)
-      final File? image}) = _$CreateProgramParamsImpl;
+      required final DateTime endDate}) = _$CreateProgramParamsImpl;
   const _CreateProgramParams._() : super._();
 
   factory _CreateProgramParams.fromJson(Map<String, dynamic> json) =
@@ -241,14 +236,13 @@ abstract class _CreateProgramParams extends CreateProgramParams {
   @override
   int get clubId;
   @override
+  int get mediaId;
+  @override
   String get name;
   @override
   DateTime get startDate;
   @override
-  DateTime get endDate; // ignore: invalid_annotation_target
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  File? get image;
+  DateTime get endDate;
 
   /// Create a copy of CreateProgramParams
   /// with the given fields replaced by the non-null parameter values.

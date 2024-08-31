@@ -33,10 +33,15 @@ class ExamBlocRead extends BlocRead<ExamModel> {
 
     res.fold(
       (failure) => emit(BlocStateReadFailure(failure.message)),
-      (success) => emit(BlocStateReadSuccess(
-        items: success,
-        filteredItems: success,
-      )),
+      (success) {
+        success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
+        emit(BlocStateReadSuccess(
+          items: success,
+          filteredItems: success,
+          selectedItem: null,
+        ));
+      },
     );
   }
 
@@ -45,7 +50,7 @@ class ExamBlocRead extends BlocRead<ExamModel> {
     BlocEventReadSelect<ExamModel> event,
     Emitter<BlocStateRead<ExamModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (exams, filteredExams, _) {
         emit(BlocStateReadSuccess(
           items: exams,
@@ -53,7 +58,6 @@ class ExamBlocRead extends BlocRead<ExamModel> {
           selectedItem: event.item,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -62,7 +66,7 @@ class ExamBlocRead extends BlocRead<ExamModel> {
     BlocEventReadFilter event,
     Emitter<BlocStateRead<ExamModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (exams, _, __) {
         final finds = exams
             .where(
@@ -75,9 +79,9 @@ class ExamBlocRead extends BlocRead<ExamModel> {
         emit(BlocStateReadSuccess(
           items: exams,
           filteredItems: finds,
+          selectedItem: null,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -86,16 +90,40 @@ class ExamBlocRead extends BlocRead<ExamModel> {
     BlocEventReadAppend<ExamModel> event,
     Emitter<BlocStateRead<ExamModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (exams, _, __) {
+        final find = exams.where((exam) => exam.id == event.item.id).toList();
+
+        if (find.isNotEmpty) {
+          final items = exams.map((exam) {
+            if (exam.id == event.item.id) {
+              return event.item;
+            }
+            return exam;
+          }).toList();
+
+          items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
+          emit(BlocStateReadSuccess(
+            items: items,
+            filteredItems: items,
+          ));
+          return;
+        }
+
         final items = [...exams, event.item];
+
+        items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+
         emit(BlocStateReadSuccess(
-          items: exams,
+          items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
+      failure: (_) => emit(BlocStateReadSuccess(
+        items: [event.item],
+        filteredItems: [event.item],
+      )),
     );
   }
 
@@ -104,17 +132,15 @@ class ExamBlocRead extends BlocRead<ExamModel> {
     BlocEventReadRemove<ExamModel> event,
     Emitter<BlocStateRead<ExamModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (exams, _, __) {
         final items = exams.where((exam) => exam.id != event.id).toList();
 
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
     );
   }
 }

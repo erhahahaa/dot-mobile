@@ -15,7 +15,7 @@ class ProgramModel with _$ProgramModel {
     @Default('DOT Sport') String name,
     DateTime? startDate,
     DateTime? endDate,
-    MediaEmbedModel? media,
+    MediaModel? media,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _ProgramModel;
@@ -32,9 +32,6 @@ class ProgramModel with _$ProgramModel {
       name: entity.name,
       startDate: entity.startDate,
       endDate: entity.endDate,
-      media: entity.media != null
-          ? MediaEmbedModel.fromEntity(entity.media!)
-          : null,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );
@@ -47,7 +44,6 @@ class ProgramModel with _$ProgramModel {
       name: name,
       startDate: startDate,
       endDate: endDate,
-      media: media?.toEntity(),
       createdAt: createdAt,
       updatedAt: updatedAt,
     );
@@ -60,7 +56,7 @@ class ProgramModel with _$ProgramModel {
       name: BoneMock.name,
       startDate: DateTime.now(),
       endDate: DateTime.now(),
-      media: MediaEmbedModel.fake(),
+      media: MediaModel.fake(),
     );
   }
 }

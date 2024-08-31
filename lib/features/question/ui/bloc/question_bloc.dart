@@ -34,10 +34,13 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
 
     res.fold(
       (failure) => emit(BlocStateReadFailure(failure.message)),
-      (success) => emit(BlocStateReadSuccess(
-        items: success,
-        filteredItems: success,
-      )),
+      (success) {
+        success.sort((a, b) => a.order.compareTo(b.order));
+        emit(BlocStateReadSuccess(
+          items: success,
+          filteredItems: success,
+        ));
+      },
     );
   }
 
@@ -46,7 +49,7 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
     BlocEventReadSelect<QuestionModel> event,
     Emitter<BlocStateRead<QuestionModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (questions, filteredQuestions, _) {
         emit(BlocStateReadSuccess(
           items: questions,
@@ -54,7 +57,6 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
           selectedItem: event.item,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -63,7 +65,7 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
     BlocEventReadFilter event,
     Emitter<BlocStateRead<QuestionModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (questions, _, __) {
         final finds = questions
             .where(
@@ -78,7 +80,6 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
           filteredItems: finds,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -87,16 +88,19 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
     BlocEventReadAppend<QuestionModel> event,
     Emitter<BlocStateRead<QuestionModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (questions, _, __) {
         final items = [...questions, event.item];
+        items.sort((a, b) => a.order.compareTo(b.order));
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
+      failure: (_) => emit(BlocStateReadSuccess(
+        items: [event.item],
+        filteredItems: [event.item],
+      )),
     );
   }
 
@@ -105,17 +109,19 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
     BlocEventReadRemove<QuestionModel> event,
     Emitter<BlocStateRead<QuestionModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (questions, _, __) {
-        final items =
-            questions.where((question) => question.id != event.id).toList();
+        final items = questions
+            .where(
+              (question) => question.id != event.id,
+            )
+            .toList();
+        items.sort((a, b) => a.order.compareTo(b.order));
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
     );
   }
 }
@@ -181,9 +187,9 @@ class QuestionBlocWrite extends BlocWrite<List<QuestionModel>> {
     res.fold(
       (failure) => emit(BlocStateWriteFailure(failure.message)),
       (success) {
-        // final items = state.maybeWhen(
+        // final items = state.whenOrNull(
         //   success: (items) => items,
-        //   orElse: () => null,
+        //
         // );
         // if (items == null) return;
         // final filteredItems = items

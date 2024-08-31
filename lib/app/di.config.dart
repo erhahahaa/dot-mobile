@@ -48,6 +48,7 @@ import '../features/club/domain/usecases/leave_club/leave_club_usecase.dart'
 import '../features/club/domain/usecases/update_club/update_club_usecase.dart'
     as _i373;
 import '../features/club/ui/bloc/club_bloc.dart' as _i1004;
+import '../features/club/ui/cubit/club_members_cubit.dart' as _i1016;
 import '../features/evaluation/data/datasources/evaluation_remote_datasource.dart'
     as _i973;
 import '../features/evaluation/data/repositories/evaluation_repository_impl.dart'
@@ -317,6 +318,11 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i561.SignInUsecase>(),
           gh<_i561.SignUpUsecase>(),
           gh<_i561.SignOutUsecase>(),
+        ));
+    gh.lazySingleton<_i1016.ClubMembersCubit>(() => _i1016.ClubMembersCubit(
+          gh<_i561.GetClubMembersUsecase>(),
+          gh<_i561.KickClubMemberUsecase>(),
+          gh<_i561.LeaveClubUsecase>(),
         ));
     gh.lazySingleton<_i59.CreateQuestionBatchUsecase>(
         () => _i59.CreateQuestionBatchUsecase(gh<_i561.QuestionRepository>()));

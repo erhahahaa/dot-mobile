@@ -2,16 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/app/router.gr.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
-import 'package:dot_coaching/utils/extensions/datetime.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
-class DetailExamScreen extends StatelessWidget implements AutoRouteWrapper {
+class DetailExamScreen extends StatefulWidget implements AutoRouteWrapper {
   final int id;
 
   const DetailExamScreen({
@@ -20,37 +20,72 @@ class DetailExamScreen extends StatelessWidget implements AutoRouteWrapper {
   });
 
   @override
+  State<DetailExamScreen> createState() => _DetailExamScreenState();
+  @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
       value: context.read<QuestionBlocRead>()..add(BlocEventRead.get(id: id)),
       child: this,
     );
   }
+}
+
+class _DetailExamScreenState extends State<DetailExamScreen>
+    with SingleTickerProviderStateMixin {
+  ClubModel? club;
+  ExamModel? exam;
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    final clubBloc = context.read<ClubBlocRead>();
+    club = clubBloc.state.whenOrNull(
+      success: (_, __, selectedClub) => selectedClub,
+    );
+
+    final examBloc = context.read<ExamBlocRead>();
+    exam = examBloc.state.whenOrNull(
+      success: (_, __, selectedItem) => selectedItem,
+    );
+
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Parent(
       appBar: _buildAppBar(context),
       body: Padding(
         padding: EdgeInsets.all(8.w),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _buildHeader(),
-              _buildQuestion(),
-            ],
-          ),
+        child: TabBarView(
+          controller: _tabController,
+          children: [
+            _buildExamDetail(),
+            _buildAthleteEvaluation(),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildHeader() {
-    return BlocBuilder<ExamBlocRead, BlocStateRead<ExamModel>>(
-      builder: (context, state) {
-        return state.maybeWhen(
-          success: (_, __, selectedItem) {
-            return Column(
+  Widget _buildExamDetail() {
+    return Parent(
+      body: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(context.str?.programDetail ?? 'Exam Detail',
@@ -61,61 +96,184 @@ class DetailExamScreen extends StatelessWidget implements AutoRouteWrapper {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Title : ${selectedItem?.title}'),
-                      if (selectedItem?.dueAt != null)
+                      Text('Title : ${exam?.title}'),
+                      if (exam?.dueAt != null)
                         Text(
-                          'Due at : ${selectedItem?.dueAt!.toDayMonthYear()}',
+                          'Description : ${exam?.description}',
                         ),
                     ],
                   ),
                 ),
               ],
-            );
-          },
-          orElse: () => const Center(child: CircularProgressIndicator()),
-        );
-      },
+            ),
+            BlocBuilder<QuestionBlocRead, BlocStateRead<QuestionModel>>(
+              builder: (context, state) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(context.str?.question ?? 'Questions',
+                        style: Theme.of(context).textTheme.titleMedium),
+                    Gap(8.h),
+                    state.maybeWhen(
+                      success: (items, __, ___) {
+                        return ListViewBuilder(
+                          items: items,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index, item) {
+                            return ListViewBuilderTile(
+                              titleText: item.question,
+                              subtitleText:
+                                  'Type: ${item.type.value.capitalizeFirst}',
+                              leading: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  MoonChip(
+                                    chipSize: MoonChipSize.sm,
+                                    label: BodySmall('${index + 1}'),
+                                  ),
+                                  VerticalDivider()
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      orElse: () => Center(child: MoonCircularLoader()),
+                    ),
+                    Gap(16.h),
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _buildQuestion() {
-    return BlocBuilder<QuestionBlocRead, BlocStateRead<QuestionModel>>(
-      builder: (context, state) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(context.str?.question ?? 'Questions',
-                style: Theme.of(context).textTheme.titleMedium),
-            Gap(8.h),
-            state.maybeWhen(
+  Widget _buildAthleteEvaluation() {
+    return Parent(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          final res = await showDialog<UserModel>(
+            context: context,
+            builder: (ctx) {
+              return Dialog(
+                child: MultiBlocProvider(
+                  providers: [
+                    BlocProvider.value(
+                      value: context.read<ClubMembersCubit>()
+                        ..getMembers(
+                          clubId: club?.id ?? 0,
+                          athleteOnly: true,
+                        ),
+                    ),
+                    BlocProvider.value(
+                      value: context.read<EvaluationBlocRead>(),
+                    ),
+                  ],
+                  child: BlocBuilder<ClubMembersCubit, ClubMembersState>(
+                    builder: (context, state) {
+                      final evaluations =
+                          context.read<EvaluationBlocRead>().state.maybeWhen(
+                                success: (_, evaluations, __) => evaluations,
+                                orElse: () => <EvaluationModel>[],
+                              );
+
+                      final eligibleMembers = state.members
+                          .where((member) => evaluations.every(
+                                (evaluation) {
+                                  Log.info(
+                                      'evaluation: ${evaluation.athlete?.id}');
+                                  Log.info('member: ${member.id}');
+                                  return member.id != evaluation.athlete?.id;
+                                },
+                              ))
+                          .toList();
+
+                      return ListViewBuilder(
+                        items: eligibleMembers,
+                        color: Colors.transparent,
+                        height: 0.7.sh,
+                        margin: EdgeInsets.all(4.h),
+                        itemBuilder: (context, index, item) {
+                          return ListViewBuilderTile(
+                            titleText: item.name,
+                            imageUrl: item.image,
+                            subtitle: MoonChip(
+                              chipSize: MoonChipSize.sm,
+                              label: BodySmall(item.role.name),
+                            ),
+                            trailing: Icon(
+                              MoonIcons.controls_chevron_right_24_regular,
+                            ),
+                            onTap: () {
+                              context.router.maybePop(item);
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          );
+          if (res == null) return;
+          if (mounted) {
+            context.read<ExamBlocRead>().add(
+                  BlocEventRead.select(exam),
+                );
+
+            context.read<ClubMembersCubit>().selectUser(res);
+            context.router.push(UpsertEvaluationRoute());
+          }
+        },
+        label: Text('Evaluate'),
+        icon: Icon(Icons.rate_review),
+      ),
+      body: BlocBuilder<EvaluationBlocRead, BlocStateRead<EvaluationModel>>(
+        builder: (context, state) {
+          return state.maybeWhen(
               success: (items, __, ___) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    final question = items[index];
-                    return Container(
-                      margin: EdgeInsets.only(bottom: 8.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Question ${index + 1} :',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          SizedBox(height: 4.h),
-                          Text(question.question),
-                        ],
-                      ),
-                    );
+                return ListViewBuilder(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  items: items.where((e) => e.examId == widget.id).toList(),
+                  itemBuilder: (context, index, evaluation) {
+                    return _buildEvaluationItem(evaluation, context);
                   },
                 );
               },
-              orElse: () => const SizedBox(),
-            ),
-            Gap(16.h),
-          ],
+              failure: (message) => ErrorAlert(message),
+              orElse: () {
+                final fakeEvaluations =
+                    List.generate(10, (index) => EvaluationModel.fake());
+                return ListViewBuilder(
+                  items: fakeEvaluations,
+                  itemBuilder: (context, index, evaluation) => Skeletonizer(
+                    child: _buildEvaluationItem(evaluation, context),
+                  ),
+                );
+              });
+        },
+      ),
+    );
+  }
+
+  ListViewBuilderTile _buildEvaluationItem(
+      EvaluationModel evaluation, BuildContext context) {
+    return ListViewBuilderTile(
+      titleText: evaluation.athlete?.name ?? '',
+      subtitleText: evaluation.athlete?.role.name ?? '',
+      imageUrl: evaluation.athlete?.image,
+      onTap: () {
+        context.read<EvaluationBlocRead>().add(
+              BlocEventRead.select(evaluation),
+            );
+        context.router.push(
+          DetailEvaluationRoute(id: evaluation.id),
         );
       },
     );
@@ -133,6 +291,13 @@ class DetailExamScreen extends StatelessWidget implements AutoRouteWrapper {
           }
           return const Text('Detail Exam');
         },
+      ),
+      bottom: TabBar(
+        controller: _tabController,
+        tabs: const [
+          Tab(text: 'Program Detail'),
+          Tab(text: 'Athlete Evaluation'),
+        ],
       ),
       actions: [
         BlocListener<ExamBlocWrite, BlocStateWrite<ExamModel>>(
@@ -183,7 +348,7 @@ class DetailExamScreen extends StatelessWidget implements AutoRouteWrapper {
                           onPressed: () {
                             context.read<ExamBlocWrite>().add(
                                   BlocEventWrite.delete(
-                                      DeleteExamParams(examId: id)),
+                                      DeleteExamParams(examId: widget.id)),
                                 );
                             Navigator.of(ctx).pop();
                           },
@@ -200,6 +365,9 @@ class DetailExamScreen extends StatelessWidget implements AutoRouteWrapper {
         MoonButton.icon(
           icon: const Icon(MoonIcons.generic_edit_24_light),
           onTap: () {
+            context.read<ExamBlocRead>().add(
+                  BlocEventRead.select(exam),
+                );
             context.router.popAndPush(const UpsertExamRoute());
           },
         ),

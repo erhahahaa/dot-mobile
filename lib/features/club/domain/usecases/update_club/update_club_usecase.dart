@@ -24,7 +24,7 @@ class UpdateClubUsecase extends FPUC<ClubModel, UpdateClubParams> {
 @freezed
 class UpdateClubParams with _$UpdateClubParams {
   const factory UpdateClubParams({
-    required String id,
+    required int id,
     required String name,
     required String description,
     required File? image,
@@ -36,6 +36,7 @@ class UpdateClubParams with _$UpdateClubParams {
   Map<String, dynamic> get _determineBody {
     if (image != null) {
       return {
+        'id': id,
         'name': name,
         'description': description,
         'type': type.value,
@@ -43,6 +44,7 @@ class UpdateClubParams with _$UpdateClubParams {
       };
     } else {
       return {
+        'id': id,
         'name': name,
         'description': description,
         'type': type.value,

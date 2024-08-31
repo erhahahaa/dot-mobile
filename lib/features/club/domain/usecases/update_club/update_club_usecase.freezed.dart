@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UpdateClubParams {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   File? get image => throw _privateConstructorUsedError;
@@ -36,11 +36,7 @@ abstract class $UpdateClubParamsCopyWith<$Res> {
       _$UpdateClubParamsCopyWithImpl<$Res, UpdateClubParams>;
   @useResult
   $Res call(
-      {String id,
-      String name,
-      String description,
-      File? image,
-      SportType type});
+      {int id, String name, String description, File? image, SportType type});
 }
 
 /// @nodoc
@@ -68,7 +64,7 @@ class _$UpdateClubParamsCopyWithImpl<$Res, $Val extends UpdateClubParams>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -98,11 +94,7 @@ abstract class _$$UpdateClubParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String name,
-      String description,
-      File? image,
-      SportType type});
+      {int id, String name, String description, File? image, SportType type});
 }
 
 /// @nodoc
@@ -128,7 +120,7 @@ class __$$UpdateClubParamsImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -161,7 +153,7 @@ class _$UpdateClubParamsImpl extends _UpdateClubParams {
       : super._();
 
   @override
-  final String id;
+  final int id;
   @override
   final String name;
   @override
@@ -205,7 +197,7 @@ class _$UpdateClubParamsImpl extends _UpdateClubParams {
 
 abstract class _UpdateClubParams extends UpdateClubParams {
   const factory _UpdateClubParams(
-      {required final String id,
+      {required final int id,
       required final String name,
       required final String description,
       required final File? image,
@@ -213,7 +205,7 @@ abstract class _UpdateClubParams extends UpdateClubParams {
   const _UpdateClubParams._() : super._();
 
   @override
-  String get id;
+  int get id;
   @override
   String get name;
   @override

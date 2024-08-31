@@ -53,7 +53,7 @@ class ClubEntity {
   @enumValue
   SportType type;
   MediaEmbedEntity? media;
-  int memberCount, programCount, examCount;
+  int memberCount, programCount, examCount, tacticalCount;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -68,6 +68,7 @@ class ClubEntity {
     this.memberCount = 0,
     this.programCount = 0,
     this.examCount = 0,
+    this.tacticalCount = 0,
     this.createdAt,
     this.updatedAt,
   });

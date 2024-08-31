@@ -1,1 +1,1 @@
-export 'club_card.dart';
+export 'club_overview_card.dart';

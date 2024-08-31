@@ -37,26 +37,27 @@ class ProgramRemoteDatasourceImpl implements ProgramRemoteDatasource {
       converter: (res) => ProgramModel.fromJson(res['data']),
     );
 
-    return res.fold(
-      (failure) => Left(failure),
-      (success) async {
-        if (params.image != null) {
-          final photoUpdateRes = await _remote.putRequest(
-            '${ListAPI.PROGRAM}/${success.id}/image',
-            formData: params.toFormData(),
-            converter: (res) => ProgramModel.fromJson(res['data']),
-          );
+    return res;
+    // return res.fold(
+    //   (failure) => Left(failure),
+    //   (success) async {
+    //     if (params.image != null) {
+    //       final photoUpdateRes = await _remote.putRequest(
+    //         '${ListAPI.PROGRAM}/${success.id}/image',
+    //         formData: params.toFormData(),
+    //         converter: (res) => ProgramModel.fromJson(res['data']),
+    //       );
 
-          return photoUpdateRes.fold(
-            (failure) => Left(failure),
-            (success) async {
-              return Right(success);
-            },
-          );
-        }
-        return Right(success);
-      },
-    );
+    //       return photoUpdateRes.fold(
+    //         (failure) => Left(failure),
+    //         (success) async {
+    //           return Right(success);
+    //         },
+    //       );
+    //     }
+    //     return Right(success);
+    //   },
+    // );
   }
 
   @override
@@ -109,25 +110,27 @@ class ProgramRemoteDatasourceImpl implements ProgramRemoteDatasource {
       converter: (res) => ProgramModel.fromJson(res['data']),
     );
 
-    return res.fold(
-      (failure) => Left(failure),
-      (success) async {
-        if (params.image != null) {
-          final photoUpdateRes = await _remote.putRequest(
-            '${ListAPI.PROGRAM}/${success.id}/image',
-            formData: params.toFormData(),
-            converter: (res) => ProgramModel.fromJson(res['data']),
-          );
+    return res;
 
-          return photoUpdateRes.fold(
-            (failure) => Left(failure),
-            (success) async {
-              return Right(success);
-            },
-          );
-        }
-        return Right(success);
-      },
-    );
+    // return res.fold(
+    //   (failure) => Left(failure),
+    //   (success) async {
+    //     if (params.image != null) {
+    //       final photoUpdateRes = await _remote.putRequest(
+    //         '${ListAPI.PROGRAM}/${success.id}/image',
+    //         formData: params.toFormData(),
+    //         converter: (res) => ProgramModel.fromJson(res['data']),
+    //       );
+
+    //       return photoUpdateRes.fold(
+    //         (failure) => Left(failure),
+    //         (success) async {
+    //           return Right(success);
+    //         },
+    //       );
+    //     }
+    //     return Right(success);
+    //   },
+    // );
   }
 }

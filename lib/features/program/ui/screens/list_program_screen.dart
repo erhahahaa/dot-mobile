@@ -38,13 +38,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
           appBar: AppBar(
-            title: TitleLarge(club?.name),
-            actions: [
-              MoonButton.icon(
-                icon: const Icon(MoonIcons.generic_info_24_light),
-                onTap: () {},
-              ),
-            ],
+            title: TitleMedium('${club?.name} Programs'),
           ),
           floatingActionButton: Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -76,16 +70,24 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
           ),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: SingleChildScrollView(
-              controller: scroll,
-              child: Column(
-                children: [
-                  Gap(8.h),
-                  _buildHeader(context, search),
-                  Gap(16.h),
-                  _buildCalendar(context),
-                  _buildListProgram(context),
-                ],
+            child: RefreshIndicator(
+              onRefresh: () async {
+                context.read<ProgramBlocRead>().add(
+                      BlocEventRead.get(id: club?.id),
+                    );
+              },
+              child: SingleChildScrollView(
+                controller: scroll,
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  children: [
+                    Gap(8.h),
+                    _buildHeader(context, search),
+                    Gap(16.h),
+                    _buildCalendar(context),
+                    _buildListProgram(context),
+                  ],
+                ),
               ),
             ),
           ),
@@ -159,12 +161,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
       children: [
         Row(
           children: [
-            Text(
-              context.str?.calendar ?? 'Calendar',
-              style: context.theme.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+            TitleSmall(context.str?.calendar),
             IconButton(
               onPressed: () => setState(() => hideCalendar = !hideCalendar),
               icon: Icon(
@@ -211,12 +208,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
       children: [
         Row(
           children: [
-            Text(
-              context.str?.programs ?? 'Programs',
-              style: context.theme.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+            TitleSmall(context.str?.programs),
             IconButton(
               onPressed: () =>
                   setState(() => hideListProgram = !hideListProgram),
@@ -274,7 +266,8 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                     height: 0.71.sh,
                     child: ListViewBuilder(
                       items: filteredPrograms,
-                      itemBuilder: (context, program) => _buildProgramItem(
+                      itemBuilder: (context, index, program) =>
+                          _buildProgramItem(
                         context,
                         program,
                         program == filteredPrograms.last,
@@ -290,7 +283,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                     height: 0.71.sh,
                     child: ListViewBuilder(
                       items: fakePrograms,
-                      itemBuilder: (context, program) => Skeletonizer(
+                      itemBuilder: (context, index, program) => Skeletonizer(
                         child: _buildProgramItem(
                           context,
                           program,

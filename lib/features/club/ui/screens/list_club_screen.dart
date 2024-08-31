@@ -25,121 +25,143 @@ class ListClubScreen extends StatelessWidget {
           ),
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
-          appBar: AppBar(
-            leading: Row(
-              children: [
-                Builder(builder: (context) {
-                  return MoonButton.icon(
-                    icon: const Icon(MoonIcons.generic_menu_24_light),
-                    onTap: context.openDrawer,
-                  );
-                }),
-              ],
-            ),
-            centerTitle: true,
-            title: const TitleMedium(AppConstants.APP_NAME),
-            actions: [
-              MoonButton.icon(
-                icon: const Icon(MoonIcons.notifications_bell_24_light),
-                onTap: () {},
-              ),
-            ],
-          ),
-          drawer: MoonDrawer(
-            width: MediaQuery.of(context).size.width * 0.7,
-            child: SafeArea(
-              child: Column(
-                children: [
-                  Row(children: [
-                    const Spacer(),
-                    MoonButton.icon(
-                      icon: const Icon(MoonIcons.controls_close_24_light),
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ]),
-                  Gap(16.h),
-                  CircleAvatar(
-                    radius: 40.r,
-                    backgroundImage: NetworkImage(user.image),
-                  ),
-                  Gap(8.h),
-                  TitleMedium(user.name),
-                  Gap(8.h),
-                  BodySmall(user.email),
-                  Gap(16.h),
-                  BlocListener<AuthBloc, AuthState>(
-                    listener: (context, state) {
-                      state.mapOrNull(
-                        unauthenticated: (message) {
-                          context.replaceRoute(const SplashRoute());
-                        },
-                      );
-                    },
-                    child: MoonFilledButton(
-                      buttonSize: MoonButtonSize.sm,
-                      label: BodySmall(context.str?.logout),
-                      onTap: () {
-                        context.read<AuthBloc>().add(const AuthEvent.signOut());
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          floatingActionButton: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              BackTopButton(
-                show: showScrollToTopButton,
-                onPressed: () {
-                  scroll.animateTo(
-                    0,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              ),
-              if (user.role == UserRole.athlete) ...[
-                Gap(8.h),
-                FloatingActionButton.extended(
-                  heroTag: 'new_club_button_$hashCode',
-                  onPressed: () {
-                    context.router.push<ClubModel>(
-                      UpsertClubRoute(
-                        onUpserted: (club) {
-                          context.read<ClubBlocRead>().add(
-                                BlocEventRead.append(club),
-                              );
-                        },
-                      ),
-                    );
-                  },
-                  icon: const Icon(Icons.add),
-                  label: const Text('New Club'),
-                ),
-              ],
-            ],
-          ),
+          appBar: _buildAppBar(),
+          drawer: _buildDrawer(context, user),
+          floatingActionButton: _buildFloatingActionButton(
+              showScrollToTopButton, scroll, user, context),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Gap(8.h),
-                  _buildHeader(context, search),
-                  Gap(8.h),
-                  _buildListClub(context, search, scroll),
-                ],
+            child: RefreshIndicator(
+              onRefresh: () async {
+                context.read<ClubBlocRead>().add(
+                      const BlocEventRead.get(),
+                    );
+              },
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  children: [
+                    Gap(8.h),
+                    _buildHeader(context, search),
+                    Gap(8.h),
+                    _buildListClub(context, search, scroll),
+                  ],
+                ),
               ),
             ),
           ),
         );
       },
+    );
+  }
+
+  Column _buildFloatingActionButton(bool showScrollToTopButton,
+      ScrollController scroll, UserModel user, BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        BackTopButton(
+          show: showScrollToTopButton,
+          onPressed: () {
+            scroll.animateTo(
+              0,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+            );
+          },
+        ),
+        if (user.role == UserRole.athlete) ...[
+          Gap(8.h),
+          FloatingActionButton.extended(
+            heroTag: 'new_club_button_$hashCode',
+            onPressed: () {
+              context.router.push<ClubModel>(
+                UpsertClubRoute(
+                  onUpserted: (club) {
+                    context.read<ClubBlocRead>().add(
+                          BlocEventRead.append(club),
+                        );
+                  },
+                ),
+              );
+            },
+            icon: const Icon(Icons.add),
+            label: const Text('New Club'),
+          ),
+        ],
+      ],
+    );
+  }
+
+  MoonDrawer _buildDrawer(BuildContext context, UserModel user) {
+    return MoonDrawer(
+      width: MediaQuery.of(context).size.width * 0.7,
+      child: SafeArea(
+        child: Column(
+          children: [
+            Row(children: [
+              const Spacer(),
+              MoonButton.icon(
+                icon: const Icon(MoonIcons.controls_close_24_light),
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ]),
+            Gap(16.h),
+            CircleAvatar(
+              radius: 40.r,
+              backgroundImage: NetworkImage(user.image),
+            ),
+            Gap(8.h),
+            TitleMedium(user.name),
+            Gap(8.h),
+            BodySmall(user.email),
+            Gap(16.h),
+            BlocListener<AuthBloc, AuthState>(
+              listener: (context, state) {
+                state.mapOrNull(
+                  unauthenticated: (message) {
+                    context.replaceRoute(const SplashRoute());
+                  },
+                );
+              },
+              child: MoonFilledButton(
+                buttonSize: MoonButtonSize.sm,
+                label: BodySmall(context.str?.logout),
+                onTap: () {
+                  context.read<AuthBloc>().add(const AuthEvent.signOut());
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      leading: Row(
+        children: [
+          Builder(builder: (context) {
+            return MoonButton.icon(
+              icon: const Icon(MoonIcons.generic_menu_24_light),
+              onTap: context.openDrawer,
+            );
+          }),
+        ],
+      ),
+      centerTitle: true,
+      title: const TitleMedium(AppConstants.APP_NAME),
+      actions: [
+        MoonButton.icon(
+          icon: const Icon(MoonIcons.notifications_bell_24_light),
+          onTap: () {},
+        ),
+      ],
     );
   }
 
@@ -211,7 +233,7 @@ class ListClubScreen extends StatelessWidget {
               items: filteredClubs,
               scrollController: scrollController,
               height: 0.8.sh,
-              itemBuilder: (context, club) => _buildClubItem(
+              itemBuilder: (context, index, club) => _buildClubItem(
                 context,
                 club,
                 club == filteredClubs.last,
@@ -226,7 +248,7 @@ class ListClubScreen extends StatelessWidget {
               scrollController: scrollController,
               height: 0.8.sh,
               items: fakeClubs,
-              itemBuilder: (context, club) => Skeletonizer(
+              itemBuilder: (context, index, club) => Skeletonizer(
                 child: _buildClubItem(
                   context,
                   club,

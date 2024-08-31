@@ -155,7 +155,7 @@ class DetailProgramScreen extends StatelessWidget implements AutoRouteWrapper {
                                 success: (items, __, ___) {
                                   return ListViewBuilder(
                                     items: items,
-                                    itemBuilder: (context, item) {
+                                    itemBuilder: (context, index, item) {
                                       return ExerciseContainer(
                                         exercise: item,
                                       );

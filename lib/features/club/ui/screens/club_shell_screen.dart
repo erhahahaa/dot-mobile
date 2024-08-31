@@ -56,8 +56,8 @@ class ClubShellScreen extends StatelessWidget implements AutoRouteWrapper {
         ListProgramRoute(),
         ListTacticalRoute(),
         ListExamRoute(),
-        ListEvaluationRoute(),
         MediaRoute(),
+        DetailClubRoute(),
       ],
       transitionBuilder: (context, child, animation) => FadeTransition(
         opacity: animation,
@@ -87,12 +87,12 @@ class ClubShellScreen extends StatelessWidget implements AutoRouteWrapper {
               label: 'Exam',
             ),
             NavigationDestination(
-              icon: Icon(Icons.rate_review),
-              label: 'Evaluation',
-            ),
-            NavigationDestination(
               icon: Icon(Icons.inventory),
               label: 'Asset',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.info),
+              label: 'Detail',
             ),
           ],
         );

@@ -19,7 +19,7 @@ _$ProgramModelImpl _$$ProgramModelImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['endDate'] as String),
       media: json['media'] == null
           ? null
-          : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),
+          : MediaModel.fromJson(json['media'] as Map<String, dynamic>),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),

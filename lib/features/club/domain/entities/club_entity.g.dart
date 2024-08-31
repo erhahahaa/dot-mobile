@@ -65,6 +65,10 @@ const ClubEntitySchema = IsarGeneratedSchema(
         type: IsarType.long,
       ),
       IsarPropertySchema(
+        name: 'tacticalCount',
+        type: IsarType.long,
+      ),
+      IsarPropertySchema(
         name: 'createdAt',
         type: IsarType.dateTime,
       ),
@@ -117,9 +121,10 @@ int serializeClubEntity(IsarWriter writer, ClubEntity object) {
   IsarCore.writeLong(writer, 7, object.memberCount);
   IsarCore.writeLong(writer, 8, object.programCount);
   IsarCore.writeLong(writer, 9, object.examCount);
-  IsarCore.writeLong(writer, 10,
-      object.createdAt?.toUtc().microsecondsSinceEpoch ?? -9223372036854775808);
+  IsarCore.writeLong(writer, 10, object.tacticalCount);
   IsarCore.writeLong(writer, 11,
+      object.createdAt?.toUtc().microsecondsSinceEpoch ?? -9223372036854775808);
+  IsarCore.writeLong(writer, 12,
       object.updatedAt?.toUtc().microsecondsSinceEpoch ?? -9223372036854775808);
   return object.id;
 }
@@ -197,9 +202,18 @@ ClubEntity deserializeClubEntity(IsarReader reader) {
       _examCount = value;
     }
   }
-  final DateTime? _createdAt;
+  final int _tacticalCount;
   {
     final value = IsarCore.readLong(reader, 10);
+    if (value == -9223372036854775808) {
+      _tacticalCount = 0;
+    } else {
+      _tacticalCount = value;
+    }
+  }
+  final DateTime? _createdAt;
+  {
+    final value = IsarCore.readLong(reader, 11);
     if (value == -9223372036854775808) {
       _createdAt = null;
     } else {
@@ -209,7 +223,7 @@ ClubEntity deserializeClubEntity(IsarReader reader) {
   }
   final DateTime? _updatedAt;
   {
-    final value = IsarCore.readLong(reader, 11);
+    final value = IsarCore.readLong(reader, 12);
     if (value == -9223372036854775808) {
       _updatedAt = null;
     } else {
@@ -228,6 +242,7 @@ ClubEntity deserializeClubEntity(IsarReader reader) {
     memberCount: _memberCount,
     programCount: _programCount,
     examCount: _examCount,
+    tacticalCount: _tacticalCount,
     createdAt: _createdAt,
     updatedAt: _updatedAt,
   );
@@ -312,15 +327,24 @@ dynamic deserializeClubEntityProp(IsarReader reader, int property) {
       {
         final value = IsarCore.readLong(reader, 10);
         if (value == -9223372036854775808) {
+          return 0;
+        } else {
+          return value;
+        }
+      }
+    case 11:
+      {
+        final value = IsarCore.readLong(reader, 11);
+        if (value == -9223372036854775808) {
           return null;
         } else {
           return DateTime.fromMicrosecondsSinceEpoch(value, isUtc: true)
               .toLocal();
         }
       }
-    case 11:
+    case 12:
       {
-        final value = IsarCore.readLong(reader, 11);
+        final value = IsarCore.readLong(reader, 12);
         if (value == -9223372036854775808) {
           return null;
         } else {
@@ -344,6 +368,7 @@ sealed class _ClubEntityUpdate {
     int? memberCount,
     int? programCount,
     int? examCount,
+    int? tacticalCount,
     DateTime? createdAt,
     DateTime? updatedAt,
   });
@@ -365,6 +390,7 @@ class _ClubEntityUpdateImpl implements _ClubEntityUpdate {
     Object? memberCount = ignore,
     Object? programCount = ignore,
     Object? examCount = ignore,
+    Object? tacticalCount = ignore,
     Object? createdAt = ignore,
     Object? updatedAt = ignore,
   }) {
@@ -379,8 +405,9 @@ class _ClubEntityUpdateImpl implements _ClubEntityUpdate {
           if (memberCount != ignore) 7: memberCount as int?,
           if (programCount != ignore) 8: programCount as int?,
           if (examCount != ignore) 9: examCount as int?,
-          if (createdAt != ignore) 10: createdAt as DateTime?,
-          if (updatedAt != ignore) 11: updatedAt as DateTime?,
+          if (tacticalCount != ignore) 10: tacticalCount as int?,
+          if (createdAt != ignore) 11: createdAt as DateTime?,
+          if (updatedAt != ignore) 12: updatedAt as DateTime?,
         }) >
         0;
   }
@@ -397,6 +424,7 @@ sealed class _ClubEntityUpdateAll {
     int? memberCount,
     int? programCount,
     int? examCount,
+    int? tacticalCount,
     DateTime? createdAt,
     DateTime? updatedAt,
   });
@@ -418,6 +446,7 @@ class _ClubEntityUpdateAllImpl implements _ClubEntityUpdateAll {
     Object? memberCount = ignore,
     Object? programCount = ignore,
     Object? examCount = ignore,
+    Object? tacticalCount = ignore,
     Object? createdAt = ignore,
     Object? updatedAt = ignore,
   }) {
@@ -430,8 +459,9 @@ class _ClubEntityUpdateAllImpl implements _ClubEntityUpdateAll {
       if (memberCount != ignore) 7: memberCount as int?,
       if (programCount != ignore) 8: programCount as int?,
       if (examCount != ignore) 9: examCount as int?,
-      if (createdAt != ignore) 10: createdAt as DateTime?,
-      if (updatedAt != ignore) 11: updatedAt as DateTime?,
+      if (tacticalCount != ignore) 10: tacticalCount as int?,
+      if (createdAt != ignore) 11: createdAt as DateTime?,
+      if (updatedAt != ignore) 12: updatedAt as DateTime?,
     });
   }
 }
@@ -452,6 +482,7 @@ sealed class _ClubEntityQueryUpdate {
     int? memberCount,
     int? programCount,
     int? examCount,
+    int? tacticalCount,
     DateTime? createdAt,
     DateTime? updatedAt,
   });
@@ -473,6 +504,7 @@ class _ClubEntityQueryUpdateImpl implements _ClubEntityQueryUpdate {
     Object? memberCount = ignore,
     Object? programCount = ignore,
     Object? examCount = ignore,
+    Object? tacticalCount = ignore,
     Object? createdAt = ignore,
     Object? updatedAt = ignore,
   }) {
@@ -485,8 +517,9 @@ class _ClubEntityQueryUpdateImpl implements _ClubEntityQueryUpdate {
       if (memberCount != ignore) 7: memberCount as int?,
       if (programCount != ignore) 8: programCount as int?,
       if (examCount != ignore) 9: examCount as int?,
-      if (createdAt != ignore) 10: createdAt as DateTime?,
-      if (updatedAt != ignore) 11: updatedAt as DateTime?,
+      if (tacticalCount != ignore) 10: tacticalCount as int?,
+      if (createdAt != ignore) 11: createdAt as DateTime?,
+      if (updatedAt != ignore) 12: updatedAt as DateTime?,
     });
   }
 }
@@ -514,6 +547,7 @@ class _ClubEntityQueryBuilderUpdateImpl implements _ClubEntityQueryUpdate {
     Object? memberCount = ignore,
     Object? programCount = ignore,
     Object? examCount = ignore,
+    Object? tacticalCount = ignore,
     Object? createdAt = ignore,
     Object? updatedAt = ignore,
   }) {
@@ -528,8 +562,9 @@ class _ClubEntityQueryBuilderUpdateImpl implements _ClubEntityQueryUpdate {
         if (memberCount != ignore) 7: memberCount as int?,
         if (programCount != ignore) 8: programCount as int?,
         if (examCount != ignore) 9: examCount as int?,
-        if (createdAt != ignore) 10: createdAt as DateTime?,
-        if (updatedAt != ignore) 11: updatedAt as DateTime?,
+        if (tacticalCount != ignore) 10: tacticalCount as int?,
+        if (createdAt != ignore) 11: createdAt as DateTime?,
+        if (updatedAt != ignore) 12: updatedAt as DateTime?,
       });
     } finally {
       q.close();
@@ -1561,21 +1596,8 @@ extension ClubEntityQueryFilter
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
-      createdAtIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 10));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
-      createdAtIsNotNull() {
-    return QueryBuilder.apply(not(), (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 10));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> createdAtEqualTo(
-    DateTime? value,
+      tacticalCountEqualTo(
+    int value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -1588,8 +1610,8 @@ extension ClubEntityQueryFilter
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
-      createdAtGreaterThan(
-    DateTime? value,
+      tacticalCountGreaterThan(
+    int value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -1602,8 +1624,8 @@ extension ClubEntityQueryFilter
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
-      createdAtGreaterThanOrEqualTo(
-    DateTime? value,
+      tacticalCountGreaterThanOrEqualTo(
+    int value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -1615,8 +1637,9 @@ extension ClubEntityQueryFilter
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> createdAtLessThan(
-    DateTime? value,
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      tacticalCountLessThan(
+    int value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -1629,8 +1652,8 @@ extension ClubEntityQueryFilter
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
-      createdAtLessThanOrEqualTo(
-    DateTime? value,
+      tacticalCountLessThanOrEqualTo(
+    int value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -1642,9 +1665,10 @@ extension ClubEntityQueryFilter
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> createdAtBetween(
-    DateTime? lower,
-    DateTime? upper,
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      tacticalCountBetween(
+    int lower,
+    int upper,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -1658,20 +1682,20 @@ extension ClubEntityQueryFilter
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
-      updatedAtIsNull() {
+      createdAtIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const IsNullCondition(property: 11));
     });
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
-      updatedAtIsNotNull() {
+      createdAtIsNotNull() {
     return QueryBuilder.apply(not(), (query) {
       return query.addFilterCondition(const IsNullCondition(property: 11));
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> updatedAtEqualTo(
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> createdAtEqualTo(
     DateTime? value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -1685,7 +1709,7 @@ extension ClubEntityQueryFilter
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
-      updatedAtGreaterThan(
+      createdAtGreaterThan(
     DateTime? value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -1699,7 +1723,7 @@ extension ClubEntityQueryFilter
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
-      updatedAtGreaterThanOrEqualTo(
+      createdAtGreaterThanOrEqualTo(
     DateTime? value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -1712,7 +1736,7 @@ extension ClubEntityQueryFilter
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> updatedAtLessThan(
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> createdAtLessThan(
     DateTime? value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -1726,13 +1750,110 @@ extension ClubEntityQueryFilter
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
-      updatedAtLessThanOrEqualTo(
+      createdAtLessThanOrEqualTo(
     DateTime? value,
   ) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
           property: 11,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> createdAtBetween(
+    DateTime? lower,
+    DateTime? upper,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        BetweenCondition(
+          property: 11,
+          lower: lower,
+          upper: upper,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      updatedAtIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 12));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      updatedAtIsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 12));
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> updatedAtEqualTo(
+    DateTime? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        EqualCondition(
+          property: 12,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      updatedAtGreaterThan(
+    DateTime? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterCondition(
+          property: 12,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      updatedAtGreaterThanOrEqualTo(
+    DateTime? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterOrEqualCondition(
+          property: 12,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> updatedAtLessThan(
+    DateTime? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessCondition(
+          property: 12,
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
+      updatedAtLessThanOrEqualTo(
+    DateTime? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessOrEqualCondition(
+          property: 12,
           value: value,
         ),
       );
@@ -1746,7 +1867,7 @@ extension ClubEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
-          property: 11,
+          property: 12,
           lower: lower,
           upper: upper,
         ),
@@ -1893,27 +2014,39 @@ extension ClubEntityQuerySortBy
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByCreatedAt() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByTacticalCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(10);
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByCreatedAtDesc() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByTacticalCountDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(10, sort: Sort.desc);
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByUpdatedAt() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByCreatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(11);
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByUpdatedAtDesc() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByCreatedAtDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(11, sort: Sort.desc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(12);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(12, sort: Sort.desc);
     });
   }
 }
@@ -2032,27 +2165,39 @@ extension ClubEntityQuerySortThenBy
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByCreatedAt() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByTacticalCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(10);
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByCreatedAtDesc() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByTacticalCountDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(10, sort: Sort.desc);
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByUpdatedAt() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByCreatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(11);
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByUpdatedAtDesc() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByCreatedAtDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(11, sort: Sort.desc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(12);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(12, sort: Sort.desc);
     });
   }
 }
@@ -2110,15 +2255,22 @@ extension ClubEntityQueryWhereDistinct
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterDistinct> distinctByCreatedAt() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterDistinct>
+      distinctByTacticalCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(10);
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterDistinct> distinctByUpdatedAt() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterDistinct> distinctByCreatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(11);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterDistinct> distinctByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(12);
     });
   }
 }
@@ -2185,15 +2337,21 @@ extension ClubEntityQueryProperty1
     });
   }
 
-  QueryBuilder<ClubEntity, DateTime?, QAfterProperty> createdAtProperty() {
+  QueryBuilder<ClubEntity, int, QAfterProperty> tacticalCountProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(10);
     });
   }
 
-  QueryBuilder<ClubEntity, DateTime?, QAfterProperty> updatedAtProperty() {
+  QueryBuilder<ClubEntity, DateTime?, QAfterProperty> createdAtProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(11);
+    });
+  }
+
+  QueryBuilder<ClubEntity, DateTime?, QAfterProperty> updatedAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(12);
     });
   }
 }
@@ -2261,15 +2419,21 @@ extension ClubEntityQueryProperty2<R>
     });
   }
 
-  QueryBuilder<ClubEntity, (R, DateTime?), QAfterProperty> createdAtProperty() {
+  QueryBuilder<ClubEntity, (R, int), QAfterProperty> tacticalCountProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(10);
     });
   }
 
-  QueryBuilder<ClubEntity, (R, DateTime?), QAfterProperty> updatedAtProperty() {
+  QueryBuilder<ClubEntity, (R, DateTime?), QAfterProperty> createdAtProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(11);
+    });
+  }
+
+  QueryBuilder<ClubEntity, (R, DateTime?), QAfterProperty> updatedAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(12);
     });
   }
 }
@@ -2338,17 +2502,23 @@ extension ClubEntityQueryProperty3<R1, R2>
     });
   }
 
-  QueryBuilder<ClubEntity, (R1, R2, DateTime?), QOperations>
-      createdAtProperty() {
+  QueryBuilder<ClubEntity, (R1, R2, int), QOperations> tacticalCountProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(10);
     });
   }
 
   QueryBuilder<ClubEntity, (R1, R2, DateTime?), QOperations>
-      updatedAtProperty() {
+      createdAtProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(11);
+    });
+  }
+
+  QueryBuilder<ClubEntity, (R1, R2, DateTime?), QOperations>
+      updatedAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(12);
     });
   }
 }

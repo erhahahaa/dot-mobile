@@ -28,7 +28,7 @@ class ClubBlocRead extends BlocRead<ClubModel> {
     res.fold(
       (failure) => emit(BlocStateReadFailure(failure.message)),
       (success) {
-        success.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+        success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
         emit(BlocStateReadSuccess(
           items: success,
           filteredItems: success,
@@ -42,7 +42,7 @@ class ClubBlocRead extends BlocRead<ClubModel> {
     BlocEventReadSelect<ClubModel> event,
     Emitter<BlocStateRead<ClubModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (clubs, filteredClubs, _) {
         emit(BlocStateReadSuccess(
           items: clubs,
@@ -50,7 +50,6 @@ class ClubBlocRead extends BlocRead<ClubModel> {
           selectedItem: event.item,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -59,7 +58,7 @@ class ClubBlocRead extends BlocRead<ClubModel> {
     BlocEventReadFilter event,
     Emitter<BlocStateRead<ClubModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (clubs, _, __) {
         final finds = clubs
             .where(
@@ -74,7 +73,6 @@ class ClubBlocRead extends BlocRead<ClubModel> {
           filteredItems: finds,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -83,17 +81,37 @@ class ClubBlocRead extends BlocRead<ClubModel> {
     BlocEventReadAppend<ClubModel> event,
     Emitter<BlocStateRead<ClubModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (clubs, _, __) {
+        final find = clubs.where((club) => club.id == event.item.id).toList();
+        if (find.isNotEmpty) {
+          final items = clubs.map((club) {
+            if (club.id == event.item.id) {
+              return event.item;
+            }
+            return club;
+          }).toList();
+
+          items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+          emit(BlocStateReadSuccess(
+            items: items,
+            filteredItems: items,
+          ));
+          return;
+        }
         final items = [...clubs, event.item];
-        items.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+        items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
+      failure: (_) => emit(
+        BlocStateRead.success(
+          items: [event.item],
+          filteredItems: [event.item],
+        ),
+      ),
     );
   }
 
@@ -102,17 +120,15 @@ class ClubBlocRead extends BlocRead<ClubModel> {
     BlocEventReadRemove<ClubModel> event,
     Emitter<BlocStateRead<ClubModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (clubs, _, __) {
         final items = clubs.where((club) => club.id != event.id).toList();
-        items.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+        items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
-          selectedItem: null,
         ));
       },
-      orElse: () => null,
     );
   }
 }

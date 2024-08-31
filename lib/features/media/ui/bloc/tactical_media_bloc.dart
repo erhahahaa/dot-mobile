@@ -45,7 +45,7 @@ class TacticalMediaBlocRead extends BlocRead<MediaModel> {
     res.fold(
       (failure) => emit(BlocStateReadFailure(failure.message)),
       (success) {
-        success.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+        success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
         emit(BlocStateReadSuccess(
           items: success,
           filteredItems: success,
@@ -59,7 +59,7 @@ class TacticalMediaBlocRead extends BlocRead<MediaModel> {
     BlocEventReadSelect<MediaModel> event,
     Emitter<BlocStateRead<MediaModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (medias, filteredMedias, _) {
         emit(BlocStateReadSuccess(
           items: medias,
@@ -67,7 +67,6 @@ class TacticalMediaBlocRead extends BlocRead<MediaModel> {
           selectedItem: event.item,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -76,7 +75,7 @@ class TacticalMediaBlocRead extends BlocRead<MediaModel> {
     BlocEventReadFilter event,
     Emitter<BlocStateRead<MediaModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (medias, _, __) {
         final filteredMedias = medias.where((media) {
           return media.name.toLowerCase().contains(event.query.toLowerCase());
@@ -87,7 +86,6 @@ class TacticalMediaBlocRead extends BlocRead<MediaModel> {
           filteredItems: filteredMedias,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -96,16 +94,34 @@ class TacticalMediaBlocRead extends BlocRead<MediaModel> {
     BlocEventReadAppend<MediaModel> event,
     Emitter<BlocStateRead<MediaModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (medias, _, __) {
+        final find =
+            medias.where((media) => media.id == event.item.id).toList();
+
+        if (find.isNotEmpty) {
+          final items = medias.map((media) {
+            if (media.id == event.item.id) {
+              return event.item;
+            }
+            return media;
+          }).toList();
+
+          items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+          emit(BlocStateReadSuccess(
+            items: items,
+            filteredItems: items,
+          ));
+          return;
+        }
+
         final items = [...medias, event.item];
-        items.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+        items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -114,17 +130,16 @@ class TacticalMediaBlocRead extends BlocRead<MediaModel> {
     BlocEventReadRemove<MediaModel> event,
     Emitter<BlocStateRead<MediaModel>> emit,
   ) {
-    state.maybeWhen(
+    state.whenOrNull(
       success: (medias, _, __) {
         final items = medias.where((media) => media.id != event.id).toList();
-        items.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+        items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
         emit(BlocStateReadSuccess(
           items: items,
           filteredItems: items,
         ));
       },
-      orElse: () => null,
     );
   }
 
@@ -132,6 +147,10 @@ class TacticalMediaBlocRead extends BlocRead<MediaModel> {
     BlocEventReadGetOne<MediaModel> event,
     Emitter<BlocStateRead<MediaModel>> emit,
   ) async {
+    final prev = state.maybeWhen(
+      success: (medias, _, __) => medias,
+      orElse: () => <MediaModel>[],
+    );
     final res = await _downloadMediaUsecase.call(
       DownloadMediaParams(
         media: event.params,
@@ -144,10 +163,6 @@ class TacticalMediaBlocRead extends BlocRead<MediaModel> {
     res.fold(
       (l) => emit(BlocStateReadFailure(l.message)),
       (r) {
-        final prev = state.maybeWhen(
-          success: (medias, _, __) => medias,
-          orElse: () => <MediaModel>[],
-        );
         emit(BlocStateReadSuccess(
           items: prev,
           filteredItems: prev,
@@ -176,7 +191,6 @@ class TacticalMediaBlocWrite extends BlocWrite<MediaModel> {
     BlocEventWriteCreate event,
     Emitter<BlocStateWrite<MediaModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
     final res = await _uploadMediaUsecase.call(
       UploadMediaParams(
         id: 0,

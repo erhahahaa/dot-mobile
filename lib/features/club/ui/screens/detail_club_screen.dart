@@ -1,21 +1,252 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dot_coaching/app/router.gr.dart';
 import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:moon_design/moon_design.dart';
 
 @RoutePage()
-class DetailClubScreen extends StatelessWidget {
-  final int id;
+class DetailClubScreen extends StatefulWidget {
   const DetailClubScreen({
     super.key,
-    @pathParam required this.id,
   });
 
   @override
+  State<DetailClubScreen> createState() => _DetailClubScreenState();
+}
+
+class _DetailClubScreenState extends State<DetailClubScreen> {
+  ClubModel? _club;
+  @override
+  void initState() {
+    super.initState();
+
+    final clubBloc = context.read<ClubBlocRead>();
+    _club = clubBloc.state.whenOrNull(
+      success: (_, __, selectedClub) => selectedClub,
+    );
+    context.read<ClubMembersCubit>().getMembers(clubId: _club?.id ?? 0);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Parent(
-      appBar: AppBar(
-        title: const Text('Club Detail'),
-      ),
+    return ParentWithSearchAndScrollController(
+      builder: (child, search, scroll, showScrollToTopButton) {
+        return Parent(
+          appBar: AppBar(
+            title: TitleMedium('${_club?.name} Detail'),
+            actions: [
+              MoonButton.icon(
+                icon: const Icon(MoonIcons.generic_edit_24_light),
+                onTap: () {
+                  context.router
+                      .push(UpsertClubRoute(onUpserted: (ClubModel res) {
+                    setState(() {
+                      _club = res;
+                    });
+                    context.read<ClubBlocRead>().add(
+                          BlocEventRead.append(res),
+                        );
+                    context.read<ClubBlocRead>().add(
+                          BlocEventRead.select(res),
+                        );
+                  }));
+                },
+              )
+            ],
+          ),
+          floatingActionButton: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (showScrollToTopButton) ...[
+                FloatingActionButton(
+                  onPressed: () {
+                    scroll.animateTo(
+                      0,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                  child: const Icon(Icons.arrow_upward),
+                ),
+              ],
+              FloatingActionButton.extended(
+                heroTag: 'new_member_button_$hashCode',
+                label: TitleSmall('Add Member'),
+                icon: const Icon(MoonIcons.generic_plus_24_light),
+                onPressed: () {},
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: EdgeInsets.all(8.w),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TitleSmall('Overview'),
+                  Gap(4.h),
+                  BlocBuilder<ClubMembersCubit, ClubMembersState>(
+                    builder: (context, state) {
+                      return ClubOverviewCard(
+                        membersCount: state.members.length,
+                        programsCount: _club?.programCount,
+                        examsCount: _club?.examCount,
+                        tacticalCount: _club?.tacticalCount,
+                      );
+                    },
+                  ),
+                  Gap(16.h),
+                  Row(
+                    children: [
+                      TitleSmall('Members'),
+                      Gap(32.w),
+                      Expanded(
+                        child: MySearchBar(
+                          onChanged: (value) {
+                            if (value == null) return;
+                            context
+                                .read<ClubMembersCubit>()
+                                .filterMembers(value);
+                          },
+                          height: 32.h,
+                          controller: search,
+                          trailing: MoonButton.icon(
+                            buttonSize: MoonButtonSize.xs,
+                            icon: const Icon(MoonIcons.controls_close_24_light),
+                            onTap: () {
+                              search.clear();
+                              context
+                                  .read<ClubMembersCubit>()
+                                  .filterMembers('');
+                            },
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Gap(8.h),
+                  BlocBuilder<ClubMembersCubit, ClubMembersState>(
+                    builder: (context, state) {
+                      return ListViewBuilder<UserModel>(
+                        items: state.filteredMembers,
+                        height: 0.44.sh,
+                        scrollController: scroll,
+                        itemBuilder: (context, index, item) {
+                          return ListViewBuilderTile(
+                            imageUrl: item.image,
+                            titleText: item.name,
+                            subtitleText: item.email,
+                            trailing: MoonButton.icon(
+                              icon: Icon(
+                                MoonIcons.generic_delete_24_light,
+                                color: Colors.red,
+                              ),
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (ctx) {
+                                    return BlocProvider.value(
+                                      value: context.read<ClubMembersCubit>(),
+                                      child: AlertDialog(
+                                        title: const Text('Kick Member'),
+                                        content: const Text(
+                                            'Are you sure you want to kick this member?'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              context
+                                                  .read<ClubMembersCubit>()
+                                                  .kickMember(
+                                                      clubId: _club?.id ?? 0,
+                                                      userId: item.id);
+                                              Navigator.pop(ctx);
+                                            },
+                                            child: const Text('Yes'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(ctx);
+                                            },
+                                            child: const Text('No'),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  Gap(16.h),
+                  TitleSmall('About'),
+                  ListViewBuilderTile(
+                    imageUrl: _club?.media?.url,
+                    titleText: _club?.name,
+                    subtitleText: _club?.description,
+                  ),
+                  Gap(16.h),
+                  MoonFilledButton(
+                    width: double.infinity,
+                    label: TitleSmall('Leave'),
+                    trailing: Icon(
+                      MoonIcons.generic_log_out_24_light,
+                    ),
+                    backgroundColor: Colors.red,
+                    onTap: () async {
+                      final res = await showDialog(
+                        context: context,
+                        builder: (ctx) {
+                          return AlertDialog(
+                            title: const Text('Leave Club'),
+                            content: const Text(
+                                'Are you sure you want to leave this club?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () async {
+                                  await context
+                                      .read<ClubMembersCubit>()
+                                      .leaveClub(clubId: _club?.id ?? 0);
+                                  if (ctx.mounted) {
+                                    Navigator.pop(ctx, true);
+                                  }
+                                },
+                                child: const Text('Yes'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(ctx, false);
+                                },
+                                child: const Text('No'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      if (res == true) {
+                        if (context.mounted) {
+                          context.read<ClubBlocRead>().add(BlocEventRead.get());
+                          context.router.replace(
+                            const ListClubRoute(),
+                          );
+                        }
+                      }
+                    },
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
