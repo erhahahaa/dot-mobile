@@ -43,7 +43,7 @@ extension MediaExt on MediaModel {
                       children: [
                         Gap(8.w),
                         TitleMedium(name),
-                        Spacer(),
+                        const Spacer(),
                         IconButton(
                           onPressed: () {
                             Navigator.pop(ctx);
@@ -88,7 +88,7 @@ extension MediaExt on MediaModel {
                       children: [
                         Gap(8.w),
                         TitleMedium(name),
-                        Spacer(),
+                        const Spacer(),
                         IconButton(
                           onPressed: () {
                             Navigator.pop(ctx);

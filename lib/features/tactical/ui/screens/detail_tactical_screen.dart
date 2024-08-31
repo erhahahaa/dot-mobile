@@ -168,7 +168,7 @@ class _DetailTacticalScreenState extends State<DetailTacticalScreen> {
           final strategy = state.whenOrNull(
             success: (_, strategy, __) => strategy,
           );
-          if (strategy == null) return ErrorAlert('Strategy not found.');
+          if (strategy == null) return const ErrorAlert('Strategy not found.');
           return Stack(
             children: [
               Container(

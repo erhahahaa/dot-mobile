@@ -44,16 +44,16 @@ class _UpsertEvaluationScreenState extends State<UpsertEvaluationScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TitleSmall('Athlete Detail'),
+              const TitleSmall('Athlete Detail'),
               ListViewBuilderTile(
                 titleText: _athlete?.name,
                 subtitleText: _athlete?.email,
                 imageUrl: _athlete?.image,
               ),
               Gap(16.h),
-              TitleSmall('Evaluation'),
+              const TitleSmall('Evaluation'),
               Gap(8.h),
-              EvaluationForm(),
+              const EvaluationForm(),
             ],
           ),
         ),
@@ -132,7 +132,7 @@ class _EvaluationFormState extends State<EvaluationForm> {
             return _buildForm(mappedQuestions);
           },
           failure: (message) => ErrorAlert(message),
-          orElse: () => Center(child: MoonCircularLoader()),
+          orElse: () => const Center(child: MoonCircularLoader()),
         );
       },
     );
@@ -142,7 +142,7 @@ class _EvaluationFormState extends State<EvaluationForm> {
     return Form(
       key: _formKey,
       child: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
             ListViewBuilder<QuestionFormModel>(

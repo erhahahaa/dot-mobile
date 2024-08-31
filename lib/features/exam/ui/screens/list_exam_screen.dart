@@ -97,7 +97,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
         FloatingActionButton.extended(
           heroTag: 'new_exam_button_$hashCode',
           onPressed: () {
-            context.read<ExamBlocRead>().add(BlocEventRead.select(null));
+            context.read<ExamBlocRead>().add(const BlocEventRead.select(null));
             context.router.push(
               const UpsertExamRoute(),
             );

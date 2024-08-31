@@ -41,7 +41,7 @@ class ListTacticalScreen extends StatelessWidget {
               },
               child: SingleChildScrollView(
                 controller: scroll,
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
                     Gap(8.h),

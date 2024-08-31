@@ -34,7 +34,7 @@ class DetailEvaluationScreen extends StatelessWidget {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TitleSmall('Exam'),
+                      const TitleSmall('Exam'),
                       Gap(8.h),
                       ListViewBuilderTile(
                         leading: const Icon(MoonIcons.generic_about_24_light),
@@ -42,7 +42,7 @@ class DetailEvaluationScreen extends StatelessWidget {
                         subtitleText: selectedItem?.exam?.description,
                       ),
                       Gap(16.h),
-                      TitleSmall('Athlete'),
+                      const TitleSmall('Athlete'),
                       Gap(8.h),
                       ListViewBuilderTile(
                         imageUrl: selectedItem?.athlete?.image,
@@ -50,7 +50,7 @@ class DetailEvaluationScreen extends StatelessWidget {
                         subtitleText: selectedItem?.athlete?.email,
                       ),
                       Gap(16.h),
-                      TitleSmall('Accessor'),
+                      const TitleSmall('Accessor'),
                       Gap(8.h),
                       ListViewBuilderTile(
                         imageUrl: selectedItem?.coach?.image,
@@ -58,7 +58,7 @@ class DetailEvaluationScreen extends StatelessWidget {
                         subtitleText: selectedItem?.coach?.email,
                       ),
                       Gap(16.h),
-                      TitleSmall('Evaluations'),
+                      const TitleSmall('Evaluations'),
                       Gap(8.h),
                       ListViewBuilder<QuestionEvaluationModel>(
                         items: selectedItem?.evaluations ?? [],
@@ -73,7 +73,7 @@ class DetailEvaluationScreen extends StatelessWidget {
                                   chipSize: MoonChipSize.sm,
                                   label: BodySmall('${index + 1}'),
                                 ),
-                                VerticalDivider()
+                                const VerticalDivider()
                               ],
                             ),
                             titleText: item.questionName,
@@ -84,7 +84,7 @@ class DetailEvaluationScreen extends StatelessWidget {
                     ],
                   );
                 },
-                orElse: () => Center(child: MoonCircularLoader()),
+                orElse: () => const Center(child: MoonCircularLoader()),
               );
             },
           ),
@@ -95,7 +95,7 @@ class DetailEvaluationScreen extends StatelessWidget {
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text('Evaluation Detail'),
+      title: const Text('Evaluation Detail'),
       leading: IconButton(
         icon: const Icon(Icons.arrow_back),
         onPressed: () {

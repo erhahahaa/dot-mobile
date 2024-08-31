@@ -133,14 +133,14 @@ class _DetailExamScreenState extends State<DetailExamScreen>
                                     chipSize: MoonChipSize.sm,
                                     label: BodySmall('${index + 1}'),
                                   ),
-                                  VerticalDivider()
+                                  const VerticalDivider()
                                 ],
                               ),
                             );
                           },
                         );
                       },
-                      orElse: () => Center(child: MoonCircularLoader()),
+                      orElse: () => const Center(child: MoonCircularLoader()),
                     ),
                     Gap(16.h),
                   ],
@@ -206,7 +206,7 @@ class _DetailExamScreenState extends State<DetailExamScreen>
                               chipSize: MoonChipSize.sm,
                               label: BodySmall(item.role.name),
                             ),
-                            trailing: Icon(
+                            trailing: const Icon(
                               MoonIcons.controls_chevron_right_24_regular,
                             ),
                             onTap: () {
@@ -228,11 +228,11 @@ class _DetailExamScreenState extends State<DetailExamScreen>
                 );
 
             context.read<ClubMembersCubit>().selectUser(res);
-            context.router.push(UpsertEvaluationRoute());
+            context.router.push(const UpsertEvaluationRoute());
           }
         },
-        label: Text('Evaluate'),
-        icon: Icon(Icons.rate_review),
+        label: const Text('Evaluate'),
+        icon: const Icon(Icons.rate_review),
       ),
       body: BlocBuilder<EvaluationBlocRead, BlocStateRead<EvaluationModel>>(
         builder: (context, state) {

@@ -137,7 +137,7 @@ class AppRouter extends RootStackRouter {
                 ),
                 AutoRoute(
                   path: 'detail',
-                  page: EmptyShellRoute('DetailClub').page,
+                  page: const EmptyShellRoute('DetailClub').page,
                   children: [
                     AutoRoute(
                       path: '',

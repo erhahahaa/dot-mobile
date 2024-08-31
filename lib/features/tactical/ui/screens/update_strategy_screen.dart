@@ -308,7 +308,7 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
             context.read<TacticalBlocRead>().add(
                   BlocEventRead.get(id: _tactical?.clubId),
                 );
-            Future.delayed(Duration(seconds: 1), () {
+            Future.delayed(const Duration(seconds: 1), () {
               if (!context.mounted) return;
               context.router.maybePop();
             });

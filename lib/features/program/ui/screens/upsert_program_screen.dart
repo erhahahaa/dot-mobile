@@ -398,7 +398,7 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
                           ProgramMediaBlocWrite,
                           BlocStateWrite<MediaModel>>(
                         club,
-                        allowedExtensions: ['jpg', 'jpeg', 'png'],
+                        allowedExtensions: const ['jpg', 'jpeg', 'png'],
                         onUpload: (file) {
                           context.read<ProgramMediaBlocWrite>().add(
                                 BlocEventWrite.create({

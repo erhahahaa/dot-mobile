@@ -77,10 +77,10 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
               ],
               FloatingActionButton.extended(
                 heroTag: 'new_member_button_$hashCode',
-                label: TitleSmall('Add Member'),
+                label: const TitleSmall('Add Member'),
                 icon: const Icon(MoonIcons.generic_plus_24_light),
                 onPressed: () {
-                  context.router.push(AddMemberRoute());
+                  context.router.push(const AddMemberRoute());
                 },
               ),
             ],
@@ -91,7 +91,7 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TitleSmall('Overview'),
+                  const TitleSmall('Overview'),
                   Gap(4.h),
                   BlocBuilder<ClubMembersCubit, ClubMembersState>(
                     builder: (context, state) {
@@ -106,7 +106,7 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
                   Gap(16.h),
                   Row(
                     children: [
-                      TitleSmall('Members'),
+                      const TitleSmall('Members'),
                       Gap(32.w),
                       Expanded(
                         child: MySearchBar(
@@ -231,7 +231,7 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
                     },
                   ),
                   Gap(16.h),
-                  TitleSmall('About'),
+                  const TitleSmall('About'),
                   ListViewBuilderTile(
                     imageUrl: _club?.media?.url,
                     titleText: _club?.name,
@@ -240,8 +240,8 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
                   Gap(16.h),
                   MoonFilledButton(
                     width: double.infinity,
-                    label: TitleSmall('Leave'),
-                    trailing: Icon(
+                    label: const TitleSmall('Leave'),
+                    trailing: const Icon(
                       MoonIcons.generic_log_out_24_light,
                     ),
                     backgroundColor: Colors.red,
@@ -277,7 +277,7 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
                       );
                       if (res == true) {
                         if (context.mounted) {
-                          context.read<ClubBlocRead>().add(BlocEventRead.get());
+                          context.read<ClubBlocRead>().add(const BlocEventRead.get());
                           context.router.replace(
                             const ListClubRoute(),
                           );

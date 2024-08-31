@@ -357,7 +357,7 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
             ],
           ),
           SizedBox(height: 8.h),
-          FormLabel('Type'),
+          const FormLabel('Type'),
           FormCombobox<QuestionType>(
             items: QuestionType.values
                 .map(

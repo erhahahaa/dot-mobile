@@ -32,8 +32,8 @@ class TacticalAppBar extends StatelessWidget {
           IconButton(
             onPressed: onEndDrawerTap,
             icon: Badge(
-              child: Icon(MoonIcons.generic_users_24_light, size: 24.sp),
               label: Text(audiences.length.toString()),
+              child: Icon(MoonIcons.generic_users_24_light, size: 24.sp),
             ),
           ),
           SizedBox(width: 16.w),

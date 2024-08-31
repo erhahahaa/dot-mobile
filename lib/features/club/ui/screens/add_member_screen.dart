@@ -55,7 +55,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
     return BlocBuilder<ClubMembersCubit, ClubMembersState>(
       builder: (context, state) {
         if (state.isLoading) {
-          return Center(child: MoonCircularLoader());
+          return const Center(child: MoonCircularLoader());
         }
 
         if (state.searchResult.isEmpty) {
@@ -89,7 +89,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                   context: context,
                   builder: (ctx) {
                     return AlertDialog(
-                      title: Text('Add member'),
+                      title: const Text('Add member'),
                       content: Form(
                         key: formkey,
                         child: Column(
@@ -99,7 +99,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                             Text(
                                 'Do you want to add ${item.name} to the club?'),
                             SizedBox(height: 12.h),
-                            FormLabel('Select role'),
+                            const FormLabel('Select role'),
                             SizedBox(height: 12.h),
                             FormCombobox<UserRole>(
                               controller: controller,
@@ -118,6 +118,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                                 if (value == null) {
                                   return 'Please select a role';
                                 }
+                                return null;
                               },
                               hintText: 'Select a role',
                             )
@@ -136,13 +137,13 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                               Navigator.pop(ctx);
                             }
                           },
-                          child: Text('Yes'),
+                          child: const Text('Yes'),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.pop(ctx);
                           },
-                          child: Text('No'),
+                          child: const Text('No'),
                         ),
                       ],
                     );
@@ -158,14 +159,14 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
 
   PreferredSize _buildAppBar(BuildContext context, SearchController search) {
     return PreferredSize(
-      preferredSize: Size.fromHeight(50),
+      preferredSize: const Size.fromHeight(50),
       child: AppBar(
         title: MySearchBar(
           onChanged: (String? value) {
             if (value == null) return;
             EasyDebounce.debounce(
               'search',
-              Duration(milliseconds: 1000),
+              const Duration(milliseconds: 1000),
               () {
                 context.read<ClubMembersCubit>().searchUsers(value);
               },

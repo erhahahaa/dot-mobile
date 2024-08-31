@@ -20,7 +20,7 @@ class ClubMembersCubit extends Cubit<ClubMembersState> {
     this._leaveClubUsecase,
     this._addClubMemberUsecase,
     this._searchUsersUsecase,
-  ) : super(ClubMembersState());
+  ) : super(const ClubMembersState());
 
   void getMembers({required int clubId, bool athleteOnly = false}) async {
     emit(state.copyWith(isLoading: true));
@@ -29,7 +29,7 @@ class ClubMembersCubit extends Cubit<ClubMembersState> {
     );
 
     res.fold(
-      (l) => ClubMembersState(members: []),
+      (l) => const ClubMembersState(members: []),
       (r) {
         if (athleteOnly) {
           final members = r.where((e) => e.role == UserRole.athlete).toList();
