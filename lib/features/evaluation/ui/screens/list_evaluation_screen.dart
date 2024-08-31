@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/app/router.gr.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/extensions/datetime.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +27,7 @@ class _ListEvaluationScreenState extends State<ListEvaluationScreen> {
     final clubBloc = context.watch<ClubBlocRead>();
     final club = clubBloc.state.maybeWhen(
       success: (_, __, selectedClub) => selectedClub,
-      orElse: () => ClubModel.fake(),
+      orElse: () => const ClubModel(),
     );
     return ParentWithSearchAndScrollController(
       builder: (context, search, scroll, showScrollToTopButton) {
@@ -64,7 +65,7 @@ class _ListEvaluationScreenState extends State<ListEvaluationScreen> {
                   );
                 },
                 icon: const Icon(Icons.add),
-                label: const Text('New Evaluation'),
+                label: Text(context.str?.newEvaluation ?? 'New Evaluation'),
               ),
             ],
           ),
@@ -92,7 +93,8 @@ class _ListEvaluationScreenState extends State<ListEvaluationScreen> {
           width: 325.w,
           height: 32.h,
           controller: search,
-          hintText: '${context.str?.search} ${'Evaluation'.toLowerCase()} ...',
+          hintText:
+              '${context.str?.search} ${context.str?.evaluation.toLowerCase()}...',
           onChanged: (value) {
             if (value == null) return;
             context.read<ClubBlocRead>().add(
@@ -136,9 +138,8 @@ class _ListEvaluationScreenState extends State<ListEvaluationScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Flexible(
-                        child: Text(
-                          '${club?.name} doesn\'t have evaluation yet',
-                          textAlign: TextAlign.center,
+                        child: TitleMedium(
+                          context.str?.clubDoesntHaveAnyEvaluation(club?.name),
                         ),
                       ),
                       Flexible(
@@ -155,7 +156,7 @@ class _ListEvaluationScreenState extends State<ListEvaluationScreen> {
                                       );
                                 }
                               : null,
-                          child: const Text("Reload"),
+                          child: Text(context.str?.reload ?? 'Reload'),
                         ),
                       ),
                       Gap(16.h),
@@ -202,13 +203,18 @@ class _ListEvaluationScreenState extends State<ListEvaluationScreen> {
     EvaluationModel evaluation,
     bool isLast,
   ) {
-    void onTap() => context.router.push(
-          DetailEvaluationRoute(id: evaluation.id),
-        );
+    void onTap() {
+      context.read<EvaluationBlocRead>().add(
+            BlocEventRead.select(evaluation),
+          );
+      context.router.push(
+        DetailEvaluationRoute(id: evaluation.id),
+      );
+    }
 
     return ListViewBuilderTile(
       titleText: evaluation.exam?.title,
-      subtitleText: evaluation.createdAt?.toIso8601String(),
+      subtitleText: evaluation.createdAt?.toDayMonthYear(),
       imageUrl: evaluation.exam?.media?.url,
       margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
       onTap: onTap,

@@ -44,14 +44,14 @@ class _UpsertEvaluationScreenState extends State<UpsertEvaluationScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TitleSmall('Athlete Detail'),
+              TitleSmall(context.str?.athleteDetail),
               ListViewBuilderTile(
                 titleText: _athlete?.name,
                 subtitleText: _athlete?.email,
                 imageUrl: _athlete?.image,
               ),
               Gap(16.h),
-              const TitleSmall('Evaluation'),
+              TitleSmall(context.str?.evaluation),
               Gap(8.h),
               const EvaluationForm(),
             ],
@@ -189,15 +189,17 @@ class _EvaluationFormState extends State<EvaluationForm> {
           success: (item) {
             if (_evaluation == null) {
               context.successToast(
-                  title: 'Success',
-                  description: 'Evaluation created sucessfully');
+                title: context.str?.createSuccess,
+                description: context.str?.evaluationCreatedSuccessfully,
+              );
               context.read<EvaluationBlocRead>().add(
                     BlocEventRead.append(item),
                   );
             } else {
               context.successToast(
-                  title: 'Success',
-                  description: 'Evaluation updated sucessfully');
+                title: context.str?.updateSuccess,
+                description: context.str?.evaluationUpdatedSuccessfully,
+              );
 
               context.read<EvaluationBlocRead>().add(
                     BlocEventRead.append(item),
@@ -212,6 +214,12 @@ class _EvaluationFormState extends State<EvaluationForm> {
                 );
             context.router.back();
           },
+          failure: (message) => context.errorToast(
+            title: _evaluation == null
+                ? context.str?.createEvaluationFailed
+                : context.str?.updateEvaluationFailed,
+            description: message,
+          ),
         );
       },
       builder: (context, state) {
@@ -266,7 +274,9 @@ class _EvaluationFormState extends State<EvaluationForm> {
               }
             }
           },
-          text: 'Submit',
+          text: _evaluation == null
+              ? context.str?.createEvaluation
+              : context.str?.updateEvaluation,
           isLoading: state is BlocStateWriteLoading,
         );
       },

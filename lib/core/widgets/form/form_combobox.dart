@@ -17,7 +17,8 @@ class FormCombobox<T> extends StatefulWidget {
   final Color? backgroundColor, activeBorderColor;
   final TextInputAction? textInputAction;
   final ComboboxItem<T>? defaultOption;
-  final bool readOnly;
+  final bool readOnly, showCloseButton;
+  final double? maxHeight;
 
   const FormCombobox({
     super.key,
@@ -34,6 +35,8 @@ class FormCombobox<T> extends StatefulWidget {
     this.activeBorderColor,
     this.defaultOption,
     this.readOnly = false,
+    this.showCloseButton = true,
+    this.maxHeight,
   });
 
   @override
@@ -70,10 +73,10 @@ class _FormComboboxState<T> extends State<FormCombobox<T>> {
         widget.currentFocus.unfocus();
       }),
       dropdownMargin: EdgeInsets.zero,
-      maxHeight: 100,
+      maxHeight: widget.maxHeight ?? 120.h,
       backgroundColor: context.theme.colorScheme.surface,
       content: ConstrainedBox(
-        constraints: const BoxConstraints(maxHeight: 100),
+        constraints: BoxConstraints(maxHeight: widget.maxHeight ?? 120.h),
         child: _filteredItems.isEmpty
             ? const MoonMenuItem(label: Text('No result found'))
             : ListView.builder(
@@ -140,7 +143,7 @@ class _FormComboboxState<T> extends State<FormCombobox<T>> {
         hintText: widget.hintText ?? 'Select an option',
         trailing: Row(
           children: [
-            if (_optionIsSelected) ...[
+            if (_optionIsSelected && widget.showCloseButton) ...[
               MoonButton.icon(
                 buttonSize: MoonButtonSize.xs,
                 hoverEffectColor: Colors.transparent,

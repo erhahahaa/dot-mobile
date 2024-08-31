@@ -95,737 +95,29 @@ abstract class Strings {
     Locale('id')
   ];
 
-  /// No description provided for @about.
+  /// No description provided for @signIn.
   ///
   /// In en, this message translates to:
-  /// **'About'**
-  String get about;
-
-  /// No description provided for @activeSession.
-  ///
-  /// In en, this message translates to:
-  /// **'Active'**
-  String get activeSession;
-
-  /// No description provided for @add.
-  ///
-  /// In en, this message translates to:
-  /// **'Add'**
-  String get add;
-
-  /// No description provided for @addMember.
-  ///
-  /// In en, this message translates to:
-  /// **'Add Member'**
-  String get addMember;
-
-  /// No description provided for @address.
-  ///
-  /// In en, this message translates to:
-  /// **'Address'**
-  String get address;
-
-  /// No description provided for @addressRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Address is required'**
-  String get addressRequired;
-
-  /// No description provided for @alert.
-  ///
-  /// In en, this message translates to:
-  /// **'Alert'**
-  String get alert;
-
-  /// No description provided for @alreadyHaveAnAccount.
-  ///
-  /// In en, this message translates to:
-  /// **'Already have an account?'**
-  String get alreadyHaveAnAccount;
-
-  /// No description provided for @assets.
-  ///
-  /// In en, this message translates to:
-  /// **'Assets'**
-  String get assets;
-
-  /// No description provided for @athlete.
-  ///
-  /// In en, this message translates to:
-  /// **''**
-  String get athlete;
-
-  /// No description provided for @athletes.
-  ///
-  /// In en, this message translates to:
-  /// **'s'**
-  String get athletes;
-
-  /// No description provided for @back.
-  ///
-  /// In en, this message translates to:
-  /// **'Back'**
-  String get back;
-
-  /// No description provided for @basketBall.
-  ///
-  /// In en, this message translates to:
-  /// **'Basketball'**
-  String get basketBall;
-
-  /// No description provided for @bornDate.
-  ///
-  /// In en, this message translates to:
-  /// **'Born Date'**
-  String get bornDate;
-
-  /// No description provided for @bornDateRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Born date is required'**
-  String get bornDateRequired;
-
-  /// No description provided for @bornPlace.
-  ///
-  /// In en, this message translates to:
-  /// **'Born Place'**
-  String get bornPlace;
-
-  /// No description provided for @bornPlaceRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Born place is required'**
-  String get bornPlaceRequired;
-
-  /// No description provided for @calendar.
-  ///
-  /// In en, this message translates to:
-  /// **'Calendar'**
-  String get calendar;
-
-  /// No description provided for @cancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
-
-  /// No description provided for @club.
-  ///
-  /// In en, this message translates to:
-  /// **'Club'**
-  String get club;
-
-  /// No description provided for @clubDashboard.
-  ///
-  /// In en, this message translates to:
-  /// **'Club Dashboard'**
-  String get clubDashboard;
-
-  /// No description provided for @clubDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Club Description'**
-  String get clubDescription;
-
-  /// No description provided for @clubDescriptionRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Club description is required'**
-  String get clubDescriptionRequired;
-
-  /// No description provided for @clubImageRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Club image is required'**
-  String get clubImageRequired;
-
-  /// No description provided for @clubManagement.
-  ///
-  /// In en, this message translates to:
-  /// **'Club Management'**
-  String get clubManagement;
-
-  /// No description provided for @clubName.
-  ///
-  /// In en, this message translates to:
-  /// **'Club Name'**
-  String get clubName;
-
-  /// No description provided for @clubNameRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Club name is required'**
-  String get clubNameRequired;
-
-  /// No description provided for @clubs.
-  ///
-  /// In en, this message translates to:
-  /// **'Clubs'**
-  String get clubs;
-
-  /// No description provided for @coach.
-  ///
-  /// In en, this message translates to:
-  /// **''**
-  String get coach;
-
-  /// No description provided for @coaches.
-  ///
-  /// In en, this message translates to:
-  /// **'es'**
-  String get coaches;
-
-  /// No description provided for @create.
-  ///
-  /// In en, this message translates to:
-  /// **'Create'**
-  String get create;
-
-  /// No description provided for @createClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Create Club'**
-  String get createClub;
-
-  /// No description provided for @createExam.
-  ///
-  /// In en, this message translates to:
-  /// **'Create Exam'**
-  String get createExam;
-
-  /// No description provided for @createProgram.
-  ///
-  /// In en, this message translates to:
-  /// **'Create Program'**
-  String get createProgram;
-
-  /// No description provided for @dark.
-  ///
-  /// In en, this message translates to:
-  /// **'Dark Mode'**
-  String get dark;
-
-  /// No description provided for @delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get delete;
-
-  /// No description provided for @description.
-  ///
-  /// In en, this message translates to:
-  /// **'Description'**
-  String get description;
-
-  /// No description provided for @descriptionRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Description is required'**
-  String get descriptionRequired;
-
-  /// No description provided for @detail.
-  ///
-  /// In en, this message translates to:
-  /// **'Detail'**
-  String get detail;
-
-  /// No description provided for @dontHaveAnAccount.
-  ///
-  /// In en, this message translates to:
-  /// **'Don\'t have an account?'**
-  String get dontHaveAnAccount;
-
-  /// No description provided for @download.
-  ///
-  /// In en, this message translates to:
-  /// **'Download'**
-  String get download;
-
-  /// No description provided for @dueAt.
-  ///
-  /// In en, this message translates to:
-  /// **'Due at'**
-  String get dueAt;
-
-  /// No description provided for @dueAtRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Due at is required'**
-  String get dueAtRequired;
-
-  /// No description provided for @edit.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit'**
-  String get edit;
-
-  /// No description provided for @editClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit Club'**
-  String get editClub;
-
-  /// No description provided for @editExam.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit Exam'**
-  String get editExam;
-
-  /// No description provided for @editProfile.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit Profile'**
-  String get editProfile;
-
-  /// No description provided for @editProgram.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit Program'**
-  String get editProgram;
-
-  /// No description provided for @email.
-  ///
-  /// In en, this message translates to:
-  /// **'Email'**
-  String get email;
+  /// **'Sign In'**
+  String get signIn;
 
   /// No description provided for @emailOrUsernameOrPhone.
   ///
   /// In en, this message translates to:
-  /// **'Email / Username / Phone'**
+  /// **'Email or username or phone'**
   String get emailOrUsernameOrPhone;
 
-  /// No description provided for @emailRequired.
+  /// No description provided for @enterYourEmailOrUsernameOrPhone.
   ///
   /// In en, this message translates to:
-  /// **'Email is required'**
-  String get emailRequired;
+  /// **'Enter your email or username or phone'**
+  String get enterYourEmailOrUsernameOrPhone;
 
-  /// No description provided for @emailUsernamePhoneAlreadyRegistered.
+  /// No description provided for @emailOrUsernameOrPhoneIsRequired.
   ///
   /// In en, this message translates to:
-  /// **'Email / Username / Phone already registered'**
-  String get emailUsernamePhoneAlreadyRegistered;
-
-  /// No description provided for @emptyExam.
-  ///
-  /// In en, this message translates to:
-  /// **'Exam is empty'**
-  String get emptyExam;
-
-  /// No description provided for @endDate.
-  ///
-  /// In en, this message translates to:
-  /// **'End Date'**
-  String get endDate;
-
-  /// No description provided for @endDateRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'End date is required'**
-  String get endDateRequired;
-
-  /// No description provided for @english.
-  ///
-  /// In en, this message translates to:
-  /// **'English'**
-  String get english;
-
-  /// No description provided for @enterClubDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter club description'**
-  String get enterClubDescription;
-
-  /// No description provided for @enterClubName.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter club name'**
-  String get enterClubName;
-
-  /// No description provided for @enterDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter the description'**
-  String get enterDescription;
-
-  /// No description provided for @enterDueAt.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter due at'**
-  String get enterDueAt;
-
-  /// No description provided for @enterEmailOrUsernameOrPhone.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter email / username / phone'**
-  String get enterEmailOrUsernameOrPhone;
-
-  /// No description provided for @enterEndDate.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter the end date'**
-  String get enterEndDate;
-
-  /// No description provided for @enterExamDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter exam description'**
-  String get enterExamDescription;
-
-  /// No description provided for @enterExamTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter exam title'**
-  String get enterExamTitle;
-
-  /// No description provided for @enterHeight.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter the board height'**
-  String get enterHeight;
-
-  /// No description provided for @enterProgramName.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter program name'**
-  String get enterProgramName;
-
-  /// No description provided for @enterStartDate.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter the start date'**
-  String get enterStartDate;
-
-  /// No description provided for @enterTacticalName.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter the tactical name'**
-  String get enterTacticalName;
-
-  /// No description provided for @enterTotalPlayers.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter the total players'**
-  String get enterTotalPlayers;
-
-  /// No description provided for @enterWidth.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter the board width'**
-  String get enterWidth;
-
-  /// No description provided for @enterYourAddress.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your address'**
-  String get enterYourAddress;
-
-  /// No description provided for @enterYourBornDate.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your born date'**
-  String get enterYourBornDate;
-
-  /// No description provided for @enterYourBornPlace.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your born place'**
-  String get enterYourBornPlace;
-
-  /// No description provided for @enterYourEmail.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your email'**
-  String get enterYourEmail;
-
-  /// No description provided for @enterYourExpertise.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your expertise'**
-  String get enterYourExpertise;
-
-  /// No description provided for @enterYourGender.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your gender'**
-  String get enterYourGender;
-
-  /// No description provided for @enterYourName.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your name'**
-  String get enterYourName;
-
-  /// No description provided for @enterYourPass.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your password'**
-  String get enterYourPass;
-
-  /// No description provided for @enterYourPhoneNumber.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your phone number'**
-  String get enterYourPhoneNumber;
-
-  /// No description provided for @enterYourReligion.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your religion'**
-  String get enterYourReligion;
-
-  /// No description provided for @enterYourUsername.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your username'**
-  String get enterYourUsername;
-
-  /// No description provided for @error.
-  ///
-  /// In en, this message translates to:
-  /// **'Error'**
-  String get error;
-
-  /// No description provided for @errorCreateExercise.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to create exercise'**
-  String get errorCreateExercise;
-
-  /// No description provided for @errorCreateQuestion.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to create question'**
-  String get errorCreateQuestion;
-
-  /// No description provided for @errorUpdateExercise.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to update exercise'**
-  String get errorUpdateExercise;
-
-  /// No description provided for @errorUpdateQuestion.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to update question'**
-  String get errorUpdateQuestion;
-
-  /// No description provided for @establishedAt.
-  ///
-  /// In en, this message translates to:
-  /// **'Established at :'**
-  String get establishedAt;
-
-  /// No description provided for @exam.
-  ///
-  /// In en, this message translates to:
-  /// **'Exam'**
-  String get exam;
-
-  /// No description provided for @examTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Exam Title'**
-  String get examTitle;
-
-  /// No description provided for @examDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Exam Description'**
-  String get examDescription;
-
-  /// No description provided for @exams.
-  ///
-  /// In en, this message translates to:
-  /// **'Exams'**
-  String get exams;
-
-  /// No description provided for @examImageRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Exam image is required'**
-  String get examImageRequired;
-
-  /// No description provided for @examTitleRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Exam title is required'**
-  String get examTitleRequired;
-
-  /// No description provided for @exercise.
-  ///
-  /// In en, this message translates to:
-  /// **'Exercise'**
-  String get exercise;
-
-  /// No description provided for @expertise.
-  ///
-  /// In en, this message translates to:
-  /// **'Expertise'**
-  String get expertise;
-
-  /// No description provided for @expertiseRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Expertise is required'**
-  String get expertiseRequired;
-
-  /// No description provided for @expiredSession.
-  ///
-  /// In en, this message translates to:
-  /// **'Expired'**
-  String get expiredSession;
-
-  /// No description provided for @failedCreateClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to create club'**
-  String get failedCreateClub;
-
-  /// No description provided for @failedCreateExam.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to create exam'**
-  String get failedCreateExam;
-
-  /// No description provided for @failedCreateExercises.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to create exercises'**
-  String get failedCreateExercises;
-
-  /// No description provided for @failedCreateProgram.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to create program'**
-  String get failedCreateProgram;
-
-  /// No description provided for @failedEditExam.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to edit exam'**
-  String get failedEditExam;
-
-  /// No description provided for @failedEditProgram.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to edit program'**
-  String get failedEditProgram;
-
-  /// No description provided for @failedLeaveClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to leave club'**
-  String get failedLeaveClub;
-
-  /// No description provided for @failedLogout.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to logout'**
-  String get failedLogout;
-
-  /// No description provided for @failedSignIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to sign in'**
-  String get failedSignIn;
-
-  /// No description provided for @failedSignUp.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to sign up'**
-  String get failedSignUp;
-
-  /// No description provided for @failedUpdateClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to update club'**
-  String get failedUpdateClub;
-
-  /// No description provided for @failedUpdateExercises.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to update exercises'**
-  String get failedUpdateExercises;
-
-  /// No description provided for @failedUpdateProfile.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to update profile'**
-  String get failedUpdateProfile;
-
-  /// No description provided for @futsal.
-  ///
-  /// In en, this message translates to:
-  /// **'Futsal'**
-  String get futsal;
-
-  /// No description provided for @gender.
-  ///
-  /// In en, this message translates to:
-  /// **'Gender'**
-  String get gender;
-
-  /// No description provided for @genderRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Gender is required'**
-  String get genderRequired;
-
-  /// No description provided for @general.
-  ///
-  /// In en, this message translates to:
-  /// **'General'**
-  String get general;
-
-  /// No description provided for @handBall.
-  ///
-  /// In en, this message translates to:
-  /// **'Handball'**
-  String get handBall;
-
-  /// No description provided for @height.
-  ///
-  /// In en, this message translates to:
-  /// **'Height (m)'**
-  String get height;
-
-  /// No description provided for @heightRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Height is required'**
-  String get heightRequired;
-
-  /// No description provided for @hello.
-  ///
-  /// In en, this message translates to:
-  /// **'Hello,'**
-  String get hello;
-
-  /// No description provided for @history.
-  ///
-  /// In en, this message translates to:
-  /// **'History'**
-  String get history;
-
-  /// No description provided for @identifierRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Identifier is required'**
-  String get identifierRequired;
-
-  /// No description provided for @indonesian.
-  ///
-  /// In en, this message translates to:
-  /// **'Indonesian'**
-  String get indonesian;
-
-  /// No description provided for @info.
-  ///
-  /// In en, this message translates to:
-  /// **'Info'**
-  String get info;
+  /// **'Email or username or phone is required'**
+  String get emailOrUsernameOrPhoneIsRequired;
 
   /// No description provided for @invalidEmail.
   ///
@@ -833,179 +125,17 @@ abstract class Strings {
   /// **'Invalid email'**
   String get invalidEmail;
 
-  /// No description provided for @invalidPhoneNumber.
+  /// No description provided for @invalidPhone.
   ///
   /// In en, this message translates to:
-  /// **'Invalid phone number'**
-  String get invalidPhoneNumber;
-
-  /// No description provided for @invite.
-  ///
-  /// In en, this message translates to:
-  /// **'Invite'**
-  String get invite;
-
-  /// No description provided for @join.
-  ///
-  /// In en, this message translates to:
-  /// **'Join'**
-  String get join;
-
-  /// No description provided for @kick.
-  ///
-  /// In en, this message translates to:
-  /// **'Kick'**
-  String get kick;
-
-  /// No description provided for @language.
-  ///
-  /// In en, this message translates to:
-  /// **'Language'**
-  String get language;
-
-  /// No description provided for @leave.
-  ///
-  /// In en, this message translates to:
-  /// **'Leave'**
-  String get leave;
-
-  /// No description provided for @leaveClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Leave Club'**
-  String get leaveClub;
-
-  /// No description provided for @leaveClubConfirmation.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to leave this club?'**
-  String get leaveClubConfirmation;
-
-  /// No description provided for @leaveClubSuccess.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully leave club'**
-  String get leaveClubSuccess;
-
-  /// No description provided for @light.
-  ///
-  /// In en, this message translates to:
-  /// **'Light Mode'**
-  String get light;
-
-  /// No description provided for @logout.
-  ///
-  /// In en, this message translates to:
-  /// **'Logout'**
-  String get logout;
-
-  /// No description provided for @management.
-  ///
-  /// In en, this message translates to:
-  /// **'Management'**
-  String get management;
-
-  /// No description provided for @members.
-  ///
-  /// In en, this message translates to:
-  /// **'Members'**
-  String get members;
-
-  /// No description provided for @myClub.
-  ///
-  /// In en, this message translates to:
-  /// **'My Club'**
-  String get myClub;
-
-  /// No description provided for @myClubTraining.
-  ///
-  /// In en, this message translates to:
-  /// **'My Club'**
-  String get myClubTraining;
-
-  /// No description provided for @name.
-  ///
-  /// In en, this message translates to:
-  /// **'Name'**
-  String get name;
-
-  /// No description provided for @nameRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Name is required'**
-  String get nameRequired;
-
-  /// No description provided for @newExam.
-  ///
-  /// In en, this message translates to:
-  /// **'New Exam'**
-  String get newExam;
-
-  /// No description provided for @newProgram.
-  ///
-  /// In en, this message translates to:
-  /// **'New Program'**
-  String get newProgram;
-
-  /// No description provided for @noClubsFound.
-  ///
-  /// In en, this message translates to:
-  /// **'No clubs found'**
-  String get noClubsFound;
-
-  /// No description provided for @noEvents.
-  ///
-  /// In en, this message translates to:
-  /// **'No events'**
-  String get noEvents;
-
-  /// No description provided for @noExpertise.
-  ///
-  /// In en, this message translates to:
-  /// **'No expertise'**
-  String get noExpertise;
-
-  /// No description provided for @noMembersFound.
-  ///
-  /// In en, this message translates to:
-  /// **'No members found'**
-  String get noMembersFound;
+  /// **'Invalid phone'**
+  String get invalidPhone;
 
   /// No description provided for @noSpaceAllowed.
   ///
   /// In en, this message translates to:
-  /// **'Space no allowed'**
+  /// **'No space allowed'**
   String get noSpaceAllowed;
-
-  /// No description provided for @noUsersFound.
-  ///
-  /// In en, this message translates to:
-  /// **'No users found'**
-  String get noUsersFound;
-
-  /// No description provided for @or.
-  ///
-  /// In en, this message translates to:
-  /// **'or'**
-  String get or;
-
-  /// No description provided for @overview.
-  ///
-  /// In en, this message translates to:
-  /// **'Overview'**
-  String get overview;
-
-  /// No description provided for @pageNotFound.
-  ///
-  /// In en, this message translates to:
-  /// **'Page not found'**
-  String get pageNotFound;
-
-  /// No description provided for @passRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Password is required'**
-  String get passRequired;
 
   /// No description provided for @password.
   ///
@@ -1013,95 +143,47 @@ abstract class Strings {
   /// **'Password'**
   String get password;
 
-  /// No description provided for @phoneNumber.
+  /// No description provided for @enterYourPassword.
   ///
   /// In en, this message translates to:
-  /// **'Phone Number'**
-  String get phoneNumber;
+  /// **'Enter your password'**
+  String get enterYourPassword;
 
-  /// No description provided for @phoneNumberRequired.
+  /// No description provided for @passwordIsRequired.
   ///
   /// In en, this message translates to:
-  /// **'Phone number is required'**
-  String get phoneNumberRequired;
+  /// **'Password is required'**
+  String get passwordIsRequired;
 
-  /// No description provided for @programName.
+  /// No description provided for @signInSuccess.
   ///
   /// In en, this message translates to:
-  /// **'Program Name'**
-  String get programName;
+  /// **'Sign in Success'**
+  String get signInSuccess;
 
-  /// No description provided for @program.
+  /// No description provided for @welcomeBack.
   ///
   /// In en, this message translates to:
-  /// **'Program'**
-  String get program;
+  /// **'Welcome back {name}'**
+  String welcomeBack(String name);
 
-  /// No description provided for @programDetail.
+  /// No description provided for @signInFailed.
   ///
   /// In en, this message translates to:
-  /// **'Program Detail'**
-  String get programDetail;
+  /// **'Sign in failed'**
+  String get signInFailed;
 
-  /// No description provided for @programImageRequired.
+  /// No description provided for @invalidCredentials.
   ///
   /// In en, this message translates to:
-  /// **'Program image is required'**
-  String get programImageRequired;
+  /// **'Invalid credentials'**
+  String get invalidCredentials;
 
-  /// No description provided for @programNameRequired.
+  /// No description provided for @dontHaveAnAccount.
   ///
   /// In en, this message translates to:
-  /// **'Program name is required'**
-  String get programNameRequired;
-
-  /// No description provided for @programs.
-  ///
-  /// In en, this message translates to:
-  /// **'Programs'**
-  String get programs;
-
-  /// No description provided for @question.
-  ///
-  /// In en, this message translates to:
-  /// **'Question'**
-  String get question;
-
-  /// No description provided for @religion.
-  ///
-  /// In en, this message translates to:
-  /// **'Religion'**
-  String get religion;
-
-  /// No description provided for @religionRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Religion is required'**
-  String get religionRequired;
-
-  /// No description provided for @search.
-  ///
-  /// In en, this message translates to:
-  /// **'Search'**
-  String get search;
-
-  /// No description provided for @session.
-  ///
-  /// In en, this message translates to:
-  /// **'Session'**
-  String get session;
-
-  /// No description provided for @settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Settings'**
-  String get settings;
-
-  /// No description provided for @signIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign In'**
-  String get signIn;
+  /// **'Don\'t have an account?'**
+  String get dontHaveAnAccount;
 
   /// No description provided for @signUp.
   ///
@@ -1109,197 +191,41 @@ abstract class Strings {
   /// **'Sign Up'**
   String get signUp;
 
-  /// No description provided for @soccer.
+  /// No description provided for @fullName.
   ///
   /// In en, this message translates to:
-  /// **'Soccer'**
-  String get soccer;
+  /// **'Full name'**
+  String get fullName;
 
-  /// No description provided for @sport.
+  /// No description provided for @enterYourFullName.
   ///
   /// In en, this message translates to:
-  /// **'Sport :'**
-  String get sport;
+  /// **'Enter your full name'**
+  String get enterYourFullName;
 
-  /// No description provided for @sportType.
+  /// No description provided for @fullNameIsRequired.
   ///
   /// In en, this message translates to:
-  /// **'Sport Type'**
-  String get sportType;
+  /// **'Full name is required'**
+  String get fullNameIsRequired;
 
-  /// No description provided for @startDate.
+  /// No description provided for @email.
   ///
   /// In en, this message translates to:
-  /// **'Start Date'**
-  String get startDate;
+  /// **'Email'**
+  String get email;
 
-  /// No description provided for @startDateRequired.
+  /// No description provided for @enterYourEmail.
   ///
   /// In en, this message translates to:
-  /// **'Start date is required'**
-  String get startDateRequired;
+  /// **'Enter your email'**
+  String get enterYourEmail;
 
-  /// No description provided for @succesEditProgram.
+  /// No description provided for @emailIsRequired.
   ///
   /// In en, this message translates to:
-  /// **'Successfully edit program'**
-  String get succesEditProgram;
-
-  /// No description provided for @success.
-  ///
-  /// In en, this message translates to:
-  /// **'Success'**
-  String get success;
-
-  /// No description provided for @successCreateClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully created club'**
-  String get successCreateClub;
-
-  /// No description provided for @successCreateExercise.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully to create exercise'**
-  String get successCreateExercise;
-
-  /// No description provided for @successCreateExercises.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully create exercises'**
-  String get successCreateExercises;
-
-  /// No description provided for @successCreateProgram.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully create program'**
-  String get successCreateProgram;
-
-  /// No description provided for @successCreateQuestion.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully create question'**
-  String get successCreateQuestion;
-
-  /// No description provided for @successLogout.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully logged out'**
-  String get successLogout;
-
-  /// No description provided for @successSignIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully signed in '**
-  String get successSignIn;
-
-  /// No description provided for @successSignUp.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully signed up '**
-  String get successSignUp;
-
-  /// No description provided for @successUpdateClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully update club'**
-  String get successUpdateClub;
-
-  /// No description provided for @successUpdateExercises.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully update exercises'**
-  String get successUpdateExercises;
-
-  /// No description provided for @successUpdateProfile.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully update profile'**
-  String get successUpdateProfile;
-
-  /// No description provided for @successUpdateQuestions.
-  ///
-  /// In en, this message translates to:
-  /// **'Successfully update questions'**
-  String get successUpdateQuestions;
-
-  /// No description provided for @system.
-  ///
-  /// In en, this message translates to:
-  /// **'System'**
-  String get system;
-
-  /// No description provided for @tactical.
-  ///
-  /// In en, this message translates to:
-  /// **'Tactical'**
-  String get tactical;
-
-  /// No description provided for @tacticalName.
-  ///
-  /// In en, this message translates to:
-  /// **'Tactical Name'**
-  String get tacticalName;
-
-  /// No description provided for @tacticalImageRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Tactical image is required'**
-  String get tacticalImageRequired;
-
-  /// No description provided for @tacticalNameRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Tactical name is required'**
-  String get tacticalNameRequired;
-
-  /// No description provided for @totalPlayers.
-  ///
-  /// In en, this message translates to:
-  /// **'Total Players/Team'**
-  String get totalPlayers;
-
-  /// No description provided for @totalPlayersRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Total players are required'**
-  String get totalPlayersRequired;
-
-  /// No description provided for @theme.
-  ///
-  /// In en, this message translates to:
-  /// **'Theme'**
-  String get theme;
-
-  /// No description provided for @title.
-  ///
-  /// In en, this message translates to:
-  /// **'Title'**
-  String get title;
-
-  /// No description provided for @updateClub.
-  ///
-  /// In en, this message translates to:
-  /// **'Update Club'**
-  String get updateClub;
-
-  /// No description provided for @updateProfile.
-  ///
-  /// In en, this message translates to:
-  /// **'Update Profile'**
-  String get updateProfile;
-
-  /// No description provided for @upload.
-  ///
-  /// In en, this message translates to:
-  /// **'Upload'**
-  String get upload;
-
-  /// No description provided for @user.
-  ///
-  /// In en, this message translates to:
-  /// **'User'**
-  String get user;
+  /// **'Email is required'**
+  String get emailIsRequired;
 
   /// No description provided for @username.
   ///
@@ -1307,35 +233,1025 @@ abstract class Strings {
   /// **'Username'**
   String get username;
 
-  /// No description provided for @usernameCantContainUppercase.
+  /// No description provided for @enterYourUsername.
   ///
   /// In en, this message translates to:
-  /// **'Username cannot contain capital letters'**
-  String get usernameCantContainUppercase;
+  /// **'Enter your username'**
+  String get enterYourUsername;
 
-  /// No description provided for @usernameNotAvailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Username is not available'**
-  String get usernameNotAvailable;
-
-  /// No description provided for @usernameRequired.
+  /// No description provided for @usernameIsRequired.
   ///
   /// In en, this message translates to:
   /// **'Username is required'**
-  String get usernameRequired;
+  String get usernameIsRequired;
 
-  /// No description provided for @volleyBall.
+  /// No description provided for @usernameCannotContainSpace.
   ///
   /// In en, this message translates to:
-  /// **'Volleyball'**
-  String get volleyBall;
+  /// **'Username cannot contain space'**
+  String get usernameCannotContainSpace;
 
-  /// No description provided for @warning.
+  /// No description provided for @usernameIsAlreadyTaken.
   ///
   /// In en, this message translates to:
-  /// **'Warning'**
-  String get warning;
+  /// **'Username is already taken'**
+  String get usernameIsAlreadyTaken;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// No description provided for @enterYourPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone'**
+  String get enterYourPhone;
+
+  /// No description provided for @phoneIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone is required'**
+  String get phoneIsRequired;
+
+  /// No description provided for @invalidPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid phone number'**
+  String get invalidPhoneNumber;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @enterYourGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your gender'**
+  String get enterYourGender;
+
+  /// No description provided for @genderIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender is required'**
+  String get genderIsRequired;
+
+  /// No description provided for @invalidOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid option'**
+  String get invalidOption;
+
+  /// No description provided for @signUpSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up success'**
+  String get signUpSuccess;
+
+  /// No description provided for @accountCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created'**
+  String get accountCreated;
+
+  /// No description provided for @signUpFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up failed'**
+  String get signUpFailed;
+
+  /// No description provided for @alreadyHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get alreadyHaveAnAccount;
+
+  /// No description provided for @userWithNameNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'User with name {name} not found'**
+  String userWithNameNotFound(String name);
+
+  /// No description provided for @addMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Member'**
+  String get addMember;
+
+  /// No description provided for @wouldYouLikeToAddUsernameMemberToClubName.
+  ///
+  /// In en, this message translates to:
+  /// **'Would you like to add {username} member to {clubName}?'**
+  String wouldYouLikeToAddUsernameMemberToClubName(String username, String clubName);
+
+  /// No description provided for @role.
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get role;
+
+  /// No description provided for @selectRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Select role'**
+  String get selectRole;
+
+  /// No description provided for @roleIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Role is required'**
+  String get roleIsRequired;
+
+  /// No description provided for @yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get no;
+
+  /// No description provided for @program.
+  ///
+  /// In en, this message translates to:
+  /// **'Program'**
+  String get program;
+
+  /// No description provided for @tactics.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactics'**
+  String get tactics;
+
+  /// No description provided for @exam.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam'**
+  String get exam;
+
+  /// No description provided for @assets.
+  ///
+  /// In en, this message translates to:
+  /// **'Assets'**
+  String get assets;
+
+  /// No description provided for @detail.
+  ///
+  /// In en, this message translates to:
+  /// **'Detail'**
+  String get detail;
+
+  /// No description provided for @clubDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{clubName} Detail'**
+  String clubDetail(String? clubName);
+
+  /// No description provided for @overview.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get overview;
+
+  /// No description provided for @clubOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'{clubName} Overview'**
+  String clubOverview(String? clubName);
+
+  /// No description provided for @clubMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'{clubName} Members'**
+  String clubMembers(String? clubName);
+
+  /// No description provided for @kickMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Kick Member'**
+  String get kickMember;
+
+  /// No description provided for @areYouSureYouWantToKickUsernameFromClubName.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to kick {username} from {clubName}?'**
+  String areYouSureYouWantToKickUsernameFromClubName(String username, String? clubName);
+
+  /// No description provided for @clubAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'{clubName} About'**
+  String clubAbout(String? clubName);
+
+  /// No description provided for @leaveClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave Club'**
+  String get leaveClub;
+
+  /// No description provided for @areYouSureYouWantToLeaveClubName.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to leave {clubName}?'**
+  String areYouSureYouWantToLeaveClubName(String? clubName);
+
+  /// No description provided for @newClub.
+  ///
+  /// In en, this message translates to:
+  /// **'New Club'**
+  String get newClub;
+
+  /// No description provided for @myClubs.
+  ///
+  /// In en, this message translates to:
+  /// **'My Clubs'**
+  String get myClubs;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
+
+  /// No description provided for @club.
+  ///
+  /// In en, this message translates to:
+  /// **'Club'**
+  String get club;
+
+  /// No description provided for @clubWithNameNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Club with name {name} not found'**
+  String clubWithNameNotFound(String name);
+
+  /// No description provided for @notJoinedAnyClubs.
+  ///
+  /// In en, this message translates to:
+  /// **'Not joined any clubs'**
+  String get notJoinedAnyClubs;
+
+  /// No description provided for @reload.
+  ///
+  /// In en, this message translates to:
+  /// **'Reload'**
+  String get reload;
+
+  /// No description provided for @createClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Club'**
+  String get createClub;
+
+  /// No description provided for @updateClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Update {clubName}'**
+  String updateClub(String? clubName);
+
+  /// No description provided for @clubName.
+  ///
+  /// In en, this message translates to:
+  /// **'Club Name'**
+  String get clubName;
+
+  /// No description provided for @enterClubName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter club name'**
+  String get enterClubName;
+
+  /// No description provided for @clubNameIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Club name is required'**
+  String get clubNameIsRequired;
+
+  /// No description provided for @clubDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Club Description'**
+  String get clubDescription;
+
+  /// No description provided for @enterClubDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter club description'**
+  String get enterClubDescription;
+
+  /// No description provided for @clubDescriptionIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Club description is required'**
+  String get clubDescriptionIsRequired;
+
+  /// No description provided for @sportType.
+  ///
+  /// In en, this message translates to:
+  /// **'Sport Type'**
+  String get sportType;
+
+  /// No description provided for @selectSportType.
+  ///
+  /// In en, this message translates to:
+  /// **'Select sport type'**
+  String get selectSportType;
+
+  /// No description provided for @sportTypeIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Sport type is required'**
+  String get sportTypeIsRequired;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
+  /// No description provided for @updateSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Update success'**
+  String get updateSuccess;
+
+  /// No description provided for @createSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Create success'**
+  String get createSuccess;
+
+  /// No description provided for @deleteSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete success'**
+  String get deleteSuccess;
+
+  /// No description provided for @clubUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Club updated successfully'**
+  String get clubUpdatedSuccessfully;
+
+  /// No description provided for @clubCreatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Club created successfully'**
+  String get clubCreatedSuccessfully;
+
+  /// No description provided for @updateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Update failed'**
+  String get updateFailed;
+
+  /// No description provided for @createFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Create failed'**
+  String get createFailed;
+
+  /// No description provided for @deleteFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete failed'**
+  String get deleteFailed;
+
+  /// No description provided for @clubImageIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Club image is required'**
+  String get clubImageIsRequired;
+
+  /// No description provided for @obsecuredState.
+  ///
+  /// In en, this message translates to:
+  /// **'Obsecured State'**
+  String get obsecuredState;
+
+  /// No description provided for @pleaseRestartTheApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Please restart the app'**
+  String get pleaseRestartTheApp;
+
+  /// No description provided for @pleaseTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Please try again'**
+  String get pleaseTryAgain;
+
+  /// No description provided for @members.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get members;
+
+  /// No description provided for @programs.
+  ///
+  /// In en, this message translates to:
+  /// **'Programs'**
+  String get programs;
+
+  /// No description provided for @exams.
+  ///
+  /// In en, this message translates to:
+  /// **'Exams'**
+  String get exams;
+
+  /// No description provided for @athlete.
+  ///
+  /// In en, this message translates to:
+  /// **'Athlete'**
+  String get athlete;
+
+  /// No description provided for @evaluator.
+  ///
+  /// In en, this message translates to:
+  /// **'Evaluator'**
+  String get evaluator;
+
+  /// No description provided for @evaluations.
+  ///
+  /// In en, this message translates to:
+  /// **'Evaluations'**
+  String get evaluations;
+
+  /// No description provided for @evaluationDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Evaluation Detail'**
+  String get evaluationDetail;
+
+  /// No description provided for @evaluationDeletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'{athleteName} evaluation deleted successfully'**
+  String evaluationDeletedSuccessfully(String? athleteName);
+
+  /// No description provided for @deleteEvaluation.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Evaluation'**
+  String get deleteEvaluation;
+
+  /// No description provided for @areYouSureYouWantToDeleteAthleteNameEvaluation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete {athleteName} evaluation?'**
+  String areYouSureYouWantToDeleteAthleteNameEvaluation(String? athleteName);
+
+  /// No description provided for @newEvaluation.
+  ///
+  /// In en, this message translates to:
+  /// **'New Evaluation'**
+  String get newEvaluation;
+
+  /// No description provided for @evaluation.
+  ///
+  /// In en, this message translates to:
+  /// **'Evaluation'**
+  String get evaluation;
+
+  /// No description provided for @clubDoesntHaveAnyEvaluation.
+  ///
+  /// In en, this message translates to:
+  /// **'{clubName} doesn\'t have any evaluation yet'**
+  String clubDoesntHaveAnyEvaluation(String? clubName);
+
+  /// No description provided for @athleteDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Athlete Detail'**
+  String get athleteDetail;
+
+  /// No description provided for @evaluationCreatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Evaluation created successfully'**
+  String get evaluationCreatedSuccessfully;
+
+  /// No description provided for @evaluationUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Evaluation updated successfully'**
+  String get evaluationUpdatedSuccessfully;
+
+  /// No description provided for @createEvaluationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Create evaluation failed'**
+  String get createEvaluationFailed;
+
+  /// No description provided for @updateEvaluationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Update evaluation failed'**
+  String get updateEvaluationFailed;
+
+  /// No description provided for @createEvaluation.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Evaluation'**
+  String get createEvaluation;
+
+  /// No description provided for @updateEvaluation.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Evaluation'**
+  String get updateEvaluation;
+
+  /// No description provided for @examDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Detail'**
+  String get examDetail;
+
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @questions.
+  ///
+  /// In en, this message translates to:
+  /// **'Questions'**
+  String get questions;
+
+  /// No description provided for @type.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get type;
+
+  /// No description provided for @evaluate.
+  ///
+  /// In en, this message translates to:
+  /// **'Evaluate'**
+  String get evaluate;
+
+  /// No description provided for @athleteEvaluation.
+  ///
+  /// In en, this message translates to:
+  /// **'Athlete Evaluation'**
+  String get athleteEvaluation;
+
+  /// No description provided for @examDeletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam deleted successfully'**
+  String get examDeletedSuccessfully;
+
+  /// No description provided for @deleteExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Exam'**
+  String get deleteExam;
+
+  /// No description provided for @deleteExamFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete exam failed'**
+  String get deleteExamFailed;
+
+  /// No description provided for @areYouSureYouWantToDeleteExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete {examName} exam?'**
+  String areYouSureYouWantToDeleteExam(String? examName);
+
+  /// No description provided for @newExam.
+  ///
+  /// In en, this message translates to:
+  /// **'New Exam'**
+  String get newExam;
+
+  /// No description provided for @clubDoesntHaveAnyExam.
+  ///
+  /// In en, this message translates to:
+  /// **'{clubName} doesn\'t have any exam yet'**
+  String clubDoesntHaveAnyExam(String? clubName);
+
+  /// No description provided for @examTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Title'**
+  String get examTitle;
+
+  /// No description provided for @enterExamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter exam title'**
+  String get enterExamTitle;
+
+  /// No description provided for @examTitleIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam title is required'**
+  String get examTitleIsRequired;
+
+  /// No description provided for @examDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Description'**
+  String get examDescription;
+
+  /// No description provided for @enterExamDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter exam description'**
+  String get enterExamDescription;
+
+  /// No description provided for @examDescriptionIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam description is required'**
+  String get examDescriptionIsRequired;
+
+  /// No description provided for @updateExamFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Update exam failed'**
+  String get updateExamFailed;
+
+  /// No description provided for @createExamFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Create exam failed'**
+  String get createExamFailed;
+
+  /// No description provided for @updateExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Exam'**
+  String get updateExam;
+
+  /// No description provided for @createExam.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Exam'**
+  String get createExam;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @programDeletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Program deleted successfully'**
+  String get programDeletedSuccessfully;
+
+  /// No description provided for @deleteProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Program'**
+  String get deleteProgram;
+
+  /// No description provided for @deleteProgramFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete program failed'**
+  String get deleteProgramFailed;
+
+  /// No description provided for @areYouSureYouWantToDeleteProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete {programName} program?'**
+  String areYouSureYouWantToDeleteProgram(String? programName);
+
+  /// No description provided for @programDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Program Detail'**
+  String get programDetail;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @startDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Date'**
+  String get startDate;
+
+  /// No description provided for @endDate.
+  ///
+  /// In en, this message translates to:
+  /// **'End Date'**
+  String get endDate;
+
+  /// No description provided for @exercises.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercises'**
+  String get exercises;
+
+  /// No description provided for @clubPrograms.
+  ///
+  /// In en, this message translates to:
+  /// **'{clubName} Programs'**
+  String clubPrograms(String? clubName);
+
+  /// No description provided for @newProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'New Program'**
+  String get newProgram;
+
+  /// No description provided for @calendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar'**
+  String get calendar;
+
+  /// No description provided for @clubDoesntHaveAnyProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'{clubName} doesn\'t have any program yet'**
+  String clubDoesntHaveAnyProgram(String? clubName);
+
+  /// No description provided for @createProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Program'**
+  String get createProgram;
+
+  /// No description provided for @updateProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Program'**
+  String get updateProgram;
+
+  /// No description provided for @programName.
+  ///
+  /// In en, this message translates to:
+  /// **'Program Name'**
+  String get programName;
+
+  /// No description provided for @enterProgramName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter program name'**
+  String get enterProgramName;
+
+  /// No description provided for @programNameIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Program name is required'**
+  String get programNameIsRequired;
+
+  /// No description provided for @programStartDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Program Start Date'**
+  String get programStartDate;
+
+  /// No description provided for @enterProgramStartDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter program start date'**
+  String get enterProgramStartDate;
+
+  /// No description provided for @programEndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Program End Date'**
+  String get programEndDate;
+
+  /// No description provided for @enterProgramEndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter program end date'**
+  String get enterProgramEndDate;
+
+  /// No description provided for @programStartDateIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Program start date is required'**
+  String get programStartDateIsRequired;
+
+  /// No description provided for @programEndDateIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Program end date is required'**
+  String get programEndDateIsRequired;
+
+  /// No description provided for @programImageIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Program image is required'**
+  String get programImageIsRequired;
+
+  /// No description provided for @programUpdateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Program update failed'**
+  String get programUpdateFailed;
+
+  /// No description provided for @programCreateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Program create failed'**
+  String get programCreateFailed;
+
+  /// No description provided for @selectProgramAsset.
+  ///
+  /// In en, this message translates to:
+  /// **'Select program asset'**
+  String get selectProgramAsset;
+
+  /// No description provided for @examQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'{examName} Questions'**
+  String examQuestions(String? examName);
+
+  /// No description provided for @question.
+  ///
+  /// In en, this message translates to:
+  /// **'Question'**
+  String get question;
+
+  /// No description provided for @questionSavedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Question saved successfully'**
+  String get questionSavedSuccessfully;
+
+  /// No description provided for @questionSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Question save failed'**
+  String get questionSaveFailed;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @addQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Question'**
+  String get addQuestion;
+
+  /// No description provided for @loadingQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading questions...'**
+  String get loadingQuestions;
+
+  /// No description provided for @enterQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter question'**
+  String get enterQuestion;
+
+  /// No description provided for @questionIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Question is required'**
+  String get questionIsRequired;
+
+  /// No description provided for @questionType.
+  ///
+  /// In en, this message translates to:
+  /// **'Question Type'**
+  String get questionType;
+
+  /// No description provided for @selectQuestionType.
+  ///
+  /// In en, this message translates to:
+  /// **'Select question type'**
+  String get selectQuestionType;
+
+  /// No description provided for @questionTypeIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Question type is required'**
+  String get questionTypeIsRequired;
+
+  /// No description provided for @strategyNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Strategy not found'**
+  String get strategyNotFound;
+
+  /// No description provided for @newTactic.
+  ///
+  /// In en, this message translates to:
+  /// **'New Tactic'**
+  String get newTactic;
+
+  /// No description provided for @tactic.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactic'**
+  String get tactic;
+
+  /// No description provided for @clubDoesntHaveAnyTactic.
+  ///
+  /// In en, this message translates to:
+  /// **'{clubName} doesn\'t have any tactic yet'**
+  String clubDoesntHaveAnyTactic(String? clubName);
+
+  /// No description provided for @tacticalStrategyUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactical strategy updated successfully'**
+  String get tacticalStrategyUpdatedSuccessfully;
+
+  /// No description provided for @failedToUpdateTacticalStrategy.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update tactical strategy'**
+  String get failedToUpdateTacticalStrategy;
+
+  /// No description provided for @saveStrategy.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Strategy'**
+  String get saveStrategy;
+
+  /// No description provided for @createTactical.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Tactical'**
+  String get createTactical;
+
+  /// No description provided for @updateTactical.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Tactical'**
+  String get updateTactical;
+
+  /// No description provided for @tacticalName.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactical Name'**
+  String get tacticalName;
+
+  /// No description provided for @enterTacticalName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter tactical name'**
+  String get enterTacticalName;
+
+  /// No description provided for @tacticalNameIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactical name is required'**
+  String get tacticalNameIsRequired;
+
+  /// No description provided for @tacticalDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactical Description'**
+  String get tacticalDescription;
+
+  /// No description provided for @enterTacticalDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter tactical description'**
+  String get enterTacticalDescription;
+
+  /// No description provided for @tacticalDescriptionIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactical description is required'**
+  String get tacticalDescriptionIsRequired;
+
+  /// No description provided for @tacticalBoard.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactical Board'**
+  String get tacticalBoard;
+
+  /// No description provided for @tacticalBoardIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Tactical board is required'**
+  String get tacticalBoardIsRequired;
 
   /// No description provided for @width.
   ///
@@ -1343,17 +1259,197 @@ abstract class Strings {
   /// **'Width (m)'**
   String get width;
 
-  /// No description provided for @widthRequired.
+  /// No description provided for @height.
+  ///
+  /// In en, this message translates to:
+  /// **'Height (m)'**
+  String get height;
+
+  /// No description provided for @enterWidth.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter width'**
+  String get enterWidth;
+
+  /// No description provided for @widthIsRequired.
   ///
   /// In en, this message translates to:
   /// **'Width is required'**
-  String get widthRequired;
+  String get widthIsRequired;
 
-  /// No description provided for @welcomeBack.
+  /// No description provided for @enterHeight.
   ///
   /// In en, this message translates to:
-  /// **'Welcome back'**
-  String get welcomeBack;
+  /// **'Enter height'**
+  String get enterHeight;
+
+  /// No description provided for @heightIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Height is required'**
+  String get heightIsRequired;
+
+  /// No description provided for @totalPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Players / Team'**
+  String get totalPlayers;
+
+  /// No description provided for @enterTotalPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter total players'**
+  String get enterTotalPlayers;
+
+  /// No description provided for @totalPlayersIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Total players is required'**
+  String get totalPlayersIsRequired;
+
+  /// No description provided for @preferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get preferences;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @updateProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Profile'**
+  String get updateProfile;
+
+  /// No description provided for @signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get signOut;
+
+  /// No description provided for @noImageSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'No image selected'**
+  String get noImageSelected;
+
+  /// No description provided for @usernameSuggestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Username Suggestions'**
+  String get usernameSuggestions;
+
+  /// No description provided for @passwordMustBeAtLeast8Characters.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters'**
+  String get passwordMustBeAtLeast8Characters;
+
+  /// No description provided for @bornPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Born Place'**
+  String get bornPlace;
+
+  /// No description provided for @enterYourBornPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your born place'**
+  String get enterYourBornPlace;
+
+  /// No description provided for @bornPlaceIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Born place is required'**
+  String get bornPlaceIsRequired;
+
+  /// No description provided for @bornDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Born Date'**
+  String get bornDate;
+
+  /// No description provided for @enterYourBornDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your born date'**
+  String get enterYourBornDate;
+
+  /// No description provided for @bornDateIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Born date is required'**
+  String get bornDateIsRequired;
+
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get address;
+
+  /// No description provided for @enterYourAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your address'**
+  String get enterYourAddress;
+
+  /// No description provided for @addressIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Address is required'**
+  String get addressIsRequired;
+
+  /// No description provided for @religion.
+  ///
+  /// In en, this message translates to:
+  /// **'Religion'**
+  String get religion;
+
+  /// No description provided for @enterYourReligion.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your religion'**
+  String get enterYourReligion;
+
+  /// No description provided for @religionIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Religion is required'**
+  String get religionIsRequired;
+
+  /// No description provided for @expertise.
+  ///
+  /// In en, this message translates to:
+  /// **'Expertise'**
+  String get expertise;
+
+  /// No description provided for @enterYourExpertise.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your expertise'**
+  String get enterYourExpertise;
+
+  /// No description provided for @expertiseIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expertise is required'**
+  String get expertiseIsRequired;
+
+  /// No description provided for @updateProfileFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Update profile failed'**
+  String get updateProfileFailed;
+
+  /// No description provided for @profileUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated successfully'**
+  String get profileUpdatedSuccessfully;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

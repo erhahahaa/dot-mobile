@@ -12,49 +12,55 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final GetMeUsecase _getMe;
   final FindUsernamesUsecase _findUsernames;
   final GetFcmTokenUsecase _getFcmToken;
+  final UpdateProfileUsecase _updateProfile;
 
   UserBloc(
     this._getMe,
     this._findUsernames,
     this._getFcmToken,
-  ) : super(const _Initial()) {
-    on<_Initialize>(_onInitialize);
-    on<_CheckUsername>(_onCheckUsername);
-    on<_Clear>(_onClear);
+    this._updateProfile,
+  ) : super(const UserStateInitial()) {
+    on<UserEventInitialize>(_onInitialize);
+    on<UserEventCheckUsername>(_onCheckUsername);
+    on<UserEventClear>(_onClear);
+    on<UserEventUpdateProfile>(_onUpdateProfile);
   }
 
   void _onClear(
-    _Clear event,
+    UserEventClear event,
     Emitter<UserState> emit,
   ) {
-    emit(const _Initial());
+    emit(const UserStateInitial());
   }
 
   Future<void> _onInitialize(
-    _Initialize event,
+    UserEventInitialize event,
     Emitter<UserState> emit,
   ) async {
     final res = await Future.wait([_getMe.call(), _getFcmToken.call()]);
-    
+
     res[0].fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(UserStateFailure(failure.message)),
       (user) {
         if (user is! UserModel) return;
         final success = state.maybeWhen(
-          success: (user, fcmToken) => _Success(user: user, fcmToken: fcmToken),
-          orElse: () => _Success(user: user, fcmToken: ''),
+          success: (user, fcmToken) =>
+              UserStateSuccess(user: user, fcmToken: fcmToken),
+          orElse: () => UserStateSuccess(user: user, fcmToken: ''),
         );
         emit(success);
       },
     );
 
     res[1].fold(
-      (failure) => emit(_Failure(failure.message)),
+      (failure) => emit(UserStateFailure(failure.message)),
       (fcmToken) {
         if (fcmToken is! String) return;
         final success = state.maybeWhen(
-          success: (user, fcmToken) => _Success(user: user, fcmToken: fcmToken),
-          orElse: () => _Success(user: const UserModel(), fcmToken: fcmToken),
+          success: (user, fcmToken) =>
+              UserStateSuccess(user: user, fcmToken: fcmToken),
+          orElse: () =>
+              UserStateSuccess(user: const UserModel(), fcmToken: fcmToken),
         );
         emit(success);
       },
@@ -62,14 +68,26 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   Future<void> _onCheckUsername(
-    _CheckUsername event,
+    UserEventCheckUsername event,
     Emitter<UserState> emit,
   ) async {
-    emit(const _Loading());
+    emit(const UserStateLoading());
     final usernames = await _findUsernames.call(event.params);
     usernames.fold(
-      (failure) => emit(_Failure(failure.message)),
-      (usernames) => emit(_FoundUsernames(usernames)),
+      (failure) => emit(UserStateFailure(failure.message)),
+      (usernames) => emit(UserStateFoundUsernames(usernames)),
+    );
+  }
+
+  Future<void> _onUpdateProfile(
+    UserEventUpdateProfile event,
+    Emitter<UserState> emit,
+  ) async {
+    emit(const UserStateLoading());
+    final res = await _updateProfile.call(event.params);
+    res.fold(
+      (failure) => emit(UserStateFailure(failure.message)),
+      (user) => emit(UserStateSuccess(user: user)),
     );
   }
 }

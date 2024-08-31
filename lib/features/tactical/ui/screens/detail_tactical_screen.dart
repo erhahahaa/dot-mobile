@@ -141,8 +141,9 @@ class _DetailTacticalScreenState extends State<DetailTacticalScreen> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TitleSmall('Name: ${selectedItem?.name}'),
-                  TitleSmall('Description: ${selectedItem?.description}'),
+                  TitleSmall('${context.str?.name}: ${selectedItem?.name}'),
+                  TitleSmall(
+                      '${context.str?.description}: ${selectedItem?.description}'),
                 ],
               );
             },
@@ -168,7 +169,9 @@ class _DetailTacticalScreenState extends State<DetailTacticalScreen> {
           final strategy = state.whenOrNull(
             success: (_, strategy, __) => strategy,
           );
-          if (strategy == null) return const ErrorAlert('Strategy not found.');
+          if (strategy == null) {
+            return ErrorAlert(context.str?.strategyNotFound);
+          }
           return Stack(
             children: [
               Container(
@@ -184,10 +187,10 @@ class _DetailTacticalScreenState extends State<DetailTacticalScreen> {
                       success: (_, __, selectedItem) {
                         final media = selectedItem?.media;
                         if (selectedItem == null || media == null) {
-                          return const Column(
+                          return Column(
                             children: [
-                              ErrorAlert('App obfuscation error,'),
-                              ErrorAlert('please restart the app.')
+                              ErrorAlert(context.str?.obsecuredState),
+                              ErrorAlert(context.str?.pleaseRestartTheApp)
                             ],
                           );
                         }

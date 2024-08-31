@@ -40,7 +40,6 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
   late GlobalKey<FormState> _formKey;
 
   DateTime? _start, _end;
-  // File? image;
   String? _imageError;
 
   MediaModel? _media;
@@ -79,8 +78,6 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
 
   @override
   void dispose() {
-    // image?.delete();
-    // image = null;
     _nameController.dispose();
     _startDateController.dispose();
     _endDateController.dispose();
@@ -98,7 +95,9 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
     return Parent(
       appBar: AppBar(
         title: TitleMedium(
-          _program == null ? 'Create New Program' : 'Edit ${_program?.name}',
+          _program == null
+              ? context.str?.createProgram
+              : context.str?.updateProgram,
         ),
       ),
       body: Padding(
@@ -115,29 +114,6 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Center(
-            //   child: ImagePickerWidget(
-            //     firstChild: imageFallback(
-            //       image,
-            //       _program?.media?.url,
-            //     ),
-            //     onTap: () async {
-            //       final res =
-            //           await sl<ImagePickerService>().getImageFromGallery();
-            //       res.fold(
-            //         (l) {
-            //           imageError = l.message;
-            //         },
-            //         (r) {
-            //           setState(() {
-            //             imageError = null;
-            //             image = r;
-            //           });
-            //         },
-            //       );
-            //     },
-            //   ),
-            // ),
             Stack(
               children: [
                 Container(
@@ -197,24 +173,24 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
               hintText: context.str?.enterProgramName,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.programNameRequired;
+                  return context.str?.programNameIsRequired;
                 }
                 return null;
               },
             ),
             Gap(12.h),
-            FormLabel(context.str?.startDate),
+            FormLabel(context.str?.programStartDate),
             FormInput(
               controller: _startDateController,
               currentFocus: _startDateFocusNode,
               nextFocus: _endDateFocusNode,
               textInputAction: TextInputAction.done,
-              hintText: context.str?.enterStartDate,
+              hintText: context.str?.enterProgramStartDate,
               readOnly: true,
               trailing: const Icon(MoonIcons.time_calendar_add_24_regular),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.startDateRequired;
+                  return context.str?.programStartDateIsRequired;
                 }
                 return null;
               },
@@ -234,17 +210,17 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
               },
             ),
             Gap(12.h),
-            FormLabel(context.str?.endDate),
+            FormLabel(context.str?.programEndDate),
             FormInput(
               controller: _endDateController,
               currentFocus: _endDateFocusNode,
               textInputAction: TextInputAction.done,
-              hintText: context.str?.enterEndDate,
+              hintText: context.str?.enterProgramEndDate,
               readOnly: true,
               trailing: const Icon(MoonIcons.time_calendar_add_24_regular),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.endDateRequired;
+                  return context.str?.programEndDateIsRequired;
                 }
                 return null;
               },
@@ -278,7 +254,9 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
                   },
                   failure: (message) {
                     context.errorToast(
-                      title: 'Error',
+                      title: _program == null
+                          ? context.str?.programCreateFailed
+                          : context.str?.programUpdateFailed,
                       description: message,
                     );
                   },
@@ -287,11 +265,13 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
               builder: (context, state) {
                 return FormButton(
                   isLoading: state is BlocStateWriteLoading,
-                  text: _program == null ? 'Create Program' : 'Update Program',
+                  text: _program == null
+                      ? context.str?.createProgram
+                      : context.str?.updateProgram,
                   onTap: () {
                     if (_media == null && _program == null) {
                       setState(() {
-                        _imageError = context.str?.programImageRequired;
+                        _imageError = context.str?.programImageIsRequired;
                       });
                       return;
                     } else {
@@ -308,8 +288,8 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
 
                       if (club == null) {
                         return context.errorToast(
-                          title: 'App state obfuscated',
-                          description: 'Please restart the app',
+                          title: context.str?.obsecuredState,
+                          description: context.str?.pleaseRestartTheApp,
                         );
                       }
 
@@ -379,7 +359,7 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
                     Row(
                       children: [
                         Gap(16.w),
-                        const BodyLarge('Select Program Asset'),
+                        BodyLarge(context.str?.selectProgramAsset),
                         const Spacer(),
                         IconButton(
                           icon: const Icon(Icons.close),

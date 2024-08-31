@@ -29,15 +29,11 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
   ExamModel? _exam;
   late TextEditingController _titleController;
   late TextEditingController _descriptionController;
-  // late TextEditingController _dueAtController;
 
   late FocusNode _titleFocusNode;
   late FocusNode _descriptionFocusNode;
-  // late FocusNode _dueAtFocusNode;
 
   late GlobalKey<FormState> _formKey;
-
-  // DateTime? _dueAt;
 
   @override
   void initState() {
@@ -47,15 +43,9 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
     );
     _titleController = TextEditingController(text: _exam?.title);
     _descriptionController = TextEditingController(text: _exam?.description);
-    // _dueAtController = TextEditingController(
-    //   text: _exam?.dueAt?.toDayMonthYear(),
-    // );
-
-    // _dueAt = _exam?.dueAt;
 
     _titleFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
-    // _dueAtFocusNode = FocusNode();
 
     _formKey = GlobalKey<FormState>();
 
@@ -66,11 +56,9 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
   void dispose() {
     _titleController.dispose();
     _descriptionController.dispose();
-    // _dueAtController.dispose();
 
     _titleFocusNode.dispose();
     _descriptionFocusNode.dispose();
-    // _dueAtFocusNode.dispose();
 
     _formKey.currentState?.dispose();
     super.dispose();
@@ -107,55 +95,26 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
               hintText: context.str?.enterExamTitle,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.examTitleRequired;
+                  return context.str?.examTitleIsRequired;
                 }
                 return null;
               },
             ),
             Gap(12.h),
-            FormLabel(context.str?.description),
+            FormLabel(context.str?.examDescription),
             FormInput(
               controller: _descriptionController,
               currentFocus: _descriptionFocusNode,
               textInputAction: TextInputAction.done,
-              hintText: context.str?.enterDescription,
+              hintText: context.str?.enterExamDescription,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.descriptionRequired;
+                  return context.str?.examDescriptionIsRequired;
                 }
                 return null;
               },
             ),
             Gap(12.h),
-            // FormLabel(context.str?.dueAt),
-            // FormInput(
-            //   controller: _dueAtController,
-            //   currentFocus: _dueAtFocusNode,
-            //   textInputAction: TextInputAction.done,
-            //   hintText: context.str?.enterDueAt,
-            //   readOnly: true,
-            //   validator: (String? value) {
-            //     if (value == null || value.isEmpty || _dueAt == null) {
-            //       return context.str?.dueAtRequired ?? 'Due date is required';
-            //     }
-            //     return null;
-            //   },
-            //   onTap: () async {
-            //     final res = await showDatePicker(
-            //       context: context,
-            //       firstDate: DateTime(1970),
-            //       lastDate: DateTime(2030),
-            //       initialDate: _dueAt,
-            //     );
-            //     if (res != null) {
-            //       setState(() {
-            //         _dueAt = res;
-            //         _dueAtController.text = res.toDayMonthYear();
-            //       });
-            //     }
-            //   },
-            // ),
-            // Gap(12.h),
             BlocConsumer<ExamBlocWrite, BlocStateWrite<ExamModel>>(
               listener: (context, state) {
                 state.whenOrNull(
@@ -170,7 +129,9 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
                   },
                   failure: (message) {
                     context.errorToast(
-                      title: 'Error',
+                      title: _exam == null
+                          ? context.str?.createExamFailed
+                          : context.str?.updateExamFailed,
                       description: message,
                     );
                   },
@@ -179,7 +140,9 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
               builder: (context, state) {
                 return FormButton(
                   isLoading: state is BlocStateWriteLoading,
-                  text: _exam == null ? 'Create Exam' : 'Update Exam',
+                  text: _exam == null
+                      ? context.str?.createExam
+                      : context.str?.updateExam,
                   onTap: () {
                     if (_formKey.currentState?.validate() ?? false) {
                       final clubBloc = context.read<ClubBlocRead>();
@@ -189,8 +152,8 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
 
                       if (club == null) {
                         return context.errorToast(
-                          title: 'App state obfuscated',
-                          description: 'Please restart the app',
+                          title: context.str?.obsecuredState,
+                          description: context.str?.pleaseRestartTheApp,
                         );
                       }
 

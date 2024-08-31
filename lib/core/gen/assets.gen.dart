@@ -142,9 +142,6 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/exam
   $AssetsImagesExamGen get exam => const $AssetsImagesExamGen();
 
-  /// Directory path: assets/images/flags
-  $AssetsImagesFlagsGen get flags => const $AssetsImagesFlagsGen();
-
   /// Directory path: assets/images/hero
   $AssetsImagesHeroGen get hero => const $AssetsImagesHeroGen();
 
@@ -184,28 +181,6 @@ class $AssetsImagesExamGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [examLogo];
-}
-
-class $AssetsImagesFlagsGen {
-  const $AssetsImagesFlagsGen();
-
-  /// File path: assets/images/flags/cn.svg
-  SvgGenImage get cn => const SvgGenImage('assets/images/flags/cn.svg');
-
-  /// File path: assets/images/flags/es.svg
-  SvgGenImage get es => const SvgGenImage('assets/images/flags/es.svg');
-
-  /// File path: assets/images/flags/hi.svg
-  SvgGenImage get hi => const SvgGenImage('assets/images/flags/hi.svg');
-
-  /// File path: assets/images/flags/id.svg
-  SvgGenImage get id => const SvgGenImage('assets/images/flags/id.svg');
-
-  /// File path: assets/images/flags/us.svg
-  SvgGenImage get us => const SvgGenImage('assets/images/flags/us.svg');
-
-  /// List of all assets
-  List<SvgGenImage> get values => [cn, es, hi, id, us];
 }
 
 class $AssetsImagesHeroGen {

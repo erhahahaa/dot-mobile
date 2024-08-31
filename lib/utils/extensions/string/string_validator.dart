@@ -46,4 +46,9 @@ extension StringValidator on String {
     final upperCaseRegex = RegExp(r'[A-Z]');
     return upperCaseRegex.hasMatch(this);
   }
+
+  bool get isContainSpace {
+    final spaceRegex = RegExp(r'\s');
+    return spaceRegex.hasMatch(this);
+  }
 }

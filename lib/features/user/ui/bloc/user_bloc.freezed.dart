@@ -21,6 +21,7 @@ mixin _$UserEvent {
     required TResult Function() initialize,
     required TResult Function(FindUsernamesParams params) checkUsername,
     required TResult Function() clear,
+    required TResult Function(UpdateProfileParams params) updateProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$UserEvent {
     TResult? Function()? initialize,
     TResult? Function(FindUsernamesParams params)? checkUsername,
     TResult? Function()? clear,
+    TResult? Function(UpdateProfileParams params)? updateProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,28 +37,32 @@ mixin _$UserEvent {
     TResult Function()? initialize,
     TResult Function(FindUsernamesParams params)? checkUsername,
     TResult Function()? clear,
+    TResult Function(UpdateProfileParams params)? updateProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_CheckUsername value) checkUsername,
-    required TResult Function(_Clear value) clear,
+    required TResult Function(UserEventInitialize value) initialize,
+    required TResult Function(UserEventCheckUsername value) checkUsername,
+    required TResult Function(UserEventClear value) clear,
+    required TResult Function(UserEventUpdateProfile value) updateProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_CheckUsername value)? checkUsername,
-    TResult? Function(_Clear value)? clear,
+    TResult? Function(UserEventInitialize value)? initialize,
+    TResult? Function(UserEventCheckUsername value)? checkUsername,
+    TResult? Function(UserEventClear value)? clear,
+    TResult? Function(UserEventUpdateProfile value)? updateProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_CheckUsername value)? checkUsername,
-    TResult Function(_Clear value)? clear,
+    TResult Function(UserEventInitialize value)? initialize,
+    TResult Function(UserEventCheckUsername value)? checkUsername,
+    TResult Function(UserEventClear value)? clear,
+    TResult Function(UserEventUpdateProfile value)? updateProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -83,18 +89,18 @@ class _$UserEventCopyWithImpl<$Res, $Val extends UserEvent>
 }
 
 /// @nodoc
-abstract class _$$InitializeImplCopyWith<$Res> {
-  factory _$$InitializeImplCopyWith(
-          _$InitializeImpl value, $Res Function(_$InitializeImpl) then) =
-      __$$InitializeImplCopyWithImpl<$Res>;
+abstract class _$$UserEventInitializeImplCopyWith<$Res> {
+  factory _$$UserEventInitializeImplCopyWith(_$UserEventInitializeImpl value,
+          $Res Function(_$UserEventInitializeImpl) then) =
+      __$$UserEventInitializeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitializeImplCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$InitializeImpl>
-    implements _$$InitializeImplCopyWith<$Res> {
-  __$$InitializeImplCopyWithImpl(
-      _$InitializeImpl _value, $Res Function(_$InitializeImpl) _then)
+class __$$UserEventInitializeImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserEventInitializeImpl>
+    implements _$$UserEventInitializeImplCopyWith<$Res> {
+  __$$UserEventInitializeImplCopyWithImpl(_$UserEventInitializeImpl _value,
+      $Res Function(_$UserEventInitializeImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserEvent
@@ -103,8 +109,8 @@ class __$$InitializeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitializeImpl implements _Initialize {
-  const _$InitializeImpl();
+class _$UserEventInitializeImpl implements UserEventInitialize {
+  const _$UserEventInitializeImpl();
 
   @override
   String toString() {
@@ -114,7 +120,8 @@ class _$InitializeImpl implements _Initialize {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitializeImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$UserEventInitializeImpl);
   }
 
   @override
@@ -126,6 +133,7 @@ class _$InitializeImpl implements _Initialize {
     required TResult Function() initialize,
     required TResult Function(FindUsernamesParams params) checkUsername,
     required TResult Function() clear,
+    required TResult Function(UpdateProfileParams params) updateProfile,
   }) {
     return initialize();
   }
@@ -136,6 +144,7 @@ class _$InitializeImpl implements _Initialize {
     TResult? Function()? initialize,
     TResult? Function(FindUsernamesParams params)? checkUsername,
     TResult? Function()? clear,
+    TResult? Function(UpdateProfileParams params)? updateProfile,
   }) {
     return initialize?.call();
   }
@@ -146,6 +155,7 @@ class _$InitializeImpl implements _Initialize {
     TResult Function()? initialize,
     TResult Function(FindUsernamesParams params)? checkUsername,
     TResult Function()? clear,
+    TResult Function(UpdateProfileParams params)? updateProfile,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -157,9 +167,10 @@ class _$InitializeImpl implements _Initialize {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_CheckUsername value) checkUsername,
-    required TResult Function(_Clear value) clear,
+    required TResult Function(UserEventInitialize value) initialize,
+    required TResult Function(UserEventCheckUsername value) checkUsername,
+    required TResult Function(UserEventClear value) clear,
+    required TResult Function(UserEventUpdateProfile value) updateProfile,
   }) {
     return initialize(this);
   }
@@ -167,9 +178,10 @@ class _$InitializeImpl implements _Initialize {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_CheckUsername value)? checkUsername,
-    TResult? Function(_Clear value)? clear,
+    TResult? Function(UserEventInitialize value)? initialize,
+    TResult? Function(UserEventCheckUsername value)? checkUsername,
+    TResult? Function(UserEventClear value)? clear,
+    TResult? Function(UserEventUpdateProfile value)? updateProfile,
   }) {
     return initialize?.call(this);
   }
@@ -177,9 +189,10 @@ class _$InitializeImpl implements _Initialize {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_CheckUsername value)? checkUsername,
-    TResult Function(_Clear value)? clear,
+    TResult Function(UserEventInitialize value)? initialize,
+    TResult Function(UserEventCheckUsername value)? checkUsername,
+    TResult Function(UserEventClear value)? clear,
+    TResult Function(UserEventUpdateProfile value)? updateProfile,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -189,15 +202,16 @@ class _$InitializeImpl implements _Initialize {
   }
 }
 
-abstract class _Initialize implements UserEvent {
-  const factory _Initialize() = _$InitializeImpl;
+abstract class UserEventInitialize implements UserEvent {
+  const factory UserEventInitialize() = _$UserEventInitializeImpl;
 }
 
 /// @nodoc
-abstract class _$$CheckUsernameImplCopyWith<$Res> {
-  factory _$$CheckUsernameImplCopyWith(
-          _$CheckUsernameImpl value, $Res Function(_$CheckUsernameImpl) then) =
-      __$$CheckUsernameImplCopyWithImpl<$Res>;
+abstract class _$$UserEventCheckUsernameImplCopyWith<$Res> {
+  factory _$$UserEventCheckUsernameImplCopyWith(
+          _$UserEventCheckUsernameImpl value,
+          $Res Function(_$UserEventCheckUsernameImpl) then) =
+      __$$UserEventCheckUsernameImplCopyWithImpl<$Res>;
   @useResult
   $Res call({FindUsernamesParams params});
 
@@ -205,11 +219,12 @@ abstract class _$$CheckUsernameImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CheckUsernameImplCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$CheckUsernameImpl>
-    implements _$$CheckUsernameImplCopyWith<$Res> {
-  __$$CheckUsernameImplCopyWithImpl(
-      _$CheckUsernameImpl _value, $Res Function(_$CheckUsernameImpl) _then)
+class __$$UserEventCheckUsernameImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserEventCheckUsernameImpl>
+    implements _$$UserEventCheckUsernameImplCopyWith<$Res> {
+  __$$UserEventCheckUsernameImplCopyWithImpl(
+      _$UserEventCheckUsernameImpl _value,
+      $Res Function(_$UserEventCheckUsernameImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserEvent
@@ -219,7 +234,7 @@ class __$$CheckUsernameImplCopyWithImpl<$Res>
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$CheckUsernameImpl(
+    return _then(_$UserEventCheckUsernameImpl(
       null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -240,8 +255,8 @@ class __$$CheckUsernameImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CheckUsernameImpl implements _CheckUsername {
-  const _$CheckUsernameImpl(this.params);
+class _$UserEventCheckUsernameImpl implements UserEventCheckUsername {
+  const _$UserEventCheckUsernameImpl(this.params);
 
   @override
   final FindUsernamesParams params;
@@ -255,7 +270,7 @@ class _$CheckUsernameImpl implements _CheckUsername {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CheckUsernameImpl &&
+            other is _$UserEventCheckUsernameImpl &&
             (identical(other.params, params) || other.params == params));
   }
 
@@ -267,8 +282,9 @@ class _$CheckUsernameImpl implements _CheckUsername {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CheckUsernameImplCopyWith<_$CheckUsernameImpl> get copyWith =>
-      __$$CheckUsernameImplCopyWithImpl<_$CheckUsernameImpl>(this, _$identity);
+  _$$UserEventCheckUsernameImplCopyWith<_$UserEventCheckUsernameImpl>
+      get copyWith => __$$UserEventCheckUsernameImplCopyWithImpl<
+          _$UserEventCheckUsernameImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -276,6 +292,7 @@ class _$CheckUsernameImpl implements _CheckUsername {
     required TResult Function() initialize,
     required TResult Function(FindUsernamesParams params) checkUsername,
     required TResult Function() clear,
+    required TResult Function(UpdateProfileParams params) updateProfile,
   }) {
     return checkUsername(params);
   }
@@ -286,6 +303,7 @@ class _$CheckUsernameImpl implements _CheckUsername {
     TResult? Function()? initialize,
     TResult? Function(FindUsernamesParams params)? checkUsername,
     TResult? Function()? clear,
+    TResult? Function(UpdateProfileParams params)? updateProfile,
   }) {
     return checkUsername?.call(params);
   }
@@ -296,6 +314,7 @@ class _$CheckUsernameImpl implements _CheckUsername {
     TResult Function()? initialize,
     TResult Function(FindUsernamesParams params)? checkUsername,
     TResult Function()? clear,
+    TResult Function(UpdateProfileParams params)? updateProfile,
     required TResult orElse(),
   }) {
     if (checkUsername != null) {
@@ -307,9 +326,10 @@ class _$CheckUsernameImpl implements _CheckUsername {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_CheckUsername value) checkUsername,
-    required TResult Function(_Clear value) clear,
+    required TResult Function(UserEventInitialize value) initialize,
+    required TResult Function(UserEventCheckUsername value) checkUsername,
+    required TResult Function(UserEventClear value) clear,
+    required TResult Function(UserEventUpdateProfile value) updateProfile,
   }) {
     return checkUsername(this);
   }
@@ -317,9 +337,10 @@ class _$CheckUsernameImpl implements _CheckUsername {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_CheckUsername value)? checkUsername,
-    TResult? Function(_Clear value)? clear,
+    TResult? Function(UserEventInitialize value)? initialize,
+    TResult? Function(UserEventCheckUsername value)? checkUsername,
+    TResult? Function(UserEventClear value)? clear,
+    TResult? Function(UserEventUpdateProfile value)? updateProfile,
   }) {
     return checkUsername?.call(this);
   }
@@ -327,9 +348,10 @@ class _$CheckUsernameImpl implements _CheckUsername {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_CheckUsername value)? checkUsername,
-    TResult Function(_Clear value)? clear,
+    TResult Function(UserEventInitialize value)? initialize,
+    TResult Function(UserEventCheckUsername value)? checkUsername,
+    TResult Function(UserEventClear value)? clear,
+    TResult Function(UserEventUpdateProfile value)? updateProfile,
     required TResult orElse(),
   }) {
     if (checkUsername != null) {
@@ -339,32 +361,32 @@ class _$CheckUsernameImpl implements _CheckUsername {
   }
 }
 
-abstract class _CheckUsername implements UserEvent {
-  const factory _CheckUsername(final FindUsernamesParams params) =
-      _$CheckUsernameImpl;
+abstract class UserEventCheckUsername implements UserEvent {
+  const factory UserEventCheckUsername(final FindUsernamesParams params) =
+      _$UserEventCheckUsernameImpl;
 
   FindUsernamesParams get params;
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CheckUsernameImplCopyWith<_$CheckUsernameImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$UserEventCheckUsernameImplCopyWith<_$UserEventCheckUsernameImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ClearImplCopyWith<$Res> {
-  factory _$$ClearImplCopyWith(
-          _$ClearImpl value, $Res Function(_$ClearImpl) then) =
-      __$$ClearImplCopyWithImpl<$Res>;
+abstract class _$$UserEventClearImplCopyWith<$Res> {
+  factory _$$UserEventClearImplCopyWith(_$UserEventClearImpl value,
+          $Res Function(_$UserEventClearImpl) then) =
+      __$$UserEventClearImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearImplCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$ClearImpl>
-    implements _$$ClearImplCopyWith<$Res> {
-  __$$ClearImplCopyWithImpl(
-      _$ClearImpl _value, $Res Function(_$ClearImpl) _then)
+class __$$UserEventClearImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserEventClearImpl>
+    implements _$$UserEventClearImplCopyWith<$Res> {
+  __$$UserEventClearImplCopyWithImpl(
+      _$UserEventClearImpl _value, $Res Function(_$UserEventClearImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserEvent
@@ -373,8 +395,8 @@ class __$$ClearImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ClearImpl implements _Clear {
-  const _$ClearImpl();
+class _$UserEventClearImpl implements UserEventClear {
+  const _$UserEventClearImpl();
 
   @override
   String toString() {
@@ -384,7 +406,7 @@ class _$ClearImpl implements _Clear {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearImpl);
+        (other.runtimeType == runtimeType && other is _$UserEventClearImpl);
   }
 
   @override
@@ -396,6 +418,7 @@ class _$ClearImpl implements _Clear {
     required TResult Function() initialize,
     required TResult Function(FindUsernamesParams params) checkUsername,
     required TResult Function() clear,
+    required TResult Function(UpdateProfileParams params) updateProfile,
   }) {
     return clear();
   }
@@ -406,6 +429,7 @@ class _$ClearImpl implements _Clear {
     TResult? Function()? initialize,
     TResult? Function(FindUsernamesParams params)? checkUsername,
     TResult? Function()? clear,
+    TResult? Function(UpdateProfileParams params)? updateProfile,
   }) {
     return clear?.call();
   }
@@ -416,6 +440,7 @@ class _$ClearImpl implements _Clear {
     TResult Function()? initialize,
     TResult Function(FindUsernamesParams params)? checkUsername,
     TResult Function()? clear,
+    TResult Function(UpdateProfileParams params)? updateProfile,
     required TResult orElse(),
   }) {
     if (clear != null) {
@@ -427,9 +452,10 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_CheckUsername value) checkUsername,
-    required TResult Function(_Clear value) clear,
+    required TResult Function(UserEventInitialize value) initialize,
+    required TResult Function(UserEventCheckUsername value) checkUsername,
+    required TResult Function(UserEventClear value) clear,
+    required TResult Function(UserEventUpdateProfile value) updateProfile,
   }) {
     return clear(this);
   }
@@ -437,9 +463,10 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_CheckUsername value)? checkUsername,
-    TResult? Function(_Clear value)? clear,
+    TResult? Function(UserEventInitialize value)? initialize,
+    TResult? Function(UserEventCheckUsername value)? checkUsername,
+    TResult? Function(UserEventClear value)? clear,
+    TResult? Function(UserEventUpdateProfile value)? updateProfile,
   }) {
     return clear?.call(this);
   }
@@ -447,9 +474,10 @@ class _$ClearImpl implements _Clear {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_CheckUsername value)? checkUsername,
-    TResult Function(_Clear value)? clear,
+    TResult Function(UserEventInitialize value)? initialize,
+    TResult Function(UserEventCheckUsername value)? checkUsername,
+    TResult Function(UserEventClear value)? clear,
+    TResult Function(UserEventUpdateProfile value)? updateProfile,
     required TResult orElse(),
   }) {
     if (clear != null) {
@@ -459,8 +487,176 @@ class _$ClearImpl implements _Clear {
   }
 }
 
-abstract class _Clear implements UserEvent {
-  const factory _Clear() = _$ClearImpl;
+abstract class UserEventClear implements UserEvent {
+  const factory UserEventClear() = _$UserEventClearImpl;
+}
+
+/// @nodoc
+abstract class _$$UserEventUpdateProfileImplCopyWith<$Res> {
+  factory _$$UserEventUpdateProfileImplCopyWith(
+          _$UserEventUpdateProfileImpl value,
+          $Res Function(_$UserEventUpdateProfileImpl) then) =
+      __$$UserEventUpdateProfileImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UpdateProfileParams params});
+
+  $UpdateProfileParamsCopyWith<$Res> get params;
+}
+
+/// @nodoc
+class __$$UserEventUpdateProfileImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserEventUpdateProfileImpl>
+    implements _$$UserEventUpdateProfileImplCopyWith<$Res> {
+  __$$UserEventUpdateProfileImplCopyWithImpl(
+      _$UserEventUpdateProfileImpl _value,
+      $Res Function(_$UserEventUpdateProfileImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? params = null,
+  }) {
+    return _then(_$UserEventUpdateProfileImpl(
+      null == params
+          ? _value.params
+          : params // ignore: cast_nullable_to_non_nullable
+              as UpdateProfileParams,
+    ));
+  }
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UpdateProfileParamsCopyWith<$Res> get params {
+    return $UpdateProfileParamsCopyWith<$Res>(_value.params, (value) {
+      return _then(_value.copyWith(params: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$UserEventUpdateProfileImpl implements UserEventUpdateProfile {
+  const _$UserEventUpdateProfileImpl(this.params);
+
+  @override
+  final UpdateProfileParams params;
+
+  @override
+  String toString() {
+    return 'UserEvent.updateProfile(params: $params)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserEventUpdateProfileImpl &&
+            (identical(other.params, params) || other.params == params));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, params);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserEventUpdateProfileImplCopyWith<_$UserEventUpdateProfileImpl>
+      get copyWith => __$$UserEventUpdateProfileImplCopyWithImpl<
+          _$UserEventUpdateProfileImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
+    required TResult Function(FindUsernamesParams params) checkUsername,
+    required TResult Function() clear,
+    required TResult Function(UpdateProfileParams params) updateProfile,
+  }) {
+    return updateProfile(params);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
+    TResult? Function(FindUsernamesParams params)? checkUsername,
+    TResult? Function()? clear,
+    TResult? Function(UpdateProfileParams params)? updateProfile,
+  }) {
+    return updateProfile?.call(params);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
+    TResult Function(FindUsernamesParams params)? checkUsername,
+    TResult Function()? clear,
+    TResult Function(UpdateProfileParams params)? updateProfile,
+    required TResult orElse(),
+  }) {
+    if (updateProfile != null) {
+      return updateProfile(params);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserEventInitialize value) initialize,
+    required TResult Function(UserEventCheckUsername value) checkUsername,
+    required TResult Function(UserEventClear value) clear,
+    required TResult Function(UserEventUpdateProfile value) updateProfile,
+  }) {
+    return updateProfile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserEventInitialize value)? initialize,
+    TResult? Function(UserEventCheckUsername value)? checkUsername,
+    TResult? Function(UserEventClear value)? clear,
+    TResult? Function(UserEventUpdateProfile value)? updateProfile,
+  }) {
+    return updateProfile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserEventInitialize value)? initialize,
+    TResult Function(UserEventCheckUsername value)? checkUsername,
+    TResult Function(UserEventClear value)? clear,
+    TResult Function(UserEventUpdateProfile value)? updateProfile,
+    required TResult orElse(),
+  }) {
+    if (updateProfile != null) {
+      return updateProfile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserEventUpdateProfile implements UserEvent {
+  const factory UserEventUpdateProfile(final UpdateProfileParams params) =
+      _$UserEventUpdateProfileImpl;
+
+  UpdateProfileParams get params;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserEventUpdateProfileImplCopyWith<_$UserEventUpdateProfileImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -495,29 +691,29 @@ mixin _$UserState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_FoundUsernames value) foundUsernames,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(UserStateInitial value) initial,
+    required TResult Function(UserStateLoading value) loading,
+    required TResult Function(UserStateFoundUsernames value) foundUsernames,
+    required TResult Function(UserStateSuccess value) success,
+    required TResult Function(UserStateFailure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_FoundUsernames value)? foundUsernames,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(UserStateInitial value)? initial,
+    TResult? Function(UserStateLoading value)? loading,
+    TResult? Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult? Function(UserStateSuccess value)? success,
+    TResult? Function(UserStateFailure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_FoundUsernames value)? foundUsernames,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
+    TResult Function(UserStateInitial value)? initial,
+    TResult Function(UserStateLoading value)? loading,
+    TResult Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult Function(UserStateSuccess value)? success,
+    TResult Function(UserStateFailure value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -544,18 +740,18 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$UserStateInitialImplCopyWith<$Res> {
+  factory _$$UserStateInitialImplCopyWith(_$UserStateInitialImpl value,
+          $Res Function(_$UserStateInitialImpl) then) =
+      __$$UserStateInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$UserStateInitialImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserStateInitialImpl>
+    implements _$$UserStateInitialImplCopyWith<$Res> {
+  __$$UserStateInitialImplCopyWithImpl(_$UserStateInitialImpl _value,
+      $Res Function(_$UserStateInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserState
@@ -564,8 +760,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$UserStateInitialImpl implements UserStateInitial {
+  const _$UserStateInitialImpl();
 
   @override
   String toString() {
@@ -575,7 +771,7 @@ class _$InitialImpl implements _Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$UserStateInitialImpl);
   }
 
   @override
@@ -624,11 +820,11 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_FoundUsernames value) foundUsernames,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(UserStateInitial value) initial,
+    required TResult Function(UserStateLoading value) loading,
+    required TResult Function(UserStateFoundUsernames value) foundUsernames,
+    required TResult Function(UserStateSuccess value) success,
+    required TResult Function(UserStateFailure value) failure,
   }) {
     return initial(this);
   }
@@ -636,11 +832,11 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_FoundUsernames value)? foundUsernames,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(UserStateInitial value)? initial,
+    TResult? Function(UserStateLoading value)? loading,
+    TResult? Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult? Function(UserStateSuccess value)? success,
+    TResult? Function(UserStateFailure value)? failure,
   }) {
     return initial?.call(this);
   }
@@ -648,11 +844,11 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_FoundUsernames value)? foundUsernames,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
+    TResult Function(UserStateInitial value)? initial,
+    TResult Function(UserStateLoading value)? loading,
+    TResult Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult Function(UserStateSuccess value)? success,
+    TResult Function(UserStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -662,23 +858,23 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements UserState {
-  const factory _Initial() = _$InitialImpl;
+abstract class UserStateInitial implements UserState {
+  const factory UserStateInitial() = _$UserStateInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$UserStateLoadingImplCopyWith<$Res> {
+  factory _$$UserStateLoadingImplCopyWith(_$UserStateLoadingImpl value,
+          $Res Function(_$UserStateLoadingImpl) then) =
+      __$$UserStateLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$UserStateLoadingImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserStateLoadingImpl>
+    implements _$$UserStateLoadingImplCopyWith<$Res> {
+  __$$UserStateLoadingImplCopyWithImpl(_$UserStateLoadingImpl _value,
+      $Res Function(_$UserStateLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserState
@@ -687,8 +883,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$UserStateLoadingImpl implements UserStateLoading {
+  const _$UserStateLoadingImpl();
 
   @override
   String toString() {
@@ -698,7 +894,7 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType && other is _$UserStateLoadingImpl);
   }
 
   @override
@@ -747,11 +943,11 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_FoundUsernames value) foundUsernames,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(UserStateInitial value) initial,
+    required TResult Function(UserStateLoading value) loading,
+    required TResult Function(UserStateFoundUsernames value) foundUsernames,
+    required TResult Function(UserStateSuccess value) success,
+    required TResult Function(UserStateFailure value) failure,
   }) {
     return loading(this);
   }
@@ -759,11 +955,11 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_FoundUsernames value)? foundUsernames,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(UserStateInitial value)? initial,
+    TResult? Function(UserStateLoading value)? loading,
+    TResult? Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult? Function(UserStateSuccess value)? success,
+    TResult? Function(UserStateFailure value)? failure,
   }) {
     return loading?.call(this);
   }
@@ -771,11 +967,11 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_FoundUsernames value)? foundUsernames,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
+    TResult Function(UserStateInitial value)? initial,
+    TResult Function(UserStateLoading value)? loading,
+    TResult Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult Function(UserStateSuccess value)? success,
+    TResult Function(UserStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -785,25 +981,27 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements UserState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class UserStateLoading implements UserState {
+  const factory UserStateLoading() = _$UserStateLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$FoundUsernamesImplCopyWith<$Res> {
-  factory _$$FoundUsernamesImplCopyWith(_$FoundUsernamesImpl value,
-          $Res Function(_$FoundUsernamesImpl) then) =
-      __$$FoundUsernamesImplCopyWithImpl<$Res>;
+abstract class _$$UserStateFoundUsernamesImplCopyWith<$Res> {
+  factory _$$UserStateFoundUsernamesImplCopyWith(
+          _$UserStateFoundUsernamesImpl value,
+          $Res Function(_$UserStateFoundUsernamesImpl) then) =
+      __$$UserStateFoundUsernamesImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<String> usernames});
 }
 
 /// @nodoc
-class __$$FoundUsernamesImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$FoundUsernamesImpl>
-    implements _$$FoundUsernamesImplCopyWith<$Res> {
-  __$$FoundUsernamesImplCopyWithImpl(
-      _$FoundUsernamesImpl _value, $Res Function(_$FoundUsernamesImpl) _then)
+class __$$UserStateFoundUsernamesImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserStateFoundUsernamesImpl>
+    implements _$$UserStateFoundUsernamesImplCopyWith<$Res> {
+  __$$UserStateFoundUsernamesImplCopyWithImpl(
+      _$UserStateFoundUsernamesImpl _value,
+      $Res Function(_$UserStateFoundUsernamesImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserState
@@ -813,7 +1011,7 @@ class __$$FoundUsernamesImplCopyWithImpl<$Res>
   $Res call({
     Object? usernames = null,
   }) {
-    return _then(_$FoundUsernamesImpl(
+    return _then(_$UserStateFoundUsernamesImpl(
       null == usernames
           ? _value._usernames
           : usernames // ignore: cast_nullable_to_non_nullable
@@ -824,8 +1022,8 @@ class __$$FoundUsernamesImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FoundUsernamesImpl implements _FoundUsernames {
-  const _$FoundUsernamesImpl(final List<String> usernames)
+class _$UserStateFoundUsernamesImpl implements UserStateFoundUsernames {
+  const _$UserStateFoundUsernamesImpl(final List<String> usernames)
       : _usernames = usernames;
 
   final List<String> _usernames;
@@ -845,7 +1043,7 @@ class _$FoundUsernamesImpl implements _FoundUsernames {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FoundUsernamesImpl &&
+            other is _$UserStateFoundUsernamesImpl &&
             const DeepCollectionEquality()
                 .equals(other._usernames, _usernames));
   }
@@ -859,9 +1057,9 @@ class _$FoundUsernamesImpl implements _FoundUsernames {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FoundUsernamesImplCopyWith<_$FoundUsernamesImpl> get copyWith =>
-      __$$FoundUsernamesImplCopyWithImpl<_$FoundUsernamesImpl>(
-          this, _$identity);
+  _$$UserStateFoundUsernamesImplCopyWith<_$UserStateFoundUsernamesImpl>
+      get copyWith => __$$UserStateFoundUsernamesImplCopyWithImpl<
+          _$UserStateFoundUsernamesImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -906,11 +1104,11 @@ class _$FoundUsernamesImpl implements _FoundUsernames {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_FoundUsernames value) foundUsernames,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(UserStateInitial value) initial,
+    required TResult Function(UserStateLoading value) loading,
+    required TResult Function(UserStateFoundUsernames value) foundUsernames,
+    required TResult Function(UserStateSuccess value) success,
+    required TResult Function(UserStateFailure value) failure,
   }) {
     return foundUsernames(this);
   }
@@ -918,11 +1116,11 @@ class _$FoundUsernamesImpl implements _FoundUsernames {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_FoundUsernames value)? foundUsernames,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(UserStateInitial value)? initial,
+    TResult? Function(UserStateLoading value)? loading,
+    TResult? Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult? Function(UserStateSuccess value)? success,
+    TResult? Function(UserStateFailure value)? failure,
   }) {
     return foundUsernames?.call(this);
   }
@@ -930,11 +1128,11 @@ class _$FoundUsernamesImpl implements _FoundUsernames {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_FoundUsernames value)? foundUsernames,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
+    TResult Function(UserStateInitial value)? initial,
+    TResult Function(UserStateLoading value)? loading,
+    TResult Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult Function(UserStateSuccess value)? success,
+    TResult Function(UserStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (foundUsernames != null) {
@@ -944,24 +1142,24 @@ class _$FoundUsernamesImpl implements _FoundUsernames {
   }
 }
 
-abstract class _FoundUsernames implements UserState {
-  const factory _FoundUsernames(final List<String> usernames) =
-      _$FoundUsernamesImpl;
+abstract class UserStateFoundUsernames implements UserState {
+  const factory UserStateFoundUsernames(final List<String> usernames) =
+      _$UserStateFoundUsernamesImpl;
 
   List<String> get usernames;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FoundUsernamesImplCopyWith<_$FoundUsernamesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$UserStateFoundUsernamesImplCopyWith<_$UserStateFoundUsernamesImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+abstract class _$$UserStateSuccessImplCopyWith<$Res> {
+  factory _$$UserStateSuccessImplCopyWith(_$UserStateSuccessImpl value,
+          $Res Function(_$UserStateSuccessImpl) then) =
+      __$$UserStateSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserModel user, String fcmToken});
 
@@ -969,11 +1167,11 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+class __$$UserStateSuccessImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserStateSuccessImpl>
+    implements _$$UserStateSuccessImplCopyWith<$Res> {
+  __$$UserStateSuccessImplCopyWithImpl(_$UserStateSuccessImpl _value,
+      $Res Function(_$UserStateSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserState
@@ -984,7 +1182,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
     Object? user = null,
     Object? fcmToken = null,
   }) {
-    return _then(_$SuccessImpl(
+    return _then(_$UserStateSuccessImpl(
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -1009,8 +1207,9 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({this.user = const UserModel(), this.fcmToken = ''});
+class _$UserStateSuccessImpl implements UserStateSuccess {
+  const _$UserStateSuccessImpl(
+      {this.user = const UserModel(), this.fcmToken = ''});
 
   @override
   @JsonKey()
@@ -1028,7 +1227,7 @@ class _$SuccessImpl implements _Success {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
+            other is _$UserStateSuccessImpl &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.fcmToken, fcmToken) ||
                 other.fcmToken == fcmToken));
@@ -1042,8 +1241,9 @@ class _$SuccessImpl implements _Success {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$UserStateSuccessImplCopyWith<_$UserStateSuccessImpl> get copyWith =>
+      __$$UserStateSuccessImplCopyWithImpl<_$UserStateSuccessImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1088,11 +1288,11 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_FoundUsernames value) foundUsernames,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(UserStateInitial value) initial,
+    required TResult Function(UserStateLoading value) loading,
+    required TResult Function(UserStateFoundUsernames value) foundUsernames,
+    required TResult Function(UserStateSuccess value) success,
+    required TResult Function(UserStateFailure value) failure,
   }) {
     return success(this);
   }
@@ -1100,11 +1300,11 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_FoundUsernames value)? foundUsernames,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(UserStateInitial value)? initial,
+    TResult? Function(UserStateLoading value)? loading,
+    TResult? Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult? Function(UserStateSuccess value)? success,
+    TResult? Function(UserStateFailure value)? failure,
   }) {
     return success?.call(this);
   }
@@ -1112,11 +1312,11 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_FoundUsernames value)? foundUsernames,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
+    TResult Function(UserStateInitial value)? initial,
+    TResult Function(UserStateLoading value)? loading,
+    TResult Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult Function(UserStateSuccess value)? success,
+    TResult Function(UserStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1126,9 +1326,9 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements UserState {
-  const factory _Success({final UserModel user, final String fcmToken}) =
-      _$SuccessImpl;
+abstract class UserStateSuccess implements UserState {
+  const factory UserStateSuccess(
+      {final UserModel user, final String fcmToken}) = _$UserStateSuccessImpl;
 
   UserModel get user;
   String get fcmToken;
@@ -1136,25 +1336,25 @@ abstract class _Success implements UserState {
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$UserStateSuccessImplCopyWith<_$UserStateSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
+abstract class _$$UserStateFailureImplCopyWith<$Res> {
+  factory _$$UserStateFailureImplCopyWith(_$UserStateFailureImpl value,
+          $Res Function(_$UserStateFailureImpl) then) =
+      __$$UserStateFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
+class __$$UserStateFailureImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserStateFailureImpl>
+    implements _$$UserStateFailureImplCopyWith<$Res> {
+  __$$UserStateFailureImplCopyWithImpl(_$UserStateFailureImpl _value,
+      $Res Function(_$UserStateFailureImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserState
@@ -1164,7 +1364,7 @@ class __$$FailureImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$FailureImpl(
+    return _then(_$UserStateFailureImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1175,8 +1375,8 @@ class __$$FailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl(this.message);
+class _$UserStateFailureImpl implements UserStateFailure {
+  const _$UserStateFailureImpl(this.message);
 
   @override
   final String message;
@@ -1190,7 +1390,7 @@ class _$FailureImpl implements _Failure {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
+            other is _$UserStateFailureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -1202,8 +1402,9 @@ class _$FailureImpl implements _Failure {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
+  _$$UserStateFailureImplCopyWith<_$UserStateFailureImpl> get copyWith =>
+      __$$UserStateFailureImplCopyWithImpl<_$UserStateFailureImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1248,11 +1449,11 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_FoundUsernames value) foundUsernames,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
+    required TResult Function(UserStateInitial value) initial,
+    required TResult Function(UserStateLoading value) loading,
+    required TResult Function(UserStateFoundUsernames value) foundUsernames,
+    required TResult Function(UserStateSuccess value) success,
+    required TResult Function(UserStateFailure value) failure,
   }) {
     return failure(this);
   }
@@ -1260,11 +1461,11 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_FoundUsernames value)? foundUsernames,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
+    TResult? Function(UserStateInitial value)? initial,
+    TResult? Function(UserStateLoading value)? loading,
+    TResult? Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult? Function(UserStateSuccess value)? success,
+    TResult? Function(UserStateFailure value)? failure,
   }) {
     return failure?.call(this);
   }
@@ -1272,11 +1473,11 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_FoundUsernames value)? foundUsernames,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
+    TResult Function(UserStateInitial value)? initial,
+    TResult Function(UserStateLoading value)? loading,
+    TResult Function(UserStateFoundUsernames value)? foundUsernames,
+    TResult Function(UserStateSuccess value)? success,
+    TResult Function(UserStateFailure value)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1286,14 +1487,14 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements UserState {
-  const factory _Failure(final String message) = _$FailureImpl;
+abstract class UserStateFailure implements UserState {
+  const factory UserStateFailure(final String message) = _$UserStateFailureImpl;
 
   String get message;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
+  _$$UserStateFailureImplCopyWith<_$UserStateFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

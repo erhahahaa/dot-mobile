@@ -96,7 +96,7 @@ class ListTacticalScreen extends StatelessWidget {
             );
           },
           icon: const Icon(Icons.add),
-          label: const Text('New Tactical'),
+          label: Text(context.str?.newTactic ?? 'New Tactic'),
         ),
       ],
     );
@@ -111,7 +111,7 @@ class ListTacticalScreen extends StatelessWidget {
           height: 32.h,
           controller: search,
           hintText:
-              '${context.str?.search} ${context.str?.tactical.toLowerCase()} ...',
+              '${context.str?.search} ${context.str?.tactic.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
             context.read<ClubBlocRead>().add(
@@ -155,7 +155,8 @@ class ListTacticalScreen extends StatelessWidget {
                     children: [
                       Flexible(
                         child: Text(
-                          '${club?.name} doesn\'t have tactical yet',
+                          context.str?.clubDoesntHaveAnyTactic(club?.name) ??
+                              '${club?.name} doesn\'t have tactical yet',
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -173,7 +174,7 @@ class ListTacticalScreen extends StatelessWidget {
                                       );
                                 }
                               : null,
-                          child: const Text("Reload"),
+                          child: Text(context.str?.reload ?? "Reload"),
                         ),
                       ),
                       Gap(16.h),

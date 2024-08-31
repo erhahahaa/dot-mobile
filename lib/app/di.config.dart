@@ -380,6 +380,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i897.GetExamByIdUsecase(gh<_i561.ExamRepository>()));
     gh.lazySingleton<_i939.UpdateExamUsecase>(
         () => _i939.UpdateExamUsecase(gh<_i561.ExamRepository>()));
+    gh.singleton<_i1050.UserPrefBloc>(() => _i1050.UserPrefBloc(
+          gh<_i438.GetUserPreferencesUsecase>(),
+          gh<_i438.SaveUserPreferencesUsecase>(),
+        ));
     gh.lazySingleton<_i463.GetExerciseByIdUsecase>(
         () => _i463.GetExerciseByIdUsecase(gh<_i561.ExerciseRepository>()));
     gh.lazySingleton<_i81.GetAllExerciseUsecase>(
@@ -390,6 +394,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i603.CreateExerciseBatchUsecase(gh<_i561.ExerciseRepository>()));
     gh.lazySingleton<_i538.UpdateExerciseBatchUsecase>(
         () => _i538.UpdateExerciseBatchUsecase(gh<_i561.ExerciseRepository>()));
+    gh.factory<_i792.UserBloc>(() => _i792.UserBloc(
+          gh<_i561.GetMeUsecase>(),
+          gh<_i561.FindUsernamesUsecase>(),
+          gh<_i561.GetFcmTokenUsecase>(),
+          gh<_i561.UpdateProfileUsecase>(),
+        ));
     gh.lazySingleton<_i640.GetEvaluationByIdUsecase>(
         () => _i640.GetEvaluationByIdUsecase(gh<_i561.EvaluationRepository>()));
     gh.lazySingleton<_i1068.GetAllEvaluationUsecase>(
@@ -420,8 +430,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i549.GetTacticalByIdUsecase(gh<_i561.TacticalRepository>()));
     gh.lazySingleton<_i567.UpdateTacticalUsecase>(
         () => _i567.UpdateTacticalUsecase(gh<_i561.TacticalRepository>()));
-    gh.singleton<_i1050.UserPrefBloc>(
-        () => _i1050.UserPrefBloc(gh<_i438.GetUserPreferencesUsecase>()));
     gh.lazySingleton<_i943.CreateProgramUsecase>(
         () => _i943.CreateProgramUsecase(gh<_i561.ProgramRepository>()));
     gh.lazySingleton<_i93.UpdateProgramUsecase>(
@@ -468,11 +476,6 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i674.TacticalBlocRead>(
         () => _i674.TacticalBlocRead(gh<_i561.GetAllTacticalUsecase>()));
-    gh.factory<_i792.UserBloc>(() => _i792.UserBloc(
-          gh<_i561.GetMeUsecase>(),
-          gh<_i561.FindUsernamesUsecase>(),
-          gh<_i561.GetFcmTokenUsecase>(),
-        ));
     gh.lazySingleton<_i838.ExamBlocRead>(
         () => _i838.ExamBlocRead(gh<_i561.GetAllExamUsecase>()));
     gh.lazySingleton<_i408.ProgramBlocRead>(

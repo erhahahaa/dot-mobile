@@ -1,213 +1,382 @@
 {
   "@@locale": "id",
-  "about": "Tentang",
-  "activeSession": "Aktif",
-  "add": "Tambah",
-  "addMember": "Tambah Anggota",
-  "address": "Alamat",
-  "addressRequired": "Alamat diperlukan",
-  "alert": "Peringatan",
-  "alreadyHaveAnAccount": "Sudah punya akun?",
-  "assets": "Aset",
-  "athlete": "Atlet",
-  "athletes": "Atlet",
-  "back": "Kembali",
-  "basketBall": "Bola Basket",
-  "bornDate": "Tanggal Lahir",
-  "bornDateRequired": "Tanggal lahir diperlukan",
-  "bornPlace": "Tempat Lahir",
-  "bornPlaceRequired": "Tempat lahir diperlukan",
-  "calendar": "Kalender",
-  "cancel": "Batal",
-  "club": "Klub",
-  "clubDashboard": "Dasbor Klub",
-  "clubDescription": "Deskripsi Klub",
-  "clubDescriptionRequired": "Deskripsi klub diperlukan",
-  "clubImageRequired": "Gambar klub diperlukan",
-  "clubManagement": "Manajemen Klub",
-  "clubName": "Nama Klub",
-  "clubNameRequired": "Nama klub diperlukan",
-  "clubs": "Klub",
-  "coach": "Pelatih",
-  "coaches": "Pelatih",
-  "create": "Buat",
-  "createClub": "Buat Klub",
-  "createExam": "Buat Ujian",
-  "createProgram": "Buat Program",
-  "dark": "Mode Gelap",
-  "delete": "Hapus",
-  "description": "Deskripsi",
-  "descriptionRequired": "Deskripsi diperlukan",
-  "detail": "Detail",
-  "dontHaveAnAccount": "Tidak punya akun?",
-  "download": "Unduh",
-  "dueAt": "Jatuh Tempo",
-  "dueAtRequired": "Jatuh tempo diperlukan",
-  "edit": "Edit",
-  "editClub": "Edit Klub",
-  "editExam": "Edit Ujian",
-  "editProfile": "Edit Profil",
-  "editProgram": "Edit Program",
-  "email": "Email",
-  "emailOrUsernameOrPhone": "Email / Nama Pengguna / Telepon",
-  "emailRequired": "Email diperlukan",
-  "emailUsernamePhoneAlreadyRegistered": "Email / Nama Pengguna / Telepon sudah terdaftar",
-  "emptyExam": "Ujian kosong",
-  "endDate": "Tanggal Selesai",
-  "endDateRequired": "Tanggal selesai diperlukan",
-  "english": "Inggris",
-  "enterClubDescription": "Masukkan deskripsi klub",
-  "enterClubName": "Masukkan nama klub",
-  "enterDescription": "Masukkan deskripsi",
-  "enterDueAt": "Masukkan jatuh tempo",
-  "enterEmailOrUsernameOrPhone": "Masukkan email / nama pengguna / telepon",
-  "enterEndDate": "Masukkan tanggal selesai",
-  "enterExamDescription": "Masukkan deskripsi ujian",
-  "enterExamTitle": "Masukkan judul ujian",
-  "enterHeight": "Masukkan tinggi papan",
-  "enterProgramName": "Masukkan nama program",
-  "enterStartDate": "Masukkan tanggal mulai",
-  "enterTacticalName": "Masukkan nama taktik",
-  "enterTotalPlayers": "Masukkan jumlah pemain",
-  "enterWidth": "Masukkan lebar papan",
-  "enterYourAddress": "Masukkan alamat Anda",
-  "enterYourBornDate": "Masukkan tanggal lahir Anda",
-  "enterYourBornPlace": "Masukkan tempat lahir Anda",
-  "enterYourEmail": "Masukkan email Anda",
-  "enterYourExpertise": "Masukkan keahlian Anda",
-  "enterYourGender": "Masukkan jenis kelamin Anda",
-  "enterYourName": "Masukkan nama Anda",
-  "enterYourPass": "Masukkan kata sandi Anda",
-  "enterYourPhoneNumber": "Masukkan nomor telepon Anda",
-  "enterYourReligion": "Masukkan agama Anda",
-  "enterYourUsername": "Masukkan nama pengguna Anda",
-  "error": "Kesalahan",
-  "errorCreateExercise": "Gagal membuat latihan",
-  "errorCreateQuestion": "Gagal membuat pertanyaan",
-  "errorUpdateExercise": "Gagal memperbarui latihan",
-  "errorUpdateQuestion": "Gagal memperbarui pertanyaan",
-  "establishedAt": "Ditetapkan pada :",
-  "exam": "Ujian",
-  "examTitle": "Judul Ujian",
-  "examDescription": "Deskripsi Ujian",
-  "exams": "Ujian",
-  "examImageRequired": "Foto ujian diperlukan",
-  "examTitleRequired": "Judul ujian diperlukan",
-  "exercise": "Latihan",
-  "expertise": "Keahlian",
-  "expertiseRequired": "Keahlian diperlukan",
-  "expiredSession": "Kedaluwarsa",
-  "failedCreateClub": "Gagal membuat klub",
-  "failedCreateExam": "Gagal membuat ujian",
-  "failedCreateExercises": "Gagal membuat latihan",
-  "failedCreateProgram": "Gagal membuat program",
-  "failedEditExam": "Gagal mengedit ujian",
-  "failedEditProgram": "Gagal mengedit program",
-  "failedLeaveClub": "Gagal meninggalkan klub",
-  "failedLogout": "Gagal keluar",
-  "failedSignIn": "Gagal masuk",
-  "failedSignUp": "Gagal mendaftar",
-  "failedUpdateClub": "Gagal memperbarui klub",
-  "failedUpdateExercises": "Gagal memperbarui latihan",
-  "failedUpdateProfile": "Gagal memperbarui profil",
-  "futsal": "Futsal",
-  "gender": "Jenis Kelamin",
-  "genderRequired": "Jenis kelamin diperlukan",
-  "general": "Umum",
-  "handBall": "Bola Tangan",
-  "height": "Tinggi (m)",
-  "heightRequired": "Tinggi diperlukan",
-  "hello": "Halo,",
-  "history": "Sejarah",
-  "identifierRequired": "Pengenal diperlukan",
-  "indonesian": "Indonesia",
-  "info": "Info",
-  "invalidEmail": "Email tidak valid",
-  "invalidPhoneNumber": "Nomor telepon tidak valid",
-  "invite": "Undang",
-  "join": "Bergabung",
-  "kick": "Keluar",
-  "language": "Bahasa",
-  "leave": "Keluar",
-  "leaveClub": "Keluar Klub",
-  "leaveClubConfirmation": "Apakah Anda yakin ingin meninggalkan klub ini?",
-  "leaveClubSuccess": "Berhasil meninggalkan klub",
-  "light": "Mode Terang",
-  "logout": "Keluar",
-  "management": "Manajemen",
-  "members": "Anggota",
-  "myClub": "Klub Saya",
-  "myClubTraining": "Klub Saya",
-  "name": "Nama",
-  "nameRequired": "Nama diperlukan",
-  "newExam": "Ujian Baru",
-  "newProgram": "Program Baru",
-  "noClubsFound": "Tidak ada klub yang ditemukan",
-  "noEvents": "Tidak ada acara",
-  "noExpertise": "Tidak ada keahlian",
-  "noMembersFound": "Tidak ada anggota yang ditemukan",
-  "noSpaceAllowed": "Tidak ada ruang yang diperbolehkan",
-  "noUsersFound": "Tidak ada pengguna yang ditemukan",
-  "or": "atau",
-  "overview": "Ikhtisar",
-  "pageNotFound": "Halaman tidak ditemukan",
-  "passRequired": "Kata sandi diperlukan",
-  "password": "Kata Sandi",
-  "phoneNumber": "Nomor Telepon",
-  "phoneNumberRequired": "Nomor telepon diperlukan",
-  "programName": "Nama Program",
-  "program": "Program",
-  "programDetail": "Detail Program",
-  "programImageRequired": "Foto program diperlukan",
-  "programNameRequired": "Nama program diperlukan",
-  "programs": "Program",
-  "question": "Pertanyaan",
-  "religion": "Agama",
-  "religionRequired": "Agama diperlukan",
-  "search": "Cari",
-  "session": "Sesi",
-  "settings": "Pengaturan",
   "signIn": "Masuk",
+  "emailOrUsernameOrPhone": "Email atau nama pengguna atau telepon",
+  "enterYourEmailOrUsernameOrPhone": "Masukkan email atau nama pengguna atau telepon Anda",
+  "emailOrUsernameOrPhoneIsRequired": "Email atau nama pengguna atau telepon diperlukan",
+  "invalidEmail": "Email tidak valid",
+  "invalidPhone": "Telepon tidak valid",
+  "noSpaceAllowed": "Tidak boleh ada spasi",
+  "password": "Kata Sandi",
+  "enterYourPassword": "Masukkan kata sandi Anda",
+  "passwordIsRequired": "Kata sandi diperlukan",
+  "signInSuccess": "Berhasil Masuk",
+  "welcomeBack": "Selamat datang kembali {name}",
+  "@welcomeBack": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "signInFailed": "Gagal Masuk",
+  "invalidCredentials": "Kredensial tidak valid",
+  "dontHaveAnAccount": "Belum punya akun?",
   "signUp": "Daftar",
-  "soccer": "Sepak Bola",
-  "sport": "Olahraga :",
-  "sportType": "Jenis Olahraga",
-  "startDate": "Tanggal Mulai",
-  "startDateRequired": "Tanggal mulai diperlukan",
-  "succesEditProgram": "Berhasil mengedit program",
-  "success": "Berhasil",
-  "successCreateClub": "Berhasil membuat klub",
-  "successCreateExercise": "Berhasil membuat latihan",
-  "successCreateExercises": "Berhasil membuat latihan",
-  "successCreateProgram": "Berhasil membuat program",
-  "successCreateQuestion": "Berhasil membuat pertanyaan",
-  "successLogout": "Berhasil keluar",
-  "successSignIn": "Berhasil masuk",
-  "successSignUp": "Berhasil mendaftar",
-  "successUpdateClub": "Berhasil memperbarui klub",
-  "successUpdateExercises": "Berhasil memperbarui latihan",
-  "successUpdateProfile": "Berhasil memperbarui profil",
-  "successUpdateQuestions": "Berhasil memperbarui pertanyaan",
-  "system": "Sistem",
-  "tactical": "Taktik",
-  "tacticalName": "Nama Taktik",
-  "tacticalImageRequired": "Foto taktik diperlukan",
-  "tacticalNameRequired": "Taktik diperlukan",
-  "totalPlayers": "Jumlah Pemain/Tim",
-  "totalPlayersRequired": "Jumlah pemain diperlukan",
-  "theme": "Tema",
-  "title": "Judul",
-  "updateClub": "Perbarui Klub",
-  "updateProfile": "Perbarui Profil",
-  "upload": "Unggah",
-  "user": "Pengguna",
+  "fullName": "Nama Lengkap",
+  "enterYourFullName": "Masukkan nama lengkap Anda",
+  "fullNameIsRequired": "Nama lengkap diperlukan",
+  "email": "Email",
+  "enterYourEmail": "Masukkan email Anda",
+  "emailIsRequired": "Email diperlukan",
   "username": "Nama Pengguna",
-  "usernameCantContainUppercase": "Nama pengguna tidak boleh mengandung huruf besar",
-  "usernameNotAvailable": "Nama pengguna tidak tersedia",
-  "usernameRequired": "Nama pengguna diperlukan",
-  "volleyBall": "Bola Voli",
-  "warning": "Peringatan",
+  "enterYourUsername": "Masukkan nama pengguna Anda",
+  "usernameIsRequired": "Nama pengguna diperlukan",
+  "usernameCannotContainSpace": "Nama pengguna tidak boleh mengandung spasi",
+  "usernameIsAlreadyTaken": "Nama pengguna sudah digunakan",
+  "phone": "Telepon",
+  "enterYourPhone": "Masukkan telepon Anda",
+  "phoneIsRequired": "Telepon diperlukan",
+  "invalidPhoneNumber": "Nomor telepon tidak valid",
+  "gender": "Jenis Kelamin",
+  "enterYourGender": "Masukkan jenis kelamin Anda",
+  "genderIsRequired": "Jenis kelamin diperlukan",
+  "invalidOption": "Opsi tidak valid",
+  "signUpSuccess": "Berhasil Daftar",
+  "accountCreated": "Akun berhasil dibuat",
+  "signUpFailed": "Gagal Daftar",
+  "alreadyHaveAnAccount": "Sudah punya akun?",
+  "userWithNameNotFound": "Pengguna dengan nama {name} tidak ditemukan",
+  "@userWithNameNotFound": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "addMember": "Tambah Anggota",
+  "wouldYouLikeToAddUsernameMemberToClubName": "Apakah Anda ingin menambahkan anggota {username} ke {clubName}?",
+  "@wouldYouLikeToAddUsernameMemberToClubName": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "clubName": {
+        "type": "String"
+      }
+    }
+  },
+  "role": "Peran",
+  "selectRole": "Pilih peran",
+  "roleIsRequired": "Peran diperlukan",
+  "yes": "Ya",
+  "no": "Tidak",
+  "program": "Program",
+  "tactics": "Taktik",
+  "exam": "Ujian",
+  "assets": "Aset",
+  "detail": "Detail",
+  "clubDetail": "Detail {clubName}",
+  "@clubDetail": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "overview": "Ringkasan",
+  "clubOverview": "Ringkasan {clubName}",
+  "@clubOverview": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "clubMembers": "Anggota {clubName}",
+  "@clubMembers": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "kickMember": "Keluarkan Anggota",
+  "areYouSureYouWantToKickUsernameFromClubName": "Apakah Anda yakin ingin mengeluarkan {username} dari {clubName}?",
+  "@areYouSureYouWantToKickUsernameFromClubName": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "clubAbout": "Tentang {clubName}",
+  "@clubAbout": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "leaveClub": "Tinggalkan Klub",
+  "areYouSureYouWantToLeaveClubName": "Apakah Anda yakin ingin meninggalkan {clubName}?",
+  "@areYouSureYouWantToLeaveClubName": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "newClub": "Klub Baru",
+  "myClubs": "Klub Saya",
+  "search": "Cari",
+  "club": "Klub",
+  "clubWithNameNotFound": "Klub dengan nama {name} tidak ditemukan",
+  "@clubWithNameNotFound": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notJoinedAnyClubs": "Belum bergabung dengan klub mana pun",
+  "reload": "Muat Ulang",
+  "createClub": "Buat Klub",
+  "updateClub": "Perbarui {clubName}",
+  "@updateClub": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "clubName": "Nama Klub",
+  "enterClubName": "Masukkan nama klub",
+  "clubNameIsRequired": "Nama klub diperlukan",
+  "clubDescription": "Deskripsi Klub",
+  "enterClubDescription": "Masukkan deskripsi klub",
+  "clubDescriptionIsRequired": "Deskripsi klub diperlukan",
+  "sportType": "Jenis Olahraga",
+  "selectSportType": "Pilih jenis olahraga",
+  "sportTypeIsRequired": "Jenis olahraga diperlukan",
+  "success": "Berhasil",
+  "updateSuccess": "Berhasil diperbarui",
+  "createSuccess": "Berhasil dibuat",
+  "deleteSuccess": "Berhasil dihapus",
+  "clubUpdatedSuccessfully": "Klub berhasil diperbarui",
+  "clubCreatedSuccessfully": "Klub berhasil dibuat",
+  "updateFailed": "Gagal diperbarui",
+  "createFailed": "Gagal dibuat",
+  "deleteFailed": "Gagal dihapus",
+  "clubImageIsRequired": "Gambar klub diperlukan",
+  "obsecuredState": "Keadaan Tertutup",
+  "pleaseRestartTheApp": "Silakan mulai ulang aplikasi",
+  "pleaseTryAgain": "Silakan coba lagi",
+  "members": "Anggota",
+  "programs": "Program",
+  "exams": "Ujian",
+  "athlete": "Atlet",
+  "evaluator": "Penilai",
+  "evaluations": "Evaluasi",
+  "evaluationDetail": "Detail Evaluasi",
+  "evaluationDeletedSuccessfully": "Evaluasi {athleteName} berhasil dihapus",
+  "@evaluationDeletedSuccessfully": {
+    "placeholders": {
+      "athleteName": {
+        "type": "String?"
+      }
+    }
+  },
+  "deleteEvaluation": "Hapus Evaluasi",
+  "areYouSureYouWantToDeleteAthleteNameEvaluation": "Apakah Anda yakin ingin menghapus evaluasi {athleteName}?",
+  "@areYouSureYouWantToDeleteAthleteNameEvaluation": {
+    "placeholders": {
+      "athleteName": {
+        "type": "String?"
+      }
+    }
+  },
+  "newEvaluation": "Evaluasi Baru",
+  "evaluation": "Evaluasi",
+  "clubDoesntHaveAnyEvaluation": "{clubName} belum memiliki evaluasi",
+  "@clubDoesntHaveAnyEvaluation": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "athleteDetail": "Detail Atlet",
+  "evaluationCreatedSuccessfully": "Evaluasi berhasil dibuat",
+  "evaluationUpdatedSuccessfully": "Evaluasi berhasil diperbarui",
+  "createEvaluationFailed": "Gagal membuat evaluasi",
+  "updateEvaluationFailed": "Gagal memperbarui evaluasi",
+  "createEvaluation": "Buat Evaluasi",
+  "updateEvaluation": "Perbarui Evaluasi",
+  "examDetail": "Detail Ujian",
+  "title": "Judul",
+  "description": "Deskripsi",
+  "questions": "Pertanyaan",
+  "type": "Jenis",
+  "evaluate": "Evaluasi",
+  "athleteEvaluation": "Evaluasi Atlet",
+  "examDeletedSuccessfully": "Ujian berhasil dihapus",
+  "deleteExam": "Hapus Ujian",
+  "deleteExamFailed": "Gagal menghapus ujian",
+  "areYouSureYouWantToDeleteExam": "Apakah Anda yakin ingin menghapus ujian {examName}?",
+  "@areYouSureYouWantToDeleteExam": {
+    "placeholders": {
+      "examName": {
+        "type": "String?"
+      }
+    }
+  },
+  "newExam": "Ujian Baru",
+  "clubDoesntHaveAnyExam": "{clubName} belum memiliki ujian",
+  "@clubDoesntHaveAnyExam": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "examTitle": "Judul Ujian",
+  "enterExamTitle": "Masukkan judul ujian",
+  "examTitleIsRequired": "Judul ujian wajib diisi",
+  "examDescription": "Deskripsi Ujian",
+  "enterExamDescription": "Masukkan deskripsi ujian",
+  "examDescriptionIsRequired": "Deskripsi ujian wajib diisi",
+  "updateExamFailed": "Gagal memperbarui ujian",
+  "createExamFailed": "Gagal membuat ujian",
+  "updateExam": "Perbarui Ujian",
+  "createExam": "Buat Ujian",
+  "error": "Kesalahan",
+  "programDeletedSuccessfully": "Program berhasil dihapus",
+  "deleteProgram": "Hapus Program",
+  "deleteProgramFailed": "Gagal menghapus program",
+  "areYouSureYouWantToDeleteProgram": "Apakah Anda yakin ingin menghapus program {programName}?",
+  "@areYouSureYouWantToDeleteProgram": {
+    "placeholders": {
+      "programName": {
+        "type": "String?"
+      }
+    }
+  },
+  "programDetail": "Detail Program",
+  "name": "Nama",
+  "startDate": "Tanggal Mulai",
+  "endDate": "Tanggal Selesai",
+  "exercises": "Latihan",
+  "clubPrograms": "Program {clubName}",
+  "@clubPrograms": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "newProgram": "Program Baru",
+  "calendar": "Kalender",
+  "clubDoesntHaveAnyProgram": "{clubName} belum memiliki program",
+  "@clubDoesntHaveAnyProgram": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "createProgram": "Buat Program",
+  "updateProgram": "Perbarui Program",
+  "programName": "Nama Program",
+  "enterProgramName": "Masukkan nama program",
+  "programNameIsRequired": "Nama program wajib diisi",
+  "programStartDate": "Tanggal Mulai Program",
+  "enterProgramStartDate": "Masukkan tanggal mulai program",
+  "programEndDate": "Tanggal Selesai Program",
+  "enterProgramEndDate": "Masukkan tanggal selesai program",
+  "programStartDateIsRequired": "Tanggal mulai program wajib diisi",
+  "programEndDateIsRequired": "Tanggal selesai program wajib diisi",
+  "programImageIsRequired": "Gambar program wajib diisi",
+  "programUpdateFailed": "Gagal memperbarui program",
+  "programCreateFailed": "Gagal membuat program",
+  "selectProgramAsset": "Pilih aset program",
+  "examQuestions": "Pertanyaan {examName}",
+  "@examQuestions": {
+    "placeholders": {
+      "examName": {
+        "type": "String?"
+      }
+    }
+  },
+  "question": "Pertanyaan",
+  "questionSavedSuccessfully": "Pertanyaan berhasil disimpan",
+  "questionSaveFailed": "Gagal menyimpan pertanyaan",
+  "save": "Simpan",
+  "addQuestion": "Tambah Pertanyaan",
+  "loadingQuestions": "Memuat pertanyaan...",
+  "enterQuestion": "Masukkan pertanyaan",
+  "questionIsRequired": "Pertanyaan wajib diisi",
+  "questionType": "Jenis Pertanyaan",
+  "selectQuestionType": "Pilih jenis pertanyaan",
+  "questionTypeIsRequired": "Jenis pertanyaan wajib diisi",
+  "strategyNotFound": "Strategi tidak ditemukan",
+  "newTactic": "Taktik Baru",
+  "tactic": "Taktik",
+  "clubDoesntHaveAnyTactic": "{clubName} belum memiliki taktik",
+  "@clubDoesntHaveAnyTactic": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "tacticalStrategyUpdatedSuccessfully": "Strategi taktik berhasil diperbarui",
+  "failedToUpdateTacticalStrategy": "Gagal memperbarui strategi taktik",
+  "saveStrategy": "Simpan Strategi",
+  "createTactical": "Buat Taktik",
+  "updateTactical": "Perbarui Taktik",
+  "tacticalName": "Nama Taktik",
+  "enterTacticalName": "Masukkan nama taktik",
+  "tacticalNameIsRequired": "Nama taktik wajib diisi",
+  "tacticalDescription": "Deskripsi Taktik",
+  "enterTacticalDescription": "Masukkan deskripsi taktik",
+  "tacticalDescriptionIsRequired": "Deskripsi taktik wajib diisi",
+  "tacticalBoard": "Papan Taktik",
+  "tacticalBoardIsRequired": "Papan taktik wajib diisi",
   "width": "Lebar (m)",
-  "widthRequired": "Lebar diperlukan",
-  "welcomeBack": "Selamat datang kembali"
+  "height": "Tinggi (m)",
+  "enterWidth": "Masukkan lebar",
+  "widthIsRequired": "Lebar wajib diisi",
+  "enterHeight": "Masukkan tinggi",
+  "heightIsRequired": "Tinggi wajib diisi",
+  "totalPlayers": "Jumlah Pemain / Tim",
+  "enterTotalPlayers": "Masukkan jumlah pemain",
+  "totalPlayersIsRequired": "Jumlah pemain wajib diisi",
+  "preferences": "Preferensi",
+  "account": "Akun",
+  "updateProfile": "Perbarui Profil",
+  "signOut": "Keluar",
+  "noImageSelected": "Tidak ada gambar yang dipilih",
+  "usernameSuggestions": "Saran Nama Pengguna",
+  "passwordMustBeAtLeast8Characters": "Kata sandi harus terdiri dari setidaknya 8 karakter",
+  "bornPlace": "Tempat Lahir",
+  "enterYourBornPlace": "Masukkan tempat lahir Anda",
+  "bornPlaceIsRequired": "Tempat lahir wajib diisi",
+  "bornDate": "Tanggal Lahir",
+  "enterYourBornDate": "Masukkan tanggal lahir Anda",
+  "bornDateIsRequired": "Tanggal lahir wajib diisi",
+  "address": "Alamat",
+  "enterYourAddress": "Masukkan alamat Anda",
+  "addressIsRequired": "Alamat wajib diisi",
+  "religion": "Agama",
+  "enterYourReligion": "Masukkan agama Anda",
+  "religionIsRequired": "Agama wajib diisi",
+  "expertise": "Keahlian",
+  "enterYourExpertise": "Masukkan keahlian Anda",
+  "expertiseIsRequired": "Keahlian wajib diisi",
+  "updateProfileFailed": "Gagal memperbarui profil",
+  "profileUpdatedSuccessfully": "Profil berhasil diperbarui"
 }

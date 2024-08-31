@@ -7,632 +7,722 @@ class StringsId extends Strings {
   StringsId([String locale = 'id']) : super(locale);
 
   @override
-  String get about => 'Tentang';
+  String get signIn => 'Masuk';
 
   @override
-  String get activeSession => 'Aktif';
+  String get emailOrUsernameOrPhone => 'Email atau nama pengguna atau telepon';
 
   @override
-  String get add => 'Tambah';
+  String get enterYourEmailOrUsernameOrPhone => 'Masukkan email atau nama pengguna atau telepon Anda';
 
   @override
-  String get addMember => 'Tambah Anggota';
-
-  @override
-  String get address => 'Alamat';
-
-  @override
-  String get addressRequired => 'Alamat diperlukan';
-
-  @override
-  String get alert => 'Peringatan';
-
-  @override
-  String get alreadyHaveAnAccount => 'Sudah punya akun?';
-
-  @override
-  String get assets => 'Aset';
-
-  @override
-  String get athlete => 'Atlet';
-
-  @override
-  String get athletes => 'Atlet';
-
-  @override
-  String get back => 'Kembali';
-
-  @override
-  String get basketBall => 'Bola Basket';
-
-  @override
-  String get bornDate => 'Tanggal Lahir';
-
-  @override
-  String get bornDateRequired => 'Tanggal lahir diperlukan';
-
-  @override
-  String get bornPlace => 'Tempat Lahir';
-
-  @override
-  String get bornPlaceRequired => 'Tempat lahir diperlukan';
-
-  @override
-  String get calendar => 'Kalender';
-
-  @override
-  String get cancel => 'Batal';
-
-  @override
-  String get club => 'Klub';
-
-  @override
-  String get clubDashboard => 'Dasbor Klub';
-
-  @override
-  String get clubDescription => 'Deskripsi Klub';
-
-  @override
-  String get clubDescriptionRequired => 'Deskripsi klub diperlukan';
-
-  @override
-  String get clubImageRequired => 'Gambar klub diperlukan';
-
-  @override
-  String get clubManagement => 'Manajemen Klub';
-
-  @override
-  String get clubName => 'Nama Klub';
-
-  @override
-  String get clubNameRequired => 'Nama klub diperlukan';
-
-  @override
-  String get clubs => 'Klub';
-
-  @override
-  String get coach => 'Pelatih';
-
-  @override
-  String get coaches => 'Pelatih';
-
-  @override
-  String get create => 'Buat';
-
-  @override
-  String get createClub => 'Buat Klub';
-
-  @override
-  String get createExam => 'Buat Ujian';
-
-  @override
-  String get createProgram => 'Buat Program';
-
-  @override
-  String get dark => 'Mode Gelap';
-
-  @override
-  String get delete => 'Hapus';
-
-  @override
-  String get description => 'Deskripsi';
-
-  @override
-  String get descriptionRequired => 'Deskripsi diperlukan';
-
-  @override
-  String get detail => 'Detail';
-
-  @override
-  String get dontHaveAnAccount => 'Tidak punya akun?';
-
-  @override
-  String get download => 'Unduh';
-
-  @override
-  String get dueAt => 'Jatuh Tempo';
-
-  @override
-  String get dueAtRequired => 'Jatuh tempo diperlukan';
-
-  @override
-  String get edit => 'Edit';
-
-  @override
-  String get editClub => 'Edit Klub';
-
-  @override
-  String get editExam => 'Edit Ujian';
-
-  @override
-  String get editProfile => 'Edit Profil';
-
-  @override
-  String get editProgram => 'Edit Program';
-
-  @override
-  String get email => 'Email';
-
-  @override
-  String get emailOrUsernameOrPhone => 'Email / Nama Pengguna / Telepon';
-
-  @override
-  String get emailRequired => 'Email diperlukan';
-
-  @override
-  String get emailUsernamePhoneAlreadyRegistered => 'Email / Nama Pengguna / Telepon sudah terdaftar';
-
-  @override
-  String get emptyExam => 'Ujian kosong';
-
-  @override
-  String get endDate => 'Tanggal Selesai';
-
-  @override
-  String get endDateRequired => 'Tanggal selesai diperlukan';
-
-  @override
-  String get english => 'Inggris';
-
-  @override
-  String get enterClubDescription => 'Masukkan deskripsi klub';
-
-  @override
-  String get enterClubName => 'Masukkan nama klub';
-
-  @override
-  String get enterDescription => 'Masukkan deskripsi';
-
-  @override
-  String get enterDueAt => 'Masukkan jatuh tempo';
-
-  @override
-  String get enterEmailOrUsernameOrPhone => 'Masukkan email / nama pengguna / telepon';
-
-  @override
-  String get enterEndDate => 'Masukkan tanggal selesai';
-
-  @override
-  String get enterExamDescription => 'Masukkan deskripsi ujian';
-
-  @override
-  String get enterExamTitle => 'Masukkan judul ujian';
-
-  @override
-  String get enterHeight => 'Masukkan tinggi papan';
-
-  @override
-  String get enterProgramName => 'Masukkan nama program';
-
-  @override
-  String get enterStartDate => 'Masukkan tanggal mulai';
-
-  @override
-  String get enterTacticalName => 'Masukkan nama taktik';
-
-  @override
-  String get enterTotalPlayers => 'Masukkan jumlah pemain';
-
-  @override
-  String get enterWidth => 'Masukkan lebar papan';
-
-  @override
-  String get enterYourAddress => 'Masukkan alamat Anda';
-
-  @override
-  String get enterYourBornDate => 'Masukkan tanggal lahir Anda';
-
-  @override
-  String get enterYourBornPlace => 'Masukkan tempat lahir Anda';
-
-  @override
-  String get enterYourEmail => 'Masukkan email Anda';
-
-  @override
-  String get enterYourExpertise => 'Masukkan keahlian Anda';
-
-  @override
-  String get enterYourGender => 'Masukkan jenis kelamin Anda';
-
-  @override
-  String get enterYourName => 'Masukkan nama Anda';
-
-  @override
-  String get enterYourPass => 'Masukkan kata sandi Anda';
-
-  @override
-  String get enterYourPhoneNumber => 'Masukkan nomor telepon Anda';
-
-  @override
-  String get enterYourReligion => 'Masukkan agama Anda';
-
-  @override
-  String get enterYourUsername => 'Masukkan nama pengguna Anda';
-
-  @override
-  String get error => 'Kesalahan';
-
-  @override
-  String get errorCreateExercise => 'Gagal membuat latihan';
-
-  @override
-  String get errorCreateQuestion => 'Gagal membuat pertanyaan';
-
-  @override
-  String get errorUpdateExercise => 'Gagal memperbarui latihan';
-
-  @override
-  String get errorUpdateQuestion => 'Gagal memperbarui pertanyaan';
-
-  @override
-  String get establishedAt => 'Ditetapkan pada :';
-
-  @override
-  String get exam => 'Ujian';
-
-  @override
-  String get examTitle => 'Judul Ujian';
-
-  @override
-  String get examDescription => 'Deskripsi Ujian';
-
-  @override
-  String get exams => 'Ujian';
-
-  @override
-  String get examImageRequired => 'Foto ujian diperlukan';
-
-  @override
-  String get examTitleRequired => 'Judul ujian diperlukan';
-
-  @override
-  String get exercise => 'Latihan';
-
-  @override
-  String get expertise => 'Keahlian';
-
-  @override
-  String get expertiseRequired => 'Keahlian diperlukan';
-
-  @override
-  String get expiredSession => 'Kedaluwarsa';
-
-  @override
-  String get failedCreateClub => 'Gagal membuat klub';
-
-  @override
-  String get failedCreateExam => 'Gagal membuat ujian';
-
-  @override
-  String get failedCreateExercises => 'Gagal membuat latihan';
-
-  @override
-  String get failedCreateProgram => 'Gagal membuat program';
-
-  @override
-  String get failedEditExam => 'Gagal mengedit ujian';
-
-  @override
-  String get failedEditProgram => 'Gagal mengedit program';
-
-  @override
-  String get failedLeaveClub => 'Gagal meninggalkan klub';
-
-  @override
-  String get failedLogout => 'Gagal keluar';
-
-  @override
-  String get failedSignIn => 'Gagal masuk';
-
-  @override
-  String get failedSignUp => 'Gagal mendaftar';
-
-  @override
-  String get failedUpdateClub => 'Gagal memperbarui klub';
-
-  @override
-  String get failedUpdateExercises => 'Gagal memperbarui latihan';
-
-  @override
-  String get failedUpdateProfile => 'Gagal memperbarui profil';
-
-  @override
-  String get futsal => 'Futsal';
-
-  @override
-  String get gender => 'Jenis Kelamin';
-
-  @override
-  String get genderRequired => 'Jenis kelamin diperlukan';
-
-  @override
-  String get general => 'Umum';
-
-  @override
-  String get handBall => 'Bola Tangan';
-
-  @override
-  String get height => 'Tinggi (m)';
-
-  @override
-  String get heightRequired => 'Tinggi diperlukan';
-
-  @override
-  String get hello => 'Halo,';
-
-  @override
-  String get history => 'Sejarah';
-
-  @override
-  String get identifierRequired => 'Pengenal diperlukan';
-
-  @override
-  String get indonesian => 'Indonesia';
-
-  @override
-  String get info => 'Info';
+  String get emailOrUsernameOrPhoneIsRequired => 'Email atau nama pengguna atau telepon diperlukan';
 
   @override
   String get invalidEmail => 'Email tidak valid';
 
   @override
-  String get invalidPhoneNumber => 'Nomor telepon tidak valid';
+  String get invalidPhone => 'Telepon tidak valid';
 
   @override
-  String get invite => 'Undang';
-
-  @override
-  String get join => 'Bergabung';
-
-  @override
-  String get kick => 'Keluar';
-
-  @override
-  String get language => 'Bahasa';
-
-  @override
-  String get leave => 'Keluar';
-
-  @override
-  String get leaveClub => 'Keluar Klub';
-
-  @override
-  String get leaveClubConfirmation => 'Apakah Anda yakin ingin meninggalkan klub ini?';
-
-  @override
-  String get leaveClubSuccess => 'Berhasil meninggalkan klub';
-
-  @override
-  String get light => 'Mode Terang';
-
-  @override
-  String get logout => 'Keluar';
-
-  @override
-  String get management => 'Manajemen';
-
-  @override
-  String get members => 'Anggota';
-
-  @override
-  String get myClub => 'Klub Saya';
-
-  @override
-  String get myClubTraining => 'Klub Saya';
-
-  @override
-  String get name => 'Nama';
-
-  @override
-  String get nameRequired => 'Nama diperlukan';
-
-  @override
-  String get newExam => 'Ujian Baru';
-
-  @override
-  String get newProgram => 'Program Baru';
-
-  @override
-  String get noClubsFound => 'Tidak ada klub yang ditemukan';
-
-  @override
-  String get noEvents => 'Tidak ada acara';
-
-  @override
-  String get noExpertise => 'Tidak ada keahlian';
-
-  @override
-  String get noMembersFound => 'Tidak ada anggota yang ditemukan';
-
-  @override
-  String get noSpaceAllowed => 'Tidak ada ruang yang diperbolehkan';
-
-  @override
-  String get noUsersFound => 'Tidak ada pengguna yang ditemukan';
-
-  @override
-  String get or => 'atau';
-
-  @override
-  String get overview => 'Ikhtisar';
-
-  @override
-  String get pageNotFound => 'Halaman tidak ditemukan';
-
-  @override
-  String get passRequired => 'Kata sandi diperlukan';
+  String get noSpaceAllowed => 'Tidak boleh ada spasi';
 
   @override
   String get password => 'Kata Sandi';
 
   @override
-  String get phoneNumber => 'Nomor Telepon';
+  String get enterYourPassword => 'Masukkan kata sandi Anda';
 
   @override
-  String get phoneNumberRequired => 'Nomor telepon diperlukan';
+  String get passwordIsRequired => 'Kata sandi diperlukan';
 
   @override
-  String get programName => 'Nama Program';
+  String get signInSuccess => 'Berhasil Masuk';
 
   @override
-  String get program => 'Program';
+  String welcomeBack(String name) {
+    return 'Selamat datang kembali $name';
+  }
 
   @override
-  String get programDetail => 'Detail Program';
+  String get signInFailed => 'Gagal Masuk';
 
   @override
-  String get programImageRequired => 'Foto program diperlukan';
+  String get invalidCredentials => 'Kredensial tidak valid';
 
   @override
-  String get programNameRequired => 'Nama program diperlukan';
-
-  @override
-  String get programs => 'Program';
-
-  @override
-  String get question => 'Pertanyaan';
-
-  @override
-  String get religion => 'Agama';
-
-  @override
-  String get religionRequired => 'Agama diperlukan';
-
-  @override
-  String get search => 'Cari';
-
-  @override
-  String get session => 'Sesi';
-
-  @override
-  String get settings => 'Pengaturan';
-
-  @override
-  String get signIn => 'Masuk';
+  String get dontHaveAnAccount => 'Belum punya akun?';
 
   @override
   String get signUp => 'Daftar';
 
   @override
-  String get soccer => 'Sepak Bola';
+  String get fullName => 'Nama Lengkap';
 
   @override
-  String get sport => 'Olahraga :';
+  String get enterYourFullName => 'Masukkan nama lengkap Anda';
 
   @override
-  String get sportType => 'Jenis Olahraga';
+  String get fullNameIsRequired => 'Nama lengkap diperlukan';
 
   @override
-  String get startDate => 'Tanggal Mulai';
+  String get email => 'Email';
 
   @override
-  String get startDateRequired => 'Tanggal mulai diperlukan';
+  String get enterYourEmail => 'Masukkan email Anda';
 
   @override
-  String get succesEditProgram => 'Berhasil mengedit program';
-
-  @override
-  String get success => 'Berhasil';
-
-  @override
-  String get successCreateClub => 'Berhasil membuat klub';
-
-  @override
-  String get successCreateExercise => 'Berhasil membuat latihan';
-
-  @override
-  String get successCreateExercises => 'Berhasil membuat latihan';
-
-  @override
-  String get successCreateProgram => 'Berhasil membuat program';
-
-  @override
-  String get successCreateQuestion => 'Berhasil membuat pertanyaan';
-
-  @override
-  String get successLogout => 'Berhasil keluar';
-
-  @override
-  String get successSignIn => 'Berhasil masuk';
-
-  @override
-  String get successSignUp => 'Berhasil mendaftar';
-
-  @override
-  String get successUpdateClub => 'Berhasil memperbarui klub';
-
-  @override
-  String get successUpdateExercises => 'Berhasil memperbarui latihan';
-
-  @override
-  String get successUpdateProfile => 'Berhasil memperbarui profil';
-
-  @override
-  String get successUpdateQuestions => 'Berhasil memperbarui pertanyaan';
-
-  @override
-  String get system => 'Sistem';
-
-  @override
-  String get tactical => 'Taktik';
-
-  @override
-  String get tacticalName => 'Nama Taktik';
-
-  @override
-  String get tacticalImageRequired => 'Foto taktik diperlukan';
-
-  @override
-  String get tacticalNameRequired => 'Taktik diperlukan';
-
-  @override
-  String get totalPlayers => 'Jumlah Pemain/Tim';
-
-  @override
-  String get totalPlayersRequired => 'Jumlah pemain diperlukan';
-
-  @override
-  String get theme => 'Tema';
-
-  @override
-  String get title => 'Judul';
-
-  @override
-  String get updateClub => 'Perbarui Klub';
-
-  @override
-  String get updateProfile => 'Perbarui Profil';
-
-  @override
-  String get upload => 'Unggah';
-
-  @override
-  String get user => 'Pengguna';
+  String get emailIsRequired => 'Email diperlukan';
 
   @override
   String get username => 'Nama Pengguna';
 
   @override
-  String get usernameCantContainUppercase => 'Nama pengguna tidak boleh mengandung huruf besar';
+  String get enterYourUsername => 'Masukkan nama pengguna Anda';
 
   @override
-  String get usernameNotAvailable => 'Nama pengguna tidak tersedia';
+  String get usernameIsRequired => 'Nama pengguna diperlukan';
 
   @override
-  String get usernameRequired => 'Nama pengguna diperlukan';
+  String get usernameCannotContainSpace => 'Nama pengguna tidak boleh mengandung spasi';
 
   @override
-  String get volleyBall => 'Bola Voli';
+  String get usernameIsAlreadyTaken => 'Nama pengguna sudah digunakan';
 
   @override
-  String get warning => 'Peringatan';
+  String get phone => 'Telepon';
+
+  @override
+  String get enterYourPhone => 'Masukkan telepon Anda';
+
+  @override
+  String get phoneIsRequired => 'Telepon diperlukan';
+
+  @override
+  String get invalidPhoneNumber => 'Nomor telepon tidak valid';
+
+  @override
+  String get gender => 'Jenis Kelamin';
+
+  @override
+  String get enterYourGender => 'Masukkan jenis kelamin Anda';
+
+  @override
+  String get genderIsRequired => 'Jenis kelamin diperlukan';
+
+  @override
+  String get invalidOption => 'Opsi tidak valid';
+
+  @override
+  String get signUpSuccess => 'Berhasil Daftar';
+
+  @override
+  String get accountCreated => 'Akun berhasil dibuat';
+
+  @override
+  String get signUpFailed => 'Gagal Daftar';
+
+  @override
+  String get alreadyHaveAnAccount => 'Sudah punya akun?';
+
+  @override
+  String userWithNameNotFound(String name) {
+    return 'Pengguna dengan nama $name tidak ditemukan';
+  }
+
+  @override
+  String get addMember => 'Tambah Anggota';
+
+  @override
+  String wouldYouLikeToAddUsernameMemberToClubName(String username, String clubName) {
+    return 'Apakah Anda ingin menambahkan anggota $username ke $clubName?';
+  }
+
+  @override
+  String get role => 'Peran';
+
+  @override
+  String get selectRole => 'Pilih peran';
+
+  @override
+  String get roleIsRequired => 'Peran diperlukan';
+
+  @override
+  String get yes => 'Ya';
+
+  @override
+  String get no => 'Tidak';
+
+  @override
+  String get program => 'Program';
+
+  @override
+  String get tactics => 'Taktik';
+
+  @override
+  String get exam => 'Ujian';
+
+  @override
+  String get assets => 'Aset';
+
+  @override
+  String get detail => 'Detail';
+
+  @override
+  String clubDetail(String? clubName) {
+    return 'Detail $clubName';
+  }
+
+  @override
+  String get overview => 'Ringkasan';
+
+  @override
+  String clubOverview(String? clubName) {
+    return 'Ringkasan $clubName';
+  }
+
+  @override
+  String clubMembers(String? clubName) {
+    return 'Anggota $clubName';
+  }
+
+  @override
+  String get kickMember => 'Keluarkan Anggota';
+
+  @override
+  String areYouSureYouWantToKickUsernameFromClubName(String username, String? clubName) {
+    return 'Apakah Anda yakin ingin mengeluarkan $username dari $clubName?';
+  }
+
+  @override
+  String clubAbout(String? clubName) {
+    return 'Tentang $clubName';
+  }
+
+  @override
+  String get leaveClub => 'Tinggalkan Klub';
+
+  @override
+  String areYouSureYouWantToLeaveClubName(String? clubName) {
+    return 'Apakah Anda yakin ingin meninggalkan $clubName?';
+  }
+
+  @override
+  String get newClub => 'Klub Baru';
+
+  @override
+  String get myClubs => 'Klub Saya';
+
+  @override
+  String get search => 'Cari';
+
+  @override
+  String get club => 'Klub';
+
+  @override
+  String clubWithNameNotFound(String name) {
+    return 'Klub dengan nama $name tidak ditemukan';
+  }
+
+  @override
+  String get notJoinedAnyClubs => 'Belum bergabung dengan klub mana pun';
+
+  @override
+  String get reload => 'Muat Ulang';
+
+  @override
+  String get createClub => 'Buat Klub';
+
+  @override
+  String updateClub(String? clubName) {
+    return 'Perbarui $clubName';
+  }
+
+  @override
+  String get clubName => 'Nama Klub';
+
+  @override
+  String get enterClubName => 'Masukkan nama klub';
+
+  @override
+  String get clubNameIsRequired => 'Nama klub diperlukan';
+
+  @override
+  String get clubDescription => 'Deskripsi Klub';
+
+  @override
+  String get enterClubDescription => 'Masukkan deskripsi klub';
+
+  @override
+  String get clubDescriptionIsRequired => 'Deskripsi klub diperlukan';
+
+  @override
+  String get sportType => 'Jenis Olahraga';
+
+  @override
+  String get selectSportType => 'Pilih jenis olahraga';
+
+  @override
+  String get sportTypeIsRequired => 'Jenis olahraga diperlukan';
+
+  @override
+  String get success => 'Berhasil';
+
+  @override
+  String get updateSuccess => 'Berhasil diperbarui';
+
+  @override
+  String get createSuccess => 'Berhasil dibuat';
+
+  @override
+  String get deleteSuccess => 'Berhasil dihapus';
+
+  @override
+  String get clubUpdatedSuccessfully => 'Klub berhasil diperbarui';
+
+  @override
+  String get clubCreatedSuccessfully => 'Klub berhasil dibuat';
+
+  @override
+  String get updateFailed => 'Gagal diperbarui';
+
+  @override
+  String get createFailed => 'Gagal dibuat';
+
+  @override
+  String get deleteFailed => 'Gagal dihapus';
+
+  @override
+  String get clubImageIsRequired => 'Gambar klub diperlukan';
+
+  @override
+  String get obsecuredState => 'Keadaan Tertutup';
+
+  @override
+  String get pleaseRestartTheApp => 'Silakan mulai ulang aplikasi';
+
+  @override
+  String get pleaseTryAgain => 'Silakan coba lagi';
+
+  @override
+  String get members => 'Anggota';
+
+  @override
+  String get programs => 'Program';
+
+  @override
+  String get exams => 'Ujian';
+
+  @override
+  String get athlete => 'Atlet';
+
+  @override
+  String get evaluator => 'Penilai';
+
+  @override
+  String get evaluations => 'Evaluasi';
+
+  @override
+  String get evaluationDetail => 'Detail Evaluasi';
+
+  @override
+  String evaluationDeletedSuccessfully(String? athleteName) {
+    return 'Evaluasi $athleteName berhasil dihapus';
+  }
+
+  @override
+  String get deleteEvaluation => 'Hapus Evaluasi';
+
+  @override
+  String areYouSureYouWantToDeleteAthleteNameEvaluation(String? athleteName) {
+    return 'Apakah Anda yakin ingin menghapus evaluasi $athleteName?';
+  }
+
+  @override
+  String get newEvaluation => 'Evaluasi Baru';
+
+  @override
+  String get evaluation => 'Evaluasi';
+
+  @override
+  String clubDoesntHaveAnyEvaluation(String? clubName) {
+    return '$clubName belum memiliki evaluasi';
+  }
+
+  @override
+  String get athleteDetail => 'Detail Atlet';
+
+  @override
+  String get evaluationCreatedSuccessfully => 'Evaluasi berhasil dibuat';
+
+  @override
+  String get evaluationUpdatedSuccessfully => 'Evaluasi berhasil diperbarui';
+
+  @override
+  String get createEvaluationFailed => 'Gagal membuat evaluasi';
+
+  @override
+  String get updateEvaluationFailed => 'Gagal memperbarui evaluasi';
+
+  @override
+  String get createEvaluation => 'Buat Evaluasi';
+
+  @override
+  String get updateEvaluation => 'Perbarui Evaluasi';
+
+  @override
+  String get examDetail => 'Detail Ujian';
+
+  @override
+  String get title => 'Judul';
+
+  @override
+  String get description => 'Deskripsi';
+
+  @override
+  String get questions => 'Pertanyaan';
+
+  @override
+  String get type => 'Jenis';
+
+  @override
+  String get evaluate => 'Evaluasi';
+
+  @override
+  String get athleteEvaluation => 'Evaluasi Atlet';
+
+  @override
+  String get examDeletedSuccessfully => 'Ujian berhasil dihapus';
+
+  @override
+  String get deleteExam => 'Hapus Ujian';
+
+  @override
+  String get deleteExamFailed => 'Gagal menghapus ujian';
+
+  @override
+  String areYouSureYouWantToDeleteExam(String? examName) {
+    return 'Apakah Anda yakin ingin menghapus ujian $examName?';
+  }
+
+  @override
+  String get newExam => 'Ujian Baru';
+
+  @override
+  String clubDoesntHaveAnyExam(String? clubName) {
+    return '$clubName belum memiliki ujian';
+  }
+
+  @override
+  String get examTitle => 'Judul Ujian';
+
+  @override
+  String get enterExamTitle => 'Masukkan judul ujian';
+
+  @override
+  String get examTitleIsRequired => 'Judul ujian wajib diisi';
+
+  @override
+  String get examDescription => 'Deskripsi Ujian';
+
+  @override
+  String get enterExamDescription => 'Masukkan deskripsi ujian';
+
+  @override
+  String get examDescriptionIsRequired => 'Deskripsi ujian wajib diisi';
+
+  @override
+  String get updateExamFailed => 'Gagal memperbarui ujian';
+
+  @override
+  String get createExamFailed => 'Gagal membuat ujian';
+
+  @override
+  String get updateExam => 'Perbarui Ujian';
+
+  @override
+  String get createExam => 'Buat Ujian';
+
+  @override
+  String get error => 'Kesalahan';
+
+  @override
+  String get programDeletedSuccessfully => 'Program berhasil dihapus';
+
+  @override
+  String get deleteProgram => 'Hapus Program';
+
+  @override
+  String get deleteProgramFailed => 'Gagal menghapus program';
+
+  @override
+  String areYouSureYouWantToDeleteProgram(String? programName) {
+    return 'Apakah Anda yakin ingin menghapus program $programName?';
+  }
+
+  @override
+  String get programDetail => 'Detail Program';
+
+  @override
+  String get name => 'Nama';
+
+  @override
+  String get startDate => 'Tanggal Mulai';
+
+  @override
+  String get endDate => 'Tanggal Selesai';
+
+  @override
+  String get exercises => 'Latihan';
+
+  @override
+  String clubPrograms(String? clubName) {
+    return 'Program $clubName';
+  }
+
+  @override
+  String get newProgram => 'Program Baru';
+
+  @override
+  String get calendar => 'Kalender';
+
+  @override
+  String clubDoesntHaveAnyProgram(String? clubName) {
+    return '$clubName belum memiliki program';
+  }
+
+  @override
+  String get createProgram => 'Buat Program';
+
+  @override
+  String get updateProgram => 'Perbarui Program';
+
+  @override
+  String get programName => 'Nama Program';
+
+  @override
+  String get enterProgramName => 'Masukkan nama program';
+
+  @override
+  String get programNameIsRequired => 'Nama program wajib diisi';
+
+  @override
+  String get programStartDate => 'Tanggal Mulai Program';
+
+  @override
+  String get enterProgramStartDate => 'Masukkan tanggal mulai program';
+
+  @override
+  String get programEndDate => 'Tanggal Selesai Program';
+
+  @override
+  String get enterProgramEndDate => 'Masukkan tanggal selesai program';
+
+  @override
+  String get programStartDateIsRequired => 'Tanggal mulai program wajib diisi';
+
+  @override
+  String get programEndDateIsRequired => 'Tanggal selesai program wajib diisi';
+
+  @override
+  String get programImageIsRequired => 'Gambar program wajib diisi';
+
+  @override
+  String get programUpdateFailed => 'Gagal memperbarui program';
+
+  @override
+  String get programCreateFailed => 'Gagal membuat program';
+
+  @override
+  String get selectProgramAsset => 'Pilih aset program';
+
+  @override
+  String examQuestions(String? examName) {
+    return 'Pertanyaan $examName';
+  }
+
+  @override
+  String get question => 'Pertanyaan';
+
+  @override
+  String get questionSavedSuccessfully => 'Pertanyaan berhasil disimpan';
+
+  @override
+  String get questionSaveFailed => 'Gagal menyimpan pertanyaan';
+
+  @override
+  String get save => 'Simpan';
+
+  @override
+  String get addQuestion => 'Tambah Pertanyaan';
+
+  @override
+  String get loadingQuestions => 'Memuat pertanyaan...';
+
+  @override
+  String get enterQuestion => 'Masukkan pertanyaan';
+
+  @override
+  String get questionIsRequired => 'Pertanyaan wajib diisi';
+
+  @override
+  String get questionType => 'Jenis Pertanyaan';
+
+  @override
+  String get selectQuestionType => 'Pilih jenis pertanyaan';
+
+  @override
+  String get questionTypeIsRequired => 'Jenis pertanyaan wajib diisi';
+
+  @override
+  String get strategyNotFound => 'Strategi tidak ditemukan';
+
+  @override
+  String get newTactic => 'Taktik Baru';
+
+  @override
+  String get tactic => 'Taktik';
+
+  @override
+  String clubDoesntHaveAnyTactic(String? clubName) {
+    return '$clubName belum memiliki taktik';
+  }
+
+  @override
+  String get tacticalStrategyUpdatedSuccessfully => 'Strategi taktik berhasil diperbarui';
+
+  @override
+  String get failedToUpdateTacticalStrategy => 'Gagal memperbarui strategi taktik';
+
+  @override
+  String get saveStrategy => 'Simpan Strategi';
+
+  @override
+  String get createTactical => 'Buat Taktik';
+
+  @override
+  String get updateTactical => 'Perbarui Taktik';
+
+  @override
+  String get tacticalName => 'Nama Taktik';
+
+  @override
+  String get enterTacticalName => 'Masukkan nama taktik';
+
+  @override
+  String get tacticalNameIsRequired => 'Nama taktik wajib diisi';
+
+  @override
+  String get tacticalDescription => 'Deskripsi Taktik';
+
+  @override
+  String get enterTacticalDescription => 'Masukkan deskripsi taktik';
+
+  @override
+  String get tacticalDescriptionIsRequired => 'Deskripsi taktik wajib diisi';
+
+  @override
+  String get tacticalBoard => 'Papan Taktik';
+
+  @override
+  String get tacticalBoardIsRequired => 'Papan taktik wajib diisi';
 
   @override
   String get width => 'Lebar (m)';
 
   @override
-  String get widthRequired => 'Lebar diperlukan';
+  String get height => 'Tinggi (m)';
 
   @override
-  String get welcomeBack => 'Selamat datang kembali';
+  String get enterWidth => 'Masukkan lebar';
+
+  @override
+  String get widthIsRequired => 'Lebar wajib diisi';
+
+  @override
+  String get enterHeight => 'Masukkan tinggi';
+
+  @override
+  String get heightIsRequired => 'Tinggi wajib diisi';
+
+  @override
+  String get totalPlayers => 'Jumlah Pemain / Tim';
+
+  @override
+  String get enterTotalPlayers => 'Masukkan jumlah pemain';
+
+  @override
+  String get totalPlayersIsRequired => 'Jumlah pemain wajib diisi';
+
+  @override
+  String get preferences => 'Preferensi';
+
+  @override
+  String get account => 'Akun';
+
+  @override
+  String get updateProfile => 'Perbarui Profil';
+
+  @override
+  String get signOut => 'Keluar';
+
+  @override
+  String get noImageSelected => 'Tidak ada gambar yang dipilih';
+
+  @override
+  String get usernameSuggestions => 'Saran Nama Pengguna';
+
+  @override
+  String get passwordMustBeAtLeast8Characters => 'Kata sandi harus terdiri dari setidaknya 8 karakter';
+
+  @override
+  String get bornPlace => 'Tempat Lahir';
+
+  @override
+  String get enterYourBornPlace => 'Masukkan tempat lahir Anda';
+
+  @override
+  String get bornPlaceIsRequired => 'Tempat lahir wajib diisi';
+
+  @override
+  String get bornDate => 'Tanggal Lahir';
+
+  @override
+  String get enterYourBornDate => 'Masukkan tanggal lahir Anda';
+
+  @override
+  String get bornDateIsRequired => 'Tanggal lahir wajib diisi';
+
+  @override
+  String get address => 'Alamat';
+
+  @override
+  String get enterYourAddress => 'Masukkan alamat Anda';
+
+  @override
+  String get addressIsRequired => 'Alamat wajib diisi';
+
+  @override
+  String get religion => 'Agama';
+
+  @override
+  String get enterYourReligion => 'Masukkan agama Anda';
+
+  @override
+  String get religionIsRequired => 'Agama wajib diisi';
+
+  @override
+  String get expertise => 'Keahlian';
+
+  @override
+  String get enterYourExpertise => 'Masukkan keahlian Anda';
+
+  @override
+  String get expertiseIsRequired => 'Keahlian wajib diisi';
+
+  @override
+  String get updateProfileFailed => 'Gagal memperbarui profil';
+
+  @override
+  String get profileUpdatedSuccessfully => 'Profil berhasil diperbarui';
 }

@@ -43,23 +43,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(
-        // text: 'John Doe',
-        );
-    _emailController = TextEditingController(
-        // text: 'john@gmail.com',
-        );
-    _usernameController = TextEditingController(
-        // text: 'john',
-        );
+    _nameController = TextEditingController();
+    _emailController = TextEditingController();
+    _usernameController = TextEditingController();
     _genderController = TextEditingController();
 
-    _phoneController = TextEditingController(
-        // text: '81234567890',
-        );
-    _passwordController = TextEditingController(
-        // text: 'password',
-        );
+    _phoneController = TextEditingController();
+    _passwordController = TextEditingController();
 
     _nameFocusNode = FocusNode();
     _emailFocusNode = FocusNode();
@@ -139,18 +129,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FormLabel(context.str?.name),
+                FormLabel(context.str?.fullName),
                 FormInput(
                   controller: _nameController,
                   currentFocus: _nameFocusNode,
                   nextFocus: _emailFocusNode,
-                  hintText: context.str?.enterYourName,
+                  hintText: context.str?.enterYourFullName,
                   leading: const Icon(MoonIcons.generic_user_24_light),
                   autoFillHints: const [AutofillHints.name],
                   textInputAction: TextInputAction.next,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return context.str?.nameRequired ?? 'Name is required';
+                      return context.str?.fullNameIsRequired ??
+                          'Name is required';
                     }
                     return null;
                   },
@@ -168,7 +159,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   keyboardType: TextInputType.emailAddress,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return context.str?.emailRequired ?? 'Email is required';
+                      return context.str?.emailIsRequired ??
+                          'Email is required';
                     }
                     if (!value.isEmail) {
                       return context.str?.invalidEmail ?? 'Invalid email';
@@ -180,7 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 FormLabel(context.str?.username),
                 BlocConsumer<UserBloc, UserState>(
                   listener: (context, state) {
-                    state.maybeWhen(
+                    state.whenOrNull(
                       failure: (message) {
                         if (message.startsWith(
                             'Email, username, or phone already exists')) {
@@ -194,7 +186,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                         }
                       },
-                      orElse: () {},
                     );
                   },
                   builder: (context, state) {
@@ -208,17 +199,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       textInputAction: TextInputAction.next,
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
-                          return context.str?.usernameRequired ??
+                          return context.str?.usernameIsRequired ??
                               'Username is required';
                         }
-                        if (value.isContainUpperCase) {
-                          return context.str?.usernameCantContainUppercase ??
-                              'Username must not contain uppercase';
+                        if (value.isContainSpace) {
+                          return context.str?.usernameCannotContainSpace ??
+                              'Username cannot contain space';
                         }
                         state.maybeWhen(
                           foundUsernames: (usernames) {
                             if (usernames.isNotEmpty) {
-                              return context.str?.usernameNotAvailable ??
+                              return context.str?.usernameIsAlreadyTaken ??
                                   'Username already exists';
                             }
                           },
@@ -280,7 +271,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                                 child: Text(
-                                  'Username suggestions',
+                                  context.str?.usernameSuggestions ??
+                                      'Username suggestions',
                                   style: Theme.of(context).textTheme.bodySmall,
                                 ),
                               ),
@@ -321,19 +313,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   },
                 ),
                 Gap(12.h),
-                FormLabel(context.str?.phoneNumber),
+                FormLabel(context.str?.phone),
                 FormInput(
                   controller: _phoneController,
                   currentFocus: _phoneFocusNode,
                   nextFocus: _passwordFocusNode,
-                  hintText: context.str?.enterYourPhoneNumber,
+                  hintText: context.str?.enterYourPhone,
                   leading: const BodyMedium('+62'),
                   autoFillHints: const [AutofillHints.telephoneNumber],
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.phone,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return context.str?.phoneNumberRequired ??
+                      return context.str?.phoneIsRequired ??
                           'Phone is required';
                     }
                     if (!value.isPhoneNumber) {
@@ -353,6 +345,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   currentFocus: _genderFocusNode,
                   nextFocus: _passwordFocusNode,
                   hintText: context.str?.enterYourGender,
+                  readOnly: true,
                   leading: const Icon(Icons.male_rounded),
                   items: UserGender.values.map((e) {
                     return ComboboxItem(
@@ -362,15 +355,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   }).toList(),
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return context.str?.genderRequired;
+                      return context.str?.genderIsRequired;
                     }
                     final isInList = UserGender.values
                         .any((element) => element.name == value);
                     if (!isInList) {
-                      return 'Invalid option';
-                    } else {
-                      return null;
+                      return context.str?.invalidOption;
                     }
+                    return null;
                   },
                 ),
                 Gap(12.h),
@@ -379,7 +371,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   key: const Key('password'),
                   controller: _passwordController,
                   currentFocus: _passwordFocusNode,
-                  hintText: context.str?.enterYourPass,
+                  hintText: context.str?.enterYourPassword,
                   leading: const Icon(MoonIcons.security_password_24_light),
                   obsecureText: isObsecure,
                   autoFillHints: const [AutofillHints.password],
@@ -398,10 +390,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return context.str?.passRequired;
+                      return context.str?.passwordIsRequired;
                     }
                     if (value.length < 8) {
-                      return 'Password must be at least 8 characters';
+                      return context.str?.passwordMustBeAtLeast8Characters ??
+                          'Password must be at least 8 characters';
                     }
                     return null;
                   },
@@ -417,18 +410,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   final name = user.name;
                   final nameLength = name.length;
                   context.successToast(
-                      title: context.str?.successSignIn,
-                      description:
-                          '${context.str?.welcomeBack}, ${user.name.maxChar(
-                        nameLength > 15 ? 15 : nameLength,
-                      )}');
+                    title: context.str?.signUpSuccess,
+                    description: context.str?.accountCreated,
+                  );
                   _authBloc.add(const AuthEvent.clear());
                   _userBloc.add(const UserEvent.clear());
                   context.router.replace(const SignInRoute());
                 },
                 unauthenticated: (message) {
                   context.errorToast(
-                    title: context.str?.error,
+                    title: context.str?.signUpFailed,
                     description: message,
                   );
                 },
@@ -462,8 +453,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         foundUsernames: (usernames) {
                           if (usernames.isNotEmpty) {
                             context.errorToast(
-                              title: context.str?.error,
-                              description: context.str?.usernameNotAvailable,
+                              title: context.str?.signUpFailed,
+                              description: context.str?.usernameIsAlreadyTaken,
                             );
                           } else {
                             final phone = int.tryParse(_phoneController.text);

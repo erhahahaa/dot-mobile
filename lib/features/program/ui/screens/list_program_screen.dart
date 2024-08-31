@@ -38,7 +38,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
           appBar: AppBar(
-            title: TitleMedium('${club?.name} Programs'),
+            title: TitleMedium(context.str?.clubPrograms(club?.name)),
           ),
           floatingActionButton: Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -64,7 +64,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                   );
                 },
                 icon: const Icon(Icons.add),
-                label: const Text('New Program'),
+                label: Text(context.str?.newProgram ?? 'New Program'),
               ),
             ],
           ),
@@ -235,7 +235,9 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                           children: [
                             Flexible(
                               child: Text(
-                                '${club?.name} doesn\'t have a program yet',
+                                context.str?.clubDoesntHaveAnyProgram(
+                                        club?.name) ??
+                                    '${club?.name} doesn\'t have a program yet',
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -253,7 +255,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                                             );
                                       }
                                     : null,
-                                child: const Text("Reload"),
+                                child: Text(context.str?.reload ?? 'Reload'),
                               ),
                             ),
                             Gap(16.h),
@@ -319,7 +321,6 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
       titleText: program.name,
       subtitleText: program.startDate.toString(),
       imageUrl: program.media?.url,
-      // margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
       onTap: onTap,
       trailing: MoonButton.icon(
         buttonSize: MoonButtonSize.xs,

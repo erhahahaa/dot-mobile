@@ -68,12 +68,6 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // screenSize = MediaQuery.of(context).size;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Parent(
       scaffoldKey: _scaffoldKey,
@@ -299,8 +293,8 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
         state.whenOrNull(
           success: (item) {
             context.successToast(
-              title: 'Success',
-              description: 'Update ${item.name} successfully',
+              title: context.str?.updateSuccess,
+              description: context.str?.tacticalStrategyUpdatedSuccessfully,
             );
             context.read<TacticalBlocRead>().add(
                   BlocEventRead.append(item),
@@ -315,15 +309,15 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
           },
           failure: (message) {
             context.errorToast(
-              title: "Error",
-              description: 'Failed to update tactical strategy.',
+              title: context.str?.updateFailed,
+              description: message,
             );
           },
         );
       },
       builder: (context, state) {
         return FloatingActionButtonExtended(
-          label: const TitleSmall('End Session'),
+          label: TitleSmall(context.str?.saveStrategy),
           onPressed: () {
             try {
               context.read<TacticalBlocWrite>().add(BlocEventWrite.update(
@@ -346,7 +340,7 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
             }
           },
           isLoading: state is BlocStateWriteLoading,
-          icon: const Icon(Icons.stop),
+          icon: const Icon(Icons.save),
         );
       },
     );

@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ClubOverviewCard extends StatelessWidget {
+  final String? clubName;
   final int? tacticalCount, membersCount, programsCount, examsCount;
   const ClubOverviewCard({
     super.key,
+    this.clubName,
     this.tacticalCount = 0,
     this.membersCount = 0,
     this.programsCount = 0,
@@ -28,33 +30,25 @@ class ClubOverviewCard extends StatelessWidget {
           Column(
             children: [
               TitleSmall(membersCount.toString()),
-              BodySmall(
-                context.str?.members ?? 'Members',
-              ),
+              BodySmall(context.str?.members),
             ],
           ),
           Column(
             children: [
               TitleSmall(programsCount.toString()),
-              BodySmall(
-                context.str?.programs ?? 'Programs',
-              ),
+              BodySmall(context.str?.programs),
             ],
           ),
           Column(
             children: [
               TitleSmall(tacticalCount.toString()),
-              BodySmall(
-                context.str?.tactical ?? 'Tactical',
-              ),
+              BodySmall(context.str?.tactics),
             ],
           ),
           Column(
             children: [
               TitleSmall(examsCount.toString()),
-              BodySmall(
-                context.str?.exams ?? 'Exams',
-              ),
+              BodySmall(context.str?.exams),
             ],
           ),
         ],

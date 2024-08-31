@@ -27,7 +27,10 @@ final class DotTheme {
       primaryColor: Palette.PRIMARY,
       extensions: <ThemeExtension<dynamic>>[
         MoonTheme(tokens: lightTokens),
-        const AppColors(),
+        const AppColors(
+          eightCardColor: Palette.CARD_LIGHT,
+          containerWrapperColor: Palette.BG_LIGHT,
+        ),
       ],
     );
   }
@@ -43,7 +46,10 @@ final class DotTheme {
       primaryColor: Palette.PRIMARY,
       extensions: <ThemeExtension<dynamic>>[
         MoonTheme(tokens: darkTokens),
-        const AppColors()
+        const AppColors(
+          eightCardColor: Palette.CARD_DARK,
+          containerWrapperColor: Palette.BG_DARK,
+        )
       ],
     );
   }

@@ -153,5 +153,9 @@ class AppRouter extends RootStackRouter {
             ),
           ],
         ),
+        AutoRoute(
+          path: '/profile/update',
+          page: UpdateProfileRoute.page,
+        ),
       ];
 }

@@ -16,6 +16,16 @@ enum UserGender {
       UserGender.female => 'Female',
     };
   }
+
+  static UserGender fromString(String value) {
+    switch (value) {
+      case 'female' || 'Female':
+        return UserGender.female;
+      case 'male' || "Male":
+      default:
+        return UserGender.male;
+    }
+  }
 }
 
 @Collection(accessor: 'users')

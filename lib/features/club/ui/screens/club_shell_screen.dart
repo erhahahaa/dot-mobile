@@ -73,26 +73,26 @@ class ClubShellScreen extends StatelessWidget implements AutoRouteWrapper {
         return NavigationBar(
           selectedIndex: tabsRouter.activeIndex,
           onDestinationSelected: tabsRouter.setActiveIndex,
-          destinations: const [
+          destinations: [
             NavigationDestination(
-              icon: Icon(Icons.event),
-              label: 'Program',
+              icon: const Icon(Icons.event),
+              label: context.str?.program ?? 'Program',
             ),
             NavigationDestination(
-              icon: Icon(Icons.military_tech),
-              label: 'Tactical',
+              icon: const Icon(Icons.military_tech),
+              label: context.str?.tactics ?? 'Tactics',
             ),
             NavigationDestination(
-              icon: Icon(Icons.quiz),
-              label: 'Exam',
+              icon: const Icon(Icons.quiz),
+              label: context.str?.exam ?? 'Exam',
             ),
             NavigationDestination(
-              icon: Icon(Icons.inventory),
-              label: 'Asset',
+              icon: const Icon(Icons.inventory),
+              label: context.str?.assets ?? 'Assets',
             ),
             NavigationDestination(
-              icon: Icon(Icons.info),
-              label: 'Detail',
+              icon: const Icon(Icons.info),
+              label: context.str?.detail ?? 'Detail',
             ),
           ],
         );

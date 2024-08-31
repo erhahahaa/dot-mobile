@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/extensions/context.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,7 +62,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
         if (state.searchResult.isEmpty) {
           return SizedBox(
             height: 50.h,
-            child: ErrorAlert('No user with ${search.text} found'),
+            child: ErrorAlert(context.str?.userWithNameNotFound(search.text)),
           );
         }
 
@@ -89,17 +90,22 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                   context: context,
                   builder: (ctx) {
                     return AlertDialog(
-                      title: const Text('Add member'),
+                      title: TitleMedium(context.str?.addMember),
                       content: Form(
                         key: formkey,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                                'Do you want to add ${item.name} to the club?'),
+                            TitleSmall(
+                              context.str
+                                  ?.wouldYouLikeToAddUsernameMemberToClubName(
+                                item.name,
+                                club!.name,
+                              ),
+                            ),
                             SizedBox(height: 12.h),
-                            const FormLabel('Select role'),
+                            FormLabel(context.str?.role),
                             SizedBox(height: 12.h),
                             FormCombobox<UserRole>(
                               controller: controller,
@@ -116,11 +122,11 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                               },
                               validator: (value) {
                                 if (value == null) {
-                                  return 'Please select a role';
+                                  return context.str?.roleIsRequired;
                                 }
                                 return null;
                               },
-                              hintText: 'Select a role',
+                              hintText: context.str?.selectRole,
                             )
                           ],
                         ),
@@ -137,13 +143,13 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                               Navigator.pop(ctx);
                             }
                           },
-                          child: const Text('Yes'),
+                          child: Text(context.str?.yes ?? 'Yes'),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.pop(ctx);
                           },
-                          child: const Text('No'),
+                          child: Text(context.str?.no ?? 'No'),
                         ),
                       ],
                     );

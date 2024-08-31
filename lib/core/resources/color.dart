@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 class AppColors extends ThemeExtension<AppColors> {
-  final Color? input;
+  final Color? eightCardColor;
+  final Color? containerWrapperColor;
 
   const AppColors({
-    this.input,
+    this.eightCardColor,
+    this.containerWrapperColor,
   });
 
   @override
   ThemeExtension<AppColors> copyWith() {
     return AppColors(
-      input: input,
+      eightCardColor: eightCardColor,
+      containerWrapperColor: containerWrapperColor,
     );
   }
 
@@ -22,7 +25,16 @@ class AppColors extends ThemeExtension<AppColors> {
     if (other is! AppColors) return this;
 
     return AppColors(
-      input: Color.lerp(input, other.input, t),
+      eightCardColor: Color.lerp(
+        eightCardColor,
+        other.eightCardColor,
+        t,
+      ),
+      containerWrapperColor: Color.lerp(
+        containerWrapperColor,
+        other.containerWrapperColor,
+        t,
+      ),
     );
   }
 }

@@ -67,12 +67,6 @@ class _ListExamScreenState extends State<ListExamScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       title: TitleMedium(club?.name),
-      actions: [
-        MoonButton.icon(
-          icon: const Icon(MoonIcons.generic_info_24_light),
-          onTap: () {},
-        ),
-      ],
     );
   }
 
@@ -103,7 +97,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
             );
           },
           icon: const Icon(Icons.add),
-          label: const Text('New Exam'),
+          label: Text(context.str?.newExam ?? 'New Exam'),
         ),
       ],
     );
@@ -158,7 +152,8 @@ class _ListExamScreenState extends State<ListExamScreen> {
                     children: [
                       Flexible(
                         child: Text(
-                          '${club?.name} doesn\'t have exam yet',
+                          context.str?.clubDoesntHaveAnyExam(club?.name) ??
+                              'Exam not found',
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -176,7 +171,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
                                       );
                                 }
                               : null,
-                          child: const Text("Reload"),
+                          child: Text(context.str?.reload ?? 'Reload'),
                         ),
                       ),
                       Gap(16.h),

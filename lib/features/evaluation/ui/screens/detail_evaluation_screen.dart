@@ -10,12 +10,27 @@ import 'package:gap/gap.dart';
 import 'package:moon_design/moon_design.dart';
 
 @RoutePage()
-class DetailEvaluationScreen extends StatelessWidget {
+class DetailEvaluationScreen extends StatefulWidget {
   final int id;
   const DetailEvaluationScreen({
     super.key,
     @pathParam required this.id,
   });
+
+  @override
+  State<DetailEvaluationScreen> createState() => _DetailEvaluationScreenState();
+}
+
+class _DetailEvaluationScreenState extends State<DetailEvaluationScreen> {
+  EvaluationModel? _evaluation;
+
+  @override
+  void initState() {
+    super.initState();
+    _evaluation = context.read<EvaluationBlocRead>().state.whenOrNull(
+          success: (_, __, selectedItem) => selectedItem,
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +45,10 @@ class DetailEvaluationScreen extends StatelessWidget {
             builder: (context, state) {
               return state.maybeWhen(
                 success: (_, __, selectedItem) {
-                  Log.info('selectedItem: $selectedItem');
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const TitleSmall('Exam'),
+                      TitleSmall(context.str?.exam),
                       Gap(8.h),
                       ListViewBuilderTile(
                         leading: const Icon(MoonIcons.generic_about_24_light),
@@ -42,7 +56,7 @@ class DetailEvaluationScreen extends StatelessWidget {
                         subtitleText: selectedItem?.exam?.description,
                       ),
                       Gap(16.h),
-                      const TitleSmall('Athlete'),
+                      TitleSmall(context.str?.athlete),
                       Gap(8.h),
                       ListViewBuilderTile(
                         imageUrl: selectedItem?.athlete?.image,
@@ -50,7 +64,7 @@ class DetailEvaluationScreen extends StatelessWidget {
                         subtitleText: selectedItem?.athlete?.email,
                       ),
                       Gap(16.h),
-                      const TitleSmall('Accessor'),
+                      TitleSmall(context.str?.evaluator),
                       Gap(8.h),
                       ListViewBuilderTile(
                         imageUrl: selectedItem?.coach?.image,
@@ -58,7 +72,7 @@ class DetailEvaluationScreen extends StatelessWidget {
                         subtitleText: selectedItem?.coach?.email,
                       ),
                       Gap(16.h),
-                      const TitleSmall('Evaluations'),
+                      TitleSmall(context.str?.evaluations),
                       Gap(8.h),
                       ListViewBuilder<QuestionEvaluationModel>(
                         items: selectedItem?.evaluations ?? [],
@@ -95,7 +109,7 @@ class DetailEvaluationScreen extends StatelessWidget {
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
-      title: const Text('Evaluation Detail'),
+      title: TitleMedium(context.str?.evaluationDetail),
       leading: IconButton(
         icon: const Icon(Icons.arrow_back),
         onPressed: () {
@@ -108,8 +122,9 @@ class DetailEvaluationScreen extends StatelessWidget {
             state.whenOrNull(
               success: (evaluation) {
                 context.successToast(
-                  title: 'Success',
-                  description: '${evaluation.athlete?.name} evaluation deleted',
+                  title: context.str?.success,
+                  description: context.str
+                      ?.evaluationDeletedSuccessfully(evaluation.athlete?.name),
                 );
                 context.read<EvaluationBlocRead>().add(
                       BlocEventRead.remove(evaluation.id),
@@ -118,7 +133,7 @@ class DetailEvaluationScreen extends StatelessWidget {
               },
               failure: (failure) {
                 context.errorToast(
-                  title: 'Failure',
+                  title: context.str?.deleteFailed,
                   description: failure,
                 );
               },
@@ -136,26 +151,33 @@ class DetailEvaluationScreen extends StatelessWidget {
                   return BlocProvider.value(
                     value: context.read<EvaluationBlocWrite>(),
                     child: AlertDialog(
-                      title: const Text('Delete Evaluation'),
-                      content: const Text(
-                          'Are you sure you want to delete this evaluation?'),
+                      title: TitleMedium(context.str?.deleteEvaluation),
+                      content: TitleMedium(context.str
+                          ?.areYouSureYouWantToDeleteAthleteNameEvaluation(
+                        _evaluation?.athlete?.name,
+                      )),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.of(ctx).pop();
                           },
-                          child: const Text('Cancel'),
+                          child: Text(
+                            context.str?.no ?? 'No',
+                          ),
                         ),
                         TextButton(
                           onPressed: () {
                             context.read<EvaluationBlocWrite>().add(
                                   BlocEventWrite.delete(
-                                    DeleteEvaluationParams(evaluationId: id),
+                                    DeleteEvaluationParams(
+                                        evaluationId: widget.id),
                                   ),
                                 );
                             Navigator.of(ctx).pop();
                           },
-                          child: const Text('Delete'),
+                          child: Text(
+                            context.str?.yes ?? 'Yes',
+                          ),
                         ),
                       ],
                     ),

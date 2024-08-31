@@ -118,7 +118,11 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
   Widget build(BuildContext context) {
     return Parent(
       appBar: AppBar(
-        title: const TitleMedium('Tactical Form'),
+        title: TitleMedium(
+          _tactical == null
+              ? context.str?.createTactical
+              : context.str?.updateTactical,
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(8.w),
@@ -144,28 +148,28 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
               hintText: context.str?.enterTacticalName,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.tacticalNameRequired;
+                  return context.str?.tacticalNameIsRequired;
                 }
                 return null;
               },
             ),
             Gap(12.h),
-            FormLabel(context.str?.description),
+            FormLabel(context.str?.tacticalDescription),
             FormInput(
               controller: _descriptionController,
               currentFocus: _descriptionFocusNode,
               nextFocus: _widthFocusNode,
               textInputAction: TextInputAction.done,
-              hintText: context.str?.enterDescription,
+              hintText: context.str?.enterTacticalDescription,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.descriptionRequired;
+                  return context.str?.tacticalDescriptionIsRequired;
                 }
                 return null;
               },
             ),
             Gap(8.h),
-            const FormLabel('Board'),
+            FormLabel(context.str?.tacticalBoard),
             Stack(
               children: [
                 Container(
@@ -230,7 +234,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
               keyboardType: TextInputType.number,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.widthRequired;
+                  return context.str?.widthIsRequired;
                 }
                 return null;
               },
@@ -246,7 +250,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
               keyboardType: TextInputType.number,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.heightRequired;
+                  return context.str?.heightIsRequired;
                 }
                 return null;
               },
@@ -262,7 +266,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
               keyboardType: TextInputType.number,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.totalPlayersRequired;
+                  return context.str?.totalPlayersIsRequired;
                 }
                 return null;
               },
@@ -297,7 +301,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                   },
                   failure: (message) {
                     context.errorToast(
-                      title: 'Error',
+                      title: context.str?.error,
                       description: message,
                     );
                   },
@@ -306,11 +310,13 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
               builder: (context, state) {
                 return FormButton(
                   isLoading: state is BlocStateWriteLoading,
-                  text: 'Create Tactical',
+                  text: _tactical == null
+                      ? context.str?.createTactical
+                      : context.str?.updateTactical,
                   onTap: () {
                     if (_media == null && _tactical == null) {
                       setState(() {
-                        _imageError = 'Board is required';
+                        _imageError = context.str?.tacticalBoardIsRequired;
                       });
                       return;
                     } else {
@@ -321,8 +327,8 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                     if (_formKey.currentState!.validate()) {
                       if (club == null) {
                         return context.errorToast(
-                          title: 'App state obfuscated',
-                          description: 'Please restart the app',
+                          title: context.str?.obsecuredState,
+                          description: context.str?.pleaseRestartTheApp,
                         );
                       }
                       final screenSize = MediaQuery.of(context).size;

@@ -88,7 +88,7 @@ class _DetailExamScreenState extends State<DetailExamScreen>
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(context.str?.programDetail ?? 'Exam Detail',
+                Text(context.str?.examDetail ?? 'Exam Detail',
                     style: Theme.of(context).textTheme.titleMedium),
                 ContainerWrapper(
                   width: double.infinity,
@@ -96,10 +96,10 @@ class _DetailExamScreenState extends State<DetailExamScreen>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Title : ${exam?.title}'),
+                      Text('${context.str?.title} : ${exam?.title}'),
                       if (exam?.dueAt != null)
                         Text(
-                          'Description : ${exam?.description}',
+                          '${context.str?.description} : ${exam?.description}',
                         ),
                     ],
                   ),
@@ -111,7 +111,7 @@ class _DetailExamScreenState extends State<DetailExamScreen>
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(context.str?.question ?? 'Questions',
+                    Text(context.str?.questions ?? 'Questions',
                         style: Theme.of(context).textTheme.titleMedium),
                     Gap(8.h),
                     state.maybeWhen(
@@ -123,7 +123,7 @@ class _DetailExamScreenState extends State<DetailExamScreen>
                             return ListViewBuilderTile(
                               titleText: item.question,
                               subtitleText:
-                                  'Type: ${item.type.value.capitalizeFirst}',
+                                  '${context.str?.type}: ${item.type.value.capitalizeFirst}',
                               leading: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment:
@@ -183,14 +183,12 @@ class _DetailExamScreenState extends State<DetailExamScreen>
                               );
 
                       final eligibleMembers = state.members
-                          .where((member) => evaluations.every(
-                                (evaluation) {
-                                  Log.info(
-                                      'evaluation: ${evaluation.athlete?.id}');
-                                  Log.info('member: ${member.id}');
-                                  return member.id != evaluation.athlete?.id;
-                                },
-                              ))
+                          .where(
+                            (member) => evaluations.every(
+                              (evaluation) =>
+                                  member.id != evaluation.athlete?.id,
+                            ),
+                          )
                           .toList();
 
                       return ListViewBuilder(
@@ -231,7 +229,7 @@ class _DetailExamScreenState extends State<DetailExamScreen>
             context.router.push(const UpsertEvaluationRoute());
           }
         },
-        label: const Text('Evaluate'),
+        label: TitleSmall(context.str?.evaluate),
         icon: const Icon(Icons.rate_review),
       ),
       body: BlocBuilder<EvaluationBlocRead, BlocStateRead<EvaluationModel>>(
@@ -289,14 +287,14 @@ class _DetailExamScreenState extends State<DetailExamScreen>
               return Text(exam.title);
             }
           }
-          return const Text('Detail Exam');
+          return Text(context.str?.examDetail ?? 'Exam Detail');
         },
       ),
       bottom: TabBar(
         controller: _tabController,
-        tabs: const [
-          Tab(text: 'Program Detail'),
-          Tab(text: 'Athlete Evaluation'),
+        tabs: [
+          Tab(text: context.str?.examDetail ?? 'Exam Detail'),
+          Tab(text: context.str?.athleteEvaluation ?? 'Athlete Evaluation'),
         ],
       ),
       actions: [
@@ -309,14 +307,13 @@ class _DetailExamScreenState extends State<DetailExamScreen>
                     );
                 context.successToast(
                   title: 'Success',
-                  description:
-                      '${success.title} has been deleted successfully.',
+                  description: context.str?.examDeletedSuccessfully,
                 );
                 Navigator.of(context).pop();
               },
               failure: (failure) {
                 context.errorToast(
-                  title: 'Failure',
+                  title: context.str?.deleteExamFailed,
                   description: failure,
                 );
               },
@@ -334,15 +331,16 @@ class _DetailExamScreenState extends State<DetailExamScreen>
                   return BlocProvider.value(
                     value: context.read<ExamBlocWrite>(),
                     child: AlertDialog(
-                      title: const Text('Delete Exam'),
-                      content: const Text(
+                      title: Text(context.str?.deleteExam ?? 'Delete Exam'),
+                      content: Text(context.str
+                              ?.areYouSureYouWantToDeleteExam(exam?.title) ??
                           'Are you sure you want to delete this exam?'),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.of(ctx).pop();
                           },
-                          child: const Text('Cancel'),
+                          child: Text(context.str?.no ?? 'No'),
                         ),
                         TextButton(
                           onPressed: () {
@@ -352,7 +350,7 @@ class _DetailExamScreenState extends State<DetailExamScreen>
                                 );
                             Navigator.of(ctx).pop();
                           },
-                          child: const Text('Delete'),
+                          child: Text(context.str?.yes ?? 'Yes'),
                         ),
                       ],
                     ),

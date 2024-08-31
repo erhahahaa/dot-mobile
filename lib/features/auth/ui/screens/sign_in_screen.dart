@@ -107,7 +107,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   controller: _identifierController,
                   currentFocus: _identifierFocus,
                   nextFocus: _passwordFocus,
-                  hintText: context.str?.enterEmailOrUsernameOrPhone,
+                  hintText: context.str?.enterYourEmailOrUsernameOrPhone,
                   leading: const Icon(MoonIcons.mail_email_stats_24_light),
                   autoFillHints: const [
                     AutofillHints.email,
@@ -116,7 +116,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   textInputAction: TextInputAction.next,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return context.str?.identifierRequired ??
+                      return context.str?.emailOrUsernameOrPhoneIsRequired ??
                           'Identifier is required';
                     }
                     if (value.isEmail) {
@@ -127,7 +127,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
                     if (value.isPhoneNumber) {
                       if (!value.isValidPhone) {
-                        return context.str?.invalidPhoneNumber ??
+                        return context.str?.invalidPhone ??
                             'Invalid phone number';
                       }
                     }
@@ -143,7 +143,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 FormInput(
                   controller: _passwordController,
                   currentFocus: _passwordFocus,
-                  hintText: context.str?.enterYourPass,
+                  hintText: context.str?.enterYourPassword,
                   leading: const Icon(MoonIcons.security_password_24_light),
                   obsecureText: isObsecure,
                   autoFillHints: const [AutofillHints.password],
@@ -162,7 +162,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return context.str?.passRequired ??
+                      return context.str?.passwordIsRequired ??
                           'Password is required';
                     }
                     return null;
@@ -174,20 +174,20 @@ class _SignInScreenState extends State<SignInScreen> {
           Gap(12.h),
           BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
-              state.maybeWhen(
+              state.whenOrNull(
                 authenticated: (user) {
                   context.successToast(
-                      title: context.str?.successSignIn,
-                      description: '${context.str?.welcomeBack}, ${user.name}');
+                    title: context.str?.signInSuccess,
+                    description: context.str?.welcomeBack(user.name),
+                  );
                   context.router.replace(const ListClubRoute());
                 },
                 unauthenticated: (message) {
                   context.errorToast(
-                    title: context.str?.error,
-                    description: message,
+                    title: context.str?.signInFailed,
+                    description: context.str?.invalidCredentials,
                   );
                 },
-                orElse: () {},
               );
             },
             builder: (context, state) {

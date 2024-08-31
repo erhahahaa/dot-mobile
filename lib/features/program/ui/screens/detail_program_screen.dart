@@ -11,17 +11,34 @@ import 'package:gap/gap.dart';
 import 'package:moon_design/moon_design.dart';
 
 @RoutePage()
-class DetailProgramScreen extends StatelessWidget implements AutoRouteWrapper {
+class DetailProgramScreen extends StatefulWidget implements AutoRouteWrapper {
   final int id;
   const DetailProgramScreen({
     super.key,
     @pathParam required this.id,
   });
+
+  @override
+  State<DetailProgramScreen> createState() => _DetailProgramScreenState();
+
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
       value: context.read<ExerciseBlocRead>()..add(BlocEventRead.get(id: id)),
       child: this,
+    );
+  }
+}
+
+class _DetailProgramScreenState extends State<DetailProgramScreen> {
+  ProgramModel? _program;
+
+  @override
+  void initState() {
+    super.initState();
+    final programBloc = context.read<ProgramBlocRead>();
+    _program = programBloc.state.whenOrNull(
+      success: (_, __, selectedItem) => selectedItem,
     );
   }
 
@@ -49,15 +66,14 @@ class DetailProgramScreen extends StatelessWidget implements AutoRouteWrapper {
                         BlocEventRead.remove(success.id),
                       );
                   context.successToast(
-                    title: 'Success',
-                    description:
-                        '${success.name} has been deleted successfully.',
+                    title: context.str?.success,
+                    description: context.str?.programDeletedSuccessfully,
                   );
                   Navigator.of(context).pop();
                 },
                 failure: (message) {
                   context.errorToast(
-                    title: 'Failure',
+                    title: context.str?.deleteProgramFailed,
                     description: message,
                   );
                 },
@@ -75,25 +91,28 @@ class DetailProgramScreen extends StatelessWidget implements AutoRouteWrapper {
                     return BlocProvider.value(
                       value: context.read<ProgramBlocWrite>(),
                       child: AlertDialog(
-                        title: const Text('Delete Program'),
-                        content: const Text(
+                        title: Text(
+                            context.str?.deleteProgram ?? 'Delete Program'),
+                        content: Text(context.str
+                                ?.areYouSureYouWantToDeleteProgram(
+                                    _program?.name) ??
                             'Are you sure you want to delete this program?'),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.of(ctx).pop();
                             },
-                            child: const Text('Cancel'),
+                            child: Text(context.str?.no ?? 'No'),
                           ),
                           TextButton(
                             onPressed: () {
                               context.read<ProgramBlocWrite>().add(
-                                    BlocEventWrite.delete(
-                                        DeleteProgramParams(programId: id)),
+                                    BlocEventWrite.delete(DeleteProgramParams(
+                                        programId: widget.id)),
                                   );
                               Navigator.of(ctx).pop();
                             },
-                            child: const Text('Delete'),
+                            child: Text(context.str?.yes ?? 'Yes'),
                           ),
                         ],
                       ),
@@ -129,15 +148,15 @@ class DetailProgramScreen extends StatelessWidget implements AutoRouteWrapper {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            BodyMedium('Name : ${selectedItem?.name}'),
+                            BodyMedium('${context.str?.name}: ${selectedItem?.name}'),
                             if (selectedItem?.startDate != null) ...[
                               BodyMedium(
-                                'Start date : ${selectedItem?.startDate!.toDayMonthYear()}',
+                                '${context.str?.startDate}: ${selectedItem?.startDate!.toDayMonthYear()}',
                               ),
                             ],
                             if (selectedItem?.endDate != null) ...[
                               BodyMedium(
-                                'End date : ${selectedItem?.endDate!.toDayMonthYear()}',
+                                '${context.str?.endDate}: ${selectedItem?.endDate!.toDayMonthYear()}',
                               ),
                             ]
                           ],
@@ -149,7 +168,7 @@ class DetailProgramScreen extends StatelessWidget implements AutoRouteWrapper {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              TitleMedium(context.str?.exercise ?? 'Exercises'),
+                              TitleMedium(context.str?.exercises ?? 'Exercises'),
                               Gap(8.h),
                               state.maybeWhen(
                                 success: (items, __, ___) {

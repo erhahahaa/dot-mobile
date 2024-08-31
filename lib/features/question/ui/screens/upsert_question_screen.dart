@@ -70,7 +70,10 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
       builder: (child, search, scroll, showScrollToTopButton) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('${_exam?.title} Questions'),
+            title: Text(
+              context.str?.examQuestions(_exam?.title) ??
+                  '${_exam?.title} Questions',
+            ),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
@@ -84,14 +87,14 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
               state.whenOrNull(
                 success: (item) {
                   context.successToast(
-                    title: 'Success',
-                    description: 'Question saved successfully',
+                    title: context.str?.success,
+                    description: context.str?.questionSavedSuccessfully,
                   );
                   context.router.back();
                 },
                 failure: (message) {
                   context.errorToast(
-                    title: 'Error',
+                    title: context.str?.questionSaveFailed,
                     description: message,
                   );
                 },
@@ -119,7 +122,6 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                     isLoading: state is BlocStateWriteLoading,
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
-                        Log.info('QUESTION LENGTH: ${_questions.length}');
                         final createParams = <CreateQuestionParams>[];
                         final updateParams = <UpdateQuestionParams>[];
                         for (final quest in _questions) {
@@ -161,7 +163,7 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                       }
                     },
                     icon: const Icon(Icons.save),
-                    label: const Text('Save'),
+                    label: Text(context.str?.save ?? 'Save'),
                   ),
                 ],
               );
@@ -214,7 +216,7 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                   child: child,
                 ),
                 footer: AddItemButton(
-                  text: 'Add Question',
+                  text: context.str?.addQuestion ?? 'Add Question',
                   onTap: () {
                     setState(
                       () {
@@ -268,7 +270,7 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                 children: [
                   const MoonLinearLoader(),
                   Gap(16.h),
-                  const Text('Loading questions...'),
+                  Text(context.str?.loadingQuestions ?? 'Loading questions...'),
                 ],
               ),
             );
@@ -290,7 +292,7 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
         children: [
           Row(
             children: [
-              Text('Question ${index + 1}'),
+              Text('${context.str?.question} ${index + 1}'),
               const Spacer(),
               IconButton(
                 icon: Icon(
@@ -332,7 +334,7 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
               ),
             ],
           ),
-          const FormLabel('Question'),
+          FormLabel(context.str?.question),
           Row(
             children: [
               Expanded(
@@ -340,10 +342,10 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                   currentFocus: questionItem.questionFN,
                   nextFocus: FocusNode(),
                   controller: questionItem.questionCon,
-                  hintText: 'Enter the question',
+                  hintText: context.str?.enterQuestion,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a question';
+                      return context.str?.questionIsRequired;
                     }
                     return null;
                   },
@@ -357,7 +359,7 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
             ],
           ),
           SizedBox(height: 8.h),
-          const FormLabel('Type'),
+          FormLabel(context.str?.questionType),
           FormCombobox<QuestionType>(
             items: QuestionType.values
                 .map(
@@ -368,17 +370,18 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
                 )
                 .toList(),
             controller: questionItem.typeCon,
+            hintText: context.str?.selectQuestionType,
             currentFocus: questionItem.typeFN,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please choose optiion';
+                return context.str?.questionTypeIsRequired;
               }
 
               final isInList = QuestionType.values.any(
                 (e) => e.value == value.toLowerCase(),
               );
               if (!isInList) {
-                return 'Please choose valid option';
+                return context.str?.invalidOption;
               }
               return null;
             },

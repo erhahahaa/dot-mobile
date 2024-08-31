@@ -16,9 +16,6 @@ class ListClubScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userBloc = context.watch<UserBloc>();
-    final user = userBloc.state.whenOrNull(success: (user, _) => user) ??
-        const UserModel();
     return ParentWithSearchAndScrollController(
       onInit: (search, scroll) => context.read<ClubBlocRead>().add(
             const BlocEventRead.clear(),
@@ -26,9 +23,12 @@ class ListClubScreen extends StatelessWidget {
       builder: (context, search, scroll, showScrollToTopButton) {
         return Parent(
           appBar: _buildAppBar(),
-          drawer: _buildDrawer(context, user),
+          drawer: MoonDrawer(
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: const ProfileScreen(),
+          ),
           floatingActionButton: _buildFloatingActionButton(
-              showScrollToTopButton, scroll, user, context),
+              showScrollToTopButton, scroll, context),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
             child: RefreshIndicator(
@@ -55,8 +55,11 @@ class ListClubScreen extends StatelessWidget {
     );
   }
 
-  Column _buildFloatingActionButton(bool showScrollToTopButton,
-      ScrollController scroll, UserModel user, BuildContext context) {
+  Column _buildFloatingActionButton(
+    bool showScrollToTopButton,
+    ScrollController scroll,
+    BuildContext context,
+  ) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -72,73 +75,24 @@ class ListClubScreen extends StatelessWidget {
             );
           },
         ),
-        if (user.role == UserRole.athlete) ...[
-          Gap(8.h),
-          FloatingActionButton.extended(
-            heroTag: 'new_club_button_$hashCode',
-            onPressed: () {
-              context.router.push<ClubModel>(
-                UpsertClubRoute(
-                  onUpserted: (club) {
-                    context.read<ClubBlocRead>().add(
-                          BlocEventRead.append(club),
-                        );
-                  },
-                ),
-              );
-            },
-            icon: const Icon(Icons.add),
-            label: const Text('New Club'),
-          ),
-        ],
-      ],
-    );
-  }
-
-  MoonDrawer _buildDrawer(BuildContext context, UserModel user) {
-    return MoonDrawer(
-      width: MediaQuery.of(context).size.width * 0.7,
-      child: SafeArea(
-        child: Column(
-          children: [
-            Row(children: [
-              const Spacer(),
-              MoonButton.icon(
-                icon: const Icon(MoonIcons.controls_close_24_light),
-                onTap: () {
-                  Navigator.of(context).pop();
+        Gap(8.h),
+        FloatingActionButton.extended(
+          heroTag: 'new_club_button_$hashCode',
+          onPressed: () {
+            context.router.push<ClubModel>(
+              UpsertClubRoute(
+                onUpserted: (club) {
+                  context.read<ClubBlocRead>().add(
+                        BlocEventRead.append(club),
+                      );
                 },
               ),
-            ]),
-            Gap(16.h),
-            CircleAvatar(
-              radius: 40.r,
-              backgroundImage: NetworkImage(user.image),
-            ),
-            Gap(8.h),
-            TitleMedium(user.name),
-            Gap(8.h),
-            BodySmall(user.email),
-            Gap(16.h),
-            BlocListener<AuthBloc, AuthState>(
-              listener: (context, state) {
-                state.mapOrNull(
-                  unauthenticated: (message) {
-                    context.replaceRoute(const SplashRoute());
-                  },
-                );
-              },
-              child: MoonFilledButton(
-                buttonSize: MoonButtonSize.sm,
-                label: BodySmall(context.str?.logout),
-                onTap: () {
-                  context.read<AuthBloc>().add(const AuthEvent.signOut());
-                },
-              ),
-            ),
-          ],
+            );
+          },
+          icon: const Icon(Icons.add),
+          label: Text(context.str?.newClub ?? 'New Club'),
         ),
-      ),
+      ],
     );
   }
 
@@ -169,7 +123,7 @@ class ListClubScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        TitleSmall(context.str?.myClub),
+        TitleSmall(context.str?.myClubs),
         MySearchBar(
           width: 180.w,
           height: 32.h,
@@ -207,15 +161,17 @@ class ListClubScreen extends StatelessWidget {
         return state.maybeWhen(
           success: (clubs, filteredClubs, __) {
             if (filteredClubs.isEmpty) {
-              return ErrorAlert('No club with ${searchController.text} found');
+              return ErrorAlert(
+                  context.str?.clubWithNameNotFound(searchController.text));
             }
             if (clubs.isEmpty) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
-                    "There's no club created yet",
+                  Text(
+                    context.str?.notJoinedAnyClubs ??
+                        "There's no club created yet",
                     textAlign: TextAlign.center,
                   ),
                   TextButton(
@@ -224,7 +180,7 @@ class ListClubScreen extends StatelessWidget {
                           WidgetStateProperty.all<Color>(Colors.blue),
                     ),
                     onPressed: () {},
-                    child: const Text("Reload"),
+                    child: Text(context.str?.reload ?? "Reload"),
                   ),
                 ],
               );
@@ -280,7 +236,6 @@ class ListClubScreen extends StatelessWidget {
       titleText: club.name,
       subtitleText: club.type.name,
       imageUrl: club.media?.url,
-      // margin: EdgeInsets.only(bottom: isLast ? 0 : 8.h),
       onTap: onTap,
       trailing: MoonButton.icon(
         buttonSize: MoonButtonSize.xs,

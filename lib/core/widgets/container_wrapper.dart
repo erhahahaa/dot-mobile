@@ -1,6 +1,7 @@
+import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moon_design/moon_design.dart';
 
 class ContainerWrapper extends StatelessWidget {
   final double? width, height;
@@ -28,10 +29,9 @@ class ContainerWrapper extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        borderRadius: borderRadius ?? BorderRadius.circular(8.r),
-        // color: color ?? context.moonColors?.hit.withOpacity(0.03),
+        borderRadius: borderRadius ?? BorderRadius.circular(8.r), 
         color: color ??
-            (context.isDarkMode ? const Color(0xFF1E1E1E) : const Color(0xFFF5F5F5)),
+            context.theme.extension<AppColors>()?.containerWrapperColor,
       ),
       child: child,
     );

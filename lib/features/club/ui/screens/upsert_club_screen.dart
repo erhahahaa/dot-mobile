@@ -96,7 +96,9 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
     return Parent(
       appBar: AppBar(
         title: TitleMedium(
-          _club == null ? 'Create Club' : 'Update ${_club?.name}',
+          _club == null
+              ? context.str?.createClub
+              : context.str?.updateClub(_club?.name),
         ),
       ),
       body: Padding(
@@ -155,21 +157,21 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
               hintText: context.str?.enterClubName,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.clubNameRequired;
+                  return context.str?.clubNameIsRequired;
                 }
                 return null;
               },
             ),
             Gap(12.h),
-            FormLabel(context.str?.description),
+            FormLabel(context.str?.clubDescription),
             FormInput(
               controller: _descriptionController,
               currentFocus: _descriptionFocusNode,
               textInputAction: TextInputAction.next,
-              hintText: context.str?.enterDescription,
+              hintText: context.str?.enterClubDescription,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context.str?.clubDescriptionRequired;
+                  return context.str?.clubDescriptionIsRequired;
                 }
                 return null;
               },
@@ -184,6 +186,7 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
                   .toList(),
               controller: _sportTypeController,
               currentFocus: _sportTypeFocusNode,
+              hintText: context.str?.selectSportType,
               textInputAction: TextInputAction.done,
               onChanged: (value) {
                 setState(() {
@@ -192,12 +195,12 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
               },
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Sport type is required';
+                  return context.str?.sportTypeIsRequired;
                 }
                 final isInList =
                     SportType.values.any((element) => element.name == value);
                 if (!isInList) {
-                  return 'Invalid sport type';
+                  return context.str?.invalidOption;
                 }
                 return null;
               },
@@ -208,10 +211,10 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
                 state.mapOrNull(
                   success: (success) {
                     final msg = _club == null
-                        ? 'Club created successfully'
-                        : 'Club updated successfully';
+                        ? context.str?.clubCreatedSuccessfully
+                        : context.str?.clubUpdatedSuccessfully;
                     context.successToast(
-                      title: 'Success',
+                      title: context.str?.success,
                       description: msg,
                     );
                     widget.onUpserted.call(success.item);
@@ -219,7 +222,9 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
                   },
                   failure: (failure) {
                     context.errorToast(
-                      title: 'Error',
+                      title: _club == null
+                          ? context.str?.createFailed
+                          : context.str?.updateFailed,
                       description: failure.message,
                     );
                   },
@@ -228,11 +233,13 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
               builder: (context, state) {
                 return FormButton(
                   isLoading: state is BlocStateWriteLoading,
-                  text: 'Create club',
+                  text: _club == null
+                      ? context.str?.createClub
+                      : context.str?.updateClub(_club?.name),
                   onTap: () {
                     if (image == null && _club == null) {
                       setState(() {
-                        imageError = context.str?.clubImageRequired;
+                        imageError = context.str?.clubImageIsRequired;
                       });
                       return;
                     } else {
@@ -241,12 +248,18 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
                       });
                     }
                     if (selectedSportType == null) {
-                      context.showSnackBar(message: 'Sport type is required');
+                      context.showSnackBar(
+                        message: context.str?.sportTypeIsRequired ??
+                            'Sport type is required',
+                      );
                       return;
                     }
                     if (_formKey.currentState?.validate() ?? false) {
                       if (!mounted) {
-                        return context.showSnackBar(message: 'Un mounter');
+                        return context.errorToast(
+                          title: context.str?.obsecuredState,
+                          description: context.str?.pleaseTryAgain,
+                        );
                       }
 
                       if (_club != null) {

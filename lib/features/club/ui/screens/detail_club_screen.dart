@@ -39,7 +39,7 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
       builder: (child, search, scroll, showScrollToTopButton) {
         return Parent(
           appBar: AppBar(
-            title: TitleMedium('${_club?.name} Detail'),
+            title: TitleMedium(context.str?.clubDetail(_club?.name)),
             actions: [
               MoonButton.icon(
                 icon: const Icon(MoonIcons.generic_edit_24_light),
@@ -77,7 +77,7 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
               ],
               FloatingActionButton.extended(
                 heroTag: 'new_member_button_$hashCode',
-                label: const TitleSmall('Add Member'),
+                label: TitleSmall(context.str?.addMember),
                 icon: const Icon(MoonIcons.generic_plus_24_light),
                 onPressed: () {
                   context.router.push(const AddMemberRoute());
@@ -91,11 +91,12 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TitleSmall('Overview'),
+                  TitleSmall(context.str?.clubOverview(_club?.name)),
                   Gap(4.h),
                   BlocBuilder<ClubMembersCubit, ClubMembersState>(
                     builder: (context, state) {
                       return ClubOverviewCard(
+                        clubName: _club?.name,
                         membersCount: state.members.length,
                         programsCount: _club?.programCount,
                         examsCount: _club?.examCount,
@@ -106,7 +107,7 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
                   Gap(16.h),
                   Row(
                     children: [
-                      const TitleSmall('Members'),
+                      TitleSmall(context.str?.clubMembers(_club?.name)),
                       Gap(32.w),
                       Expanded(
                         child: MySearchBar(
@@ -181,48 +182,7 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
                                   ],
                                 ),
                                 const Spacer(),
-                                MoonButton.icon(
-                                  icon: const Icon(
-                                    MoonIcons.generic_delete_24_light,
-                                    color: Colors.red,
-                                  ),
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (ctx) {
-                                        return BlocProvider.value(
-                                          value:
-                                              context.read<ClubMembersCubit>(),
-                                          child: AlertDialog(
-                                            title: const Text('Kick Member'),
-                                            content: const Text(
-                                                'Are you sure you want to kick this member?'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  context
-                                                      .read<ClubMembersCubit>()
-                                                      .kickMember(
-                                                          clubId:
-                                                              _club?.id ?? 0,
-                                                          userId: item.id);
-                                                  Navigator.pop(ctx);
-                                                },
-                                                child: const Text('Yes'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(ctx);
-                                                },
-                                                child: const Text('No'),
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
+                                _removeMemberButton(context, item),
                               ],
                             ),
                           );
@@ -231,65 +191,115 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
                     },
                   ),
                   Gap(16.h),
-                  const TitleSmall('About'),
+                  TitleSmall(context.str?.clubAbout(_club?.name)),
                   ListViewBuilderTile(
                     imageUrl: _club?.media?.url,
                     titleText: _club?.name,
                     subtitleText: _club?.description,
                   ),
                   Gap(16.h),
-                  MoonFilledButton(
-                    width: double.infinity,
-                    label: const TitleSmall('Leave'),
-                    trailing: const Icon(
-                      MoonIcons.generic_log_out_24_light,
-                    ),
-                    backgroundColor: Colors.red,
-                    onTap: () async {
-                      final res = await showDialog(
-                        context: context,
-                        builder: (ctx) {
-                          return AlertDialog(
-                            title: const Text('Leave Club'),
-                            content: const Text(
-                                'Are you sure you want to leave this club?'),
-                            actions: [
-                              TextButton(
-                                onPressed: () async {
-                                  await context
-                                      .read<ClubMembersCubit>()
-                                      .leaveClub(clubId: _club?.id ?? 0);
-                                  if (ctx.mounted) {
-                                    Navigator.pop(ctx, true);
-                                  }
-                                },
-                                child: const Text('Yes'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(ctx, false);
-                                },
-                                child: const Text('No'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                      if (res == true) {
-                        if (context.mounted) {
-                          context.read<ClubBlocRead>().add(const BlocEventRead.get());
-                          context.router.replace(
-                            const ListClubRoute(),
-                          );
-                        }
-                      }
-                    },
-                  ),
+                  _leaveClubButton(context),
                   Gap(128.h),
                 ],
               ),
             ),
           ),
+        );
+      },
+    );
+  }
+
+  MoonFilledButton _leaveClubButton(BuildContext context) {
+    return MoonFilledButton(
+      width: double.infinity,
+      label: TitleSmall(context.str?.leaveClub),
+      trailing: const Icon(
+        MoonIcons.generic_log_out_24_light,
+      ),
+      backgroundColor: Colors.red,
+      onTap: () async {
+        final res = await showDialog(
+          context: context,
+          builder: (ctx) {
+            return AlertDialog(
+              title: TitleSmall(context.str?.leaveClub),
+              content: TitleSmall(
+                context.str?.areYouSureYouWantToLeaveClubName(_club?.name),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () async {
+                    await context
+                        .read<ClubMembersCubit>()
+                        .leaveClub(clubId: _club?.id ?? 0);
+                    if (ctx.mounted) {
+                      Navigator.pop(ctx, true);
+                    }
+                  },
+                  child: Text(context.str?.yes ?? 'Yes'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(ctx, false);
+                  },
+                  child: Text(context.str?.no ?? 'No'),
+                ),
+              ],
+            );
+          },
+        );
+        if (res == true) {
+          if (context.mounted) {
+            context.read<ClubBlocRead>().add(const BlocEventRead.get());
+            context.router.replace(
+              const ListClubRoute(),
+            );
+          }
+        }
+      },
+    );
+  }
+
+  MoonButton _removeMemberButton(BuildContext context, UserModel item) {
+    return MoonButton.icon(
+      icon: const Icon(
+        MoonIcons.generic_delete_24_light,
+        color: Colors.red,
+      ),
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (ctx) {
+            return BlocProvider.value(
+              value: context.read<ClubMembersCubit>(),
+              child: AlertDialog(
+                title: TitleMedium(context.str?.kickMember),
+                content: TitleMedium(
+                  context.str?.areYouSureYouWantToKickUsernameFromClubName(
+                    item.name,
+                    _club?.name,
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      context
+                          .read<ClubMembersCubit>()
+                          .kickMember(clubId: _club?.id ?? 0, userId: item.id);
+                      Navigator.pop(ctx);
+                    },
+                    child: Text(context.str?.yes ?? 'Yes'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(ctx);
+                    },
+                    child: Text(context.str?.no ?? 'No'),
+                  ),
+                ],
+              ),
+            );
+          },
         );
       },
     );
