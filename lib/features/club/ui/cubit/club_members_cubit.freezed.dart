@@ -16,9 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ClubMembersState {
+  bool get isLoading => throw _privateConstructorUsedError;
   UserModel? get selectedUser => throw _privateConstructorUsedError;
   List<UserModel> get members => throw _privateConstructorUsedError;
   List<UserModel> get filteredMembers => throw _privateConstructorUsedError;
+  List<UserModel> get searchResult => throw _privateConstructorUsedError;
 
   /// Create a copy of ClubMembersState
   /// with the given fields replaced by the non-null parameter values.
@@ -34,9 +36,11 @@ abstract class $ClubMembersStateCopyWith<$Res> {
       _$ClubMembersStateCopyWithImpl<$Res, ClubMembersState>;
   @useResult
   $Res call(
-      {UserModel? selectedUser,
+      {bool isLoading,
+      UserModel? selectedUser,
       List<UserModel> members,
-      List<UserModel> filteredMembers});
+      List<UserModel> filteredMembers,
+      List<UserModel> searchResult});
 
   $UserModelCopyWith<$Res>? get selectedUser;
 }
@@ -56,11 +60,17 @@ class _$ClubMembersStateCopyWithImpl<$Res, $Val extends ClubMembersState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? selectedUser = freezed,
     Object? members = null,
     Object? filteredMembers = null,
+    Object? searchResult = null,
   }) {
     return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectedUser: freezed == selectedUser
           ? _value.selectedUser
           : selectedUser // ignore: cast_nullable_to_non_nullable
@@ -72,6 +82,10 @@ class _$ClubMembersStateCopyWithImpl<$Res, $Val extends ClubMembersState>
       filteredMembers: null == filteredMembers
           ? _value.filteredMembers
           : filteredMembers // ignore: cast_nullable_to_non_nullable
+              as List<UserModel>,
+      searchResult: null == searchResult
+          ? _value.searchResult
+          : searchResult // ignore: cast_nullable_to_non_nullable
               as List<UserModel>,
     ) as $Val);
   }
@@ -100,9 +114,11 @@ abstract class _$$ClubMembersStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {UserModel? selectedUser,
+      {bool isLoading,
+      UserModel? selectedUser,
       List<UserModel> members,
-      List<UserModel> filteredMembers});
+      List<UserModel> filteredMembers,
+      List<UserModel> searchResult});
 
   @override
   $UserModelCopyWith<$Res>? get selectedUser;
@@ -121,11 +137,17 @@ class __$$ClubMembersStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? selectedUser = freezed,
     Object? members = null,
     Object? filteredMembers = null,
+    Object? searchResult = null,
   }) {
     return _then(_$ClubMembersStateImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectedUser: freezed == selectedUser
           ? _value.selectedUser
           : selectedUser // ignore: cast_nullable_to_non_nullable
@@ -138,6 +160,10 @@ class __$$ClubMembersStateImplCopyWithImpl<$Res>
           ? _value._filteredMembers
           : filteredMembers // ignore: cast_nullable_to_non_nullable
               as List<UserModel>,
+      searchResult: null == searchResult
+          ? _value._searchResult
+          : searchResult // ignore: cast_nullable_to_non_nullable
+              as List<UserModel>,
     ));
   }
 }
@@ -146,12 +172,18 @@ class __$$ClubMembersStateImplCopyWithImpl<$Res>
 
 class _$ClubMembersStateImpl implements _ClubMembersState {
   const _$ClubMembersStateImpl(
-      {this.selectedUser,
+      {this.isLoading = false,
+      this.selectedUser,
       final List<UserModel> members = const [],
-      final List<UserModel> filteredMembers = const []})
+      final List<UserModel> filteredMembers = const [],
+      final List<UserModel> searchResult = const []})
       : _members = members,
-        _filteredMembers = filteredMembers;
+        _filteredMembers = filteredMembers,
+        _searchResult = searchResult;
 
+  @override
+  @JsonKey()
+  final bool isLoading;
   @override
   final UserModel? selectedUser;
   final List<UserModel> _members;
@@ -172,9 +204,18 @@ class _$ClubMembersStateImpl implements _ClubMembersState {
     return EqualUnmodifiableListView(_filteredMembers);
   }
 
+  final List<UserModel> _searchResult;
+  @override
+  @JsonKey()
+  List<UserModel> get searchResult {
+    if (_searchResult is EqualUnmodifiableListView) return _searchResult;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_searchResult);
+  }
+
   @override
   String toString() {
-    return 'ClubMembersState(selectedUser: $selectedUser, members: $members, filteredMembers: $filteredMembers)';
+    return 'ClubMembersState(isLoading: $isLoading, selectedUser: $selectedUser, members: $members, filteredMembers: $filteredMembers, searchResult: $searchResult)';
   }
 
   @override
@@ -182,19 +223,25 @@ class _$ClubMembersStateImpl implements _ClubMembersState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClubMembersStateImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             (identical(other.selectedUser, selectedUser) ||
                 other.selectedUser == selectedUser) &&
             const DeepCollectionEquality().equals(other._members, _members) &&
             const DeepCollectionEquality()
-                .equals(other._filteredMembers, _filteredMembers));
+                .equals(other._filteredMembers, _filteredMembers) &&
+            const DeepCollectionEquality()
+                .equals(other._searchResult, _searchResult));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      isLoading,
       selectedUser,
       const DeepCollectionEquality().hash(_members),
-      const DeepCollectionEquality().hash(_filteredMembers));
+      const DeepCollectionEquality().hash(_filteredMembers),
+      const DeepCollectionEquality().hash(_searchResult));
 
   /// Create a copy of ClubMembersState
   /// with the given fields replaced by the non-null parameter values.
@@ -208,16 +255,22 @@ class _$ClubMembersStateImpl implements _ClubMembersState {
 
 abstract class _ClubMembersState implements ClubMembersState {
   const factory _ClubMembersState(
-      {final UserModel? selectedUser,
+      {final bool isLoading,
+      final UserModel? selectedUser,
       final List<UserModel> members,
-      final List<UserModel> filteredMembers}) = _$ClubMembersStateImpl;
+      final List<UserModel> filteredMembers,
+      final List<UserModel> searchResult}) = _$ClubMembersStateImpl;
 
+  @override
+  bool get isLoading;
   @override
   UserModel? get selectedUser;
   @override
   List<UserModel> get members;
   @override
   List<UserModel> get filteredMembers;
+  @override
+  List<UserModel> get searchResult;
 
   /// Create a copy of ClubMembersState
   /// with the given fields replaced by the non-null parameter values.

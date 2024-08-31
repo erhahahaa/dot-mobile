@@ -17,6 +17,7 @@ class FormCombobox<T> extends StatefulWidget {
   final Color? backgroundColor, activeBorderColor;
   final TextInputAction? textInputAction;
   final ComboboxItem<T>? defaultOption;
+  final bool readOnly;
 
   const FormCombobox({
     super.key,
@@ -32,6 +33,7 @@ class FormCombobox<T> extends StatefulWidget {
     this.textInputAction,
     this.activeBorderColor,
     this.defaultOption,
+    this.readOnly = false,
   });
 
   @override
@@ -105,6 +107,7 @@ class _FormComboboxState<T> extends State<FormCombobox<T>> {
         activeBorderColor: widget.activeBorderColor,
         backgroundColor: widget.backgroundColor,
         textInputAction: widget.textInputAction ?? TextInputAction.next,
+        readOnly: widget.readOnly,
         onTap: () {
           setState(() {
             _showCombobox = true;

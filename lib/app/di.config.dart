@@ -319,11 +319,6 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i561.SignUpUsecase>(),
           gh<_i561.SignOutUsecase>(),
         ));
-    gh.lazySingleton<_i1016.ClubMembersCubit>(() => _i1016.ClubMembersCubit(
-          gh<_i561.GetClubMembersUsecase>(),
-          gh<_i561.KickClubMemberUsecase>(),
-          gh<_i561.LeaveClubUsecase>(),
-        ));
     gh.lazySingleton<_i59.CreateQuestionBatchUsecase>(
         () => _i59.CreateQuestionBatchUsecase(gh<_i561.QuestionRepository>()));
     gh.lazySingleton<_i950.UpdateQuestionBatchUsecase>(
@@ -454,6 +449,13 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i561.CreateEvaluationUsecase>(),
           gh<_i561.UpdateEvaluationUsecase>(),
           gh<_i561.DeleteEvaluationUsecase>(),
+        ));
+    gh.lazySingleton<_i1016.ClubMembersCubit>(() => _i1016.ClubMembersCubit(
+          gh<_i561.GetClubMembersUsecase>(),
+          gh<_i561.KickClubMemberUsecase>(),
+          gh<_i561.LeaveClubUsecase>(),
+          gh<_i561.AddClubMemberUsecase>(),
+          gh<_i561.SearchUsersUsecase>(),
         ));
     gh.lazySingleton<_i187.ExerciseBlocRead>(
         () => _i187.ExerciseBlocRead(gh<_i561.GetAllExerciseUsecase>()));

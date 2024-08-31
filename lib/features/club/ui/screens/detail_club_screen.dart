@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dot_coaching/app/router.gr.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
@@ -78,7 +79,9 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
                 heroTag: 'new_member_button_$hashCode',
                 label: TitleSmall('Add Member'),
                 icon: const Icon(MoonIcons.generic_plus_24_light),
-                onPressed: () {},
+                onPressed: () {
+                  context.router.push(AddMemberRoute());
+                },
               ),
             ],
           ),
@@ -137,49 +140,90 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
                         height: 0.44.sh,
                         scrollController: scroll,
                         itemBuilder: (context, index, item) {
-                          return ListViewBuilderTile(
-                            imageUrl: item.image,
-                            titleText: item.name,
-                            subtitleText: item.email,
-                            trailing: MoonButton.icon(
-                              icon: Icon(
-                                MoonIcons.generic_delete_24_light,
-                                color: Colors.red,
-                              ),
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (ctx) {
-                                    return BlocProvider.value(
-                                      value: context.read<ClubMembersCubit>(),
-                                      child: AlertDialog(
-                                        title: const Text('Kick Member'),
-                                        content: const Text(
-                                            'Are you sure you want to kick this member?'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () {
-                                              context
-                                                  .read<ClubMembersCubit>()
-                                                  .kickMember(
-                                                      clubId: _club?.id ?? 0,
-                                                      userId: item.id);
-                                              Navigator.pop(ctx);
-                                            },
-                                            child: const Text('Yes'),
-                                          ),
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(ctx);
-                                            },
-                                            child: const Text('No'),
-                                          ),
-                                        ],
-                                      ),
+                          return EightCard(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 8.w,
+                              horizontal: 16.w,
+                            ),
+                            margin: EdgeInsets.all(4.w),
+                            child: Row(
+                              children: [
+                                CachedNetworkImage(
+                                  imageUrl: item.image,
+                                  width: 36.h,
+                                  height: 36.h,
+                                  imageBuilder: (context, imageProvider) {
+                                    return CircleAvatar(
+                                      backgroundImage: imageProvider,
                                     );
                                   },
-                                );
-                              },
+                                ),
+                                Gap(8.w),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TitleSmall(item.name),
+                                    Gap(4.h),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 4.w, horizontal: 8.w),
+                                      decoration: BoxDecoration(
+                                        color: context.moonColors?.frieza
+                                            .withOpacity(0.1),
+                                        borderRadius:
+                                            BorderRadius.circular(32.w),
+                                      ),
+                                      child: BodyMedium(
+                                        item.role.name,
+                                        color: context.moonColors?.frieza,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
+                                MoonButton.icon(
+                                  icon: const Icon(
+                                    MoonIcons.generic_delete_24_light,
+                                    color: Colors.red,
+                                  ),
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (ctx) {
+                                        return BlocProvider.value(
+                                          value:
+                                              context.read<ClubMembersCubit>(),
+                                          child: AlertDialog(
+                                            title: const Text('Kick Member'),
+                                            content: const Text(
+                                                'Are you sure you want to kick this member?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  context
+                                                      .read<ClubMembersCubit>()
+                                                      .kickMember(
+                                                          clubId:
+                                                              _club?.id ?? 0,
+                                                          userId: item.id);
+                                                  Navigator.pop(ctx);
+                                                },
+                                                child: const Text('Yes'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(ctx);
+                                                },
+                                                child: const Text('No'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
                           );
                         },
@@ -240,7 +284,8 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
                         }
                       }
                     },
-                  )
+                  ),
+                  Gap(128.h),
                 ],
               ),
             ),

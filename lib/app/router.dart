@@ -143,6 +143,10 @@ class AppRouter extends RootStackRouter {
                       path: '',
                       page: DetailClubRoute.page,
                     ),
+                    AutoRoute(
+                      path: 'add-member',
+                      page: AddMemberRoute.page,
+                    )
                   ],
                 ),
               ],
