@@ -1,4 +1,4 @@
-export 'package:dot_coaching/core/services/firebase/crashlogger.dart';
-export 'package:dot_coaching/core/services/firebase/option.dart';
-export 'package:dot_coaching/core/services/firebase/service.dart';
-export 'package:dot_coaching/core/services/firebase/messaging.dart';
+export 'firebase_crashlogger_service.dart';
+export 'firebase_messaging_service.dart';
+export 'firebase_options.dart';
+export 'firebase_service.dart';

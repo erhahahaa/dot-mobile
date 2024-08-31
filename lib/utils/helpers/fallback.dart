@@ -1,15 +1,9 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dot_coaching/core/core.dart';
-import 'package:dot_coaching/utils/utils.dart';
+import 'package:dot_coaching/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-String sportImage(String? url) {
-  if (url != null) return url;
-  return AppConstants.SPORT_IMAGE;
-}
 
 Widget imageFallback(File? image, String? url) {
   Widget imageWidget;
@@ -17,7 +11,7 @@ Widget imageFallback(File? image, String? url) {
     imageWidget = Image.file(image);
   } else if (url != null) {
     imageWidget = CachedNetworkImage(
-      imageUrl: url.sanitize(),
+      imageUrl: url,
       width: 150.w,
       height: 150.w,
       imageBuilder: (context, imageProvider) => Container(

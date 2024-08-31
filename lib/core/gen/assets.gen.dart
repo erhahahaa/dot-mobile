@@ -142,19 +142,12 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/exam
   $AssetsImagesExamGen get exam => const $AssetsImagesExamGen();
 
-  /// Directory path: assets/images/flags
-  $AssetsImagesFlagsGen get flags => const $AssetsImagesFlagsGen();
-
   /// Directory path: assets/images/hero
   $AssetsImagesHeroGen get hero => const $AssetsImagesHeroGen();
 
   /// Directory path: assets/images/placeholder
   $AssetsImagesPlaceholderGen get placeholder =>
       const $AssetsImagesPlaceholderGen();
-
-  /// Directory path: assets/images/tactical-board
-  $AssetsImagesTacticalBoardGen get tacticalBoard =>
-      const $AssetsImagesTacticalBoardGen();
 
   /// List of all assets
   List<AssetGenImage> get values => [dotLogo];
@@ -167,14 +160,6 @@ class $AssetsImagesBgGen {
   SvgGenImage get f5F6FFBg =>
       const SvgGenImage('assets/images/bg/F5F6FF-bg.svg');
 
-  /// File path: assets/images/bg/Football_field.svg
-  SvgGenImage get footballField =>
-      const SvgGenImage('assets/images/bg/Football_field.svg');
-
-  /// File path: assets/images/bg/Rugby_union_pitch.svg
-  SvgGenImage get rugbyUnionPitch =>
-      const SvgGenImage('assets/images/bg/Rugby_union_pitch.svg');
-
   /// File path: assets/images/bg/gradient-skewed-right.svg
   SvgGenImage get gradientSkewedRight =>
       const SvgGenImage('assets/images/bg/gradient-skewed-right.svg');
@@ -184,13 +169,7 @@ class $AssetsImagesBgGen {
       const SvgGenImage('assets/images/bg/home-athlete.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [
-        f5F6FFBg,
-        footballField,
-        rugbyUnionPitch,
-        gradientSkewedRight,
-        homeAthlete
-      ];
+  List<SvgGenImage> get values => [f5F6FFBg, gradientSkewedRight, homeAthlete];
 }
 
 class $AssetsImagesExamGen {
@@ -202,28 +181,6 @@ class $AssetsImagesExamGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [examLogo];
-}
-
-class $AssetsImagesFlagsGen {
-  const $AssetsImagesFlagsGen();
-
-  /// File path: assets/images/flags/cn.svg
-  SvgGenImage get cn => const SvgGenImage('assets/images/flags/cn.svg');
-
-  /// File path: assets/images/flags/es.svg
-  SvgGenImage get es => const SvgGenImage('assets/images/flags/es.svg');
-
-  /// File path: assets/images/flags/hi.svg
-  SvgGenImage get hi => const SvgGenImage('assets/images/flags/hi.svg');
-
-  /// File path: assets/images/flags/id.svg
-  SvgGenImage get id => const SvgGenImage('assets/images/flags/id.svg');
-
-  /// File path: assets/images/flags/us.svg
-  SvgGenImage get us => const SvgGenImage('assets/images/flags/us.svg');
-
-  /// List of all assets
-  List<SvgGenImage> get values => [cn, es, hi, id, us];
 }
 
 class $AssetsImagesHeroGen {
@@ -254,17 +211,6 @@ class $AssetsImagesPlaceholderGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [placeholder, sport];
-}
-
-class $AssetsImagesTacticalBoardGen {
-  const $AssetsImagesTacticalBoardGen();
-
-  /// File path: assets/images/tactical-board/01.png
-  AssetGenImage get a01 =>
-      const AssetGenImage('assets/images/tactical-board/01.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [a01];
 }
 
 class Assets {

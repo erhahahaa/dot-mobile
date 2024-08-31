@@ -1,1 +1,1 @@
-export 'package:dot_coaching/core/services/file/client.dart';
+export 'file_picker_service.dart';

@@ -1,6 +1,6 @@
 import 'package:logger/logger.dart';
 
-final log = Logger(
+final _log = Logger(
   printer: PrettyPrinter(
     methodCount: 0,
     errorMethodCount: 5,
@@ -10,3 +10,12 @@ final log = Logger(
     dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
   ),
 );
+
+mixin class Log {
+  static void debug(dynamic message) => _log.d(message);
+  static void error(dynamic message) => _log.e(message);
+  static void failure(dynamic message) => _log.f(message);
+  static void info(dynamic message) => _log.i(message);
+  static void warning(dynamic message) => _log.w(message);
+  static void trace(dynamic message) => _log.t(message);
+}

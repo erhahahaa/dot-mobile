@@ -1,4 +1,3 @@
-export 'package:dot_coaching/core/resources/dimens.dart';
-export 'package:dot_coaching/core/resources/palette.dart';
-export 'package:dot_coaching/core/resources/styles.dart';
-export 'package:dot_coaching/core/resources/theme.dart';
+export 'color.dart';
+export 'palette.dart';
+export 'theme.dart';

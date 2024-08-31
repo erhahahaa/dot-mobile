@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moon_design/moon_design.dart';
 import 'package:video_player/video_player.dart';
 
 class DedicatedVideoPlayer extends StatefulWidget {
@@ -23,7 +25,7 @@ class DedicatedVideoPlayer extends StatefulWidget {
 
 class _DedicatedVideoPlayerState extends State<DedicatedVideoPlayer> {
   late VideoPlayerController _controller;
-  late ChewieController _chewieController;
+  ChewieController? _chewieController;
 
   @override
   void initState() {
@@ -32,38 +34,50 @@ class _DedicatedVideoPlayerState extends State<DedicatedVideoPlayer> {
     _controller = VideoPlayerController.networkUrl(
       Uri.parse(widget.url),
     )..initialize().then((_) {
-        setState(() {});
+        setState(() {
+          _chewieController = ChewieController(
+            videoPlayerController: _controller,
+            autoPlay: true,
+            looping: false,
+          );
+        });
       });
-
-    _chewieController = ChewieController(
-      videoPlayerController: _controller,
-      aspectRatio: _controller.value.aspectRatio,
-    );
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    _chewieController.dispose();
+    _chewieController?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     if (!_controller.value.isInitialized) {
-      return const Center(child: CircularProgressIndicator());
+      return Center(
+          child: Padding(
+        padding: EdgeInsets.all(16.w),
+        child: const MoonCircularLoader(),
+      ));
     }
 
     return Stack(
       children: [
         Positioned.fill(
           child: _controller.value.isPlaying
-              ? AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: Chewie(
-                    controller: _chewieController,
-                  ),
-                )
+              ? _chewieController != null &&
+                      _chewieController!
+                          .videoPlayerController.value.isInitialized
+                  ? Expanded(
+                      child: Chewie(
+                        controller: _chewieController!,
+                      ),
+                    )
+                  : Center(
+                      child: Padding(
+                      padding: EdgeInsets.all(16.w),
+                      child: const MoonCircularLoader(),
+                    ))
               : CachedNetworkImage(
                   imageUrl: widget.thumbUrl,
                   width: widget.width,

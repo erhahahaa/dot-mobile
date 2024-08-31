@@ -1,2 +1,2 @@
-export 'package:dot_coaching/core/services/http/client.dart';
-export 'package:dot_coaching/core/services/http/interceptor.dart';
+export 'dio_service.dart';
+export 'dio_interceptor.dart';
