@@ -71,8 +71,7 @@ class DotApp extends StatelessWidget {
                       textScaler: const TextScaler.linear(1),
                       alwaysUse24HourFormat: true,
                     ),
-                    child: child ??
-                        const Center(child: CircularProgressIndicator()),
+                    child: child!,
                   );
                 },
                 theme: _theme.lightTheme(),
