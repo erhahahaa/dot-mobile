@@ -1,0 +1,7 @@
+# flutter gen-l10n --arb-dir lib/core/l10n --output-dir lib/core/gen --template-arb-file intl_en.arb --output-localization-file strings.dart --output-class Strings --no-synthetic-package
+arb-dir: lib/core/l10n
+output-dir: lib/core/gen
+template-arb-file: intl_en.arb
+output-localization-file: strings.dart
+output-class: Strings
+synthetic-package: false

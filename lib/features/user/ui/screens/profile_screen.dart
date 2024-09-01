@@ -17,7 +17,8 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileScreenState extends State<ProfileScreen>
+    with FirebaseCrashLoggerService {
   ThemeMode _themeMode = ThemeMode.system;
   Locale _locale = const Locale('en', 'US');
 
@@ -73,8 +74,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     BlocListener<AuthBloc, AuthState>(
                       listener: (context, state) {
                         state.mapOrNull(
-                          unauthenticated: (message) {
-                            context.replaceRoute(const SplashRoute());
+                          unauthenticated: (message) async {
+                            context.router.replace(const SplashRoute());
+                            try {
+                              await sl.reset();
+                              await configureDependencies();
+                            } catch (error, stackTrace) {
+                              await nonFatalError(
+                                error: error,
+                                stackTrace: stackTrace,
+                              );
+                            }
                           },
                         );
                       },
