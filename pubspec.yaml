@@ -30,7 +30,7 @@ dependencies:
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
   flutter_svg: ^2.0.10+1
-  dot_navigation_bar: ^1.0.2
+  # dot_navigation_bar: ^1.0.2
   cached_network_image: ^3.4.0
   google_fonts: ^6.2.1
   syncfusion_flutter_calendar: ^26.2.8
@@ -42,7 +42,7 @@ dependencies:
   device_info_plus: ^10.1.2
   file_picker: ^8.0.0+1
   text_area: ^0.0.3
-  easy_search_bar: ^2.5.0
+  # easy_search_bar: ^2.5.0
   easy_debounce: ^2.0.3
   skeletonizer: ^1.4.2
   firebase_messaging: ^15.0.4

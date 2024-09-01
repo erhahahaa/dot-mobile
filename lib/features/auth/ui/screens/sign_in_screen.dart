@@ -32,12 +32,8 @@ class _SignInScreenState extends State<SignInScreen> {
   void initState() {
     super.initState();
     context.read<AuthBloc>().add(const AuthEvent.clear());
-    _identifierController = TextEditingController(
-      text: 'john@gmail.com',
-    );
-    _passwordController = TextEditingController(
-      text: 'password',
-    );
+    _identifierController = TextEditingController();
+    _passwordController = TextEditingController();
 
     _identifierFocus = FocusNode();
     _passwordFocus = FocusNode();
