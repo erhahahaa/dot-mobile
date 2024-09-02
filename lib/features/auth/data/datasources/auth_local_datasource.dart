@@ -19,7 +19,7 @@ class AuthLocalDatasourceImpl implements AuthLocalDataSource {
   Future<UserEntity?> cacheSignedInUser(
     UserModel user,
   ) async {
-    return await _isar.isar?.writeAsync((isar) {
+    return await _isar.isar.writeAsync((isar) {
       isar.users.clear();
       isar.users.put(user.toEntity());
       return isar.users.get(user.id);
@@ -28,7 +28,7 @@ class AuthLocalDatasourceImpl implements AuthLocalDataSource {
 
   @override
   Future<bool?> clearSignedInUser() async {
-    return await _isar.isar?.writeAsync((isar) {
+    return await _isar.isar.writeAsync((isar) {
       isar.users.clear();
       return isar.users.count() == 0;
     });
@@ -36,8 +36,8 @@ class AuthLocalDatasourceImpl implements AuthLocalDataSource {
 
   @override
   Future<UserModel> getSignedInUser() async {
-    final user = await _isar.isar?.users.where().findAllAsync();
-    if (user == null || user.isEmpty) {
+    final user = await _isar.isar.users.where().findAllAsync();
+    if (user.isEmpty) {
       throw CacheException();
     }
     return UserModel.fromEntity(user.first);

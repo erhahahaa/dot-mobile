@@ -180,6 +180,7 @@ import '../features/user/ui/bloc/user_bloc.dart' as _i792;
 import '../features/user/ui/bloc/user_pref_bloc.dart' as _i1050;
 import '../features/user/user.dart' as _i438;
 import '../utils/helpers/cubit/loading_cubit.dart' as _i1045;
+import 'di.dart' as _i913;
 import 'router.dart' as _i216;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -193,16 +194,10 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    final appModule = _$AppModule();
     gh.factory<_i216.AppRouter>(() => _i216.AppRouter());
+    gh.singleton<String>(() => appModule.dirPath);
     gh.lazySingleton<_i1045.LoadingCubit>(() => _i1045.LoadingCubit());
-    await gh.lazySingletonAsync<_i373.IsarService>(
-      () {
-        final i = _i373.IsarService();
-        return i.initIsar().then((_) => i);
-      },
-      preResolve: true,
-      dispose: (i) => i.dispose(),
-    );
     gh.lazySingleton<_i905.FilePickerService>(
       () => _i905.FilePickerService(),
       dispose: (i) => i.dispose(),
@@ -219,6 +214,7 @@ extension GetItInjectableX on _i174.GetIt {
       dispose: (i) => i.dispose(),
     );
     gh.lazySingleton<_i1034.StrategyCubit>(() => _i1034.StrategyCubit());
+    gh.factory<_i373.IsarService>(() => _i373.IsarService(path: gh<String>()));
     gh.lazySingleton<_i322.DioService>(
       () => _i322.DioService(gh<_i156.IsarService>()),
       dispose: (i) => i.dispose(),
@@ -488,3 +484,5 @@ extension GetItInjectableX on _i174.GetIt {
     return this;
   }
 }
+
+class _$AppModule extends _i913.AppModule {}

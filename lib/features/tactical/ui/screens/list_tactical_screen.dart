@@ -19,7 +19,7 @@ class ListTacticalScreen extends StatelessWidget {
     final clubBloc = context.watch<ClubBlocRead>();
     final club = clubBloc.state.maybeWhen(
       success: (_, __, selectedClub) => selectedClub,
-      orElse: () => ClubModel.fake(),
+      orElse: () => const ClubModel(),
     );
     return ParentWithSearchAndScrollController(
       builder: (context, search, scroll, showScrollToTopButton) {

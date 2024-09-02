@@ -11,6 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -21,13 +22,13 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
-void main() {
+Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
-  // Bloc.observer = GlobalBlocObserver();
+  await Isar.initialize();
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await FirebaseService.init();
-    if (!kIsWasm || !kIsWeb) await Isar.initialize();
+
     await configureDependencies();
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
@@ -54,8 +55,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await FirebaseService.init();
   try {
     if (kIsWasm || kIsWeb) return;
-    final IsarService local = IsarService();
-    local.initIsar();
+    final dir = await getApplicationDocumentsDirectory();
+    final IsarService local = IsarService(path: dir.path);
     final DioService remote = DioService(local);
     final FirebaseMessagingService fcm = FirebaseMessagingService();
     final userRepo = UserRepositoryImpl(

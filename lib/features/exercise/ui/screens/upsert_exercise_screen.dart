@@ -82,14 +82,17 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
               state.whenOrNull(
                 success: (item) {
                   context.successToast(
-                    title: 'Success',
+                    title: context.str?.success,
                     description: 'Exercise saved successfully',
                   );
+                  context.read<ExerciseBlocRead>().add(
+                        BlocEventRead.get(id: _program?.id),
+                      );
                   context.router.back();
                 },
                 failure: (message) {
                   context.errorToast(
-                    title: 'Error',
+                    title: context.str?.error,
                     description: message,
                   );
                 },
@@ -134,86 +137,46 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
                         }
                       }
                       if (_formKey.currentState?.validate() ?? false) {
-                        if (_exercises.isEmpty) {
-                          final params = <CreateExerciseParams>[];
-                          for (int i = 0; i < _fields.length; i++) {
-                            final field = _fields[i];
-                            params.add(CreateExerciseParams(
-                              name: field.nameController.text,
-                              description: field.descriptionController.text,
-                              programId: _program?.id ?? 0,
-                              mediaId: field.media?.id,
-                              sets: ExerciseUnitValueModel(
-                                value: int.parse(field.setsController.text),
-                                unit: field.setsTypeController.text,
-                              ),
-                              repetition: ExerciseUnitValueModel(
-                                value: int.parse(field.repsController.text),
-                                unit: field.repsTypeController.text,
-                              ),
-                              rest: ExerciseUnitValueModel(
-                                value: int.parse(field.restController.text),
-                                unit: field.restTypeController.text,
-                              ),
-                              tempo: ExerciseUnitValueModel(
-                                value: int.parse(field.tempoController.text),
-                                unit: field.tempoTypeController.text,
-                              ),
-                              intensity: ExerciseUnitValueModel(
-                                value:
-                                    int.parse(field.intensityController.text),
-                                unit: field.intensityTypeController.text,
-                              ),
-                              order: i,
-                            ));
+                        final updates = <UpdateExerciseParams>[];
+                        for (int i = 0; i < _fields.length; i++) {
+                          final field = _fields[i];
+                          updates.add(UpdateExerciseParams(
+                            id: _exercises[i].id,
+                            name: field.nameController.text,
+                            description: field.descriptionController.text,
+                            programId: _program?.id ?? 0,
+                            mediaId: field.media?.id,
+                            sets: ExerciseUnitValueModel(
+                              value: int.parse(field.setsController.text),
+                              unit: field.setsTypeController.text,
+                            ),
+                            repetition: ExerciseUnitValueModel(
+                              value: int.parse(field.repsController.text),
+                              unit: field.repsTypeController.text,
+                            ),
+                            rest: ExerciseUnitValueModel(
+                              value: int.parse(field.restController.text),
+                              unit: field.restTypeController.text,
+                            ),
+                            tempo: ExerciseUnitValueModel(
+                              value: int.parse(field.tempoController.text),
+                              unit: field.tempoTypeController.text,
+                            ),
+                            intensity: ExerciseUnitValueModel(
+                              value: int.parse(field.intensityController.text),
+                              unit: field.intensityTypeController.text,
+                            ),
+                            order: i,
+                          ));
 
-                            context.read<ExerciseBlocWrite>().add(
-                                  BlocEventWrite.create(params),
-                                );
-                          }
-                        } else {
-                          final params = <UpdateExerciseParams>[];
-                          for (int i = 0; i < _fields.length; i++) {
-                            final field = _fields[i];
-                            params.add(UpdateExerciseParams(
-                              id: _exercises[i].id,
-                              name: field.nameController.text,
-                              description: field.descriptionController.text,
-                              programId: _program?.id ?? 0,
-                              mediaId: field.media?.id,
-                              sets: ExerciseUnitValueModel(
-                                value: int.parse(field.setsController.text),
-                                unit: field.setsTypeController.text,
-                              ),
-                              repetition: ExerciseUnitValueModel(
-                                value: int.parse(field.repsController.text),
-                                unit: field.repsTypeController.text,
-                              ),
-                              rest: ExerciseUnitValueModel(
-                                value: int.parse(field.restController.text),
-                                unit: field.restTypeController.text,
-                              ),
-                              tempo: ExerciseUnitValueModel(
-                                value: int.parse(field.tempoController.text),
-                                unit: field.tempoTypeController.text,
-                              ),
-                              intensity: ExerciseUnitValueModel(
-                                value:
-                                    int.parse(field.intensityController.text),
-                                unit: field.intensityTypeController.text,
-                              ),
-                              order: i,
-                            ));
-
-                            context.read<ExerciseBlocWrite>().add(
-                                  BlocEventWrite.update(params),
-                                );
-                          }
+                          context.read<ExerciseBlocWrite>().add(
+                                BlocEventWrite.update(updates),
+                              );
                         }
                       }
                     },
                     icon: const Icon(Icons.save),
-                    label: const Text('Save'),
+                    label: Text(context.str?.save ?? 'Save'),
                   ),
                 ],
               );

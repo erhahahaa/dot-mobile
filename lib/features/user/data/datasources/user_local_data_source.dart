@@ -30,8 +30,8 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
   Future<Either<Failure, bool>> cacheNotification(
     CacheNotificationsParams params,
   ) async {
-    await _local.isar?.writeAsync((isar) {
-      _local.isar?.notifications.put(params.notification.toEntity());
+    await _local.isar.writeAsync((isar) {
+      _local.isar.notifications.put(params.notification.toEntity());
     });
 
     return const Right(true);
@@ -39,17 +39,13 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
 
   @override
   Future<Either<Failure, bool>> clearMe() async {
-    await _local.isar?.writeAsync((isar) async {
-      _local.isar?.users.clear();
+    await _local.isar.writeAsync((isar) async {
+      _local.isar.users.clear();
     });
 
-    final check = await _local.isar?.writeAsync((isar) {
+    final check = await _local.isar.writeAsync((isar) {
       return isar.users.where().findAll();
     });
-
-    if (check == null) {
-      return const Left(StorageFailure(message: 'Storage uninitialized'));
-    }
 
     if (check.isEmpty) {
       return const Right(true);
@@ -60,26 +56,19 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
 
   @override
   Future<Either<Failure, bool>> clearNotifications() async {
-    final res = await _local.isar?.writeAsync((isar) {
+    final res = await _local.isar.writeAsync((isar) {
       isar.notifications.clear();
       return true;
     });
-    if (res == null) {
-      return const Left(
-          StorageFailure(message: 'Failed to clear notifications'));
-    }
 
     return Right(res);
   }
 
   @override
   Future<Either<Failure, UserModel>> getMe() async {
-    final res = await _local.isar?.readAsync((isar) {
+    final res = await _local.isar.readAsync((isar) {
       return isar.users.where().tokenIsNotEmpty().findAll();
     });
-    if (res == null) {
-      return const Left(StorageFailure(message: 'Storage uninitialized'));
-    }
     if (res.isEmpty) {
       return const Left(StorageFailure(message: 'No user data found'));
     }
@@ -90,13 +79,9 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
   @override
   Future<Either<Failure, List<NotificationDataModel>>>
       getNotifications() async {
-    final res = await _local.isar?.readAsync((isar) {
+    final res = await _local.isar.readAsync((isar) {
       return isar.notifications.where().findAll();
     });
-
-    if (res == null) {
-      return const Left(StorageFailure(message: 'Storage uninitialized'));
-    }
 
     List<NotificationDataModel> data = [];
     for (var item in res) {
@@ -108,13 +93,9 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
 
   @override
   Future<Either<Failure, UserPreferencesModel>> getUserPreferences() async {
-    final res = await _local.isar?.readAsync((isar) {
+    final res = await _local.isar.readAsync((isar) {
       return isar.userPreferences.where().findAll();
     });
-
-    if (res == null) {
-      return const Left(StorageFailure(message: 'Storage uninitialized'));
-    }
 
     if (res.isEmpty) {
       return const Left(StorageFailure(message: 'No user preferences found'));
@@ -129,14 +110,10 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
   ) async {
     final entity = params.prefs.toEntity();
     entity.id = 1;
-    final res = await _local.isar?.writeAsync((isar) {
+    final res = await _local.isar.writeAsync((isar) {
       isar.userPreferences.put(entity);
       return true;
     });
-
-    if (res == null) {
-      return const Left(StorageFailure(message: 'Storage uninitialized'));
-    }
 
     return Right(res);
   }

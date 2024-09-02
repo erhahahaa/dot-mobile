@@ -32,13 +32,11 @@ class DioService with FirebaseCrashLoggerService {
 
   DioService(this._local) {
     try {
-      final token = _local.isar?.users.where().tokenIsNotNull().findAll();
-      if (token != null) {
-        if (token.isNotEmpty) {
-          _auth = token.first.token;
-        }
+      final token = _local.isar.users.where().tokenIsNotNull().findAll();
+      if (token.isNotEmpty) {
+        _auth = token.first.token;
       }
-      _dio = _createDio();
+          _dio = _createDio();
       _dio?.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
@@ -48,13 +46,11 @@ class DioService with FirebaseCrashLoggerService {
   Dio get dio {
     if (_dio != null && _auth != null) return _dio!;
     try {
-      final token = _local.isar?.users.where().tokenIsNotNull().findAll();
-      if (token != null) {
-        if (token.isNotEmpty) {
-          _auth = token.first.token;
-        }
+      final token = _local.isar.users.where().tokenIsNotNull().findAll();
+      if (token.isNotEmpty) {
+        _auth = token.first.token;
       }
-      _dio = _createDio();
+          _dio = _createDio();
       _dio?.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
@@ -66,14 +62,12 @@ class DioService with FirebaseCrashLoggerService {
     _auth = null;
     _dio = null;
     final token =
-        await _local.isar?.users.where().tokenIsNotNull().findAllAsync();
+        await _local.isar.users.where().tokenIsNotNull().findAllAsync();
     Log.info('====== USER TOKEN ======: $token');
-    if (token != null) {
-      if (token.isNotEmpty) {
-        _auth = token.first.token;
-      }
+    if (token.isNotEmpty) {
+      _auth = token.first.token;
     }
-    _dio = _createDio();
+      _dio = _createDio();
     _dio?.interceptors.add(DioInterceptor());
   }
 
