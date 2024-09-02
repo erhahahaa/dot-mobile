@@ -37,7 +37,7 @@ class _DedicatedVideoPlayerState extends State<DedicatedVideoPlayer> {
         setState(() {
           _chewieController = ChewieController(
             videoPlayerController: _controller,
-            autoPlay: true,
+            autoPlay: false,
             looping: false,
           );
         });
@@ -68,10 +68,8 @@ class _DedicatedVideoPlayerState extends State<DedicatedVideoPlayer> {
               ? _chewieController != null &&
                       _chewieController!
                           .videoPlayerController.value.isInitialized
-                  ? Expanded(
-                      child: Chewie(
-                        controller: _chewieController!,
-                      ),
+                  ? Chewie(
+                      controller: _chewieController!,
                     )
                   : Center(
                       child: Padding(
