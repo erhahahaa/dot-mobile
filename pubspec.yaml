@@ -118,3 +118,4 @@ flutter:
     - assets/images/exam/
     - assets/images/hero/
     - assets/images/placeholder/
+    - shorebird.yaml
