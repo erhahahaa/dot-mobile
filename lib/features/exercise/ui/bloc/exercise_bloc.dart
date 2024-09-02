@@ -204,26 +204,8 @@ class ExerciseBlocWrite extends BlocWrite<List<ExerciseModel>> {
     BlocEventWriteDelete event,
     Emitter<BlocStateWrite<List<ExerciseModel>>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
-    final res = await _deleteExerciseUsecase.call(
+    await _deleteExerciseUsecase.call(
       event.params as DeleteExerciseParams,
-    );
-
-    res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) {
-        final items = state.whenOrNull(
-          success: (items) => items,
-        );
-        if (items == null) return;
-        final filteredItems = items
-            .where(
-              (exercise) => exercise.id != success.id,
-            )
-            .toList();
-
-        emit(BlocStateWriteSuccess(filteredItems));
-      },
     );
   }
 }

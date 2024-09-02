@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/helpers/logger.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class ExerciseRemoteDatasource {
@@ -97,6 +98,9 @@ class ExerciseRemoteDatasourceImpl implements ExerciseRemoteDatasource {
   Future<Either<Failure, List<ExerciseModel>>> updateBatch(
     List<UpdateExerciseParams> params,
   ) async {
+    for (final param in params) {
+      Log.info('PARAMS: ${param.toJson()}');
+    }
     List<CreateExerciseParams> createParams = [];
     final List<Map<String, dynamic>> body = [];
     for (final param in params) {
@@ -113,24 +117,27 @@ class ExerciseRemoteDatasourceImpl implements ExerciseRemoteDatasource {
           intensity: param.intensity,
           order: param.order,
         ));
-        continue;
+      } else {
+        body.add(param.toJson());
       }
-      body.add(param.toJson());
     }
     if (createParams.isNotEmpty) {
       await createBatch(createParams);
     }
-    final res = await _remote.putRequest(
-      '${ListAPI.EXERCISE}/bulk',
-      listData: body,
-      converter: (res) {
-        final List<ExerciseModel> exercises = [];
-        for (final data in res['data']) {
-          exercises.add(ExerciseModel.fromJson(data));
-        }
-        return exercises;
-      },
-    );
-    return res;
+    if (body.isNotEmpty) {
+      final res = await _remote.putRequest(
+        '${ListAPI.EXERCISE}/bulk',
+        listData: body,
+        converter: (res) {
+          final List<ExerciseModel> exercises = [];
+          for (final data in res['data']) {
+            exercises.add(ExerciseModel.fromJson(data));
+          }
+          return exercises;
+        },
+      );
+      return res;
+    }
+    return Right([]);
   }
 }

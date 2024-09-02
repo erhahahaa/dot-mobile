@@ -141,7 +141,7 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
                         for (int i = 0; i < _fields.length; i++) {
                           final field = _fields[i];
                           updates.add(UpdateExerciseParams(
-                            id: _exercises[i].id,
+                            id: field.exercise?.id ?? 0,
                             name: field.nameController.text,
                             description: field.descriptionController.text,
                             programId: _program?.id ?? 0,
@@ -168,11 +168,10 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
                             ),
                             order: i,
                           ));
-
-                          context.read<ExerciseBlocWrite>().add(
-                                BlocEventWrite.update(updates),
-                              );
                         }
+                        context.read<ExerciseBlocWrite>().add(
+                              BlocEventWrite.update(updates),
+                            );
                       }
                     },
                     icon: const Icon(Icons.save),
@@ -275,7 +274,16 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
                                 size: 24.sp,
                               ),
                               onPressed: () {
-                                if (_fields[index].exercise?.id != 0) {}
+                                if (_fields[index].exercise?.id != 0) {
+                                  context.read<ExerciseBlocWrite>().add(
+                                        BlocEventWrite.delete(
+                                          DeleteExerciseParams(
+                                            id: _fields[index].exercise?.id ??
+                                                0,
+                                          ),
+                                        ),
+                                      );
+                                }
                                 setState(() {
                                   _fields.removeAt(index);
                                 });
@@ -662,7 +670,7 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
                   text: 'Add exercise',
                   onTap: () {
                     setState(() {
-                      _fields.add(ExerciseFormField.init(null));
+                      _fields.add(ExerciseFormField.init(ExerciseModel()));
                     });
                   },
                 ),

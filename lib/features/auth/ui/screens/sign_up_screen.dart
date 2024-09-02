@@ -407,8 +407,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
             listener: (context, state) {
               state.maybeWhen(
                 authenticated: (user) {
-                  final name = user.name;
-                  final nameLength = name.length;
                   context.successToast(
                     title: context.str?.signUpSuccess,
                     description: context.str?.accountCreated,
