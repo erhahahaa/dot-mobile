@@ -12,10 +12,8 @@ import 'package:gap/gap.dart';
 
 @RoutePage()
 class UpsertClubScreen extends StatefulWidget implements AutoRouteWrapper {
-  final void Function(ClubModel club) onUpserted;
   const UpsertClubScreen({
     super.key,
-    required this.onUpserted,
   });
 
   @override
@@ -30,8 +28,7 @@ class UpsertClubScreen extends StatefulWidget implements AutoRouteWrapper {
   }
 }
 
-class _UpsertClubScreenState extends State<UpsertClubScreen> {
-  ClubModel? _club;
+class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
   late TextEditingController _sportTypeController;
@@ -48,22 +45,17 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
 
   @override
   void initState() {
-    final clubBloc = context.read<ClubBlocRead>();
-    _club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedClub) => selectedClub,
-    );
-
     _nameController = TextEditingController(
-      text: _club?.name,
+      text: context.clubRead?.name,
     );
     _descriptionController = TextEditingController(
-      text: _club?.description,
+      text: context.clubRead?.description,
     );
     _sportTypeController = TextEditingController(
-      text: _club?.type.name,
+      text: context.clubRead?.type.name,
     );
 
-    selectedSportType = _club?.type;
+    selectedSportType = context.clubRead?.type;
 
     _nameFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
@@ -96,9 +88,9 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
     return Parent(
       appBar: AppBar(
         title: TitleMedium(
-          _club == null
+          context.clubWatch == null
               ? context.str?.createClub
-              : context.str?.updateClub(_club?.name),
+              : context.str?.updateClub(context.clubWatch?.name),
         ),
       ),
       body: Padding(
@@ -119,7 +111,7 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
               child: ImagePickerWidget(
                 firstChild: imageFallback(
                   image,
-                  _club?.media?.url,
+                  context.clubWatch?.media?.url,
                 ),
                 onTap: () async {
                   final res =
@@ -210,19 +202,24 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
               listener: (context, state) {
                 state.mapOrNull(
                   success: (success) {
-                    final msg = _club == null
+                    final msg = context.clubRead == null
                         ? context.str?.clubCreatedSuccessfully
                         : context.str?.clubUpdatedSuccessfully;
                     context.successToast(
                       title: context.str?.success,
                       description: msg,
                     );
-                    widget.onUpserted.call(success.item);
+                    context.read<ClubBlocRead>().add(
+                          BlocEventRead.select(success.item),
+                        );
+                    context.read<ClubBlocRead>().add(
+                          BlocEventRead.append(success.item),
+                        );
                     context.router.maybePop();
                   },
                   failure: (failure) {
                     context.errorToast(
-                      title: _club == null
+                      title: context.clubRead == null
                           ? context.str?.createFailed
                           : context.str?.updateFailed,
                       description: failure.message,
@@ -233,11 +230,11 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
               builder: (context, state) {
                 return FormButton(
                   isLoading: state is BlocStateWriteLoading,
-                  text: _club == null
+                  text: context.clubRead == null
                       ? context.str?.createClub
-                      : context.str?.updateClub(_club?.name),
+                      : context.str?.updateClub(context.clubRead?.name),
                   onTap: () {
-                    if (image == null && _club == null) {
+                    if (image == null && context.clubRead == null) {
                       setState(() {
                         imageError = context.str?.clubImageIsRequired;
                       });
@@ -262,11 +259,11 @@ class _UpsertClubScreenState extends State<UpsertClubScreen> {
                         );
                       }
 
-                      if (_club != null) {
+                      if (context.clubRead != null) {
                         context.read<ClubBlocWrite>().add(
                               BlocEventWrite.update(
                                 UpdateClubParams(
-                                  id: _club!.id,
+                                  id: context.clubRead!.id,
                                   name: _nameController.text,
                                   description: _descriptionController.text,
                                   type: selectedSportType!,

@@ -21,15 +21,20 @@ class DetailEvaluationScreen extends StatefulWidget {
   State<DetailEvaluationScreen> createState() => _DetailEvaluationScreenState();
 }
 
-class _DetailEvaluationScreenState extends State<DetailEvaluationScreen> {
+class _DetailEvaluationScreenState extends BaseState<DetailEvaluationScreen> {
   EvaluationModel? _evaluation;
 
   @override
   void initState() {
     super.initState();
-    _evaluation = context.read<EvaluationBlocRead>().state.whenOrNull(
-          success: (_, __, selectedItem) => selectedItem,
-        );
+    addSubscription(context.read<EvaluationBlocRead>().stream.listen(
+      (state) {
+        final eval = state.whenOrNull(success: (_, __, item) => item);
+        safeSetState(() {
+          _evaluation = eval;
+        });
+      },
+    ));
   }
 
   @override

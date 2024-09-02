@@ -54,7 +54,7 @@ class MediaScreen extends StatefulWidget implements AutoRouteWrapper {
   }
 }
 
-class _MediaScreenState extends State<MediaScreen>
+class _MediaScreenState extends BaseState<MediaScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -88,7 +88,6 @@ class _MediaScreenState extends State<MediaScreen>
         children: [
           MediaView<ProgramMediaBlocRead, BlocStateRead<MediaModel>,
               ProgramMediaBlocWrite, BlocStateWrite<MediaModel>>(
-            club,
             allowedExtensions: const ['jpg', 'jpeg', 'png', 'svg'],
             onUpload: (file) {
               context.read<ProgramMediaBlocWrite>().add(
@@ -111,7 +110,6 @@ class _MediaScreenState extends State<MediaScreen>
           ),
           MediaView<ExerciseMediaBlocRead, BlocStateRead<MediaModel>,
               ExerciseMediaBlocWrite, BlocStateWrite<MediaModel>>(
-            club,
             onUpload: (file) {
               context.read<ExerciseMediaBlocWrite>().add(
                     BlocEventWrite.create({
@@ -133,7 +131,6 @@ class _MediaScreenState extends State<MediaScreen>
           ),
           MediaView<TacticalMediaBlocRead, BlocStateRead<MediaModel>,
               TacticalMediaBlocWrite, BlocStateWrite<MediaModel>>(
-            club,
             allowedExtensions: const ['jpg', 'jpeg', 'png', 'svg'],
             onUpload: (file) {
               context.read<TacticalMediaBlocWrite>().add(

@@ -27,8 +27,7 @@ class UpdateProfileScreen extends StatefulWidget implements AutoRouteWrapper {
   }
 }
 
-class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
-  UserModel? _user;
+class _UpdateProfileScreenState extends BaseState<UpdateProfileScreen> {
   late UserBloc _userBloc;
 
   late TextEditingController _nameController;
@@ -62,13 +61,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
   @override
   void initState() {
-    final userCubit = context.read<UserBloc>();
-    final user = userCubit.state.maybeWhen(
-      success: (user, _) => user,
-      orElse: () => const UserModel(),
-    );
-    _user = user;
-
     final phoneStr = user.phone.toString();
     _nameController = TextEditingController(text: user.name);
     _emailController = TextEditingController(text: user.email);
@@ -152,7 +144,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 ImagePickerWidget(
                   firstChild: imageFallback(
                     _image,
-                    _user?.image,
+                    user.image,
                   ),
                   onTap: () async {
                     final res =
@@ -564,7 +556,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                             success: (user, _) {
                               context.successToast(
                                 title: context.str?.updateSuccess,
-                                description: context.str?.profileUpdatedSuccessfully,
+                                description:
+                                    context.str?.profileUpdatedSuccessfully,
                               );
                               context.router.back();
                             },
@@ -578,7 +571,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                               isLoading: state is UserStateLoading,
                               onTap: () {
                                 final params = UpdateProfileParams(
-                                  id: _user!.id,
+                                  id: user.id,
                                   email: _emailController.text,
                                   password: _passwordController.text,
                                   name: _nameController.text,
@@ -587,7 +580,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                   gender: UserGender.fromString(
                                     _genderController.text,
                                   ),
-                                  role: _user!.role,
+                                  role: user.role,
                                   bornPlace: _bornPlaceController.text,
                                   bornDate: _bornDate,
                                   religion: _religionController.text,

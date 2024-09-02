@@ -36,7 +36,7 @@ class DioService with FirebaseCrashLoggerService {
       if (token.isNotEmpty) {
         _auth = token.first.token;
       }
-          _dio = _createDio();
+      _dio = _createDio();
       _dio?.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
@@ -50,7 +50,7 @@ class DioService with FirebaseCrashLoggerService {
       if (token.isNotEmpty) {
         _auth = token.first.token;
       }
-          _dio = _createDio();
+      _dio = _createDio();
       _dio?.interceptors.add(DioInterceptor());
     } catch (error, stackTrace) {
       nonFatalError(error: error, stackTrace: stackTrace);
@@ -67,7 +67,7 @@ class DioService with FirebaseCrashLoggerService {
     if (token.isNotEmpty) {
       _auth = token.first.token;
     }
-      _dio = _createDio();
+    _dio = _createDio();
     _dio?.interceptors.add(DioInterceptor());
   }
 

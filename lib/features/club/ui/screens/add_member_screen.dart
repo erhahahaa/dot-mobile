@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
-import 'package:dot_coaching/utils/extensions/context.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,35 +24,21 @@ class AddMemberScreen extends StatefulWidget implements AutoRouteWrapper {
   }
 }
 
-class _AddMemberScreenState extends State<AddMemberScreen> {
-  ClubModel? club;
-
-  @override
-  void initState() {
-    super.initState();
-    club = context.read<ClubBlocRead>().state.whenOrNull(
-          success: (_, __, selectedItem) => selectedItem,
-        );
-  }
-
+class _AddMemberScreenState extends BaseState<AddMemberScreen> {
   @override
   Widget build(BuildContext context) {
-    return ParentWithSearchAndScrollController(
-      builder: (child, search, scroll, showScrollToTopButton) {
-        return SafeArea(
-          child: Parent(
-            appBar: _buildAppBar(context, search),
-            body: Padding(
-              padding: EdgeInsets.all(8.w),
-              child: _buildListUser(search),
-            ),
-          ),
-        );
-      },
+    return SafeArea(
+      child: Parent(
+        appBar: _buildAppBar(context, searchController),
+        body: Padding(
+          padding: EdgeInsets.all(8.w),
+          child: _buildListUser(),
+        ),
+      ),
     );
   }
 
-  Widget _buildListUser(SearchController search) {
+  Widget _buildListUser() {
     return BlocBuilder<ClubMembersCubit, ClubMembersState>(
       builder: (context, state) {
         if (state.isLoading) {
@@ -62,7 +48,9 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
         if (state.searchResult.isEmpty) {
           return SizedBox(
             height: 50.h,
-            child: ErrorAlert(context.str?.userWithNameNotFound(search.text)),
+            child: ErrorAlert(
+              context.str?.userWithNameNotFound(searchController.text),
+            ),
           );
         }
 
@@ -101,7 +89,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                               context.str
                                   ?.wouldYouLikeToAddUsernameMemberToClubName(
                                 item.name,
-                                club!.name,
+                                context.clubWatch!.name,
                               ),
                             ),
                             SizedBox(height: 12.h),
@@ -136,7 +124,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                           onPressed: () {
                             if (formkey.currentState?.validate() ?? false) {
                               context.read<ClubMembersCubit>().addMember(
-                                    clubId: club!.id,
+                                    clubId: context.clubRead!.id,
                                     userId: item.id,
                                     role: role,
                                   );
@@ -178,12 +166,12 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
               },
             );
           },
-          controller: search,
+          controller: searchController,
           trailing: MoonButton.icon(
             buttonSize: MoonButtonSize.xs,
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
-              search.clear();
+              clearSearch();
               context.read<ClubMembersCubit>().searchUsers('');
             },
           ),

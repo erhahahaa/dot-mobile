@@ -11,56 +11,48 @@ import 'package:moon_design/moon_design.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
-class ListTacticalScreen extends StatelessWidget {
+class ListTacticalScreen extends StatefulWidget {
   const ListTacticalScreen({super.key});
 
   @override
+  State<ListTacticalScreen> createState() => _ListTacticalScreenState();
+}
+
+class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
+  @override
   Widget build(BuildContext context) {
-    final clubBloc = context.watch<ClubBlocRead>();
-    final club = clubBloc.state.maybeWhen(
-      success: (_, __, selectedClub) => selectedClub,
-      orElse: () => const ClubModel(),
-    );
-    return ParentWithSearchAndScrollController(
-      builder: (context, search, scroll, showScrollToTopButton) {
-        return Parent(
-          appBar: _buildAppBar(club),
-          floatingActionButton:
-              _buildFloatingActionBar(showScrollToTopButton, scroll, context),
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: RefreshIndicator(
-              onRefresh: () async {
-                final clubBloc = context.read<ClubBlocRead>();
-                final club = clubBloc.state.whenOrNull(
-                  success: (_, __, selectedClub) => selectedClub,
+    return Parent(
+      appBar: _buildAppBar(),
+      floatingActionButton:
+          _buildFloatingActionBar(showScrollToTopButton, context),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            context.read<TacticalBlocRead>().add(
+                  BlocEventRead.get(id: context.clubWatch?.id),
                 );
-                context.read<TacticalBlocRead>().add(
-                      BlocEventRead.get(id: club?.id),
-                    );
-              },
-              child: SingleChildScrollView(
-                controller: scroll,
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  children: [
-                    Gap(8.h),
-                    _buildHeader(context, search),
-                    Gap(16.h),
-                    _buildListTactical(context, scroll),
-                  ],
-                ),
-              ),
+          },
+          child: SingleChildScrollView(
+            controller: scrollController,
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                Gap(8.h),
+                _buildHeader(context),
+                Gap(16.h),
+                _buildListTactical(context),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
-  AppBar _buildAppBar(ClubModel? club) {
+  AppBar _buildAppBar() {
     return AppBar(
-      title: TitleMedium(club?.name),
+      title: TitleMedium(context.clubWatch?.name),
       actions: [
         MoonButton.icon(
           icon: const Icon(MoonIcons.generic_info_24_light),
@@ -70,8 +62,8 @@ class ListTacticalScreen extends StatelessWidget {
     );
   }
 
-  Column _buildFloatingActionBar(bool showScrollToTopButton,
-      ScrollController scroll, BuildContext context) {
+  Column _buildFloatingActionBar(
+      bool showScrollToTopButton, BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -79,13 +71,7 @@ class ListTacticalScreen extends StatelessWidget {
       children: [
         BackTopButton(
           show: showScrollToTopButton,
-          onPressed: () {
-            scroll.animateTo(
-              0,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeInOut,
-            );
-          },
+          onPressed: scrollToTop,
         ),
         Gap(8.h),
         FloatingActionButton.extended(
@@ -102,14 +88,14 @@ class ListTacticalScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, SearchController search) {
+  Widget _buildHeader(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         MySearchBar(
           width: 325.w,
           height: 32.h,
-          controller: search,
+          controller: searchController,
           hintText:
               '${context.str?.search} ${context.str?.tactic.toLowerCase()} ...',
           onChanged: (value) {
@@ -122,7 +108,7 @@ class ListTacticalScreen extends StatelessWidget {
             buttonSize: MoonButtonSize.xs,
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
-              search.clear();
+              clearSearch();
               context.read<ClubBlocRead>().add(
                     const BlocEventRead.filter(''),
                   );
@@ -133,14 +119,7 @@ class ListTacticalScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildListTactical(
-    BuildContext context,
-    ScrollController scrollController,
-  ) {
-    final clubBloc = context.watch<ClubBlocRead>();
-    final club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedClub) => selectedClub,
-    );
+  Widget _buildListTactical(BuildContext context) {
     return BlocBuilder<TacticalBlocRead, BlocStateRead<TacticalModel>>(
       builder: (context, state) {
         return state.maybeWhen(
@@ -155,8 +134,9 @@ class ListTacticalScreen extends StatelessWidget {
                     children: [
                       Flexible(
                         child: Text(
-                          context.str?.clubDoesntHaveAnyTactic(club?.name) ??
-                              '${club?.name} doesn\'t have tactical yet',
+                          context.str?.clubDoesntHaveAnyTactic(
+                                  context.clubWatch?.name) ??
+                              '${context.clubWatch?.name} doesn\'t have tactical yet',
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -167,10 +147,11 @@ class ListTacticalScreen extends StatelessWidget {
                               const TextStyle(color: Colors.blue),
                             ),
                           ),
-                          onPressed: club != null
+                          onPressed: context.clubRead != null
                               ? () {
                                   context.read<TacticalBlocRead>().add(
-                                        BlocEventRead.get(id: club.id),
+                                        BlocEventRead.get(
+                                            id: context.clubRead?.id),
                                       );
                                 }
                               : null,

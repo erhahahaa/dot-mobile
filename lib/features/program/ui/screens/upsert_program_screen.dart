@@ -27,9 +27,8 @@ class UpsertProgramScreen extends StatefulWidget implements AutoRouteWrapper {
   }
 }
 
-class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
+class _UpsertProgramScreenState extends BaseState<UpsertProgramScreen> {
   ProgramModel? _program;
-  ClubModel? club;
   late TextEditingController _nameController;
   late TextEditingController _startDateController;
   late TextEditingController _endDateController;
@@ -46,13 +45,17 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
 
   @override
   void initState() {
-    final programBloc = context.read<ProgramBlocRead>();
-    _program = programBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
-    );
-    final clubBloc = context.read<ClubBlocRead>();
-    club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
+    addSubscription(
+      context.read<ProgramBlocRead>().stream.listen(
+        (state) {
+          final program = state.whenOrNull(
+            success: (_, __, item) => item,
+          );
+          safeSetState(() {
+            _program = program;
+          });
+        },
+      ),
     );
 
     _start = _program?.startDate;
@@ -281,11 +284,7 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
                     }
 
                     if (_formKey.currentState?.validate() ?? false) {
-                      final clubBloc = context.read<ClubBlocRead>();
-                      final club = clubBloc.state.whenOrNull(
-                        success: (_, __, selectedItem) => selectedItem,
-                      );
-
+                      final club = context.clubRead;
                       if (club == null) {
                         return context.errorToast(
                           title: context.str?.obsecuredState,
@@ -342,7 +341,7 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
                 BlocProvider.value(
                   value: context.read<ProgramMediaBlocRead>()
                     ..add(
-                      BlocEventRead.get(id: club?.id),
+                      BlocEventRead.get(id: context.clubRead?.id),
                     ),
                 ),
                 BlocProvider.value(
@@ -377,9 +376,12 @@ class _UpsertProgramScreenState extends State<UpsertProgramScreen> {
                           BlocStateRead<MediaModel>,
                           ProgramMediaBlocWrite,
                           BlocStateWrite<MediaModel>>(
-                        club,
                         allowedExtensions: const ['jpg', 'jpeg', 'png'],
                         onUpload: (file) {
+                          final club = context
+                              .read<ClubBlocRead>()
+                              .state
+                              .whenOrNull(success: (_, __, item) => item);
                           context.read<ProgramMediaBlocWrite>().add(
                                 BlocEventWrite.create({
                                   'clubId': club?.id,

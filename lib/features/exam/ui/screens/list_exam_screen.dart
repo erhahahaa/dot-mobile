@@ -18,60 +18,45 @@ class ListExamScreen extends StatefulWidget {
   State<ListExamScreen> createState() => _ListExamScreenState();
 }
 
-class _ListExamScreenState extends State<ListExamScreen> {
-  ClubModel? club;
-
-  @override
-  void initState() {
-    super.initState();
-    final clubBloc = context.read<ClubBlocRead>();
-    club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedClub) => selectedClub,
-    );
-  }
-
+class _ListExamScreenState extends BaseState<ListExamScreen> {
   @override
   Widget build(BuildContext context) {
-    return ParentWithSearchAndScrollController(
-      builder: (context, search, scroll, showScrollToTopButton) {
-        return Parent(
-          appBar: _buildAppBar(),
-          floatingActionButton: _buildFloatingActionButton(
-              showScrollToTopButton, scroll, context),
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: RefreshIndicator(
-              onRefresh: () async {
-                context.read<ExamBlocRead>().add(
-                      BlocEventRead.get(id: club?.id),
-                    );
-              },
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  children: [
-                    Gap(8.h),
-                    _buildHeader(context, search),
-                    Gap(16.h),
-                    _buildListExam(context, scroll),
-                  ],
-                ),
-              ),
+    return Parent(
+      appBar: _buildAppBar(),
+      floatingActionButton:
+          _buildFloatingActionButton(showScrollToTopButton, context),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            context.read<ExamBlocRead>().add(
+                  BlocEventRead.get(id: context.clubRead?.id),
+                );
+          },
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                Gap(8.h),
+                _buildHeader(context),
+                Gap(16.h),
+                _buildListExam(context),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
   AppBar _buildAppBar() {
     return AppBar(
-      title: TitleMedium(club?.name),
+      title: TitleMedium(context.clubWatch?.name),
     );
   }
 
-  Column _buildFloatingActionButton(bool showScrollToTopButton,
-      ScrollController scroll, BuildContext context) {
+  Column _buildFloatingActionButton(
+      bool showScrollToTopButton, BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -79,13 +64,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
       children: [
         BackTopButton(
           show: showScrollToTopButton,
-          onPressed: () {
-            scroll.animateTo(
-              0,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeInOut,
-            );
-          },
+          onPressed: scrollToTop,
         ),
         Gap(8.h),
         FloatingActionButton.extended(
@@ -103,14 +82,14 @@ class _ListExamScreenState extends State<ListExamScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, SearchController search) {
+  Widget _buildHeader(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         MySearchBar(
           width: 325.w,
           height: 32.h,
-          controller: search,
+          controller: searchController,
           hintText:
               '${context.str?.search} ${context.str?.exam.toLowerCase()} ...',
           onChanged: (value) {
@@ -123,7 +102,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
             buttonSize: MoonButtonSize.xs,
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
-              search.clear();
+              clearSearch();
               context.read<ClubBlocRead>().add(
                     const BlocEventRead.filter(''),
                   );
@@ -134,10 +113,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
     );
   }
 
-  Widget _buildListExam(
-    BuildContext context,
-    ScrollController scrollController,
-  ) {
+  Widget _buildListExam(BuildContext context) {
     return BlocBuilder<ExamBlocRead, BlocStateRead<ExamModel>>(
       builder: (context, state) {
         return state.maybeWhen(
@@ -152,7 +128,8 @@ class _ListExamScreenState extends State<ListExamScreen> {
                     children: [
                       Flexible(
                         child: Text(
-                          context.str?.clubDoesntHaveAnyExam(club?.name) ??
+                          context.str?.clubDoesntHaveAnyExam(
+                                  context.clubWatch?.name) ??
                               'Exam not found',
                           textAlign: TextAlign.center,
                         ),
@@ -164,10 +141,11 @@ class _ListExamScreenState extends State<ListExamScreen> {
                               const TextStyle(color: Colors.blue),
                             ),
                           ),
-                          onPressed: club != null
+                          onPressed: context.clubRead != null
                               ? () {
                                   context.read<ExamBlocRead>().add(
-                                        BlocEventRead.get(id: club?.id),
+                                        BlocEventRead.get(
+                                            id: context.clubRead?.id),
                                       );
                                 }
                               : null,
@@ -213,9 +191,7 @@ class _ListExamScreenState extends State<ListExamScreen> {
       context.read<ExamBlocRead>().add(
             BlocEventRead.select(exam),
           );
-      context.router.push(
-        DetailExamRoute(id: exam.id),
-      );
+      context.router.push(DetailExamRoute(id: exam.id));
     }
 
     return ListViewBuilderTile(

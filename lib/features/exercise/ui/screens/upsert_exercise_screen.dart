@@ -16,9 +16,8 @@ class UpsertExerciseScreen extends StatefulWidget {
   State<UpsertExerciseScreen> createState() => _UpsertExerciseScreenState();
 }
 
-class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
+class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
   ProgramModel? _program;
-  ClubModel? club;
   final List<ExerciseModel> _exercises = [];
 
   final List<ExerciseFormField> _fields = [];
@@ -27,27 +26,37 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
   @override
   void initState() {
     super.initState();
-    final clubBloc = context.read<ClubBlocRead>();
-    club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
+
+    addSubscription(
+      context.read<ProgramBlocRead>().stream.listen(
+        (state) {
+          final program = state.whenOrNull(
+            success: (_, __, selectedItem) => selectedItem,
+          );
+          safeSetState(() {
+            _program = program;
+          });
+        },
+      ),
     );
 
-    final programBloc = context.read<ProgramBlocRead>();
-    _program = programBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
+    addSubscription(
+      context.read<ExerciseBlocRead>().stream.listen(
+        (state) {
+          final exercises = state.whenOrNull(
+            success: (items, _, __) => items,
+          );
+          if (exercises != null) {
+            _exercises.clear();
+            _exercises.addAll(exercises);
+            _fields.clear();
+            for (final item in _exercises) {
+              _fields.add(ExerciseFormField.init(item));
+            }
+          }
+        },
+      ),
     );
-
-    final exerciseBloc = context.read<ExerciseBlocRead>();
-    final exercises = exerciseBloc.state.whenOrNull(
-      success: (items, _, __) => items,
-    );
-    if (exercises != null) {
-      _exercises.addAll(exercises);
-    }
-
-    for (final item in _exercises) {
-      _fields.add(ExerciseFormField.init(item));
-    }
 
     _formKey = GlobalKey<FormState>();
   }
@@ -64,136 +73,123 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ParentWithSearchAndScrollController(
-      builder: (child, search, scroll, showScrollToTopButton) {
-        return Parent(
-          appBar: AppBar(
-            title: Text('${_program?.name} Exercises'),
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                context.router.back();
-              },
-            ),
-          ),
-          floatingActionButton: BlocConsumer<ExerciseBlocWrite,
-              BlocStateWrite<List<ExerciseModel>>>(
-            listener: (context, state) {
-              state.whenOrNull(
-                success: (item) {
-                  context.successToast(
-                    title: context.str?.success,
-                    description: 'Exercise saved successfully',
+    return Parent(
+      appBar: AppBar(
+        title: Text('${_program?.name} Exercises'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            context.router.back();
+          },
+        ),
+      ),
+      floatingActionButton:
+          BlocConsumer<ExerciseBlocWrite, BlocStateWrite<List<ExerciseModel>>>(
+        listener: (context, state) {
+          state.whenOrNull(
+            success: (item) {
+              context.successToast(
+                title: context.str?.success,
+                description: 'Exercise saved successfully',
+              );
+              context.read<ExerciseBlocRead>().add(
+                    BlocEventRead.get(id: _program?.id),
                   );
-                  context.read<ExerciseBlocRead>().add(
-                        BlocEventRead.get(id: _program?.id),
-                      );
-                  context.router.back();
-                },
-                failure: (message) {
-                  context.errorToast(
-                    title: context.str?.error,
-                    description: message,
-                  );
-                },
+              context.router.back();
+            },
+            failure: (message) {
+              context.errorToast(
+                title: context.str?.error,
+                description: message,
               );
             },
-            builder: (context, state) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  BackTopButton(
-                    show: showScrollToTopButton,
-                    onPressed: () {
-                      scroll.animateTo(
-                        0,
-                        duration: const Duration(seconds: 2),
-                        curve: Curves.easeInOut,
+          );
+        },
+        builder: (context, state) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              BackTopButton(
+                show: showScrollToTopButton,
+                onPressed: scrollToTop,
+              ),
+              Gap(8.h),
+              FloatingActionButtonExtended(
+                heroTag: 'save_exercise_button_$hashCode',
+                isLoading: state is BlocStateWriteLoading,
+                onPressed: () {
+                  _formKey.gotoError(scrollController);
+                  for (final field in _fields) {
+                    if (!field.isExpanded) {
+                      setState(() {
+                        field.isExpanded = true;
+                      });
+                    }
+                    if (field.media == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content:
+                              Text('Please select an image for each exercise'),
+                        ),
                       );
-                    },
-                  ),
-                  Gap(8.h),
-                  FloatingActionButtonExtended(
-                    heroTag: 'save_exercise_button_$hashCode',
-                    isLoading: state is BlocStateWriteLoading,
-                    onPressed: () {
-                      _formKey.gotoError(scroll);
-                      for (final field in _fields) {
-                        if (!field.isExpanded) {
-                          setState(() {
-                            field.isExpanded = true;
-                          });
-                        }
-                        if (field.media == null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                  'Please select an image for each exercise'),
-                            ),
-                          );
-                          return;
-                        }
-                      }
-                      if (_formKey.currentState?.validate() ?? false) {
-                        final updates = <UpdateExerciseParams>[];
-                        for (int i = 0; i < _fields.length; i++) {
-                          final field = _fields[i];
-                          updates.add(UpdateExerciseParams(
-                            id: field.exercise?.id ?? 0,
-                            name: field.nameController.text,
-                            description: field.descriptionController.text,
-                            programId: _program?.id ?? 0,
-                            mediaId: field.media?.id,
-                            sets: ExerciseUnitValueModel(
-                              value: int.parse(field.setsController.text),
-                              unit: field.setsTypeController.text,
-                            ),
-                            repetition: ExerciseUnitValueModel(
-                              value: int.parse(field.repsController.text),
-                              unit: field.repsTypeController.text,
-                            ),
-                            rest: ExerciseUnitValueModel(
-                              value: int.parse(field.restController.text),
-                              unit: field.restTypeController.text,
-                            ),
-                            tempo: ExerciseUnitValueModel(
-                              value: int.parse(field.tempoController.text),
-                              unit: field.tempoTypeController.text,
-                            ),
-                            intensity: ExerciseUnitValueModel(
-                              value: int.parse(field.intensityController.text),
-                              unit: field.intensityTypeController.text,
-                            ),
-                            order: i,
-                          ));
-                        }
-                        context.read<ExerciseBlocWrite>().add(
-                              BlocEventWrite.update(updates),
-                            );
-                      }
-                    },
-                    icon: const Icon(Icons.save),
-                    label: Text(context.str?.save ?? 'Save'),
-                  ),
-                ],
-              );
-            },
-          ),
-          body: Padding(
-            padding: EdgeInsets.all(8.w),
-            child: _buildForm(context, scroll),
-          ),
-        );
-      },
+                      return;
+                    }
+                  }
+                  if (_formKey.currentState?.validate() ?? false) {
+                    final updates = <UpdateExerciseParams>[];
+                    for (int i = 0; i < _fields.length; i++) {
+                      final field = _fields[i];
+                      updates.add(UpdateExerciseParams(
+                        id: field.exercise?.id ?? 0,
+                        name: field.nameController.text,
+                        description: field.descriptionController.text,
+                        programId: _program?.id ?? 0,
+                        mediaId: field.media?.id,
+                        sets: ExerciseUnitValueModel(
+                          value: int.parse(field.setsController.text),
+                          unit: field.setsTypeController.text,
+                        ),
+                        repetition: ExerciseUnitValueModel(
+                          value: int.parse(field.repsController.text),
+                          unit: field.repsTypeController.text,
+                        ),
+                        rest: ExerciseUnitValueModel(
+                          value: int.parse(field.restController.text),
+                          unit: field.restTypeController.text,
+                        ),
+                        tempo: ExerciseUnitValueModel(
+                          value: int.parse(field.tempoController.text),
+                          unit: field.tempoTypeController.text,
+                        ),
+                        intensity: ExerciseUnitValueModel(
+                          value: int.parse(field.intensityController.text),
+                          unit: field.intensityTypeController.text,
+                        ),
+                        order: i,
+                      ));
+                    }
+                    context.read<ExerciseBlocWrite>().add(
+                          BlocEventWrite.update(updates),
+                        );
+                  }
+                },
+                icon: const Icon(Icons.save),
+                label: Text(context.str?.save ?? 'Save'),
+              ),
+            ],
+          );
+        },
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(8.w),
+        child: _buildForm(context),
+      ),
     );
   }
 
-  Widget _buildForm(
-    BuildContext context,
-    ScrollController scroll,
-  ) {
+  Widget _buildForm(BuildContext context) {
     return BlocConsumer<ExerciseBlocRead, BlocStateRead<ExerciseModel>>(
       listener: (context, state) {
         state.whenOrNull(
@@ -213,7 +209,7 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
             return Form(
               key: _formKey,
               child: ReorderableListView.builder(
-                scrollController: scroll,
+                scrollController: scrollController,
                 itemCount: _fields.length,
                 proxyDecorator: (child, index, animation) => ProxyDecorator(
                   index: index,
@@ -670,7 +666,8 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
                   text: 'Add exercise',
                   onTap: () {
                     setState(() {
-                      _fields.add(ExerciseFormField.init(ExerciseModel()));
+                      _fields
+                          .add(ExerciseFormField.init(const ExerciseModel()));
                     });
                   },
                 ),
@@ -717,7 +714,7 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
                 BlocProvider.value(
                   value: context.read<ExerciseMediaBlocRead>()
                     ..add(
-                      BlocEventRead.get(id: club?.id),
+                      BlocEventRead.get(id: context.clubRead?.id),
                     ),
                 ),
                 BlocProvider.value(
@@ -752,11 +749,10 @@ class _UpsertExerciseScreenState extends State<UpsertExerciseScreen> {
                           BlocStateRead<MediaModel>,
                           ExerciseMediaBlocWrite,
                           BlocStateWrite<MediaModel>>(
-                        club,
                         onUpload: (file) {
                           context.read<ExerciseMediaBlocWrite>().add(
                                 BlocEventWrite.create({
-                                  'clubId': club?.id,
+                                  'clubId': context.clubRead?.id,
                                   'file': file,
                                 }),
                               );

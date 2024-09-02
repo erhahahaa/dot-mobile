@@ -25,7 +25,7 @@ class UpsertExamScreen extends StatefulWidget implements AutoRouteWrapper {
   }
 }
 
-class _UpsertExamScreenState extends State<UpsertExamScreen> {
+class _UpsertExamScreenState extends BaseState<UpsertExamScreen> {
   ExamModel? _exam;
   late TextEditingController _titleController;
   late TextEditingController _descriptionController;
@@ -37,12 +37,19 @@ class _UpsertExamScreenState extends State<UpsertExamScreen> {
 
   @override
   void initState() {
-    final examBloc = context.read<ExamBlocRead>();
-    _exam = examBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
-    );
-    _titleController = TextEditingController(text: _exam?.title);
-    _descriptionController = TextEditingController(text: _exam?.description);
+    addSubscription(context.read<ExamBlocRead>().stream.listen(
+      (state) {
+        final exam = state.whenOrNull(
+          success: (_, __, item) => item,
+        );
+        safeSetState(() {
+          _exam = exam;
+          _titleController = TextEditingController(text: _exam?.title);
+          _descriptionController =
+              TextEditingController(text: _exam?.description);
+        });
+      },
+    ));
 
     _titleFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();

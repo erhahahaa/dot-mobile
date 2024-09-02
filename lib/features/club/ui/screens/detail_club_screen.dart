@@ -20,192 +20,154 @@ class DetailClubScreen extends StatefulWidget {
   State<DetailClubScreen> createState() => _DetailClubScreenState();
 }
 
-class _DetailClubScreenState extends State<DetailClubScreen> {
-  ClubModel? _club;
-  @override
-  void initState() {
-    super.initState();
-
-    final clubBloc = context.read<ClubBlocRead>();
-    _club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedClub) => selectedClub,
-    );
-    context.read<ClubMembersCubit>().getMembers(clubId: _club?.id ?? 0);
-  }
-
+class _DetailClubScreenState extends BaseState<DetailClubScreen> {
   @override
   Widget build(BuildContext context) {
-    return ParentWithSearchAndScrollController(
-      builder: (child, search, scroll, showScrollToTopButton) {
-        return Parent(
-          appBar: AppBar(
-            title: TitleMedium(context.str?.clubDetail(_club?.name)),
-            actions: [
-              MoonButton.icon(
-                icon: const Icon(MoonIcons.generic_edit_24_light),
-                onTap: () {
-                  context.router
-                      .push(UpsertClubRoute(onUpserted: (ClubModel res) {
-                    setState(() {
-                      _club = res;
-                    });
-                    context.read<ClubBlocRead>().add(
-                          BlocEventRead.append(res),
-                        );
-                    context.read<ClubBlocRead>().add(
-                          BlocEventRead.select(res),
-                        );
-                  }));
-                },
-              )
-            ],
+    return Parent(
+      appBar: AppBar(
+        title: TitleMedium(context.str?.clubDetail(context.clubWatch?.name)),
+        actions: [
+          MoonButton.icon(
+            icon: const Icon(MoonIcons.generic_edit_24_light),
+            onTap: () {
+              context.router.push(const UpsertClubRoute());
+            },
+          )
+        ],
+      ),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (showScrollToTopButton) ...[
+            FloatingActionButton(
+              onPressed: scrollToTop,
+              child: const Icon(Icons.arrow_upward),
+            ),
+          ],
+          FloatingActionButton.extended(
+            heroTag: 'new_member_button_$hashCode',
+            label: TitleSmall(context.str?.addMember),
+            icon: const Icon(MoonIcons.generic_plus_24_light),
+            onPressed: () {
+              context.router.push(const AddMemberRoute());
+            },
           ),
-          floatingActionButton: Column(
-            mainAxisSize: MainAxisSize.min,
+        ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(8.w),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (showScrollToTopButton) ...[
-                FloatingActionButton(
-                  onPressed: () {
-                    scroll.animateTo(
-                      0,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  child: const Icon(Icons.arrow_upward),
-                ),
-              ],
-              FloatingActionButton.extended(
-                heroTag: 'new_member_button_$hashCode',
-                label: TitleSmall(context.str?.addMember),
-                icon: const Icon(MoonIcons.generic_plus_24_light),
-                onPressed: () {
-                  context.router.push(const AddMemberRoute());
+              TitleSmall(context.str?.clubOverview(context.clubWatch?.name)),
+              Gap(4.h),
+              BlocBuilder<ClubMembersCubit, ClubMembersState>(
+                builder: (context, state) {
+                  return ClubOverviewCard(
+                    clubName: context.clubWatch?.name,
+                    membersCount: state.members.length,
+                    programsCount: context.clubWatch?.programCount,
+                    examsCount: context.clubWatch?.examCount,
+                    tacticalCount: context.clubWatch?.tacticalCount,
+                  );
                 },
               ),
-            ],
-          ),
-          body: Padding(
-            padding: EdgeInsets.all(8.w),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Gap(16.h),
+              Row(
                 children: [
-                  TitleSmall(context.str?.clubOverview(_club?.name)),
-                  Gap(4.h),
-                  BlocBuilder<ClubMembersCubit, ClubMembersState>(
-                    builder: (context, state) {
-                      return ClubOverviewCard(
-                        clubName: _club?.name,
-                        membersCount: state.members.length,
-                        programsCount: _club?.programCount,
-                        examsCount: _club?.examCount,
-                        tacticalCount: _club?.tacticalCount,
-                      );
-                    },
-                  ),
-                  Gap(16.h),
-                  Row(
-                    children: [
-                      TitleSmall(context.str?.clubMembers(_club?.name)),
-                      Gap(32.w),
-                      Expanded(
-                        child: MySearchBar(
-                          onChanged: (value) {
-                            if (value == null) return;
-                            context
-                                .read<ClubMembersCubit>()
-                                .filterMembers(value);
-                          },
-                          height: 32.h,
-                          controller: search,
-                          trailing: MoonButton.icon(
-                            buttonSize: MoonButtonSize.xs,
-                            icon: const Icon(MoonIcons.controls_close_24_light),
-                            onTap: () {
-                              search.clear();
-                              context
-                                  .read<ClubMembersCubit>()
-                                  .filterMembers('');
-                            },
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  Gap(8.h),
-                  BlocBuilder<ClubMembersCubit, ClubMembersState>(
-                    builder: (context, state) {
-                      return ListViewBuilder<UserModel>(
-                        items: state.filteredMembers,
-                        height: 0.44.sh,
-                        scrollController: scroll,
-                        itemBuilder: (context, index, item) {
-                          return EightCard(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 8.w,
-                              horizontal: 16.w,
-                            ),
-                            margin: EdgeInsets.all(4.w),
-                            child: Row(
-                              children: [
-                                CachedNetworkImage(
-                                  imageUrl: item.image,
-                                  width: 36.h,
-                                  height: 36.h,
-                                  imageBuilder: (context, imageProvider) {
-                                    return CircleAvatar(
-                                      backgroundImage: imageProvider,
-                                    );
-                                  },
-                                ),
-                                Gap(8.w),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TitleSmall(item.name),
-                                    Gap(4.h),
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 4.w, horizontal: 8.w),
-                                      decoration: BoxDecoration(
-                                        color: context.moonColors?.frieza
-                                            .withOpacity(0.1),
-                                        borderRadius:
-                                            BorderRadius.circular(32.w),
-                                      ),
-                                      child: BodyMedium(
-                                        item.role.name,
-                                        color: context.moonColors?.frieza,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const Spacer(),
-                                _removeMemberButton(context, item),
-                              ],
-                            ),
-                          );
+                  TitleSmall(context.str?.clubMembers(context.clubWatch?.name)),
+                  Gap(32.w),
+                  Expanded(
+                    child: MySearchBar(
+                      onChanged: (value) {
+                        if (value == null) return;
+                        context.read<ClubMembersCubit>().filterMembers(value);
+                      },
+                      height: 32.h,
+                      controller: searchController,
+                      trailing: MoonButton.icon(
+                        buttonSize: MoonButtonSize.xs,
+                        icon: const Icon(MoonIcons.controls_close_24_light),
+                        onTap: () {
+                          clearSearch();
+                          context.read<ClubMembersCubit>().filterMembers('');
                         },
-                      );
-                    },
-                  ),
-                  Gap(16.h),
-                  TitleSmall(context.str?.clubAbout(_club?.name)),
-                  ListViewBuilderTile(
-                    imageUrl: _club?.media?.url,
-                    titleText: _club?.name,
-                    subtitleText: _club?.description,
-                  ),
-                  Gap(16.h),
-                  _leaveClubButton(context),
-                  Gap(128.h),
+                      ),
+                    ),
+                  )
                 ],
               ),
-            ),
+              Gap(8.h),
+              BlocBuilder<ClubMembersCubit, ClubMembersState>(
+                builder: (context, state) {
+                  return ListViewBuilder<UserModel>(
+                    items: state.filteredMembers,
+                    height: 0.44.sh,
+                    scrollController: scrollController,
+                    itemBuilder: (context, index, item) {
+                      return EightCard(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 8.w,
+                          horizontal: 16.w,
+                        ),
+                        margin: EdgeInsets.all(4.w),
+                        child: Row(
+                          children: [
+                            CachedNetworkImage(
+                              imageUrl: item.image,
+                              width: 36.h,
+                              height: 36.h,
+                              imageBuilder: (context, imageProvider) {
+                                return CircleAvatar(
+                                  backgroundImage: imageProvider,
+                                );
+                              },
+                            ),
+                            Gap(8.w),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TitleSmall(item.name),
+                                Gap(4.h),
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 4.w, horizontal: 8.w),
+                                  decoration: BoxDecoration(
+                                    color: context.moonColors?.frieza
+                                        .withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(32.w),
+                                  ),
+                                  child: BodyMedium(
+                                    item.role.name,
+                                    color: context.moonColors?.frieza,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            _removeMemberButton(context, item),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+              Gap(16.h),
+              TitleSmall(context.str?.clubAbout(context.clubWatch?.name)),
+              ListViewBuilderTile(
+                imageUrl: context.clubWatch?.media?.url,
+                titleText: context.clubWatch?.name,
+                subtitleText: context.clubWatch?.description,
+              ),
+              Gap(16.h),
+              _leaveClubButton(context),
+              Gap(128.h),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
@@ -224,14 +186,15 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
             return AlertDialog(
               title: TitleSmall(context.str?.leaveClub),
               content: TitleSmall(
-                context.str?.areYouSureYouWantToLeaveClubName(_club?.name),
+                context.str
+                    ?.areYouSureYouWantToLeaveClubName(context.clubWatch?.name),
               ),
               actions: [
                 TextButton(
                   onPressed: () async {
                     await context
                         .read<ClubMembersCubit>()
-                        .leaveClub(clubId: _club?.id ?? 0);
+                        .leaveClub(clubId: context.clubRead?.id ?? 0);
                     if (ctx.mounted) {
                       Navigator.pop(ctx, true);
                     }
@@ -277,15 +240,14 @@ class _DetailClubScreenState extends State<DetailClubScreen> {
                 content: TitleMedium(
                   context.str?.areYouSureYouWantToKickUsernameFromClubName(
                     item.name,
-                    _club?.name,
+                    context.clubWatch?.name,
                   ),
                 ),
                 actions: [
                   TextButton(
                     onPressed: () {
-                      context
-                          .read<ClubMembersCubit>()
-                          .kickMember(clubId: _club?.id ?? 0, userId: item.id);
+                      context.read<ClubMembersCubit>().kickMember(
+                          clubId: context.clubRead?.id ?? 0, userId: item.id);
                       Navigator.pop(ctx);
                     },
                     child: Text(context.str?.yes ?? 'Yes'),

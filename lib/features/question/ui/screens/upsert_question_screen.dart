@@ -16,9 +16,8 @@ class UpsertQuestionScreen extends StatefulWidget {
   State<UpsertQuestionScreen> createState() => _UpsertQuestionScreenState();
 }
 
-class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
+class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
   ExamModel? _exam;
-  ClubModel? club;
   final List<QuestionItem> _questions = [];
 
   late GlobalKey<FormState> _formKey;
@@ -26,33 +25,45 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
   @override
   void initState() {
     super.initState();
-    final clubBloc = context.read<ClubBlocRead>();
-    club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
+    addSubscription(
+      context.read<ExamBlocRead>().stream.listen(
+        (state) {
+          final exam = state.whenOrNull(
+            success: (_, __, selectedItem) => selectedItem,
+          );
+          safeSetState(() {
+            _exam = exam;
+          });
+        },
+      ),
     );
 
-    final examBloc = context.read<ExamBlocRead>();
-    _exam = examBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
+    addSubscription(
+      context.read<QuestionBlocRead>().stream.listen(
+        (state) {
+          final questions = state.whenOrNull(
+            success: (items, _, __) => items,
+          );
+          if (questions != null) {
+            safeSetState(() {
+              _questions.clear();
+              _questions.addAll(questions.map((question) {
+                return QuestionItem(
+                  question: question,
+                  questionFN: FocusNode(),
+                  questionCon: TextEditingController(text: question.question),
+                  typeFN: FocusNode(),
+                  typeCon: TextEditingController(
+                      text: question.type.value.capitalizeFirst),
+                  order: question.order,
+                );
+              }));
+            });
+          }
+        },
+      ),
     );
 
-    final questionBloc = context.read<QuestionBlocRead>();
-    final questions = questionBloc.state.whenOrNull(
-      success: (items, _, __) => items,
-    );
-    if (questions != null) {
-      _questions.addAll(questions.map((question) {
-        return QuestionItem(
-          question: question,
-          questionFN: FocusNode(),
-          questionCon: TextEditingController(text: question.question),
-          typeFN: FocusNode(),
-          typeCon:
-              TextEditingController(text: question.type.value.capitalizeFirst),
-          order: question.order,
-        );
-      }));
-    }
     _formKey = GlobalKey<FormState>();
   }
 
@@ -66,119 +77,109 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ParentWithSearchAndScrollController(
-      builder: (child, search, scroll, showScrollToTopButton) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              context.str?.examQuestions(_exam?.title) ??
-                  '${_exam?.title} Questions',
-            ),
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                context.router.back();
-              },
-            ),
-          ),
-          floatingActionButton: BlocConsumer<QuestionBlocWrite,
-              BlocStateWrite<List<QuestionModel>>>(
-            listener: (context, state) {
-              state.whenOrNull(
-                success: (item) {
-                  context.successToast(
-                    title: context.str?.success,
-                    description: context.str?.questionSavedSuccessfully,
-                  );
-                  context.router.back();
-                },
-                failure: (message) {
-                  context.errorToast(
-                    title: context.str?.questionSaveFailed,
-                    description: message,
-                  );
-                },
+    return Parent(
+      appBar: AppBar(
+        title: Text(
+          context.str?.examQuestions(_exam?.title) ??
+              '${_exam?.title} Questions',
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            context.router.back();
+          },
+        ),
+      ),
+      floatingActionButton:
+          BlocConsumer<QuestionBlocWrite, BlocStateWrite<List<QuestionModel>>>(
+        listener: (context, state) {
+          state.whenOrNull(
+            success: (item) {
+              context.successToast(
+                title: context.str?.success,
+                description: context.str?.questionSavedSuccessfully,
+              );
+              context.router.back();
+            },
+            failure: (message) {
+              context.errorToast(
+                title: context.str?.questionSaveFailed,
+                description: message,
               );
             },
-            builder: (context, state) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  BackTopButton(
-                    show: showScrollToTopButton,
-                    onPressed: () {
-                      scroll.animateTo(
-                        0,
-                        duration: const Duration(seconds: 2),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                  ),
-                  Gap(8.h),
-                  FloatingActionButtonExtended(
-                    heroTag: 'save_question_button_$hashCode',
-                    isLoading: state is BlocStateWriteLoading,
-                    onPressed: () {
-                      if (_formKey.currentState?.validate() ?? false) {
-                        final createParams = <CreateQuestionParams>[];
-                        final updateParams = <UpdateQuestionParams>[];
-                        for (final quest in _questions) {
-                          if (quest.question.id == 0) {
-                            final params = CreateQuestionParams(
-                              order: quest.order,
-                              examId: _exam?.id ?? 0,
-                              type: QuestionType.fromString(
-                                quest.typeCon.text,
-                              ),
-                              question: quest.questionCon.text,
-                              options: quest.question.options,
-                            );
-                            createParams.add(params);
-                          } else {
-                            final params = UpdateQuestionParams(
-                              id: quest.question.id,
-                              order: quest.order,
-                              examId: _exam?.id ?? 0,
-                              type: QuestionType.fromString(
-                                quest.typeCon.text,
-                              ),
-                              question: quest.questionCon.text,
-                              options: quest.question.options,
-                            );
-                            updateParams.add(params);
-                          }
-                        }
-                        if (createParams.isNotEmpty) {
-                          context.read<QuestionBlocWrite>().add(
-                                BlocEventWrite.create(createParams),
-                              );
-                        }
-                        if (updateParams.isNotEmpty) {
-                          context.read<QuestionBlocWrite>().add(
-                                BlocEventWrite.update(updateParams),
-                              );
-                        }
+          );
+        },
+        builder: (context, state) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              BackTopButton(
+                show: showScrollToTopButton,
+                onPressed: scrollToTop,
+              ),
+              Gap(8.h),
+              FloatingActionButtonExtended(
+                heroTag: 'save_question_button_$hashCode',
+                isLoading: state is BlocStateWriteLoading,
+                onPressed: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    final createParams = <CreateQuestionParams>[];
+                    final updateParams = <UpdateQuestionParams>[];
+                    for (final quest in _questions) {
+                      if (quest.question.id == 0) {
+                        final params = CreateQuestionParams(
+                          order: quest.order,
+                          examId: _exam?.id ?? 0,
+                          type: QuestionType.fromString(
+                            quest.typeCon.text,
+                          ),
+                          question: quest.questionCon.text,
+                          options: quest.question.options,
+                        );
+                        createParams.add(params);
+                      } else {
+                        final params = UpdateQuestionParams(
+                          id: quest.question.id,
+                          order: quest.order,
+                          examId: _exam?.id ?? 0,
+                          type: QuestionType.fromString(
+                            quest.typeCon.text,
+                          ),
+                          question: quest.questionCon.text,
+                          options: quest.question.options,
+                        );
+                        updateParams.add(params);
                       }
-                    },
-                    icon: const Icon(Icons.save),
-                    label: Text(context.str?.save ?? 'Save'),
-                  ),
-                ],
-              );
-            },
-          ),
-          body: Padding(
-            padding: EdgeInsets.all(8.w),
-            child: _buildForm(context, scroll),
-          ),
-        );
-      },
+                    }
+                    if (createParams.isNotEmpty) {
+                      context.read<QuestionBlocWrite>().add(
+                            BlocEventWrite.create(createParams),
+                          );
+                    }
+                    if (updateParams.isNotEmpty) {
+                      context.read<QuestionBlocWrite>().add(
+                            BlocEventWrite.update(updateParams),
+                          );
+                    }
+                  }
+                },
+                icon: const Icon(Icons.save),
+                label: Text(context.str?.save ?? 'Save'),
+              ),
+            ],
+          );
+        },
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(8.w),
+        child: _buildForm(context),
+      ),
     );
   }
 
-  Widget _buildForm(BuildContext context, ScrollController scroll) {
+  Widget _buildForm(BuildContext context) {
     return BlocConsumer<QuestionBlocRead, BlocStateRead<QuestionModel>>(
       listener: (context, state) {
         state.whenOrNull(
@@ -209,7 +210,7 @@ class _UpsertQuestionScreenState extends State<UpsertQuestionScreen> {
               key: _formKey,
               child: ReorderableListView.builder(
                 itemCount: _questions.length,
-                scrollController: scroll,
+                scrollController: scrollController,
                 proxyDecorator: (child, index, animation) => ProxyDecorator(
                   index: index,
                   animation: animation,

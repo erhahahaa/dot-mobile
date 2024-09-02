@@ -17,15 +17,13 @@ class MediaView<
     ReaderState extends BlocStateRead<MediaModel>,
     WriterBloc extends StateStreamable<WriterState>,
     WriterState extends BlocStateWrite<MediaModel>> extends StatefulWidget {
-  final ClubModel? club;
   final void Function(File file) onUpload;
   final void Function(MediaModel item) onSuccess;
   final void Function(MediaModel item)? onDownload;
   final void Function(MediaModel item)? onTap;
   final List<String> allowedExtensions;
 
-  const MediaView(
-    this.club, {
+  const MediaView({
     super.key,
     required this.onUpload,
     required this.onSuccess,
@@ -40,10 +38,11 @@ class MediaView<
 }
 
 class _MediaViewState<
-    ReaderBloc extends StateStreamable<ReaderState>,
-    ReaderState extends BlocStateRead<MediaModel>,
-    WriterBloc extends StateStreamable<WriterState>,
-    WriterState extends BlocStateWrite<MediaModel>> extends State<MediaView> {
+        ReaderBloc extends StateStreamable<ReaderState>,
+        ReaderState extends BlocStateRead<MediaModel>,
+        WriterBloc extends StateStreamable<WriterState>,
+        WriterState extends BlocStateWrite<MediaModel>>
+    extends BaseState<MediaView> {
   ElegantNotification? uploadToast;
   ElegantNotification? downloadToast;
 
@@ -192,86 +191,82 @@ class _MediaViewState<
           },
         ),
       ],
-      child: ParentWithSearchAndScrollController(
-        builder: (child, search, scroll, showScrollToTopButton) {
-          return Parent(
-            floatingActionButton: BlocBuilder<LoadingCubit, LoadingState>(
-              builder: (context, state) {
-                return FloatingActionButtonExtended(
-                  isLoading: state.isLoading == true,
-                  onPressed: () async {
-                    final res = await sl<FilePickerService>().picker.pickFiles(
-                          allowMultiple: false,
-                          allowedExtensions: widget.allowedExtensions,
-                          type: FileType.custom,
-                        );
-                    if (!context.mounted) return;
-                    if (res == null) {
-                      context.errorToast(
-                        title: 'Error',
-                        description: 'No file selected',
-                      );
-                      return;
-                    }
-                    final file = File(res.files.single.path!);
-                    setState(() {
-                      showUploadToast = true;
-                    });
-                    widget.onUpload(file);
-                  },
-                  label: const BodySmall('Upload'),
-                  icon: const Icon(Icons.upload),
-                );
+      child: Parent(
+        floatingActionButton: BlocBuilder<LoadingCubit, LoadingState>(
+          builder: (context, state) {
+            return FloatingActionButtonExtended(
+              isLoading: state.isLoading == true,
+              onPressed: () async {
+                final res = await sl<FilePickerService>().picker.pickFiles(
+                      allowMultiple: false,
+                      allowedExtensions: widget.allowedExtensions,
+                      type: FileType.custom,
+                    );
+                if (!context.mounted) return;
+                if (res == null) {
+                  context.errorToast(
+                    title: 'Error',
+                    description: 'No file selected',
+                  );
+                  return;
+                }
+                final file = File(res.files.single.path!);
+                setState(() {
+                  showUploadToast = true;
+                });
+                widget.onUpload(file);
               },
-            ),
-            body: Padding(
-              padding: EdgeInsets.all(8.w),
-              child: BlocBuilder<ReaderBloc, ReaderState>(
-                builder: (context, state) {
-                  return state.maybeWhen(
-                    success: (_, filteredItems, __) {
-                      if (filteredItems.isEmpty) {
-                        return SizedBox(
-                          height: 50.h,
-                          child: const ErrorAlert('No media found'),
-                        );
-                      }
-                      return GridViewBuilder(
-                        items: filteredItems,
-                        scrollController: scroll,
-                        itemBuilder: (context, item) {
-                          return _buildMediaItem(
-                            context,
-                            item,
-                            onDownload: widget.onDownload,
-                            onTap: widget.onTap,
-                          );
-                        },
-                      );
-                    },
-                    orElse: () {
-                      final fakeMedias =
-                          List.generate(10, (index) => MediaModel.fake());
-
-                      return GridViewBuilder(
-                        items: fakeMedias,
-                        scrollController: scroll,
-                        itemBuilder: (context, item) => Skeletonizer(
-                          child: _buildMediaItem(
-                            context,
-                            item,
-                            onDownload: widget.onDownload,
-                            onTap: widget.onTap,
-                          ),
-                        ),
+              label: const BodySmall('Upload'),
+              icon: const Icon(Icons.upload),
+            );
+          },
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(8.w),
+          child: BlocBuilder<ReaderBloc, ReaderState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                success: (_, filteredItems, __) {
+                  if (filteredItems.isEmpty) {
+                    return SizedBox(
+                      height: 50.h,
+                      child: const ErrorAlert('No media found'),
+                    );
+                  }
+                  return GridViewBuilder(
+                    items: filteredItems,
+                    scrollController: scrollController,
+                    itemBuilder: (context, item) {
+                      return _buildMediaItem(
+                        context,
+                        item,
+                        onDownload: widget.onDownload,
+                        onTap: widget.onTap,
                       );
                     },
                   );
                 },
-              ),
-            ),
-          );
-        },
+                orElse: () {
+                  final fakeMedias =
+                      List.generate(10, (index) => MediaModel.fake());
+
+                  return GridViewBuilder(
+                    items: fakeMedias,
+                    scrollController: scrollController,
+                    itemBuilder: (context, item) => Skeletonizer(
+                      child: _buildMediaItem(
+                        context,
+                        item,
+                        onDownload: widget.onDownload,
+                        onTap: widget.onTap,
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ),
       ),
     );
   }

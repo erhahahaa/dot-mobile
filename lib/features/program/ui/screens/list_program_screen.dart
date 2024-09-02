@@ -19,84 +19,62 @@ class ListProgramScreen extends StatefulWidget {
   State<ListProgramScreen> createState() => _ListProgramScreenState();
 }
 
-class _ListProgramScreenState extends State<ListProgramScreen> {
+class _ListProgramScreenState extends BaseState<ListProgramScreen> {
   bool hideCalendar = true, hideListProgram = false;
-  ClubModel? club;
-
-  @override
-  void initState() {
-    super.initState();
-    final clubBloc = context.read<ClubBlocRead>();
-    club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedClub) => selectedClub,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    return ParentWithSearchAndScrollController(
-      builder: (context, search, scroll, showScrollToTopButton) {
-        return Parent(
-          appBar: AppBar(
-            title: TitleMedium(context.str?.clubPrograms(club?.name)),
+    return Parent(
+      appBar: AppBar(
+        title: TitleMedium(context.clubWatch?.name),
+      ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          BackTopButton(
+            show: showScrollToTopButton,
+            onPressed: scrollToTop,
           ),
-          floatingActionButton: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              BackTopButton(
-                show: showScrollToTopButton,
-                onPressed: () {
-                  scroll.animateTo(
-                    0,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              ),
-              Gap(8.h),
-              FloatingActionButton.extended(
-                heroTag: 'new_program_button_$hashCode',
-                onPressed: () {
-                  context.router.push(
-                    const UpsertProgramRoute(),
-                  );
-                },
-                icon: const Icon(Icons.add),
-                label: Text(context.str?.newProgram ?? 'New Program'),
-              ),
-            ],
+          Gap(8.h),
+          FloatingActionButton.extended(
+            heroTag: 'new_program_button_$hashCode',
+            onPressed: () {
+              context.router.push(const UpsertProgramRoute());
+            },
+            icon: const Icon(Icons.add),
+            label: Text(context.str?.newProgram ?? 'New Program'),
           ),
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: RefreshIndicator(
-              onRefresh: () async {
-                context.read<ProgramBlocRead>().add(
-                      BlocEventRead.get(id: club?.id),
-                    );
-              },
-              child: SingleChildScrollView(
-                controller: scroll,
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  children: [
-                    Gap(8.h),
-                    _buildHeader(context, search),
-                    Gap(16.h),
-                    _buildCalendar(context),
-                    _buildListProgram(context),
-                  ],
-                ),
-              ),
+        ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            context.read<ProgramBlocRead>().add(
+                  BlocEventRead.get(id: context.clubRead?.id),
+                );
+          },
+          child: SingleChildScrollView(
+            controller: scrollController,
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                Gap(8.h),
+                _buildHeader(context),
+                Gap(16.h),
+                _buildCalendar(context),
+                _buildListProgram(context),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
-  Widget _buildHeader(BuildContext context, SearchController search) {
+  Widget _buildHeader(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -104,7 +82,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
           child: MySearchBar(
             width: 325.w,
             height: 32.h,
-            controller: search,
+            controller: searchController,
             hintText:
                 '${context.str?.search} ${context.str?.program.toLowerCase()} ...',
             onChanged: (value) {
@@ -117,7 +95,7 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
               buttonSize: MoonButtonSize.xs,
               icon: const Icon(MoonIcons.controls_close_24_light),
               onTap: () {
-                search.clear();
+                clearSearch();
                 context.read<ProgramBlocRead>().add(
                       const BlocEventRead.filter(''),
                     );
@@ -236,8 +214,8 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                             Flexible(
                               child: Text(
                                 context.str?.clubDoesntHaveAnyProgram(
-                                        club?.name) ??
-                                    '${club?.name} doesn\'t have a program yet',
+                                        context.clubWatch?.name) ??
+                                    '${context.clubWatch?.name} doesn\'t have a program yet',
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -248,10 +226,11 @@ class _ListProgramScreenState extends State<ListProgramScreen> {
                                     const TextStyle(color: Colors.blue),
                                   ),
                                 ),
-                                onPressed: club != null
+                                onPressed: context.clubRead != null
                                     ? () {
                                         context.read<ProgramBlocRead>().add(
-                                              BlocEventRead.get(id: club?.id),
+                                              BlocEventRead.get(
+                                                  id: context.clubRead?.id),
                                             );
                                       }
                                     : null,

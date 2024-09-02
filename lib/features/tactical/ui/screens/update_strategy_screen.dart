@@ -20,10 +20,8 @@ class UpdateStrategyScreen extends StatefulWidget {
   State<UpdateStrategyScreen> createState() => _UpdateStrategyScreenState();
 }
 
-class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
+class _UpdateStrategyScreenState extends BaseState<UpdateStrategyScreen> {
   TacticalModel? _tactical;
-  UserModel? _user;
-  // Size  screenSize = Size.zero;
   late GlobalKey<ScaffoldState> _scaffoldKey;
   late TransformationController _transformationController;
 
@@ -38,21 +36,22 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
     super.initState();
     _scaffoldKey = GlobalKey<ScaffoldState>();
     _transformationController = TransformationController();
-
-    final tacticalBloc = context.read<TacticalBlocRead>();
-    _tactical = tacticalBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
-    );
-    _strategy = _tactical?.strategic ?? const TacticalStrategicModel();
-
-    context.read<StrategyCubit>().emitStrategy(_strategy);
-
-    final userBloc = context.read<UserBloc>();
-    _user = userBloc.state.whenOrNull(success: (user, __) => user);
+    addSubscription(context.read<TacticalBlocRead>().stream.listen(
+      (state) {
+        final tactical =
+            state.whenOrNull(success: (_, __, selectedItem) => selectedItem);
+        safeSetState(() {
+          _tactical = tactical;
+          _strategy = _tactical?.strategic ?? const TacticalStrategicModel();
+        });
+        if (mounted) {
+          context.read<StrategyCubit>().emitStrategy(_strategy);
+        }
+      },
+    ));
 
     final tactical = _tactical;
-    final user = _user;
-    if (tactical != null && tactical.isLive == true && user != null) {
+    if (tactical != null && tactical.isLive == true) {
       final bearer = user.token;
       if (bearer == null) return;
       context.read<StrategyCubit>().listenWebSocket(tactical, bearer);
@@ -218,7 +217,7 @@ class _UpdateStrategyScreenState extends State<UpdateStrategyScreen> {
                         params: StrategyWsParamModel(
                           clubId: _tactical?.clubId ?? 0,
                           channel: channelName,
-                          user: _user ?? const UserModel(),
+                          user: user,
                         ),
                         data: _strategy,
                       ).toJson();

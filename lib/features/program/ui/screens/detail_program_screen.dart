@@ -30,195 +30,189 @@ class DetailProgramScreen extends StatefulWidget implements AutoRouteWrapper {
   }
 }
 
-class _DetailProgramScreenState extends State<DetailProgramScreen> {
+class _DetailProgramScreenState extends BaseState<DetailProgramScreen> {
   ProgramModel? _program;
 
   @override
   void initState() {
     super.initState();
-    final programBloc = context.read<ProgramBlocRead>();
-    _program = programBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
-    );
+    addSubscription(context.read<ProgramBlocRead>().stream.listen(
+      (state) {
+        final program = state.whenOrNull(
+          success: (_, __, item) => item,
+        );
+        safeSetState(() {
+          _program = program;
+        });
+      },
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return ParentWithSearchAndScrollController(
-      builder: (child, search, scroll, showScrollToTopButton) {
-        return Parent(
-          appBar: AppBar(
-            title: BlocBuilder<ProgramBlocRead, BlocStateRead>(
-              builder: (context, state) {
-                if (state is BlocStateReadSuccess) {
-                  final program = state.selectedItem;
-                  if (program != null) {
-                    return TitleLarge(program.name);
-                  }
-                }
-                return TitleLarge(
-                    context.str?.programDetail ?? 'Program Detail');
-              },
-            ),
-            actions: [
-              BlocListener<ProgramBlocWrite, BlocStateWrite<ProgramModel>>(
-                listener: (context, state) {
-                  state.whenOrNull(
-                    success: (success) {
-                      context.read<ProgramBlocRead>().add(
-                            BlocEventRead.remove(success.id),
-                          );
-                      context.successToast(
-                        title: context.str?.success,
-                        description: context.str?.programDeletedSuccessfully,
+    return Parent(
+      appBar: AppBar(
+        title: BlocBuilder<ProgramBlocRead, BlocStateRead>(
+          builder: (context, state) {
+            if (state is BlocStateReadSuccess) {
+              final program = state.selectedItem;
+              if (program != null) {
+                return TitleLarge(program.name);
+              }
+            }
+            return TitleLarge(context.str?.programDetail ?? 'Program Detail');
+          },
+        ),
+        actions: [
+          BlocListener<ProgramBlocWrite, BlocStateWrite<ProgramModel>>(
+            listener: (context, state) {
+              state.whenOrNull(
+                success: (success) {
+                  context.read<ProgramBlocRead>().add(
+                        BlocEventRead.remove(success.id),
                       );
-                      Navigator.of(context).pop();
-                    },
-                    failure: (message) {
-                      context.errorToast(
-                        title: context.str?.deleteProgramFailed,
-                        description: message,
-                      );
-                    },
+                  context.successToast(
+                    title: context.str?.success,
+                    description: context.str?.programDeletedSuccessfully,
+                  );
+                  Navigator.of(context).pop();
+                },
+                failure: (message) {
+                  context.errorToast(
+                    title: context.str?.deleteProgramFailed,
+                    description: message,
                   );
                 },
-                child: MoonButton.icon(
-                  icon: const Icon(
-                    MoonIcons.generic_delete_24_light,
-                    color: Colors.red,
-                  ),
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (ctx) {
-                        return BlocProvider.value(
-                          value: context.read<ProgramBlocWrite>(),
-                          child: AlertDialog(
-                            title: Text(
-                                context.str?.deleteProgram ?? 'Delete Program'),
-                            content: Text(context.str
-                                    ?.areYouSureYouWantToDeleteProgram(
-                                        _program?.name) ??
-                                'Are you sure you want to delete this program?'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Text(context.str?.no ?? 'No'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  context.read<ProgramBlocWrite>().add(
-                                        BlocEventWrite.delete(
-                                            DeleteProgramParams(
-                                                programId: widget.id)),
-                                      );
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Text(context.str?.yes ?? 'Yes'),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-              MoonButton.icon(
-                icon: const Icon(MoonIcons.generic_edit_24_light),
-                onTap: () {
-                  context.router.popAndPush(const UpsertProgramRoute());
-                },
-              )
-            ],
-          ),
-          floatingActionButton: BackTopButton(
-            show: showScrollToTopButton,
-            onPressed: () {
-              scroll.animateTo(
-                0,
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeInOut,
               );
             },
-          ),
-          body: BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                success: (items, filteredItems, selectedItem) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w),
-                    child: SingleChildScrollView(
-                      controller: scroll,
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TitleMedium(
-                              context.str?.programDetail ?? 'Program Detail'),
-                          ContainerWrapper(
-                            width: double.infinity,
-                            margin: EdgeInsets.symmetric(vertical: 8.h),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                BodyMedium(
-                                    '${context.str?.name}: ${selectedItem?.name}'),
-                                if (selectedItem?.startDate != null) ...[
-                                  BodyMedium(
-                                    '${context.str?.startDate}: ${selectedItem?.startDate!.toDayMonthYear()}',
-                                  ),
-                                ],
-                                if (selectedItem?.endDate != null) ...[
-                                  BodyMedium(
-                                    '${context.str?.endDate}: ${selectedItem?.endDate!.toDayMonthYear()}',
-                                  ),
-                                ]
-                              ],
-                            ),
-                          ),
-                          BlocBuilder<ExerciseBlocRead,
-                              BlocStateRead<ExerciseModel>>(
-                            builder: (context, state) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  TitleMedium(
-                                      context.str?.exercises ?? 'Exercises'),
-                                  Gap(8.h),
-                                  state.maybeWhen(
-                                    success: (items, __, ___) {
-                                      return ListViewBuilder(
-                                        items: items,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        itemBuilder: (context, index, item) {
-                                          return ExerciseContainer(
-                                            exercise: item,
-                                          );
-                                        },
-                                      );
-                                    },
-                                    orElse: () => const SizedBox(),
-                                  ),
-                                  Gap(16.h),
-                                ],
-                              );
+            child: MoonButton.icon(
+              icon: const Icon(
+                MoonIcons.generic_delete_24_light,
+                color: Colors.red,
+              ),
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (ctx) {
+                    return BlocProvider.value(
+                      value: context.read<ProgramBlocWrite>(),
+                      child: AlertDialog(
+                        title: Text(
+                            context.str?.deleteProgram ?? 'Delete Program'),
+                        content: Text(context.str
+                                ?.areYouSureYouWantToDeleteProgram(
+                                    _program?.name) ??
+                            'Are you sure you want to delete this program?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(ctx).pop();
                             },
+                            child: Text(context.str?.no ?? 'No'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              context.read<ProgramBlocWrite>().add(
+                                    BlocEventWrite.delete(DeleteProgramParams(
+                                        programId: widget.id)),
+                                  );
+                              Navigator.of(ctx).pop();
+                            },
+                            child: Text(context.str?.yes ?? 'Yes'),
                           ),
                         ],
                       ),
-                    ),
-                  );
-                },
-                orElse: () => const Center(child: CircularProgressIndicator()),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+          MoonButton.icon(
+            icon: const Icon(MoonIcons.generic_edit_24_light),
+            onTap: () {
+              context.router.popAndPush(const UpsertProgramRoute());
+            },
+          )
+        ],
+      ),
+      floatingActionButton: BackTopButton(
+        show: showScrollToTopButton,
+        onPressed: scrollToTop,
+      ),
+      body: BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            success: (items, filteredItems, selectedItem) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.w),
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TitleMedium(
+                          context.str?.programDetail ?? 'Program Detail'),
+                      ContainerWrapper(
+                        width: double.infinity,
+                        margin: EdgeInsets.symmetric(vertical: 8.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            BodyMedium(
+                                '${context.str?.name}: ${selectedItem?.name}'),
+                            if (selectedItem?.startDate != null) ...[
+                              BodyMedium(
+                                '${context.str?.startDate}: ${selectedItem?.startDate!.toDayMonthYear()}',
+                              ),
+                            ],
+                            if (selectedItem?.endDate != null) ...[
+                              BodyMedium(
+                                '${context.str?.endDate}: ${selectedItem?.endDate!.toDayMonthYear()}',
+                              ),
+                            ]
+                          ],
+                        ),
+                      ),
+                      BlocBuilder<ExerciseBlocRead,
+                          BlocStateRead<ExerciseModel>>(
+                        builder: (context, state) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TitleMedium(
+                                  context.str?.exercises ?? 'Exercises'),
+                              Gap(8.h),
+                              state.maybeWhen(
+                                success: (items, __, ___) {
+                                  return ListViewBuilder(
+                                    items: items,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemBuilder: (context, index, item) {
+                                      return ExerciseContainer(
+                                        exercise: item,
+                                      );
+                                    },
+                                  );
+                                },
+                                orElse: () => const SizedBox(),
+                              ),
+                              Gap(16.h),
+                            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               );
             },
-          ),
-        );
-      },
+            orElse: () => const Center(child: CircularProgressIndicator()),
+          );
+        },
+      ),
     );
   }
 }

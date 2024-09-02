@@ -1,5 +1,6 @@
 import 'package:dot_coaching/app/di.dart';
 import 'package:dot_coaching/core/core.dart';
+import 'package:dot_coaching/features/feature.dart';
 import 'package:dot_coaching/utils/utils.dart';
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/arrays.dart';
@@ -139,5 +140,17 @@ extension BuildContextX on BuildContext {
       ),
       showProgressIndicator: false,
     );
+  }
+
+  ClubModel? get clubWatch {
+    return watch<ClubBlocRead>()
+        .state
+        .whenOrNull(success: (_, __, item) => item);
+  }
+
+  ClubModel? get clubRead {
+    return read<ClubBlocRead>()
+        .state
+        .whenOrNull(success: (_, __, item) => item);
   }
 }

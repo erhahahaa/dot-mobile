@@ -11,53 +11,48 @@ import 'package:moon_design/moon_design.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
-class ListClubScreen extends StatelessWidget {
+class ListClubScreen extends StatefulWidget {
   const ListClubScreen({super.key});
 
   @override
+  State<ListClubScreen> createState() => _ListClubScreenState();
+}
+
+class _ListClubScreenState extends BaseState<ListClubScreen> {
+  @override
   Widget build(BuildContext context) {
-    return ParentWithSearchAndScrollController(
-      onInit: (search, scroll) => context.read<ClubBlocRead>().add(
-            const BlocEventRead.clear(),
-          ),
-      builder: (context, search, scroll, showScrollToTopButton) {
-        return Parent(
-          appBar: _buildAppBar(),
-          drawer: MoonDrawer(
-            width: MediaQuery.of(context).size.width * 0.7,
-            child: const ProfileScreen(),
-          ),
-          floatingActionButton: _buildFloatingActionButton(
-              showScrollToTopButton, scroll, context),
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: RefreshIndicator(
-              onRefresh: () async {
-                context.read<ClubBlocRead>().add(
-                      const BlocEventRead.get(),
-                    );
-              },
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  children: [
-                    Gap(8.h),
-                    _buildHeader(context, search),
-                    Gap(8.h),
-                    _buildListClub(context, search, scroll),
-                  ],
-                ),
-              ),
+    return Parent(
+      appBar: _buildAppBar(),
+      drawer: MoonDrawer(
+        width: MediaQuery.of(context).size.width * 0.7,
+        child: const ProfileScreen(),
+      ),
+      floatingActionButton: _buildFloatingActionButton(context),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            context.read<ClubBlocRead>().add(
+                  const BlocEventRead.get(),
+                );
+          },
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                Gap(8.h),
+                _buildHeader(context),
+                Gap(8.h),
+                _buildListClub(context),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
   Column _buildFloatingActionButton(
-    bool showScrollToTopButton,
-    ScrollController scroll,
     BuildContext context,
   ) {
     return Column(
@@ -68,7 +63,7 @@ class ListClubScreen extends StatelessWidget {
         BackTopButton(
           show: showScrollToTopButton,
           onPressed: () {
-            scroll.animateTo(
+            scrollController.animateTo(
               0,
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeInOut,
@@ -79,15 +74,7 @@ class ListClubScreen extends StatelessWidget {
         FloatingActionButton.extended(
           heroTag: 'new_club_button_$hashCode',
           onPressed: () {
-            context.router.push<ClubModel>(
-              UpsertClubRoute(
-                onUpserted: (club) {
-                  context.read<ClubBlocRead>().add(
-                        BlocEventRead.append(club),
-                      );
-                },
-              ),
-            );
+            context.router.push<ClubModel>(const UpsertClubRoute());
           },
           icon: const Icon(Icons.add),
           label: Text(context.str?.newClub ?? 'New Club'),
@@ -119,7 +106,7 @@ class ListClubScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, SearchController search) {
+  Widget _buildHeader(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -127,7 +114,7 @@ class ListClubScreen extends StatelessWidget {
         MySearchBar(
           width: 180.w,
           height: 32.h,
-          controller: search,
+          controller: searchController,
           hintText:
               '${context.str?.search} ${context.str?.club.toLowerCase()} ...',
           onChanged: (value) {
@@ -140,7 +127,7 @@ class ListClubScreen extends StatelessWidget {
             buttonSize: MoonButtonSize.xs,
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
-              search.clear();
+              searchController.clear();
               context.read<ClubBlocRead>().add(
                     const BlocEventRead.filter(''),
                   );
@@ -151,11 +138,7 @@ class ListClubScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildListClub(
-    BuildContext context,
-    SearchController searchController,
-    ScrollController scrollController,
-  ) {
+  Widget _buildListClub(BuildContext context) {
     return BlocBuilder<ClubBlocRead, BlocStateRead<ClubModel>>(
       builder: (context, state) {
         return state.maybeWhen(
@@ -220,22 +203,22 @@ class ListClubScreen extends StatelessWidget {
 
   Widget _buildClubItem(
     BuildContext context,
-    ClubModel club,
+    ClubModel selectedClub,
     bool isLast,
   ) {
     void onTap() {
       context.read<ClubBlocRead>().add(
-            BlocEventRead.select(club),
+            BlocEventRead.select(selectedClub),
           );
       context.router.push(
-        ClubShellRoute(id: club.id),
+        ClubShellRoute(id: selectedClub.id),
       );
     }
 
     return ListViewBuilderTile(
-      titleText: club.name,
-      subtitleText: club.type.name,
-      imageUrl: club.media?.url,
+      titleText: selectedClub.name,
+      subtitleText: selectedClub.type.name,
+      imageUrl: selectedClub.media?.url,
       onTap: onTap,
       trailing: MoonButton.icon(
         buttonSize: MoonButtonSize.xs,

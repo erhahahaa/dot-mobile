@@ -138,6 +138,6 @@ class ExerciseRemoteDatasourceImpl implements ExerciseRemoteDatasource {
       );
       return res;
     }
-    return Right([]);
+    return const Right([]);
   }
 }

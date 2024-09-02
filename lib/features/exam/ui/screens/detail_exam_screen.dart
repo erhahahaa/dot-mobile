@@ -30,24 +30,24 @@ class DetailExamScreen extends StatefulWidget implements AutoRouteWrapper {
   }
 }
 
-class _DetailExamScreenState extends State<DetailExamScreen>
+class _DetailExamScreenState extends BaseState<DetailExamScreen>
     with SingleTickerProviderStateMixin {
-  ClubModel? club;
   ExamModel? exam;
   late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    final clubBloc = context.read<ClubBlocRead>();
-    club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedClub) => selectedClub,
-    );
-
-    final examBloc = context.read<ExamBlocRead>();
-    exam = examBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
-    );
+    addSubscription(context.read<ExamBlocRead>().stream.listen(
+      (state) {
+        final selectedItem = state.whenOrNull(
+          success: (_, __, selectedItem) => selectedItem,
+        );
+        safeSetState(() {
+          exam = selectedItem;
+        });
+      },
+    ));
 
     _tabController = TabController(
       length: 2,
@@ -166,7 +166,7 @@ class _DetailExamScreenState extends State<DetailExamScreen>
                     BlocProvider.value(
                       value: context.read<ClubMembersCubit>()
                         ..getMembers(
-                          clubId: club?.id ?? 0,
+                          clubId: context.clubRead?.id ?? 0,
                           athleteOnly: true,
                         ),
                     ),

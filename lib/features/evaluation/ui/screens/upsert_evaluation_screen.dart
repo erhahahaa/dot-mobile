@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dot_coaching/core/core.dart';
 import 'package:dot_coaching/features/feature.dart';
-import 'package:dot_coaching/utils/extensions/context.dart';
-import 'package:dot_coaching/utils/helpers/blocs/blocs.dart';
+import 'package:dot_coaching/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,19 +16,24 @@ class UpsertEvaluationScreen extends StatefulWidget {
   State<UpsertEvaluationScreen> createState() => _UpsertEvaluationScreenState();
 }
 
-class _UpsertEvaluationScreenState extends State<UpsertEvaluationScreen> {
+class _UpsertEvaluationScreenState extends BaseState<UpsertEvaluationScreen> {
   ExamModel? _exam;
   UserModel? _athlete;
   @override
   void initState() {
     super.initState();
-    final evaluationBloc = context.read<ExamBlocRead>();
-    _exam = evaluationBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
-    );
 
-    final userBloc = context.read<ClubMembersCubit>();
-    _athlete = userBloc.state.selectedUser;
+    addSubscription(context.read<ExamBlocRead>().stream.listen((state) {
+      final exam = state.whenOrNull(success: (_, __, item) => item);
+      safeSetState(() {
+        _exam = exam;
+      });
+    }));
+    addSubscription(context.read<ClubMembersCubit>().stream.listen((state) {
+      safeSetState(() {
+        _athlete = state.selectedUser;
+      });
+    }));
   }
 
   @override

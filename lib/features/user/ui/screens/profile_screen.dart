@@ -17,7 +17,7 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen>
+class _ProfileScreenState extends BaseState<ProfileScreen>
     with FirebaseCrashLoggerService {
   ThemeMode _themeMode = ThemeMode.system;
   Locale _locale = const Locale('en', 'US');

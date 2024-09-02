@@ -27,9 +27,8 @@ class UpsertTacticalScreen extends StatefulWidget implements AutoRouteWrapper {
   }
 }
 
-class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
+class _UpsertTacticalScreenState extends BaseState<UpsertTacticalScreen> {
   TacticalModel? _tactical;
-  ClubModel? club;
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
   late TextEditingController _widthController;
@@ -52,37 +51,40 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
   @override
   void initState() {
     super.initState();
-    final clubBloc = context.read<ClubBlocRead>();
-    club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
-    );
 
-    final tacticalBloc = context.read<TacticalBlocRead>();
-    _tactical = tacticalBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
-    );
+    addSubscription(
+      context.read<TacticalBlocRead>().stream.listen(
+        (state) {
+          final tactical = state.whenOrNull(
+            success: (_, __, selectedItem) => selectedItem,
+          );
+          safeSetState(() {
+            _tactical = tactical;
+            _nameController = TextEditingController(
+              text: _tactical?.name,
+            );
+            _descriptionController = TextEditingController(
+              text: _tactical?.description,
+            );
+            _widthController = TextEditingController(
+              text: _tactical?.board.width.toInt().toString(),
+            );
+            _heightController = TextEditingController(
+              text: _tactical?.board.height.toInt().toString(),
+            );
+            _totalPlayersController = TextEditingController(
+              text: (_tactical?.strategic == null ||
+                      (_tactical?.strategic?.players.isEmpty ?? true))
+                  ? null
+                  : (_tactical!.strategic!.players.length ~/ 2).toString(),
+            );
 
-    _nameController = TextEditingController(
-      text: _tactical?.name,
+            _media = _tactical?.media;
+            _isLive = _tactical?.isLive ?? false;
+          });
+        },
+      ),
     );
-    _descriptionController = TextEditingController(
-      text: _tactical?.description,
-    );
-    _widthController = TextEditingController(
-      text: _tactical?.board.width.toInt().toString(),
-    );
-    _heightController = TextEditingController(
-      text: _tactical?.board.height.toInt().toString(),
-    );
-    _totalPlayersController = TextEditingController(
-      text: (_tactical?.strategic == null ||
-              (_tactical?.strategic?.players.isEmpty ?? true))
-          ? null
-          : (_tactical!.strategic!.players.length ~/ 2).toString(),
-    );
-
-    _media = _tactical?.media;
-    _isLive = _tactical?.isLive ?? false;
 
     _nameFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
@@ -325,7 +327,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                       });
                     }
                     if (_formKey.currentState!.validate()) {
-                      if (club == null) {
+                      if (context.clubRead == null) {
                         return context.errorToast(
                           title: context.str?.obsecuredState,
                           description: context.str?.pleaseRestartTheApp,
@@ -351,7 +353,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                             .read<TacticalBlocWrite>()
                             .add(BlocEventWrite.create(
                               CreateTacticalParams(
-                                clubId: club!.id,
+                                clubId: context.clubRead!.id,
                                 name: _nameController.text,
                                 description: _descriptionController.text,
                                 mediaId: _media?.id,
@@ -384,7 +386,7 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                               BlocEventWrite.update(
                                 UpdateTacticalParams(
                                   id: _tactical!.id,
-                                  clubId: club!.id,
+                                  clubId: context.clubRead!.id,
                                   name: _nameController.text,
                                   description: _descriptionController.text,
                                   mediaId: _media?.id,
@@ -446,7 +448,8 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                 BlocProvider.value(
                   value: context.read<TacticalMediaBlocRead>()
                     ..add(
-                      BlocEventRead.get(id: club?.id, query: 'image/png'),
+                      BlocEventRead.get(
+                          id: context.clubRead?.id, query: 'image/png'),
                     ),
                 ),
                 BlocProvider.value(
@@ -481,12 +484,11 @@ class _UpsertTacticalScreenState extends State<UpsertTacticalScreen> {
                           BlocStateRead<MediaModel>,
                           TacticalMediaBlocWrite,
                           BlocStateWrite<MediaModel>>(
-                        club,
                         allowedExtensions: const ['jpg', 'jpeg', 'png', 'svg'],
                         onUpload: (file) {
                           context.read<TacticalMediaBlocWrite>().add(
                                 BlocEventWrite.create({
-                                  'clubId': club?.id,
+                                  'clubId': context.clubRead?.id,
                                   'file': file,
                                 }),
                               );

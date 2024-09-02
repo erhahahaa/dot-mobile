@@ -17,7 +17,7 @@ class SignInScreen extends StatefulWidget {
   State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignInScreenState extends BaseState<SignInScreen> {
   bool isObsecure = true;
 
   late TextEditingController _identifierController;

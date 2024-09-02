@@ -21,9 +21,8 @@ class DetailTacticalScreen extends StatefulWidget {
   State<DetailTacticalScreen> createState() => _DetailTacticalScreenState();
 }
 
-class _DetailTacticalScreenState extends State<DetailTacticalScreen> {
+class _DetailTacticalScreenState extends BaseState<DetailTacticalScreen> {
   TacticalModel? _tactical;
-  UserModel? _user;
   late GlobalKey<ScaffoldState> _scaffoldKey;
   late TransformationController _transformationController;
 
@@ -33,20 +32,26 @@ class _DetailTacticalScreenState extends State<DetailTacticalScreen> {
 
     _scaffoldKey = GlobalKey<ScaffoldState>();
     _transformationController = TransformationController();
+
+    addSubscription(context.read<TacticalBlocRead>().stream.listen(
+      (state) {
+        final tactical =
+            state.whenOrNull(success: (_, __, selectedItem) => selectedItem);
+        safeSetState(() {
+          _tactical = tactical;
+        });
+      },
+    ));
+
     final tacticalBloc = context.read<TacticalBlocRead>();
     _tactical = tacticalBloc.state.whenOrNull(
       success: (_, __, selectedItem) => selectedItem,
     );
-
-    final userBloc = context.read<UserBloc>();
-    _user = userBloc.state.whenOrNull(success: (user, __) => user);
-
     final tactical = _tactical;
-    final user = _user;
     if (tactical != null) {
       context.read<StrategyCubit>().emitStrategy(tactical.strategic);
     }
-    if (tactical != null && tactical.isLive == true && user != null) {
+    if (tactical != null && tactical.isLive == true) {
       final bearer = user.token;
       if (bearer == null) return;
       context.read<StrategyCubit>().listenWebSocket(tactical, bearer);
