@@ -1,4 +1,4 @@
-name: Flutter
+name: Cleaning up Dart code
 
 on:
   push:

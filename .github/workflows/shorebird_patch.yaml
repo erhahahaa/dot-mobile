@@ -9,6 +9,7 @@ env:
 jobs:
   patch:
     if: contains(github.event.head_commit.message, 'patch')
+    permissions: write-all
     defaults:
       run:
         shell: bash
