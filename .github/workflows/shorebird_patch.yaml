@@ -1,6 +1,10 @@
 name: Shorebird Patch
 
 on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
   workflow_dispatch:
 
 env:
@@ -29,7 +33,6 @@ jobs:
           platform: android
 
       - name: 📦 Upload APK to GitHub release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
