@@ -25,44 +25,34 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
   @override
   void initState() {
     super.initState();
-    addSubscription(
-      context.read<ExamBlocRead>().stream.listen(
-        (state) {
-          final exam = state.whenOrNull(
-            success: (_, __, selectedItem) => selectedItem,
-          );
-          safeSetState(() {
-            _exam = exam;
-          });
-        },
-      ),
-    );
+    final exam = context.read<ExamBlocRead>().state.whenOrNull(
+          success: (_, __, selectedItem) => selectedItem,
+        );
 
-    addSubscription(
-      context.read<QuestionBlocRead>().stream.listen(
-        (state) {
-          final questions = state.whenOrNull(
-            success: (items, _, __) => items,
+    safeSetState(() {
+      _exam = exam;
+    });
+
+    final questions = context.read<QuestionBlocRead>().state.whenOrNull(
+          success: (items, _, __) => items,
+        );
+
+    if (questions != null) {
+      safeSetState(() {
+        _questions.clear();
+        _questions.addAll(questions.map((question) {
+          return QuestionItem(
+            question: question,
+            questionFN: FocusNode(),
+            questionCon: TextEditingController(text: question.question),
+            typeFN: FocusNode(),
+            typeCon: TextEditingController(
+                text: question.type.value.capitalizeFirst),
+            order: question.order,
           );
-          if (questions != null) {
-            safeSetState(() {
-              _questions.clear();
-              _questions.addAll(questions.map((question) {
-                return QuestionItem(
-                  question: question,
-                  questionFN: FocusNode(),
-                  questionCon: TextEditingController(text: question.question),
-                  typeFN: FocusNode(),
-                  typeCon: TextEditingController(
-                      text: question.type.value.capitalizeFirst),
-                  order: question.order,
-                );
-              }));
-            });
-          }
-        },
-      ),
-    );
+        }));
+      });
+    }
 
     _formKey = GlobalKey<FormState>();
   }
@@ -81,7 +71,7 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
       appBar: AppBar(
         title: Text(
           context.str?.examQuestions(_exam?.title) ??
-              '${_exam?.title} Questions',
+              '${_exam?.title} ${context.str?.questions}',
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -99,6 +89,23 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
                 title: context.str?.success,
                 description: context.str?.questionSavedSuccessfully,
               );
+
+              context.read<QuestionBlocRead>().add(
+                    BlocEventRead.get(id: _exam?.id ?? 0),
+                  );
+
+              final exams = context.read<ExamBlocRead>().state.whenOrNull(
+                    success: (items, _, __) => items,
+                  );
+
+              final updClub = context.clubRead?.copyWith(
+                examCount: exams?.length ?? 0,
+              );
+
+              context.read<ClubBlocWrite>().add(
+                    BlocEventWrite.update(updClub),
+                  );
+
               context.router.back();
             },
             failure: (message) {

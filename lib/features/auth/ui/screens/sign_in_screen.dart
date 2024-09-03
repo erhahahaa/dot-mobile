@@ -176,7 +176,12 @@ class _SignInScreenState extends BaseState<SignInScreen> {
                     title: context.str?.signInSuccess,
                     description: context.str?.welcomeBack(user.name),
                   );
-                  context.router.replace(const ListClubRoute());
+                  context.read<UserBloc>().add(const UserEvent.initialize());
+                  Future.delayed(Durations.short4, () {
+                    if (context.mounted) {
+                      context.router.replace(const ListClubRoute());
+                    }
+                  });
                 },
                 unauthenticated: (message) {
                   context.errorToast(

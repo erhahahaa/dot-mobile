@@ -52,40 +52,35 @@ class _UpsertTacticalScreenState extends BaseState<UpsertTacticalScreen> {
   void initState() {
     super.initState();
 
-    addSubscription(
-      context.read<TacticalBlocRead>().stream.listen(
-        (state) {
-          final tactical = state.whenOrNull(
-            success: (_, __, selectedItem) => selectedItem,
-          );
-          safeSetState(() {
-            _tactical = tactical;
-            _nameController = TextEditingController(
-              text: _tactical?.name,
-            );
-            _descriptionController = TextEditingController(
-              text: _tactical?.description,
-            );
-            _widthController = TextEditingController(
-              text: _tactical?.board.width.toInt().toString(),
-            );
-            _heightController = TextEditingController(
-              text: _tactical?.board.height.toInt().toString(),
-            );
-            _totalPlayersController = TextEditingController(
-              text: (_tactical?.strategic == null ||
-                      (_tactical?.strategic?.players.isEmpty ?? true))
-                  ? null
-                  : (_tactical!.strategic!.players.length ~/ 2).toString(),
-            );
+    final t = context.read<TacticalBlocRead>().state.whenOrNull(
+          success: (_, __, item) => item,
+        );
 
-            _media = _tactical?.media;
-            _isLive = _tactical?.isLive ?? false;
-          });
-        },
-      ),
+    safeSetState(() {
+      _tactical = t;
+    });
+
+    _nameController = TextEditingController(
+      text: _tactical?.name,
+    );
+    _descriptionController = TextEditingController(
+      text: _tactical?.description,
+    );
+    _widthController = TextEditingController(
+      text: _tactical?.board.width.toInt().toString(),
+    );
+    _heightController = TextEditingController(
+      text: _tactical?.board.height.toInt().toString(),
+    );
+    _totalPlayersController = TextEditingController(
+      text: (_tactical?.strategic == null ||
+              (_tactical?.strategic?.players.isEmpty ?? true))
+          ? null
+          : (_tactical!.strategic!.players.length ~/ 2).toString(),
     );
 
+    _media = _tactical?.media;
+    _isLive = _tactical?.isLive ?? false;
     _nameFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
     _widthFocusNode = FocusNode();
@@ -466,7 +461,7 @@ class _UpsertTacticalScreenState extends BaseState<UpsertTacticalScreen> {
                     Row(
                       children: [
                         Gap(16.w),
-                        const BodyLarge('Select Tactical Asset'),
+                        BodyLarge(context.str?.selectTacticalBoard),
                         const Spacer(),
                         IconButton(
                           icon: const Icon(Icons.close),

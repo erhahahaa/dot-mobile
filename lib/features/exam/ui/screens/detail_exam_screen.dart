@@ -38,16 +38,13 @@ class _DetailExamScreenState extends BaseState<DetailExamScreen>
   @override
   void initState() {
     super.initState();
-    addSubscription(context.read<ExamBlocRead>().stream.listen(
-      (state) {
-        final selectedItem = state.whenOrNull(
-          success: (_, __, selectedItem) => selectedItem,
+
+    final internalExam = context.read<ExamBlocRead>().state.whenOrNull(
+          success: (_, __, item) => item,
         );
-        safeSetState(() {
-          exam = selectedItem;
-        });
-      },
-    ));
+    safeSetState(() {
+      exam = internalExam;
+    });
 
     _tabController = TabController(
       length: 2,
@@ -306,7 +303,7 @@ class _DetailExamScreenState extends BaseState<DetailExamScreen>
                       BlocEventRead.remove(success.id),
                     );
                 context.successToast(
-                  title: 'Success',
+                  title: context.str?.success,
                   description: context.str?.examDeletedSuccessfully,
                 );
                 Navigator.of(context).pop();

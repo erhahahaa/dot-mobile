@@ -13,7 +13,7 @@ class ExerciseModel with _$ExerciseModel {
     @Default(0) int programId,
     int? mediaId,
     @Default(0) int order,
-    @Default('Dot Exercise 0') String name,
+    @Default('') String name,
     String? description,
     ExerciseUnitValueModel? repetition,
     ExerciseUnitValueModel? sets,

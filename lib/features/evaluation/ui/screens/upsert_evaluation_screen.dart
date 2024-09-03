@@ -23,17 +23,16 @@ class _UpsertEvaluationScreenState extends BaseState<UpsertEvaluationScreen> {
   void initState() {
     super.initState();
 
-    addSubscription(context.read<ExamBlocRead>().stream.listen((state) {
-      final exam = state.whenOrNull(success: (_, __, item) => item);
-      safeSetState(() {
-        _exam = exam;
-      });
-    }));
-    addSubscription(context.read<ClubMembersCubit>().stream.listen((state) {
-      safeSetState(() {
-        _athlete = state.selectedUser;
-      });
-    }));
+    final exam = context.read<ExamBlocRead>().state.whenOrNull(
+          success: (_, __, item) => item,
+        );
+
+    final athlete = context.read<ClubMembersCubit>().state.selectedUser;
+
+    safeSetState(() {
+      _exam = exam;
+      _athlete = athlete;
+    });
   }
 
   @override

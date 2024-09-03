@@ -153,4 +153,10 @@ extension BuildContextX on BuildContext {
         .state
         .whenOrNull(success: (_, __, item) => item);
   }
+
+  UserModel get user {
+    return read<UserBloc>().state.whenOrNull(
+          success: (user, __) => user,
+        ) ?? UserModel();
+  }
 }

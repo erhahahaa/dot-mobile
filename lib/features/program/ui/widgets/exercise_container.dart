@@ -93,14 +93,14 @@ class _ExerciseContainerState extends State<ExerciseContainer> {
                       MoonChip(
                         padding: EdgeInsets.all(4.w),
                         label: BodySmall(
-                            'Sets : ${widget.exercise.sets?.value} ${widget.exercise.sets?.unit}'),
+                            '${context.str?.sets} : ${widget.exercise.sets?.value} ${widget.exercise.sets?.unit}'),
                         backgroundColor: Colors.redAccent.withOpacity(0.5),
                       ),
                       Gap(8.h),
                       MoonChip(
                         padding: EdgeInsets.all(4.w),
                         label: BodySmall(
-                            'Rest : ${widget.exercise.rest?.value} ${widget.exercise.rest?.unit}'),
+                            '${context.str?.rest}  : ${widget.exercise.rest?.value} ${widget.exercise.rest?.unit}'),
                         backgroundColor: Colors.amberAccent.withOpacity(0.5),
                       ),
                     ],
@@ -112,14 +112,14 @@ class _ExerciseContainerState extends State<ExerciseContainer> {
                       MoonChip(
                         padding: EdgeInsets.all(4.w),
                         label: BodySmall(
-                            'Reps : ${widget.exercise.repetition?.value} ${widget.exercise.repetition?.unit}'),
+                            '${context.str?.reps}  : ${widget.exercise.repetition?.value} ${widget.exercise.repetition?.unit}'),
                         backgroundColor: Colors.greenAccent.withOpacity(0.5),
                       ),
                       Gap(8.h),
                       MoonChip(
                         padding: EdgeInsets.all(4.w),
                         label: BodySmall(
-                            'Tempo : ${widget.exercise.tempo?.value} ${widget.exercise.tempo?.unit}'),
+                            '${context.str?.tempo}  : ${widget.exercise.tempo?.value} ${widget.exercise.tempo?.unit}'),
                         backgroundColor: Colors.orangeAccent.withOpacity(0.5),
                       ),
                     ],
@@ -129,14 +129,14 @@ class _ExerciseContainerState extends State<ExerciseContainer> {
               Gap(8.h),
               MoonChip(
                 label: BodySmall(
-                    'Intensity: ${widget.exercise.intensity?.value} ${widget.exercise.intensity?.unit}'),
+                    '${context.str?.intensity} : ${widget.exercise.intensity?.value} ${widget.exercise.intensity?.unit}'),
                 backgroundColor: Colors.purpleAccent.withOpacity(0.5),
               ),
             ],
           ),
         ),
-        if (widget.exercise.description != null ||
-            (widget.exercise.description?.isEmpty ?? false)) ...[
+        if (widget.exercise.description != null &&
+            (widget.exercise.description?.isNotEmpty ?? false)) ...[
           Gap(8.h),
           Container(
             padding: EdgeInsets.all(8.w),

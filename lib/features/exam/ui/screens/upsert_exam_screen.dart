@@ -37,19 +37,15 @@ class _UpsertExamScreenState extends BaseState<UpsertExamScreen> {
 
   @override
   void initState() {
-    addSubscription(context.read<ExamBlocRead>().stream.listen(
-      (state) {
-        final exam = state.whenOrNull(
+    final exam = context.read<ExamBlocRead>().state.whenOrNull(
           success: (_, __, item) => item,
         );
-        safeSetState(() {
-          _exam = exam;
-          _titleController = TextEditingController(text: _exam?.title);
-          _descriptionController =
-              TextEditingController(text: _exam?.description);
-        });
-      },
-    ));
+    safeSetState(() {
+      _exam = exam;
+    });
+
+    _titleController = TextEditingController(text: _exam?.title);
+    _descriptionController = TextEditingController(text: _exam?.description);
 
     _titleFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
@@ -76,7 +72,9 @@ class _UpsertExamScreenState extends BaseState<UpsertExamScreen> {
     return Parent(
       appBar: AppBar(
         title: TitleMedium(
-          _exam == null ? 'Create New Exam' : 'Edit ${_exam?.title}',
+          _exam == null
+              ? context.str?.newExam
+              : '${context.str?.updateExam} ${_exam?.title}',
         ),
       ),
       body: Padding(
@@ -132,7 +130,11 @@ class _UpsertExamScreenState extends BaseState<UpsertExamScreen> {
                     context.read<QuestionBlocRead>().add(
                           BlocEventRead.get(id: exam.id),
                         );
-                    context.router.popAndPush(const UpsertQuestionRoute());
+                    Future.delayed(Durations.short4, () {
+                      if (context.mounted) {
+                        context.router.popAndPush(const UpsertQuestionRoute());
+                      }
+                    });
                   },
                   failure: (message) {
                     context.errorToast(

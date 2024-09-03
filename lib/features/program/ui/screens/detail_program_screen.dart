@@ -36,16 +36,14 @@ class _DetailProgramScreenState extends BaseState<DetailProgramScreen> {
   @override
   void initState() {
     super.initState();
-    addSubscription(context.read<ProgramBlocRead>().stream.listen(
-      (state) {
-        final program = state.whenOrNull(
+
+    final p = context.read<ProgramBlocRead>().state.whenOrNull(
           success: (_, __, item) => item,
         );
-        safeSetState(() {
-          _program = program;
-        });
-      },
-    ));
+
+    safeSetState(() {
+      _program = p;
+    });
   }
 
   @override
@@ -209,7 +207,7 @@ class _DetailProgramScreenState extends BaseState<DetailProgramScreen> {
                 ),
               );
             },
-            orElse: () => const Center(child: CircularProgressIndicator()),
+            orElse: () => const Center(child: MoonCircularLoader()),
           );
         },
       ),

@@ -1,196 +1,28 @@
 {
   "@@locale": "en",
-  "signIn": "Sign In",
-  "emailOrUsernameOrPhone": "Email or username or phone",
-  "enterYourEmailOrUsernameOrPhone": "Enter your email or username or phone",
-  "emailOrUsernameOrPhoneIsRequired": "Email or username or phone is required",
-  "invalidEmail": "Invalid email",
-  "invalidPhone": "Invalid phone",
-  "noSpaceAllowed": "No space allowed",
-  "password": "Password",
-  "enterYourPassword": "Enter your password",
-  "passwordIsRequired": "Password is required",
-  "signInSuccess": "Sign in Success",
-  "welcomeBack": "Welcome back {name}",
-  "@welcomeBack": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "signInFailed": "Sign in failed",
-  "invalidCredentials": "Invalid credentials",
-  "dontHaveAnAccount": "Don't have an account?",
-  "signUp": "Sign Up",
-  "fullName": "Full name",
-  "enterYourFullName": "Enter your full name",
-  "fullNameIsRequired": "Full name is required",
-  "email": "Email",
-  "enterYourEmail": "Enter your email",
-  "emailIsRequired": "Email is required",
-  "username": "Username",
-  "enterYourUsername": "Enter your username",
-  "usernameIsRequired": "Username is required",
-  "usernameCannotContainSpace": "Username cannot contain space",
-  "usernameIsAlreadyTaken": "Username is already taken",
-  "phone": "Phone",
-  "enterYourPhone": "Enter your phone",
-  "phoneIsRequired": "Phone is required",
-  "invalidPhoneNumber": "Invalid phone number",
-  "gender": "Gender",
-  "enterYourGender": "Enter your gender",
-  "genderIsRequired": "Gender is required",
-  "invalidOption": "Invalid option",
-  "signUpSuccess": "Sign up success",
+  "account": "Account",
   "accountCreated": "Account created",
-  "signUpFailed": "Sign up failed",
-  "alreadyHaveAnAccount": "Already have an account?",
-  "userWithNameNotFound": "User with name {name} not found",
-  "@userWithNameNotFound": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
+  "addExercise": "Add Exercise",
   "addMember": "Add Member",
-  "wouldYouLikeToAddUsernameMemberToClubName": "Would you like to add {username} member to {clubName}?",
-  "@wouldYouLikeToAddUsernameMemberToClubName": {
-    "placeholders": {
-      "username": {
-        "type": "String"
-      },
-      "clubName": {
-        "type": "String"
-      }
-    }
-  },
-  "role": "Role",
-  "selectRole": "Select role",
-  "roleIsRequired": "Role is required",
-  "yes": "Yes",
-  "no": "No",
-  "program": "Program",
-  "tactics": "Tactics",
-  "exam": "Exam",
-  "assets": "Assets",
-  "detail": "Detail",
-  "clubDetail": "{clubName} Detail",
-  "@clubDetail": {
-    "placeholders": {
-      "clubName": {
-        "type": "String?"
-      }
-    }
-  },
-  "overview": "Overview",
-  "clubOverview": "{clubName} Overview",
-  "@clubOverview": {
-    "placeholders": {
-      "clubName": {
-        "type": "String?"
-      }
-    }
-  },
-  "clubMembers": "{clubName} Members",
-  "@clubMembers": {
-    "placeholders": {
-      "clubName": {
-        "type": "String?"
-      }
-    }
-  },
-  "kickMember": "Kick Member",
-  "areYouSureYouWantToKickUsernameFromClubName": "Are you sure you want to kick {username} from {clubName}?",
-  "@areYouSureYouWantToKickUsernameFromClubName": {
-    "placeholders": {
-      "username": {
-        "type": "String"
-      },
-      "clubName": {
-        "type": "String?"
-      }
-    }
-  },
-  "clubAbout": "{clubName} About",
-  "@clubAbout": {
-    "placeholders": {
-      "clubName": {
-        "type": "String?"
-      }
-    }
-  },
-  "leaveClub": "Leave Club",
-  "areYouSureYouWantToLeaveClubName": "Are you sure you want to leave {clubName}?",
-  "@areYouSureYouWantToLeaveClubName": {
-    "placeholders": {
-      "clubName": {
-        "type": "String?"
-      }
-    }
-  },
-  "newClub": "New Club",
-  "myClubs": "My Clubs",
-  "search": "Search",
-  "club": "Club",
-  "clubWithNameNotFound": "Club with name {name} not found",
-  "@clubWithNameNotFound": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "notJoinedAnyClubs": "Not joined any clubs",
-  "reload": "Reload",
-  "createClub": "Create Club",
-  "updateClub": "Update {clubName}",
-  "@updateClub": {
-    "placeholders": {
-      "clubName": {
-        "type": "String?"
-      }
-    }
-  },
-  "clubName": "Club Name",
-  "enterClubName": "Enter club name",
-  "clubNameIsRequired": "Club name is required",
-  "clubDescription": "Club Description",
-  "enterClubDescription": "Enter club description",
-  "clubDescriptionIsRequired": "Club description is required",
-  "sportType": "Sport Type",
-  "selectSportType": "Select sport type",
-  "sportTypeIsRequired": "Sport type is required",
-  "success": "Success",
-  "updateSuccess": "Update success",
-  "createSuccess": "Create success",
-  "deleteSuccess": "Delete success",
-  "clubUpdatedSuccessfully": "Club updated successfully",
-  "clubCreatedSuccessfully": "Club created successfully",
-  "updateFailed": "Update failed",
-  "createFailed": "Create failed",
-  "deleteFailed": "Delete failed",
-  "clubImageIsRequired": "Club image is required",
-  "obsecuredState": "Obsecured State",
-  "pleaseRestartTheApp": "Please restart the app",
-  "pleaseTryAgain": "Please try again",
-  "members": "Members",
-  "programs": "Programs",
-  "exams": "Exams",
-  "athlete": "Athlete",
-  "evaluator": "Evaluator",
-  "evaluations": "Evaluations",
-  "evaluationDetail": "Evaluation Detail",
-  "evaluationDeletedSuccessfully": "{athleteName} evaluation deleted successfully",
-  "@evaluationDeletedSuccessfully": {
-    "placeholders": {
-      "athleteName": {
-        "type": "String?"
-      }
-    }
-  },
-  "deleteEvaluation": "Delete Evaluation",
+  "addQuestion": "Add Question",
+  "exercise": "Exercise",
+  "address": "Address",
+  "addressIsRequired": "Address is required",
+  "alreadyHaveAnAccount": "Already have an account?",
+  "answer": "Answer",
+  "processing": "Processing...",
+  "assetsIsEmpty": "Assets is empty",
+  "assetUploadSuccess": "Asset uploaded successfully",
+  "noFileSelected": "No file selected",
+  "pleaseWaitAssetIsBeingProcessed": "Please wait, asset is being processed...",
+  "downloadingAssets": "Downloading assets...",
+  "upload": "Upload",
+  "uploadingAssets": "Uploading assets...",
+  "size": "Size",
+  "selectTacticalBoard": "Select tactical board",
+  "assetInfo": "Asset Info",
+  "urlCopied": "URL copied",
+  "close": "Close",
   "areYouSureYouWantToDeleteAthleteNameEvaluation": "Are you sure you want to delete {athleteName} evaluation?",
   "@areYouSureYouWantToDeleteAthleteNameEvaluation": {
     "placeholders": {
@@ -199,33 +31,6 @@
       }
     }
   },
-  "newEvaluation": "New Evaluation",
-  "evaluation": "Evaluation",
-  "clubDoesntHaveAnyEvaluation": "{clubName} doesn't have any evaluation yet",
-  "@clubDoesntHaveAnyEvaluation": {
-    "placeholders": {
-      "clubName": {
-        "type": "String?"
-      }
-    }
-  },
-  "athleteDetail": "Athlete Detail",
-  "evaluationCreatedSuccessfully": "Evaluation created successfully",
-  "evaluationUpdatedSuccessfully": "Evaluation updated successfully",
-  "createEvaluationFailed": "Create evaluation failed",
-  "updateEvaluationFailed": "Update evaluation failed",
-  "createEvaluation": "Create Evaluation",
-  "updateEvaluation": "Update Evaluation",
-  "examDetail": "Exam Detail",
-  "title": "Title",
-  "description": "Description",
-  "questions": "Questions",
-  "type": "Type",
-  "evaluate": "Evaluate",
-  "athleteEvaluation": "Athlete Evaluation",
-  "examDeletedSuccessfully": "Exam deleted successfully",
-  "deleteExam": "Delete Exam",
-  "deleteExamFailed": "Delete exam failed",
   "areYouSureYouWantToDeleteExam": "Are you sure you want to delete {examName} exam?",
   "@areYouSureYouWantToDeleteExam": {
     "placeholders": {
@@ -234,29 +39,6 @@
       }
     }
   },
-  "newExam": "New Exam",
-  "clubDoesntHaveAnyExam": "{clubName} doesn't have any exam yet",
-  "@clubDoesntHaveAnyExam": {
-    "placeholders": {
-      "clubName": {
-        "type": "String?"
-      }
-    }
-  },
-  "examTitle": "Exam Title",
-  "enterExamTitle": "Enter exam title",
-  "examTitleIsRequired": "Exam title is required",
-  "examDescription": "Exam Description",
-  "enterExamDescription": "Enter exam description",
-  "examDescriptionIsRequired": "Exam description is required",
-  "updateExamFailed": "Update exam failed",
-  "createExamFailed": "Create exam failed",
-  "updateExam": "Update Exam",
-  "createExam": "Create Exam",
-  "error": "Error",
-  "programDeletedSuccessfully": "Program deleted successfully",
-  "deleteProgram": "Delete Program",
-  "deleteProgramFailed": "Delete program failed",
   "areYouSureYouWantToDeleteProgram": "Are you sure you want to delete {programName} program?",
   "@areYouSureYouWantToDeleteProgram": {
     "placeholders": {
@@ -265,21 +47,70 @@
       }
     }
   },
-  "programDetail": "Program Detail",
-  "name": "Name",
-  "startDate": "Start Date",
-  "endDate": "End Date",
-  "exercises": "Exercises",
-  "clubPrograms": "{clubName} Programs",
-  "@clubPrograms": {
+  "areYouSureYouWantToKickUsernameFromClubName": "Are you sure you want to kick {username} from {clubName}?",
+  "@areYouSureYouWantToKickUsernameFromClubName": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      },
+      "username": {
+        "type": "String?"
+      }
+    }
+  },
+  "areYouSureYouWantToLeaveClubName": "Are you sure you want to leave {clubName}?",
+  "@areYouSureYouWantToLeaveClubName": {
     "placeholders": {
       "clubName": {
         "type": "String?"
       }
     }
   },
-  "newProgram": "New Program",
+  "assets": "Assets",
+  "athlete": "Athlete",
+  "athleteDetail": "Athlete Detail",
+  "athleteEvaluation": "Athlete Evaluation",
+  "bornDate": "Born Date",
+  "bornDateIsRequired": "Born date is required",
+  "bornPlace": "Born Place",
+  "bornPlaceIsRequired": "Born place is required",
   "calendar": "Calendar",
+  "club": "Club",
+  "clubAbout": "{clubName} About",
+  "@clubAbout": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "clubCreatedSuccessfully": "Club created successfully",
+  "clubDescription": "Club Description",
+  "clubDescriptionIsRequired": "Club description is required",
+  "clubDetail": "{clubName} Detail",
+  "@clubDetail": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "clubDoesntHaveAnyEvaluation": "{clubName} doesn't have any evaluation yet",
+  "@clubDoesntHaveAnyEvaluation": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "clubDoesntHaveAnyExam": "{clubName} doesn't have any exam yet",
+  "@clubDoesntHaveAnyExam": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
   "clubDoesntHaveAnyProgram": "{clubName} doesn't have any program yet",
   "@clubDoesntHaveAnyProgram": {
     "placeholders": {
@@ -288,43 +119,6 @@
       }
     }
   },
-  "createProgram": "Create Program",
-  "updateProgram": "Update Program",
-  "programName": "Program Name",
-  "enterProgramName": "Enter program name",
-  "programNameIsRequired": "Program name is required",
-  "programStartDate": "Program Start Date",
-  "enterProgramStartDate": "Enter program start date",
-  "programEndDate": "Program End Date",
-  "enterProgramEndDate": "Enter program end date",
-  "programStartDateIsRequired": "Program start date is required",
-  "programEndDateIsRequired": "Program end date is required",
-  "programImageIsRequired": "Program image is required",
-  "programUpdateFailed": "Program update failed",
-  "programCreateFailed": "Program create failed",
-  "selectProgramAsset": "Select program asset",
-  "examQuestions": "{examName} Questions",
-  "@examQuestions": {
-    "placeholders": {
-      "examName": {
-        "type": "String?"
-      }
-    }
-  },
-  "question": "Question",
-  "questionSavedSuccessfully": "Question saved successfully",
-  "questionSaveFailed": "Question save failed",
-  "save": "Save",
-  "addQuestion": "Add Question",
-  "loadingQuestions": "Loading questions...",
-  "enterQuestion": "Enter question",
-  "questionIsRequired": "Question is required",
-  "questionType": "Question Type",
-  "selectQuestionType": "Select question type",
-  "questionTypeIsRequired": "Question type is required",
-  "strategyNotFound": "Strategy not found",
-  "newTactic": "New Tactic",
-  "tactic": "Tactic",
   "clubDoesntHaveAnyTactic": "{clubName} doesn't have any tactic yet",
   "@clubDoesntHaveAnyTactic": {
     "placeholders": {
@@ -333,50 +127,299 @@
       }
     }
   },
-  "tacticalStrategyUpdatedSuccessfully": "Tactical strategy updated successfully",
-  "failedToUpdateTacticalStrategy": "Failed to update tactical strategy",
-  "saveStrategy": "Save Strategy",
+  "clubImageIsRequired": "Club image is required",
+  "clubMembers": "{clubName} Members",
+  "@clubMembers": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "clubName": "Club Name",
+  "clubNameIsRequired": "Club name is required",
+  "clubOverview": "{clubName} Overview",
+  "@clubOverview": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "clubPrograms": "{clubName} Programs",
+  "@clubPrograms": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "clubUpdatedSuccessfully": "Club updated successfully",
+  "clubWithNameNotFound": "Club with name {name} not found",
+  "@clubWithNameNotFound": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "createClub": "Create Club",
+  "createEvaluation": "Create Evaluation",
+  "createEvaluationFailed": "Create evaluation failed",
+  "createExam": "Create Exam",
+  "createExamFailed": "Create exam failed",
+  "createFailed": "Create failed",
+  "createProgram": "Create Program",
+  "createSuccess": "Create success",
   "createTactical": "Create Tactical",
-  "updateTactical": "Update Tactical",
-  "tacticalName": "Tactical Name",
-  "enterTacticalName": "Enter tactical name",
-  "tacticalNameIsRequired": "Tactical name is required",
-  "tacticalDescription": "Tactical Description",
+  "deleteEvaluation": "Delete Evaluation",
+  "deleteExam": "Delete Exam",
+  "deleteExamFailed": "Delete exam failed",
+  "deleteFailed": "Delete failed",
+  "deleteProgram": "Delete Program",
+  "deleteProgramFailed": "Delete program failed",
+  "deleteSuccess": "Delete success",
+  "description": "Description",
+  "detail": "Detail",
+  "dontHaveAnAccount": "Don't have an account?",
+  "email": "Email",
+  "emailIsRequired": "Email is required",
+  "emailOrUsernameOrPhone": "Email or username or phone",
+  "emailOrUsernameOrPhoneIsRequired": "Email or username or phone is required",
+  "endDate": "End Date",
+  "enterClubDescription": "Enter club description",
+  "enterClubName": "Enter club name",
+  "enterExamDescription": "Enter exam description",
+  "enterExamTitle": "Enter exam title",
+  "enterExerciseDescription": "Enter exercise description",
+  "enterExerciseName": "Enter exercise name",
+  "enterHeight": "Enter height",
+  "enterProgramEndDate": "Enter program end date",
+  "enterProgramName": "Enter program name",
+  "enterProgramStartDate": "Enter program start date",
+  "enterQuestion": "Enter question",
   "enterTacticalDescription": "Enter tactical description",
-  "tacticalDescriptionIsRequired": "Tactical description is required",
+  "enterTacticalName": "Enter tactical name",
+  "enterTotalIntensity": "Enter total intensity",
+  "enterTotalPlayers": "Enter total players",
+  "enterTotalReps": "Enter total reps",
+  "enterTotalRest": "Enter total rest",
+  "enterTotalSets": "Enter total sets",
+  "enterTotalTempo": "Enter tempo",
+  "enterWidth": "Enter width",
+  "enterYourAddress": "Enter your address",
+  "enterYourBornDate": "Enter your born date",
+  "enterYourBornPlace": "Enter your born place",
+  "enterYourEmail": "Enter your email",
+  "enterYourEmailOrUsernameOrPhone": "Enter your email or username or phone",
+  "enterYourExpertise": "Enter your expertise",
+  "enterYourFullName": "Enter your full name",
+  "enterYourGender": "Enter your gender",
+  "enterYourPassword": "Enter your password",
+  "enterYourPhone": "Enter your phone",
+  "enterYourReligion": "Enter your religion",
+  "enterYourUsername": "Enter your username",
+  "error": "Error",
+  "evaluate": "Evaluate",
+  "evaluation": "Evaluation",
+  "evaluationCreatedSuccessfully": "Evaluation created successfully",
+  "evaluationDeletedSuccessfully": "{athleteName} evaluation deleted successfully",
+  "@evaluationDeletedSuccessfully": {
+    "placeholders": {
+      "athleteName": {
+        "type": "String?"
+      }
+    }
+  },
+  "evaluationDetail": "Evaluation Detail",
+  "evaluations": "Evaluations",
+  "evaluationUpdatedSuccessfully": "Evaluation updated successfully",
+  "evaluator": "Evaluator",
+  "exam": "Exam",
+  "examDeletedSuccessfully": "Exam deleted successfully",
+  "examDescription": "Exam Description",
+  "examDescriptionIsRequired": "Exam description is required",
+  "examDetail": "Exam Detail",
+  "examQuestions": "{examName} Questions",
+  "@examQuestions": {
+    "placeholders": {
+      "examName": {
+        "type": "String?"
+      }
+    }
+  },
+  "exams": "Exams",
+  "examTitle": "Exam Title",
+  "examTitleIsRequired": "Exam title is required",
+  "exerciseDescription": "Exercise Description",
+  "exerciseName": "Exercise Name",
+  "exerciseNameIsRequired": "Exercise name is required",
+  "exercises": "Exercises",
+  "exerciseSavedSuccessfully": "Exercise saved successfully",
+  "expertise": "Expertise",
+  "expertiseIsRequired": "Expertise is required",
+  "failedToUpdateTacticalStrategy": "Failed to update tactical strategy",
+  "fullName": "Full name",
+  "fullNameIsRequired": "Full name is required",
+  "gender": "Gender",
+  "genderIsRequired": "Gender is required",
+  "height": "Height (m)",
+  "heightIsRequired": "Height is required",
+  "intensity": "Intensity",
+  "intensityIsRequired": "Intensity is required",
+  "invalidCredentials": "Invalid credentials",
+  "invalidEmail": "Invalid email",
+  "invalidNumber": "Invalid number",
+  "invalidOption": "Invalid option",
+  "invalidPhone": "Invalid phone",
+  "invalidPhoneNumber": "Invalid phone number",
+  "invalidUnit": "Unit tidak valid",
+  "kickMember": "Kick Member",
+  "leaveClub": "Leave Club",
+  "loadingExercises": "Loading exercises...",
+  "loadingQuestions": "Loading questions...",
+  "members": "Members",
+  "myClubs": "My Clubs",
+  "name": "Name",
+  "newClub": "New Club",
+  "newEvaluation": "New Evaluation",
+  "newExam": "New Exam",
+  "newProgram": "New Program",
+  "newTactic": "New Tactic",
+  "no": "No",
+  "noImageSelected": "No image selected",
+  "noSpaceAllowed": "No space allowed",
+  "notJoinedAnyClubs": "Not joined any clubs",
+  "obsecuredState": "Obsecured State",
+  "overview": "Overview",
+  "password": "Password",
+  "passwordIsRequired": "Password is required",
+  "passwordMustBeAtLeast8Characters": "Password must be at least 8 characters",
+  "phone": "Phone",
+  "phoneIsRequired": "Phone is required",
+  "pleaseRestartTheApp": "Please restart the app",
+  "pleaseSelectAnImageForEachExercise": "Please select an image for each exercise",
+  "pleaseSelectUnit": "Silakan pilih unit",
+  "pleaseTryAgain": "Please try again",
+  "preferences": "Preferences",
+  "profileUpdatedSuccessfully": "Profile updated successfully",
+  "program": "Program",
+  "programCreateFailed": "Program create failed",
+  "programDeletedSuccessfully": "Program deleted successfully",
+  "programDetail": "Program Detail",
+  "programEndDate": "Program End Date",
+  "programEndDateIsRequired": "Program end date is required",
+  "programImageIsRequired": "Program image is required",
+  "programName": "Program Name",
+  "programNameIsRequired": "Program name is required",
+  "programs": "Programs",
+  "programStartDate": "Program Start Date",
+  "programStartDateIsRequired": "Program start date is required",
+  "programUpdateFailed": "Program update failed",
+  "question": "Question",
+  "questionIsRequired": "Question is required",
+  "questions": "Questions",
+  "questionSavedSuccessfully": "Question saved successfully",
+  "questionSaveFailed": "Question save failed",
+  "questionType": "Question Type",
+  "questionTypeIsRequired": "Question type is required",
+  "religion": "Religion",
+  "religionIsRequired": "Religion is required",
+  "reload": "Reload",
+  "reps": "Reps",
+  "repsIsRequired": "Reps is required",
+  "rest": "Rest",
+  "restIsRequired": "Rest is required",
+  "role": "Role",
+  "roleIsRequired": "Role is required",
+  "save": "Save",
+  "saveStrategy": "Save Strategy",
+  "search": "Search",
+  "selectExerciseAsset": "Select exercise asset",
+  "selectProgramAsset": "Select program asset",
+  "selectQuestionType": "Select question type",
+  "selectRole": "Select role",
+  "selectSportType": "Select sport type",
+  "sets": "Sets",
+  "setsIsRequired": "Sets is required",
+  "signIn": "Sign In",
+  "signInFailed": "Sign in failed",
+  "signInSuccess": "Sign in Success",
+  "signOut": "Sign Out",
+  "signUp": "Sign Up",
+  "signUpFailed": "Sign up failed",
+  "signUpSuccess": "Sign up success",
+  "sportType": "Sport Type",
+  "sportTypeIsRequired": "Sport type is required",
+  "startDate": "Start Date",
+  "strategyNotFound": "Strategy not found",
+  "success": "Success",
+  "tactic": "Tactic",
   "tacticalBoard": "Tactical Board",
   "tacticalBoardIsRequired": "Tactical board is required",
-  "width": "Width (m)",
-  "height": "Height (m)",
-  "enterWidth": "Enter width",
-  "widthIsRequired": "Width is required",
-  "enterHeight": "Enter height",
-  "heightIsRequired": "Height is required",
+  "tacticalDescription": "Tactical Description",
+  "tacticalDescriptionIsRequired": "Tactical description is required",
+  "tacticalName": "Tactical Name",
+  "tacticalNameIsRequired": "Tactical name is required",
+  "tacticalStrategyUpdatedSuccessfully": "Tactical strategy updated successfully",
+  "tactics": "Tactics",
+  "tempo": "Tempo",
+  "tempoIsRequired": "Tempo is required",
+  "title": "Title",
   "totalPlayers": "Total Players / Team",
-  "enterTotalPlayers": "Enter total players",
   "totalPlayersIsRequired": "Total players is required",
-  "preferences": "Preferences",
-  "account": "Account",
+  "type": "Type",
+  "updateClub": "Update {clubName}",
+  "@updateClub": {
+    "placeholders": {
+      "clubName": {
+        "type": "String?"
+      }
+    }
+  },
+  "updateEvaluation": "Update Evaluation",
+  "updateEvaluationFailed": "Update evaluation failed",
+  "updateExam": "Update Exam",
+  "updateExamFailed": "Update exam failed",
+  "updateFailed": "Update failed",
   "updateProfile": "Update Profile",
-  "signOut": "Sign Out",
-  "noImageSelected": "No image selected",
-  "usernameSuggestions": "Username Suggestions",
-  "passwordMustBeAtLeast8Characters": "Password must be at least 8 characters",
-  "bornPlace": "Born Place",
-  "enterYourBornPlace": "Enter your born place",
-  "bornPlaceIsRequired": "Born place is required",
-  "bornDate": "Born Date",
-  "enterYourBornDate": "Enter your born date",
-  "bornDateIsRequired": "Born date is required",
-  "address": "Address",
-  "enterYourAddress": "Enter your address",
-  "addressIsRequired": "Address is required",
-  "religion": "Religion",
-  "enterYourReligion": "Enter your religion",
-  "religionIsRequired": "Religion is required",
-  "expertise": "Expertise",
-  "enterYourExpertise": "Enter your expertise",
-  "expertiseIsRequired": "Expertise is required",
   "updateProfileFailed": "Update profile failed",
-  "profileUpdatedSuccessfully": "Profile updated successfully"
+  "updateProgram": "Update Program",
+  "updateSuccess": "Update success",
+  "updateTactical": "Update Tactical",
+  "username": "Username",
+  "usernameCannotContainSpace": "Username cannot contain space",
+  "usernameIsAlreadyTaken": "Username is already taken",
+  "usernameIsRequired": "Username is required",
+  "usernameSuggestions": "Username Suggestions",
+  "userWithNameNotFound": "User with name {name} not found",
+  "@userWithNameNotFound": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "welcomeBack": "Welcome back {name}",
+  "@welcomeBack": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "width": "Width (m)",
+  "widthIsRequired": "Width is required",
+  "wouldYouLikeToAddUsernameMemberToClubName": "Would you like to add {username} member to {clubName}?",
+  "@wouldYouLikeToAddUsernameMemberToClubName": {
+    "placeholders": {
+      "clubName": {
+        "type": "String"
+      },
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "yes": "Yes"
 }

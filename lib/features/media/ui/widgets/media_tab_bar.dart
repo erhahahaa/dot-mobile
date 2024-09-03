@@ -1,4 +1,5 @@
 import 'package:dot_coaching/core/widgets/widgets.dart';
+import 'package:dot_coaching/utils/extensions/context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moon_design/moon_design.dart';
@@ -24,19 +25,19 @@ class MediaTabBar extends StatelessWidget implements PreferredSizeWidget {
         isExpanded: true,
         pillTabs: [
           MoonPillTab(
-            label: const BodySmall('Program'),
+            label: BodySmall(context.str?.program),
             tabStyle: MoonPillTabStyle(
               selectedTabColor: context.moonColors?.piccolo,
             ),
           ),
           MoonPillTab(
-            label: const BodySmall('Exercise'),
+            label: BodySmall(context.str?.exercise),
             tabStyle: MoonPillTabStyle(
               selectedTabColor: context.moonColors?.piccolo,
             ),
           ),
           MoonPillTab(
-            label: const BodySmall('Tactical'),
+            label: BodySmall(context.str?.tactic),
             tabStyle: MoonPillTabStyle(
               selectedTabColor: context.moonColors?.piccolo,
             ),

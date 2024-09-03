@@ -26,37 +26,26 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
   @override
   void initState() {
     super.initState();
+    final program = context.read<ProgramBlocRead>().state.whenOrNull(
+          success: (_, __, selectedItem) => selectedItem,
+        );
 
-    addSubscription(
-      context.read<ProgramBlocRead>().stream.listen(
-        (state) {
-          final program = state.whenOrNull(
-            success: (_, __, selectedItem) => selectedItem,
-          );
-          safeSetState(() {
-            _program = program;
-          });
-        },
-      ),
-    );
+    safeSetState(() {
+      _program = program;
+    });
 
-    addSubscription(
-      context.read<ExerciseBlocRead>().stream.listen(
-        (state) {
-          final exercises = state.whenOrNull(
-            success: (items, _, __) => items,
-          );
-          if (exercises != null) {
-            _exercises.clear();
-            _exercises.addAll(exercises);
-            _fields.clear();
-            for (final item in _exercises) {
-              _fields.add(ExerciseFormField.init(item));
-            }
-          }
-        },
-      ),
-    );
+    final exercises = context.read<ExerciseBlocRead>().state.whenOrNull(
+          success: (items, _, __) => items,
+        );
+
+    if (exercises != null) {
+      _exercises.clear();
+      _exercises.addAll(exercises);
+      _fields.clear();
+      for (final item in _exercises) {
+        _fields.add(ExerciseFormField.init(item));
+      }
+    }
 
     _formKey = GlobalKey<FormState>();
   }
@@ -90,11 +79,21 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
             success: (item) {
               context.successToast(
                 title: context.str?.success,
-                description: 'Exercise saved successfully',
+                description: context.str?.exerciseSavedSuccessfully,
               );
               context.read<ExerciseBlocRead>().add(
                     BlocEventRead.get(id: _program?.id),
                   );
+              final programs = context.read<ProgramBlocRead>().state.whenOrNull(
+                    success: (items, _, __) => items,
+                  );
+              final updClub = context.clubRead?.copyWith(
+                programCount: programs?.length ?? 0,
+              );
+              context.read<ClubBlocWrite>().add(
+                    BlocEventWrite.update(updClub),
+                  );
+
               context.router.back();
             },
             failure: (message) {
@@ -129,9 +128,10 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                     }
                     if (field.media == null) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content:
-                              Text('Please select an image for each exercise'),
+                        SnackBar(
+                          content: Text(
+                              context.str?.pleaseSelectAnImageForEachExercise ??
+                                  'Please select an image for each exercise'),
                         ),
                       );
                       return;
@@ -251,11 +251,11 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                 controller: _fields[index].nameController,
                                 validator: (String? value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Please enter exercise name';
+                                    return context.str?.exerciseNameIsRequired;
                                   }
                                   return null;
                                 },
-                                hintText: 'Exercise name',
+                                hintText: context.str?.exerciseName,
                                 padding: EdgeInsets.symmetric(
                                   horizontal: 12.w,
                                   vertical: 8.h,
@@ -349,7 +349,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                             ],
                           ),
                           SizedBox(height: 16.h),
-                          const FormLabel('Sets'),
+                          FormLabel(context.str?.sets),
                           Row(
                             children: [
                               Expanded(
@@ -360,14 +360,14 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                   keyboardType: TextInputType.number,
                                   validator: (String? value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Number of sets required';
+                                      return context.str?.setsIsRequired;
                                     }
                                     if (int.tryParse(value) == null) {
-                                      return 'Invalid number';
+                                      return context.str?.invalidNumber;
                                     }
                                     return null;
                                   },
-                                  hintText: 'Enter total sets',
+                                  hintText: context.str?.enterTotalSets,
                                   backgroundColor:
                                       Colors.redAccent.withOpacity(0.1),
                                   activeBorderColor: Colors.redAccent,
@@ -398,12 +398,12 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                   }).toList(),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Please select unit';
+                                      return context.str?.pleaseSelectUnit;
                                     }
                                     final inList = ExerciseSetsUnit.values
                                         .any((unit) => unit.name == value);
                                     if (!inList) {
-                                      return 'Invalid unit';
+                                      return context.str?.invalidUnit;
                                     }
                                     return null;
                                   },
@@ -412,7 +412,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                             ],
                           ),
                           SizedBox(height: 8.h),
-                          const FormLabel('Reps'),
+                          FormLabel(context.str?.reps),
                           Row(
                             children: [
                               Expanded(
@@ -423,14 +423,14 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                   keyboardType: TextInputType.number,
                                   validator: (String? value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Number of reps required';
+                                      return context.str?.repsIsRequired;
                                     }
                                     if (int.tryParse(value) == null) {
-                                      return 'Invalid number';
+                                      return context.str?.invalidNumber;
                                     }
                                     return null;
                                   },
-                                  hintText: 'Enter total reps',
+                                  hintText: context.str?.enterTotalReps,
                                   backgroundColor:
                                       Colors.blueAccent.withOpacity(0.1),
                                   activeBorderColor: Colors.blueAccent,
@@ -462,12 +462,12 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                   }).toList(),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Please select unit';
+                                      return context.str?.pleaseSelectUnit;
                                     }
                                     final inList = ExerciseRepetitionUnit.values
                                         .any((unit) => unit.name == value);
                                     if (!inList) {
-                                      return 'Invalid unit';
+                                      return context.str?.invalidUnit;
                                     }
                                     return null;
                                   },
@@ -476,7 +476,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                             ],
                           ),
                           SizedBox(height: 8.h),
-                          const FormLabel('Rest'),
+                          FormLabel(context.str?.rest),
                           Row(
                             children: [
                               Expanded(
@@ -485,7 +485,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                   currentFocus: _fields[index].restAmountFocus,
                                   nextFocus: _fields[index].restTypeFocus,
                                   keyboardType: TextInputType.number,
-                                  hintText: 'Enter total rest time',
+                                  hintText: context.str?.enterTotalRest,
                                   backgroundColor:
                                       Colors.greenAccent.withOpacity(0.1),
                                   activeBorderColor: Colors.greenAccent,
@@ -495,10 +495,10 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                   ),
                                   validator: (String? value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Rest time required';
+                                      return context.str?.restIsRequired;
                                     }
                                     if (int.tryParse(value) == null) {
-                                      return 'Invalid number';
+                                      return context.str?.invalidNumber;
                                     }
                                     return null;
                                   },
@@ -525,12 +525,12 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                   }).toList(),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Please select unit';
+                                      return context.str?.pleaseSelectUnit;
                                     }
                                     final inList = ExerciseRestUnit.values
                                         .any((unit) => unit.name == value);
                                     if (!inList) {
-                                      return 'Invalid unit';
+                                      return context.str?.invalidUnit;
                                     }
                                     return null;
                                   },
@@ -539,7 +539,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                             ],
                           ),
                           SizedBox(height: 8.h),
-                          const FormLabel('Tempo'),
+                          FormLabel(context.str?.tempo),
                           Row(
                             children: [
                               Expanded(
@@ -548,7 +548,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                   currentFocus: _fields[index].tempoAmountFocus,
                                   nextFocus: _fields[index].tempoTypeFocus,
                                   keyboardType: TextInputType.number,
-                                  hintText: 'Enter tempo',
+                                  hintText: context.str?.enterTotalTempo,
                                   backgroundColor:
                                       Colors.purpleAccent.withOpacity(0.1),
                                   activeBorderColor: Colors.purpleAccent,
@@ -558,10 +558,10 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                   ),
                                   validator: (String? value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Tempo required';
+                                      return context.str?.tempoIsRequired;
                                     }
                                     if (int.tryParse(value) == null) {
-                                      return 'Invalid number';
+                                      return context.str?.invalidNumber;
                                     }
                                     return null;
                                   },
@@ -593,7 +593,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                             ],
                           ),
                           SizedBox(height: 8.h),
-                          const FormLabel('Intensity'),
+                          FormLabel(context.str?.intensity),
                           Row(
                             children: [
                               Expanded(
@@ -604,7 +604,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                       _fields[index].intensityAmountFocus,
                                   nextFocus: _fields[index].intensityTypeFocus,
                                   keyboardType: TextInputType.number,
-                                  hintText: 'Enter intensity',
+                                  hintText: context.str?.enterTotalIntensity,
                                   backgroundColor:
                                       Colors.orangeAccent.withOpacity(0.1),
                                   activeBorderColor: Colors.orangeAccent,
@@ -614,10 +614,10 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                                   ),
                                   validator: (String? value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Intensity required';
+                                      return context.str?.intensityIsRequired;
                                     }
                                     if (int.tryParse(value) == null) {
-                                      return 'Invalid number';
+                                      return context.str?.invalidNumber;
                                     }
                                     return null;
                                   },
@@ -649,11 +649,11 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                             ],
                           ),
                           SizedBox(height: 8.h),
-                          const FormLabel('Description'),
+                          FormLabel(context.str?.exerciseDescription),
                           FormTextArea(
                             currentFocus: _fields[index].descriptionFocus,
                             controller: _fields[index].descriptionController,
-                            hintText: 'Enter exercise description',
+                            hintText: context.str?.enterExerciseDescription,
                             height: 0.11.sh,
                             borderRadius: BorderRadius.circular(12.r),
                           ),
@@ -663,7 +663,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                   );
                 },
                 footer: AddItemButton(
-                  text: 'Add exercise',
+                  text: context.str?.addExercise ?? 'Add Exercise',
                   onTap: () {
                     setState(() {
                       _fields
@@ -693,7 +693,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                 children: [
                   const MoonLinearLoader(),
                   Gap(16.h),
-                  const TitleSmall('Loading exercises...'),
+                  TitleSmall(context.str?.loadingExercises),
                 ],
               ),
             );
@@ -731,7 +731,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                     Row(
                       children: [
                         Gap(16.w),
-                        const BodyLarge('Select Exercise Asset'),
+                        BodyLarge(context.str?.selectExerciseAsset),
                         const Spacer(),
                         IconButton(
                           icon: const Icon(Icons.close),

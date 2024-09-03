@@ -27,14 +27,14 @@ class _DetailEvaluationScreenState extends BaseState<DetailEvaluationScreen> {
   @override
   void initState() {
     super.initState();
-    addSubscription(context.read<EvaluationBlocRead>().stream.listen(
-      (state) {
-        final eval = state.whenOrNull(success: (_, __, item) => item);
-        safeSetState(() {
-          _evaluation = eval;
-        });
-      },
-    ));
+
+    final evaluation = context.read<EvaluationBlocRead>().state.whenOrNull(
+          success: (_, __, item) => item,
+        );
+
+    safeSetState(() {
+      _evaluation = evaluation;
+    });
   }
 
   @override
@@ -96,7 +96,8 @@ class _DetailEvaluationScreenState extends BaseState<DetailEvaluationScreen> {
                               ],
                             ),
                             titleText: item.questionName,
-                            subtitleText: 'Answer: ${item.answer}',
+                            subtitleText:
+                                '${context.str?.answer}: ${item.answer}',
                           );
                         },
                       ),

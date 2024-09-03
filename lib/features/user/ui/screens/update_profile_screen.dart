@@ -28,6 +28,7 @@ class UpdateProfileScreen extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _UpdateProfileScreenState extends BaseState<UpdateProfileScreen> {
+  late UserModel user;
   late UserBloc _userBloc;
 
   late TextEditingController _nameController;
@@ -61,6 +62,7 @@ class _UpdateProfileScreenState extends BaseState<UpdateProfileScreen> {
 
   @override
   void initState() {
+    user = context.user;
     final phoneStr = user.phone.toString();
     _nameController = TextEditingController(text: user.name);
     _emailController = TextEditingController(text: user.email);
@@ -266,7 +268,7 @@ class _UpdateProfileScreenState extends BaseState<UpdateProfileScreen> {
                             onChanged: (value) {
                               _userBloc.add(const UserEvent.clear());
                               EasyDebounce.debounce(
-                                'find-username',
+                                'find-username-update-profile',
                                 const Duration(milliseconds: 500),
                                 () => _userBloc.add(
                                   UserEvent.checkUsername(
@@ -570,6 +572,7 @@ class _UpdateProfileScreenState extends BaseState<UpdateProfileScreen> {
                               text: context.str?.updateProfile,
                               isLoading: state is UserStateLoading,
                               onTap: () {
+                                Log.info('USER ${user.toJson()}');
                                 final params = UpdateProfileParams(
                                   id: user.id,
                                   email: _emailController.text,
@@ -580,7 +583,7 @@ class _UpdateProfileScreenState extends BaseState<UpdateProfileScreen> {
                                   gender: UserGender.fromString(
                                     _genderController.text,
                                   ),
-                                  role: user.role,
+                                  role: context.user.role,
                                   bornPlace: _bornPlaceController.text,
                                   bornDate: _bornDate,
                                   religion: _religionController.text,

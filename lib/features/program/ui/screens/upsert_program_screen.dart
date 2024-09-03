@@ -45,23 +45,17 @@ class _UpsertProgramScreenState extends BaseState<UpsertProgramScreen> {
 
   @override
   void initState() {
-    addSubscription(
-      context.read<ProgramBlocRead>().stream.listen(
-        (state) {
-          final program = state.whenOrNull(
-            success: (_, __, item) => item,
-          );
-          safeSetState(() {
-            _program = program;
-          });
-        },
-      ),
-    );
+    final p = context.read<ProgramBlocRead>().state.whenOrNull(
+          success: (_, __, item) => item,
+        );
+
+    safeSetState(() {
+      _program = p;
+    });
 
     _start = _program?.startDate;
     _end = _program?.endDate;
     _media = _program?.media;
-
     _nameController = TextEditingController(text: _program?.name);
     _startDateController = TextEditingController(
       text: _program?.startDate?.toDayMonthYear(),
@@ -253,7 +247,11 @@ class _UpsertProgramScreenState extends BaseState<UpsertProgramScreen> {
                     context.read<ExerciseBlocRead>().add(
                           BlocEventRead.get(id: program.id),
                         );
-                    context.router.popAndPush(const UpsertExerciseRoute());
+                    Future.delayed(Durations.short4, () {
+                      if (context.mounted) {
+                        context.router.popAndPush(const UpsertExerciseRoute());
+                      }
+                    });
                   },
                   failure: (message) {
                     context.errorToast(

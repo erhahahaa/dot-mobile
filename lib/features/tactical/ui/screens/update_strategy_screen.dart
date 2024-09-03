@@ -36,23 +36,22 @@ class _UpdateStrategyScreenState extends BaseState<UpdateStrategyScreen> {
     super.initState();
     _scaffoldKey = GlobalKey<ScaffoldState>();
     _transformationController = TransformationController();
-    addSubscription(context.read<TacticalBlocRead>().stream.listen(
-      (state) {
-        final tactical =
-            state.whenOrNull(success: (_, __, selectedItem) => selectedItem);
-        safeSetState(() {
-          _tactical = tactical;
-          _strategy = _tactical?.strategic ?? const TacticalStrategicModel();
-        });
-        if (mounted) {
-          context.read<StrategyCubit>().emitStrategy(_strategy);
-        }
-      },
-    ));
+
+    final t = context.read<TacticalBlocRead>().state.whenOrNull(
+          success: (_, __, item) => item,
+        );
+    safeSetState(() {
+      _tactical = t;
+    });
+
+    _strategy = _tactical?.strategic ?? const TacticalStrategicModel();
+    if (mounted) {
+      context.read<StrategyCubit>().emitStrategy(_strategy);
+    }
 
     final tactical = _tactical;
     if (tactical != null && tactical.isLive == true) {
-      final bearer = user.token;
+      final bearer = context.user.token;
       if (bearer == null) return;
       context.read<StrategyCubit>().listenWebSocket(tactical, bearer);
     }
@@ -217,7 +216,7 @@ class _UpdateStrategyScreenState extends BaseState<UpdateStrategyScreen> {
                         params: StrategyWsParamModel(
                           clubId: _tactical?.clubId ?? 0,
                           channel: channelName,
-                          user: user,
+                          user: context.user,
                         ),
                         data: _strategy,
                       ).toJson();

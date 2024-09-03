@@ -32,27 +32,20 @@ class _DetailTacticalScreenState extends BaseState<DetailTacticalScreen> {
 
     _scaffoldKey = GlobalKey<ScaffoldState>();
     _transformationController = TransformationController();
+    final t = context.read<TacticalBlocRead>().state.whenOrNull(
+          success: (_, __, item) => item,
+        );
 
-    addSubscription(context.read<TacticalBlocRead>().stream.listen(
-      (state) {
-        final tactical =
-            state.whenOrNull(success: (_, __, selectedItem) => selectedItem);
-        safeSetState(() {
-          _tactical = tactical;
-        });
-      },
-    ));
+    safeSetState(() {
+      _tactical = t;
+    });
 
-    final tacticalBloc = context.read<TacticalBlocRead>();
-    _tactical = tacticalBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
-    );
     final tactical = _tactical;
     if (tactical != null) {
       context.read<StrategyCubit>().emitStrategy(tactical.strategic);
     }
     if (tactical != null && tactical.isLive == true) {
-      final bearer = user.token;
+      final bearer = context.user.token;
       if (bearer == null) return;
       context.read<StrategyCubit>().listenWebSocket(tactical, bearer);
     }

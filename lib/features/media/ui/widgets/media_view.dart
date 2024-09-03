@@ -55,8 +55,10 @@ class _MediaViewState<
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    uploadToast ??= context.buildLoaderToast(title: 'Uploading media');
-    downloadToast ??= context.buildLoaderToast(title: 'Downloading media');
+    uploadToast ??=
+        context.buildLoaderToast(title: context.str?.uploadingAssets);
+    downloadToast ??=
+        context.buildLoaderToast(title: context.str?.downloadingAssets);
   }
 
   @override
@@ -78,7 +80,6 @@ class _MediaViewState<
                 if (showDownloadToast) {
                   downloadToast?.dismiss();
                   context.read<LoadingCubit>().stopLoading();
-                  Log.info('Media downloaded successfully');
                   const dir = '/Download/DayOfTraining';
 
                   context.successToast(
@@ -88,8 +89,8 @@ class _MediaViewState<
                   setState(() {
                     showDownloadToast = false;
                     isDownloading = false;
-                    downloadToast =
-                        context.buildLoaderToast(title: 'Downloading media');
+                    downloadToast = context.buildLoaderToast(
+                        title: context.str?.downloadingAssets);
                   });
                 }
               },
@@ -103,8 +104,8 @@ class _MediaViewState<
                 setState(() {
                   showDownloadToast = false;
                   isDownloading = false;
-                  downloadToast =
-                      context.buildLoaderToast(title: 'Downloading media');
+                  downloadToast = context.buildLoaderToast(
+                      title: context.str?.downloadingAssets);
                 });
               },
             );
@@ -122,8 +123,8 @@ class _MediaViewState<
                 }
                 if (count != null && total != null && count == total) {
                   context.infoToast(
-                    title: 'Processing',
-                    description: 'Please wait, media is being processed',
+                    title: context.str?.processing,
+                    description: context.str?.pleaseWaitAssetIsBeingProcessed,
                   );
                 }
               },
@@ -131,29 +132,29 @@ class _MediaViewState<
                 uploadToast?.dismiss();
                 context.read<LoadingCubit>().stopLoading();
                 context.successToast(
-                  title: 'Success',
-                  description: 'Media uploaded successfully',
+                  title: context.str?.success,
+                  description: context.str?.assetUploadSuccess,
                 );
                 widget.onSuccess(item);
                 setState(() {
                   showUploadToast = false;
                   isUploading = false;
-                  downloadToast =
-                      context.buildLoaderToast(title: 'Downloading media');
+                  downloadToast = context.buildLoaderToast(
+                      title: context.str?.downloadingAssets);
                 });
               },
               failure: (error) {
                 uploadToast?.dismiss();
                 context.read<LoadingCubit>().stopLoading();
                 context.errorToast(
-                  title: 'Error',
+                  title: context.str?.error,
                   description: error,
                 );
                 setState(() {
                   showUploadToast = false;
                   isUploading = false;
-                  downloadToast =
-                      context.buildLoaderToast(title: 'Downloading media');
+                  downloadToast = context.buildLoaderToast(
+                      title: context.str?.downloadingAssets);
                 });
               },
             );
@@ -205,8 +206,8 @@ class _MediaViewState<
                 if (!context.mounted) return;
                 if (res == null) {
                   context.errorToast(
-                    title: 'Error',
-                    description: 'No file selected',
+                    title: context.str?.error,
+                    description: context.str?.noFileSelected,
                   );
                   return;
                 }
@@ -216,7 +217,7 @@ class _MediaViewState<
                 });
                 widget.onUpload(file);
               },
-              label: const BodySmall('Upload'),
+              label: BodySmall(context.str?.upload),
               icon: const Icon(Icons.upload),
             );
           },
@@ -230,7 +231,7 @@ class _MediaViewState<
                   if (filteredItems.isEmpty) {
                     return SizedBox(
                       height: 50.h,
-                      child: const ErrorAlert('No media found'),
+                      child: ErrorAlert(context.str?.assetsIsEmpty),
                     );
                   }
                   return GridViewBuilder(
@@ -307,14 +308,14 @@ class _MediaViewState<
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: const Text('Asset Info'),
+                    title: Text(context.str?.assetInfo ?? 'Asset Info'),
                     content: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        BodySmall('Name: ${media.name}'),
-                        BodySmall('Type: ${media.type.value}'),
-                        BodySmall('Size: ${media.fileSize}'),
+                        BodySmall('${context.str?.name}: ${media.name}'),
+                        BodySmall('${context.str?.type}: ${media.type.value}'),
+                        BodySmall('${context.str?.size}: ${media.fileSize}'),
                         Row(
                           children: [
                             Expanded(child: BodySmall('URL: ${media.url}')),
@@ -330,7 +331,7 @@ class _MediaViewState<
                                     MoonIcons.generic_check_rounded_24_light,
                                     color: context.moonColors?.hit,
                                   ),
-                                  label: const BodySmall('URL copied'),
+                                  label: BodySmall(context.str?.urlCopied),
                                 );
                               },
                             )
@@ -343,7 +344,7 @@ class _MediaViewState<
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: const Text('Close'),
+                        child: Text(context.str?.close ?? 'Close'),
                       ),
                     ],
                   );

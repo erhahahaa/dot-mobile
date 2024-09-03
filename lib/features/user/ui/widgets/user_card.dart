@@ -49,7 +49,7 @@
 //             child: CachedNetworkImage(
 //               height: 64.w,
 //               imageUrl: user.image,
-//               placeholder: (context, url) => const CircularProgressIndicator(),
+//               placeholder: (context, url) => const MoonCircularLoader(),
 //               errorWidget: (context, url, error) => Text(
 //                 error.toString(),
 //               ),
