@@ -16,7 +16,7 @@ class MediaScreen extends StatefulWidget implements AutoRouteWrapper {
   Widget wrappedRoute(BuildContext context) {
     final clubBloc = context.read<ClubBlocRead>();
     final club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
+      success: (_, __, selected) => selected,
     );
 
     return MultiBlocProvider(
@@ -24,19 +24,19 @@ class MediaScreen extends StatefulWidget implements AutoRouteWrapper {
         BlocProvider.value(
           value: context.read<ProgramMediaBlocRead>()
             ..add(
-              BlocEventRead.get(id: club?.id),
+              BlocReadEvent.get(id: club?.id),
             ),
         ),
         BlocProvider.value(
           value: context.read<ExerciseMediaBlocRead>()
             ..add(
-              BlocEventRead.get(id: club?.id),
+              BlocReadEvent.get(id: club?.id),
             ),
         ),
         BlocProvider.value(
           value: context.read<TacticalMediaBlocRead>()
             ..add(
-              BlocEventRead.get(id: club?.id),
+              BlocReadEvent.get(id: club?.id),
             ),
         ),
         BlocProvider.value(
@@ -74,7 +74,7 @@ class _MediaScreenState extends BaseState<MediaScreen>
   Widget build(BuildContext context) {
     final clubBloc = context.read<ClubBlocRead>();
     final club = clubBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
+      success: (_, __, selected) => selected,
     );
     return Parent(
       appBar: AppBar(
@@ -86,12 +86,12 @@ class _MediaScreenState extends BaseState<MediaScreen>
       body: TabBarView(
         controller: _tabController,
         children: [
-          MediaView<ProgramMediaBlocRead, BlocStateRead<MediaModel>,
-              ProgramMediaBlocWrite, BlocStateWrite<MediaModel>>(
+          MediaView<ProgramMediaBlocRead, BlocReadState<MediaModel>,
+              ProgramMediaBlocWrite, BlocWriteState<MediaModel>>(
             allowedExtensions: const ['jpg', 'jpeg', 'png', 'svg'],
             onUpload: (file) {
               context.read<ProgramMediaBlocWrite>().add(
-                    BlocEventWrite.create({
+                    BlocWriteEvent.create({
                       'clubId': club?.id,
                       'file': file,
                     }),
@@ -99,20 +99,20 @@ class _MediaScreenState extends BaseState<MediaScreen>
             },
             onSuccess: (item) {
               context.read<ProgramMediaBlocRead>().add(
-                    BlocEventRead.append(item),
+                    BlocReadEvent.append(item),
                   );
             },
             onDownload: (item) {
               context
                   .read<ProgramMediaBlocRead>()
-                  .add(BlocEventRead.getOne(item));
+                  .add(BlocReadEvent.getOne(item));
             },
           ),
-          MediaView<ExerciseMediaBlocRead, BlocStateRead<MediaModel>,
-              ExerciseMediaBlocWrite, BlocStateWrite<MediaModel>>(
+          MediaView<ExerciseMediaBlocRead, BlocReadState<MediaModel>,
+              ExerciseMediaBlocWrite, BlocWriteState<MediaModel>>(
             onUpload: (file) {
               context.read<ExerciseMediaBlocWrite>().add(
-                    BlocEventWrite.create({
+                    BlocWriteEvent.create({
                       'clubId': club?.id,
                       'file': file,
                     }),
@@ -120,21 +120,21 @@ class _MediaScreenState extends BaseState<MediaScreen>
             },
             onSuccess: (item) {
               context.read<ExerciseMediaBlocRead>().add(
-                    BlocEventRead.append(item),
+                    BlocReadEvent.append(item),
                   );
             },
             onDownload: (item) {
               context
                   .read<ExerciseMediaBlocRead>()
-                  .add(BlocEventRead.getOne(item));
+                  .add(BlocReadEvent.getOne(item));
             },
           ),
-          MediaView<TacticalMediaBlocRead, BlocStateRead<MediaModel>,
-              TacticalMediaBlocWrite, BlocStateWrite<MediaModel>>(
+          MediaView<TacticalMediaBlocRead, BlocReadState<MediaModel>,
+              TacticalMediaBlocWrite, BlocWriteState<MediaModel>>(
             allowedExtensions: const ['jpg', 'jpeg', 'png', 'svg'],
             onUpload: (file) {
               context.read<TacticalMediaBlocWrite>().add(
-                    BlocEventWrite.create({
+                    BlocWriteEvent.create({
                       'clubId': club?.id,
                       'file': file,
                     }),
@@ -142,13 +142,13 @@ class _MediaScreenState extends BaseState<MediaScreen>
             },
             onSuccess: (item) {
               context.read<TacticalMediaBlocRead>().add(
-                    BlocEventRead.append(item),
+                    BlocReadEvent.append(item),
                   );
             },
             onDownload: (item) {
               context
                   .read<TacticalMediaBlocRead>()
-                  .add(BlocEventRead.getOne(item));
+                  .add(BlocReadEvent.getOne(item));
             },
           ),
         ],

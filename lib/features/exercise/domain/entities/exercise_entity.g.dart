@@ -67,8 +67,7 @@ const ExerciseEntitySchema = IsarGeneratedSchema(
       ),
       IsarPropertySchema(
         name: 'media',
-        type: IsarType.object,
-        target: 'MediaEmbedEntity',
+        type: IsarType.json,
       ),
       IsarPropertySchema(
         name: 'createdAt',
@@ -86,7 +85,7 @@ const ExerciseEntitySchema = IsarGeneratedSchema(
     deserialize: deserializeExerciseEntity,
     deserializeProperty: deserializeExerciseEntityProp,
   ),
-  embeddedSchemas: [ExerciseUnitValueEntitySchema, MediaEmbedEntitySchema],
+  embeddedSchemas: [ExerciseUnitValueEntitySchema],
 );
 
 @isarProtected
@@ -153,16 +152,7 @@ int serializeExerciseEntity(IsarWriter writer, ExerciseEntity object) {
       IsarCore.endObject(writer, objectWriter);
     }
   }
-  {
-    final value = object.media;
-    if (value == null) {
-      IsarCore.writeNull(writer, 11);
-    } else {
-      final objectWriter = IsarCore.beginObject(writer, 11);
-      serializeMediaEmbedEntity(objectWriter, value);
-      IsarCore.endObject(writer, objectWriter);
-    }
-  }
+  IsarCore.writeString(writer, 11, isarJsonEncode(object.media));
   IsarCore.writeLong(writer, 12,
       object.createdAt?.toUtc().microsecondsSinceEpoch ?? -9223372036854775808);
   IsarCore.writeLong(writer, 13,
@@ -260,15 +250,13 @@ ExerciseEntity deserializeExerciseEntity(IsarReader reader) {
       _intensity = embedded;
     }
   }
-  final MediaEmbedEntity? _media;
+  final dynamic? _media;
   {
-    final objectReader = IsarCore.readObject(reader, 11);
-    if (objectReader.isNull) {
-      _media = null;
+    final json = isarJsonDecode(IsarCore.readString(reader, 11) ?? 'null');
+    if (json is Map<String, dynamic>) {
+      _media = MediaEmbedEntity.fromJson(json);
     } else {
-      final embedded = deserializeMediaEmbedEntity(objectReader);
-      IsarCore.freeReader(objectReader);
-      _media = embedded;
+      _media = null;
     }
   }
   final DateTime? _createdAt;
@@ -403,13 +391,11 @@ dynamic deserializeExerciseEntityProp(IsarReader reader, int property) {
       }
     case 11:
       {
-        final objectReader = IsarCore.readObject(reader, 11);
-        if (objectReader.isNull) {
-          return null;
+        final json = isarJsonDecode(IsarCore.readString(reader, 11) ?? 'null');
+        if (json is Map<String, dynamic>) {
+          return MediaEmbedEntity.fromJson(json);
         } else {
-          final embedded = deserializeMediaEmbedEntity(objectReader);
-          IsarCore.freeReader(objectReader);
-          return embedded;
+          return null;
         }
       }
     case 12:
@@ -1422,20 +1408,6 @@ extension ExerciseEntityQueryFilter
   }
 
   QueryBuilder<ExerciseEntity, ExerciseEntity, QAfterFilterCondition>
-      mediaIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 11));
-    });
-  }
-
-  QueryBuilder<ExerciseEntity, ExerciseEntity, QAfterFilterCondition>
-      mediaIsNotNull() {
-    return QueryBuilder.apply(not(), (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 11));
-    });
-  }
-
-  QueryBuilder<ExerciseEntity, ExerciseEntity, QAfterFilterCondition>
       createdAtIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const IsNullCondition(property: 12));
@@ -1672,13 +1644,6 @@ extension ExerciseEntityQueryObject
       return query.object(q, 10);
     });
   }
-
-  QueryBuilder<ExerciseEntity, ExerciseEntity, QAfterFilterCondition> media(
-      FilterQuery<MediaEmbedEntity> q) {
-    return QueryBuilder.apply(this, (query) {
-      return query.object(q, 11);
-    });
-  }
 }
 
 extension ExerciseEntityQuerySortBy
@@ -1772,6 +1737,18 @@ extension ExerciseEntityQuerySortBy
         sort: Sort.desc,
         caseSensitive: caseSensitive,
       );
+    });
+  }
+
+  QueryBuilder<ExerciseEntity, ExerciseEntity, QAfterSortBy> sortByMedia() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(11);
+    });
+  }
+
+  QueryBuilder<ExerciseEntity, ExerciseEntity, QAfterSortBy> sortByMediaDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(11, sort: Sort.desc);
     });
   }
 
@@ -1882,6 +1859,18 @@ extension ExerciseEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<ExerciseEntity, ExerciseEntity, QAfterSortBy> thenByMedia() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(11);
+    });
+  }
+
+  QueryBuilder<ExerciseEntity, ExerciseEntity, QAfterSortBy> thenByMediaDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(11, sort: Sort.desc);
+    });
+  }
+
   QueryBuilder<ExerciseEntity, ExerciseEntity, QAfterSortBy> thenByCreatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(12);
@@ -1943,6 +1932,13 @@ extension ExerciseEntityQueryWhereDistinct
       distinctByDescription({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(5, caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<ExerciseEntity, ExerciseEntity, QAfterDistinct>
+      distinctByMedia() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(11);
     });
   }
 
@@ -2034,8 +2030,7 @@ extension ExerciseEntityQueryProperty1
     });
   }
 
-  QueryBuilder<ExerciseEntity, MediaEmbedEntity?, QAfterProperty>
-      mediaProperty() {
+  QueryBuilder<ExerciseEntity, dynamic?, QAfterProperty> mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(11);
     });
@@ -2128,8 +2123,7 @@ extension ExerciseEntityQueryProperty2<R>
     });
   }
 
-  QueryBuilder<ExerciseEntity, (R, MediaEmbedEntity?), QAfterProperty>
-      mediaProperty() {
+  QueryBuilder<ExerciseEntity, (R, dynamic?), QAfterProperty> mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(11);
     });
@@ -2224,7 +2218,7 @@ extension ExerciseEntityQueryProperty3<R1, R2>
     });
   }
 
-  QueryBuilder<ExerciseEntity, (R1, R2, MediaEmbedEntity?), QOperations>
+  QueryBuilder<ExerciseEntity, (R1, R2, dynamic?), QOperations>
       mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(11);

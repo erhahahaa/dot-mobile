@@ -8,39 +8,37 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
   final GetAllTacticalUsecase _getAllTacticalUsecase;
 
   TacticalBlocRead(this._getAllTacticalUsecase)
-      : super(const BlocStateReadInitial()) {
-    on<BlocEventReadClear<TacticalModel>>(onClear);
-    on<BlocEventReadGet<TacticalModel>>(onGet);
-    on<BlocEventReadSelect<TacticalModel>>(onSelect);
-    on<BlocEventReadFilter<TacticalModel>>(onFilter);
-    on<BlocEventReadAppend<TacticalModel>>(onAppend);
-    on<BlocEventReadRemove<TacticalModel>>(onRemove);
+      : super(const BlocReadStateInitial()) {
+    on<BlocReadEventGet<TacticalModel>>(onGet);
+    on<BlocReadEventSelect<TacticalModel>>(onSelect);
+    on<BlocReadEventFilter<TacticalModel>>(onFilter);
+    on<BlocReadEventAppend<TacticalModel>>(onAppend);
+    on<BlocReadEventRemove<TacticalModel>>(onRemove);
   }
 
   @override
   void onGet(
-    BlocEventReadGet event,
-    Emitter<BlocStateRead<TacticalModel>> emit,
+    BlocReadEventGet event,
+    Emitter<BlocReadState<TacticalModel>> emit,
   ) async {
     final id = event.id;
     if (id == null) {
-      return emit(const BlocStateRead.failure('Id required'));
+      return emit(const BlocReadState.failure('Id required'));
     }
-    emit(const BlocStateReadLoading());
+    emit(const BlocReadStateLoading());
 
     final res = await _getAllTacticalUsecase.call(
       GetAllTacticalParams(clubId: id),
     );
 
     res.fold(
-      (failure) => emit(BlocStateReadFailure(failure.message)),
+      (failure) => emit(BlocReadStateFailure(failure.message)),
       (success) {
         success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: success,
           filteredItems: success,
-          selectedItem: null,
         ));
       },
     );
@@ -48,15 +46,15 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
 
   @override
   void onSelect(
-    BlocEventReadSelect<TacticalModel> event,
-    Emitter<BlocStateRead<TacticalModel>> emit,
+    BlocReadEventSelect<TacticalModel> event,
+    Emitter<BlocReadState<TacticalModel>> emit,
   ) {
     state.whenOrNull(
       success: (tacticals, filteredTacticals, _) {
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: tacticals,
           filteredItems: filteredTacticals,
-          selectedItem: event.item,
+          selected: event.item,
         ));
       },
     );
@@ -64,11 +62,11 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
 
   @override
   void onFilter(
-    BlocEventReadFilter event,
-    Emitter<BlocStateRead<TacticalModel>> emit,
+    BlocReadEventFilter event,
+    Emitter<BlocReadState<TacticalModel>> emit,
   ) {
     state.whenOrNull(
-      success: (tacticals, _, __) {
+      success: (tacticals, _, selected) {
         final finds = tacticals
             .where(
               (tactical) => tactical.name.toLowerCase().contains(
@@ -77,10 +75,10 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
             )
             .toList();
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: tacticals,
           filteredItems: finds,
-          selectedItem: null,
+          selected: selected,
         ));
       },
     );
@@ -88,11 +86,11 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
 
   @override
   void onAppend(
-    BlocEventReadAppend<TacticalModel> event,
-    Emitter<BlocStateRead<TacticalModel>> emit,
+    BlocReadEventAppend<TacticalModel> event,
+    Emitter<BlocReadState<TacticalModel>> emit,
   ) {
     state.whenOrNull(
-      success: (tacticals, _, __) {
+      success: (tacticals, _, selected) {
         final find = tacticals
             .where((tactical) => tactical.id == event.item.id)
             .toList();
@@ -106,9 +104,10 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
 
           items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
-          emit(BlocStateReadSuccess(
+          emit(BlocReadStateSuccess(
             items: items,
             filteredItems: items,
+            selected: selected,
           ));
           return;
         }
@@ -117,12 +116,13 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
 
         items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
+          selected: selected,
         ));
       },
-      failure: (_) => emit(BlocStateReadSuccess(
+      failure: (_) => emit(BlocReadStateSuccess(
         items: [event.item],
         filteredItems: [event.item],
       )),
@@ -131,16 +131,17 @@ class TacticalBlocRead extends BlocRead<TacticalModel> {
 
   @override
   void onRemove(
-    BlocEventReadRemove<TacticalModel> event,
-    Emitter<BlocStateRead<TacticalModel>> emit,
+    BlocReadEventRemove<TacticalModel> event,
+    Emitter<BlocReadState<TacticalModel>> emit,
   ) {
     state.whenOrNull(
-      success: (tacticals, _, __) {
+      success: (tacticals, _, selected) {
         final items =
             tacticals.where((tactical) => tactical.id != event.id).toList();
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
+          selected: selected,
         ));
       },
     );
@@ -157,53 +158,53 @@ class TacticalBlocWrite extends BlocWrite<TacticalModel> {
     this._createTacticalUsecase,
     this._updateTacticalUsecase,
     this._deleteTacticalUsecase,
-  ) : super(const BlocStateWriteInitial()) {
-    on<BlocEventWriteCreate>(onCreate);
-    on<BlocEventWriteUpdate>(onUpdate);
-    on<BlocEventWriteDelete>(onDelete);
+  ) : super(const BlocWriteStateInitial()) {
+    on<BlocWriteEventCreate>(onCreate);
+    on<BlocWriteEventUpdate>(onUpdate);
+    on<BlocWriteEventDelete>(onDelete);
   }
 
   @override
   void onCreate(
-    BlocEventWriteCreate event,
-    Emitter<BlocStateWrite<TacticalModel>> emit,
+    BlocWriteEventCreate event,
+    Emitter<BlocWriteState<TacticalModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res =
         await _createTacticalUsecase.call(event.params as CreateTacticalParams);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onUpdate(
-    BlocEventWriteUpdate event,
-    Emitter<BlocStateWrite<TacticalModel>> emit,
+    BlocWriteEventUpdate event,
+    Emitter<BlocWriteState<TacticalModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
 
     final res = await _updateTacticalUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onDelete(
-    BlocEventWriteDelete event,
-    Emitter<BlocStateWrite<TacticalModel>> emit,
+    BlocWriteEventDelete event,
+    Emitter<BlocWriteState<TacticalModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _deleteTacticalUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 }

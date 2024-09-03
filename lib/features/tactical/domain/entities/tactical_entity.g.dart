@@ -52,8 +52,7 @@ const TacticalEntitySchema = IsarGeneratedSchema(
       ),
       IsarPropertySchema(
         name: 'media',
-        type: IsarType.object,
-        target: 'MediaEmbedEntity',
+        type: IsarType.json,
       ),
       IsarPropertySchema(
         name: 'createdAt',
@@ -75,8 +74,7 @@ const TacticalEntitySchema = IsarGeneratedSchema(
     TacticalBoardEntitySchema,
     TacticalStrategicEntitySchema,
     PlayerEntitySchema,
-    ArrowEntitySchema,
-    MediaEmbedEntitySchema
+    ArrowEntitySchema
   ],
 );
 
@@ -110,16 +108,7 @@ int serializeTacticalEntity(IsarWriter writer, TacticalEntity object) {
     }
   }
   IsarCore.writeBool(writer, 7, object.isLive);
-  {
-    final value = object.media;
-    if (value == null) {
-      IsarCore.writeNull(writer, 8);
-    } else {
-      final objectWriter = IsarCore.beginObject(writer, 8);
-      serializeMediaEmbedEntity(objectWriter, value);
-      IsarCore.endObject(writer, objectWriter);
-    }
-  }
+  IsarCore.writeString(writer, 8, isarJsonEncode(object.media));
   IsarCore.writeLong(writer, 9,
       object.createdAt?.toUtc().microsecondsSinceEpoch ?? -9223372036854775808);
   IsarCore.writeLong(writer, 10,
@@ -157,7 +146,7 @@ TacticalEntity deserializeTacticalEntity(IsarReader reader) {
   {
     final objectReader = IsarCore.readObject(reader, 5);
     if (objectReader.isNull) {
-      _board = TacticalBoardEntity();
+      _board = const TacticalBoardEntity();
     } else {
       final embedded = deserializeTacticalBoardEntity(objectReader);
       IsarCore.freeReader(objectReader);
@@ -177,15 +166,13 @@ TacticalEntity deserializeTacticalEntity(IsarReader reader) {
   }
   final bool _isLive;
   _isLive = IsarCore.readBool(reader, 7);
-  final MediaEmbedEntity? _media;
+  final dynamic? _media;
   {
-    final objectReader = IsarCore.readObject(reader, 8);
-    if (objectReader.isNull) {
-      _media = null;
+    final json = isarJsonDecode(IsarCore.readString(reader, 8) ?? 'null');
+    if (json is Map<String, dynamic>) {
+      _media = MediaEmbedEntity.fromJson(json);
     } else {
-      final embedded = deserializeMediaEmbedEntity(objectReader);
-      IsarCore.freeReader(objectReader);
-      _media = embedded;
+      _media = null;
     }
   }
   final DateTime? _createdAt;
@@ -255,7 +242,7 @@ dynamic deserializeTacticalEntityProp(IsarReader reader, int property) {
       {
         final objectReader = IsarCore.readObject(reader, 5);
         if (objectReader.isNull) {
-          return TacticalBoardEntity();
+          return const TacticalBoardEntity();
         } else {
           final embedded = deserializeTacticalBoardEntity(objectReader);
           IsarCore.freeReader(objectReader);
@@ -277,13 +264,11 @@ dynamic deserializeTacticalEntityProp(IsarReader reader, int property) {
       return IsarCore.readBool(reader, 7);
     case 8:
       {
-        final objectReader = IsarCore.readObject(reader, 8);
-        if (objectReader.isNull) {
-          return null;
+        final json = isarJsonDecode(IsarCore.readString(reader, 8) ?? 'null');
+        if (json is Map<String, dynamic>) {
+          return MediaEmbedEntity.fromJson(json);
         } else {
-          final embedded = deserializeMediaEmbedEntity(objectReader);
-          IsarCore.freeReader(objectReader);
-          return embedded;
+          return null;
         }
       }
     case 9:
@@ -1168,20 +1153,6 @@ extension TacticalEntityQueryFilter
   }
 
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      mediaIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 8));
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
-      mediaIsNotNull() {
-    return QueryBuilder.apply(not(), (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 8));
-    });
-  }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition>
       createdAtIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const IsNullCondition(property: 9));
@@ -1397,13 +1368,6 @@ extension TacticalEntityQueryObject
       return query.object(q, 6);
     });
   }
-
-  QueryBuilder<TacticalEntity, TacticalEntity, QAfterFilterCondition> media(
-      FilterQuery<MediaEmbedEntity> q) {
-    return QueryBuilder.apply(this, (query) {
-      return query.object(q, 8);
-    });
-  }
 }
 
 extension TacticalEntityQuerySortBy
@@ -1498,6 +1462,18 @@ extension TacticalEntityQuerySortBy
       sortByIsLiveDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(7, sort: Sort.desc);
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> sortByMedia() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(8);
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> sortByMediaDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(8, sort: Sort.desc);
     });
   }
 
@@ -1609,6 +1585,18 @@ extension TacticalEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> thenByMedia() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(8);
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> thenByMediaDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(8, sort: Sort.desc);
+    });
+  }
+
   QueryBuilder<TacticalEntity, TacticalEntity, QAfterSortBy> thenByCreatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(9);
@@ -1670,6 +1658,13 @@ extension TacticalEntityQueryWhereDistinct
       distinctByIsLive() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(7);
+    });
+  }
+
+  QueryBuilder<TacticalEntity, TacticalEntity, QAfterDistinct>
+      distinctByMedia() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(8);
     });
   }
 
@@ -1740,8 +1735,7 @@ extension TacticalEntityQueryProperty1
     });
   }
 
-  QueryBuilder<TacticalEntity, MediaEmbedEntity?, QAfterProperty>
-      mediaProperty() {
+  QueryBuilder<TacticalEntity, dynamic?, QAfterProperty> mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(8);
     });
@@ -1813,8 +1807,7 @@ extension TacticalEntityQueryProperty2<R>
     });
   }
 
-  QueryBuilder<TacticalEntity, (R, MediaEmbedEntity?), QAfterProperty>
-      mediaProperty() {
+  QueryBuilder<TacticalEntity, (R, dynamic?), QAfterProperty> mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(8);
     });
@@ -1888,7 +1881,7 @@ extension TacticalEntityQueryProperty3<R1, R2>
     });
   }
 
-  QueryBuilder<TacticalEntity, (R1, R2, MediaEmbedEntity?), QOperations>
+  QueryBuilder<TacticalEntity, (R1, R2, dynamic?), QOperations>
       mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(8);

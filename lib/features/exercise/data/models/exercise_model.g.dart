@@ -12,7 +12,7 @@ _$ExerciseModelImpl _$$ExerciseModelImplFromJson(Map<String, dynamic> json) =>
       programId: (json['programId'] as num?)?.toInt() ?? 0,
       mediaId: (json['mediaId'] as num?)?.toInt(),
       order: (json['order'] as num?)?.toInt() ?? 0,
-      name: json['name'] as String? ?? 'Dot Exercise 0',
+      name: json['name'] as String? ?? '',
       description: json['description'] as String?,
       repetition: json['repetition'] == null
           ? null

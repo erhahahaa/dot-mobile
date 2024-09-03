@@ -31,18 +31,18 @@ enum QuestionType {
 @Collection(accessor: 'questions')
 class QuestionEntity {
   final int id;
-  int examId;
-  int? mediaId;
+  final int examId;
+  final int? mediaId;
   @enumValue
-  QuestionType type;
-  String question;
-  List<QuestionOptionEntity> options;
-  int order;
-  MediaEmbedEntity? media;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  final QuestionType type;
+  final String question;
+  final List<QuestionOptionEntity> options;
+  final int order;
+  final MediaEmbedEntity? media;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
-  QuestionEntity({
+  const QuestionEntity({
     this.id = 0,
     this.examId = 0,
     this.mediaId,
@@ -58,9 +58,10 @@ class QuestionEntity {
 
 @embedded
 class QuestionOptionEntity {
-  int order;
-  String text;
-  QuestionOptionEntity({
+  final int order;
+  final String text;
+
+  const QuestionOptionEntity({
     this.order = 0,
     this.text = 'Option 1',
   });

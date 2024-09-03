@@ -11,7 +11,7 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this._remote, this._local);
 
   @override
-  Future<Either<Failure, UserModel>> getMe() async {
+  Future<Either<Failure, UserEntity>> getMe() async {
     final res = await _local.getMe();
     return res;
   }

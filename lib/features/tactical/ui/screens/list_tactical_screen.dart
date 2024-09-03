@@ -30,7 +30,7 @@ class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
         child: RefreshIndicator(
           onRefresh: () async {
             context.read<TacticalBlocRead>().add(
-                  BlocEventRead.get(id: context.clubWatch?.id),
+                  BlocReadEvent.get(id: context.clubWatch?.id),
                 );
           },
           child: SingleChildScrollView(
@@ -101,7 +101,7 @@ class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
           onChanged: (value) {
             if (value == null) return;
             context.read<ClubBlocRead>().add(
-                  BlocEventRead.filter(value),
+                  BlocReadEvent.filter(value),
                 );
           },
           trailing: MoonButton.icon(
@@ -110,7 +110,7 @@ class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
             onTap: () {
               clearSearch();
               context.read<ClubBlocRead>().add(
-                    const BlocEventRead.filter(''),
+                    const BlocReadEvent.filter(''),
                   );
             },
           ),
@@ -120,7 +120,7 @@ class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
   }
 
   Widget _buildListTactical(BuildContext context) {
-    return BlocBuilder<TacticalBlocRead, BlocStateRead<TacticalModel>>(
+    return BlocBuilder<TacticalBlocRead, BlocReadState<TacticalModel>>(
       builder: (context, state) {
         return state.maybeWhen(
           success: (_, filteredTacticals, __) {
@@ -150,7 +150,7 @@ class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
                           onPressed: context.clubRead != null
                               ? () {
                                   context.read<TacticalBlocRead>().add(
-                                        BlocEventRead.get(
+                                        BlocReadEvent.get(
                                             id: context.clubRead?.id),
                                       );
                                 }
@@ -196,7 +196,7 @@ class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
   ) {
     void onTap() {
       context.read<TacticalBlocRead>().add(
-            BlocEventRead.select(tactical),
+            BlocReadEvent.select(tactical),
           );
       context.router.push(
         DetailTacticalRoute(id: tactical.id),

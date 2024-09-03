@@ -5,7 +5,7 @@ part 'player_model.freezed.dart';
 part 'player_model.g.dart';
 
 @freezed
-class PlayerModel with _$PlayerModel {
+class PlayerModel extends PlayerEntity with _$PlayerModel {
   factory PlayerModel({
     @Default('folks') String alias,
     @Default(0) int number,

@@ -143,20 +143,28 @@ extension BuildContextX on BuildContext {
   }
 
   ClubModel? get clubWatch {
-    return watch<ClubBlocRead>()
-        .state
-        .whenOrNull(success: (_, __, item) => item);
+    final state = watch<ClubBlocRead>().state.whenOrNull(
+          success: (_, __, item) => item,
+        );
+
+    final internal = watch<ClubBlocRead>().selected;
+
+    return state ?? internal;
   }
 
   ClubModel? get clubRead {
-    return read<ClubBlocRead>()
-        .state
-        .whenOrNull(success: (_, __, item) => item);
+    final state = read<ClubBlocRead>().state.whenOrNull(
+          success: (_, __, item) => item,
+        );
+    final internal = read<ClubBlocRead>().selected;
+
+    return state ?? internal;
   }
 
   UserModel get user {
     return read<UserBloc>().state.whenOrNull(
-          success: (user, __) => user,
-        ) ?? const UserModel();
+              success: (user, __) => user,
+            ) ??
+        const UserModel();
   }
 }

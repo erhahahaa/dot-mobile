@@ -7,7 +7,7 @@ part 'question_model.freezed.dart';
 part 'question_model.g.dart';
 
 @freezed
-class QuestionModel with _$QuestionModel {
+class QuestionModel extends QuestionEntity with _$QuestionModel {
   const factory QuestionModel({
     @Default(0) int id,
     @Default(0) int examId,
@@ -63,7 +63,8 @@ class QuestionModel with _$QuestionModel {
 }
 
 @freezed
-class QuestionOptionModel with _$QuestionOptionModel {
+class QuestionOptionModel extends QuestionOptionEntity
+    with _$QuestionOptionModel {
   factory QuestionOptionModel({
     @Default(0) int order,
     @Default('') String text,

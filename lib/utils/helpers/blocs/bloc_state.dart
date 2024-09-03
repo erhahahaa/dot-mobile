@@ -3,33 +3,33 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'bloc_state.freezed.dart';
 
 @Freezed(genericArgumentFactories: true)
-class BlocStateRead<T> with _$BlocStateRead<T> {
-  const factory BlocStateRead.initial() = BlocStateReadInitial;
-  const factory BlocStateRead.loading({
+class BlocReadState<T> with _$BlocReadState<T> {
+  const factory BlocReadState.initial() = BlocReadStateInitial;
+  const factory BlocReadState.loading({
     int? count,
     int? total,
-  }) = BlocStateReadLoading;
-  const factory BlocStateRead.success({
+  }) = BlocReadStateLoading;
+  const factory BlocReadState.success({
     @Default([]) List<T> items,
     @Default([]) List<T> filteredItems,
-    T? selectedItem,
-  }) = BlocStateReadSuccess;
-  const factory BlocStateRead.failure(
+    T? selected,
+  }) = BlocReadStateSuccess;
+  const factory BlocReadState.failure(
     String message,
-  ) = BlocStateReadFailure;
+  ) = BlocReadStateFailure;
 }
 
 @Freezed(genericArgumentFactories: true)
-class BlocStateWrite<T> with _$BlocStateWrite<T> {
-  const factory BlocStateWrite.initial() = BlocStateWriteInitial;
-  const factory BlocStateWrite.loading({
+class BlocWriteState<T> with _$BlocWriteState<T> {
+  const factory BlocWriteState.initial() = BlocWriteStateInitial;
+  const factory BlocWriteState.loading({
     int? count,
     int? total,
-  }) = BlocStateWriteLoading;
-  const factory BlocStateWrite.success(
+  }) = BlocWriteStateLoading;
+  const factory BlocWriteState.success(
     T item,
-  ) = BlocStateWriteSuccess;
-  const factory BlocStateWrite.failure(
+  ) = BlocWriteStateSuccess;
+  const factory BlocWriteState.failure(
     String message,
-  ) = BlocStateWriteFailure;
+  ) = BlocWriteStateFailure;
 }

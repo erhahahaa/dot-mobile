@@ -4,13 +4,13 @@ part 'arrow_entity.g.dart';
 
 @embedded
 class ArrowEntity {
-  double startX;
-  double startY;
-  double endX;
-  double endY;
-  int hexColor;
+  final double startX;
+  final double startY;
+  final double endX;
+  final double endY;
+  final int hexColor;
 
-  ArrowEntity({
+  const ArrowEntity({
     this.startX = 0,
     this.startY = 0,
     this.endX = 0,

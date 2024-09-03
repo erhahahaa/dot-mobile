@@ -4,14 +4,14 @@ part 'player_entity.g.dart';
 
 @embedded
 class PlayerEntity {
-  String alias;
-  int number;
-  int team;
-  int hexColor;
-  double x;
-  double y;
+  final String alias;
+  final int number;
+  final int team;
+  final int hexColor;
+  final double x;
+  final double y;
 
-  PlayerEntity({
+  const PlayerEntity({
     this.alias = 'folks',
     this.number = 0,
     this.team = 0,

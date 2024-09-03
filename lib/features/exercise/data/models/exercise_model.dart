@@ -7,7 +7,7 @@ part 'exercise_model.freezed.dart';
 part 'exercise_model.g.dart';
 
 @freezed
-class ExerciseModel with _$ExerciseModel {
+class ExerciseModel extends ExerciseEntity with _$ExerciseModel {
   const factory ExerciseModel({
     @Default(0) int id,
     @Default(0) int programId,
@@ -97,7 +97,8 @@ class ExerciseModel with _$ExerciseModel {
 }
 
 @freezed
-class ExerciseUnitValueModel with _$ExerciseUnitValueModel {
+class ExerciseUnitValueModel extends ExerciseUnitValueEntity
+    with _$ExerciseUnitValueModel {
   factory ExerciseUnitValueModel({
     String? unit,
     @Default(0) int value,

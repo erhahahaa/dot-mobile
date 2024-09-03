@@ -213,7 +213,7 @@ class _DetailClubScreenState extends BaseState<DetailClubScreen> {
         );
         if (res == true) {
           if (context.mounted) {
-            context.read<ClubBlocRead>().add(const BlocEventRead.get());
+            context.read<ClubBlocRead>().add(const BlocReadEvent.get());
             context.router.replace(
               const ListClubRoute(),
             );

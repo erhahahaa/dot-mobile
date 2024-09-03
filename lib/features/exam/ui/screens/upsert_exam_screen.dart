@@ -120,17 +120,17 @@ class _UpsertExamScreenState extends BaseState<UpsertExamScreen> {
               },
             ),
             Gap(12.h),
-            BlocConsumer<ExamBlocWrite, BlocStateWrite<ExamModel>>(
+            BlocConsumer<ExamBlocWrite, BlocWriteState<ExamModel>>(
               listener: (context, state) {
                 state.whenOrNull(
                   success: (exam) {
                     context.read<ExamBlocRead>().add(
-                          BlocEventRead.select(exam),
+                          BlocReadEvent.select(exam),
                         );
                     context.read<QuestionBlocRead>().add(
-                          BlocEventRead.get(id: exam.id),
+                          BlocReadEvent.get(id: exam.id),
                         );
-                    Future.delayed(Durations.short4, () {
+                    Future.delayed(Durations.medium2, () {
                       if (context.mounted) {
                         context.router.popAndPush(const UpsertQuestionRoute());
                       }
@@ -148,7 +148,7 @@ class _UpsertExamScreenState extends BaseState<UpsertExamScreen> {
               },
               builder: (context, state) {
                 return FormButton(
-                  isLoading: state is BlocStateWriteLoading,
+                  isLoading: state is BlocWriteStateLoading,
                   text: _exam == null
                       ? context.str?.createExam
                       : context.str?.updateExam,
@@ -156,7 +156,7 @@ class _UpsertExamScreenState extends BaseState<UpsertExamScreen> {
                     if (_formKey.currentState?.validate() ?? false) {
                       final clubBloc = context.read<ClubBlocRead>();
                       final club = clubBloc.state.whenOrNull(
-                        success: (_, __, selectedItem) => selectedItem,
+                        success: (_, __, selected) => selected,
                       );
 
                       if (club == null) {
@@ -169,7 +169,7 @@ class _UpsertExamScreenState extends BaseState<UpsertExamScreen> {
                       final id = _exam?.id;
                       if (_exam == null || id == null) {
                         context.read<ExamBlocWrite>().add(
-                              BlocEventWrite.create(
+                              BlocWriteEvent.create(
                                 CreateExamParams(
                                   clubId: club.id,
                                   title: _titleController.text,
@@ -180,7 +180,7 @@ class _UpsertExamScreenState extends BaseState<UpsertExamScreen> {
                             );
                       } else {
                         context.read<ExamBlocWrite>().add(
-                              BlocEventWrite.update(
+                              BlocWriteEvent.update(
                                 UpdateExamParams(
                                   id: id,
                                   clubId: club.id,

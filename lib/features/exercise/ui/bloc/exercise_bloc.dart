@@ -8,36 +8,35 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
   final GetAllExerciseUsecase _getAllExerciseUsecase;
 
   ExerciseBlocRead(this._getAllExerciseUsecase)
-      : super(const BlocStateReadInitial()) {
-    on<BlocEventReadClear<ExerciseModel>>(onClear);
-    on<BlocEventReadGet<ExerciseModel>>(onGet);
-    on<BlocEventReadSelect<ExerciseModel>>(onSelect);
-    on<BlocEventReadFilter<ExerciseModel>>(onFilter);
-    on<BlocEventReadAppend<ExerciseModel>>(onAppend);
-    on<BlocEventReadRemove<ExerciseModel>>(onRemove);
+      : super(const BlocReadStateInitial()) {
+    on<BlocReadEventGet<ExerciseModel>>(onGet);
+    on<BlocReadEventSelect<ExerciseModel>>(onSelect);
+    on<BlocReadEventFilter<ExerciseModel>>(onFilter);
+    on<BlocReadEventAppend<ExerciseModel>>(onAppend);
+    on<BlocReadEventRemove<ExerciseModel>>(onRemove);
   }
 
   @override
   void onGet(
-    BlocEventReadGet event,
-    Emitter<BlocStateRead<ExerciseModel>> emit,
+    BlocReadEventGet event,
+    Emitter<BlocReadState<ExerciseModel>> emit,
   ) async {
     final id = event.id;
     if (id == null) {
-      return emit(const BlocStateRead.failure('Id required'));
+      return emit(const BlocReadState.failure('Id required'));
     }
-    emit(const BlocStateReadLoading());
+    emit(const BlocReadStateLoading());
 
     final res = await _getAllExerciseUsecase.call(
       GetAllExerciseParams(programId: id),
     );
 
     res.fold(
-      (failure) => emit(BlocStateReadFailure(failure.message)),
+      (failure) => emit(BlocReadStateFailure(failure.message)),
       (success) {
         success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: success,
           filteredItems: success,
         ));
@@ -47,15 +46,15 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
 
   @override
   void onSelect(
-    BlocEventReadSelect<ExerciseModel> event,
-    Emitter<BlocStateRead<ExerciseModel>> emit,
+    BlocReadEventSelect<ExerciseModel> event,
+    Emitter<BlocReadState<ExerciseModel>> emit,
   ) {
     state.whenOrNull(
       success: (exercises, __, ___) {
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: exercises,
           filteredItems: exercises,
-          selectedItem: event.item,
+          selected: event.item,
         ));
       },
     );
@@ -63,11 +62,11 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
 
   @override
   void onFilter(
-    BlocEventReadFilter event,
-    Emitter<BlocStateRead<ExerciseModel>> emit,
+    BlocReadEventFilter event,
+    Emitter<BlocReadState<ExerciseModel>> emit,
   ) {
     state.whenOrNull(
-      success: (exercises, _, __) {
+      success: (exercises, _, selected) {
         final finds = exercises
             .where(
               (exercise) => exercise.name.toLowerCase().contains(
@@ -76,9 +75,10 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
             )
             .toList();
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: exercises,
           filteredItems: finds,
+          selected: selected,
         ));
       },
     );
@@ -86,11 +86,11 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
 
   @override
   void onAppend(
-    BlocEventReadAppend<ExerciseModel> event,
-    Emitter<BlocStateRead<ExerciseModel>> emit,
+    BlocReadEventAppend<ExerciseModel> event,
+    Emitter<BlocReadState<ExerciseModel>> emit,
   ) {
     state.whenOrNull(
-      success: (exercises, _, __) {
+      success: (exercises, _, selected) {
         final find = exercises
             .where((exercise) => exercise.id == event.item.id)
             .toList();
@@ -105,9 +105,10 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
 
           items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
-          emit(BlocStateReadSuccess(
+          emit(BlocReadStateSuccess(
             items: items,
             filteredItems: items,
+            selected: selected,
           ));
         }
 
@@ -115,12 +116,13 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
 
         items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
+          selected: selected,
         ));
       },
-      failure: (_) => emit(BlocStateReadSuccess(
+      failure: (_) => emit(BlocReadStateSuccess(
         items: [event.item],
         filteredItems: [event.item],
       )),
@@ -129,11 +131,11 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
 
   @override
   void onRemove(
-    BlocEventReadRemove<ExerciseModel> event,
-    Emitter<BlocStateRead<ExerciseModel>> emit,
+    BlocReadEventRemove<ExerciseModel> event,
+    Emitter<BlocReadState<ExerciseModel>> emit,
   ) {
     state.whenOrNull(
-      success: (exercises, _, __) {
+      success: (exercises, _, selected) {
         final items = exercises
             .where(
               (exercise) => exercise.id != event.id,
@@ -142,9 +144,10 @@ class ExerciseBlocRead extends BlocRead<ExerciseModel> {
 
         items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
+          selected: selected,
         ));
       },
     );
@@ -161,48 +164,48 @@ class ExerciseBlocWrite extends BlocWrite<List<ExerciseModel>> {
     this._createExerciseBatchUsecase,
     this._updateExerciseBatchUsecase,
     this._deleteExerciseUsecase,
-  ) : super(const BlocStateWriteInitial()) {
-    on<BlocEventWriteCreate>(onCreate);
-    on<BlocEventWriteUpdate>(onUpdate);
-    on<BlocEventWriteDelete>(onDelete);
+  ) : super(const BlocWriteStateInitial()) {
+    on<BlocWriteEventCreate>(onCreate);
+    on<BlocWriteEventUpdate>(onUpdate);
+    on<BlocWriteEventDelete>(onDelete);
   }
 
   @override
   void onCreate(
-    BlocEventWriteCreate event,
-    Emitter<BlocStateWrite<List<ExerciseModel>>> emit,
+    BlocWriteEventCreate event,
+    Emitter<BlocWriteState<List<ExerciseModel>>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _createExerciseBatchUsecase.call(
       event.params as List<CreateExerciseParams>,
     );
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onUpdate(
-    BlocEventWriteUpdate event,
-    Emitter<BlocStateWrite<List<ExerciseModel>>> emit,
+    BlocWriteEventUpdate event,
+    Emitter<BlocWriteState<List<ExerciseModel>>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _updateExerciseBatchUsecase.call(
       event.params as List<UpdateExerciseParams>,
     );
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onDelete(
-    BlocEventWriteDelete event,
-    Emitter<BlocStateWrite<List<ExerciseModel>>> emit,
+    BlocWriteEventDelete event,
+    Emitter<BlocWriteState<List<ExerciseModel>>> emit,
   ) async {
     await _deleteExerciseUsecase.call(
       event.params as DeleteExerciseParams,

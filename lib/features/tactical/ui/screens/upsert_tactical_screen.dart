@@ -285,13 +285,13 @@ class _UpsertTacticalScreenState extends BaseState<UpsertTacticalScreen> {
               ],
             ),
             Gap(12.h),
-            BlocConsumer<TacticalBlocWrite, BlocStateWrite<TacticalModel>>(
+            BlocConsumer<TacticalBlocWrite, BlocWriteState<TacticalModel>>(
               listener: (context, state) {
                 state.whenOrNull(
                   success: (tactical) {
                     context
                         .read<TacticalBlocRead>()
-                        .add(BlocEventRead.select(tactical));
+                        .add(BlocReadEvent.select(tactical));
                     context.router.popAndPush(UpdateStrategyRoute(
                       screenWidth: size.width,
                     ));
@@ -306,7 +306,7 @@ class _UpsertTacticalScreenState extends BaseState<UpsertTacticalScreen> {
               },
               builder: (context, state) {
                 return FormButton(
-                  isLoading: state is BlocStateWriteLoading,
+                  isLoading: state is BlocWriteStateLoading,
                   text: _tactical == null
                       ? context.str?.createTactical
                       : context.str?.updateTactical,
@@ -346,7 +346,7 @@ class _UpsertTacticalScreenState extends BaseState<UpsertTacticalScreen> {
                             players: players, arrows: []);
                         context
                             .read<TacticalBlocWrite>()
-                            .add(BlocEventWrite.create(
+                            .add(BlocWriteEvent.create(
                               CreateTacticalParams(
                                 clubId: context.clubRead!.id,
                                 name: _nameController.text,
@@ -378,7 +378,7 @@ class _UpsertTacticalScreenState extends BaseState<UpsertTacticalScreen> {
                         );
 
                         context.read<TacticalBlocWrite>().add(
-                              BlocEventWrite.update(
+                              BlocWriteEvent.update(
                                 UpdateTacticalParams(
                                   id: _tactical!.id,
                                   clubId: context.clubRead!.id,
@@ -443,7 +443,7 @@ class _UpsertTacticalScreenState extends BaseState<UpsertTacticalScreen> {
                 BlocProvider.value(
                   value: context.read<TacticalMediaBlocRead>()
                     ..add(
-                      BlocEventRead.get(
+                      BlocReadEvent.get(
                           id: context.clubRead?.id, query: 'image/png'),
                     ),
                 ),
@@ -476,13 +476,13 @@ class _UpsertTacticalScreenState extends BaseState<UpsertTacticalScreen> {
                     Expanded(
                       child: MediaView<
                           TacticalMediaBlocRead,
-                          BlocStateRead<MediaModel>,
+                          BlocReadState<MediaModel>,
                           TacticalMediaBlocWrite,
-                          BlocStateWrite<MediaModel>>(
+                          BlocWriteState<MediaModel>>(
                         allowedExtensions: const ['jpg', 'jpeg', 'png', 'svg'],
                         onUpload: (file) {
                           context.read<TacticalMediaBlocWrite>().add(
-                                BlocEventWrite.create({
+                                BlocWriteEvent.create({
                                   'clubId': context.clubRead?.id,
                                   'file': file,
                                 }),
@@ -490,13 +490,13 @@ class _UpsertTacticalScreenState extends BaseState<UpsertTacticalScreen> {
                         },
                         onSuccess: (item) {
                           context.read<TacticalMediaBlocRead>().add(
-                                BlocEventRead.append(item),
+                                BlocReadEvent.append(item),
                               );
                         },
                         onDownload: (item) {
                           context
                               .read<TacticalMediaBlocRead>()
-                              .add(BlocEventRead.getOne(item));
+                              .add(BlocReadEvent.getOne(item));
                         },
                         onTap: (item) {
                           Navigator.of(ctx).pop(item);

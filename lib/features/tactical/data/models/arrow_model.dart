@@ -8,7 +8,7 @@ part 'arrow_model.freezed.dart';
 part 'arrow_model.g.dart';
 
 @freezed
-class ArrowModel with _$ArrowModel {
+class ArrowModel extends ArrowEntity with _$ArrowModel {
   factory ArrowModel({
     @Default(0) double startX,
     @Default(0) double startY,

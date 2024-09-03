@@ -9,7 +9,7 @@ part 'media_embed_model.freezed.dart';
 part 'media_embed_model.g.dart';
 
 @freezed
-class MediaEmbedModel with _$MediaEmbedModel {
+class MediaEmbedModel extends MediaEmbedEntity with _$MediaEmbedModel {
   factory MediaEmbedModel({
     @Default(0) int id,
     @Default(0) int creatorId,

@@ -8,7 +8,7 @@ part 'tactical_model.freezed.dart';
 part 'tactical_model.g.dart';
 
 @freezed
-class TacticalModel with _$TacticalModel {
+class TacticalModel extends TacticalEntity with _$TacticalModel {
   const factory TacticalModel({
     @Default(0) int id,
     @Default(0) int clubId,
@@ -81,7 +81,7 @@ extension TacticalModelX on TacticalModel {
 }
 
 @freezed
-class TacticalBoardModel with _$TacticalBoardModel {
+class TacticalBoardModel extends TacticalBoardEntity with _$TacticalBoardModel {
   const factory TacticalBoardModel({
     @Default(0) double width,
     @Default(0) double height,
@@ -108,7 +108,8 @@ extension TacticalBoardModelX on TacticalBoardModel {
 }
 
 @freezed
-class TacticalStrategicModel with _$TacticalStrategicModel {
+class TacticalStrategicModel extends TacticalStrategicEntity
+    with _$TacticalStrategicModel {
   const factory TacticalStrategicModel({
     @Default([]) List<PlayerModel> players,
     @Default([]) List<ArrowModel> arrows,

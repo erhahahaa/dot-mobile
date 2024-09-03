@@ -6,26 +6,24 @@ part 'tactical_entity.g.dart';
 @Collection(accessor: 'tacticals')
 class TacticalEntity {
   final int id;
-  int clubId;
-  int? mediaId;
-  String name;
-  String? description;
-  TacticalBoardEntity board = TacticalBoardEntity();
-  // TacticalTeamEntity? team;
-  TacticalStrategicEntity? strategic;
-  bool isLive;
-  MediaEmbedEntity? media;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  final int clubId;
+  final int? mediaId;
+  final String name;
+  final String? description;
+  final TacticalBoardEntity board;
+  final TacticalStrategicEntity? strategic;
+  final bool isLive;
+  final MediaEmbedEntity? media;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
-  TacticalEntity({
+  const TacticalEntity({
     this.id = 0,
     this.clubId = 0,
     this.mediaId,
     this.name = 'SBY Tactical exhibition',
     this.description,
-    required this.board,
-    // this.team,
+    this.board = const TacticalBoardEntity(),
     this.strategic,
     this.isLive = false,
     this.media,
@@ -36,9 +34,9 @@ class TacticalEntity {
 
 @embedded
 class TacticalBoardEntity {
-  double width, height;
+  final double width, height;
 
-  TacticalBoardEntity({
+  const TacticalBoardEntity({
     this.width = 0,
     this.height = 0,
   });
@@ -46,10 +44,10 @@ class TacticalBoardEntity {
 
 @embedded
 class TacticalStrategicEntity {
-  List<PlayerEntity> players = [];
-  List<ArrowEntity> arrows = [];
+  final List<PlayerEntity> players;
+  final List<ArrowEntity> arrows;
 
-  TacticalStrategicEntity({
+  const TacticalStrategicEntity({
     this.players = const [],
     this.arrows = const [],
   });

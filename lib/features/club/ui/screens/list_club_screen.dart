@@ -33,7 +33,7 @@ class _ListClubScreenState extends BaseState<ListClubScreen> {
         child: RefreshIndicator(
           onRefresh: () async {
             context.read<ClubBlocRead>().add(
-                  const BlocEventRead.get(),
+                  const BlocReadEvent.get(),
                 );
           },
           child: SingleChildScrollView(
@@ -120,7 +120,7 @@ class _ListClubScreenState extends BaseState<ListClubScreen> {
           onChanged: (value) {
             if (value == null) return;
             context.read<ClubBlocRead>().add(
-                  BlocEventRead.filter(value),
+                  BlocReadEvent.filter(value),
                 );
           },
           trailing: MoonButton.icon(
@@ -129,7 +129,7 @@ class _ListClubScreenState extends BaseState<ListClubScreen> {
             onTap: () {
               searchController.clear();
               context.read<ClubBlocRead>().add(
-                    const BlocEventRead.filter(''),
+                    const BlocReadEvent.filter(''),
                   );
             },
           ),
@@ -139,7 +139,7 @@ class _ListClubScreenState extends BaseState<ListClubScreen> {
   }
 
   Widget _buildListClub(BuildContext context) {
-    return BlocBuilder<ClubBlocRead, BlocStateRead<ClubModel>>(
+    return BlocBuilder<ClubBlocRead, BlocReadState<ClubModel>>(
       builder: (context, state) {
         return state.maybeWhen(
           success: (clubs, filteredClubs, __) {
@@ -208,7 +208,7 @@ class _ListClubScreenState extends BaseState<ListClubScreen> {
   ) {
     void onTap() {
       context.read<ClubBlocRead>().add(
-            BlocEventRead.select(selectedClub),
+            BlocReadEvent.select(selectedClub),
           );
       context.router.push(
         ClubShellRoute(id: selectedClub.id),

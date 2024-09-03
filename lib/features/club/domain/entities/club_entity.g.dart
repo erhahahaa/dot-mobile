@@ -49,8 +49,7 @@ const ClubEntitySchema = IsarGeneratedSchema(
       ),
       IsarPropertySchema(
         name: 'media',
-        type: IsarType.object,
-        target: 'MediaEmbedEntity',
+        type: IsarType.json,
       ),
       IsarPropertySchema(
         name: 'memberCount',
@@ -84,7 +83,7 @@ const ClubEntitySchema = IsarGeneratedSchema(
     deserialize: deserializeClubEntity,
     deserializeProperty: deserializeClubEntityProp,
   ),
-  embeddedSchemas: [MediaEmbedEntitySchema],
+  embeddedSchemas: [],
 );
 
 @isarProtected
@@ -108,16 +107,7 @@ int serializeClubEntity(IsarWriter writer, ClubEntity object) {
     }
   }
   IsarCore.writeByte(writer, 5, object.type.index);
-  {
-    final value = object.media;
-    if (value == null) {
-      IsarCore.writeNull(writer, 6);
-    } else {
-      final objectWriter = IsarCore.beginObject(writer, 6);
-      serializeMediaEmbedEntity(objectWriter, value);
-      IsarCore.endObject(writer, objectWriter);
-    }
-  }
+  IsarCore.writeString(writer, 6, isarJsonEncode(object.media));
   IsarCore.writeLong(writer, 7, object.memberCount);
   IsarCore.writeLong(writer, 8, object.programCount);
   IsarCore.writeLong(writer, 9, object.examCount);
@@ -164,15 +154,13 @@ ClubEntity deserializeClubEntity(IsarReader reader) {
           _clubEntityType[IsarCore.readByte(reader, 5)] ?? SportType.basketBall;
     }
   }
-  final MediaEmbedEntity? _media;
+  final dynamic? _media;
   {
-    final objectReader = IsarCore.readObject(reader, 6);
-    if (objectReader.isNull) {
-      _media = null;
+    final json = isarJsonDecode(IsarCore.readString(reader, 6) ?? 'null');
+    if (json is Map<String, dynamic>) {
+      _media = MediaEmbedEntity.fromJson(json);
     } else {
-      final embedded = deserializeMediaEmbedEntity(objectReader);
-      IsarCore.freeReader(objectReader);
-      _media = embedded;
+      _media = null;
     }
   }
   final int _memberCount;
@@ -287,13 +275,11 @@ dynamic deserializeClubEntityProp(IsarReader reader, int property) {
       }
     case 6:
       {
-        final objectReader = IsarCore.readObject(reader, 6);
-        if (objectReader.isNull) {
-          return null;
+        final json = isarJsonDecode(IsarCore.readString(reader, 6) ?? 'null');
+        if (json is Map<String, dynamic>) {
+          return MediaEmbedEntity.fromJson(json);
         } else {
-          final embedded = deserializeMediaEmbedEntity(objectReader);
-          IsarCore.freeReader(objectReader);
-          return embedded;
+          return null;
         }
       }
     case 7:
@@ -1328,18 +1314,6 @@ extension ClubEntityQueryFilter
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> mediaIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 6));
-    });
-  }
-
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> mediaIsNotNull() {
-    return QueryBuilder.apply(not(), (query) {
-      return query.addFilterCondition(const IsNullCondition(property: 6));
-    });
-  }
-
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
       memberCountEqualTo(
     int value,
@@ -1877,14 +1851,7 @@ extension ClubEntityQueryFilter
 }
 
 extension ClubEntityQueryObject
-    on QueryBuilder<ClubEntity, ClubEntity, QFilterCondition> {
-  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> media(
-      FilterQuery<MediaEmbedEntity> q) {
-    return QueryBuilder.apply(this, (query) {
-      return query.object(q, 6);
-    });
-  }
-}
+    on QueryBuilder<ClubEntity, ClubEntity, QFilterCondition> {}
 
 extension ClubEntityQuerySortBy
     on QueryBuilder<ClubEntity, ClubEntity, QSortBy> {
@@ -1975,6 +1942,18 @@ extension ClubEntityQuerySortBy
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByTypeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(5, sort: Sort.desc);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByMedia() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(6);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByMediaDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(6, sort: Sort.desc);
     });
   }
 
@@ -2129,6 +2108,18 @@ extension ClubEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByMedia() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(6);
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByMediaDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(6, sort: Sort.desc);
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByMemberCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(7);
@@ -2236,6 +2227,12 @@ extension ClubEntityQueryWhereDistinct
     });
   }
 
+  QueryBuilder<ClubEntity, ClubEntity, QAfterDistinct> distinctByMedia() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(6);
+    });
+  }
+
   QueryBuilder<ClubEntity, ClubEntity, QAfterDistinct> distinctByMemberCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(7);
@@ -2313,7 +2310,7 @@ extension ClubEntityQueryProperty1
     });
   }
 
-  QueryBuilder<ClubEntity, MediaEmbedEntity?, QAfterProperty> mediaProperty() {
+  QueryBuilder<ClubEntity, dynamic?, QAfterProperty> mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(6);
     });
@@ -2394,8 +2391,7 @@ extension ClubEntityQueryProperty2<R>
     });
   }
 
-  QueryBuilder<ClubEntity, (R, MediaEmbedEntity?), QAfterProperty>
-      mediaProperty() {
+  QueryBuilder<ClubEntity, (R, dynamic?), QAfterProperty> mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(6);
     });
@@ -2477,8 +2473,7 @@ extension ClubEntityQueryProperty3<R1, R2>
     });
   }
 
-  QueryBuilder<ClubEntity, (R1, R2, MediaEmbedEntity?), QOperations>
-      mediaProperty() {
+  QueryBuilder<ClubEntity, (R1, R2, dynamic?), QOperations> mediaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(6);
     });

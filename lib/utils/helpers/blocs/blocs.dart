@@ -4,56 +4,50 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 export 'bloc_event.dart';
 export 'bloc_state.dart';
 
-abstract class BlocRead<T> extends Bloc<BlocEventRead<T>, BlocStateRead<T>> {
+abstract class BlocRead<T> extends Bloc<BlocReadEvent<T>, BlocReadState<T>> {
   BlocRead(super.initialState);
 
-  void onClear(
-    BlocEventReadClear event,
-    Emitter<BlocStateRead<T>> emit,
-  ) =>
-      emit(const BlocStateReadInitial());
-
   void onGet(
-    BlocEventReadGet event,
-    Emitter<BlocStateRead<T>> emit,
+    BlocReadEventGet event,
+    Emitter<BlocReadState<T>> emit,
   );
 
   void onSelect(
-    BlocEventReadSelect<T> event,
-    Emitter<BlocStateRead<T>> emit,
+    BlocReadEventSelect<T> event,
+    Emitter<BlocReadState<T>> emit,
   );
 
   void onFilter(
-    BlocEventReadFilter event,
-    Emitter<BlocStateRead<T>> emit,
+    BlocReadEventFilter event,
+    Emitter<BlocReadState<T>> emit,
   );
 
   void onAppend(
-    BlocEventReadAppend<T> event,
-    Emitter<BlocStateRead<T>> emit,
+    BlocReadEventAppend<T> event,
+    Emitter<BlocReadState<T>> emit,
   );
 
   void onRemove(
-    BlocEventReadRemove<T> event,
-    Emitter<BlocStateRead<T>> emit,
+    BlocReadEventRemove<T> event,
+    Emitter<BlocReadState<T>> emit,
   );
 }
 
-abstract class BlocWrite<T> extends Bloc<BlocEventWrite, BlocStateWrite<T>> {
+abstract class BlocWrite<T> extends Bloc<BlocWriteEvent, BlocWriteState<T>> {
   BlocWrite(super.initialState);
 
   void onCreate(
-    BlocEventWriteCreate event,
-    Emitter<BlocStateWrite<T>> emit,
+    BlocWriteEventCreate event,
+    Emitter<BlocWriteState<T>> emit,
   );
 
   void onUpdate(
-    BlocEventWriteUpdate event,
-    Emitter<BlocStateWrite<T>> emit,
+    BlocWriteEventUpdate event,
+    Emitter<BlocWriteState<T>> emit,
   );
 
   void onDelete(
-    BlocEventWriteDelete event,
-    Emitter<BlocStateWrite<T>> emit,
+    BlocWriteEventDelete event,
+    Emitter<BlocWriteState<T>> emit,
   );
 }

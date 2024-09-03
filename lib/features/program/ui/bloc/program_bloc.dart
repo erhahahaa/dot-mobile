@@ -8,36 +8,35 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
   final GetAllProgramUsecase _getAllProgramUsecase;
 
   ProgramBlocRead(this._getAllProgramUsecase)
-      : super(const BlocStateReadInitial()) {
-    on<BlocEventReadClear<ProgramModel>>(onClear);
-    on<BlocEventReadGet<ProgramModel>>(onGet);
-    on<BlocEventReadSelect<ProgramModel>>(onSelect);
-    on<BlocEventReadFilter<ProgramModel>>(onFilter);
-    on<BlocEventReadAppend<ProgramModel>>(onAppend);
-    on<BlocEventReadRemove<ProgramModel>>(onRemove);
+      : super(const BlocReadStateInitial()) {
+    on<BlocReadEventGet<ProgramModel>>(onGet);
+    on<BlocReadEventSelect<ProgramModel>>(onSelect);
+    on<BlocReadEventFilter<ProgramModel>>(onFilter);
+    on<BlocReadEventAppend<ProgramModel>>(onAppend);
+    on<BlocReadEventRemove<ProgramModel>>(onRemove);
   }
 
   @override
   void onGet(
-    BlocEventReadGet event,
-    Emitter<BlocStateRead<ProgramModel>> emit,
+    BlocReadEventGet event,
+    Emitter<BlocReadState<ProgramModel>> emit,
   ) async {
     final id = event.id;
     if (id == null) {
-      return emit(const BlocStateRead.failure('Id required'));
+      return emit(const BlocReadState.failure('Id required'));
     }
-    emit(const BlocStateReadLoading());
+    emit(const BlocReadStateLoading());
 
     final res = await _getAllProgramUsecase.call(
       GetAllProgramParams(clubId: id),
     );
 
     res.fold(
-      (failure) => emit(BlocStateReadFailure(failure.message)),
+      (failure) => emit(BlocReadStateFailure(failure.message)),
       (success) {
         success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: success,
           filteredItems: success,
         ));
@@ -47,15 +46,15 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
 
   @override
   void onSelect(
-    BlocEventReadSelect<ProgramModel> event,
-    Emitter<BlocStateRead<ProgramModel>> emit,
+    BlocReadEventSelect<ProgramModel> event,
+    Emitter<BlocReadState<ProgramModel>> emit,
   ) {
     state.whenOrNull(
       success: (programs, filteredPrograms, _) {
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: programs,
           filteredItems: programs,
-          selectedItem: event.item,
+          selected: event.item,
         ));
       },
     );
@@ -63,8 +62,8 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
 
   @override
   void onFilter(
-    BlocEventReadFilter event,
-    Emitter<BlocStateRead<ProgramModel>> emit,
+    BlocReadEventFilter event,
+    Emitter<BlocReadState<ProgramModel>> emit,
   ) {
     state.whenOrNull(
       success: (programs, _, __) {
@@ -76,7 +75,7 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
             )
             .toList();
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: programs,
           filteredItems: finds,
         ));
@@ -86,8 +85,8 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
 
   @override
   void onAppend(
-    BlocEventReadAppend<ProgramModel> event,
-    Emitter<BlocStateRead<ProgramModel>> emit,
+    BlocReadEventAppend<ProgramModel> event,
+    Emitter<BlocReadState<ProgramModel>> emit,
   ) {
     state.whenOrNull(
       success: (programs, _, __) {
@@ -104,7 +103,7 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
 
           items.sort((a, b) => a.updatedAt!.compareTo(b.updatedAt!));
 
-          emit(BlocStateReadSuccess(
+          emit(BlocReadStateSuccess(
             items: items,
             filteredItems: items,
           ));
@@ -114,12 +113,12 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
         final items = [...programs, event.item];
         items.sort((a, b) => a.updatedAt!.compareTo(b.updatedAt!));
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
         ));
       },
-      failure: (_) => emit(BlocStateReadSuccess(
+      failure: (_) => emit(BlocReadStateSuccess(
         items: [event.item],
         filteredItems: [event.item],
       )),
@@ -128,8 +127,8 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
 
   @override
   void onRemove(
-    BlocEventReadRemove<ProgramModel> event,
-    Emitter<BlocStateRead<ProgramModel>> emit,
+    BlocReadEventRemove<ProgramModel> event,
+    Emitter<BlocReadState<ProgramModel>> emit,
   ) {
     state.whenOrNull(
       success: (programs, _, __) {
@@ -141,7 +140,7 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
 
         items.sort((a, b) => a.updatedAt!.compareTo(b.updatedAt!));
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
         ));
@@ -160,52 +159,52 @@ class ProgramBlocWrite extends BlocWrite<ProgramModel> {
     this._createProgramUsecase,
     this._updateProgramUsecase,
     this._deleteProgramUsecase,
-  ) : super(const BlocStateWriteInitial()) {
-    on<BlocEventWriteCreate>(onCreate);
-    on<BlocEventWriteUpdate>(onUpdate);
-    on<BlocEventWriteDelete>(onDelete);
+  ) : super(const BlocWriteStateInitial()) {
+    on<BlocWriteEventCreate>(onCreate);
+    on<BlocWriteEventUpdate>(onUpdate);
+    on<BlocWriteEventDelete>(onDelete);
   }
 
   @override
   void onCreate(
-    BlocEventWriteCreate event,
-    Emitter<BlocStateWrite<ProgramModel>> emit,
+    BlocWriteEventCreate event,
+    Emitter<BlocWriteState<ProgramModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res =
         await _createProgramUsecase.call(event.params as CreateProgramParams);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onUpdate(
-    BlocEventWriteUpdate event,
-    Emitter<BlocStateWrite<ProgramModel>> emit,
+    BlocWriteEventUpdate event,
+    Emitter<BlocWriteState<ProgramModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _updateProgramUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onDelete(
-    BlocEventWriteDelete event,
-    Emitter<BlocStateWrite<ProgramModel>> emit,
+    BlocWriteEventDelete event,
+    Emitter<BlocWriteState<ProgramModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _deleteProgramUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 }

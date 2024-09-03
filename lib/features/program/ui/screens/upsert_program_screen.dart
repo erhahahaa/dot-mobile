@@ -237,17 +237,17 @@ class _UpsertProgramScreenState extends BaseState<UpsertProgramScreen> {
               },
             ),
             Gap(12.h),
-            BlocConsumer<ProgramBlocWrite, BlocStateWrite<ProgramModel>>(
+            BlocConsumer<ProgramBlocWrite, BlocWriteState<ProgramModel>>(
               listener: (context, state) {
                 state.whenOrNull(
                   success: (program) {
                     context.read<ProgramBlocRead>().add(
-                          BlocEventRead.select(program),
+                          BlocReadEvent.select(program),
                         );
                     context.read<ExerciseBlocRead>().add(
-                          BlocEventRead.get(id: program.id),
+                          BlocReadEvent.get(id: program.id),
                         );
-                    Future.delayed(Durations.short4, () {
+                    Future.delayed(Durations.medium2, () {
                       if (context.mounted) {
                         context.router.popAndPush(const UpsertExerciseRoute());
                       }
@@ -265,7 +265,7 @@ class _UpsertProgramScreenState extends BaseState<UpsertProgramScreen> {
               },
               builder: (context, state) {
                 return FormButton(
-                  isLoading: state is BlocStateWriteLoading,
+                  isLoading: state is BlocWriteStateLoading,
                   text: _program == null
                       ? context.str?.createProgram
                       : context.str?.updateProgram,
@@ -293,7 +293,7 @@ class _UpsertProgramScreenState extends BaseState<UpsertProgramScreen> {
                       final id = _program?.id;
                       if (_program == null || id == null) {
                         context.read<ProgramBlocWrite>().add(
-                              BlocEventWrite.create(
+                              BlocWriteEvent.create(
                                 CreateProgramParams(
                                   clubId: club.id,
                                   name: _nameController.text,
@@ -305,7 +305,7 @@ class _UpsertProgramScreenState extends BaseState<UpsertProgramScreen> {
                             );
                       } else {
                         context.read<ProgramBlocWrite>().add(
-                              BlocEventWrite.update(
+                              BlocWriteEvent.update(
                                 UpdateProgramParams(
                                   id: id,
                                   clubId: club.id,
@@ -339,7 +339,7 @@ class _UpsertProgramScreenState extends BaseState<UpsertProgramScreen> {
                 BlocProvider.value(
                   value: context.read<ProgramMediaBlocRead>()
                     ..add(
-                      BlocEventRead.get(id: context.clubRead?.id),
+                      BlocReadEvent.get(id: context.clubRead?.id),
                     ),
                 ),
                 BlocProvider.value(
@@ -371,9 +371,9 @@ class _UpsertProgramScreenState extends BaseState<UpsertProgramScreen> {
                     Expanded(
                       child: MediaView<
                           ProgramMediaBlocRead,
-                          BlocStateRead<MediaModel>,
+                          BlocReadState<MediaModel>,
                           ProgramMediaBlocWrite,
-                          BlocStateWrite<MediaModel>>(
+                          BlocWriteState<MediaModel>>(
                         allowedExtensions: const ['jpg', 'jpeg', 'png'],
                         onUpload: (file) {
                           final club = context
@@ -381,7 +381,7 @@ class _UpsertProgramScreenState extends BaseState<UpsertProgramScreen> {
                               .state
                               .whenOrNull(success: (_, __, item) => item);
                           context.read<ProgramMediaBlocWrite>().add(
-                                BlocEventWrite.create({
+                                BlocWriteEvent.create({
                                   'clubId': club?.id,
                                   'file': file,
                                 }),
@@ -389,13 +389,13 @@ class _UpsertProgramScreenState extends BaseState<UpsertProgramScreen> {
                         },
                         onSuccess: (item) {
                           context.read<ProgramMediaBlocRead>().add(
-                                BlocEventRead.append(item),
+                                BlocReadEvent.append(item),
                               );
                         },
                         onDownload: (item) {
                           context
                               .read<ProgramMediaBlocRead>()
-                              .add(BlocEventRead.getOne(item));
+                              .add(BlocReadEvent.getOne(item));
                         },
                         onTap: (item) {
                           Navigator.of(ctx).pop(item);

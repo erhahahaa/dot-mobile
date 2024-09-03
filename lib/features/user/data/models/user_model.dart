@@ -25,7 +25,7 @@ class UserToClub with _$UserToClub {
 }
 
 @freezed
-class UserModel with _$UserModel {
+class UserModel extends UserEntity with _$UserModel {
   const factory UserModel({
     @Default(0) int id,
     @Default('Folks') String name,
@@ -49,48 +49,6 @@ class UserModel with _$UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
-
-  static UserModel fromEntity(UserEntity entity) {
-    return UserModel(
-      id: entity.id,
-      name: entity.name,
-      email: entity.email,
-      username: entity.username,
-      image: entity.image,
-      phone: entity.phone,
-      gender: entity.gender,
-      role: entity.role,
-      bornPlace: entity.bornPlace,
-      bornDate: entity.bornDate,
-      religion: entity.religion,
-      address: entity.address,
-      expertise: entity.expertise,
-      createdAt: entity.createdAt,
-      updatedAt: entity.updatedAt,
-      token: entity.token,
-    );
-  }
-
-  UserEntity toEntity() {
-    return UserEntity(
-      id: id,
-      name: name,
-      email: email,
-      username: username,
-      image: image,
-      phone: phone,
-      gender: gender,
-      role: role,
-      bornPlace: bornPlace,
-      bornDate: bornDate,
-      religion: religion,
-      address: address,
-      expertise: expertise,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-      token: token,
-    );
-  }
 
   static UserModel fake() {
     return UserModel(

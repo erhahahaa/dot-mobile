@@ -46,18 +46,18 @@ extension SportTypeX on SportType {
 @Collection(accessor: 'clubs')
 class ClubEntity {
   final int id;
-  int? creatorId;
-  int? imageId;
-  String? name;
-  String? description;
+  final int? creatorId;
+  final int? imageId;
+  final String? name;
+  final String? description;
   @enumValue
-  SportType type;
-  MediaEmbedEntity? media;
-  int memberCount, programCount, examCount, tacticalCount;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  final SportType type;
+  final MediaEmbedEntity? media;
+  final int memberCount, programCount, examCount, tacticalCount;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
-  ClubEntity({
+  const ClubEntity({
     this.id = 0,
     this.creatorId,
     this.imageId,

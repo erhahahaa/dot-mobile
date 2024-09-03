@@ -54,7 +54,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final res = await _signIn.call(event.params);
     res.fold(
       (failure) => emit(_Unauthenticated(failure.message)),
-      (user) => emit(_Authenticated(user)),
+      (user) {
+        try {
+          emit(_Authenticated(user as UserModel));
+        } catch (e) {
+          emit(_Unauthenticated(e.toString()));
+        }
+      },
     );
   }
 

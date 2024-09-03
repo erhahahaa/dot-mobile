@@ -7,39 +7,37 @@ import 'package:injectable/injectable.dart';
 class ExamBlocRead extends BlocRead<ExamModel> {
   final GetAllExamUsecase _getAllExamUsecase;
 
-  ExamBlocRead(this._getAllExamUsecase) : super(const BlocStateReadInitial()) {
-    on<BlocEventReadClear<ExamModel>>(onClear);
-    on<BlocEventReadGet<ExamModel>>(onGet);
-    on<BlocEventReadSelect<ExamModel>>(onSelect);
-    on<BlocEventReadFilter<ExamModel>>(onFilter);
-    on<BlocEventReadAppend<ExamModel>>(onAppend);
-    on<BlocEventReadRemove<ExamModel>>(onRemove);
+  ExamBlocRead(this._getAllExamUsecase) : super(const BlocReadStateInitial()) {
+    on<BlocReadEventGet<ExamModel>>(onGet);
+    on<BlocReadEventSelect<ExamModel>>(onSelect);
+    on<BlocReadEventFilter<ExamModel>>(onFilter);
+    on<BlocReadEventAppend<ExamModel>>(onAppend);
+    on<BlocReadEventRemove<ExamModel>>(onRemove);
   }
 
   @override
   void onGet(
-    BlocEventReadGet event,
-    Emitter<BlocStateRead<ExamModel>> emit,
+    BlocReadEventGet event,
+    Emitter<BlocReadState<ExamModel>> emit,
   ) async {
     final id = event.id;
     if (id == null) {
-      return emit(const BlocStateRead.failure('Id required'));
+      return emit(const BlocReadState.failure('Id required'));
     }
-    emit(const BlocStateReadLoading());
+    emit(const BlocReadStateLoading());
 
     final res = await _getAllExamUsecase.call(
       GetAllExamParams(clubId: id),
     );
 
     res.fold(
-      (failure) => emit(BlocStateReadFailure(failure.message)),
+      (failure) => emit(BlocReadStateFailure(failure.message)),
       (success) {
         success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: success,
           filteredItems: success,
-          selectedItem: null,
         ));
       },
     );
@@ -47,15 +45,15 @@ class ExamBlocRead extends BlocRead<ExamModel> {
 
   @override
   void onSelect(
-    BlocEventReadSelect<ExamModel> event,
-    Emitter<BlocStateRead<ExamModel>> emit,
+    BlocReadEventSelect<ExamModel> event,
+    Emitter<BlocReadState<ExamModel>> emit,
   ) {
     state.whenOrNull(
       success: (exams, filteredExams, _) {
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: exams,
           filteredItems: filteredExams,
-          selectedItem: event.item,
+          selected: event.item,
         ));
       },
     );
@@ -63,11 +61,11 @@ class ExamBlocRead extends BlocRead<ExamModel> {
 
   @override
   void onFilter(
-    BlocEventReadFilter event,
-    Emitter<BlocStateRead<ExamModel>> emit,
+    BlocReadEventFilter event,
+    Emitter<BlocReadState<ExamModel>> emit,
   ) {
     state.whenOrNull(
-      success: (exams, _, __) {
+      success: (exams, _, selected) {
         final finds = exams
             .where(
               (exam) => exam.title.toLowerCase().contains(
@@ -76,10 +74,10 @@ class ExamBlocRead extends BlocRead<ExamModel> {
             )
             .toList();
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: exams,
           filteredItems: finds,
-          selectedItem: null,
+          selected: selected,
         ));
       },
     );
@@ -87,11 +85,11 @@ class ExamBlocRead extends BlocRead<ExamModel> {
 
   @override
   void onAppend(
-    BlocEventReadAppend<ExamModel> event,
-    Emitter<BlocStateRead<ExamModel>> emit,
+    BlocReadEventAppend<ExamModel> event,
+    Emitter<BlocReadState<ExamModel>> emit,
   ) {
     state.whenOrNull(
-      success: (exams, _, __) {
+      success: (exams, _, selected) {
         final find = exams.where((exam) => exam.id == event.item.id).toList();
 
         if (find.isNotEmpty) {
@@ -104,9 +102,10 @@ class ExamBlocRead extends BlocRead<ExamModel> {
 
           items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
-          emit(BlocStateReadSuccess(
+          emit(BlocReadStateSuccess(
             items: items,
             filteredItems: items,
+            selected: selected,
           ));
           return;
         }
@@ -115,12 +114,13 @@ class ExamBlocRead extends BlocRead<ExamModel> {
 
         items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
+          selected: selected,
         ));
       },
-      failure: (_) => emit(BlocStateReadSuccess(
+      failure: (_) => emit(BlocReadStateSuccess(
         items: [event.item],
         filteredItems: [event.item],
       )),
@@ -129,16 +129,17 @@ class ExamBlocRead extends BlocRead<ExamModel> {
 
   @override
   void onRemove(
-    BlocEventReadRemove<ExamModel> event,
-    Emitter<BlocStateRead<ExamModel>> emit,
+    BlocReadEventRemove<ExamModel> event,
+    Emitter<BlocReadState<ExamModel>> emit,
   ) {
     state.whenOrNull(
-      success: (exams, _, __) {
+      success: (exams, _, selected) {
         final items = exams.where((exam) => exam.id != event.id).toList();
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
+          selected: selected,
         ));
       },
     );
@@ -155,51 +156,51 @@ class ExamBlocWrite extends BlocWrite<ExamModel> {
     this._createExamUsecase,
     this._updateExamUsecase,
     this._deleteExamUsecase,
-  ) : super(const BlocStateWriteInitial()) {
-    on<BlocEventWriteCreate>(onCreate);
-    on<BlocEventWriteUpdate>(onUpdate);
-    on<BlocEventWriteDelete>(onDelete);
+  ) : super(const BlocWriteStateInitial()) {
+    on<BlocWriteEventCreate>(onCreate);
+    on<BlocWriteEventUpdate>(onUpdate);
+    on<BlocWriteEventDelete>(onDelete);
   }
 
   @override
   void onCreate(
-    BlocEventWriteCreate event,
-    Emitter<BlocStateWrite<ExamModel>> emit,
+    BlocWriteEventCreate event,
+    Emitter<BlocWriteState<ExamModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _createExamUsecase.call(event.params as CreateExamParams);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onUpdate(
-    BlocEventWriteUpdate event,
-    Emitter<BlocStateWrite<ExamModel>> emit,
+    BlocWriteEventUpdate event,
+    Emitter<BlocWriteState<ExamModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _updateExamUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onDelete(
-    BlocEventWriteDelete event,
-    Emitter<BlocStateWrite<ExamModel>> emit,
+    BlocWriteEventDelete event,
+    Emitter<BlocWriteState<ExamModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _deleteExamUsecase.call(event.params as DeleteExamParams);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 }

@@ -30,7 +30,7 @@ class _ListExamScreenState extends BaseState<ListExamScreen> {
         child: RefreshIndicator(
           onRefresh: () async {
             context.read<ExamBlocRead>().add(
-                  BlocEventRead.get(id: context.clubRead?.id),
+                  BlocReadEvent.get(id: context.clubRead?.id),
                 );
           },
           child: SingleChildScrollView(
@@ -70,7 +70,7 @@ class _ListExamScreenState extends BaseState<ListExamScreen> {
         FloatingActionButton.extended(
           heroTag: 'new_exam_button_$hashCode',
           onPressed: () {
-            context.read<ExamBlocRead>().add(const BlocEventRead.select(null));
+            context.read<ExamBlocRead>().add(const BlocReadEvent.select(null));
             context.router.push(
               const UpsertExamRoute(),
             );
@@ -95,7 +95,7 @@ class _ListExamScreenState extends BaseState<ListExamScreen> {
           onChanged: (value) {
             if (value == null) return;
             context.read<ClubBlocRead>().add(
-                  BlocEventRead.filter(value),
+                  BlocReadEvent.filter(value),
                 );
           },
           trailing: MoonButton.icon(
@@ -104,7 +104,7 @@ class _ListExamScreenState extends BaseState<ListExamScreen> {
             onTap: () {
               clearSearch();
               context.read<ClubBlocRead>().add(
-                    const BlocEventRead.filter(''),
+                    const BlocReadEvent.filter(''),
                   );
             },
           ),
@@ -114,7 +114,7 @@ class _ListExamScreenState extends BaseState<ListExamScreen> {
   }
 
   Widget _buildListExam(BuildContext context) {
-    return BlocBuilder<ExamBlocRead, BlocStateRead<ExamModel>>(
+    return BlocBuilder<ExamBlocRead, BlocReadState<ExamModel>>(
       builder: (context, state) {
         return state.maybeWhen(
           success: (_, filteredExams, __) {
@@ -144,7 +144,7 @@ class _ListExamScreenState extends BaseState<ListExamScreen> {
                           onPressed: context.clubRead != null
                               ? () {
                                   context.read<ExamBlocRead>().add(
-                                        BlocEventRead.get(
+                                        BlocReadEvent.get(
                                             id: context.clubRead?.id),
                                       );
                                 }
@@ -189,7 +189,7 @@ class _ListExamScreenState extends BaseState<ListExamScreen> {
   ) {
     void onTap() {
       context.read<ExamBlocRead>().add(
-            BlocEventRead.select(exam),
+            BlocReadEvent.select(exam),
           );
       context.router.push(DetailExamRoute(id: exam.id));
     }

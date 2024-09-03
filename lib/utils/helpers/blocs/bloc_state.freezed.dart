@@ -15,13 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$BlocStateRead<T> {
+mixin _$BlocReadState<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int? count, int? total) loading,
-    required TResult Function(
-            List<T> items, List<T> filteredItems, T? selectedItem)
+    required TResult Function(List<T> items, List<T> filteredItems, T? selected)
         success,
     required TResult Function(String message) failure,
   }) =>
@@ -30,7 +29,7 @@ mixin _$BlocStateRead<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int? count, int? total)? loading,
-    TResult? Function(List<T> items, List<T> filteredItems, T? selectedItem)?
+    TResult? Function(List<T> items, List<T> filteredItems, T? selected)?
         success,
     TResult? Function(String message)? failure,
   }) =>
@@ -39,7 +38,7 @@ mixin _$BlocStateRead<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int? count, int? total)? loading,
-    TResult Function(List<T> items, List<T> filteredItems, T? selectedItem)?
+    TResult Function(List<T> items, List<T> filteredItems, T? selected)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -47,87 +46,87 @@ mixin _$BlocStateRead<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BlocStateReadInitial<T> value) initial,
-    required TResult Function(BlocStateReadLoading<T> value) loading,
-    required TResult Function(BlocStateReadSuccess<T> value) success,
-    required TResult Function(BlocStateReadFailure<T> value) failure,
+    required TResult Function(BlocReadStateInitial<T> value) initial,
+    required TResult Function(BlocReadStateLoading<T> value) loading,
+    required TResult Function(BlocReadStateSuccess<T> value) success,
+    required TResult Function(BlocReadStateFailure<T> value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BlocStateReadInitial<T> value)? initial,
-    TResult? Function(BlocStateReadLoading<T> value)? loading,
-    TResult? Function(BlocStateReadSuccess<T> value)? success,
-    TResult? Function(BlocStateReadFailure<T> value)? failure,
+    TResult? Function(BlocReadStateInitial<T> value)? initial,
+    TResult? Function(BlocReadStateLoading<T> value)? loading,
+    TResult? Function(BlocReadStateSuccess<T> value)? success,
+    TResult? Function(BlocReadStateFailure<T> value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BlocStateReadInitial<T> value)? initial,
-    TResult Function(BlocStateReadLoading<T> value)? loading,
-    TResult Function(BlocStateReadSuccess<T> value)? success,
-    TResult Function(BlocStateReadFailure<T> value)? failure,
+    TResult Function(BlocReadStateInitial<T> value)? initial,
+    TResult Function(BlocReadStateLoading<T> value)? loading,
+    TResult Function(BlocReadStateSuccess<T> value)? success,
+    TResult Function(BlocReadStateFailure<T> value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BlocStateReadCopyWith<T, $Res> {
-  factory $BlocStateReadCopyWith(
-          BlocStateRead<T> value, $Res Function(BlocStateRead<T>) then) =
-      _$BlocStateReadCopyWithImpl<T, $Res, BlocStateRead<T>>;
+abstract class $BlocReadStateCopyWith<T, $Res> {
+  factory $BlocReadStateCopyWith(
+          BlocReadState<T> value, $Res Function(BlocReadState<T>) then) =
+      _$BlocReadStateCopyWithImpl<T, $Res, BlocReadState<T>>;
 }
 
 /// @nodoc
-class _$BlocStateReadCopyWithImpl<T, $Res, $Val extends BlocStateRead<T>>
-    implements $BlocStateReadCopyWith<T, $Res> {
-  _$BlocStateReadCopyWithImpl(this._value, this._then);
+class _$BlocReadStateCopyWithImpl<T, $Res, $Val extends BlocReadState<T>>
+    implements $BlocReadStateCopyWith<T, $Res> {
+  _$BlocReadStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BlocStateRead
+  /// Create a copy of BlocReadState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$BlocStateReadInitialImplCopyWith<T, $Res> {
-  factory _$$BlocStateReadInitialImplCopyWith(
-          _$BlocStateReadInitialImpl<T> value,
-          $Res Function(_$BlocStateReadInitialImpl<T>) then) =
-      __$$BlocStateReadInitialImplCopyWithImpl<T, $Res>;
+abstract class _$$BlocReadStateInitialImplCopyWith<T, $Res> {
+  factory _$$BlocReadStateInitialImplCopyWith(
+          _$BlocReadStateInitialImpl<T> value,
+          $Res Function(_$BlocReadStateInitialImpl<T>) then) =
+      __$$BlocReadStateInitialImplCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$BlocStateReadInitialImplCopyWithImpl<T, $Res>
-    extends _$BlocStateReadCopyWithImpl<T, $Res, _$BlocStateReadInitialImpl<T>>
-    implements _$$BlocStateReadInitialImplCopyWith<T, $Res> {
-  __$$BlocStateReadInitialImplCopyWithImpl(_$BlocStateReadInitialImpl<T> _value,
-      $Res Function(_$BlocStateReadInitialImpl<T>) _then)
+class __$$BlocReadStateInitialImplCopyWithImpl<T, $Res>
+    extends _$BlocReadStateCopyWithImpl<T, $Res, _$BlocReadStateInitialImpl<T>>
+    implements _$$BlocReadStateInitialImplCopyWith<T, $Res> {
+  __$$BlocReadStateInitialImplCopyWithImpl(_$BlocReadStateInitialImpl<T> _value,
+      $Res Function(_$BlocReadStateInitialImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of BlocStateRead
+  /// Create a copy of BlocReadState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$BlocStateReadInitialImpl<T> implements BlocStateReadInitial<T> {
-  const _$BlocStateReadInitialImpl();
+class _$BlocReadStateInitialImpl<T> implements BlocReadStateInitial<T> {
+  const _$BlocReadStateInitialImpl();
 
   @override
   String toString() {
-    return 'BlocStateRead<$T>.initial()';
+    return 'BlocReadState<$T>.initial()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlocStateReadInitialImpl<T>);
+            other is _$BlocReadStateInitialImpl<T>);
   }
 
   @override
@@ -138,8 +137,7 @@ class _$BlocStateReadInitialImpl<T> implements BlocStateReadInitial<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int? count, int? total) loading,
-    required TResult Function(
-            List<T> items, List<T> filteredItems, T? selectedItem)
+    required TResult Function(List<T> items, List<T> filteredItems, T? selected)
         success,
     required TResult Function(String message) failure,
   }) {
@@ -151,7 +149,7 @@ class _$BlocStateReadInitialImpl<T> implements BlocStateReadInitial<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int? count, int? total)? loading,
-    TResult? Function(List<T> items, List<T> filteredItems, T? selectedItem)?
+    TResult? Function(List<T> items, List<T> filteredItems, T? selected)?
         success,
     TResult? Function(String message)? failure,
   }) {
@@ -163,7 +161,7 @@ class _$BlocStateReadInitialImpl<T> implements BlocStateReadInitial<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int? count, int? total)? loading,
-    TResult Function(List<T> items, List<T> filteredItems, T? selectedItem)?
+    TResult Function(List<T> items, List<T> filteredItems, T? selected)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -177,10 +175,10 @@ class _$BlocStateReadInitialImpl<T> implements BlocStateReadInitial<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BlocStateReadInitial<T> value) initial,
-    required TResult Function(BlocStateReadLoading<T> value) loading,
-    required TResult Function(BlocStateReadSuccess<T> value) success,
-    required TResult Function(BlocStateReadFailure<T> value) failure,
+    required TResult Function(BlocReadStateInitial<T> value) initial,
+    required TResult Function(BlocReadStateLoading<T> value) loading,
+    required TResult Function(BlocReadStateSuccess<T> value) success,
+    required TResult Function(BlocReadStateFailure<T> value) failure,
   }) {
     return initial(this);
   }
@@ -188,10 +186,10 @@ class _$BlocStateReadInitialImpl<T> implements BlocStateReadInitial<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BlocStateReadInitial<T> value)? initial,
-    TResult? Function(BlocStateReadLoading<T> value)? loading,
-    TResult? Function(BlocStateReadSuccess<T> value)? success,
-    TResult? Function(BlocStateReadFailure<T> value)? failure,
+    TResult? Function(BlocReadStateInitial<T> value)? initial,
+    TResult? Function(BlocReadStateLoading<T> value)? loading,
+    TResult? Function(BlocReadStateSuccess<T> value)? success,
+    TResult? Function(BlocReadStateFailure<T> value)? failure,
   }) {
     return initial?.call(this);
   }
@@ -199,10 +197,10 @@ class _$BlocStateReadInitialImpl<T> implements BlocStateReadInitial<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BlocStateReadInitial<T> value)? initial,
-    TResult Function(BlocStateReadLoading<T> value)? loading,
-    TResult Function(BlocStateReadSuccess<T> value)? success,
-    TResult Function(BlocStateReadFailure<T> value)? failure,
+    TResult Function(BlocReadStateInitial<T> value)? initial,
+    TResult Function(BlocReadStateLoading<T> value)? loading,
+    TResult Function(BlocReadStateSuccess<T> value)? success,
+    TResult Function(BlocReadStateFailure<T> value)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -212,29 +210,29 @@ class _$BlocStateReadInitialImpl<T> implements BlocStateReadInitial<T> {
   }
 }
 
-abstract class BlocStateReadInitial<T> implements BlocStateRead<T> {
-  const factory BlocStateReadInitial() = _$BlocStateReadInitialImpl<T>;
+abstract class BlocReadStateInitial<T> implements BlocReadState<T> {
+  const factory BlocReadStateInitial() = _$BlocReadStateInitialImpl<T>;
 }
 
 /// @nodoc
-abstract class _$$BlocStateReadLoadingImplCopyWith<T, $Res> {
-  factory _$$BlocStateReadLoadingImplCopyWith(
-          _$BlocStateReadLoadingImpl<T> value,
-          $Res Function(_$BlocStateReadLoadingImpl<T>) then) =
-      __$$BlocStateReadLoadingImplCopyWithImpl<T, $Res>;
+abstract class _$$BlocReadStateLoadingImplCopyWith<T, $Res> {
+  factory _$$BlocReadStateLoadingImplCopyWith(
+          _$BlocReadStateLoadingImpl<T> value,
+          $Res Function(_$BlocReadStateLoadingImpl<T>) then) =
+      __$$BlocReadStateLoadingImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({int? count, int? total});
 }
 
 /// @nodoc
-class __$$BlocStateReadLoadingImplCopyWithImpl<T, $Res>
-    extends _$BlocStateReadCopyWithImpl<T, $Res, _$BlocStateReadLoadingImpl<T>>
-    implements _$$BlocStateReadLoadingImplCopyWith<T, $Res> {
-  __$$BlocStateReadLoadingImplCopyWithImpl(_$BlocStateReadLoadingImpl<T> _value,
-      $Res Function(_$BlocStateReadLoadingImpl<T>) _then)
+class __$$BlocReadStateLoadingImplCopyWithImpl<T, $Res>
+    extends _$BlocReadStateCopyWithImpl<T, $Res, _$BlocReadStateLoadingImpl<T>>
+    implements _$$BlocReadStateLoadingImplCopyWith<T, $Res> {
+  __$$BlocReadStateLoadingImplCopyWithImpl(_$BlocReadStateLoadingImpl<T> _value,
+      $Res Function(_$BlocReadStateLoadingImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of BlocStateRead
+  /// Create a copy of BlocReadState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -242,7 +240,7 @@ class __$$BlocStateReadLoadingImplCopyWithImpl<T, $Res>
     Object? count = freezed,
     Object? total = freezed,
   }) {
-    return _then(_$BlocStateReadLoadingImpl<T>(
+    return _then(_$BlocReadStateLoadingImpl<T>(
       count: freezed == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -257,8 +255,8 @@ class __$$BlocStateReadLoadingImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$BlocStateReadLoadingImpl<T> implements BlocStateReadLoading<T> {
-  const _$BlocStateReadLoadingImpl({this.count, this.total});
+class _$BlocReadStateLoadingImpl<T> implements BlocReadStateLoading<T> {
+  const _$BlocReadStateLoadingImpl({this.count, this.total});
 
   @override
   final int? count;
@@ -267,14 +265,14 @@ class _$BlocStateReadLoadingImpl<T> implements BlocStateReadLoading<T> {
 
   @override
   String toString() {
-    return 'BlocStateRead<$T>.loading(count: $count, total: $total)';
+    return 'BlocReadState<$T>.loading(count: $count, total: $total)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlocStateReadLoadingImpl<T> &&
+            other is _$BlocReadStateLoadingImpl<T> &&
             (identical(other.count, count) || other.count == count) &&
             (identical(other.total, total) || other.total == total));
   }
@@ -282,22 +280,21 @@ class _$BlocStateReadLoadingImpl<T> implements BlocStateReadLoading<T> {
   @override
   int get hashCode => Object.hash(runtimeType, count, total);
 
-  /// Create a copy of BlocStateRead
+  /// Create a copy of BlocReadState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$BlocStateReadLoadingImplCopyWith<T, _$BlocStateReadLoadingImpl<T>>
-      get copyWith => __$$BlocStateReadLoadingImplCopyWithImpl<T,
-          _$BlocStateReadLoadingImpl<T>>(this, _$identity);
+  _$$BlocReadStateLoadingImplCopyWith<T, _$BlocReadStateLoadingImpl<T>>
+      get copyWith => __$$BlocReadStateLoadingImplCopyWithImpl<T,
+          _$BlocReadStateLoadingImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int? count, int? total) loading,
-    required TResult Function(
-            List<T> items, List<T> filteredItems, T? selectedItem)
+    required TResult Function(List<T> items, List<T> filteredItems, T? selected)
         success,
     required TResult Function(String message) failure,
   }) {
@@ -309,7 +306,7 @@ class _$BlocStateReadLoadingImpl<T> implements BlocStateReadLoading<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int? count, int? total)? loading,
-    TResult? Function(List<T> items, List<T> filteredItems, T? selectedItem)?
+    TResult? Function(List<T> items, List<T> filteredItems, T? selected)?
         success,
     TResult? Function(String message)? failure,
   }) {
@@ -321,7 +318,7 @@ class _$BlocStateReadLoadingImpl<T> implements BlocStateReadLoading<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int? count, int? total)? loading,
-    TResult Function(List<T> items, List<T> filteredItems, T? selectedItem)?
+    TResult Function(List<T> items, List<T> filteredItems, T? selected)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -335,10 +332,10 @@ class _$BlocStateReadLoadingImpl<T> implements BlocStateReadLoading<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BlocStateReadInitial<T> value) initial,
-    required TResult Function(BlocStateReadLoading<T> value) loading,
-    required TResult Function(BlocStateReadSuccess<T> value) success,
-    required TResult Function(BlocStateReadFailure<T> value) failure,
+    required TResult Function(BlocReadStateInitial<T> value) initial,
+    required TResult Function(BlocReadStateLoading<T> value) loading,
+    required TResult Function(BlocReadStateSuccess<T> value) success,
+    required TResult Function(BlocReadStateFailure<T> value) failure,
   }) {
     return loading(this);
   }
@@ -346,10 +343,10 @@ class _$BlocStateReadLoadingImpl<T> implements BlocStateReadLoading<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BlocStateReadInitial<T> value)? initial,
-    TResult? Function(BlocStateReadLoading<T> value)? loading,
-    TResult? Function(BlocStateReadSuccess<T> value)? success,
-    TResult? Function(BlocStateReadFailure<T> value)? failure,
+    TResult? Function(BlocReadStateInitial<T> value)? initial,
+    TResult? Function(BlocReadStateLoading<T> value)? loading,
+    TResult? Function(BlocReadStateSuccess<T> value)? success,
+    TResult? Function(BlocReadStateFailure<T> value)? failure,
   }) {
     return loading?.call(this);
   }
@@ -357,10 +354,10 @@ class _$BlocStateReadLoadingImpl<T> implements BlocStateReadLoading<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BlocStateReadInitial<T> value)? initial,
-    TResult Function(BlocStateReadLoading<T> value)? loading,
-    TResult Function(BlocStateReadSuccess<T> value)? success,
-    TResult Function(BlocStateReadFailure<T> value)? failure,
+    TResult Function(BlocReadStateInitial<T> value)? initial,
+    TResult Function(BlocReadStateLoading<T> value)? loading,
+    TResult Function(BlocReadStateSuccess<T> value)? success,
+    TResult Function(BlocReadStateFailure<T> value)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -370,48 +367,48 @@ class _$BlocStateReadLoadingImpl<T> implements BlocStateReadLoading<T> {
   }
 }
 
-abstract class BlocStateReadLoading<T> implements BlocStateRead<T> {
-  const factory BlocStateReadLoading({final int? count, final int? total}) =
-      _$BlocStateReadLoadingImpl<T>;
+abstract class BlocReadStateLoading<T> implements BlocReadState<T> {
+  const factory BlocReadStateLoading({final int? count, final int? total}) =
+      _$BlocReadStateLoadingImpl<T>;
 
   int? get count;
   int? get total;
 
-  /// Create a copy of BlocStateRead
+  /// Create a copy of BlocReadState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BlocStateReadLoadingImplCopyWith<T, _$BlocStateReadLoadingImpl<T>>
+  _$$BlocReadStateLoadingImplCopyWith<T, _$BlocReadStateLoadingImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$BlocStateReadSuccessImplCopyWith<T, $Res> {
-  factory _$$BlocStateReadSuccessImplCopyWith(
-          _$BlocStateReadSuccessImpl<T> value,
-          $Res Function(_$BlocStateReadSuccessImpl<T>) then) =
-      __$$BlocStateReadSuccessImplCopyWithImpl<T, $Res>;
+abstract class _$$BlocReadStateSuccessImplCopyWith<T, $Res> {
+  factory _$$BlocReadStateSuccessImplCopyWith(
+          _$BlocReadStateSuccessImpl<T> value,
+          $Res Function(_$BlocReadStateSuccessImpl<T>) then) =
+      __$$BlocReadStateSuccessImplCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({List<T> items, List<T> filteredItems, T? selectedItem});
+  $Res call({List<T> items, List<T> filteredItems, T? selected});
 }
 
 /// @nodoc
-class __$$BlocStateReadSuccessImplCopyWithImpl<T, $Res>
-    extends _$BlocStateReadCopyWithImpl<T, $Res, _$BlocStateReadSuccessImpl<T>>
-    implements _$$BlocStateReadSuccessImplCopyWith<T, $Res> {
-  __$$BlocStateReadSuccessImplCopyWithImpl(_$BlocStateReadSuccessImpl<T> _value,
-      $Res Function(_$BlocStateReadSuccessImpl<T>) _then)
+class __$$BlocReadStateSuccessImplCopyWithImpl<T, $Res>
+    extends _$BlocReadStateCopyWithImpl<T, $Res, _$BlocReadStateSuccessImpl<T>>
+    implements _$$BlocReadStateSuccessImplCopyWith<T, $Res> {
+  __$$BlocReadStateSuccessImplCopyWithImpl(_$BlocReadStateSuccessImpl<T> _value,
+      $Res Function(_$BlocReadStateSuccessImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of BlocStateRead
+  /// Create a copy of BlocReadState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? items = null,
     Object? filteredItems = null,
-    Object? selectedItem = freezed,
+    Object? selected = freezed,
   }) {
-    return _then(_$BlocStateReadSuccessImpl<T>(
+    return _then(_$BlocReadStateSuccessImpl<T>(
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -420,9 +417,9 @@ class __$$BlocStateReadSuccessImplCopyWithImpl<T, $Res>
           ? _value._filteredItems
           : filteredItems // ignore: cast_nullable_to_non_nullable
               as List<T>,
-      selectedItem: freezed == selectedItem
-          ? _value.selectedItem
-          : selectedItem // ignore: cast_nullable_to_non_nullable
+      selected: freezed == selected
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
               as T?,
     ));
   }
@@ -430,11 +427,11 @@ class __$$BlocStateReadSuccessImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
-  const _$BlocStateReadSuccessImpl(
+class _$BlocReadStateSuccessImpl<T> implements BlocReadStateSuccess<T> {
+  const _$BlocReadStateSuccessImpl(
       {final List<T> items = const [],
       final List<T> filteredItems = const [],
-      this.selectedItem})
+      this.selected})
       : _items = items,
         _filteredItems = filteredItems;
 
@@ -457,23 +454,22 @@ class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
   }
 
   @override
-  final T? selectedItem;
+  final T? selected;
 
   @override
   String toString() {
-    return 'BlocStateRead<$T>.success(items: $items, filteredItems: $filteredItems, selectedItem: $selectedItem)';
+    return 'BlocReadState<$T>.success(items: $items, filteredItems: $filteredItems, selected: $selected)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlocStateReadSuccessImpl<T> &&
+            other is _$BlocReadStateSuccessImpl<T> &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             const DeepCollectionEquality()
                 .equals(other._filteredItems, _filteredItems) &&
-            const DeepCollectionEquality()
-                .equals(other.selectedItem, selectedItem));
+            const DeepCollectionEquality().equals(other.selected, selected));
   }
 
   @override
@@ -481,28 +477,27 @@ class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
       runtimeType,
       const DeepCollectionEquality().hash(_items),
       const DeepCollectionEquality().hash(_filteredItems),
-      const DeepCollectionEquality().hash(selectedItem));
+      const DeepCollectionEquality().hash(selected));
 
-  /// Create a copy of BlocStateRead
+  /// Create a copy of BlocReadState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$BlocStateReadSuccessImplCopyWith<T, _$BlocStateReadSuccessImpl<T>>
-      get copyWith => __$$BlocStateReadSuccessImplCopyWithImpl<T,
-          _$BlocStateReadSuccessImpl<T>>(this, _$identity);
+  _$$BlocReadStateSuccessImplCopyWith<T, _$BlocReadStateSuccessImpl<T>>
+      get copyWith => __$$BlocReadStateSuccessImplCopyWithImpl<T,
+          _$BlocReadStateSuccessImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int? count, int? total) loading,
-    required TResult Function(
-            List<T> items, List<T> filteredItems, T? selectedItem)
+    required TResult Function(List<T> items, List<T> filteredItems, T? selected)
         success,
     required TResult Function(String message) failure,
   }) {
-    return success(items, filteredItems, selectedItem);
+    return success(items, filteredItems, selected);
   }
 
   @override
@@ -510,11 +505,11 @@ class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int? count, int? total)? loading,
-    TResult? Function(List<T> items, List<T> filteredItems, T? selectedItem)?
+    TResult? Function(List<T> items, List<T> filteredItems, T? selected)?
         success,
     TResult? Function(String message)? failure,
   }) {
-    return success?.call(items, filteredItems, selectedItem);
+    return success?.call(items, filteredItems, selected);
   }
 
   @override
@@ -522,13 +517,13 @@ class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int? count, int? total)? loading,
-    TResult Function(List<T> items, List<T> filteredItems, T? selectedItem)?
+    TResult Function(List<T> items, List<T> filteredItems, T? selected)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(items, filteredItems, selectedItem);
+      return success(items, filteredItems, selected);
     }
     return orElse();
   }
@@ -536,10 +531,10 @@ class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BlocStateReadInitial<T> value) initial,
-    required TResult Function(BlocStateReadLoading<T> value) loading,
-    required TResult Function(BlocStateReadSuccess<T> value) success,
-    required TResult Function(BlocStateReadFailure<T> value) failure,
+    required TResult Function(BlocReadStateInitial<T> value) initial,
+    required TResult Function(BlocReadStateLoading<T> value) loading,
+    required TResult Function(BlocReadStateSuccess<T> value) success,
+    required TResult Function(BlocReadStateFailure<T> value) failure,
   }) {
     return success(this);
   }
@@ -547,10 +542,10 @@ class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BlocStateReadInitial<T> value)? initial,
-    TResult? Function(BlocStateReadLoading<T> value)? loading,
-    TResult? Function(BlocStateReadSuccess<T> value)? success,
-    TResult? Function(BlocStateReadFailure<T> value)? failure,
+    TResult? Function(BlocReadStateInitial<T> value)? initial,
+    TResult? Function(BlocReadStateLoading<T> value)? loading,
+    TResult? Function(BlocReadStateSuccess<T> value)? success,
+    TResult? Function(BlocReadStateFailure<T> value)? failure,
   }) {
     return success?.call(this);
   }
@@ -558,10 +553,10 @@ class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BlocStateReadInitial<T> value)? initial,
-    TResult Function(BlocStateReadLoading<T> value)? loading,
-    TResult Function(BlocStateReadSuccess<T> value)? success,
-    TResult Function(BlocStateReadFailure<T> value)? failure,
+    TResult Function(BlocReadStateInitial<T> value)? initial,
+    TResult Function(BlocReadStateLoading<T> value)? loading,
+    TResult Function(BlocReadStateSuccess<T> value)? success,
+    TResult Function(BlocReadStateFailure<T> value)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -571,49 +566,49 @@ class _$BlocStateReadSuccessImpl<T> implements BlocStateReadSuccess<T> {
   }
 }
 
-abstract class BlocStateReadSuccess<T> implements BlocStateRead<T> {
-  const factory BlocStateReadSuccess(
+abstract class BlocReadStateSuccess<T> implements BlocReadState<T> {
+  const factory BlocReadStateSuccess(
       {final List<T> items,
       final List<T> filteredItems,
-      final T? selectedItem}) = _$BlocStateReadSuccessImpl<T>;
+      final T? selected}) = _$BlocReadStateSuccessImpl<T>;
 
   List<T> get items;
   List<T> get filteredItems;
-  T? get selectedItem;
+  T? get selected;
 
-  /// Create a copy of BlocStateRead
+  /// Create a copy of BlocReadState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BlocStateReadSuccessImplCopyWith<T, _$BlocStateReadSuccessImpl<T>>
+  _$$BlocReadStateSuccessImplCopyWith<T, _$BlocReadStateSuccessImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$BlocStateReadFailureImplCopyWith<T, $Res> {
-  factory _$$BlocStateReadFailureImplCopyWith(
-          _$BlocStateReadFailureImpl<T> value,
-          $Res Function(_$BlocStateReadFailureImpl<T>) then) =
-      __$$BlocStateReadFailureImplCopyWithImpl<T, $Res>;
+abstract class _$$BlocReadStateFailureImplCopyWith<T, $Res> {
+  factory _$$BlocReadStateFailureImplCopyWith(
+          _$BlocReadStateFailureImpl<T> value,
+          $Res Function(_$BlocReadStateFailureImpl<T>) then) =
+      __$$BlocReadStateFailureImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$BlocStateReadFailureImplCopyWithImpl<T, $Res>
-    extends _$BlocStateReadCopyWithImpl<T, $Res, _$BlocStateReadFailureImpl<T>>
-    implements _$$BlocStateReadFailureImplCopyWith<T, $Res> {
-  __$$BlocStateReadFailureImplCopyWithImpl(_$BlocStateReadFailureImpl<T> _value,
-      $Res Function(_$BlocStateReadFailureImpl<T>) _then)
+class __$$BlocReadStateFailureImplCopyWithImpl<T, $Res>
+    extends _$BlocReadStateCopyWithImpl<T, $Res, _$BlocReadStateFailureImpl<T>>
+    implements _$$BlocReadStateFailureImplCopyWith<T, $Res> {
+  __$$BlocReadStateFailureImplCopyWithImpl(_$BlocReadStateFailureImpl<T> _value,
+      $Res Function(_$BlocReadStateFailureImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of BlocStateRead
+  /// Create a copy of BlocReadState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$BlocStateReadFailureImpl<T>(
+    return _then(_$BlocReadStateFailureImpl<T>(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -624,44 +619,43 @@ class __$$BlocStateReadFailureImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$BlocStateReadFailureImpl<T> implements BlocStateReadFailure<T> {
-  const _$BlocStateReadFailureImpl(this.message);
+class _$BlocReadStateFailureImpl<T> implements BlocReadStateFailure<T> {
+  const _$BlocReadStateFailureImpl(this.message);
 
   @override
   final String message;
 
   @override
   String toString() {
-    return 'BlocStateRead<$T>.failure(message: $message)';
+    return 'BlocReadState<$T>.failure(message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlocStateReadFailureImpl<T> &&
+            other is _$BlocReadStateFailureImpl<T> &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of BlocStateRead
+  /// Create a copy of BlocReadState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$BlocStateReadFailureImplCopyWith<T, _$BlocStateReadFailureImpl<T>>
-      get copyWith => __$$BlocStateReadFailureImplCopyWithImpl<T,
-          _$BlocStateReadFailureImpl<T>>(this, _$identity);
+  _$$BlocReadStateFailureImplCopyWith<T, _$BlocReadStateFailureImpl<T>>
+      get copyWith => __$$BlocReadStateFailureImplCopyWithImpl<T,
+          _$BlocReadStateFailureImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int? count, int? total) loading,
-    required TResult Function(
-            List<T> items, List<T> filteredItems, T? selectedItem)
+    required TResult Function(List<T> items, List<T> filteredItems, T? selected)
         success,
     required TResult Function(String message) failure,
   }) {
@@ -673,7 +667,7 @@ class _$BlocStateReadFailureImpl<T> implements BlocStateReadFailure<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int? count, int? total)? loading,
-    TResult? Function(List<T> items, List<T> filteredItems, T? selectedItem)?
+    TResult? Function(List<T> items, List<T> filteredItems, T? selected)?
         success,
     TResult? Function(String message)? failure,
   }) {
@@ -685,7 +679,7 @@ class _$BlocStateReadFailureImpl<T> implements BlocStateReadFailure<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int? count, int? total)? loading,
-    TResult Function(List<T> items, List<T> filteredItems, T? selectedItem)?
+    TResult Function(List<T> items, List<T> filteredItems, T? selected)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -699,10 +693,10 @@ class _$BlocStateReadFailureImpl<T> implements BlocStateReadFailure<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BlocStateReadInitial<T> value) initial,
-    required TResult Function(BlocStateReadLoading<T> value) loading,
-    required TResult Function(BlocStateReadSuccess<T> value) success,
-    required TResult Function(BlocStateReadFailure<T> value) failure,
+    required TResult Function(BlocReadStateInitial<T> value) initial,
+    required TResult Function(BlocReadStateLoading<T> value) loading,
+    required TResult Function(BlocReadStateSuccess<T> value) success,
+    required TResult Function(BlocReadStateFailure<T> value) failure,
   }) {
     return failure(this);
   }
@@ -710,10 +704,10 @@ class _$BlocStateReadFailureImpl<T> implements BlocStateReadFailure<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BlocStateReadInitial<T> value)? initial,
-    TResult? Function(BlocStateReadLoading<T> value)? loading,
-    TResult? Function(BlocStateReadSuccess<T> value)? success,
-    TResult? Function(BlocStateReadFailure<T> value)? failure,
+    TResult? Function(BlocReadStateInitial<T> value)? initial,
+    TResult? Function(BlocReadStateLoading<T> value)? loading,
+    TResult? Function(BlocReadStateSuccess<T> value)? success,
+    TResult? Function(BlocReadStateFailure<T> value)? failure,
   }) {
     return failure?.call(this);
   }
@@ -721,10 +715,10 @@ class _$BlocStateReadFailureImpl<T> implements BlocStateReadFailure<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BlocStateReadInitial<T> value)? initial,
-    TResult Function(BlocStateReadLoading<T> value)? loading,
-    TResult Function(BlocStateReadSuccess<T> value)? success,
-    TResult Function(BlocStateReadFailure<T> value)? failure,
+    TResult Function(BlocReadStateInitial<T> value)? initial,
+    TResult Function(BlocReadStateLoading<T> value)? loading,
+    TResult Function(BlocReadStateSuccess<T> value)? success,
+    TResult Function(BlocReadStateFailure<T> value)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -734,21 +728,21 @@ class _$BlocStateReadFailureImpl<T> implements BlocStateReadFailure<T> {
   }
 }
 
-abstract class BlocStateReadFailure<T> implements BlocStateRead<T> {
-  const factory BlocStateReadFailure(final String message) =
-      _$BlocStateReadFailureImpl<T>;
+abstract class BlocReadStateFailure<T> implements BlocReadState<T> {
+  const factory BlocReadStateFailure(final String message) =
+      _$BlocReadStateFailureImpl<T>;
 
   String get message;
 
-  /// Create a copy of BlocStateRead
+  /// Create a copy of BlocReadState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BlocStateReadFailureImplCopyWith<T, _$BlocStateReadFailureImpl<T>>
+  _$$BlocReadStateFailureImplCopyWith<T, _$BlocReadStateFailureImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$BlocStateWrite<T> {
+mixin _$BlocWriteState<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -776,89 +770,89 @@ mixin _$BlocStateWrite<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BlocStateWriteInitial<T> value) initial,
-    required TResult Function(BlocStateWriteLoading<T> value) loading,
-    required TResult Function(BlocStateWriteSuccess<T> value) success,
-    required TResult Function(BlocStateWriteFailure<T> value) failure,
+    required TResult Function(BlocWriteStateInitial<T> value) initial,
+    required TResult Function(BlocWriteStateLoading<T> value) loading,
+    required TResult Function(BlocWriteStateSuccess<T> value) success,
+    required TResult Function(BlocWriteStateFailure<T> value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BlocStateWriteInitial<T> value)? initial,
-    TResult? Function(BlocStateWriteLoading<T> value)? loading,
-    TResult? Function(BlocStateWriteSuccess<T> value)? success,
-    TResult? Function(BlocStateWriteFailure<T> value)? failure,
+    TResult? Function(BlocWriteStateInitial<T> value)? initial,
+    TResult? Function(BlocWriteStateLoading<T> value)? loading,
+    TResult? Function(BlocWriteStateSuccess<T> value)? success,
+    TResult? Function(BlocWriteStateFailure<T> value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BlocStateWriteInitial<T> value)? initial,
-    TResult Function(BlocStateWriteLoading<T> value)? loading,
-    TResult Function(BlocStateWriteSuccess<T> value)? success,
-    TResult Function(BlocStateWriteFailure<T> value)? failure,
+    TResult Function(BlocWriteStateInitial<T> value)? initial,
+    TResult Function(BlocWriteStateLoading<T> value)? loading,
+    TResult Function(BlocWriteStateSuccess<T> value)? success,
+    TResult Function(BlocWriteStateFailure<T> value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BlocStateWriteCopyWith<T, $Res> {
-  factory $BlocStateWriteCopyWith(
-          BlocStateWrite<T> value, $Res Function(BlocStateWrite<T>) then) =
-      _$BlocStateWriteCopyWithImpl<T, $Res, BlocStateWrite<T>>;
+abstract class $BlocWriteStateCopyWith<T, $Res> {
+  factory $BlocWriteStateCopyWith(
+          BlocWriteState<T> value, $Res Function(BlocWriteState<T>) then) =
+      _$BlocWriteStateCopyWithImpl<T, $Res, BlocWriteState<T>>;
 }
 
 /// @nodoc
-class _$BlocStateWriteCopyWithImpl<T, $Res, $Val extends BlocStateWrite<T>>
-    implements $BlocStateWriteCopyWith<T, $Res> {
-  _$BlocStateWriteCopyWithImpl(this._value, this._then);
+class _$BlocWriteStateCopyWithImpl<T, $Res, $Val extends BlocWriteState<T>>
+    implements $BlocWriteStateCopyWith<T, $Res> {
+  _$BlocWriteStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BlocStateWrite
+  /// Create a copy of BlocWriteState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$BlocStateWriteInitialImplCopyWith<T, $Res> {
-  factory _$$BlocStateWriteInitialImplCopyWith(
-          _$BlocStateWriteInitialImpl<T> value,
-          $Res Function(_$BlocStateWriteInitialImpl<T>) then) =
-      __$$BlocStateWriteInitialImplCopyWithImpl<T, $Res>;
+abstract class _$$BlocWriteStateInitialImplCopyWith<T, $Res> {
+  factory _$$BlocWriteStateInitialImplCopyWith(
+          _$BlocWriteStateInitialImpl<T> value,
+          $Res Function(_$BlocWriteStateInitialImpl<T>) then) =
+      __$$BlocWriteStateInitialImplCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$BlocStateWriteInitialImplCopyWithImpl<T, $Res>
-    extends _$BlocStateWriteCopyWithImpl<T, $Res,
-        _$BlocStateWriteInitialImpl<T>>
-    implements _$$BlocStateWriteInitialImplCopyWith<T, $Res> {
-  __$$BlocStateWriteInitialImplCopyWithImpl(
-      _$BlocStateWriteInitialImpl<T> _value,
-      $Res Function(_$BlocStateWriteInitialImpl<T>) _then)
+class __$$BlocWriteStateInitialImplCopyWithImpl<T, $Res>
+    extends _$BlocWriteStateCopyWithImpl<T, $Res,
+        _$BlocWriteStateInitialImpl<T>>
+    implements _$$BlocWriteStateInitialImplCopyWith<T, $Res> {
+  __$$BlocWriteStateInitialImplCopyWithImpl(
+      _$BlocWriteStateInitialImpl<T> _value,
+      $Res Function(_$BlocWriteStateInitialImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of BlocStateWrite
+  /// Create a copy of BlocWriteState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$BlocStateWriteInitialImpl<T> implements BlocStateWriteInitial<T> {
-  const _$BlocStateWriteInitialImpl();
+class _$BlocWriteStateInitialImpl<T> implements BlocWriteStateInitial<T> {
+  const _$BlocWriteStateInitialImpl();
 
   @override
   String toString() {
-    return 'BlocStateWrite<$T>.initial()';
+    return 'BlocWriteState<$T>.initial()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlocStateWriteInitialImpl<T>);
+            other is _$BlocWriteStateInitialImpl<T>);
   }
 
   @override
@@ -904,10 +898,10 @@ class _$BlocStateWriteInitialImpl<T> implements BlocStateWriteInitial<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BlocStateWriteInitial<T> value) initial,
-    required TResult Function(BlocStateWriteLoading<T> value) loading,
-    required TResult Function(BlocStateWriteSuccess<T> value) success,
-    required TResult Function(BlocStateWriteFailure<T> value) failure,
+    required TResult Function(BlocWriteStateInitial<T> value) initial,
+    required TResult Function(BlocWriteStateLoading<T> value) loading,
+    required TResult Function(BlocWriteStateSuccess<T> value) success,
+    required TResult Function(BlocWriteStateFailure<T> value) failure,
   }) {
     return initial(this);
   }
@@ -915,10 +909,10 @@ class _$BlocStateWriteInitialImpl<T> implements BlocStateWriteInitial<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BlocStateWriteInitial<T> value)? initial,
-    TResult? Function(BlocStateWriteLoading<T> value)? loading,
-    TResult? Function(BlocStateWriteSuccess<T> value)? success,
-    TResult? Function(BlocStateWriteFailure<T> value)? failure,
+    TResult? Function(BlocWriteStateInitial<T> value)? initial,
+    TResult? Function(BlocWriteStateLoading<T> value)? loading,
+    TResult? Function(BlocWriteStateSuccess<T> value)? success,
+    TResult? Function(BlocWriteStateFailure<T> value)? failure,
   }) {
     return initial?.call(this);
   }
@@ -926,10 +920,10 @@ class _$BlocStateWriteInitialImpl<T> implements BlocStateWriteInitial<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BlocStateWriteInitial<T> value)? initial,
-    TResult Function(BlocStateWriteLoading<T> value)? loading,
-    TResult Function(BlocStateWriteSuccess<T> value)? success,
-    TResult Function(BlocStateWriteFailure<T> value)? failure,
+    TResult Function(BlocWriteStateInitial<T> value)? initial,
+    TResult Function(BlocWriteStateLoading<T> value)? loading,
+    TResult Function(BlocWriteStateSuccess<T> value)? success,
+    TResult Function(BlocWriteStateFailure<T> value)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -939,31 +933,31 @@ class _$BlocStateWriteInitialImpl<T> implements BlocStateWriteInitial<T> {
   }
 }
 
-abstract class BlocStateWriteInitial<T> implements BlocStateWrite<T> {
-  const factory BlocStateWriteInitial() = _$BlocStateWriteInitialImpl<T>;
+abstract class BlocWriteStateInitial<T> implements BlocWriteState<T> {
+  const factory BlocWriteStateInitial() = _$BlocWriteStateInitialImpl<T>;
 }
 
 /// @nodoc
-abstract class _$$BlocStateWriteLoadingImplCopyWith<T, $Res> {
-  factory _$$BlocStateWriteLoadingImplCopyWith(
-          _$BlocStateWriteLoadingImpl<T> value,
-          $Res Function(_$BlocStateWriteLoadingImpl<T>) then) =
-      __$$BlocStateWriteLoadingImplCopyWithImpl<T, $Res>;
+abstract class _$$BlocWriteStateLoadingImplCopyWith<T, $Res> {
+  factory _$$BlocWriteStateLoadingImplCopyWith(
+          _$BlocWriteStateLoadingImpl<T> value,
+          $Res Function(_$BlocWriteStateLoadingImpl<T>) then) =
+      __$$BlocWriteStateLoadingImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({int? count, int? total});
 }
 
 /// @nodoc
-class __$$BlocStateWriteLoadingImplCopyWithImpl<T, $Res>
-    extends _$BlocStateWriteCopyWithImpl<T, $Res,
-        _$BlocStateWriteLoadingImpl<T>>
-    implements _$$BlocStateWriteLoadingImplCopyWith<T, $Res> {
-  __$$BlocStateWriteLoadingImplCopyWithImpl(
-      _$BlocStateWriteLoadingImpl<T> _value,
-      $Res Function(_$BlocStateWriteLoadingImpl<T>) _then)
+class __$$BlocWriteStateLoadingImplCopyWithImpl<T, $Res>
+    extends _$BlocWriteStateCopyWithImpl<T, $Res,
+        _$BlocWriteStateLoadingImpl<T>>
+    implements _$$BlocWriteStateLoadingImplCopyWith<T, $Res> {
+  __$$BlocWriteStateLoadingImplCopyWithImpl(
+      _$BlocWriteStateLoadingImpl<T> _value,
+      $Res Function(_$BlocWriteStateLoadingImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of BlocStateWrite
+  /// Create a copy of BlocWriteState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -971,7 +965,7 @@ class __$$BlocStateWriteLoadingImplCopyWithImpl<T, $Res>
     Object? count = freezed,
     Object? total = freezed,
   }) {
-    return _then(_$BlocStateWriteLoadingImpl<T>(
+    return _then(_$BlocWriteStateLoadingImpl<T>(
       count: freezed == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -986,8 +980,8 @@ class __$$BlocStateWriteLoadingImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$BlocStateWriteLoadingImpl<T> implements BlocStateWriteLoading<T> {
-  const _$BlocStateWriteLoadingImpl({this.count, this.total});
+class _$BlocWriteStateLoadingImpl<T> implements BlocWriteStateLoading<T> {
+  const _$BlocWriteStateLoadingImpl({this.count, this.total});
 
   @override
   final int? count;
@@ -996,14 +990,14 @@ class _$BlocStateWriteLoadingImpl<T> implements BlocStateWriteLoading<T> {
 
   @override
   String toString() {
-    return 'BlocStateWrite<$T>.loading(count: $count, total: $total)';
+    return 'BlocWriteState<$T>.loading(count: $count, total: $total)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlocStateWriteLoadingImpl<T> &&
+            other is _$BlocWriteStateLoadingImpl<T> &&
             (identical(other.count, count) || other.count == count) &&
             (identical(other.total, total) || other.total == total));
   }
@@ -1011,14 +1005,14 @@ class _$BlocStateWriteLoadingImpl<T> implements BlocStateWriteLoading<T> {
   @override
   int get hashCode => Object.hash(runtimeType, count, total);
 
-  /// Create a copy of BlocStateWrite
+  /// Create a copy of BlocWriteState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$BlocStateWriteLoadingImplCopyWith<T, _$BlocStateWriteLoadingImpl<T>>
-      get copyWith => __$$BlocStateWriteLoadingImplCopyWithImpl<T,
-          _$BlocStateWriteLoadingImpl<T>>(this, _$identity);
+  _$$BlocWriteStateLoadingImplCopyWith<T, _$BlocWriteStateLoadingImpl<T>>
+      get copyWith => __$$BlocWriteStateLoadingImplCopyWithImpl<T,
+          _$BlocWriteStateLoadingImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1060,10 +1054,10 @@ class _$BlocStateWriteLoadingImpl<T> implements BlocStateWriteLoading<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BlocStateWriteInitial<T> value) initial,
-    required TResult Function(BlocStateWriteLoading<T> value) loading,
-    required TResult Function(BlocStateWriteSuccess<T> value) success,
-    required TResult Function(BlocStateWriteFailure<T> value) failure,
+    required TResult Function(BlocWriteStateInitial<T> value) initial,
+    required TResult Function(BlocWriteStateLoading<T> value) loading,
+    required TResult Function(BlocWriteStateSuccess<T> value) success,
+    required TResult Function(BlocWriteStateFailure<T> value) failure,
   }) {
     return loading(this);
   }
@@ -1071,10 +1065,10 @@ class _$BlocStateWriteLoadingImpl<T> implements BlocStateWriteLoading<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BlocStateWriteInitial<T> value)? initial,
-    TResult? Function(BlocStateWriteLoading<T> value)? loading,
-    TResult? Function(BlocStateWriteSuccess<T> value)? success,
-    TResult? Function(BlocStateWriteFailure<T> value)? failure,
+    TResult? Function(BlocWriteStateInitial<T> value)? initial,
+    TResult? Function(BlocWriteStateLoading<T> value)? loading,
+    TResult? Function(BlocWriteStateSuccess<T> value)? success,
+    TResult? Function(BlocWriteStateFailure<T> value)? failure,
   }) {
     return loading?.call(this);
   }
@@ -1082,10 +1076,10 @@ class _$BlocStateWriteLoadingImpl<T> implements BlocStateWriteLoading<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BlocStateWriteInitial<T> value)? initial,
-    TResult Function(BlocStateWriteLoading<T> value)? loading,
-    TResult Function(BlocStateWriteSuccess<T> value)? success,
-    TResult Function(BlocStateWriteFailure<T> value)? failure,
+    TResult Function(BlocWriteStateInitial<T> value)? initial,
+    TResult Function(BlocWriteStateLoading<T> value)? loading,
+    TResult Function(BlocWriteStateSuccess<T> value)? success,
+    TResult Function(BlocWriteStateFailure<T> value)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1095,48 +1089,48 @@ class _$BlocStateWriteLoadingImpl<T> implements BlocStateWriteLoading<T> {
   }
 }
 
-abstract class BlocStateWriteLoading<T> implements BlocStateWrite<T> {
-  const factory BlocStateWriteLoading({final int? count, final int? total}) =
-      _$BlocStateWriteLoadingImpl<T>;
+abstract class BlocWriteStateLoading<T> implements BlocWriteState<T> {
+  const factory BlocWriteStateLoading({final int? count, final int? total}) =
+      _$BlocWriteStateLoadingImpl<T>;
 
   int? get count;
   int? get total;
 
-  /// Create a copy of BlocStateWrite
+  /// Create a copy of BlocWriteState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BlocStateWriteLoadingImplCopyWith<T, _$BlocStateWriteLoadingImpl<T>>
+  _$$BlocWriteStateLoadingImplCopyWith<T, _$BlocWriteStateLoadingImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$BlocStateWriteSuccessImplCopyWith<T, $Res> {
-  factory _$$BlocStateWriteSuccessImplCopyWith(
-          _$BlocStateWriteSuccessImpl<T> value,
-          $Res Function(_$BlocStateWriteSuccessImpl<T>) then) =
-      __$$BlocStateWriteSuccessImplCopyWithImpl<T, $Res>;
+abstract class _$$BlocWriteStateSuccessImplCopyWith<T, $Res> {
+  factory _$$BlocWriteStateSuccessImplCopyWith(
+          _$BlocWriteStateSuccessImpl<T> value,
+          $Res Function(_$BlocWriteStateSuccessImpl<T>) then) =
+      __$$BlocWriteStateSuccessImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T item});
 }
 
 /// @nodoc
-class __$$BlocStateWriteSuccessImplCopyWithImpl<T, $Res>
-    extends _$BlocStateWriteCopyWithImpl<T, $Res,
-        _$BlocStateWriteSuccessImpl<T>>
-    implements _$$BlocStateWriteSuccessImplCopyWith<T, $Res> {
-  __$$BlocStateWriteSuccessImplCopyWithImpl(
-      _$BlocStateWriteSuccessImpl<T> _value,
-      $Res Function(_$BlocStateWriteSuccessImpl<T>) _then)
+class __$$BlocWriteStateSuccessImplCopyWithImpl<T, $Res>
+    extends _$BlocWriteStateCopyWithImpl<T, $Res,
+        _$BlocWriteStateSuccessImpl<T>>
+    implements _$$BlocWriteStateSuccessImplCopyWith<T, $Res> {
+  __$$BlocWriteStateSuccessImplCopyWithImpl(
+      _$BlocWriteStateSuccessImpl<T> _value,
+      $Res Function(_$BlocWriteStateSuccessImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of BlocStateWrite
+  /// Create a copy of BlocWriteState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? item = freezed,
   }) {
-    return _then(_$BlocStateWriteSuccessImpl<T>(
+    return _then(_$BlocWriteStateSuccessImpl<T>(
       freezed == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
@@ -1147,22 +1141,22 @@ class __$$BlocStateWriteSuccessImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$BlocStateWriteSuccessImpl<T> implements BlocStateWriteSuccess<T> {
-  const _$BlocStateWriteSuccessImpl(this.item);
+class _$BlocWriteStateSuccessImpl<T> implements BlocWriteStateSuccess<T> {
+  const _$BlocWriteStateSuccessImpl(this.item);
 
   @override
   final T item;
 
   @override
   String toString() {
-    return 'BlocStateWrite<$T>.success(item: $item)';
+    return 'BlocWriteState<$T>.success(item: $item)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlocStateWriteSuccessImpl<T> &&
+            other is _$BlocWriteStateSuccessImpl<T> &&
             const DeepCollectionEquality().equals(other.item, item));
   }
 
@@ -1170,14 +1164,14 @@ class _$BlocStateWriteSuccessImpl<T> implements BlocStateWriteSuccess<T> {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(item));
 
-  /// Create a copy of BlocStateWrite
+  /// Create a copy of BlocWriteState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$BlocStateWriteSuccessImplCopyWith<T, _$BlocStateWriteSuccessImpl<T>>
-      get copyWith => __$$BlocStateWriteSuccessImplCopyWithImpl<T,
-          _$BlocStateWriteSuccessImpl<T>>(this, _$identity);
+  _$$BlocWriteStateSuccessImplCopyWith<T, _$BlocWriteStateSuccessImpl<T>>
+      get copyWith => __$$BlocWriteStateSuccessImplCopyWithImpl<T,
+          _$BlocWriteStateSuccessImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1219,10 +1213,10 @@ class _$BlocStateWriteSuccessImpl<T> implements BlocStateWriteSuccess<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BlocStateWriteInitial<T> value) initial,
-    required TResult Function(BlocStateWriteLoading<T> value) loading,
-    required TResult Function(BlocStateWriteSuccess<T> value) success,
-    required TResult Function(BlocStateWriteFailure<T> value) failure,
+    required TResult Function(BlocWriteStateInitial<T> value) initial,
+    required TResult Function(BlocWriteStateLoading<T> value) loading,
+    required TResult Function(BlocWriteStateSuccess<T> value) success,
+    required TResult Function(BlocWriteStateFailure<T> value) failure,
   }) {
     return success(this);
   }
@@ -1230,10 +1224,10 @@ class _$BlocStateWriteSuccessImpl<T> implements BlocStateWriteSuccess<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BlocStateWriteInitial<T> value)? initial,
-    TResult? Function(BlocStateWriteLoading<T> value)? loading,
-    TResult? Function(BlocStateWriteSuccess<T> value)? success,
-    TResult? Function(BlocStateWriteFailure<T> value)? failure,
+    TResult? Function(BlocWriteStateInitial<T> value)? initial,
+    TResult? Function(BlocWriteStateLoading<T> value)? loading,
+    TResult? Function(BlocWriteStateSuccess<T> value)? success,
+    TResult? Function(BlocWriteStateFailure<T> value)? failure,
   }) {
     return success?.call(this);
   }
@@ -1241,10 +1235,10 @@ class _$BlocStateWriteSuccessImpl<T> implements BlocStateWriteSuccess<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BlocStateWriteInitial<T> value)? initial,
-    TResult Function(BlocStateWriteLoading<T> value)? loading,
-    TResult Function(BlocStateWriteSuccess<T> value)? success,
-    TResult Function(BlocStateWriteFailure<T> value)? failure,
+    TResult Function(BlocWriteStateInitial<T> value)? initial,
+    TResult Function(BlocWriteStateLoading<T> value)? loading,
+    TResult Function(BlocWriteStateSuccess<T> value)? success,
+    TResult Function(BlocWriteStateFailure<T> value)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1254,47 +1248,47 @@ class _$BlocStateWriteSuccessImpl<T> implements BlocStateWriteSuccess<T> {
   }
 }
 
-abstract class BlocStateWriteSuccess<T> implements BlocStateWrite<T> {
-  const factory BlocStateWriteSuccess(final T item) =
-      _$BlocStateWriteSuccessImpl<T>;
+abstract class BlocWriteStateSuccess<T> implements BlocWriteState<T> {
+  const factory BlocWriteStateSuccess(final T item) =
+      _$BlocWriteStateSuccessImpl<T>;
 
   T get item;
 
-  /// Create a copy of BlocStateWrite
+  /// Create a copy of BlocWriteState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BlocStateWriteSuccessImplCopyWith<T, _$BlocStateWriteSuccessImpl<T>>
+  _$$BlocWriteStateSuccessImplCopyWith<T, _$BlocWriteStateSuccessImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$BlocStateWriteFailureImplCopyWith<T, $Res> {
-  factory _$$BlocStateWriteFailureImplCopyWith(
-          _$BlocStateWriteFailureImpl<T> value,
-          $Res Function(_$BlocStateWriteFailureImpl<T>) then) =
-      __$$BlocStateWriteFailureImplCopyWithImpl<T, $Res>;
+abstract class _$$BlocWriteStateFailureImplCopyWith<T, $Res> {
+  factory _$$BlocWriteStateFailureImplCopyWith(
+          _$BlocWriteStateFailureImpl<T> value,
+          $Res Function(_$BlocWriteStateFailureImpl<T>) then) =
+      __$$BlocWriteStateFailureImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$BlocStateWriteFailureImplCopyWithImpl<T, $Res>
-    extends _$BlocStateWriteCopyWithImpl<T, $Res,
-        _$BlocStateWriteFailureImpl<T>>
-    implements _$$BlocStateWriteFailureImplCopyWith<T, $Res> {
-  __$$BlocStateWriteFailureImplCopyWithImpl(
-      _$BlocStateWriteFailureImpl<T> _value,
-      $Res Function(_$BlocStateWriteFailureImpl<T>) _then)
+class __$$BlocWriteStateFailureImplCopyWithImpl<T, $Res>
+    extends _$BlocWriteStateCopyWithImpl<T, $Res,
+        _$BlocWriteStateFailureImpl<T>>
+    implements _$$BlocWriteStateFailureImplCopyWith<T, $Res> {
+  __$$BlocWriteStateFailureImplCopyWithImpl(
+      _$BlocWriteStateFailureImpl<T> _value,
+      $Res Function(_$BlocWriteStateFailureImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of BlocStateWrite
+  /// Create a copy of BlocWriteState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$BlocStateWriteFailureImpl<T>(
+    return _then(_$BlocWriteStateFailureImpl<T>(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1305,36 +1299,36 @@ class __$$BlocStateWriteFailureImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$BlocStateWriteFailureImpl<T> implements BlocStateWriteFailure<T> {
-  const _$BlocStateWriteFailureImpl(this.message);
+class _$BlocWriteStateFailureImpl<T> implements BlocWriteStateFailure<T> {
+  const _$BlocWriteStateFailureImpl(this.message);
 
   @override
   final String message;
 
   @override
   String toString() {
-    return 'BlocStateWrite<$T>.failure(message: $message)';
+    return 'BlocWriteState<$T>.failure(message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlocStateWriteFailureImpl<T> &&
+            other is _$BlocWriteStateFailureImpl<T> &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of BlocStateWrite
+  /// Create a copy of BlocWriteState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$BlocStateWriteFailureImplCopyWith<T, _$BlocStateWriteFailureImpl<T>>
-      get copyWith => __$$BlocStateWriteFailureImplCopyWithImpl<T,
-          _$BlocStateWriteFailureImpl<T>>(this, _$identity);
+  _$$BlocWriteStateFailureImplCopyWith<T, _$BlocWriteStateFailureImpl<T>>
+      get copyWith => __$$BlocWriteStateFailureImplCopyWithImpl<T,
+          _$BlocWriteStateFailureImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1376,10 +1370,10 @@ class _$BlocStateWriteFailureImpl<T> implements BlocStateWriteFailure<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BlocStateWriteInitial<T> value) initial,
-    required TResult Function(BlocStateWriteLoading<T> value) loading,
-    required TResult Function(BlocStateWriteSuccess<T> value) success,
-    required TResult Function(BlocStateWriteFailure<T> value) failure,
+    required TResult Function(BlocWriteStateInitial<T> value) initial,
+    required TResult Function(BlocWriteStateLoading<T> value) loading,
+    required TResult Function(BlocWriteStateSuccess<T> value) success,
+    required TResult Function(BlocWriteStateFailure<T> value) failure,
   }) {
     return failure(this);
   }
@@ -1387,10 +1381,10 @@ class _$BlocStateWriteFailureImpl<T> implements BlocStateWriteFailure<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BlocStateWriteInitial<T> value)? initial,
-    TResult? Function(BlocStateWriteLoading<T> value)? loading,
-    TResult? Function(BlocStateWriteSuccess<T> value)? success,
-    TResult? Function(BlocStateWriteFailure<T> value)? failure,
+    TResult? Function(BlocWriteStateInitial<T> value)? initial,
+    TResult? Function(BlocWriteStateLoading<T> value)? loading,
+    TResult? Function(BlocWriteStateSuccess<T> value)? success,
+    TResult? Function(BlocWriteStateFailure<T> value)? failure,
   }) {
     return failure?.call(this);
   }
@@ -1398,10 +1392,10 @@ class _$BlocStateWriteFailureImpl<T> implements BlocStateWriteFailure<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BlocStateWriteInitial<T> value)? initial,
-    TResult Function(BlocStateWriteLoading<T> value)? loading,
-    TResult Function(BlocStateWriteSuccess<T> value)? success,
-    TResult Function(BlocStateWriteFailure<T> value)? failure,
+    TResult Function(BlocWriteStateInitial<T> value)? initial,
+    TResult Function(BlocWriteStateLoading<T> value)? loading,
+    TResult Function(BlocWriteStateSuccess<T> value)? success,
+    TResult Function(BlocWriteStateFailure<T> value)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1411,15 +1405,15 @@ class _$BlocStateWriteFailureImpl<T> implements BlocStateWriteFailure<T> {
   }
 }
 
-abstract class BlocStateWriteFailure<T> implements BlocStateWrite<T> {
-  const factory BlocStateWriteFailure(final String message) =
-      _$BlocStateWriteFailureImpl<T>;
+abstract class BlocWriteStateFailure<T> implements BlocWriteState<T> {
+  const factory BlocWriteStateFailure(final String message) =
+      _$BlocWriteStateFailureImpl<T>;
 
   String get message;
 
-  /// Create a copy of BlocStateWrite
+  /// Create a copy of BlocWriteState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BlocStateWriteFailureImplCopyWith<T, _$BlocStateWriteFailureImpl<T>>
+  _$$BlocWriteStateFailureImplCopyWith<T, _$BlocWriteStateFailureImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }

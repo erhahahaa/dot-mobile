@@ -53,7 +53,7 @@ class _ListProgramScreenState extends BaseState<ListProgramScreen> {
         child: RefreshIndicator(
           onRefresh: () async {
             context.read<ProgramBlocRead>().add(
-                  BlocEventRead.get(id: context.clubRead?.id),
+                  BlocReadEvent.get(id: context.clubRead?.id),
                 );
           },
           child: SingleChildScrollView(
@@ -88,7 +88,7 @@ class _ListProgramScreenState extends BaseState<ListProgramScreen> {
             onChanged: (value) {
               if (value == null) return;
               context.read<ProgramBlocRead>().add(
-                    BlocEventRead.filter(value),
+                    BlocReadEvent.filter(value),
                   );
             },
             trailing: MoonButton.icon(
@@ -97,7 +97,7 @@ class _ListProgramScreenState extends BaseState<ListProgramScreen> {
               onTap: () {
                 clearSearch();
                 context.read<ProgramBlocRead>().add(
-                      const BlocEventRead.filter(''),
+                      const BlocReadEvent.filter(''),
                     );
               },
             ),
@@ -124,7 +124,7 @@ class _ListProgramScreenState extends BaseState<ListProgramScreen> {
           if (el == CalendarElement.appointment && len == 1) {
             final program = calendarTapDetails.appointments?.first;
             context.read<ProgramBlocRead>().add(
-                  BlocEventRead.select(program),
+                  BlocReadEvent.select(program),
                 );
             context.router.push(
               DetailProgramRoute(id: program.id),
@@ -151,7 +151,7 @@ class _ListProgramScreenState extends BaseState<ListProgramScreen> {
           ],
         ),
         if (hideCalendar == false) ...[
-          BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
+          BlocBuilder<ProgramBlocRead, BlocReadState<ProgramModel>>(
             builder: (context, state) {
               return state.maybeWhen(
                 success: (_, filteredPrograms, __) {
@@ -199,7 +199,7 @@ class _ListProgramScreenState extends BaseState<ListProgramScreen> {
           ],
         ),
         if (hideListProgram == false) ...[
-          BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
+          BlocBuilder<ProgramBlocRead, BlocReadState<ProgramModel>>(
             builder: (context, state) {
               return state.maybeWhen(
                 success: (_, filteredPrograms, __) {
@@ -229,7 +229,7 @@ class _ListProgramScreenState extends BaseState<ListProgramScreen> {
                                 onPressed: context.clubRead != null
                                     ? () {
                                         context.read<ProgramBlocRead>().add(
-                                              BlocEventRead.get(
+                                              BlocReadEvent.get(
                                                   id: context.clubRead?.id),
                                             );
                                       }
@@ -289,7 +289,7 @@ class _ListProgramScreenState extends BaseState<ListProgramScreen> {
   ) {
     void onTap() {
       context.read<ProgramBlocRead>().add(
-            BlocEventRead.select(program),
+            BlocReadEvent.select(program),
           );
       context.router.push(
         DetailProgramRoute(id: program.id),

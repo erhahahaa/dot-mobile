@@ -6,16 +6,16 @@ part 'exam_entity.g.dart';
 @Collection(accessor: 'exams')
 class ExamEntity {
   final int id;
-  int clubId;
-  int? imageId;
-  String title;
-  String? description;
-  DateTime? dueAt;
-  MediaEmbedEntity? media;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  final int clubId;
+  final int? imageId;
+  final String title;
+  final String? description;
+  final DateTime? dueAt;
+  final MediaEmbedEntity? media;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
-  ExamEntity({
+  const ExamEntity({
     this.id = 0,
     this.clubId = 0,
     this.imageId,

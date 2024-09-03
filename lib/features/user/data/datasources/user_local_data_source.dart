@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:isar/isar.dart';
 
 abstract class UserLocalDataSource {
-  Future<Either<Failure, UserModel>> getMe();
+  Future<Either<Failure, UserEntity>> getMe();
   Future<Either<Failure, UserPreferencesModel>> getUserPreferences();
   Future<Either<Failure, bool>> saveUserPreferences(
     SaveUserPreferencesParams params,
@@ -65,7 +65,7 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
   }
 
   @override
-  Future<Either<Failure, UserModel>> getMe() async {
+  Future<Either<Failure, UserEntity>> getMe() async {
     final res = await _local.isar.readAsync((isar) {
       return isar.users.where().tokenIsNotEmpty().findAll();
     });
@@ -73,7 +73,7 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
       return const Left(StorageFailure(message: 'No user data found'));
     }
 
-    return Right(UserModel.fromEntity(res.last));
+    return Right(res.last);
   }
 
   @override

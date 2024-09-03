@@ -385,7 +385,7 @@ class _$ExerciseModelImpl extends _ExerciseModel {
       this.programId = 0,
       this.mediaId,
       this.order = 0,
-      this.name = 'Dot Exercise 0',
+      this.name = '',
       this.description,
       this.repetition,
       this.sets,

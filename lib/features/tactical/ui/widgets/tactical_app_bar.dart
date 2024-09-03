@@ -48,13 +48,13 @@ class TacticalAppBar extends StatelessWidget {
           SizedBox(width: 16.w),
         ],
         if (showActions) ...[
-          BlocListener<TacticalBlocWrite, BlocStateWrite<TacticalModel>>(
+          BlocListener<TacticalBlocWrite, BlocWriteState<TacticalModel>>(
             listener: (context, state) {
               if (!showActions) return;
               state.whenOrNull(
                 success: (success) {
                   context.read<TacticalBlocRead>().add(
-                        BlocEventRead.remove(success.id),
+                        BlocReadEvent.remove(success.id),
                       );
                   context.successToast(
                     title: 'Success',
@@ -96,7 +96,7 @@ class TacticalAppBar extends StatelessWidget {
                           TextButton(
                             onPressed: () {
                               context.read<TacticalBlocWrite>().add(
-                                    BlocEventWrite.delete(DeleteTacticalParams(
+                                    BlocWriteEvent.delete(DeleteTacticalParams(
                                       tacticalId: tactical?.id ?? 0,
                                     )),
                                   );

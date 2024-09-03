@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:isar/isar.dart';
 
 abstract class AuthLocalDataSource {
-  Future<UserModel> getSignedInUser();
+  Future<UserEntity> getSignedInUser();
   Future<UserEntity?> cacheSignedInUser(UserModel user);
   Future<bool?> clearSignedInUser();
 }
@@ -21,7 +21,7 @@ class AuthLocalDatasourceImpl implements AuthLocalDataSource {
   ) async {
     return await _isar.isar.writeAsync((isar) {
       isar.users.clear();
-      isar.users.put(user.toEntity());
+      isar.users.put(user);
       return isar.users.get(user.id);
     });
   }
@@ -35,11 +35,11 @@ class AuthLocalDatasourceImpl implements AuthLocalDataSource {
   }
 
   @override
-  Future<UserModel> getSignedInUser() async {
+  Future<UserEntity> getSignedInUser() async {
     final user = await _isar.isar.users.where().findAllAsync();
     if (user.isEmpty) {
       throw CacheException();
     }
-    return UserModel.fromEntity(user.first);
+    return user.first;
   }
 }

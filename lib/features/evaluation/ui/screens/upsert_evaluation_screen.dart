@@ -86,7 +86,7 @@ class _EvaluationFormState extends State<EvaluationForm> {
     _formKey = GlobalKey<FormState>();
     final clubBloc = context.read<ClubBlocRead>();
     _club = clubBloc.state.whenOrNull(
-      success: (items, _, selectedItem) => selectedItem,
+      success: (items, _, selected) => selected,
     );
 
     final userBloc = context.read<ClubMembersCubit>();
@@ -94,12 +94,12 @@ class _EvaluationFormState extends State<EvaluationForm> {
 
     final examBloc = context.read<ExamBlocRead>();
     _exam = examBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
+      success: (_, __, selected) => selected,
     );
 
     final evaluationBloc = context.read<EvaluationBlocRead>();
     _evaluation = evaluationBloc.state.whenOrNull(
-      success: (_, __, selectedItem) => selectedItem,
+      success: (_, __, selected) => selected,
     );
   }
 
@@ -111,10 +111,10 @@ class _EvaluationFormState extends State<EvaluationForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<QuestionBlocRead, BlocStateRead<QuestionModel>>(
+    return BlocBuilder<QuestionBlocRead, BlocReadState<QuestionModel>>(
       builder: (context, state) {
         return state.maybeWhen(
-          success: (items, filteredItems, selectedItem) {
+          success: (items, filteredItems, selected) {
             final mappedQuestions = items.map((question) {
               final controller = TextEditingController(
                 text: _evaluation?.evaluations
@@ -186,7 +186,7 @@ class _EvaluationFormState extends State<EvaluationForm> {
   }
 
   Widget _buildSubmitButton(List<QuestionFormModel> mappedQuestions) {
-    return BlocConsumer<EvaluationBlocWrite, BlocStateWrite<EvaluationModel>>(
+    return BlocConsumer<EvaluationBlocWrite, BlocWriteState<EvaluationModel>>(
       listener: (context, state) {
         state.whenOrNull(
           success: (item) {
@@ -196,7 +196,7 @@ class _EvaluationFormState extends State<EvaluationForm> {
                 description: context.str?.evaluationCreatedSuccessfully,
               );
               context.read<EvaluationBlocRead>().add(
-                    BlocEventRead.append(item),
+                    BlocReadEvent.append(item),
                   );
             } else {
               context.successToast(
@@ -205,15 +205,15 @@ class _EvaluationFormState extends State<EvaluationForm> {
               );
 
               context.read<EvaluationBlocRead>().add(
-                    BlocEventRead.append(item),
+                    BlocReadEvent.append(item),
                   );
             }
 
             context.read<EvaluationBlocRead>().add(
-                  BlocEventRead.select(item),
+                  BlocReadEvent.select(item),
                 );
             context.read<ExamBlocRead>().add(
-                  BlocEventRead.select(_exam),
+                  BlocReadEvent.select(_exam),
                 );
             context.router.back();
           },
@@ -235,7 +235,7 @@ class _EvaluationFormState extends State<EvaluationForm> {
 
               if (_evaluation == null) {
                 context.read<EvaluationBlocWrite>().add(
-                      BlocEventWrite.create(
+                      BlocWriteEvent.create(
                         CreateEvaluationParams(
                           clubId: _club?.id ?? 0,
                           athleteId: _athlete?.id ?? 0,
@@ -255,7 +255,7 @@ class _EvaluationFormState extends State<EvaluationForm> {
                     );
               } else {
                 context.read<EvaluationBlocWrite>().add(
-                      BlocEventWrite.update(
+                      BlocWriteEvent.update(
                         UpdateEvaluationParams(
                           id: _evaluation?.id ?? 0,
                           clubId: _club?.id ?? 0,
@@ -280,7 +280,7 @@ class _EvaluationFormState extends State<EvaluationForm> {
           text: _evaluation == null
               ? context.str?.createEvaluation
               : context.str?.updateEvaluation,
-          isLoading: state is BlocStateWriteLoading,
+          isLoading: state is BlocWriteStateLoading,
         );
       },
     );

@@ -198,7 +198,7 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
               },
             ),
             Gap(12.h),
-            BlocConsumer<ClubBlocWrite, BlocStateWrite<ClubModel>>(
+            BlocConsumer<ClubBlocWrite, BlocWriteState<ClubModel>>(
               listener: (context, state) {
                 state.mapOrNull(
                   success: (success) {
@@ -210,12 +210,16 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
                       description: msg,
                     );
                     context.read<ClubBlocRead>().add(
-                          BlocEventRead.select(success.item),
+                          BlocReadEvent.append(success.item),
                         );
                     context.read<ClubBlocRead>().add(
-                          BlocEventRead.append(success.item),
+                          BlocReadEvent.select(success.item),
                         );
-                    context.router.maybePop();
+                    Future.delayed(Durations.medium2, () {
+                      if (context.mounted) {
+                        context.router.back();
+                      }
+                    });
                   },
                   failure: (failure) {
                     context.errorToast(
@@ -229,7 +233,7 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
               },
               builder: (context, state) {
                 return FormButton(
-                  isLoading: state is BlocStateWriteLoading,
+                  isLoading: state is BlocWriteStateLoading,
                   text: context.clubRead == null
                       ? context.str?.createClub
                       : context.str?.updateClub(context.clubRead?.name),
@@ -261,7 +265,7 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
 
                       if (context.clubRead != null) {
                         context.read<ClubBlocWrite>().add(
-                              BlocEventWrite.update(
+                              BlocWriteEvent.update(
                                 UpdateClubParams(
                                   id: context.clubRead!.id,
                                   name: _nameController.text,
@@ -273,7 +277,7 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
                             );
                       } else {
                         context.read<ClubBlocWrite>().add(
-                              BlocEventWrite.create(
+                              BlocWriteEvent.create(
                                 CreateClubParams(
                                   name: _nameController.text,
                                   description: _descriptionController.text,

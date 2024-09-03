@@ -9,7 +9,7 @@ part 'media_model.freezed.dart';
 part 'media_model.g.dart';
 
 @freezed
-class MediaModel with _$MediaModel {
+class MediaModel extends MediaEntity with _$MediaModel {
   factory MediaModel({
     @Default(0) int id,
     @Default(0) int creatorId,
@@ -56,7 +56,6 @@ class MediaModel with _$MediaModel {
       updatedAt: entity.updatedAt,
     );
   }
-  
 
   MediaEntity toEntity() {
     return MediaEntity(
@@ -80,7 +79,7 @@ class MediaModel with _$MediaModel {
     );
   }
 
-  static fake() {
+  static MediaModel fake() {
     return MediaModel(
       id: Random().nextInt(100),
       creatorId: Random().nextInt(100),

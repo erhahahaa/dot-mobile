@@ -24,7 +24,7 @@ class DetailExamScreen extends StatefulWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
-      value: context.read<QuestionBlocRead>()..add(BlocEventRead.get(id: id)),
+      value: context.read<QuestionBlocRead>()..add(BlocReadEvent.get(id: id)),
       child: this,
     );
   }
@@ -103,7 +103,7 @@ class _DetailExamScreenState extends BaseState<DetailExamScreen>
                 ),
               ],
             ),
-            BlocBuilder<QuestionBlocRead, BlocStateRead<QuestionModel>>(
+            BlocBuilder<QuestionBlocRead, BlocReadState<QuestionModel>>(
               builder: (context, state) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -219,7 +219,7 @@ class _DetailExamScreenState extends BaseState<DetailExamScreen>
           if (res == null) return;
           if (mounted) {
             context.read<ExamBlocRead>().add(
-                  BlocEventRead.select(exam),
+                  BlocReadEvent.select(exam),
                 );
 
             context.read<ClubMembersCubit>().selectUser(res);
@@ -229,7 +229,7 @@ class _DetailExamScreenState extends BaseState<DetailExamScreen>
         label: TitleSmall(context.str?.evaluate),
         icon: const Icon(Icons.rate_review),
       ),
-      body: BlocBuilder<EvaluationBlocRead, BlocStateRead<EvaluationModel>>(
+      body: BlocBuilder<EvaluationBlocRead, BlocReadState<EvaluationModel>>(
         builder: (context, state) {
           return state.maybeWhen(
               success: (items, __, ___) {
@@ -265,7 +265,7 @@ class _DetailExamScreenState extends BaseState<DetailExamScreen>
       imageUrl: evaluation.athlete?.image,
       onTap: () {
         context.read<EvaluationBlocRead>().add(
-              BlocEventRead.select(evaluation),
+              BlocReadEvent.select(evaluation),
             );
         context.router.push(
           DetailEvaluationRoute(id: evaluation.id),
@@ -276,10 +276,10 @@ class _DetailExamScreenState extends BaseState<DetailExamScreen>
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
-      title: BlocBuilder<ExamBlocRead, BlocStateRead<ExamModel>>(
+      title: BlocBuilder<ExamBlocRead, BlocReadState<ExamModel>>(
         builder: (context, state) {
-          if (state is BlocStateReadSuccess<ExamModel>) {
-            final exam = state.selectedItem;
+          if (state is BlocReadStateSuccess<ExamModel>) {
+            final exam = state.selected;
             if (exam != null) {
               return Text(exam.title);
             }
@@ -295,12 +295,12 @@ class _DetailExamScreenState extends BaseState<DetailExamScreen>
         ],
       ),
       actions: [
-        BlocListener<ExamBlocWrite, BlocStateWrite<ExamModel>>(
+        BlocListener<ExamBlocWrite, BlocWriteState<ExamModel>>(
           listener: (context, state) {
             state.whenOrNull(
               success: (success) {
                 context.read<ExamBlocRead>().add(
-                      BlocEventRead.remove(success.id),
+                      BlocReadEvent.remove(success.id),
                     );
                 context.successToast(
                   title: context.str?.success,
@@ -342,7 +342,7 @@ class _DetailExamScreenState extends BaseState<DetailExamScreen>
                         TextButton(
                           onPressed: () {
                             context.read<ExamBlocWrite>().add(
-                                  BlocEventWrite.delete(
+                                  BlocWriteEvent.delete(
                                       DeleteExamParams(examId: widget.id)),
                                 );
                             Navigator.of(ctx).pop();
@@ -361,7 +361,7 @@ class _DetailExamScreenState extends BaseState<DetailExamScreen>
           icon: const Icon(MoonIcons.generic_edit_24_light),
           onTap: () {
             context.read<ExamBlocRead>().add(
-                  BlocEventRead.select(exam),
+                  BlocReadEvent.select(exam),
                 );
             context.router.popAndPush(const UpsertExamRoute());
           },

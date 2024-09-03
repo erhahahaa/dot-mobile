@@ -8,35 +8,34 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
   final GetAllQuestionUsecase _getAllQuestionUsecase;
 
   QuestionBlocRead(this._getAllQuestionUsecase)
-      : super(const BlocStateReadInitial()) {
-    on<BlocEventReadClear<QuestionModel>>(onClear);
-    on<BlocEventReadGet<QuestionModel>>(onGet);
-    on<BlocEventReadSelect<QuestionModel>>(onSelect);
-    on<BlocEventReadFilter<QuestionModel>>(onFilter);
-    on<BlocEventReadAppend<QuestionModel>>(onAppend);
-    on<BlocEventReadRemove<QuestionModel>>(onRemove);
+      : super(const BlocReadStateInitial()) {
+    on<BlocReadEventGet<QuestionModel>>(onGet);
+    on<BlocReadEventSelect<QuestionModel>>(onSelect);
+    on<BlocReadEventFilter<QuestionModel>>(onFilter);
+    on<BlocReadEventAppend<QuestionModel>>(onAppend);
+    on<BlocReadEventRemove<QuestionModel>>(onRemove);
   }
 
   @override
   void onGet(
-    BlocEventReadGet event,
-    Emitter<BlocStateRead<QuestionModel>> emit,
+    BlocReadEventGet event,
+    Emitter<BlocReadState<QuestionModel>> emit,
   ) async {
     final id = event.id;
     if (id == null) {
-      return emit(const BlocStateRead.failure('Id required'));
+      return emit(const BlocReadState.failure('Id required'));
     }
-    emit(const BlocStateReadLoading());
+    emit(const BlocReadStateLoading());
 
     final res = await _getAllQuestionUsecase.call(
       GetAllQuestionParams(examId: id),
     );
 
     res.fold(
-      (failure) => emit(BlocStateReadFailure(failure.message)),
+      (failure) => emit(BlocReadStateFailure(failure.message)),
       (success) {
         success.sort((a, b) => a.order.compareTo(b.order));
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: success,
           filteredItems: success,
         ));
@@ -46,15 +45,15 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
 
   @override
   void onSelect(
-    BlocEventReadSelect<QuestionModel> event,
-    Emitter<BlocStateRead<QuestionModel>> emit,
+    BlocReadEventSelect<QuestionModel> event,
+    Emitter<BlocReadState<QuestionModel>> emit,
   ) {
     state.whenOrNull(
       success: (questions, filteredQuestions, _) {
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: questions,
           filteredItems: filteredQuestions,
-          selectedItem: event.item,
+          selected: event.item,
         ));
       },
     );
@@ -62,8 +61,8 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
 
   @override
   void onFilter(
-    BlocEventReadFilter event,
-    Emitter<BlocStateRead<QuestionModel>> emit,
+    BlocReadEventFilter event,
+    Emitter<BlocReadState<QuestionModel>> emit,
   ) {
     state.whenOrNull(
       success: (questions, _, __) {
@@ -75,7 +74,7 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
             )
             .toList();
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: questions,
           filteredItems: finds,
         ));
@@ -85,19 +84,19 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
 
   @override
   void onAppend(
-    BlocEventReadAppend<QuestionModel> event,
-    Emitter<BlocStateRead<QuestionModel>> emit,
+    BlocReadEventAppend<QuestionModel> event,
+    Emitter<BlocReadState<QuestionModel>> emit,
   ) {
     state.whenOrNull(
       success: (questions, _, __) {
         final items = [...questions, event.item];
         items.sort((a, b) => a.order.compareTo(b.order));
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
         ));
       },
-      failure: (_) => emit(BlocStateReadSuccess(
+      failure: (_) => emit(BlocReadStateSuccess(
         items: [event.item],
         filteredItems: [event.item],
       )),
@@ -106,8 +105,8 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
 
   @override
   void onRemove(
-    BlocEventReadRemove<QuestionModel> event,
-    Emitter<BlocStateRead<QuestionModel>> emit,
+    BlocReadEventRemove<QuestionModel> event,
+    Emitter<BlocReadState<QuestionModel>> emit,
   ) {
     state.whenOrNull(
       success: (questions, _, __) {
@@ -117,7 +116,7 @@ class QuestionBlocRead extends BlocRead<QuestionModel> {
             )
             .toList();
         items.sort((a, b) => a.order.compareTo(b.order));
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
         ));
@@ -136,56 +135,56 @@ class QuestionBlocWrite extends BlocWrite<List<QuestionModel>> {
     this._createQuestionBatchUsecase,
     this._updateQuestionBatchUsecase,
     this._deleteQuestionUsecase,
-  ) : super(const BlocStateWriteInitial()) {
-    on<BlocEventWriteCreate>(onCreate);
-    on<BlocEventWriteUpdate>(onUpdate);
-    on<BlocEventWriteDelete>(onDelete);
+  ) : super(const BlocWriteStateInitial()) {
+    on<BlocWriteEventCreate>(onCreate);
+    on<BlocWriteEventUpdate>(onUpdate);
+    on<BlocWriteEventDelete>(onDelete);
   }
 
   @override
   void onCreate(
-    BlocEventWriteCreate event,
-    Emitter<BlocStateWrite<List<QuestionModel>>> emit,
+    BlocWriteEventCreate event,
+    Emitter<BlocWriteState<List<QuestionModel>>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _createQuestionBatchUsecase.call(
       event.params as List<CreateQuestionParams>,
     );
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onUpdate(
-    BlocEventWriteUpdate event,
-    Emitter<BlocStateWrite<List<QuestionModel>>> emit,
+    BlocWriteEventUpdate event,
+    Emitter<BlocWriteState<List<QuestionModel>>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _updateQuestionBatchUsecase.call(
       event.params as List<UpdateQuestionParams>,
     );
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onDelete(
-    BlocEventWriteDelete event,
-    Emitter<BlocStateWrite<List<QuestionModel>>> emit,
+    BlocWriteEventDelete event,
+    Emitter<BlocWriteState<List<QuestionModel>>> emit,
   ) async {
-    // emit(const BlocStateWriteLoading());
+    // emit(const BlocWriteStateLoading());
     final res = await _deleteQuestionUsecase.call(
       event.params as DeleteQuestionParams,
     );
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
       (success) {
         // final items = state.whenOrNull(
         //   success: (items) => items,
@@ -198,7 +197,7 @@ class QuestionBlocWrite extends BlocWrite<List<QuestionModel>> {
         //     )
         //     .toList();
 
-        // emit(BlocStateWriteSuccess(filteredItems));
+        // emit(BlocWriteStateSuccess(filteredItems));
       },
     );
   }

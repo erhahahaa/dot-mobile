@@ -16,26 +16,26 @@ enum ExerciseIntensityUnit { rpe, rir, rm, kg, lbs }
 @Collection(accessor: 'exercises')
 class ExerciseEntity {
   final int id;
-  int programId;
-  int? mediaId;
-  int order;
-  String name;
-  String? description;
+  final int programId;
+  final int? mediaId;
+  final int order;
+  final String name;
+  final String? description;
   @enumValue
-  ExerciseUnitValueEntity? repetition;
+  final ExerciseUnitValueEntity? repetition;
   @enumValue
-  ExerciseUnitValueEntity? sets;
+  final ExerciseUnitValueEntity? sets;
   @enumValue
-  ExerciseUnitValueEntity? rest;
+  final ExerciseUnitValueEntity? rest;
   @enumValue
-  ExerciseUnitValueEntity? tempo;
+  final ExerciseUnitValueEntity? tempo;
   @enumValue
-  ExerciseUnitValueEntity? intensity;
-  MediaEmbedEntity? media;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  final ExerciseUnitValueEntity? intensity;
+  final MediaEmbedEntity? media;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
-  ExerciseEntity({
+  const ExerciseEntity({
     this.id = 0,
     this.programId = 0,
     this.mediaId,
@@ -55,10 +55,10 @@ class ExerciseEntity {
 
 @embedded
 class ExerciseUnitValueEntity {
-  String? unit;
-  int value;
+  final String? unit;
+  final int value;
 
-  ExerciseUnitValueEntity({
+  const ExerciseUnitValueEntity({
     this.unit,
     this.value = 0,
   });

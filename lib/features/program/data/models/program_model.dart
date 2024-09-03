@@ -8,7 +8,7 @@ part 'program_model.freezed.dart';
 part 'program_model.g.dart';
 
 @freezed
-class ProgramModel with _$ProgramModel {
+class ProgramModel extends ProgramEntity with _$ProgramModel {
   const factory ProgramModel({
     @Default(0) int id,
     @Default(0) int clubId,

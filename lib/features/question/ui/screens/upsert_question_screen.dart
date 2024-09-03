@@ -26,7 +26,7 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
   void initState() {
     super.initState();
     final exam = context.read<ExamBlocRead>().state.whenOrNull(
-          success: (_, __, selectedItem) => selectedItem,
+          success: (_, __, selected) => selected,
         );
 
     safeSetState(() {
@@ -81,7 +81,7 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
         ),
       ),
       floatingActionButton:
-          BlocConsumer<QuestionBlocWrite, BlocStateWrite<List<QuestionModel>>>(
+          BlocConsumer<QuestionBlocWrite, BlocWriteState<List<QuestionModel>>>(
         listener: (context, state) {
           state.whenOrNull(
             success: (item) {
@@ -91,7 +91,7 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
               );
 
               context.read<QuestionBlocRead>().add(
-                    BlocEventRead.get(id: _exam?.id ?? 0),
+                    BlocReadEvent.get(id: _exam?.id ?? 0),
                   );
 
               final exams = context.read<ExamBlocRead>().state.whenOrNull(
@@ -103,7 +103,7 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
               );
 
               context.read<ClubBlocWrite>().add(
-                    BlocEventWrite.update(updClub),
+                    BlocWriteEvent.update(updClub),
                   );
 
               context.router.back();
@@ -129,7 +129,7 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
               Gap(8.h),
               FloatingActionButtonExtended(
                 heroTag: 'save_question_button_$hashCode',
-                isLoading: state is BlocStateWriteLoading,
+                isLoading: state is BlocWriteStateLoading,
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
                     final createParams = <CreateQuestionParams>[];
@@ -162,12 +162,12 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
                     }
                     if (createParams.isNotEmpty) {
                       context.read<QuestionBlocWrite>().add(
-                            BlocEventWrite.create(createParams),
+                            BlocWriteEvent.create(createParams),
                           );
                     }
                     if (updateParams.isNotEmpty) {
                       context.read<QuestionBlocWrite>().add(
-                            BlocEventWrite.update(updateParams),
+                            BlocWriteEvent.update(updateParams),
                           );
                     }
                   }
@@ -187,7 +187,7 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
   }
 
   Widget _buildForm(BuildContext context) {
-    return BlocConsumer<QuestionBlocRead, BlocStateRead<QuestionModel>>(
+    return BlocConsumer<QuestionBlocRead, BlocReadState<QuestionModel>>(
       listener: (context, state) {
         state.whenOrNull(
           success: (items, _, __) {
@@ -313,7 +313,7 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
                     () {
                       if (_questions[index].question.id != 0) {
                         context.read<QuestionBlocWrite>().add(
-                              BlocEventWrite.delete(
+                              BlocWriteEvent.delete(
                                 DeleteQuestionParams(
                                   id: _questions[index].question.id,
                                 ),

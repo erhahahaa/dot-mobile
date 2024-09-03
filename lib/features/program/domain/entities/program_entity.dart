@@ -6,16 +6,16 @@ part 'program_entity.g.dart';
 @Collection(accessor: 'programs')
 class ProgramEntity {
   final int id;
-  int clubId;
-  int? imageId;
-  String name;
-  DateTime? startDate;
-  DateTime? endDate;
-  MediaEmbedEntity? media;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  final int clubId;
+  final int? imageId;
+  final String name;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final MediaEmbedEntity? media;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
-  ProgramEntity({
+  const ProgramEntity({
     this.id = 0,
     this.clubId = 0,
     this.imageId,

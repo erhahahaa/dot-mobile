@@ -5,15 +5,15 @@ part 'evaluation_entity.g.dart';
 @Collection(accessor: 'evaluations')
 class EvaluationEntity {
   final int id;
-  int examId;
-  int clubId;
-  int athleteId;
-  int coachId;
-  List<QuestionEvaluationEntity> evaluations;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  final int examId;
+  final int clubId;
+  final int athleteId;
+  final int coachId;
+  final List<QuestionEvaluationEntity> evaluations;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
-  EvaluationEntity({
+  const EvaluationEntity({
     this.id = 0,
     this.examId = 0,
     this.clubId = 0,
@@ -27,12 +27,12 @@ class EvaluationEntity {
 
 @embedded
 class QuestionEvaluationEntity {
-  int questionId;
-  String? answer;
-  int? score;
-  String? questionName;
+  final int questionId;
+  final String? answer;
+  final int? score;
+  final String? questionName;
 
-  QuestionEvaluationEntity({
+  const QuestionEvaluationEntity({
     this.questionId = 0,
     this.answer,
     this.score,

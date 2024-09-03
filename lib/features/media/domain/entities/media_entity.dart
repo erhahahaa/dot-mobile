@@ -1,3 +1,4 @@
+import 'package:dot_coaching/features/feature.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:isar/isar.dart';
 
@@ -132,45 +133,25 @@ enum MediaType {
 }
 
 @Collection(accessor: 'medias')
-class MediaEntity {
-  final int id;
-  int creatorId;
-  int clubId;
-  String name;
-  String? description;
-  int fileSize;
-  String path;
-  @enumValue
-  MediaType type;
-  @enumValue
-  MediaParent parent;
-  String url;
-  String? thumbPath;
-  String? thumbUrl;
-  double? aspectRatio;
-  int? width;
-  int? height;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-
-  MediaEntity({
-    this.id = 0,
-    this.creatorId = 0,
-    this.clubId = 0,
-    this.name = '',
-    this.description,
-    this.fileSize = 0,
-    this.path = '',
-    this.type = MediaType.applicationOctetStream,
-    this.parent = MediaParent.club,
-    this.url = '',
-    this.thumbPath,
-    this.thumbUrl,
-    this.aspectRatio,
-    this.width,
-    this.height,
-    this.createdAt,
-    this.updatedAt,
+class MediaEntity extends MediaEmbedEntity {
+  const MediaEntity({
+    super.id,
+    super.creatorId,
+    super.clubId,
+    super.name,
+    super.description,
+    super.fileSize,
+    super.path,
+    super.type,
+    super.parent,
+    super.url,
+    super.thumbPath,
+    super.thumbUrl,
+    super.aspectRatio,
+    super.width,
+    super.height,
+    super.createdAt,
+    super.updatedAt,
   });
 }
 

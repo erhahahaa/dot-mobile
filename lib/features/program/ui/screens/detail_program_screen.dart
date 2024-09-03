@@ -24,7 +24,7 @@ class DetailProgramScreen extends StatefulWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider.value(
-      value: context.read<ExerciseBlocRead>()..add(BlocEventRead.get(id: id)),
+      value: context.read<ExerciseBlocRead>()..add(BlocReadEvent.get(id: id)),
       child: this,
     );
   }
@@ -50,10 +50,10 @@ class _DetailProgramScreenState extends BaseState<DetailProgramScreen> {
   Widget build(BuildContext context) {
     return Parent(
       appBar: AppBar(
-        title: BlocBuilder<ProgramBlocRead, BlocStateRead>(
+        title: BlocBuilder<ProgramBlocRead, BlocReadState>(
           builder: (context, state) {
-            if (state is BlocStateReadSuccess) {
-              final program = state.selectedItem;
+            if (state is BlocReadStateSuccess) {
+              final program = state.selected;
               if (program != null) {
                 return TitleLarge(program.name);
               }
@@ -62,12 +62,12 @@ class _DetailProgramScreenState extends BaseState<DetailProgramScreen> {
           },
         ),
         actions: [
-          BlocListener<ProgramBlocWrite, BlocStateWrite<ProgramModel>>(
+          BlocListener<ProgramBlocWrite, BlocWriteState<ProgramModel>>(
             listener: (context, state) {
               state.whenOrNull(
                 success: (success) {
                   context.read<ProgramBlocRead>().add(
-                        BlocEventRead.remove(success.id),
+                        BlocReadEvent.remove(success.id),
                       );
                   context.successToast(
                     title: context.str?.success,
@@ -111,7 +111,7 @@ class _DetailProgramScreenState extends BaseState<DetailProgramScreen> {
                           TextButton(
                             onPressed: () {
                               context.read<ProgramBlocWrite>().add(
-                                    BlocEventWrite.delete(DeleteProgramParams(
+                                    BlocWriteEvent.delete(DeleteProgramParams(
                                         programId: widget.id)),
                                   );
                               Navigator.of(ctx).pop();
@@ -138,10 +138,10 @@ class _DetailProgramScreenState extends BaseState<DetailProgramScreen> {
         show: showScrollToTopButton,
         onPressed: scrollToTop,
       ),
-      body: BlocBuilder<ProgramBlocRead, BlocStateRead<ProgramModel>>(
+      body: BlocBuilder<ProgramBlocRead, BlocReadState<ProgramModel>>(
         builder: (context, state) {
           return state.maybeWhen(
-            success: (items, filteredItems, selectedItem) {
+            success: (items, filteredItems, selected) {
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w),
                 child: SingleChildScrollView(
@@ -159,22 +159,22 @@ class _DetailProgramScreenState extends BaseState<DetailProgramScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             BodyMedium(
-                                '${context.str?.name}: ${selectedItem?.name}'),
-                            if (selectedItem?.startDate != null) ...[
+                                '${context.str?.name}: ${selected?.name}'),
+                            if (selected?.startDate != null) ...[
                               BodyMedium(
-                                '${context.str?.startDate}: ${selectedItem?.startDate!.toDayMonthYear()}',
+                                '${context.str?.startDate}: ${selected?.startDate!.toDayMonthYear()}',
                               ),
                             ],
-                            if (selectedItem?.endDate != null) ...[
+                            if (selected?.endDate != null) ...[
                               BodyMedium(
-                                '${context.str?.endDate}: ${selectedItem?.endDate!.toDayMonthYear()}',
+                                '${context.str?.endDate}: ${selected?.endDate!.toDayMonthYear()}',
                               ),
                             ]
                           ],
                         ),
                       ),
                       BlocBuilder<ExerciseBlocRead,
-                          BlocStateRead<ExerciseModel>>(
+                          BlocReadState<ExerciseModel>>(
                         builder: (context, state) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

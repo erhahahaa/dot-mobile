@@ -6,30 +6,30 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 class ClubBlocRead extends BlocRead<ClubModel> {
   final GetAllClubUsecase _getAllClubUsecase;
+  ClubModel? selected;
 
-  ClubBlocRead(this._getAllClubUsecase) : super(const BlocStateReadInitial()) {
-    on<BlocEventReadClear<ClubModel>>(onClear);
-    on<BlocEventReadGet<ClubModel>>(onGet);
-    on<BlocEventReadSelect<ClubModel>>(onSelect);
-    on<BlocEventReadFilter<ClubModel>>(onFilter);
-    on<BlocEventReadAppend<ClubModel>>(onAppend);
-    on<BlocEventReadRemove<ClubModel>>(onRemove);
+  ClubBlocRead(this._getAllClubUsecase) : super(const BlocReadStateInitial()) {
+    on<BlocReadEventGet<ClubModel>>(onGet);
+    on<BlocReadEventSelect<ClubModel>>(onSelect);
+    on<BlocReadEventFilter<ClubModel>>(onFilter);
+    on<BlocReadEventAppend<ClubModel>>(onAppend);
+    on<BlocReadEventRemove<ClubModel>>(onRemove);
   }
 
   @override
   void onGet(
-    BlocEventReadGet event,
-    Emitter<BlocStateRead<ClubModel>> emit,
+    BlocReadEventGet event,
+    Emitter<BlocReadState<ClubModel>> emit,
   ) async {
-    emit(const BlocStateReadLoading());
+    emit(const BlocReadStateLoading());
 
     final res = await _getAllClubUsecase.call();
 
     res.fold(
-      (failure) => emit(BlocStateReadFailure(failure.message)),
+      (failure) => emit(BlocReadStateFailure(failure.message)),
       (success) {
         success.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: success,
           filteredItems: success,
         ));
@@ -39,15 +39,16 @@ class ClubBlocRead extends BlocRead<ClubModel> {
 
   @override
   void onSelect(
-    BlocEventReadSelect<ClubModel> event,
-    Emitter<BlocStateRead<ClubModel>> emit,
+    BlocReadEventSelect<ClubModel> event,
+    Emitter<BlocReadState<ClubModel>> emit,
   ) {
+    selected = event.item;
     state.whenOrNull(
       success: (clubs, filteredClubs, _) {
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: clubs,
           filteredItems: filteredClubs,
-          selectedItem: event.item,
+          selected: event.item,
         ));
       },
     );
@@ -55,11 +56,11 @@ class ClubBlocRead extends BlocRead<ClubModel> {
 
   @override
   void onFilter(
-    BlocEventReadFilter event,
-    Emitter<BlocStateRead<ClubModel>> emit,
+    BlocReadEventFilter event,
+    Emitter<BlocReadState<ClubModel>> emit,
   ) {
     state.whenOrNull(
-      success: (clubs, _, __) {
+      success: (clubs, _, selected) {
         final finds = clubs
             .where(
               (club) => club.name.toLowerCase().contains(
@@ -68,9 +69,10 @@ class ClubBlocRead extends BlocRead<ClubModel> {
             )
             .toList();
 
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: clubs,
           filteredItems: finds,
+          selected: selected,
         ));
       },
     );
@@ -78,11 +80,11 @@ class ClubBlocRead extends BlocRead<ClubModel> {
 
   @override
   void onAppend(
-    BlocEventReadAppend<ClubModel> event,
-    Emitter<BlocStateRead<ClubModel>> emit,
+    BlocReadEventAppend<ClubModel> event,
+    Emitter<BlocReadState<ClubModel>> emit,
   ) {
     state.whenOrNull(
-      success: (clubs, _, __) {
+      success: (clubs, _, selected) {
         final find = clubs.where((club) => club.id == event.item.id).toList();
         if (find.isNotEmpty) {
           final items = clubs.map((club) {
@@ -93,21 +95,23 @@ class ClubBlocRead extends BlocRead<ClubModel> {
           }).toList();
 
           items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
-          emit(BlocStateReadSuccess(
+          emit(BlocReadStateSuccess(
             items: items,
             filteredItems: items,
+            selected: selected,
           ));
           return;
         }
         final items = [...clubs, event.item];
         items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
+          selected: selected,
         ));
       },
       failure: (_) => emit(
-        BlocStateRead.success(
+        BlocReadState.success(
           items: [event.item],
           filteredItems: [event.item],
         ),
@@ -117,16 +121,17 @@ class ClubBlocRead extends BlocRead<ClubModel> {
 
   @override
   void onRemove(
-    BlocEventReadRemove<ClubModel> event,
-    Emitter<BlocStateRead<ClubModel>> emit,
+    BlocReadEventRemove<ClubModel> event,
+    Emitter<BlocReadState<ClubModel>> emit,
   ) {
     state.whenOrNull(
-      success: (clubs, _, __) {
+      success: (clubs, _, selected) {
         final items = clubs.where((club) => club.id != event.id).toList();
         items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
-        emit(BlocStateReadSuccess(
+        emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
+          selected: selected,
         ));
       },
     );
@@ -143,51 +148,51 @@ class ClubBlocWrite extends BlocWrite<ClubModel> {
     this._createClubUsecase,
     this._updateClubUsecase,
     this._deleteClubUsecase,
-  ) : super(const BlocStateWriteInitial()) {
-    on<BlocEventWriteCreate>(onCreate);
-    on<BlocEventWriteUpdate>(onUpdate);
-    on<BlocEventWriteDelete>(onDelete);
+  ) : super(const BlocWriteStateInitial()) {
+    on<BlocWriteEventCreate>(onCreate);
+    on<BlocWriteEventUpdate>(onUpdate);
+    on<BlocWriteEventDelete>(onDelete);
   }
 
   @override
   void onCreate(
-    BlocEventWriteCreate event,
-    Emitter<BlocStateWrite<ClubModel>> emit,
+    BlocWriteEventCreate event,
+    Emitter<BlocWriteState<ClubModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _createClubUsecase.call(event.params as CreateClubParams);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onUpdate(
-    BlocEventWriteUpdate event,
-    Emitter<BlocStateWrite<ClubModel>> emit,
+    BlocWriteEventUpdate event,
+    Emitter<BlocWriteState<ClubModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _updateClubUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 
   @override
   void onDelete(
-    BlocEventWriteDelete event,
-    Emitter<BlocStateWrite<ClubModel>> emit,
+    BlocWriteEventDelete event,
+    Emitter<BlocWriteState<ClubModel>> emit,
   ) async {
-    emit(const BlocStateWriteLoading());
+    emit(const BlocWriteStateLoading());
     final res = await _deleteClubUsecase.call(event.params);
 
     res.fold(
-      (failure) => emit(BlocStateWriteFailure(failure.message)),
-      (success) => emit(BlocStateWriteSuccess(success)),
+      (failure) => emit(BlocWriteStateFailure(failure.message)),
+      (success) => emit(BlocWriteStateSuccess(success)),
     );
   }
 }

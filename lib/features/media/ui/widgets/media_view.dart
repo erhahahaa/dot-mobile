@@ -14,9 +14,9 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 class MediaView<
     ReaderBloc extends StateStreamable<ReaderState>,
-    ReaderState extends BlocStateRead<MediaModel>,
+    ReaderState extends BlocReadState<MediaModel>,
     WriterBloc extends StateStreamable<WriterState>,
-    WriterState extends BlocStateWrite<MediaModel>> extends StatefulWidget {
+    WriterState extends BlocWriteState<MediaModel>> extends StatefulWidget {
   final void Function(File file) onUpload;
   final void Function(MediaModel item) onSuccess;
   final void Function(MediaModel item)? onDownload;
@@ -39,9 +39,9 @@ class MediaView<
 
 class _MediaViewState<
         ReaderBloc extends StateStreamable<ReaderState>,
-        ReaderState extends BlocStateRead<MediaModel>,
+        ReaderState extends BlocReadState<MediaModel>,
         WriterBloc extends StateStreamable<WriterState>,
-        WriterState extends BlocStateWrite<MediaModel>>
+        WriterState extends BlocWriteState<MediaModel>>
     extends BaseState<MediaView> {
   ElegantNotification? uploadToast;
   ElegantNotification? downloadToast;

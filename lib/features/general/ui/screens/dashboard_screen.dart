@@ -17,7 +17,7 @@ class DashboardScreen extends StatelessWidget implements AutoRouteWrapper {
         BlocProvider<ClubBlocRead>(
           create: (_) => sl<ClubBlocRead>()
             ..add(
-              const BlocEventRead.get(),
+              const BlocReadEvent.get(),
             ),
         ),
         BlocProvider<ProgramBlocRead>(

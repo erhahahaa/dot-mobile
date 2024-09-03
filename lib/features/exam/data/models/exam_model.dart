@@ -8,7 +8,7 @@ part 'exam_model.freezed.dart';
 part 'exam_model.g.dart';
 
 @freezed
-class ExamModel with _$ExamModel {
+class ExamModel extends ExamEntity with _$ExamModel {
   const factory ExamModel({
     @Default(0) int id,
     @Default(0) int clubId,

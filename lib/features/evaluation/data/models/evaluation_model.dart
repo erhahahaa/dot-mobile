@@ -7,7 +7,7 @@ part 'evaluation_model.freezed.dart';
 part 'evaluation_model.g.dart';
 
 @freezed
-class EvaluationModel with _$EvaluationModel {
+class EvaluationModel extends EvaluationEntity with _$EvaluationModel {
   const factory EvaluationModel({
     @Default(0) int id,
     @Default(0) int examId,
@@ -69,7 +69,8 @@ class EvaluationModel with _$EvaluationModel {
 }
 
 @freezed
-class QuestionEvaluationModel with _$QuestionEvaluationModel {
+class QuestionEvaluationModel extends QuestionEvaluationEntity
+    with _$QuestionEvaluationModel {
   factory QuestionEvaluationModel({
     @Default(0) int questionId,
     String? answer,

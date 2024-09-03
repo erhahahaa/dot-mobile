@@ -104,10 +104,10 @@ class _DetailTacticalScreenState extends BaseState<DetailTacticalScreen> {
   }
 
   Widget _buildEndDrawer() {
-    return BlocBuilder<TacticalBlocRead, BlocStateRead<TacticalModel>>(
+    return BlocBuilder<TacticalBlocRead, BlocReadState<TacticalModel>>(
       builder: (context, state) {
         final tactical = state.whenOrNull(
-          success: (_, __, selectedItem) => selectedItem,
+          success: (_, __, selected) => selected,
         );
         if (tactical != null) {
           return BlocBuilder<StrategyCubit, StrategyState>(
@@ -132,16 +132,16 @@ class _DetailTacticalScreenState extends BaseState<DetailTacticalScreen> {
   Widget _buildHeader() {
     return ContainerWrapper(
       width: double.infinity,
-      child: BlocBuilder<TacticalBlocRead, BlocStateRead<TacticalModel>>(
+      child: BlocBuilder<TacticalBlocRead, BlocReadState<TacticalModel>>(
         builder: (context, state) {
           return state.maybeWhen(
-            success: (_, __, selectedItem) {
+            success: (_, __, selected) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TitleSmall('${context.str?.name}: ${selectedItem?.name}'),
+                  TitleSmall('${context.str?.name}: ${selected?.name}'),
                   TitleSmall(
-                      '${context.str?.description}: ${selectedItem?.description}'),
+                      '${context.str?.description}: ${selected?.description}'),
                 ],
               );
             },
@@ -179,12 +179,12 @@ class _DetailTacticalScreenState extends BaseState<DetailTacticalScreen> {
                   border: Border.all(color: Colors.black),
                 ),
                 child:
-                    BlocBuilder<TacticalBlocRead, BlocStateRead<TacticalModel>>(
+                    BlocBuilder<TacticalBlocRead, BlocReadState<TacticalModel>>(
                   builder: (context, state) {
                     return state.maybeWhen(
-                      success: (_, __, selectedItem) {
-                        final media = selectedItem?.media;
-                        if (selectedItem == null || media == null) {
+                      success: (_, __, selected) {
+                        final media = selected?.media;
+                        if (selected == null || media == null) {
                           return Column(
                             children: [
                               ErrorAlert(context.str?.obsecuredState),

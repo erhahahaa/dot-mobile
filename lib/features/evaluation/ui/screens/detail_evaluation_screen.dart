@@ -46,10 +46,10 @@ class _DetailEvaluationScreenState extends BaseState<DetailEvaluationScreen> {
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child:
-              BlocBuilder<EvaluationBlocRead, BlocStateRead<EvaluationModel>>(
+              BlocBuilder<EvaluationBlocRead, BlocReadState<EvaluationModel>>(
             builder: (context, state) {
               return state.maybeWhen(
-                success: (_, __, selectedItem) {
+                success: (_, __, selected) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -57,30 +57,30 @@ class _DetailEvaluationScreenState extends BaseState<DetailEvaluationScreen> {
                       Gap(8.h),
                       ListViewBuilderTile(
                         leading: const Icon(MoonIcons.generic_about_24_light),
-                        titleText: selectedItem?.exam?.title,
-                        subtitleText: selectedItem?.exam?.description,
+                        titleText: selected?.exam?.title,
+                        subtitleText: selected?.exam?.description,
                       ),
                       Gap(16.h),
                       TitleSmall(context.str?.athlete),
                       Gap(8.h),
                       ListViewBuilderTile(
-                        imageUrl: selectedItem?.athlete?.image,
-                        titleText: selectedItem?.athlete?.name,
-                        subtitleText: selectedItem?.athlete?.email,
+                        imageUrl: selected?.athlete?.image,
+                        titleText: selected?.athlete?.name,
+                        subtitleText: selected?.athlete?.email,
                       ),
                       Gap(16.h),
                       TitleSmall(context.str?.evaluator),
                       Gap(8.h),
                       ListViewBuilderTile(
-                        imageUrl: selectedItem?.coach?.image,
-                        titleText: selectedItem?.coach?.name,
-                        subtitleText: selectedItem?.coach?.email,
+                        imageUrl: selected?.coach?.image,
+                        titleText: selected?.coach?.name,
+                        subtitleText: selected?.coach?.email,
                       ),
                       Gap(16.h),
                       TitleSmall(context.str?.evaluations),
                       Gap(8.h),
                       ListViewBuilder<QuestionEvaluationModel>(
-                        items: selectedItem?.evaluations ?? [],
+                        items: selected?.evaluations ?? [],
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index, item) {
                           return ListViewBuilderTile(
@@ -123,7 +123,7 @@ class _DetailEvaluationScreenState extends BaseState<DetailEvaluationScreen> {
         },
       ),
       actions: [
-        BlocListener<EvaluationBlocWrite, BlocStateWrite<EvaluationModel>>(
+        BlocListener<EvaluationBlocWrite, BlocWriteState<EvaluationModel>>(
           listener: (context, state) {
             state.whenOrNull(
               success: (evaluation) {
@@ -133,7 +133,7 @@ class _DetailEvaluationScreenState extends BaseState<DetailEvaluationScreen> {
                       ?.evaluationDeletedSuccessfully(evaluation.athlete?.name),
                 );
                 context.read<EvaluationBlocRead>().add(
-                      BlocEventRead.remove(evaluation.id),
+                      BlocReadEvent.remove(evaluation.id),
                     );
                 context.router.back();
               },
@@ -174,7 +174,7 @@ class _DetailEvaluationScreenState extends BaseState<DetailEvaluationScreen> {
                         TextButton(
                           onPressed: () {
                             context.read<EvaluationBlocWrite>().add(
-                                  BlocEventWrite.delete(
+                                  BlocWriteEvent.delete(
                                     DeleteEvaluationParams(
                                         evaluationId: widget.id),
                                   ),
@@ -193,22 +193,22 @@ class _DetailEvaluationScreenState extends BaseState<DetailEvaluationScreen> {
             },
           ),
         ),
-        BlocBuilder<EvaluationBlocRead, BlocStateRead<EvaluationModel>>(
+        BlocBuilder<EvaluationBlocRead, BlocReadState<EvaluationModel>>(
           builder: (context, state) {
             return state.maybeWhen(
-              success: (_, __, selectedItem) {
+              success: (_, __, selected) {
                 return MoonButton.icon(
                   icon: const Icon(MoonIcons.generic_edit_24_light),
                   onTap: () {
                     context.read<ExamBlocRead>().add(
-                          BlocEventRead.select(selectedItem?.exam),
+                          BlocReadEvent.select(selected?.exam),
                         );
                     context.read<EvaluationBlocRead>().add(
-                          BlocEventRead.select(selectedItem),
+                          BlocReadEvent.select(selected),
                         );
                     context
                         .read<ClubMembersCubit>()
-                        .selectUser(selectedItem!.athlete!);
+                        .selectUser(selected!.athlete!);
                     context.router.popAndPush(
                       const UpsertEvaluationRoute(),
                     );

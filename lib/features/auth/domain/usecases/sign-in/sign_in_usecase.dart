@@ -8,13 +8,13 @@ part 'sign_in_usecase.freezed.dart';
 part 'sign_in_usecase.g.dart';
 
 @lazySingleton
-class SignInUsecase extends FPUC<UserModel, SignInParams> {
+class SignInUsecase extends FPUC<UserEntity, SignInParams> {
   final AuthRepository _repo;
 
   SignInUsecase(this._repo);
 
   @override
-  Future<Either<Failure, UserModel>> call(SignInParams params,
+  Future<Either<Failure, UserEntity>> call(SignInParams params,
           {HttpCallback? callback}) =>
       _repo.signIn(params);
 }

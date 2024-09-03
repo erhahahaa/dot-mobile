@@ -4,7 +4,7 @@ import 'package:dot_coaching/features/feature.dart';
 
 abstract class UserRepository {
   // Almost Local
-  Future<Either<Failure, UserModel>> getMe();
+  Future<Either<Failure, UserEntity>> getMe();
   Future<Either<Failure, UserPreferencesModel>> getUserPreferences();
   Future<Either<Failure, bool>> saveUserPreferences(
     SaveUserPreferencesParams params,

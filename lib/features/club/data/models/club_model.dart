@@ -8,7 +8,7 @@ part 'club_model.freezed.dart';
 part 'club_model.g.dart';
 
 @freezed
-class ClubModel with _$ClubModel {
+class ClubModel extends ClubEntity with _$ClubModel {
   const factory ClubModel({
     @Default(0) int id,
     @Default(0) int creatorId,

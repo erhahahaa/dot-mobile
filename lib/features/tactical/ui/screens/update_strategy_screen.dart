@@ -286,7 +286,7 @@ class _UpdateStrategyScreenState extends BaseState<UpdateStrategyScreen> {
   }
 
   Widget _buildFloatingActionButton() {
-    return BlocConsumer<TacticalBlocWrite, BlocStateWrite<TacticalModel>>(
+    return BlocConsumer<TacticalBlocWrite, BlocWriteState<TacticalModel>>(
       listener: (context, state) {
         state.whenOrNull(
           success: (item) {
@@ -295,10 +295,10 @@ class _UpdateStrategyScreenState extends BaseState<UpdateStrategyScreen> {
               description: context.str?.tacticalStrategyUpdatedSuccessfully,
             );
             context.read<TacticalBlocRead>().add(
-                  BlocEventRead.append(item),
+                  BlocReadEvent.append(item),
                 );
             context.read<TacticalBlocRead>().add(
-                  BlocEventRead.get(id: _tactical?.clubId),
+                  BlocReadEvent.get(id: _tactical?.clubId),
                 );
             Future.delayed(const Duration(seconds: 1), () {
               if (!context.mounted) return;
@@ -318,7 +318,7 @@ class _UpdateStrategyScreenState extends BaseState<UpdateStrategyScreen> {
           label: TitleSmall(context.str?.saveStrategy),
           onPressed: () {
             try {
-              context.read<TacticalBlocWrite>().add(BlocEventWrite.update(
+              context.read<TacticalBlocWrite>().add(BlocWriteEvent.update(
                     UpdateTacticalParams(
                       id: _tactical!.id,
                       clubId: _tactical!.clubId,
@@ -337,7 +337,7 @@ class _UpdateStrategyScreenState extends BaseState<UpdateStrategyScreen> {
               Log.error('errror ${e.toString()}');
             }
           },
-          isLoading: state is BlocStateWriteLoading,
+          isLoading: state is BlocWriteStateLoading,
           icon: const Icon(Icons.save),
         );
       },

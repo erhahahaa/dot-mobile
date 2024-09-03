@@ -27,7 +27,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
   void initState() {
     super.initState();
     final program = context.read<ProgramBlocRead>().state.whenOrNull(
-          success: (_, __, selectedItem) => selectedItem,
+          success: (_, __, selected) => selected,
         );
 
     safeSetState(() {
@@ -73,7 +73,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
         ),
       ),
       floatingActionButton:
-          BlocConsumer<ExerciseBlocWrite, BlocStateWrite<List<ExerciseModel>>>(
+          BlocConsumer<ExerciseBlocWrite, BlocWriteState<List<ExerciseModel>>>(
         listener: (context, state) {
           state.whenOrNull(
             success: (item) {
@@ -82,7 +82,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                 description: context.str?.exerciseSavedSuccessfully,
               );
               context.read<ExerciseBlocRead>().add(
-                    BlocEventRead.get(id: _program?.id),
+                    BlocReadEvent.get(id: _program?.id),
                   );
               final programs = context.read<ProgramBlocRead>().state.whenOrNull(
                     success: (items, _, __) => items,
@@ -91,7 +91,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                 programCount: programs?.length ?? 0,
               );
               context.read<ClubBlocWrite>().add(
-                    BlocEventWrite.update(updClub),
+                    BlocWriteEvent.update(updClub),
                   );
 
               context.router.back();
@@ -117,7 +117,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
               Gap(8.h),
               FloatingActionButtonExtended(
                 heroTag: 'save_exercise_button_$hashCode',
-                isLoading: state is BlocStateWriteLoading,
+                isLoading: state is BlocWriteStateLoading,
                 onPressed: () {
                   _formKey.gotoError(scrollController);
                   for (final field in _fields) {
@@ -171,7 +171,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                       ));
                     }
                     context.read<ExerciseBlocWrite>().add(
-                          BlocEventWrite.update(updates),
+                          BlocWriteEvent.update(updates),
                         );
                   }
                 },
@@ -190,7 +190,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
   }
 
   Widget _buildForm(BuildContext context) {
-    return BlocConsumer<ExerciseBlocRead, BlocStateRead<ExerciseModel>>(
+    return BlocConsumer<ExerciseBlocRead, BlocReadState<ExerciseModel>>(
       listener: (context, state) {
         state.whenOrNull(
           success: (items, _, __) {
@@ -272,7 +272,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                               onPressed: () {
                                 if (_fields[index].exercise?.id != 0) {
                                   context.read<ExerciseBlocWrite>().add(
-                                        BlocEventWrite.delete(
+                                        BlocWriteEvent.delete(
                                           DeleteExerciseParams(
                                             id: _fields[index].exercise?.id ??
                                                 0,
@@ -714,7 +714,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                 BlocProvider.value(
                   value: context.read<ExerciseMediaBlocRead>()
                     ..add(
-                      BlocEventRead.get(id: context.clubRead?.id),
+                      BlocReadEvent.get(id: context.clubRead?.id),
                     ),
                 ),
                 BlocProvider.value(
@@ -746,12 +746,12 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                     Expanded(
                       child: MediaView<
                           ExerciseMediaBlocRead,
-                          BlocStateRead<MediaModel>,
+                          BlocReadState<MediaModel>,
                           ExerciseMediaBlocWrite,
-                          BlocStateWrite<MediaModel>>(
+                          BlocWriteState<MediaModel>>(
                         onUpload: (file) {
                           context.read<ExerciseMediaBlocWrite>().add(
-                                BlocEventWrite.create({
+                                BlocWriteEvent.create({
                                   'clubId': context.clubRead?.id,
                                   'file': file,
                                 }),
@@ -759,13 +759,13 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
                         },
                         onSuccess: (item) {
                           context.read<ExerciseMediaBlocRead>().add(
-                                BlocEventRead.append(item),
+                                BlocReadEvent.append(item),
                               );
                         },
                         onDownload: (item) {
                           context
                               .read<ExerciseMediaBlocRead>()
-                              .add(BlocEventRead.getOne(item));
+                              .add(BlocReadEvent.getOne(item));
                         },
                         onTap: (item) {
                           Navigator.of(ctx).pop(item);

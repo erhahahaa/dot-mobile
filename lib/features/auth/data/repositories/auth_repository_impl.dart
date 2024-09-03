@@ -35,7 +35,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, UserModel>> signIn(
+  Future<Either<Failure, UserEntity>> signIn(
     SignInParams params,
   ) async {
     final res = await _remote.signIn(params);
@@ -49,7 +49,7 @@ class AuthRepositoryImpl implements AuthRepository {
           return const Left(
               StorageFailure(message: 'Failed to cache signed in user'));
         }
-        return Right(UserModel.fromEntity(local));
+        return Right(local);
       },
     );
   }

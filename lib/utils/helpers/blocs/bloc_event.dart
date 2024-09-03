@@ -3,22 +3,21 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'bloc_event.freezed.dart';
 
 @Freezed(genericArgumentFactories: true)
-class BlocEventRead<T> with _$BlocEventRead<T> {
-  const factory BlocEventRead.clear() = BlocEventReadClear;
-  const factory BlocEventRead.get({
+class BlocReadEvent<T> with _$BlocReadEvent<T> {
+  const factory BlocReadEvent.get({
     int? id,
     String? query,
-  }) = BlocEventReadGet;
-  const factory BlocEventRead.select(T? item) = BlocEventReadSelect<T>;
-  const factory BlocEventRead.filter(String query) = BlocEventReadFilter;
-  const factory BlocEventRead.append(T item) = BlocEventReadAppend<T>;
-  const factory BlocEventRead.remove(int id) = BlocEventReadRemove<T>;
-  const factory BlocEventRead.getOne(dynamic params) = BlocEventReadGetOne<T>;
+  }) = BlocReadEventGet;
+  const factory BlocReadEvent.select(T? item) = BlocReadEventSelect<T>;
+  const factory BlocReadEvent.filter(String query) = BlocReadEventFilter;
+  const factory BlocReadEvent.append(T item) = BlocReadEventAppend<T>;
+  const factory BlocReadEvent.remove(int id) = BlocReadEventRemove<T>;
+  const factory BlocReadEvent.getOne(dynamic params) = BlocReadEventGetOne<T>;
 }
 
 @Freezed(genericArgumentFactories: true)
-class BlocEventWrite with _$BlocEventWrite {
-  const factory BlocEventWrite.create(dynamic params) = BlocEventWriteCreate;
-  const factory BlocEventWrite.update(dynamic params) = BlocEventWriteUpdate;
-  const factory BlocEventWrite.delete(dynamic params) = BlocEventWriteDelete;
+class BlocWriteEvent with _$BlocWriteEvent {
+  const factory BlocWriteEvent.create(dynamic params) = BlocWriteEventCreate;
+  const factory BlocWriteEvent.update(dynamic params) = BlocWriteEventUpdate;
+  const factory BlocWriteEvent.delete(dynamic params) = BlocWriteEventDelete;
 }

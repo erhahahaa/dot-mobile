@@ -30,27 +30,27 @@ enum UserGender {
 
 @Collection(accessor: 'users')
 class UserEntity {
-  int id;
+  final int id;
   @Index(unique: true)
-  String name;
-  String email;
-  String username;
-  String image;
-  int phone;
+  final String name;
+  final String email;
+  final String username;
+  final String image;
+  final int phone;
   @enumValue
-  UserGender gender;
+  final UserGender gender;
   @enumValue
-  UserRole role;
-  String? bornPlace;
-  DateTime? bornDate;
-  String? religion;
-  String? address;
-  String? expertise;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  String? token;
+  final UserRole role;
+  final String? bornPlace;
+  final DateTime? bornDate;
+  final String? religion;
+  final String? address;
+  final String? expertise;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String? token;
 
-  UserEntity({
+  const UserEntity({
     this.id = 0,
     this.name = 'Folks',
     this.email = 'folks@dot.com',
