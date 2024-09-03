@@ -28,7 +28,7 @@ jobs:
         uses: shorebirdtech/setup-shorebird@v1
 
       - name: 🚀 Shorebird Release
-        uses: shorebirdtech/shorebird-release@v0
+        uses: shorebirdtech/shorebird-release@v0.0.4
         with:
           platform: android
 
