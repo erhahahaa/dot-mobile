@@ -101,12 +101,20 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
               final updClub = context.clubRead?.copyWith(
                 examCount: exams?.length ?? 0,
               );
+              if (updClub != null) {
+                context.read<ClubBlocRead>().add(
+                      BlocReadEvent.append(updClub),
+                    );
+              }
 
-              context.read<ClubBlocWrite>().add(
-                    BlocWriteEvent.update(updClub),
+              context.read<ExamBlocRead>().add(
+                    BlocReadEvent.select(null),
                   );
-
-              context.router.back();
+              Future.delayed(Durations.short2, () {
+                if (context.mounted) {
+                  context.router.back();
+                }
+              });
             },
             failure: (message) {
               context.errorToast(

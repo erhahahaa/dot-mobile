@@ -39,9 +39,9 @@ class MediaEmbedEntity {
     this.updatedAt,
   });
 
-  // to json method
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'creatorId': creatorId,
       'clubId': clubId,
       'name': name,
@@ -61,9 +61,9 @@ class MediaEmbedEntity {
     };
   }
 
-  // from json method
   factory MediaEmbedEntity.fromJson(Map<String, dynamic> json) {
     return MediaEmbedEntity(
+      id: json['id'],
       creatorId: json['creatorId'],
       clubId: json['clubId'],
       name: json['name'],

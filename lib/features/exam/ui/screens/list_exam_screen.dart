@@ -70,10 +70,23 @@ class _ListExamScreenState extends BaseState<ListExamScreen> {
         FloatingActionButton.extended(
           heroTag: 'new_exam_button_$hashCode',
           onPressed: () {
-            context.read<ExamBlocRead>().add(const BlocReadEvent.select(null));
-            context.router.push(
-              const UpsertExamRoute(),
+            final examBloc = context.read<ExamBlocRead>();
+            examBloc.add(
+              BlocReadEvent.select(null),
             );
+            final exam = examBloc.state.whenOrNull(
+              success: (_, __, selected) => selected,
+            );
+
+            if (exam != null) {
+              Future.delayed(Durations.medium2, () {
+                if (context.mounted) {
+                  context.router.push(const UpsertExamRoute());
+                }
+              });
+            } else {
+              context.router.push(const UpsertExamRoute());
+            }
           },
           icon: const Icon(Icons.add),
           label: Text(context.str?.newExam ?? 'New Exam'),
@@ -94,7 +107,7 @@ class _ListExamScreenState extends BaseState<ListExamScreen> {
               '${context.str?.search} ${context.str?.exam.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
-            context.read<ClubBlocRead>().add(
+            context.read<ExamBlocRead>().add(
                   BlocReadEvent.filter(value),
                 );
           },
@@ -103,7 +116,7 @@ class _ListExamScreenState extends BaseState<ListExamScreen> {
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
               clearSearch();
-              context.read<ClubBlocRead>().add(
+              context.read<ExamBlocRead>().add(
                     const BlocReadEvent.filter(''),
                   );
             },

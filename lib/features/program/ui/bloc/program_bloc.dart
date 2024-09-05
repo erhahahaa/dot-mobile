@@ -66,7 +66,7 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
     Emitter<BlocReadState<ProgramModel>> emit,
   ) {
     state.whenOrNull(
-      success: (programs, _, __) {
+      success: (programs, _, selected) {
         final finds = programs
             .where(
               (program) => program.name.toLowerCase().contains(
@@ -78,6 +78,7 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
         emit(BlocReadStateSuccess(
           items: programs,
           filteredItems: finds,
+          selected: selected,
         ));
       },
     );
@@ -89,7 +90,7 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
     Emitter<BlocReadState<ProgramModel>> emit,
   ) {
     state.whenOrNull(
-      success: (programs, _, __) {
+      success: (programs, _, selected) {
         final find =
             programs.where((program) => program.id == event.item.id).toList();
 
@@ -116,6 +117,7 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
         emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
+          selected: selected,
         ));
       },
       failure: (_) => emit(BlocReadStateSuccess(
@@ -131,7 +133,7 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
     Emitter<BlocReadState<ProgramModel>> emit,
   ) {
     state.whenOrNull(
-      success: (programs, _, __) {
+      success: (programs, _, selected) {
         final items = programs
             .where(
               (program) => program.id != event.id,
@@ -143,6 +145,7 @@ class ProgramBlocRead extends BlocRead<ProgramModel> {
         emit(BlocReadStateSuccess(
           items: items,
           filteredItems: items,
+          selected: selected,
         ));
       },
     );

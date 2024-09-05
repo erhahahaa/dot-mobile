@@ -77,9 +77,23 @@ class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
         FloatingActionButton.extended(
           heroTag: 'new_tactical_button_$hashCode',
           onPressed: () {
-            context.router.push(
-              const UpsertTacticalRoute(),
+            final tacticalBloc = context.read<TacticalBlocRead>();
+            tacticalBloc.add(
+              BlocReadEvent.select(null),
             );
+            final tactical = tacticalBloc.state.whenOrNull(
+              success: (_, __, selected) => selected,
+            );
+
+            if (tactical != null) {
+              Future.delayed(Durations.medium2, () {
+                if (context.mounted) {
+                  context.router.push(const UpsertTacticalRoute());
+                }
+              });
+            } else {
+              context.router.push(const UpsertTacticalRoute());
+            }
           },
           icon: const Icon(Icons.add),
           label: Text(context.str?.newTactic ?? 'New Tactic'),
@@ -100,7 +114,7 @@ class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
               '${context.str?.search} ${context.str?.tactic.toLowerCase()} ...',
           onChanged: (value) {
             if (value == null) return;
-            context.read<ClubBlocRead>().add(
+            context.read<TacticalBlocRead>().add(
                   BlocReadEvent.filter(value),
                 );
           },
@@ -109,7 +123,7 @@ class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
             icon: const Icon(MoonIcons.controls_close_24_light),
             onTap: () {
               clearSearch();
-              context.read<ClubBlocRead>().add(
+              context.read<TacticalBlocRead>().add(
                     const BlocReadEvent.filter(''),
                   );
             },

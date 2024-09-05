@@ -83,7 +83,7 @@ class _MediaViewState<
                   const dir = '/Download/DayOfTraining';
 
                   context.successToast(
-                    title: 'Success',
+                    title: context.str?.success,
                     description: 'Saved at $dir/${selected?.name}',
                   );
                   setState(() {
@@ -98,7 +98,7 @@ class _MediaViewState<
                 downloadToast?.dismiss();
                 context.read<LoadingCubit>().stopLoading();
                 context.errorToast(
-                  title: 'Error',
+                  title: context.str?.error,
                   description: error,
                 );
                 setState(() {
@@ -230,7 +230,7 @@ class _MediaViewState<
                 success: (_, filteredItems, __) {
                   if (filteredItems.isEmpty) {
                     return SizedBox(
-                      height: 50.h,
+                      height: 55.h,
                       child: ErrorAlert(context.str?.assetsIsEmpty),
                     );
                   }

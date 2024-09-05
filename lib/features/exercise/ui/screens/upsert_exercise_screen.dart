@@ -90,11 +90,20 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
               final updClub = context.clubRead?.copyWith(
                 programCount: programs?.length ?? 0,
               );
-              context.read<ClubBlocWrite>().add(
-                    BlocWriteEvent.update(updClub),
-                  );
+              if (updClub != null) {
+                context.read<ClubBlocRead>().add(
+                      BlocReadEvent.append(updClub),
+                    );
+              }
 
-              context.router.back();
+              context.read<ProgramBlocRead>().add(
+                    BlocReadEvent.select(null),
+                  );
+              Future.delayed(Durations.short2, () {
+                if (context.mounted) {
+                  context.router.back();
+                }
+              });
             },
             failure: (message) {
               context.errorToast(

@@ -74,7 +74,23 @@ class _ListClubScreenState extends BaseState<ListClubScreen> {
         FloatingActionButton.extended(
           heroTag: 'new_club_button_$hashCode',
           onPressed: () {
-            context.router.push<ClubModel>(const UpsertClubRoute());
+            final clubBloc = context.read<ClubBlocRead>();
+            clubBloc.add(
+              BlocReadEvent.select(null),
+            );
+            final club = clubBloc.state.whenOrNull(
+              success: (_, __, selected) => selected,
+            );
+
+            if (club != null) {
+              Future.delayed(Durations.medium2, () {
+                if (context.mounted) {
+                  context.router.push(const UpsertClubRoute());
+                }
+              });
+            } else {
+              context.router.push(const UpsertClubRoute());
+            }
           },
           icon: const Icon(Icons.add),
           label: Text(context.str?.newClub ?? 'New Club'),

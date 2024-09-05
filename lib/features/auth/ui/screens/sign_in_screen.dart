@@ -177,7 +177,7 @@ class _SignInScreenState extends BaseState<SignInScreen> {
                     description: context.str?.welcomeBack(user.name),
                   );
                   context.read<UserBloc>().add(const UserEvent.initialize());
-                  Future.delayed(Durations.medium2, () {
+                  Future.delayed(Durations.long4, () {
                     if (context.mounted) {
                       context.router.replace(const ListClubRoute());
                     }

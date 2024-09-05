@@ -42,11 +42,16 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     res[0].fold(
       (failure) => emit(UserStateFailure(failure.message)),
       (user) {
-        if (user is! UserModel) return;
+        if (user is! UserEntity) return;
         final success = state.maybeWhen(
-          success: (user, fcmToken) =>
-              UserStateSuccess(user: user, fcmToken: fcmToken),
-          orElse: () => UserStateSuccess(user: user, fcmToken: ''),
+          success: (_, fcmToken) => UserStateSuccess(
+            user: UserModel.fromEntity(user),
+            fcmToken: fcmToken,
+          ),
+          orElse: () => UserStateSuccess(
+            user: UserModel.fromEntity(user),
+            fcmToken: '',
+          ),
         );
         emit(success);
       },
@@ -57,10 +62,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       (fcmToken) {
         if (fcmToken is! String) return;
         final success = state.maybeWhen(
-          success: (user, fcmToken) =>
-              UserStateSuccess(user: user, fcmToken: fcmToken),
-          orElse: () =>
-              UserStateSuccess(user: const UserModel(), fcmToken: fcmToken),
+          success: (user, _) => UserStateSuccess(
+            user: user,
+            fcmToken: fcmToken,
+          ),
+          orElse: () => UserStateSuccess(
+            user: const UserModel(),
+            fcmToken: fcmToken,
+          ),
         );
         emit(success);
       },

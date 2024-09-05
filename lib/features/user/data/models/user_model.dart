@@ -50,6 +50,25 @@ class UserModel extends UserEntity with _$UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 
+  static UserModel fromEntity(UserEntity ent) => UserModel(
+        id: ent.id,
+        name: ent.name,
+        email: ent.email,
+        username: ent.username,
+        image: ent.image,
+        phone: ent.phone,
+        gender: ent.gender,
+        role: ent.role,
+        bornPlace: ent.bornPlace,
+        bornDate: ent.bornDate,
+        religion: ent.religion,
+        address: ent.address,
+        expertise: ent.expertise,
+        createdAt: ent.createdAt,
+        updatedAt: ent.updatedAt,
+        token: ent.token,
+      );
+
   static UserModel fake() {
     return UserModel(
       id: Random().nextInt(100),

@@ -1,4 +1,5 @@
 import 'package:dot_coaching/features/feature.dart';
+import 'package:dot_coaching/utils/helpers/logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -54,13 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final res = await _signIn.call(event.params);
     res.fold(
       (failure) => emit(_Unauthenticated(failure.message)),
-      (user) {
-        try {
-          emit(_Authenticated(user as UserModel));
-        } catch (e) {
-          emit(_Unauthenticated(e.toString()));
-        }
-      },
+      (user) => emit(_Authenticated(UserModel.fromEntity(user))),
     );
   }
 

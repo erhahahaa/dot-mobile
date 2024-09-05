@@ -22,7 +22,7 @@ class UpdateProfileScreen extends StatefulWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    context.read<UserBloc>().add(const UserEvent.clear());
+    // context.read<UserBloc>().add(const UserEvent.clear());
     return this;
   }
 }

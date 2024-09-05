@@ -41,7 +41,23 @@ class _ListProgramScreenState extends BaseState<ListProgramScreen> {
           FloatingActionButton.extended(
             heroTag: 'new_program_button_$hashCode',
             onPressed: () {
-              context.router.push(const UpsertProgramRoute());
+              final programBloc = context.read<ProgramBlocRead>();
+              programBloc.add(
+                BlocReadEvent.select(null),
+              );
+              final program = programBloc.state.whenOrNull(
+                success: (_, __, selected) => selected,
+              );
+
+              if (program != null) {
+                Future.delayed(Durations.medium2, () {
+                  if (context.mounted) {
+                    context.router.push(const UpsertProgramRoute());
+                  }
+                });
+              } else {
+                context.router.push(const UpsertProgramRoute());
+              }
             },
             icon: const Icon(Icons.add),
             label: Text(context.str?.newProgram ?? 'New Program'),

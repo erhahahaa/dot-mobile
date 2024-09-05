@@ -50,8 +50,11 @@ class _UpdateStrategyScreenState extends BaseState<UpdateStrategyScreen> {
     }
 
     final tactical = _tactical;
+
+    Log.failure('Tactical $tactical');
     if (tactical != null && tactical.isLive == true) {
       final bearer = context.user.token;
+      Log.info('User ${bearer}');
       if (bearer == null) return;
       context.read<StrategyCubit>().listenWebSocket(tactical, bearer);
     }
@@ -300,9 +303,27 @@ class _UpdateStrategyScreenState extends BaseState<UpdateStrategyScreen> {
             context.read<TacticalBlocRead>().add(
                   BlocReadEvent.get(id: _tactical?.clubId),
                 );
-            Future.delayed(const Duration(seconds: 1), () {
-              if (!context.mounted) return;
-              context.router.maybePop();
+
+            final tacticals = context.read<TacticalBlocRead>().state.whenOrNull(
+                  success: (items, _, __) => items,
+                );
+
+            final updClub = context.clubRead?.copyWith(
+              tacticalCount: tacticals?.length ?? 0,
+            );
+            if (updClub != null) {
+              context.read<ClubBlocRead>().add(
+                    BlocReadEvent.append(updClub),
+                  );
+            }
+
+            context.read<TacticalBlocRead>().add(
+                  BlocReadEvent.select(null),
+                );
+            Future.delayed(Durations.short2, () {
+              if (context.mounted) {
+                context.router.back();
+              }
             });
           },
           failure: (message) {
