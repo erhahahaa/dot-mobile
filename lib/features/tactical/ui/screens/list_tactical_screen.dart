@@ -53,12 +53,6 @@ class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       title: TitleMedium(context.clubWatch?.name),
-      actions: [
-        MoonButton.icon(
-          icon: const Icon(MoonIcons.generic_info_24_light),
-          onTap: () {},
-        ),
-      ],
     );
   }
 

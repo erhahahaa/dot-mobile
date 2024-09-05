@@ -113,12 +113,6 @@ class _ListClubScreenState extends BaseState<ListClubScreen> {
       ),
       centerTitle: true,
       title: const TitleMedium(AppConstants.APP_NAME),
-      actions: [
-        MoonButton.icon(
-          icon: const Icon(MoonIcons.notifications_bell_24_light),
-          onTap: () {},
-        ),
-      ],
     );
   }
 
