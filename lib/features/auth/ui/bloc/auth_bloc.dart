@@ -1,5 +1,4 @@
 import 'package:dot_coaching/features/feature.dart';
-import 'package:dot_coaching/utils/helpers/logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';

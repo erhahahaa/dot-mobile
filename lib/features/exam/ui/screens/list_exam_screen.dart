@@ -72,7 +72,7 @@ class _ListExamScreenState extends BaseState<ListExamScreen> {
           onPressed: () {
             final examBloc = context.read<ExamBlocRead>();
             examBloc.add(
-              BlocReadEvent.select(null),
+              const BlocReadEvent.select(null),
             );
             final exam = examBloc.state.whenOrNull(
               success: (_, __, selected) => selected,

@@ -108,7 +108,7 @@ class _UpsertQuestionScreenState extends BaseState<UpsertQuestionScreen> {
               }
 
               context.read<ExamBlocRead>().add(
-                    BlocReadEvent.select(null),
+                    const BlocReadEvent.select(null),
                   );
               Future.delayed(Durations.short2, () {
                 if (context.mounted) {

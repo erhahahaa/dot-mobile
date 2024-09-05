@@ -76,7 +76,7 @@ class _ListClubScreenState extends BaseState<ListClubScreen> {
           onPressed: () {
             final clubBloc = context.read<ClubBlocRead>();
             clubBloc.add(
-              BlocReadEvent.select(null),
+              const BlocReadEvent.select(null),
             );
             final club = clubBloc.state.whenOrNull(
               success: (_, __, selected) => selected,

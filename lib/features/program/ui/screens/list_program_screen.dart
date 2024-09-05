@@ -43,7 +43,7 @@ class _ListProgramScreenState extends BaseState<ListProgramScreen> {
             onPressed: () {
               final programBloc = context.read<ProgramBlocRead>();
               programBloc.add(
-                BlocReadEvent.select(null),
+                const BlocReadEvent.select(null),
               );
               final program = programBloc.state.whenOrNull(
                 success: (_, __, selected) => selected,

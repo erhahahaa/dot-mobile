@@ -97,7 +97,7 @@ class _UpsertExerciseScreenState extends BaseState<UpsertExerciseScreen> {
               }
 
               context.read<ProgramBlocRead>().add(
-                    BlocReadEvent.select(null),
+                    const BlocReadEvent.select(null),
                   );
               Future.delayed(Durations.short2, () {
                 if (context.mounted) {

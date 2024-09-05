@@ -79,7 +79,7 @@ class _ListTacticalScreenState extends BaseState<ListTacticalScreen> {
           onPressed: () {
             final tacticalBloc = context.read<TacticalBlocRead>();
             tacticalBloc.add(
-              BlocReadEvent.select(null),
+              const BlocReadEvent.select(null),
             );
             final tactical = tacticalBloc.state.whenOrNull(
               success: (_, __, selected) => selected,
