@@ -227,7 +227,7 @@ class _ListClubScreenState extends BaseState<ListClubScreen> {
 
     return ListViewBuilderTile(
       titleText: selectedClub.name,
-      subtitleText: selectedClub.type.name,
+      subtitleText: selectedClub.type,
       imageUrl: selectedClub.media?.url,
       onTap: onTap,
       trailing: MoonButton.icon(

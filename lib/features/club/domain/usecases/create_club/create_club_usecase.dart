@@ -27,7 +27,7 @@ class CreateClubParams with _$CreateClubParams {
     required String name,
     required String description,
     required File image,
-    required SportType type,
+    required String type,
   }) = _CreateClubParams;
 
   const CreateClubParams._();
@@ -35,7 +35,7 @@ class CreateClubParams with _$CreateClubParams {
   FormData toFormData() => FormData.fromMap({
         'name': name,
         'description': description,
-        'type': type.value,
+        'type': type,
         'image': MultipartFile.fromFileSync(image.path),
       });
 }

@@ -38,14 +38,7 @@ const ClubEntitySchema = IsarGeneratedSchema(
       ),
       IsarPropertySchema(
         name: 'type',
-        type: IsarType.byte,
-        enumMap: {
-          "volleyBall": 0,
-          "basketBall": 1,
-          "soccer": 2,
-          "futsal": 3,
-          "handBall": 4
-        },
+        type: IsarType.string,
       ),
       IsarPropertySchema(
         name: 'media',
@@ -106,7 +99,7 @@ int serializeClubEntity(IsarWriter writer, ClubEntity object) {
       IsarCore.writeString(writer, 4, value);
     }
   }
-  IsarCore.writeByte(writer, 5, object.type.index);
+  IsarCore.writeString(writer, 5, object.type);
   IsarCore.writeString(writer, 6, isarJsonEncode(object.media));
   IsarCore.writeLong(writer, 7, object.memberCount);
   IsarCore.writeLong(writer, 8, object.programCount);
@@ -145,15 +138,8 @@ ClubEntity deserializeClubEntity(IsarReader reader) {
   _name = IsarCore.readString(reader, 3);
   final String? _description;
   _description = IsarCore.readString(reader, 4);
-  final SportType _type;
-  {
-    if (IsarCore.readNull(reader, 5)) {
-      _type = SportType.basketBall;
-    } else {
-      _type =
-          _clubEntityType[IsarCore.readByte(reader, 5)] ?? SportType.basketBall;
-    }
-  }
+  final String _type;
+  _type = IsarCore.readString(reader, 5) ?? '';
   final dynamic? _media;
   {
     final json = isarJsonDecode(IsarCore.readString(reader, 6) ?? 'null');
@@ -265,14 +251,7 @@ dynamic deserializeClubEntityProp(IsarReader reader, int property) {
     case 4:
       return IsarCore.readString(reader, 4);
     case 5:
-      {
-        if (IsarCore.readNull(reader, 5)) {
-          return SportType.basketBall;
-        } else {
-          return _clubEntityType[IsarCore.readByte(reader, 5)] ??
-              SportType.basketBall;
-        }
-      }
+      return IsarCore.readString(reader, 5) ?? '';
     case 6:
       {
         final json = isarJsonDecode(IsarCore.readString(reader, 6) ?? 'null');
@@ -350,7 +329,7 @@ sealed class _ClubEntityUpdate {
     int? imageId,
     String? name,
     String? description,
-    SportType? type,
+    String? type,
     int? memberCount,
     int? programCount,
     int? examCount,
@@ -387,7 +366,7 @@ class _ClubEntityUpdateImpl implements _ClubEntityUpdate {
           if (imageId != ignore) 2: imageId as int?,
           if (name != ignore) 3: name as String?,
           if (description != ignore) 4: description as String?,
-          if (type != ignore) 5: type as SportType?,
+          if (type != ignore) 5: type as String?,
           if (memberCount != ignore) 7: memberCount as int?,
           if (programCount != ignore) 8: programCount as int?,
           if (examCount != ignore) 9: examCount as int?,
@@ -406,7 +385,7 @@ sealed class _ClubEntityUpdateAll {
     int? imageId,
     String? name,
     String? description,
-    SportType? type,
+    String? type,
     int? memberCount,
     int? programCount,
     int? examCount,
@@ -441,7 +420,7 @@ class _ClubEntityUpdateAllImpl implements _ClubEntityUpdateAll {
       if (imageId != ignore) 2: imageId as int?,
       if (name != ignore) 3: name as String?,
       if (description != ignore) 4: description as String?,
-      if (type != ignore) 5: type as SportType?,
+      if (type != ignore) 5: type as String?,
       if (memberCount != ignore) 7: memberCount as int?,
       if (programCount != ignore) 8: programCount as int?,
       if (examCount != ignore) 9: examCount as int?,
@@ -464,7 +443,7 @@ sealed class _ClubEntityQueryUpdate {
     int? imageId,
     String? name,
     String? description,
-    SportType? type,
+    String? type,
     int? memberCount,
     int? programCount,
     int? examCount,
@@ -499,7 +478,7 @@ class _ClubEntityQueryUpdateImpl implements _ClubEntityQueryUpdate {
       if (imageId != ignore) 2: imageId as int?,
       if (name != ignore) 3: name as String?,
       if (description != ignore) 4: description as String?,
-      if (type != ignore) 5: type as SportType?,
+      if (type != ignore) 5: type as String?,
       if (memberCount != ignore) 7: memberCount as int?,
       if (programCount != ignore) 8: programCount as int?,
       if (examCount != ignore) 9: examCount as int?,
@@ -544,7 +523,7 @@ class _ClubEntityQueryBuilderUpdateImpl implements _ClubEntityQueryUpdate {
         if (imageId != ignore) 2: imageId as int?,
         if (name != ignore) 3: name as String?,
         if (description != ignore) 4: description as String?,
-        if (type != ignore) 5: type as SportType?,
+        if (type != ignore) 5: type as String?,
         if (memberCount != ignore) 7: memberCount as int?,
         if (programCount != ignore) 8: programCount as int?,
         if (examCount != ignore) 9: examCount as int?,
@@ -566,14 +545,6 @@ extension ClubEntityQueryBuilderUpdate
   _ClubEntityQueryUpdate get updateAll =>
       _ClubEntityQueryBuilderUpdateImpl(this);
 }
-
-const _clubEntityType = {
-  0: SportType.volleyBall,
-  1: SportType.basketBall,
-  2: SportType.soccer,
-  3: SportType.futsal,
-  4: SportType.handBall,
-};
 
 extension ClubEntityQueryFilter
     on QueryBuilder<ClubEntity, ClubEntity, QFilterCondition> {
@@ -1233,26 +1204,30 @@ extension ClubEntityQueryFilter
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeEqualTo(
-    SportType value,
-  ) {
+    String value, {
+    bool caseSensitive = true,
+  }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EqualCondition(
           property: 5,
-          value: value.index,
+          value: value,
+          caseSensitive: caseSensitive,
         ),
       );
     });
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeGreaterThan(
-    SportType value,
-  ) {
+    String value, {
+    bool caseSensitive = true,
+  }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterCondition(
           property: 5,
-          value: value.index,
+          value: value,
+          caseSensitive: caseSensitive,
         ),
       );
     });
@@ -1260,26 +1235,30 @@ extension ClubEntityQueryFilter
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
       typeGreaterThanOrEqualTo(
-    SportType value,
-  ) {
+    String value, {
+    bool caseSensitive = true,
+  }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterOrEqualCondition(
           property: 5,
-          value: value.index,
+          value: value,
+          caseSensitive: caseSensitive,
         ),
       );
     });
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeLessThan(
-    SportType value,
-  ) {
+    String value, {
+    bool caseSensitive = true,
+  }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessCondition(
           property: 5,
-          value: value.index,
+          value: value,
+          caseSensitive: caseSensitive,
         ),
       );
     });
@@ -1287,28 +1266,112 @@ extension ClubEntityQueryFilter
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition>
       typeLessThanOrEqualTo(
-    SportType value,
-  ) {
+    String value, {
+    bool caseSensitive = true,
+  }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
           property: 5,
-          value: value.index,
+          value: value,
+          caseSensitive: caseSensitive,
         ),
       );
     });
   }
 
   QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeBetween(
-    SportType lower,
-    SportType upper,
-  ) {
+    String lower,
+    String upper, {
+    bool caseSensitive = true,
+  }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
           property: 5,
-          lower: lower.index,
-          upper: upper.index,
+          lower: lower,
+          upper: upper,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        StartsWithCondition(
+          property: 5,
+          value: value,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        EndsWithCondition(
+          property: 5,
+          value: value,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        ContainsCondition(
+          property: 5,
+          value: value,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        MatchesCondition(
+          property: 5,
+          wildcard: pattern,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        const EqualCondition(
+          property: 5,
+          value: '',
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<ClubEntity, ClubEntity, QAfterFilterCondition> typeIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        const GreaterCondition(
+          property: 5,
+          value: '',
         ),
       );
     });
@@ -1933,15 +1996,24 @@ extension ClubEntityQuerySortBy
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByType() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByType(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(5);
+      return query.addSortBy(
+        5,
+        caseSensitive: caseSensitive,
+      );
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByTypeDesc() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> sortByTypeDesc(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(5, sort: Sort.desc);
+      return query.addSortBy(
+        5,
+        sort: Sort.desc,
+        caseSensitive: caseSensitive,
+      );
     });
   }
 
@@ -2096,15 +2168,17 @@ extension ClubEntityQuerySortThenBy
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByType() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByType(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(5);
+      return query.addSortBy(5, caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByTypeDesc() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterSortBy> thenByTypeDesc(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(5, sort: Sort.desc);
+      return query.addSortBy(5, sort: Sort.desc, caseSensitive: caseSensitive);
     });
   }
 
@@ -2221,9 +2295,10 @@ extension ClubEntityQueryWhereDistinct
     });
   }
 
-  QueryBuilder<ClubEntity, ClubEntity, QAfterDistinct> distinctByType() {
+  QueryBuilder<ClubEntity, ClubEntity, QAfterDistinct> distinctByType(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(5);
+      return query.addDistinctBy(5, caseSensitive: caseSensitive);
     });
   }
 
@@ -2304,7 +2379,7 @@ extension ClubEntityQueryProperty1
     });
   }
 
-  QueryBuilder<ClubEntity, SportType, QAfterProperty> typeProperty() {
+  QueryBuilder<ClubEntity, String, QAfterProperty> typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(5);
     });
@@ -2385,7 +2460,7 @@ extension ClubEntityQueryProperty2<R>
     });
   }
 
-  QueryBuilder<ClubEntity, (R, SportType), QAfterProperty> typeProperty() {
+  QueryBuilder<ClubEntity, (R, String), QAfterProperty> typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(5);
     });
@@ -2467,7 +2542,7 @@ extension ClubEntityQueryProperty3<R1, R2>
     });
   }
 
-  QueryBuilder<ClubEntity, (R1, R2, SportType), QOperations> typeProperty() {
+  QueryBuilder<ClubEntity, (R1, R2, String), QOperations> typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(5);
     });

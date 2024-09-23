@@ -24,7 +24,7 @@ mixin _$ClubModel {
   int get creatorId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  SportType get type => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
   MediaEmbedModel? get media => throw _privateConstructorUsedError;
   int get memberCount => throw _privateConstructorUsedError;
   int get programCount => throw _privateConstructorUsedError;
@@ -53,7 +53,7 @@ abstract class $ClubModelCopyWith<$Res> {
       int creatorId,
       String name,
       String description,
-      SportType type,
+      String type,
       MediaEmbedModel? media,
       int memberCount,
       int programCount,
@@ -113,7 +113,7 @@ class _$ClubModelCopyWithImpl<$Res, $Val extends ClubModel>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SportType,
+              as String,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -173,7 +173,7 @@ abstract class _$$ClubModelImplCopyWith<$Res>
       int creatorId,
       String name,
       String description,
-      SportType type,
+      String type,
       MediaEmbedModel? media,
       int memberCount,
       int programCount,
@@ -232,7 +232,7 @@ class __$$ClubModelImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SportType,
+              as String,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -273,7 +273,7 @@ class _$ClubModelImpl extends _ClubModel {
       this.creatorId = 0,
       this.name = 'Indo Sports',
       this.description = 'Sport Club',
-      this.type = SportType.basketBall,
+      this.type = '',
       this.media,
       this.memberCount = 0,
       this.programCount = 0,
@@ -300,7 +300,7 @@ class _$ClubModelImpl extends _ClubModel {
   final String description;
   @override
   @JsonKey()
-  final SportType type;
+  final String type;
   @override
   final MediaEmbedModel? media;
   @override
@@ -391,7 +391,7 @@ abstract class _ClubModel extends ClubModel {
       final int creatorId,
       final String name,
       final String description,
-      final SportType type,
+      final String type,
       final MediaEmbedModel? media,
       final int memberCount,
       final int programCount,
@@ -413,7 +413,7 @@ abstract class _ClubModel extends ClubModel {
   @override
   String get description;
   @override
-  SportType get type;
+  String get type;
   @override
   MediaEmbedModel? get media;
   @override

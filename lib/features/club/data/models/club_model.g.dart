@@ -12,8 +12,7 @@ _$ClubModelImpl _$$ClubModelImplFromJson(Map<String, dynamic> json) =>
       creatorId: (json['creatorId'] as num?)?.toInt() ?? 0,
       name: json['name'] as String? ?? 'Indo Sports',
       description: json['description'] as String? ?? 'Sport Club',
-      type: $enumDecodeNullable(_$SportTypeEnumMap, json['type']) ??
-          SportType.basketBall,
+      type: json['type'] as String? ?? '',
       media: json['media'] == null
           ? null
           : MediaEmbedModel.fromJson(json['media'] as Map<String, dynamic>),
@@ -35,7 +34,7 @@ Map<String, dynamic> _$$ClubModelImplToJson(_$ClubModelImpl instance) =>
       'creatorId': instance.creatorId,
       'name': instance.name,
       'description': instance.description,
-      'type': _$SportTypeEnumMap[instance.type]!,
+      'type': instance.type,
       'media': instance.media,
       'memberCount': instance.memberCount,
       'programCount': instance.programCount,
@@ -44,11 +43,3 @@ Map<String, dynamic> _$$ClubModelImplToJson(_$ClubModelImpl instance) =>
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
-
-const _$SportTypeEnumMap = {
-  SportType.volleyBall: 'volleyBall',
-  SportType.basketBall: 'basketBall',
-  SportType.soccer: 'soccer',
-  SportType.futsal: 'futsal',
-  SportType.handBall: 'handBall',
-};

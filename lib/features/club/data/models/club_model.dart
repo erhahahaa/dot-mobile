@@ -14,7 +14,7 @@ class ClubModel extends ClubEntity with _$ClubModel {
     @Default(0) int creatorId,
     @Default('Indo Sports') String name,
     @Default('Sport Club') String description,
-    @Default(SportType.basketBall) SportType type,
+    @Default('') String type,
     MediaEmbedModel? media,
     @Default(0) int memberCount,
     @Default(0) int programCount,
@@ -70,7 +70,7 @@ class ClubModel extends ClubEntity with _$ClubModel {
       id: Random().nextInt(100),
       name: BoneMock.name,
       description: BoneMock.subtitle,
-      type: SportType.basketBall,
+      type: '',
       createdAt: DateTime.now(),
       media: MediaEmbedModel.fake(),
     );

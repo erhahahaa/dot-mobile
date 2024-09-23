@@ -38,7 +38,7 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
   late FocusNode _sportTypeFocusNode;
   late GlobalKey<FormState> _formKey;
 
-  SportType? selectedSportType;
+  // SportType? selectedSportType;
 
   File? image;
   String? imageError;
@@ -52,10 +52,10 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
       text: context.clubRead?.description,
     );
     _sportTypeController = TextEditingController(
-      text: context.clubRead?.type.name,
+      text: context.clubRead?.type,
     );
 
-    selectedSportType = context.clubRead?.type;
+    // selectedSportType = context.clubRead?.type;
 
     _nameFocusNode = FocusNode();
     _descriptionFocusNode = FocusNode();
@@ -70,7 +70,7 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
   void dispose() {
     image?.delete();
     image = null;
-    selectedSportType = null;
+    // selectedSportType = null;
     _nameController.dispose();
     _descriptionController.dispose();
     _sportTypeController.dispose();
@@ -170,33 +170,45 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
             ),
             Gap(12.h),
             FormLabel(context.str?.sportType),
-            FormCombobox<SportType>(
-              items: SportType.values
-                  .map(
-                    (e) => ComboboxItem(value: e, label: e.name),
-                  )
-                  .toList(),
+            FormInput(
               controller: _sportTypeController,
               currentFocus: _sportTypeFocusNode,
-              hintText: context.str?.selectSportType,
               textInputAction: TextInputAction.done,
-              onChanged: (value) {
-                setState(() {
-                  selectedSportType = value;
-                });
-              },
+              hintText: context.str?.selectSportType,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return context.str?.sportTypeIsRequired;
                 }
-                final isInList =
-                    SportType.values.any((element) => element.name == value);
-                if (!isInList) {
-                  return context.str?.invalidOption;
-                }
                 return null;
               },
             ),
+            // FormCombobox<SportType>(
+            //   items: SportType.values
+            //       .map(
+            //         (e) => ComboboxItem(value: e, label: e.name),
+            //       )
+            //       .toList(),
+            //   controller: _sportTypeController,
+            //   currentFocus: _sportTypeFocusNode,
+            //   hintText: context.str?.selectSportType,
+            //   textInputAction: TextInputAction.done,
+            //   onChanged: (value) {
+            //     setState(() {
+            //       selectedSportType = value;
+            //     });
+            //   },
+            //   validator: (value) {
+            //     if (value == null || value.isEmpty) {
+            //       return context.str?.sportTypeIsRequired;
+            //     }
+            //     final isInList =
+            //         SportType.values.any((element) => element.name == value);
+            //     if (!isInList) {
+            //       return context.str?.invalidOption;
+            //     }
+            //     return null;
+            //   },
+            // ),
             Gap(12.h),
             BlocConsumer<ClubBlocWrite, BlocWriteState<ClubModel>>(
               listener: (context, state) {
@@ -248,13 +260,13 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
                         imageError = null;
                       });
                     }
-                    if (selectedSportType == null) {
-                      context.showSnackBar(
-                        message: context.str?.sportTypeIsRequired ??
-                            'Sport type is required',
-                      );
-                      return;
-                    }
+                    // if (selectedSportType == null) {
+                    //   context.showSnackBar(
+                    //     message: context.str?.sportTypeIsRequired ??
+                    //         'Sport type is required',
+                    //   );
+                    //   return;
+                    // }
                     if (_formKey.currentState?.validate() ?? false) {
                       if (!mounted) {
                         return context.errorToast(
@@ -270,7 +282,7 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
                                   id: context.clubRead!.id,
                                   name: _nameController.text,
                                   description: _descriptionController.text,
-                                  type: selectedSportType!,
+                                  type: _sportTypeController.text,
                                   image: image,
                                 ),
                               ),
@@ -281,7 +293,7 @@ class _UpsertClubScreenState extends BaseState<UpsertClubScreen> {
                                 CreateClubParams(
                                   name: _nameController.text,
                                   description: _descriptionController.text,
-                                  type: selectedSportType!,
+                                  type: _sportTypeController.text,
                                   image: image!,
                                 ),
                               ),

@@ -20,7 +20,7 @@ mixin _$UpdateClubParams {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   File? get image => throw _privateConstructorUsedError;
-  SportType get type => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
 
   /// Create a copy of UpdateClubParams
   /// with the given fields replaced by the non-null parameter values.
@@ -36,7 +36,7 @@ abstract class $UpdateClubParamsCopyWith<$Res> {
       _$UpdateClubParamsCopyWithImpl<$Res, UpdateClubParams>;
   @useResult
   $Res call(
-      {int id, String name, String description, File? image, SportType type});
+      {int id, String name, String description, File? image, String type});
 }
 
 /// @nodoc
@@ -80,7 +80,7 @@ class _$UpdateClubParamsCopyWithImpl<$Res, $Val extends UpdateClubParams>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SportType,
+              as String,
     ) as $Val);
   }
 }
@@ -94,7 +94,7 @@ abstract class _$$UpdateClubParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, String name, String description, File? image, SportType type});
+      {int id, String name, String description, File? image, String type});
 }
 
 /// @nodoc
@@ -136,7 +136,7 @@ class __$$UpdateClubParamsImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SportType,
+              as String,
     ));
   }
 }
@@ -161,7 +161,7 @@ class _$UpdateClubParamsImpl extends _UpdateClubParams {
   @override
   final File? image;
   @override
-  final SportType type;
+  final String type;
 
   @override
   String toString() {
@@ -201,7 +201,7 @@ abstract class _UpdateClubParams extends UpdateClubParams {
       required final String name,
       required final String description,
       required final File? image,
-      required final SportType type}) = _$UpdateClubParamsImpl;
+      required final String type}) = _$UpdateClubParamsImpl;
   const _UpdateClubParams._() : super._();
 
   @override
@@ -213,7 +213,7 @@ abstract class _UpdateClubParams extends UpdateClubParams {
   @override
   File? get image;
   @override
-  SportType get type;
+  String get type;
 
   /// Create a copy of UpdateClubParams
   /// with the given fields replaced by the non-null parameter values.

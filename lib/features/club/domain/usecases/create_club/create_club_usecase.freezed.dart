@@ -19,7 +19,7 @@ mixin _$CreateClubParams {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   File get image => throw _privateConstructorUsedError;
-  SportType get type => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
 
   /// Create a copy of CreateClubParams
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +34,7 @@ abstract class $CreateClubParamsCopyWith<$Res> {
           CreateClubParams value, $Res Function(CreateClubParams) then) =
       _$CreateClubParamsCopyWithImpl<$Res, CreateClubParams>;
   @useResult
-  $Res call({String name, String description, File image, SportType type});
+  $Res call({String name, String description, File image, String type});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$CreateClubParamsCopyWithImpl<$Res, $Val extends CreateClubParams>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SportType,
+              as String,
     ) as $Val);
   }
 }
@@ -86,7 +86,7 @@ abstract class _$$CreateClubParamsImplCopyWith<$Res>
       __$$CreateClubParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String description, File image, SportType type});
+  $Res call({String name, String description, File image, String type});
 }
 
 /// @nodoc
@@ -123,7 +123,7 @@ class __$$CreateClubParamsImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SportType,
+              as String,
     ));
   }
 }
@@ -145,7 +145,7 @@ class _$CreateClubParamsImpl extends _CreateClubParams {
   @override
   final File image;
   @override
-  final SportType type;
+  final String type;
 
   @override
   String toString() {
@@ -182,7 +182,7 @@ abstract class _CreateClubParams extends CreateClubParams {
       {required final String name,
       required final String description,
       required final File image,
-      required final SportType type}) = _$CreateClubParamsImpl;
+      required final String type}) = _$CreateClubParamsImpl;
   const _CreateClubParams._() : super._();
 
   @override
@@ -192,7 +192,7 @@ abstract class _CreateClubParams extends CreateClubParams {
   @override
   File get image;
   @override
-  SportType get type;
+  String get type;
 
   /// Create a copy of CreateClubParams
   /// with the given fields replaced by the non-null parameter values.

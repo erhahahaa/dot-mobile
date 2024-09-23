@@ -28,7 +28,7 @@ class UpdateClubParams with _$UpdateClubParams {
     required String name,
     required String description,
     required File? image,
-    required SportType type,
+    required String type,
   }) = _UpdateClubParams;
 
   const UpdateClubParams._();
@@ -39,7 +39,7 @@ class UpdateClubParams with _$UpdateClubParams {
         'id': id,
         'name': name,
         'description': description,
-        'type': type.value,
+        'type': type,
         'image': MultipartFile.fromFileSync(image!.path),
       };
     } else {
@@ -47,7 +47,7 @@ class UpdateClubParams with _$UpdateClubParams {
         'id': id,
         'name': name,
         'description': description,
-        'type': type.value,
+        'type': type,
       };
     }
   }
